@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "react-app",
+    "@hunghg255/eslint-config-react"
+  ]
+}

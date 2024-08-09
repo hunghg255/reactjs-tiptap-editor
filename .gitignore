@@ -1,0 +1,33 @@
+.DS_Store
+node_modules
+/dist
+/lib
+examples/dist
+
+auto-imports.d.ts
+components.d.ts
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.env
+.vercel
+
+docs/.vitepress/dist
+docs/.vitepress/node_modules
+docs/.vitepress/.temp
+docs/.vitepress/cache
