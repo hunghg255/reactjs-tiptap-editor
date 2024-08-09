@@ -1,6 +1,6 @@
 {
   "name": "reactjs-tiptap-editor",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./lib/reactjs-tiptap-editor.js",
   "module": "./lib/reactjs-tiptap-editor.mjs",
   "types": "./lib/index.d.ts",
@@ -163,5 +163,11 @@
     "tiptap-react-rc-editor",
     "tiptap-react-rc-wysiwyg",
     "tiptap-react-rc-rich-text"
-  ]
+  ],
+  "homepage": "https://reactjs-tiptap-editor.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hunghg255/reactjs-tiptap-editor.git"
+  },
+  "bugs": "https://github.com/hunghg255/reactjs-tiptap-editor/issues"
 }
