@@ -1,6 +1,6 @@
 {
   "name": "reactjs-tiptap-editor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./lib/reactjs-tiptap-editor.js",
   "module": "./lib/reactjs-tiptap-editor.mjs",
   "types": "./lib/index.d.ts",
@@ -19,6 +19,7 @@
   "sideEffects": false,
   "license": "MIT",
   "files": [
+    "lib",
     "package.json",
     "README.md",
     "LICENSE"
