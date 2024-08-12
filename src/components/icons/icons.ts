@@ -69,6 +69,8 @@ import { FormatLineHeight } from '@/components/icons/LineHeight';
 import { FileWordOutline } from '@/components/icons/FileWordOutline';
 import { MenuDown } from '@/components/icons/MenuDown';
 import { BlockquoteLeft } from '@/components/icons/Blockquote';
+import DeleteColumn from '@/components/icons/DeleteColumn';
+import DeleteRow from '@/components/icons/DeleteRow';
 
 export const icons = {
   Bold: Bold,
@@ -141,6 +143,9 @@ export const icons = {
   AspectRatio: AspectRatio,
 
   Emoji: SmilePlus,
+
+  DeleteColumn: DeleteColumn,
+  DeleteRow: DeleteRow,
 } as any;
 
 export default icons;

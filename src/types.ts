@@ -38,8 +38,7 @@ export type ExtensionNameKeys =
   | 'code'
   | 'codeBlock'
   | 'clear'
-  | 'history'
-  | 'fullscreen';
+  | 'history';
 
 /**
  * Represents the general options for Tiptap extensions.

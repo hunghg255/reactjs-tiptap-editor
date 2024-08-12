@@ -1,19 +1,16 @@
-/* eslint-disable indent */
-/* eslint-disable import/named */
 import TiptapTable from '@tiptap/extension-table';
+import { TableCell } from '@tiptap/extension-table-cell';
+import type { TableCellOptions } from '@tiptap/extension-table-cell';
+import { TableHeader } from '@tiptap/extension-table-header';
+import type { TableHeaderOptions } from '@tiptap/extension-table-header';
+import { TableRow } from '@tiptap/extension-table-row';
 import type { TableRowOptions } from '@tiptap/extension-table-row';
-import { columnResizing, tableEditing } from '@tiptap/pm/tables';
 
 import TableActionButton from '@/extensions/Table/components/TableActionButton';
 import { GeneralOptions } from '@/types';
 
-import { TableCell } from './cell';
-import type { TableCellOptions } from './cell';
-import { TableCellBackground } from './cell-background';
 import type { TableCellBackgroundOptions } from './cell-background';
-import type { TableHeaderOptions } from './header';
-import TableHeader from './header';
-import TableRow from './row';
+import { TableCellBackground } from './cell-background';
 
 export interface TableOptions extends GeneralOptions<TableOptions> {
   HTMLAttributes: Record<string, any>;
@@ -35,11 +32,10 @@ export const Table = TiptapTable.extend<TableOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      HTMLAttributes: {},
       resizable: true,
       lastColumnResizable: true,
       allowTableNodeSelection: false,
-      button: ({ editor, t }) => ({
+      button: ({ editor, t }: any) => ({
         component: TableActionButton,
         componentProps: {
           disabled: editor.isActive('table') || false,
@@ -50,27 +46,7 @@ export const Table = TiptapTable.extend<TableOptions>({
       }),
     };
   },
-  addProseMirrorPlugins() {
-    const isResizable = this.options.resizable;
 
-    return [
-      ...(isResizable
-        ? [
-            columnResizing({
-              handleWidth: this.options.handleWidth,
-              cellMinWidth: this.options.cellMinWidth,
-              // @ts-expect-error incorrect type https://github.com/ueberdosis/tiptap/blob/b0198eb14b98db5ca691bd9bfe698ffaddbc4ded/packages/extension-table/src/table.ts#L253
-              View: this.options.View,
-              lastColumnResizable: this.options.lastColumnResizable,
-            }),
-          ]
-        : []),
-
-      tableEditing({
-        allowTableNodeSelection: this.options.allowTableNodeSelection,
-      }),
-    ];
-  },
   addExtensions() {
     return [
       TableRow.configure(this.options.tableRow),

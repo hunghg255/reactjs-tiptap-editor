@@ -160,7 +160,7 @@ export const BaseKit = Extension.create<BaseKitOptions>({
             if (node?.type?.name === 'heading') {
               return `${localeActions.t(`editor.heading.h${node.attrs.level}.tooltip`)}`;
             }
-            if (node?.type?.name === 'codeBlock') {
+            if (node?.type?.name === 'codeBlock' || node?.type?.name === 'table') {
               return '';
             }
             if (pos === 0) {

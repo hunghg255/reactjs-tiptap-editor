@@ -238,12 +238,12 @@
   }
 
   table {
-    @apply border-collapse border-black/10 rounded box-border w-full;
+    @apply border-collapse border-black/10 table-fixed box-border overflow-x-auto overflow-y-hidden block;
     @apply dark:border-white/20;
 
     td,
     th {
-      @apply border border-black/10 border-solid min-w-[100px] p-2 relative text-left align-top;
+      @apply border border-black/10 min-w-[1em] p-2 box-border relative text-left align-top;
       @apply dark:border-white/20;
 
       &:first-of-type:not(a) {
@@ -260,7 +260,7 @@
     }
 
     th {
-      @apply font-bold;
+      @apply font-bold text-left;
     }
   }
 

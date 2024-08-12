@@ -1,5 +1,5 @@
-/* eslint-disable indent */
 /* eslint-disable import/named */
+/* eslint-disable unicorn/prefer-ternary */
 import { Command, Extension } from '@tiptap/core';
 import { Transaction } from '@tiptap/pm/state';
 import { CellSelection } from '@tiptap/pm/tables';
@@ -100,11 +100,13 @@ export const TableCellBackground = Extension.create<TableCellBackgroundOptions>(
               return element.style.backgroundColor || '';
             },
             renderHTML: (attributes) => {
-              return !attributes.backgroundColor || attributes.backgroundColor === ''
-                ? {}
-                : {
-                    style: `background-color: ${attributes.backgroundColor}`,
-                  };
+              if (!attributes.backgroundColor || attributes.backgroundColor === '') {
+                return {};
+              } else {
+                return {
+                  style: `background-color: ${attributes.backgroundColor}`,
+                };
+              }
             },
           },
         },

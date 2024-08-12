@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { Node } from '@tiptap/pm/model';
 import { NodeSelection } from '@tiptap/pm/state';
-import { DragHandlePlugin } from 'echo-drag-handle-plugin';
+import { DragHandlePlugin, dragHandlePluginDefaultKey } from 'echo-drag-handle-plugin';
 
 import Icon from '@/components/icons/Icon';
 import { Button } from '@/components/ui/button';
@@ -48,13 +48,6 @@ const ContentMenu = (props: any) => {
       props.editor.registerPlugin(pluginRef.current);
     }
   }, [props.editor, dragElement]);
-
-  function handleNodeChange(e: any) {
-    if (e.node) {
-      setCurrentNode(e.node);
-    }
-    setCurrentNodePos(e.pos);
-  }
 
   function resetTextFormatting() {
     const chain = props.editor.chain();
@@ -100,26 +93,12 @@ const ContentMenu = (props: any) => {
       .run();
   }
 
-  const handleMenuOpenChange = (open: any) => {
-    setMenuOpen(open);
-  };
-
-  useEffect(() => {
-    if (menuOpen) {
-      props.editor.commands.setMeta('lockDragHandle', true);
-    } else {
-      props.editor.commands.setMeta('lockDragHandle', false);
+  function handleNodeChange(e: any) {
+    if (e.node) {
+      setCurrentNode(e.node);
     }
-  }, [menuOpen]);
-
-  useEffect(() => {
-    return () => {
-      if (pluginRef.current) {
-        props.editor.unregisterPlugin(pluginRef.current);
-        pluginRef.current = null;
-      }
-    };
-  }, []);
+    setCurrentNodePos(e.pos);
+  }
 
   function handleAdd() {
     if (currentNodePos !== -1) {
@@ -151,10 +130,47 @@ const ContentMenu = (props: any) => {
     }
   }
 
+  useEffect(() => {
+    if (menuOpen) {
+      props.editor.commands.setMeta('lockDragHandle', true);
+    } else {
+      props.editor.commands.setMeta('lockDragHandle', false);
+    }
+
+    return () => {
+      props.editor.commands.setMeta('lockDragHandle', false);
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    return () => {
+      if (pluginRef.current) {
+        props.editor.unregisterPlugin(dragHandlePluginDefaultKey);
+        pluginRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (props.editor?.isDestroyed && pluginRef.current) {
+      props.editor.unregisterPlugin(props.pluginKey);
+      pluginRef.current = null;
+    }
+  }, [props.editor?.isDestroyed]);
+
+  const handleMenuOpenChange = (open: any) => {
+    if (props?.disabled) {
+      return;
+    }
+    setMenuOpen(open);
+  };
+
   return (
     <>
       <div
-        className={'[transition-property:top,_left] ease-in-out duration-200 ' + props?.className}
+        className={
+          'drag-handle [transition-property:top,_left] ease-in-out duration-200 ' + props?.className
+        }
         style={{
           opacity: props?.disabled ? 0 : 1,
         }}
@@ -171,14 +187,20 @@ const ContentMenu = (props: any) => {
             <Icon name='Plus' className='text-lg text-neutral-600 dark:text-neutral-200' />
           </Button>
           <DropdownMenu open={menuOpen} onOpenChange={handleMenuOpenChange}>
-            <DropdownMenuTrigger disabled={props?.disabled}>
+            <div className='flex flex-col relative'>
               <Tooltip>
                 <TooltipTrigger asChild disabled={props?.disabled}>
                   <Button
                     variant='ghost'
                     size='icon'
-                    className='w-7 h-7 cursor-grab'
+                    className='w-7 h-7 cursor-grab relative z-[1]'
                     disabled={props?.disabled}
+                    onMouseUp={() => {
+                      if (props?.disabled) {
+                        return;
+                      }
+                      setMenuOpen(true);
+                    }}
                   >
                     <Icon name='Grip' className='text-sm dark:text-neutral-200 text-neutral-600' />
                   </Button>
@@ -187,7 +209,10 @@ const ContentMenu = (props: any) => {
                   <p>{t('editor.draghandle.tooltip')}</p>
                 </TooltipContent>
               </Tooltip>
-            </DropdownMenuTrigger>
+
+              <DropdownMenuTrigger className='absolute top-0 left-0 w-[28px] h-[28px] z-0' />
+            </div>
+
             <DropdownMenuContent className='w-48' align='start' side='bottom' sideOffset={0}>
               <DropdownMenuItem
                 onClick={deleteNode}

@@ -168,17 +168,17 @@ export const getBubbleVideo = (editor: Editor): BubbleMenuItem[] => [
 ];
 
 export const getBubbleText = (editor: Editor, t: any) => [
-  Bold.configure().options.button({ editor, t }),
-  Italic.configure().options.button({ editor, t }),
-  Underline.configure().options.button({ editor, t }),
-  Strike.configure().options.button({ editor, t }),
-  Code.configure().options.button({ editor, t }),
-  Link.configure().options.button({ editor, t }),
+  Bold.configure().options.button({ editor, t } as any),
+  Italic.configure().options.button({ editor, t } as any),
+  Underline.configure().options.button({ editor, t } as any),
+  Strike.configure().options.button({ editor, t } as any),
+  Code.configure().options.button({ editor, t } as any),
+  Link.configure().options.button({ editor, t } as any),
   {
     type: 'divider',
     component: undefined,
     componentProps: {},
   },
-  Color.configure().options.button({ editor, t }),
-  Highlight.configure().options.button({ editor, t }),
+  Color.configure().options.button({ editor, t } as any),
+  Highlight.configure().options.button({ editor, t } as any),
 ];
