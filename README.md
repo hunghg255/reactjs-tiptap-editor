@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
- A modern WYSIWYG rich-text editor base on Tiptap uses Shadcn components.
+ A modern WYSIWYG rich-text editor base on Tiptap uses Shadcn components. 1
 </p>
 
 <p align="center">
