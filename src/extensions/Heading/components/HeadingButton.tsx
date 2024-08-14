@@ -54,7 +54,7 @@ const HeadingButton = (props: Props) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger disabled={props?.disabled}>
+      <DropdownMenuTrigger disabled={props?.disabled} asChild>
         <ActionMenuButton
           title={active?.title}
           tooltip={props?.tooltip}

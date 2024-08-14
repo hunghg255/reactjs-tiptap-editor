@@ -52,18 +52,16 @@ const TextAlignMenuButton = (props: IPropsTextAlignMenuButton) => {
 
   return (
     <Popover>
-      <PopoverTrigger disabled={props?.disabled}>
-        <div className='flex'>
-          <ActionButton
-            customClass='w-12'
-            enable-tooltip
-            icon={props?.icon}
-            tooltip={props?.tooltip}
-            disabled={props?.disabled}
-          >
-            <Icon className='w-3 h-3 ml-1 text-zinc-500' name='MenuDown' />
-          </ActionButton>
-        </div>
+      <PopoverTrigger disabled={props?.disabled} asChild>
+        <ActionButton
+          customClass='w-12'
+          enable-tooltip
+          icon={props?.icon}
+          tooltip={props?.tooltip}
+          disabled={props?.disabled}
+        >
+          <Icon className='w-3 h-3 ml-1 text-zinc-500' name='MenuDown' />
+        </ActionButton>
       </PopoverTrigger>
 
       <PopoverContent
@@ -74,11 +72,11 @@ const TextAlignMenuButton = (props: IPropsTextAlignMenuButton) => {
         {props?.items?.map((item, index) => {
           return (
             <Tooltip key={`text-align-${index}`}>
-              <TooltipTrigger>
+              <TooltipTrigger asChild>
                 <Toggle
                   size='sm'
                   onClick={item?.action}
-                  className='w-7 h-7 p-1'
+                  className='p-1 w-7 h-7'
                   pressed={active.title === item.title}
                   data-state={active.title === item.title ? 'on' : 'off'}
                 >

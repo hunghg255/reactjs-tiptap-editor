@@ -107,9 +107,9 @@ const TextDropdown = (props: IPropsTextDropdown) => {
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger>
+        <DropdownMenuTrigger asChild>
           <Button variant='ghost' className='h-[32px] flex gap-1 px-1.5'>
-            <span className='whitespace-nowrap text-sm font-normal'> {activeItem?.label}</span>
+            <span className='text-sm font-normal whitespace-nowrap'> {activeItem?.label}</span>
             <ChevronDown className='w-4 h-4' />
           </Button>
         </DropdownMenuTrigger>
@@ -125,7 +125,7 @@ const TextDropdown = (props: IPropsTextDropdown) => {
                 className='cursor-pointer'
               >
                 <div className='flex items-center gap-2 px-2'>
-                  <Icon className='h3 w-3' />
+                  <Icon className='w-3 h3' />
                   <span> {item.label}</span>
                 </div>
               </DropdownMenuCheckboxItem>

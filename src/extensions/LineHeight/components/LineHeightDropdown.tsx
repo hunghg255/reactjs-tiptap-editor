@@ -59,14 +59,14 @@ const LineHeightDropdown = (props: IPropsLineHeightDropdown) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger disabled={props?.disabled}>
+      <DropdownMenuTrigger disabled={props?.disabled} asChild>
         <ActionButton
           customClass='w-12'
           icon='LineHeight'
           tooltip={props?.tooltip}
           disabled={props?.disabled}
         >
-          <Icon className='w-3 h-3 text-zinc-500 ml-1' name='MenuDown' />
+          <Icon className='w-3 h-3 ml-1 text-zinc-500' name='MenuDown' />
         </ActionButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='min-w-24'>

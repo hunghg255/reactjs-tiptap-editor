@@ -45,7 +45,7 @@ const HistoryActionButton = (props?: Partial<IPropsHistoryActionButton>) => {
 
   return (
     <Tooltip>
-      <TooltipTrigger>
+      <TooltipTrigger asChild>
         <Toggle
           size='sm'
           className={'w-[32px] h-[32px] ' + customClass}
@@ -59,7 +59,7 @@ const HistoryActionButton = (props?: Partial<IPropsHistoryActionButton>) => {
       </TooltipTrigger>
       {tooltip && (
         <TooltipContent {...tooltipOptions}>
-          <div className='max-w-24 text-center flex flex-col items-center'>
+          <div className='flex flex-col items-center text-center max-w-24'>
             <div>{tooltip}</div>
             {!!props?.shortcutKeys?.length && <span>{getShortcutKeys(props?.shortcutKeys)}</span>}
           </div>

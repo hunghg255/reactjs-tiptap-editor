@@ -47,7 +47,7 @@ const FontSizeMenuButton = (props: IPropsFontSizeMenuButton) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger disabled={props?.disabled}>
+      <DropdownMenuTrigger disabled={props?.disabled} asChild>
         <ActionMenuButton
           title={active?.title}
           tooltip={`${props?.tooltip}`}
@@ -63,7 +63,7 @@ const FontSizeMenuButton = (props: IPropsFontSizeMenuButton) => {
               checked={active.title === item.title}
               onClick={item.action}
             >
-              <div className='ml-1 h-full'>{item.title}</div>
+              <div className='h-full ml-1'>{item.title}</div>
             </DropdownMenuCheckboxItem>
           );
         })}

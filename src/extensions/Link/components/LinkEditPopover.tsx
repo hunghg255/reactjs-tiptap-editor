@@ -1,5 +1,3 @@
-import React, { Fragment } from 'react';
-
 import ActionButton from '@/components/ActionButton';
 import Icon from '@/components/icons/Icon';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -26,16 +24,14 @@ const LinkEditPopover = (props: IPropsLinkEditPopover) => {
 
   return (
     <Popover>
-      <PopoverTrigger disabled={props?.disabled}>
-        <Fragment>
-          <ActionButton
-            tooltip={props?.tooltip}
-            isActive={props?.isActive}
-            disabled={props?.disabled}
-          >
-            <Icon name={props?.icon} />
-          </ActionButton>
-        </Fragment>
+      <PopoverTrigger disabled={props?.disabled} asChild>
+        <ActionButton
+          tooltip={props?.tooltip}
+          isActive={props?.isActive}
+          disabled={props?.disabled}
+        >
+          <Icon name={props?.icon} />
+        </ActionButton>
       </PopoverTrigger>
       <PopoverContent hideWhenDetached className='w-full' align='start' side='bottom'>
         <LinkEditBlock editor={props.editor} onSetLink={onSetLink} />

@@ -13,7 +13,6 @@ const createArray = (length: number) => Array.from({ length }).map((_, index) =>
 
 interface IPropsCreateTablePopover {
   createTable: any;
-  disabled: any;
   children: any;
 }
 
@@ -85,13 +84,11 @@ const CreateTablePopover = (props: IPropsCreateTablePopover) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button disabled={props?.disabled} className='m-0 p-0'>
-          {props?.children}
-        </button>
+        {props?.children}
       </PopoverTrigger>
       <PopoverContent className='w-full !p-2' align='start' side='bottom'>
-        <div className='table-grid-size-editor p-0'>
-          <div className='flex flex-col flex-wrap gap-1 justify-between'>
+        <div className='p-0 table-grid-size-editor'>
+          <div className='flex flex-col flex-wrap justify-between gap-1'>
             {createArray(tableGridSize?.rows)?.map((row: any) => {
               return (
                 <div key={`r-${row}`} className='flex gap-1'>
@@ -115,7 +112,7 @@ const CreateTablePopover = (props: IPropsCreateTablePopover) => {
               );
             })}
           </div>
-          <div className='text-center text-sm text-zinc-600 mt-2'>
+          <div className='mt-2 text-sm text-center text-zinc-600'>
             {selectedTableGridSize.rows} x {selectedTableGridSize.cols}
           </div>
         </div>

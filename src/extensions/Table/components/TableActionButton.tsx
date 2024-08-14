@@ -26,17 +26,15 @@ const TableActionButton = (props: IPropsTableActionButton) => {
   }
 
   return (
-    <CreateTablePopover createTable={createTable} disabled={props?.disabled}>
-      <div className='flex'>
-        <ActionButton
-          icon={props?.icon}
-          tooltip={props?.tooltip}
-          disabled={props?.disabled}
-          color={props?.color}
-          action={props?.action}
-          isActive={props?.isActive}
-        ></ActionButton>
-      </div>
+    <CreateTablePopover createTable={createTable}>
+      <ActionButton
+        icon={props?.icon}
+        tooltip={props?.tooltip}
+        disabled={props?.disabled}
+        color={props?.color}
+        action={props?.action}
+        isActive={props?.isActive}
+      />
     </CreateTablePopover>
   );
 };

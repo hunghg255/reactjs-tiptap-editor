@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// @ts-ignore
 import React from 'react';
 
+import { Slot } from '@radix-ui/react-slot';
 import { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 import icons from '@/components/icons/icons';
@@ -23,51 +22,59 @@ interface IPropsActionButton {
   action?: ButtonViewReturnComponentProps['action'];
   isActive?: ButtonViewReturnComponentProps['isActive'];
   children?: React.ReactNode;
+  asChild?: boolean;
 }
 
-const ActionButton = (props?: Partial<IPropsActionButton>) => {
-  const {
-    icon = undefined,
-    title = undefined,
-    tooltip = undefined,
-    disabled = false,
-    customClass = '',
-    color = undefined,
-    loading = false,
-    shortcutKeys = undefined,
-    tooltipOptions = {},
-    action = undefined,
-    isActive = undefined,
-    children,
-  } = props as any;
+const ActionButton = React.forwardRef<HTMLButtonElement, Partial<IPropsActionButton>>(
+  (props, ref) => {
+    const {
+      icon = undefined,
+      // title = undefined,
+      tooltip = undefined,
+      disabled = false,
+      customClass = '',
+      // color = undefined,
+      // loading = false,
+      shortcutKeys = undefined,
+      tooltipOptions = {},
+      action = undefined,
+      isActive = undefined,
+      children,
+      asChild = false,
+    } = props;
 
-  const Icon = icons[icon as string];
+    const Icon = icons[icon as string];
+    const Comp = asChild ? Slot : Toggle;
 
-  return (
-    <Tooltip>
-      <TooltipTrigger>
-        <Toggle
-          size='sm'
-          className={'w-[32px] h-[32px] ' + customClass}
-          // pressed={isActive?.() || false}
-          // disabled={disabled}
-          onClick={action}
-          data-state={isActive?.() ? 'on' : 'off'}
-        >
-          {Icon && <Icon className='w-4 h-4' />}
-          {children && <>{children}</>}
-        </Toggle>
-      </TooltipTrigger>
-      {tooltip && (
-        <TooltipContent {...tooltipOptions}>
-          <div className='max-w-24 text-center flex flex-col items-center'>
-            <div>{tooltip}</div>
-            {!!props?.shortcutKeys?.length && <span>{getShortcutKeys(props?.shortcutKeys)}</span>}
-          </div>
-        </TooltipContent>
-      )}
-    </Tooltip>
-  );
-};
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Comp
+            ref={ref}
+            size='sm'
+            className={'w-[32px] h-[32px] ' + customClass}
+            // pressed={isActive?.() || false}
+            disabled={disabled}
+            onClick={action}
+            data-state={isActive?.() ? 'on' : 'off'}
+          >
+            {Icon && <Icon className='w-4 h-4' />}
+            {children}
+          </Comp>
+        </TooltipTrigger>
+        {tooltip && (
+          <TooltipContent {...tooltipOptions}>
+            <div className='flex flex-col items-center text-center max-w-24'>
+              <div>{tooltip}</div>
+              {!!shortcutKeys?.length && <span>{getShortcutKeys(shortcutKeys)}</span>}
+            </div>
+          </TooltipContent>
+        )}
+      </Tooltip>
+    );
+  }
+);
+
+ActionButton.displayName = 'ActionButton';
 
 export default ActionButton;

@@ -169,6 +169,7 @@ function App() {
             marginTop: 20,
             height: 500,
           }}
+          readOnly
           value={content}
         />
       )}

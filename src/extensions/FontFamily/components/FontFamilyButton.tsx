@@ -57,7 +57,7 @@ const FontFamilyButton = (props: Props) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger disabled={props?.disabled}>
+      <DropdownMenuTrigger disabled={props?.disabled} asChild>
         <ActionMenuButton
           title={active?.font?.length > 7 ? `${active?.font?.slice(0, 6)}...` : active?.font}
           tooltip={props?.tooltip}
