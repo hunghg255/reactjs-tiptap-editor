@@ -10,7 +10,7 @@ const locale = {
   'editor.format': '格式刷',
   'editor.draghandle.tooltip': '修改',
   'editor.copyToClipboard': '复制到剪贴板',
-  'editor.importWrod.tooltip': '导入 Word',
+  'editor.importWord.tooltip': '导入 Word',
   'editor.slash': "按 '/' 使用命令",
   'editor.slash.empty': '无结果',
   'editor.slash.format': '格式',
