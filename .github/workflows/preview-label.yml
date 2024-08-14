@@ -1,0 +1,46 @@
+name: CR
+
+on:
+  pull_request_target:
+    types: [labeled, unlabeled]
+
+jobs:
+  preview-pr:
+    if: ${{ !github.event.pull_request.draft && contains(github.event.pull_request.labels.*.name, 'preview-pr') && !contains(github.event.pull_request.labels.*.name, 'spam') && !contains(github.event.pull_request.labels.*.name, 'invalid') }}
+
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install
+        run: pnpm install
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - uses: hunghg255/surge-preview@master
+        id: preview_step
+        with:
+          surge_token: ${{ secrets.SURGE_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dist: "playground/dist"
+          failOnError: true
+          build: |
+            pnpm run build:playground
+      - name: Get the preview_url
+        run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
+
