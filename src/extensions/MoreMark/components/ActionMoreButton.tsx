@@ -54,7 +54,7 @@ const ActionMoreButton = (props: IPropsActionMoreButton) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger disabled={props?.disabled}>
+      <DropdownMenuTrigger disabled={props?.disabled} asChild>
         <ActionButton
           customClass='w-12'
           icon={props?.icon}
@@ -71,12 +71,12 @@ const ActionMoreButton = (props: IPropsActionMoreButton) => {
               checked={active.title === item.title}
               onClick={item.action}
               key={index}
-              className='flex gap-3 items-center'
+              className='flex items-center gap-3'
             >
               <Icon name={item?.icon} />
               <span className='ml-1'>{item.title}</span>
               {!!item?.shortcutKeys && (
-                <span className='text-xs tracking-widest opacity-60 ml-auto'>
+                <span className='ml-auto text-xs tracking-widest opacity-60'>
                   {getShortcutKeys(item.shortcutKeys)}
                 </span>
               )}

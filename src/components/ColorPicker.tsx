@@ -122,13 +122,13 @@ const ColorPicker = (props: IPropsColorPicker) => {
 
   return (
     <Popover>
-      <PopoverTrigger disabled={disabled}>{props?.children}</PopoverTrigger>
+      <PopoverTrigger disabled={disabled} asChild>{props?.children}</PopoverTrigger>
 
-      <PopoverContent hideWhenDetached className='p-2 w-full h-full' align='start' side='bottom'>
+      <PopoverContent hideWhenDetached className='w-full h-full p-2' align='start' side='bottom'>
         <div className='flex flex-col'>
           {highlight ? (
             <div
-              className='flex items-center p-1 rd-1 cursor-pointer hover:bg-accent'
+              className='flex items-center p-1 cursor-pointer rd-1 hover:bg-accent'
               onClick={() => setColor(undefined)}
             >
               <span className='w-6 h-6 p-0.5 inline-block rounded-sm border cursor-pointer hover:border-border hover:shadow-sm relative after:border-b-2 after:border-b-red-500 after:top-[10px] after:h-0 after:left-0 after:w-6 after:absolute after:block after:rotate-[45deg]'>
@@ -148,12 +148,12 @@ const ColorPicker = (props: IPropsColorPicker) => {
                   </svg>
                 </span>
               </span>
-              <span className='text-sm ml-1'>{t('editor.nofill')}</span>
+              <span className='ml-1 text-sm'>{t('editor.nofill')}</span>
             </div>
           ) : (
             <>
               <div
-                className='flex items-center p-1 rd-1 cursor-pointer hover:bg-accent'
+                className='flex items-center p-1 cursor-pointer rd-1 hover:bg-accent'
                 onClick={() => {
                   setColor(undefined);
                 }}
@@ -176,14 +176,14 @@ const ColorPicker = (props: IPropsColorPicker) => {
                     </svg>
                   </span>
                 </span>
-                <span className='text-sm ml-1'>{t('editor.default')}</span>
+                <span className='ml-1 text-sm'>{t('editor.default')}</span>
               </div>
             </>
           )}
 
           {chunkedColors.map((items: string[], index: number) => {
             return (
-              <span className='flex p-0 w-full h-auto relative last:pb-2' key={index}>
+              <span className='relative flex w-full h-auto p-0 last:pb-2' key={index}>
                 {items.map((item: string, idx) => {
                   return (
                     <span
@@ -228,8 +228,8 @@ const ColorPicker = (props: IPropsColorPicker) => {
           })}
 
           <div>
-            <div className='text-sm my-1'>{t('editor.recent')}</div>
-            <span className='flex p-0 w-full h-auto relative last:pb-2'>
+            <div className='my-1 text-sm'>{t('editor.recent')}</div>
+            <span className='relative flex w-full h-auto p-0 last:pb-2'>
               {recentColorsStore?.map((item, index) => {
                 return (
                   <span
