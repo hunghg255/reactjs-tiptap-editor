@@ -7,6 +7,7 @@ import mitt, { EventType } from '@/utils/mitt';
 
 import en from './en';
 import vi from './vi';
+import zh_CN from './zh-cn';
 
 interface LocaleInterface {
   lang: string;
@@ -22,6 +23,7 @@ export const DEFAULT_LOCALE: LocaleInterface = {
   message: {
     en,
     vi,
+    zh_CN
   },
 };
 
@@ -137,3 +139,4 @@ export { Locale, useLocale, localeActions };
 
 export { default as en } from './en';
 export { default as vi } from './vi';
+export { default as zh_CN } from './zh-cn';
