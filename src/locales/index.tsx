@@ -7,14 +7,17 @@ import mitt, { EventType } from '@/utils/mitt';
 
 import en from './en';
 import vi from './vi';
+import zh_CN from './zh-cn';
+
+type LanguageType = 'en' | 'vi' | 'zh_CN';
 
 interface LocaleInterface {
-  lang: string;
-  message: Record<string, Record<string, string>>;
+  lang: LanguageType;
+  message: Record<LanguageType, Record<string, string>>;
 }
 
 interface MittEvents extends Record<EventType, unknown> {
-  lang: string;
+  lang: LanguageType;
 }
 
 export const DEFAULT_LOCALE: LocaleInterface = {
@@ -22,6 +25,7 @@ export const DEFAULT_LOCALE: LocaleInterface = {
   message: {
     en,
     vi,
+    zh_CN
   },
 };
 
@@ -31,11 +35,11 @@ class Locale {
     this.emitter = mitt<MittEvents>();
   }
 
-  get lang(): string {
+  get lang(): LanguageType {
     return DEFAULT_LOCALE.lang;
   }
 
-  set lang(lang: string) {
+  set lang(lang: LanguageType) {
     if (!this.isLangSupported(lang)) {
       console.warn(
         `Can't find the current language "${lang}", Using language "${DEFAULT_LOCALE.lang}" by default`,
@@ -47,28 +51,28 @@ class Locale {
     this.emitter.emit('lang', lang);
   }
 
-  get message(): Record<string, Record<string, string>> {
+  get message(): Record<LanguageType, Record<string, string>> {
     return DEFAULT_LOCALE.message;
   }
 
-  set message(message: Record<string, Record<string, string>>) {
+  set message(message: Record<LanguageType, Record<string, string>>) {
     DEFAULT_LOCALE.message = message;
   }
 
-  loadLangMessage(lang: string): Record<string, string> {
+  loadLangMessage(lang: LanguageType): Record<string, string> {
     return this.message[lang];
   }
 
-  private isLangSupported(lang: string): boolean {
-    const supportedLangs = Object.keys(this.message);
+  private isLangSupported(lang: LanguageType): boolean {
+    const supportedLangs = Object.keys(this.message) as LanguageType[];
     return supportedLangs.includes(lang);
   }
 
-  public setLang(lang: string) {
+  public setLang(lang: LanguageType) {
     this.lang = lang;
   }
 
-  public registerWatchLang(hook: (lang: string) => void) {
+  public registerWatchLang(hook: (lang: LanguageType) => void) {
     this.emitter.on('lang', hook);
 
     const unsubscribe = () => {
@@ -80,11 +84,11 @@ class Locale {
     };
   }
 
-  public setMessage(lang: string, message: Record<string, string>) {
+  public setMessage(lang: LanguageType, message: Record<string, string>) {
     this.message[lang] = message;
   }
 
-  buildLocalesHandler(lang?: string) {
+  buildLocalesHandler(lang?: LanguageType) {
     if (!lang) {
       lang = this.lang;
     }
@@ -137,3 +141,4 @@ export { Locale, useLocale, localeActions };
 
 export { default as en } from './en';
 export { default as vi } from './vi';
+export { default as zh_CN } from './zh-cn';

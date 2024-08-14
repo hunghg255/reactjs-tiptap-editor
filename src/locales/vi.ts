@@ -10,7 +10,7 @@ const locale: Record<string, string> = {
   'editor.format': 'Format Painter',
   'editor.draghandle.tooltip': 'Sửa đổi',
   'editor.copyToClipboard': 'CopyToClipboard',
-  'editor.importWrod.tooltip': 'Nhập Word',
+  'editor.importWord.tooltip': 'Nhập Word',
   'editor.slash': "Nhấn '/' để biết lệnh",
   'editor.slash.empty': 'Không có kết quả',
   'editor.slash.format': 'Định dạng',
