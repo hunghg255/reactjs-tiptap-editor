@@ -33,12 +33,6 @@ jobs:
           node-version: lts/*
           registry-url: https://registry.npmjs.org/
 
-      - name: Install
-        run: pnpm install
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
       - uses: hunghg255/surge-preview@master
         id: preview_step
         with:
@@ -46,7 +40,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dist: "playground/dist"
           failOnError: true
+          teardown: 'true'
           build: |
+            pnpm install
             pnpm run build:playground
       - name: Get the preview_url
         run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
