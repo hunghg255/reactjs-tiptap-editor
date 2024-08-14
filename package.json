@@ -43,7 +43,8 @@
     "build:playground": "pnpm build:lib && pnpm --dir ./playground run build",
     "docs:dev": "pnpm --parallel --filter docs... dev",
     "docs:build": "pnpm --filter docs... build",
-    "docs:preview": "pnpm -C docs preview"
+    "docs:preview": "pnpm -C docs preview",
+    "prepublishOnly": "pnpm build:lib"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.1",
