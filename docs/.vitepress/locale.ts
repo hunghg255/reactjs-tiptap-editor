@@ -137,7 +137,7 @@ export function getLocaleConfig(lang: string) {
         },
         {
           text: t('Column'),
-          link: '/extensions/column/multilple-column.md',
+          link: '/extensions/column/multiple-column.md',
         },
         {
           text: t('Iframe'),

@@ -1,5 +1,5 @@
 ---
-description: Multilple Column
+description: Multiple Column
 
 next:
   text: Iframe
