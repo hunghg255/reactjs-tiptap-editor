@@ -1,20 +1,19 @@
 /* eslint-disable eqeqeq */
-/* eslint-disable unicorn/no-null */
-/* eslint-disable indent */
-import { mergeAttributes } from '@tiptap/core';
-import TiptapImage from '@tiptap/extension-image';
-import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import ImageView from '@/extensions/Image/components/ImageView';
+import { mergeAttributes } from '@tiptap/core'
+import TiptapImage from '@tiptap/extension-image'
+import { ReactNodeViewRenderer } from '@tiptap/react'
+
+import ImageView from '@/extensions/Image/components/ImageView'
 
 export interface SetImageAttrsOptions {
-  src?: string;
+  src?: string
   /** The alternative text for the image. */
-  alt?: string;
+  alt?: string
   /** The title of the image. */
-  title?: string;
+  title?: string
   /** The width of the image. */
-  width?: number | string | null;
+  width?: number | string | null
 }
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -22,20 +21,20 @@ declare module '@tiptap/core' {
       /**
        * Add an image
        */
-      setImage: (options: Partial<SetImageAttrsOptions>) => ReturnType;
+      setImage: (options: Partial<SetImageAttrsOptions>) => ReturnType
       /**
        * Update an image
        */
-      updateImage: (options: Partial<SetImageAttrsOptions>) => ReturnType;
-    };
+      updateImage: (options: Partial<SetImageAttrsOptions>) => ReturnType
+    }
   }
 }
 export const Image = TiptapImage.extend({
   inline() {
-    return true;
+    return true
   },
   group() {
-    return 'inline';
+    return 'inline'
   },
   addAttributes() {
     return {
@@ -43,16 +42,16 @@ export const Image = TiptapImage.extend({
       width: {
         default: null,
         parseHTML: (element) => {
-          const width = element.style.width || element.getAttribute('width') || null;
-          return width == undefined ? null : Number.parseInt(width, 10);
+          const width = element.style.width || element.getAttribute('width') || null
+          return width == undefined ? null : Number.parseInt(width, 10)
         },
         renderHTML: (attributes) => {
           return {
             width: attributes.width,
-          };
+          }
         },
       },
-    };
+    }
   },
 
   addOptions() {
@@ -60,21 +59,21 @@ export const Image = TiptapImage.extend({
       ...this.parent?.(),
       inline: true,
       upload: null,
-    };
+    }
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(ImageView);
+    return ReactNodeViewRenderer(ImageView)
   },
   addCommands() {
     return {
       ...this.parent?.(),
       updateImage:
-        (options) =>
-        ({ commands }) => {
-          return commands.updateAttributes(this.name, options);
-        },
-    };
+        options =>
+          ({ commands }) => {
+            return commands.updateAttributes(this.name, options)
+          },
+    }
   },
   renderHTML({ HTMLAttributes }) {
     return [
@@ -87,7 +86,7 @@ export const Image = TiptapImage.extend({
         this.options.HTMLAttributes,
         HTMLAttributes,
       ),
-    ];
+    ]
   },
 
   parseHTML() {
@@ -95,8 +94,8 @@ export const Image = TiptapImage.extend({
       {
         tag: 'img[src]',
       },
-    ];
+    ]
   },
-});
+})
 
-export default Image;
+export default Image

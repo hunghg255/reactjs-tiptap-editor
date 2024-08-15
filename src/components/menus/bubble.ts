@@ -1,15 +1,15 @@
-import { deleteSelection } from '@tiptap/pm/commands';
-import type { Editor } from '@tiptap/react';
+import { deleteSelection } from '@tiptap/pm/commands'
+import type { Editor } from '@tiptap/react'
 
-import { IMAGE_SIZE, VIDEO_SIZE } from '@/constants';
-import type { ButtonViewParams, ButtonViewReturn, ExtensionNameKeys } from '@/types';
-import { localeActions } from '@/locales';
-import ActionButton from '@/components/ActionButton';
-import { Bold, Code, Color, Highlight, Italic, Link, Strike, Underline } from '@/extensions';
+import { IMAGE_SIZE, VIDEO_SIZE } from '@/constants'
+import type { ButtonViewParams, ButtonViewReturn, ExtensionNameKeys } from '@/types'
+import { localeActions } from '@/locales'
+import ActionButton from '@/components/ActionButton'
+import { Bold, Code, Color, Highlight, Italic, Link, Strike, Underline } from '@/extensions'
 
 /** Represents the size types for bubble images or videos */
-type BubbleImageOrVideoSizeType = 'size-small' | 'size-medium' | 'size-large';
-type ImageAlignments = 'left' | 'center' | 'right';
+type BubbleImageOrVideoSizeType = 'size-small' | 'size-medium' | 'size-large'
+type ImageAlignments = 'left' | 'center' | 'right'
 
 /** Represents the various types for bubble images */
 type BubbleImageType =
@@ -17,10 +17,10 @@ type BubbleImageType =
   | `video-${BubbleImageOrVideoSizeType}`
   | 'image'
   | 'image-aspect-ratio'
-  | 'remove';
+  | 'remove'
 
 /** Represents the types for bubble videos */
-type BubbleVideoType = 'video' | 'remove';
+type BubbleVideoType = 'video' | 'remove'
 
 /** Represents the overall types for bubbles */
 type BubbleAllType =
@@ -28,23 +28,23 @@ type BubbleAllType =
   | BubbleVideoType
   | ExtensionNameKeys
   | 'divider'
-  | (string & {});
+  | (string & {})
 
 /** Represents the key types for node types */
-export type NodeTypeKey = 'image' | 'text' | 'video';
+export type NodeTypeKey = 'image' | 'text' | 'video'
 
 /** Represents the menu of bubble types for each node type */
-export type BubbleTypeMenu = Partial<Record<NodeTypeKey, BubbleMenuItem[]>>;
+export type BubbleTypeMenu = Partial<Record<NodeTypeKey, BubbleMenuItem[]>>
 
 /** Represents the menu of overall bubble types for each node type */
-export type NodeTypeMenu = Partial<Record<NodeTypeKey, BubbleAllType[]>>;
+export type NodeTypeMenu = Partial<Record<NodeTypeKey, BubbleAllType[]>>
 
 /**
  * Represents the structure of a bubble menu item.
  */
 export interface BubbleMenuItem extends ButtonViewReturn {
   /** The type of the bubble item */
-  type: BubbleAllType;
+  type: BubbleAllType
 }
 
 /**
@@ -56,7 +56,7 @@ interface BubbleView<T = any> {
    * @param {ButtonViewParams<T>} options - The options for generating the bubble menu.
    * @returns {BubbleTypeMenu} The generated bubble menu.
    */
-  (options: ButtonViewParams<T>): BubbleTypeMenu;
+  (options: ButtonViewParams<T>): BubbleTypeMenu
 }
 
 /**
@@ -66,20 +66,20 @@ interface BubbleView<T = any> {
  */
 export interface BubbleOptions<T> {
   /** The menu of bubble types for each node type. */
-  list: NodeTypeMenu;
+  list: NodeTypeMenu
   /** The default list of bubble types. */
-  defaultBubbleList: any;
+  defaultBubbleList: any
   /** The function to generate a bubble menu. */
-  button: BubbleView<T>;
+  button: BubbleView<T>
 }
 
-const imageSizeMenus = (editor: Editor): BubbleMenuItem[] => {
-  const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large'];
+function imageSizeMenus(editor: Editor): BubbleMenuItem[] {
+  const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large']
   const icons: NonNullable<ButtonViewReturn['componentProps']['icon']>[] = [
     'SizeS',
     'SizeM',
     'SizeL',
-  ];
+  ]
 
   return types.map((size, i) => ({
     type: `image-${size}`,
@@ -90,17 +90,17 @@ const imageSizeMenus = (editor: Editor): BubbleMenuItem[] => {
       action: () => editor.commands.updateImage({ width: IMAGE_SIZE[size] }),
       isActive: () => editor.isActive('image', { width: IMAGE_SIZE[size] }),
     },
-  }));
-};
+  }))
+}
 
-const imageAlignMenus = (editor: Editor): BubbleMenuItem[] => {
-  const types: ImageAlignments[] = ['left', 'center', 'right'];
+function imageAlignMenus(editor: Editor): BubbleMenuItem[] {
+  const types: ImageAlignments[] = ['left', 'center', 'right']
   const iconMap: any = {
     left: 'AlignLeft',
     center: 'AlignCenter',
     right: 'AlignRight',
-  };
-  return types.map((k, i) => ({
+  }
+  return types.map(k => ({
     type: `image-${k}`,
     component: ActionButton,
     componentProps: {
@@ -110,16 +110,16 @@ const imageAlignMenus = (editor: Editor): BubbleMenuItem[] => {
       isActive: () => editor.isActive({ textAlign: k }) || false,
       disabled: !editor.can().setTextAlign(k),
     },
-  }));
-};
+  }))
+}
 
-const videoSizeMenus = (editor: Editor): BubbleMenuItem[] => {
-  const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large'];
+function videoSizeMenus(editor: Editor): BubbleMenuItem[] {
+  const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large']
   const icons: NonNullable<ButtonViewReturn['componentProps']['icon']>[] = [
     'SizeS',
     'SizeM',
     'SizeL',
-  ];
+  ]
 
   return types.map((size, i) => ({
     type: `video-${size}`,
@@ -130,55 +130,61 @@ const videoSizeMenus = (editor: Editor): BubbleMenuItem[] => {
       action: () => editor.commands.updateVideo({ width: VIDEO_SIZE[size] }),
       isActive: () => editor.isActive('video', { width: VIDEO_SIZE[size] }),
     },
-  }));
-};
-export const getBubbleImage = (editor: Editor): BubbleMenuItem[] => [
-  ...imageSizeMenus(editor),
-  ...imageAlignMenus(editor),
-  {
-    type: 'remove',
-    component: ActionButton,
-    componentProps: {
-      editor,
-      tooltip: localeActions.t('editor.remove'),
-      icon: 'Trash2',
-      action: () => {
-        const { state, dispatch } = editor.view;
-        deleteSelection(state, dispatch);
+  }))
+}
+export function getBubbleImage(editor: Editor): BubbleMenuItem[] {
+  return [
+    ...imageSizeMenus(editor),
+    ...imageAlignMenus(editor),
+    {
+      type: 'remove',
+      component: ActionButton,
+      componentProps: {
+        editor,
+        tooltip: localeActions.t('editor.remove'),
+        icon: 'Trash2',
+        action: () => {
+          const { state, dispatch } = editor.view
+          deleteSelection(state, dispatch)
+        },
       },
     },
-  },
-];
+  ]
+}
 
-export const getBubbleVideo = (editor: Editor): BubbleMenuItem[] => [
-  ...videoSizeMenus(editor),
-  {
-    type: 'remove',
-    component: ActionButton,
-    componentProps: {
-      editor,
-      tooltip: localeActions.t('editor.remove'),
-      icon: 'Trash2',
-      action: () => {
-        const { state, dispatch } = editor.view;
-        deleteSelection(state, dispatch);
+export function getBubbleVideo(editor: Editor): BubbleMenuItem[] {
+  return [
+    ...videoSizeMenus(editor),
+    {
+      type: 'remove',
+      component: ActionButton,
+      componentProps: {
+        editor,
+        tooltip: localeActions.t('editor.remove'),
+        icon: 'Trash2',
+        action: () => {
+          const { state, dispatch } = editor.view
+          deleteSelection(state, dispatch)
+        },
       },
     },
-  },
-];
+  ]
+}
 
-export const getBubbleText = (editor: Editor, t: any) => [
-  Bold.configure().options.button({ editor, t } as any),
-  Italic.configure().options.button({ editor, t } as any),
-  Underline.configure().options.button({ editor, t } as any),
-  Strike.configure().options.button({ editor, t } as any),
-  Code.configure().options.button({ editor, t } as any),
-  Link.configure().options.button({ editor, t } as any),
-  {
-    type: 'divider',
-    component: undefined,
-    componentProps: {},
-  },
-  Color.configure().options.button({ editor, t } as any),
-  Highlight.configure().options.button({ editor, t } as any),
-];
+export function getBubbleText(editor: Editor, t: any) {
+  return [
+    Bold.configure().options.button({ editor, t } as any),
+    Italic.configure().options.button({ editor, t } as any),
+    Underline.configure().options.button({ editor, t } as any),
+    Strike.configure().options.button({ editor, t } as any),
+    Code.configure().options.button({ editor, t } as any),
+    Link.configure().options.button({ editor, t } as any),
+    {
+      type: 'divider',
+      component: undefined,
+      componentProps: {},
+    },
+    Color.configure().options.button({ editor, t } as any),
+    Highlight.configure().options.button({ editor, t } as any),
+  ]
+}

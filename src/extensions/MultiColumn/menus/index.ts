@@ -1,1 +1,1 @@
-export { default } from './ColumnsMenu';
+export { default } from './ColumnsMenu'

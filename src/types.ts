@@ -1,17 +1,17 @@
-import type { Editor as CoreEditor, Extension, JSONContent } from '@tiptap/core';
-import type { Editor } from '@tiptap/react';
+import type { Editor as CoreEditor, Extension, JSONContent } from '@tiptap/core'
+import type { Editor } from '@tiptap/react'
 
-export type { Editor, JSONContent } from '@tiptap/core';
+export type { Editor, JSONContent } from '@tiptap/core'
 
 /**
  * Represents the onChange event for EchoEditor.
  */
-export type EchoEditorOnChange = {
+export interface EchoEditorOnChange {
   /** Editor object */
-  editor: CoreEditor;
+  editor: CoreEditor
   /** Output content, can be a string or JSON content */
-  output: string | JSONContent;
-};
+  output: string | JSONContent
+}
 
 /**
  * Represents the keys for different extensions.
@@ -38,20 +38,20 @@ export type ExtensionNameKeys =
   | 'code'
   | 'codeBlock'
   | 'clear'
-  | 'history';
+  | 'history'
 
 /**
  * Represents the general options for Tiptap extensions.
  */
 export interface GeneralOptions<T> {
   /** Enabled divider */
-  divider: boolean;
+  divider: boolean
   /** Enabled spacer */
-  spacer: boolean;
+  spacer: boolean
   /** Button view function */
-  button: ButtonView<T>;
+  button: ButtonView<T>
   /** Show on Toolbar */
-  toolbar?: boolean;
+  toolbar?: boolean
 }
 
 /**
@@ -59,14 +59,14 @@ export interface GeneralOptions<T> {
  */
 export interface ButtonViewReturnComponentProps {
   /** Method triggered when action is performed */
-  action?: (value?: any) => void;
+  action?: (value?: any) => void
   /** Whether it is in the active state */
-  isActive?: () => boolean;
+  isActive?: () => boolean
   /** Button icon */
-  icon?: any;
+  icon?: any
   /** Text displayed on hover */
-  tooltip?: string;
-  [x: string]: any;
+  tooltip?: string
+  [x: string]: any
 }
 
 /**
@@ -74,8 +74,8 @@ export interface ButtonViewReturnComponentProps {
  */
 export interface ButtonViewReturnComponentSlots {
   /** Dialog slot */
-  dialog: () => any;
-  [x: string]: () => any;
+  dialog: () => any
+  [x: string]: () => any
 }
 
 /**
@@ -83,11 +83,11 @@ export interface ButtonViewReturnComponentSlots {
  */
 export interface ButtonViewReturn {
   /** Component */
-  component: unknown;
+  component: unknown
   /** Component props */
-  componentProps: ButtonViewReturnComponentProps;
+  componentProps: ButtonViewReturnComponentProps
   /** Component slots */
-  componentSlots?: ButtonViewReturnComponentSlots;
+  componentSlots?: ButtonViewReturnComponentSlots
 }
 
 /**
@@ -95,16 +95,16 @@ export interface ButtonViewReturn {
  */
 export interface ButtonViewParams<T = any> {
   /** Editor object */
-  editor: Editor;
+  editor: Editor
   /** Extension object */
-  extension: Extension<T>;
+  extension: Extension<T>
   /** Translation function */
-  t: (path: string) => string;
+  t: (path: string) => string
 }
 
 /**
  * Represents the ButtonView function.
  */
 export interface ButtonView<T = any> {
-  (options: ButtonViewParams<T>): ButtonViewReturn | ButtonViewReturn[];
+  (options: ButtonViewParams<T>): ButtonViewReturn | ButtonViewReturn[]
 }

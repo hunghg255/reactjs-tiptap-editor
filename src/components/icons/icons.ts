@@ -54,98 +54,98 @@ import {
   Undo2,
   Unlink,
   Video,
-} from 'lucide-react';
+} from 'lucide-react'
 import {
   TextAlignCenterIcon,
   TextAlignJustifyIcon,
   TextAlignLeftIcon,
   TextAlignRightIcon,
-} from '@radix-ui/react-icons';
-import { SizeS } from '@/components/icons/SizeS';
-import { SizeM } from '@/components/icons/SizeM';
-import { SizeL } from '@/components/icons/SizeL';
-import { AspectRatio } from '@/components/icons/AspectRatio';
-import { FormatLineHeight } from '@/components/icons/LineHeight';
-import { FileWordOutline } from '@/components/icons/FileWordOutline';
-import { MenuDown } from '@/components/icons/MenuDown';
-import { BlockquoteLeft } from '@/components/icons/Blockquote';
-import DeleteColumn from '@/components/icons/DeleteColumn';
-import DeleteRow from '@/components/icons/DeleteRow';
+} from '@radix-ui/react-icons'
+import { SizeS } from '@/components/icons/SizeS'
+import { SizeM } from '@/components/icons/SizeM'
+import { SizeL } from '@/components/icons/SizeL'
+import { AspectRatio } from '@/components/icons/AspectRatio'
+import { FormatLineHeight } from '@/components/icons/LineHeight'
+import { FileWordOutline } from '@/components/icons/FileWordOutline'
+import { MenuDown } from '@/components/icons/MenuDown'
+import { BlockquoteLeft } from '@/components/icons/Blockquote'
+import DeleteColumn from '@/components/icons/DeleteColumn'
+import DeleteRow from '@/components/icons/DeleteRow'
 
 export const icons = {
-  Bold: Bold,
-  LoaderCircle: LoaderCircle,
-  Italic: Italic,
-  Underline: Underline,
-  Quote: Quote,
+  Bold,
+  LoaderCircle,
+  Italic,
+  Underline,
+  Quote,
   TextQuote: BlockquoteLeft,
-  Strikethrough: Strikethrough,
-  Minus: Minus,
-  Eraser: Eraser,
-  PaintRoller: PaintRoller,
-  Redo2: Redo2,
-  Undo2: Undo2,
+  Strikethrough,
+  Minus,
+  Eraser,
+  PaintRoller,
+  Redo2,
+  Undo2,
   AlignCenter: TextAlignCenterIcon,
   AlignJustify: TextAlignJustifyIcon,
   AlignLeft: TextAlignLeftIcon,
   AlignRight: TextAlignRightIcon,
-  ChevronDown: ChevronDown,
-  Subscript: Subscript,
-  Superscript: Superscript,
-  Code: Code,
+  ChevronDown,
+  Subscript,
+  Superscript,
+  Code,
   Code2: CodeXml,
-  Type: Type,
-  IndentIncrease: IndentIncrease,
-  IndentDecrease: IndentDecrease,
-  List: List,
-  ListOrdered: ListOrdered,
-  ListTodo: ListTodo,
-  Link: Link,
-  ImageUp: ImageUp,
-  Video: Video,
-  Maximize: Maximize,
-  Minimize: Minimize,
-  Table: Table,
-  Sparkles: Sparkles,
-  Pencil: Pencil,
-  Unlink: Unlink,
-  BetweenHorizonalEnd: BetweenHorizonalEnd,
-  BetweenHorizonalStart: BetweenHorizonalStart,
-  BetweenVerticalStart: BetweenVerticalStart,
-  BetweenVerticalEnd: BetweenVerticalEnd,
-  TableCellsMerge: TableCellsMerge,
-  TableCellsSplit: TableCellsSplit,
-  Trash2: Trash2,
-  Trash: Trash,
-  Replace: Replace,
-  ChevronsUpDown: ChevronsUpDown,
+  Type,
+  IndentIncrease,
+  IndentDecrease,
+  List,
+  ListOrdered,
+  ListTodo,
+  Link,
+  ImageUp,
+  Video,
+  Maximize,
+  Minimize,
+  Table,
+  Sparkles,
+  Pencil,
+  Unlink,
+  BetweenHorizonalEnd,
+  BetweenHorizonalStart,
+  BetweenVerticalStart,
+  BetweenVerticalEnd,
+  TableCellsMerge,
+  TableCellsSplit,
+  Trash2,
+  Trash,
+  Replace,
+  ChevronsUpDown,
   LineHeight: FormatLineHeight,
   Word: FileWordOutline,
-  Heading1: Heading1,
-  Heading2: Heading2,
-  Heading3: Heading3,
-  Columns2: Columns2,
-  Columns3: Columns3,
-  Columns4: Columns4,
-  Plus: Plus,
+  Heading1,
+  Heading2,
+  Heading3,
+  Columns2,
+  Columns3,
+  Columns4,
+  Plus,
   Grip: GripVertical,
-  Copy: Copy,
-  Clipboard: Clipboard,
-  PanelLeft: PanelLeft,
-  PanelRight: PanelRight,
+  Copy,
+  Clipboard,
+  PanelLeft,
+  PanelRight,
   Columns: Columns2,
   Iframe: Frame,
 
-  MenuDown: MenuDown,
-  SizeS: SizeS,
-  SizeM: SizeM,
-  SizeL: SizeL,
-  AspectRatio: AspectRatio,
+  MenuDown,
+  SizeS,
+  SizeM,
+  SizeL,
+  AspectRatio,
 
   Emoji: SmilePlus,
 
-  DeleteColumn: DeleteColumn,
-  DeleteRow: DeleteRow,
-} as any;
+  DeleteColumn,
+  DeleteRow,
+} as any
 
-export default icons;
+export default icons

@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 const locale = {
   'editor.remove': '移除',
   'editor.copy': '复制',
@@ -11,7 +10,7 @@ const locale = {
   'editor.draghandle.tooltip': '修改',
   'editor.copyToClipboard': '复制到剪贴板',
   'editor.importWord.tooltip': '导入 Word',
-  'editor.slash': "按 '/' 使用命令",
+  'editor.slash': '按 \'/\' 使用命令',
   'editor.slash.empty': '无结果',
   'editor.slash.format': '格式',
   'editor.slash.insert': '插入',
@@ -124,6 +123,6 @@ const locale = {
   'editor.table.menu.setCellsBgColor': '设置单元格背景色',
   'editor.emoji.tooltip': '表情',
   'editor.iframe.tooltip': '内嵌框架',
-};
+}
 
-export default locale;
+export default locale

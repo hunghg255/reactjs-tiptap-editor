@@ -1,13 +1,12 @@
-/* eslint-disable unicorn/no-null */
-import { CodeBlockLowlight as TiptapCodeBlock } from '@tiptap/extension-code-block-lowlight';
-import type { CodeBlockLowlightOptions as TiptapCodeBlockOptions } from '@tiptap/extension-code-block-lowlight';
+import { CodeBlockLowlight as TiptapCodeBlock } from '@tiptap/extension-code-block-lowlight'
+import type { CodeBlockLowlightOptions as TiptapCodeBlockOptions } from '@tiptap/extension-code-block-lowlight'
 
-import ActionButton from '@/components/ActionButton';
-import type { GeneralOptions } from '@/types';
+import ActionButton from '@/components/ActionButton'
+import type { GeneralOptions } from '@/types'
 
 export interface CodeBlockOptions
   extends TiptapCodeBlockOptions,
-    GeneralOptions<CodeBlockOptions> {}
+  GeneralOptions<CodeBlockOptions> {}
 
 export const CodeBlock = TiptapCodeBlock.extend<CodeBlockOptions>({
   addOptions() {
@@ -24,6 +23,6 @@ export const CodeBlock = TiptapCodeBlock.extend<CodeBlockOptions>({
           tooltip: t('editor.codeblock.tooltip'),
         },
       }),
-    };
+    }
   },
-});
+})

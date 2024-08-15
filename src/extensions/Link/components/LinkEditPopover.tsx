@@ -1,24 +1,24 @@
-import ActionButton from '@/components/ActionButton';
-import Icon from '@/components/icons/Icon';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock';
-import { ButtonViewReturnComponentProps } from '@/types';
+import ActionButton from '@/components/ActionButton'
+import Icon from '@/components/icons/Icon'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock'
+import type { ButtonViewReturnComponentProps } from '@/types'
 
 interface IPropsLinkEditPopover {
-  editor: any;
-  icon?: any;
-  title?: string;
-  tooltip?: string;
-  disabled?: boolean;
-  shortcutKeys?: string[];
-  isActive?: ButtonViewReturnComponentProps['isActive'];
-  action?: ButtonViewReturnComponentProps['action'];
+  editor: any
+  icon?: any
+  title?: string
+  tooltip?: string
+  disabled?: boolean
+  shortcutKeys?: string[]
+  isActive?: ButtonViewReturnComponentProps['isActive']
+  action?: ButtonViewReturnComponentProps['action']
 }
 
-const LinkEditPopover = (props: IPropsLinkEditPopover) => {
+function LinkEditPopover(props: IPropsLinkEditPopover) {
   function onSetLink(link: string, text?: string, openInNewTab?: boolean) {
     if (props.action) {
-      props.action({ link, text, openInNewTab });
+      props.action({ link, text, openInNewTab })
     }
   }
 
@@ -33,11 +33,11 @@ const LinkEditPopover = (props: IPropsLinkEditPopover) => {
           <Icon name={props?.icon} />
         </ActionButton>
       </PopoverTrigger>
-      <PopoverContent hideWhenDetached className='w-full' align='start' side='bottom'>
+      <PopoverContent hideWhenDetached className="w-full" align="start" side="bottom">
         <LinkEditBlock editor={props.editor} onSetLink={onSetLink} />
       </PopoverContent>
     </Popover>
-  );
-};
+  )
+}
 
-export default LinkEditPopover;
+export default LinkEditPopover

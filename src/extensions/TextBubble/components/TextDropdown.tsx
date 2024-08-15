@@ -1,28 +1,28 @@
-import React, { useMemo } from 'react';
+import React, { useMemo } from 'react'
 
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react'
 
-import icons from '@/components/icons/icons';
-import { Button } from '@/components/ui/button';
+import icons from '@/components/icons/icons'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { useLocale } from '@/locales';
+} from '@/components/ui/dropdown-menu'
+import { useLocale } from '@/locales'
 
 interface IPropsTextDropdown {
-  editor: any;
-  disabled?: boolean;
-  color?: string;
-  maxHeight?: string | number;
-  icon?: any;
-  tooltip?: string;
+  editor: any
+  disabled?: boolean
+  color?: string
+  maxHeight?: string | number
+  icon?: any
+  tooltip?: string
 }
 
-const TextDropdown = (props: IPropsTextDropdown) => {
-  const { t } = useLocale();
+function TextDropdown(props: IPropsTextDropdown) {
+  const { t } = useLocale()
 
   const menus = useMemo(() => {
     return [
@@ -31,10 +31,10 @@ const TextDropdown = (props: IPropsTextDropdown) => {
         label: t('editor.paragraph.tooltip'),
         iconName: 'Heading1',
         isActive: () =>
-          props.editor.isActive('paragraph') &&
-          !props.editor.isActive('orderedList') &&
-          !props.editor.isActive('bulletList') &&
-          !props.editor.isActive('taskList'),
+          props.editor.isActive('paragraph')
+          && !props.editor.isActive('orderedList')
+          && !props.editor.isActive('bulletList')
+          && !props.editor.isActive('taskList'),
         action: () => props.editor.chain().focus().clearNodes().run(),
       },
       {
@@ -93,48 +93,54 @@ const TextDropdown = (props: IPropsTextDropdown) => {
         iconName: 'Code2',
         action: () => props.editor.chain().focus().clearNodes().toggleCodeBlock().run(),
       },
-    ];
-  }, [props.editor, t]);
+    ]
+  }, [props.editor, t])
 
   const activeItem = useMemo(() => {
     return (
-      menus.filter((item) => item.isActive()).pop() ?? {
+      menus.filter(item => item.isActive()).pop() ?? {
         label: 'Empty',
       }
-    );
-  }, [menus]);
+    )
+  }, [menus])
 
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant='ghost' className='h-[32px] flex gap-1 px-1.5'>
-            <span className='text-sm font-normal whitespace-nowrap'> {activeItem?.label}</span>
-            <ChevronDown className='w-4 h-4' />
+          <Button variant="ghost" className="h-[32px] flex gap-1 px-1.5">
+            <span className="text-sm font-normal whitespace-nowrap">
+              {' '}
+              {activeItem?.label}
+            </span>
+            <ChevronDown className="w-4 h-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent hideWhenDetached className='w-full p-1' align='start' sideOffset={5}>
+        <DropdownMenuContent hideWhenDetached className="w-full p-1" align="start" sideOffset={5}>
           {menus.map((item, index) => {
-            const Icon = icons[item.iconName as any];
+            const Icon = icons[item.iconName as any]
 
             return (
               <DropdownMenuCheckboxItem
                 key={index}
                 checked={item.isActive?.() || false}
                 onClick={() => item.action()}
-                className='cursor-pointer'
+                className="cursor-pointer"
               >
-                <div className='flex items-center gap-2 px-2'>
-                  <Icon className='w-3 h3' />
-                  <span> {item.label}</span>
+                <div className="flex items-center gap-2 px-2">
+                  <Icon className="w-3 h3" />
+                  <span>
+                    {' '}
+                    {item.label}
+                  </span>
                 </div>
               </DropdownMenuCheckboxItem>
-            );
+            )
           })}
         </DropdownMenuContent>
       </DropdownMenu>
     </>
-  );
-};
+  )
+}
 
-export default TextDropdown;
+export default TextDropdown

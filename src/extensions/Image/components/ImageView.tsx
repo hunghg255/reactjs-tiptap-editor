@@ -1,46 +1,42 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable unicorn/no-null */
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { NodeViewWrapper } from '@tiptap/react';
-import { flushSync } from 'react-dom';
+import { NodeViewWrapper } from '@tiptap/react'
+import { flushSync } from 'react-dom'
 
-import { IMAGE_MAX_SIZE, IMAGE_MIN_SIZE, IMAGE_THROTTLE_WAIT_TIME } from '@/constants';
-import { clamp, isNumber, throttle } from '@/utils/utils';
+import { IMAGE_MAX_SIZE, IMAGE_MIN_SIZE, IMAGE_THROTTLE_WAIT_TIME } from '@/constants'
+import { clamp, isNumber, throttle } from '@/utils/utils'
 
-interface IPropsImageView {}
-
-type Size = {
-  width: number;
-  height: number;
-};
+interface Size {
+  width: number
+  height: number
+}
 
 const ResizeDirection = {
   TOP_LEFT: 'tl',
   TOP_RIGHT: 'tr',
   BOTTOM_LEFT: 'bl',
   BOTTOM_RIGHT: 'br',
-};
+}
 
-const ImageView = (props: any) => {
+function ImageView(props: any) {
   const [maxSize, setMaxSize] = useState<Size>({
     width: IMAGE_MAX_SIZE,
     height: IMAGE_MAX_SIZE,
-  });
+  })
 
   const [originalSize, setOriginalSize] = useState({
     width: 0,
     height: 0,
-  });
+  })
 
-  const [resizeDirections, setResizeDirections] = useState<string[]>([
+  const [resizeDirections] = useState<string[]>([
     ResizeDirection.TOP_LEFT,
     ResizeDirection.TOP_RIGHT,
     ResizeDirection.BOTTOM_LEFT,
     ResizeDirection.BOTTOM_RIGHT,
-  ]);
+  ])
 
-  const [resizing, setResizing] = useState<boolean>(false);
+  const [resizing, setResizing] = useState<boolean>(false)
 
   const [resizerState, setResizerState] = useState({
     x: 0,
@@ -48,12 +44,12 @@ const ImageView = (props: any) => {
     w: 0,
     h: 0,
     dir: '',
-  });
+  })
 
   const imgAttrs = useMemo(() => {
-    const { src, alt, width: w, height: h } = props?.node?.attrs;
-    const width = isNumber(w) ? w + 'px' : w;
-    const height = isNumber(h) ? h + 'px' : h;
+    const { src, alt, width: w, height: h } = props?.node?.attrs
+    const width = isNumber(w) ? `${w}px` : w
+    const height = isNumber(h) ? `${h}px` : h
     return {
       src: src || undefined,
       alt: alt || undefined,
@@ -61,76 +57,74 @@ const ImageView = (props: any) => {
         width: width || undefined,
         height: height || undefined,
       },
-    };
-  }, [props?.node?.attrs]);
+    }
+  }, [props?.node?.attrs])
 
   const imageMaxStyle = useMemo(() => {
     const {
       style: { width },
-    } = imgAttrs;
+    } = imgAttrs
 
-    return { width: width === '100%' ? width : undefined };
-  }, [imgAttrs]);
+    return { width: width === '100%' ? width : undefined }
+  }, [imgAttrs])
 
   function onImageLoad(e: Record<string, any>) {
     setOriginalSize({
       width: e.target.width,
       height: e.target.height,
-    });
+    })
   }
 
   // https://github.com/scrumpy/tiptap/issues/361#issuecomment-540299541
   function selectImage() {
-    const { editor, getPos } = props;
-    editor.commands.setNodeSelection(getPos());
+    const { editor, getPos } = props
+    editor.commands.setNodeSelection(getPos())
   }
 
-  /* 当窗口或编辑器调整大小时调用 */
   const getMaxSize = useCallback(
-    throttle(function () {
-      const { editor } = props as any;
-      const { width } = getComputedStyle(editor.view.dom);
+    throttle(() => {
+      const { editor } = props as any
+      const { width } = getComputedStyle(editor.view.dom)
       setMaxSize((prev) => {
         return {
           ...prev,
           width: Number.parseInt(width, 10),
-        };
-      });
+        }
+      })
     }, IMAGE_THROTTLE_WAIT_TIME),
     [props?.editor],
-  );
+  )
 
-  /*
-   * 记录触发事件的位置并调整方向
-   * 计算图像的初始宽度和高度
-   */
   function onMouseDown(e: MouseEvent, dir: string) {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault()
+    e.stopPropagation()
 
-    const originalWidth = originalSize.width;
-    const originalHeight = originalSize.height;
-    const aspectRatio = originalWidth / originalHeight;
+    const originalWidth = originalSize.width
+    const originalHeight = originalSize.height
+    const aspectRatio = originalWidth / originalHeight
 
-    let width = Number(props.node.attrs.width);
-    let height = Number(props.node.attrs.height);
-    const maxWidth = maxSize.width;
+    let width = Number(props.node.attrs.width)
+    let height = Number(props.node.attrs.height)
+    const maxWidth = maxSize.width
 
     if (width && !height) {
-      width = width > maxWidth ? maxWidth : width;
-      height = Math.round(width / aspectRatio);
-    } else if (height && !width) {
-      width = Math.round(height * aspectRatio);
-      width = width > maxWidth ? maxWidth : width;
-    } else if (!width && !height) {
-      width = originalWidth > maxWidth ? maxWidth : originalWidth;
-      height = Math.round(width / aspectRatio);
-    } else {
-      width = width > maxWidth ? maxWidth : width;
+      width = width > maxWidth ? maxWidth : width
+      height = Math.round(width / aspectRatio)
+    }
+    else if (height && !width) {
+      width = Math.round(height * aspectRatio)
+      width = width > maxWidth ? maxWidth : width
+    }
+    else if (!width && !height) {
+      width = originalWidth > maxWidth ? maxWidth : originalWidth
+      height = Math.round(width / aspectRatio)
+    }
+    else {
+      width = width > maxWidth ? maxWidth : width
     }
 
     flushSync(() => {
-      setResizing(true);
+      setResizing(true)
 
       setResizerState({
         x: e.clientX,
@@ -138,41 +132,41 @@ const ImageView = (props: any) => {
         w: width,
         h: height,
         dir,
-      });
-    });
+      })
+    })
   }
 
   const onMouseMove = useCallback(
-    throttle(function (e: MouseEvent) {
-      e.preventDefault();
-      e.stopPropagation();
+    throttle((e: MouseEvent) => {
+      e.preventDefault()
+      e.stopPropagation()
 
       if (!resizing) {
-        return;
+        return
       }
 
-      const { x, y, w, h, dir } = resizerState;
+      const { x, w, dir } = resizerState
 
-      const dx = (e.clientX - x) * (/l/.test(dir) ? -1 : 1);
-      const dy = (e.clientY - y) * (/t/.test(dir) ? -1 : 1);
+      const dx = (e.clientX - x) * (/l/.test(dir) ? -1 : 1)
+      // const dy = (e.clientY - y) * (/t/.test(dir) ? -1 : 1)
 
-      const width = clamp(w + dx, IMAGE_MIN_SIZE, maxSize.width);
-      const height = null;
+      const width = clamp(w + dx, IMAGE_MIN_SIZE, maxSize.width)
+      const height = null
 
       props.updateAttributes({
         width,
         height,
-      });
+      })
     }, IMAGE_THROTTLE_WAIT_TIME),
     [resizing, resizerState, maxSize, props.updateAttributes],
-  );
+  )
 
   const onMouseUp = useCallback(
     (e: MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault()
+      e.stopPropagation()
       if (!resizing) {
-        return;
+        return
       }
 
       flushSync(() => {
@@ -182,53 +176,54 @@ const ImageView = (props: any) => {
           w: 0,
           h: 0,
           dir: '',
-        });
-        setResizing(false);
-      });
+        })
+        setResizing(false)
+      })
 
-      selectImage();
+      selectImage()
     },
     [resizing, selectImage],
-  );
+  )
 
   const onEvents = useCallback(() => {
-    document?.addEventListener('mousemove', onMouseMove, true);
-    document?.addEventListener('mouseup', onMouseUp, true);
-  }, [onMouseMove, onMouseUp]);
+    document?.addEventListener('mousemove', onMouseMove, true)
+    document?.addEventListener('mouseup', onMouseUp, true)
+  }, [onMouseMove, onMouseUp])
 
   const offEvents = useCallback(() => {
-    document?.removeEventListener('mousemove', onMouseMove, true);
-    document?.removeEventListener('mouseup', onMouseUp, true);
-  }, [onMouseMove, onMouseUp]);
+    document?.removeEventListener('mousemove', onMouseMove, true)
+    document?.removeEventListener('mouseup', onMouseUp, true)
+  }, [onMouseMove, onMouseUp])
 
   useEffect(() => {
     if (resizing) {
-      onEvents();
-    } else {
-      offEvents();
+      onEvents()
+    }
+    else {
+      offEvents()
     }
 
     return () => {
-      offEvents();
-    };
-  }, [resizing, onEvents, offEvents]);
+      offEvents()
+    }
+  }, [resizing, onEvents, offEvents])
 
   const resizeOb: ResizeObserver = useMemo(() => {
-    return new ResizeObserver(() => getMaxSize());
-  }, [getMaxSize]);
+    return new ResizeObserver(() => getMaxSize())
+  }, [getMaxSize])
 
   useEffect(() => {
-    resizeOb.observe(props.editor.view.dom);
+    resizeOb.observe(props.editor.view.dom)
 
     return () => {
-      resizeOb.disconnect();
-    };
-  }, [props.editor.view.dom, resizeOb]);
+      resizeOb.disconnect()
+    }
+  }, [props.editor.view.dom, resizeOb])
 
   return (
-    <NodeViewWrapper className='image-view' style={{ ...imageMaxStyle, width: '100%' }}>
+    <NodeViewWrapper className="image-view" style={{ ...imageMaxStyle, width: '100%' }}>
       <div
-        draggable='true'
+        draggable="true"
         data-drag-handle
         className={`image-view__body ${props?.selected ? 'image-view__body--focused' : ''} ${
           resizing ? 'image-view__body--resizing' : ''
@@ -239,27 +234,28 @@ const ImageView = (props: any) => {
           src={imgAttrs.src}
           alt={imgAttrs.alt}
           style={imgAttrs.style}
-          height='auto'
-          className='image-view__body__image block'
+          height="auto"
+          className="image-view__body__image block"
           onLoad={onImageLoad}
           onClick={selectImage}
         />
         {props?.editor.view.editable && (props?.selected || resizing) && (
-          <div className='image-resizer'>
+          <div className="image-resizer">
             {resizeDirections?.map((direction) => {
               return (
                 <span
                   key={direction}
                   className={`image-resizer__handler image-resizer__handler--${direction}`}
                   onMouseDown={(e: any) => onMouseDown(e, direction)}
-                ></span>
-              );
+                >
+                </span>
+              )
             })}
           </div>
         )}
       </div>
     </NodeViewWrapper>
-  );
-};
+  )
+}
 
-export default ImageView;
+export default ImageView

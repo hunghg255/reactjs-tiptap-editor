@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 const locale: Record<string, string> = {
   'editor.remove': 'Remove',
   'editor.copy': 'Copy',
@@ -11,7 +10,7 @@ const locale: Record<string, string> = {
   'editor.draghandle.tooltip': 'Modify',
   'editor.copyToClipboard': 'CopyToClipboard',
   'editor.importWord.tooltip': 'Import Word',
-  'editor.slash': "Press '/' for commands",
+  'editor.slash': 'Press \'/\' for commands',
   'editor.slash.empty': 'No Result',
   'editor.slash.format': 'Format',
   'editor.slash.insert': 'Insert',
@@ -124,6 +123,6 @@ const locale: Record<string, string> = {
   'editor.table.menu.setCellsBgColor': 'Cell Background Color',
   'editor.emoji.tooltip': 'Emoji',
   'editor.iframe.tooltip': 'Iframe',
-};
+}
 
-export default locale;
+export default locale

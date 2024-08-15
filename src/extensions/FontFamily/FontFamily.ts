@@ -1,11 +1,10 @@
-import type { Extension } from '@tiptap/core';
-import FontFamilyTiptap from '@tiptap/extension-font-family';
+import type { Extension } from '@tiptap/core'
+import FontFamilyTiptap from '@tiptap/extension-font-family'
 
 // import type { GeneralOptions } from '@/types';
 
-import FontFamilyButton from '@/extensions/FontFamily/components/FontFamilyButton';
-
-import type { BaseKitOptions } from '../BaseKit';
+import type { BaseKitOptions } from '../BaseKit'
+import FontFamilyButton from '@/extensions/FontFamily/components/FontFamilyButton'
 
 // export interface FontFamilyOptions extends , GeneralOptions<FontFamilyOptions> {}
 
@@ -15,21 +14,21 @@ export const FontFamily = FontFamilyTiptap.extend<any>({
       ...this.parent?.(),
       fonts: ['Inter', 'Comic Sans MS, Comic Sans', 'serif', 'monospace', 'cursive'],
       button({ editor, extension, t }: any) {
-        const { extensions = [] } = editor.extensionManager ?? [];
-        const fonts = extension.options?.fonts || [];
+        const { extensions = [] } = editor.extensionManager ?? []
+        const fonts = extension.options?.fonts || []
         const baseKitExt = extensions.find(
           (k: any) => k.name === 'base-kit',
-        ) as Extension<BaseKitOptions>;
+        ) as Extension<BaseKitOptions>
 
         const items: any[] = fonts.map((font: any) => ({
           action: () => {
-            editor.chain().focus().setFontFamily(font).run();
+            editor.chain().focus().setFontFamily(font).run()
           },
           isActive: () => editor.isActive('textStyle', { fontFamily: font }) || false,
           disabled: !editor.can().setFontFamily(font),
           title: font,
           font,
-        }));
+        }))
 
         if (baseKitExt && baseKitExt.options.textStyle !== false) {
           items.unshift({
@@ -38,10 +37,10 @@ export const FontFamily = FontFamilyTiptap.extend<any>({
             disabled: false,
             font: t('editor.fontFamily.default.tooltip'),
             title: t('editor.fontFamily.tooltip'),
-          });
+          })
         }
 
-        const disabled = items.filter((k: any) => k.disabled).length === items.length;
+        const disabled = items.filter((k: any) => k.disabled).length === items.length
 
         return {
           component: FontFamilyButton,
@@ -51,8 +50,8 @@ export const FontFamily = FontFamilyTiptap.extend<any>({
             items,
             editor,
           },
-        };
+        }
       },
-    };
+    }
   },
-});
+})

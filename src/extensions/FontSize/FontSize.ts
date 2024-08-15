@@ -1,24 +1,20 @@
-/* eslint-disable unicorn/consistent-function-scoping */
-/* eslint-disable indent */
-/* eslint-disable unicorn/no-null */
-import { Extension } from '@tiptap/core';
+import { Extension } from '@tiptap/core'
 
-import { DEFAULT_FONT_SIZE_LIST, DEFAULT_FONT_SIZE_VALUE } from '@/constants';
-import type { GeneralOptions } from '@/types';
-
-import FontSizeMenuButton from './components/FontSizeMenuButton';
+import FontSizeMenuButton from './components/FontSizeMenuButton'
+import { DEFAULT_FONT_SIZE_LIST, DEFAULT_FONT_SIZE_VALUE } from '@/constants'
+import type { GeneralOptions } from '@/types'
 
 /**
  * Represents the interface for font size options, extending GeneralOptions.
  */
 export interface FontSizeOptions extends GeneralOptions<FontSizeOptions> {
-  types: string[];
+  types: string[]
   /**
    * List of available font size values
    *
    * @default DEFAULT_FONT_SIZE_LIST
    */
-  fontSizes: string[];
+  fontSizes: string[]
 }
 
 declare module '@tiptap/core' {
@@ -29,12 +25,12 @@ declare module '@tiptap/core' {
        * CSS font-size
        * (https://developer.mozilla.org/en-US/docs/Web/CSS/font-size).
        */
-      setFontSize: (fontSize: string) => ReturnType;
+      setFontSize: (fontSize: string) => ReturnType
       /**
        * Unset the font size
        */
-      unsetFontSize: () => ReturnType;
-    };
+      unsetFontSize: () => ReturnType
+    }
   }
 }
 
@@ -46,30 +42,30 @@ export const FontSize = Extension.create<FontSizeOptions>({
       types: ['textStyle'],
       fontSizes: [...DEFAULT_FONT_SIZE_LIST],
       button({ editor, extension, t }) {
-        const fontSizes = (extension.options?.fontSizes as FontSizeOptions['fontSizes']) || [];
-        const items: any[] = [DEFAULT_FONT_SIZE_VALUE, ...fontSizes].map((k) => ({
+        const fontSizes = (extension.options?.fontSizes as FontSizeOptions['fontSizes']) || []
+        const items: any[] = [DEFAULT_FONT_SIZE_VALUE, ...fontSizes].map(k => ({
           title: k === DEFAULT_FONT_SIZE_VALUE ? t('editor.fontSize.default.tooltip') : String(k),
           isActive: () => {
-            const { fontSize } = editor.getAttributes('textStyle');
-            const isDefault = k === DEFAULT_FONT_SIZE_VALUE;
-            const notFontSize = fontSize === undefined;
+            const { fontSize } = editor.getAttributes('textStyle')
+            const isDefault = k === DEFAULT_FONT_SIZE_VALUE
+            const notFontSize = fontSize === undefined
             if (isDefault && notFontSize) {
-              return true;
+              return true
             }
-            return editor.isActive({ fontSize: String(k) }) || false;
+            return editor.isActive({ fontSize: String(k) }) || false
           },
           action: () => {
             if (k === DEFAULT_FONT_SIZE_VALUE) {
-              editor.commands.unsetFontSize();
-              return;
+              editor.commands.unsetFontSize()
+              return
             }
-            editor.commands.setFontSize(String(k));
+            editor.commands.setFontSize(String(k))
           },
           disabled: !editor.can().setFontSize(String(k)),
           divider: k === DEFAULT_FONT_SIZE_VALUE || false,
           default: k === DEFAULT_FONT_SIZE_VALUE || false,
-        }));
-        const disabled = items.filter((k) => k.disabled).length === items.length;
+        }))
+        const disabled = items.filter(k => k.disabled).length === items.length
         return {
           component: FontSizeMenuButton,
           componentProps: {
@@ -79,9 +75,9 @@ export const FontSize = Extension.create<FontSizeOptions>({
             items,
             maxHeight: 280,
           },
-        };
+        }
       },
-    };
+    }
   },
   addGlobalAttributes() {
     return [
@@ -90,32 +86,32 @@ export const FontSize = Extension.create<FontSizeOptions>({
         attributes: {
           fontSize: {
             default: null,
-            parseHTML: (element) => element.style.fontSize.replaceAll(/["']+/g, ''),
+            parseHTML: element => element.style.fontSize.replaceAll(/["']+/g, ''),
             renderHTML: (attributes) => {
               if (!attributes.fontSize) {
-                return {};
+                return {}
               }
               return {
                 style: `font-size: ${attributes.fontSize}`,
-              };
+              }
             },
           },
         },
       },
-    ];
+    ]
   },
   addCommands() {
     return {
       setFontSize:
-        (fontSize) =>
-        ({ chain }) => {
-          return chain().setMark('textStyle', { fontSize }).run();
-        },
+        fontSize =>
+          ({ chain }) => {
+            return chain().setMark('textStyle', { fontSize }).run()
+          },
       unsetFontSize:
         () =>
-        ({ chain }) => {
-          return chain().setMark('textStyle', { fontSize: null }).removeEmptyTextStyle().run();
-        },
-    };
+          ({ chain }) => {
+            return chain().setMark('textStyle', { fontSize: null }).removeEmptyTextStyle().run()
+          },
+    }
   },
-});
+})

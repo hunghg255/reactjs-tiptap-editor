@@ -1,12 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Editor } from '@tiptap/core';
+import type { Group } from './types'
+import { localeActions } from '@/locales'
 
-import { localeActions } from '@/locales';
-// import { hasExtension } from '@/utils/utils';
-
-import { Group } from './types';
-
-export function renderGroups(editor: any) {
+export function renderGroups() {
   const groups: Group[] = [
     {
       name: 'format',
@@ -18,7 +13,7 @@ export function renderGroups(editor: any) {
           aliases: ['h1', 'bt', 'bt1'],
           iconName: 'Heading1',
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).setHeading({ level: 1 }).run();
+            editor.chain().focus().deleteRange(range).setHeading({ level: 1 }).run()
           },
         },
         {
@@ -27,7 +22,7 @@ export function renderGroups(editor: any) {
           aliases: ['h2', 'bt', 'bt2'],
           iconName: 'Heading2',
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).setNode('heading', { level: 2 }).run();
+            editor.chain().focus().deleteRange(range).setNode('heading', { level: 2 }).run()
           },
         },
         {
@@ -36,7 +31,7 @@ export function renderGroups(editor: any) {
           aliases: ['h3', 'bt', 'bt3'],
           iconName: 'Heading3',
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).setNode('heading', { level: 3 }).run();
+            editor.chain().focus().deleteRange(range).setNode('heading', { level: 3 }).run()
           },
         },
         {
@@ -45,7 +40,7 @@ export function renderGroups(editor: any) {
           aliases: ['ul', 'yxlb'],
           iconName: 'List',
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).toggleBulletList().run();
+            editor.chain().focus().deleteRange(range).toggleBulletList().run()
           },
         },
         {
@@ -54,7 +49,7 @@ export function renderGroups(editor: any) {
           aliases: ['ol', 'yxlb'],
           iconName: 'ListOrdered',
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).toggleOrderedList().run();
+            editor.chain().focus().deleteRange(range).toggleOrderedList().run()
           },
         },
         {
@@ -64,7 +59,7 @@ export function renderGroups(editor: any) {
           description: 'Task list with todo items',
           aliases: ['todo'],
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).toggleTaskList().run();
+            editor.chain().focus().deleteRange(range).toggleTaskList().run()
           },
         },
         {
@@ -74,7 +69,7 @@ export function renderGroups(editor: any) {
           aliases: ['yr'],
           iconName: 'TextQuote',
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).setBlockquote().run();
+            editor.chain().focus().deleteRange(range).setBlockquote().run()
           },
         },
         {
@@ -82,9 +77,9 @@ export function renderGroups(editor: any) {
           label: localeActions.t('editor.codeblock.tooltip'),
           iconName: 'Code2',
           description: 'Code block with syntax highlighting',
-          shouldBeHidden: (editor) => editor.isActive('columns'),
+          shouldBeHidden: editor => editor.isActive('columns'),
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).setCodeBlock().run();
+            editor.chain().focus().deleteRange(range).setCodeBlock().run()
           },
         },
       ],
@@ -99,9 +94,9 @@ export function renderGroups(editor: any) {
           iconName: 'ImageUp',
           description: 'Insert a image',
           aliases: ['image', 'tp', 'tupian'],
-          shouldBeHidden: (editor) => editor.isActive('columns'),
+          shouldBeHidden: editor => editor.isActive('columns'),
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).setImageUpload().run();
+            editor.chain().focus().deleteRange(range).setImageUpload().run()
           },
         },
         {
@@ -110,9 +105,9 @@ export function renderGroups(editor: any) {
           iconName: 'Video',
           description: 'Insert a video',
           aliases: ['video', 'sp', 'shipin'],
-          shouldBeHidden: (editor) => editor.isActive('columns'),
+          shouldBeHidden: editor => editor.isActive('columns'),
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).setVideoUpload().run();
+            editor.chain().focus().deleteRange(range).setVideoUpload().run()
           },
         },
         {
@@ -121,14 +116,14 @@ export function renderGroups(editor: any) {
           iconName: 'Table',
           description: 'Insert a table',
           aliases: ['table', 'bg', 'biaoge', 'biao'],
-          shouldBeHidden: (editor) => editor.isActive('columns'),
+          shouldBeHidden: editor => editor.isActive('columns'),
           action: ({ editor, range }) => {
             editor
               .chain()
               .focus()
               .deleteRange(range)
               .insertTable({ rows: 3, cols: 3, withHeaderRow: false })
-              .run();
+              .run()
           },
         },
         {
@@ -138,7 +133,7 @@ export function renderGroups(editor: any) {
           description: 'Insert a horizontal divider',
           aliases: ['hr', 'fgx', 'fg'],
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).setHorizontalRule().run();
+            editor.chain().focus().deleteRange(range).setHorizontalRule().run()
           },
         },
 
@@ -160,7 +155,7 @@ export function renderGroups(editor: any) {
         // },
       ],
     },
-  ];
+  ]
 
-  return groups;
+  return groups
 }

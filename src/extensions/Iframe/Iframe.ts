@@ -1,17 +1,15 @@
-/* eslint-disable unicorn/no-null */
-/* eslint-disable indent */
-import { Node } from '@tiptap/core';
-import { ReactNodeViewRenderer } from '@tiptap/react';
+import { Node } from '@tiptap/core'
+import { ReactNodeViewRenderer } from '@tiptap/react'
 
-import ActionButton from '@/components/ActionButton';
-import IframeNodeView from '@/extensions/Iframe/components/IframeNodeView';
-import { GeneralOptions } from '@/types';
+import ActionButton from '@/components/ActionButton'
+import IframeNodeView from '@/extensions/Iframe/components/IframeNodeView'
+import type { GeneralOptions } from '@/types'
 
 export interface IframeOptions extends GeneralOptions<IframeOptions> {
-  allowFullscreen: boolean;
+  allowFullscreen: boolean
   HTMLAttributes: {
-    [key: string]: any;
-  };
+    [key: string]: any
+  }
 }
 
 declare module '@tiptap/core' {
@@ -20,8 +18,8 @@ declare module '@tiptap/core' {
       /**
        * Add an iframe
        */
-      setIframe: (options: { src: string; service: string }) => ReturnType;
-    };
+      setIframe: (options: { src: string, service: string }) => ReturnType
+    }
   }
 }
 
@@ -41,20 +39,20 @@ export const Iframe = Node.create<IframeOptions>({
         extension,
         t,
       }: {
-        editor: any;
-        extension: any;
-        t: (key: string) => string;
+        editor: any
+        extension: any
+        t: (key: string) => string
       }) => ({
         component: ActionButton,
         componentProps: {
-          action: (options: { src: string; service: string }) => editor.commands.setIframe(options),
+          action: (options: { src: string, service: string }) => editor.commands.setIframe(options),
           upload: extension.options.upload,
           disabled: !editor.can().setIframe({}),
           icon: 'Iframe',
           tooltip: t('editor.iframe.tooltip'),
         },
       }),
-    };
+    }
   },
   addAttributes() {
     return {
@@ -71,34 +69,34 @@ export const Iframe = Node.create<IframeOptions>({
         default: this.options.allowFullscreen,
         parseHTML: () => this.options.allowFullscreen,
       },
-    };
+    }
   },
   parseHTML() {
     return [
       {
         tag: 'iframe',
       },
-    ];
+    ]
   },
   renderHTML({ HTMLAttributes }) {
-    return ['div', this.options.HTMLAttributes, ['iframe', HTMLAttributes]];
+    return ['div', this.options.HTMLAttributes, ['iframe', HTMLAttributes]]
   },
   addNodeView() {
-    return ReactNodeViewRenderer(IframeNodeView);
+    return ReactNodeViewRenderer(IframeNodeView)
   },
   addCommands() {
     return {
       setIframe:
-        (options: { src: string; service: string }) =>
-        ({ tr, dispatch }) => {
-          const { selection } = tr;
-          const node = this.type.create(options);
+        (options: { src: string, service: string }) =>
+          ({ tr, dispatch }) => {
+            const { selection } = tr
+            const node = this.type.create(options)
 
-          if (dispatch) {
-            tr.replaceRangeWith(selection.from, selection.to, node);
-          }
-          return true;
-        },
-    };
+            if (dispatch) {
+              tr.replaceRangeWith(selection.from, selection.to, node)
+            }
+            return true
+          },
+    }
   },
-});
+})

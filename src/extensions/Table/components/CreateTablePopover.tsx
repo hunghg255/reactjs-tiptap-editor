@@ -1,41 +1,40 @@
-/* eslint-disable unicorn/no-new-array */
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import {
   TABLE_DEFAULT_SELECTED_GRID_SIZE,
   TABLE_INIT_GRID_SIZE,
   TABLE_MAX_GRID_SIZE,
-} from '@/constants';
-import { isMobile } from '@/utils/is-mobile';
+} from '@/constants'
+import { isMobile } from '@/utils/is-mobile'
 
-const createArray = (length: number) => Array.from({ length }).map((_, index) => index + 1);
+const createArray = (length: number) => Array.from({ length }).map((_, index) => index + 1)
 
 interface IPropsCreateTablePopover {
-  createTable: any;
-  children: any;
+  createTable: any
+  children: any
 }
 
 export interface GridSize {
-  rows: number;
-  cols: number;
+  rows: number
+  cols: number
 }
 
 export interface CreateTablePayload extends GridSize {
-  withHeaderRow: boolean;
+  withHeaderRow: boolean
 }
 
-const CreateTablePopover = (props: IPropsCreateTablePopover) => {
-  const [withHeaderRow, setWithHeaderRow] = useState<boolean>(true);
+function CreateTablePopover(props: IPropsCreateTablePopover) {
+  const [withHeaderRow, setWithHeaderRow] = useState<boolean>(true)
   const [tableGridSize, setTableGridSize] = useState<GridSize>({
     rows: isMobile() ? TABLE_MAX_GRID_SIZE : TABLE_INIT_GRID_SIZE,
     cols: isMobile() ? TABLE_MAX_GRID_SIZE : TABLE_INIT_GRID_SIZE,
-  });
+  })
 
   const [selectedTableGridSize, setSelectedTableGridSize] = useState<GridSize>({
     rows: TABLE_DEFAULT_SELECTED_GRID_SIZE,
     cols: TABLE_DEFAULT_SELECTED_GRID_SIZE,
-  });
+  })
 
   function selectTableGridSize(rows: number, cols: number): void {
     if (rows === tableGridSize.rows) {
@@ -43,8 +42,8 @@ const CreateTablePopover = (props: IPropsCreateTablePopover) => {
         return {
           ...prev,
           rows: Math.min(rows + 1, TABLE_MAX_GRID_SIZE),
-        };
-      });
+        }
+      })
     }
 
     if (cols === tableGridSize.cols) {
@@ -52,33 +51,33 @@ const CreateTablePopover = (props: IPropsCreateTablePopover) => {
         return {
           ...prev,
           cols: Math.min(cols + 1, TABLE_MAX_GRID_SIZE),
-        };
-      });
+        }
+      })
     }
 
     setSelectedTableGridSize({
       rows,
       cols,
-    });
+    })
   }
 
   function onMouseDown(rows: number, cols: number) {
-    props?.createTable({ rows, cols, withHeaderRow });
-    resetTableGridSize();
+    props?.createTable({ rows, cols, withHeaderRow })
+    resetTableGridSize()
   }
 
   function resetTableGridSize(): void {
-    setWithHeaderRow(false);
+    setWithHeaderRow(false)
 
     setTableGridSize({
       rows: TABLE_INIT_GRID_SIZE,
       cols: TABLE_INIT_GRID_SIZE,
-    });
+    })
 
     setSelectedTableGridSize({
       rows: TABLE_DEFAULT_SELECTED_GRID_SIZE,
       cols: TABLE_DEFAULT_SELECTED_GRID_SIZE,
-    });
+    })
   }
 
   return (
@@ -86,39 +85,42 @@ const CreateTablePopover = (props: IPropsCreateTablePopover) => {
       <PopoverTrigger asChild>
         {props?.children}
       </PopoverTrigger>
-      <PopoverContent className='w-full !p-2' align='start' side='bottom'>
-        <div className='p-0 table-grid-size-editor'>
-          <div className='flex flex-col flex-wrap justify-between gap-1'>
+      <PopoverContent className="w-full !p-2" align="start" side="bottom">
+        <div className="p-0 table-grid-size-editor">
+          <div className="flex flex-col flex-wrap justify-between gap-1">
             {createArray(tableGridSize?.rows)?.map((row: any) => {
               return (
-                <div key={`r-${row}`} className='flex gap-1'>
+                <div key={`r-${row}`} className="flex gap-1">
                   {createArray(tableGridSize?.cols)?.map((col: any) => {
                     return (
                       <div
                         key={`c-${col}`}
                         className={`pa-1 cursor-pointer border-border ${
-                          col <= selectedTableGridSize.cols &&
-                          row <= selectedTableGridSize.rows &&
-                          'bg-foreground'
+                          col <= selectedTableGridSize.cols
+                          && row <= selectedTableGridSize.rows
+                          && 'bg-foreground'
                         }`}
                         onMouseOver={() => selectTableGridSize(row, col)}
                         onMouseDown={() => onMouseDown(row, col)}
                       >
-                        <div className='w-4 h-4 p-1 border rounded-[2px] box-border border-solid'></div>
+                        <div className="w-4 h-4 p-1 border rounded-[2px] box-border border-solid"></div>
                       </div>
-                    );
+                    )
                   })}
                 </div>
-              );
+              )
             })}
           </div>
-          <div className='mt-2 text-sm text-center text-zinc-600'>
-            {selectedTableGridSize.rows} x {selectedTableGridSize.cols}
+          <div className="mt-2 text-sm text-center text-zinc-600">
+            {selectedTableGridSize.rows}
+            {' '}
+            x
+            {selectedTableGridSize.cols}
           </div>
         </div>
       </PopoverContent>
     </Popover>
-  );
-};
+  )
+}
 
-export default CreateTablePopover;
+export default CreateTablePopover

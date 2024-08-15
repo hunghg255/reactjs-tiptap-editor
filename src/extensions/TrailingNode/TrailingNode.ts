@@ -1,10 +1,9 @@
-/* eslint-disable import/named */
-import { Extension } from '@tiptap/core';
-import { Plugin, PluginKey } from '@tiptap/pm/state';
+import { Extension } from '@tiptap/core'
+import { Plugin, PluginKey } from '@tiptap/pm/state'
 
 // @ts-ignore
 function nodeEqualsType({ types, node }) {
-  return (Array.isArray(types) && types.includes(node.type)) || node.type === types;
+  return (Array.isArray(types) && types.includes(node.type)) || node.type === types
 }
 
 /**
@@ -14,8 +13,8 @@ function nodeEqualsType({ types, node }) {
  */
 
 export interface TrailingNodeOptions {
-  node: string;
-  notAfter: string[];
+  node: string
+  notAfter: string[]
 }
 
 export const TrailingNode = Extension.create<TrailingNodeOptions>({
@@ -25,47 +24,47 @@ export const TrailingNode = Extension.create<TrailingNodeOptions>({
     return {
       node: 'paragraph',
       notAfter: ['paragraph'],
-    };
+    }
   },
 
   addProseMirrorPlugins() {
-    const plugin = new PluginKey(this.name);
+    const plugin = new PluginKey(this.name)
     const disabledNodes = Object.entries(this.editor.schema.nodes)
       .map(([, value]) => value)
-      .filter((node) => this.options.notAfter.includes(node.name));
+      .filter(node => this.options.notAfter.includes(node.name))
 
     return [
       new Plugin({
         key: plugin,
         appendTransaction: (_, __, state) => {
-          const { doc, tr, schema } = state;
-          const shouldInsertNodeAtEnd = plugin.getState(state);
-          const endPosition = doc.content.size;
-          const type = schema.nodes[this.options.node];
+          const { doc, tr, schema } = state
+          const shouldInsertNodeAtEnd = plugin.getState(state)
+          const endPosition = doc.content.size
+          const type = schema.nodes[this.options.node]
 
           if (!shouldInsertNodeAtEnd) {
-            return;
+            return
           }
 
-          return tr.insert(endPosition, type.create());
+          return tr.insert(endPosition, type.create())
         },
         state: {
           init: (_, state) => {
-            const lastNode = state.tr.doc.lastChild;
+            const lastNode = state.tr.doc.lastChild
 
-            return !nodeEqualsType({ node: lastNode, types: disabledNodes });
+            return !nodeEqualsType({ node: lastNode, types: disabledNodes })
           },
           apply: (tr, value) => {
             if (!tr.docChanged) {
-              return value;
+              return value
             }
 
-            const lastNode = tr.doc.lastChild;
+            const lastNode = tr.doc.lastChild
 
-            return !nodeEqualsType({ node: lastNode, types: disabledNodes });
+            return !nodeEqualsType({ node: lastNode, types: disabledNodes })
           },
         },
       }),
-    ];
+    ]
   },
-});
+})

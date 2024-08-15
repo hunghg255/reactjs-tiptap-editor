@@ -1,13 +1,13 @@
-import { mergeAttributes } from '@tiptap/core';
-import type { HorizontalRuleOptions as TiptapHorizontalRuleOptions } from '@tiptap/extension-horizontal-rule';
-import { HorizontalRule as TiptapHorizontalRule } from '@tiptap/extension-horizontal-rule';
+import { mergeAttributes } from '@tiptap/core'
+import type { HorizontalRuleOptions as TiptapHorizontalRuleOptions } from '@tiptap/extension-horizontal-rule'
+import { HorizontalRule as TiptapHorizontalRule } from '@tiptap/extension-horizontal-rule'
 
-import ActionButton from '@/components/ActionButton';
-import type { GeneralOptions } from '@/types';
+import ActionButton from '@/components/ActionButton'
+import type { GeneralOptions } from '@/types'
 
 export interface HorizontalRuleOptions
   extends TiptapHorizontalRuleOptions,
-    GeneralOptions<HorizontalRuleOptions> {}
+  GeneralOptions<HorizontalRuleOptions> {}
 
 export const HorizontalRule = TiptapHorizontalRule.extend<HorizontalRuleOptions>({
   renderHTML() {
@@ -17,7 +17,7 @@ export const HorizontalRule = TiptapHorizontalRule.extend<HorizontalRuleOptions>
         'data-type': this.name,
       }),
       ['hr'],
-    ];
+    ]
   },
   addOptions() {
     return {
@@ -32,11 +32,11 @@ export const HorizontalRule = TiptapHorizontalRule.extend<HorizontalRuleOptions>
           tooltip: t('editor.horizontalrule.tooltip'),
         },
       }),
-    };
+    }
   },
   addKeyboardShortcuts() {
     return {
       'Mod-Alt-s': () => this.editor.commands.setHorizontalRule(),
-    };
+    }
   },
-});
+})

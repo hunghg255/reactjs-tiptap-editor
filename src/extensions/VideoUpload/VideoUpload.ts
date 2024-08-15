@@ -1,20 +1,18 @@
-/* eslint-disable unicorn/consistent-function-scoping */
-/* eslint-disable indent */
-import { Node } from '@tiptap/core';
-import { ReactNodeViewRenderer } from '@tiptap/react';
+import { Node } from '@tiptap/core'
+import { ReactNodeViewRenderer } from '@tiptap/react'
 
-import ActionButton from '@/components/ActionButton';
-import VideoUploaderView from '@/extensions/VideoUpload/components/VideoUploaderView';
+import ActionButton from '@/components/ActionButton'
+import VideoUploaderView from '@/extensions/VideoUpload/components/VideoUploaderView'
 
 export interface VideoOptions {
-  upload?: (files: File[]) => void;
+  upload?: (files: File[]) => void
 }
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     videoUpload: {
-      setVideoUpload: () => ReturnType;
-    };
+      setVideoUpload: () => ReturnType
+    }
   }
 }
 
@@ -31,22 +29,22 @@ export const VideoUpload = Node.create<VideoOptions>({
       {
         tag: `div[data-type="${this.name}"]`,
       },
-    ];
+    ]
   },
   renderHTML() {
-    return ['div', { 'data-type': this.name }];
+    return ['div', { 'data-type': this.name }]
   },
 
   addCommands() {
     return {
       setVideoUpload:
         () =>
-        ({ commands }) =>
-          commands.insertContent(`<div data-type="${this.name}"></div>`),
-    };
+          ({ commands }) =>
+            commands.insertContent(`<div data-type="${this.name}"></div>`),
+    }
   },
   addNodeView() {
-    return ReactNodeViewRenderer(VideoUploaderView);
+    return ReactNodeViewRenderer(VideoUploaderView)
   },
   addOptions() {
     return {
@@ -62,10 +60,10 @@ export const VideoUpload = Node.create<VideoOptions>({
             icon: 'Video',
             tooltip: t('editor.video.tooltip'),
           },
-        };
+        }
       },
-    };
+    }
   },
-});
+})
 
-export default VideoUpload;
+export default VideoUpload

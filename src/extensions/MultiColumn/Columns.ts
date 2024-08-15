@@ -1,10 +1,7 @@
-/* eslint-disable unicorn/consistent-function-scoping */
-/* eslint-disable indent */
-import { Node } from '@tiptap/core';
+import { Node } from '@tiptap/core'
 
-import { GeneralOptions } from '@/types';
-
-import { Column } from './Column';
+import { Column } from './Column'
+import type { GeneralOptions } from '@/types'
 
 export enum ColumnLayout {
   SidebarLeft = 'sidebar-left',
@@ -15,14 +12,14 @@ export enum ColumnLayout {
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     columns: {
-      setColumns: () => ReturnType;
-      setLayout: (layout: ColumnLayout) => ReturnType;
-    };
+      setColumns: () => ReturnType
+      setLayout: (layout: ColumnLayout) => ReturnType
+    }
   }
 }
 export interface ColumnsOptions extends GeneralOptions<ColumnsOptions> {
-  columnOptions: any;
-  layout: ColumnLayout;
+  columnOptions: any
+  layout: ColumnLayout
 }
 
 export const Columns = Node.create<ColumnsOptions>({
@@ -35,7 +32,7 @@ export const Columns = Node.create<ColumnsOptions>({
     return {
       ...this.parent?.(),
       layout: ColumnLayout.TwoColumn,
-    };
+    }
   },
 
   addAttributes() {
@@ -43,38 +40,38 @@ export const Columns = Node.create<ColumnsOptions>({
       layout: {
         default: ColumnLayout.TwoColumn,
       },
-    };
+    }
   },
   addCommands() {
     return {
       setColumns:
         () =>
-        ({ commands }) => {
-          commands.insertContent(
-            '<div data-type="columns"><div data-type="column" data-position="left"><p></p></div><div data-type="column" data-position="right"><p></p></div></div>',
-          );
-          return true;
-        },
+          ({ commands }) => {
+            commands.insertContent(
+              '<div data-type="columns"><div data-type="column" data-position="left"><p></p></div><div data-type="column" data-position="right"><p></p></div></div>',
+            )
+            return true
+          },
 
       setLayout:
         (layout: ColumnLayout) =>
-        ({ commands }) =>
-          commands.updateAttributes('columns', { layout }),
-    };
+          ({ commands }) =>
+            commands.updateAttributes('columns', { layout }),
+    }
   },
   renderHTML({ HTMLAttributes }) {
-    return ['div', { 'data-type': 'columns', class: `layout-${HTMLAttributes.layout}` }, 0];
+    return ['div', { 'data-type': 'columns', 'class': `layout-${HTMLAttributes.layout}` }, 0]
   },
   parseHTML() {
     return [
       {
         tag: 'div[data-type="columns"]',
       },
-    ];
+    ]
   },
   addExtensions() {
-    return [Column.configure(this.options.columnOptions)];
+    return [Column.configure(this.options.columnOptions)]
   },
-});
+})
 
-export default Columns;
+export default Columns

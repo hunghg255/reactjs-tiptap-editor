@@ -1,8 +1,8 @@
-import type { StrikeOptions as TiptapStrikeOptions } from '@tiptap/extension-strike';
-import { Strike as TiptapStrike } from '@tiptap/extension-strike';
+import type { StrikeOptions as TiptapStrikeOptions } from '@tiptap/extension-strike'
+import { Strike as TiptapStrike } from '@tiptap/extension-strike'
 
-import ActionButton from '@/components/ActionButton';
-import type { GeneralOptions } from '@/types';
+import ActionButton from '@/components/ActionButton'
+import type { GeneralOptions } from '@/types'
 
 export interface StrikeOptions extends TiptapStrikeOptions, GeneralOptions<StrikeOptions> {}
 
@@ -21,6 +21,6 @@ export const Strike = TiptapStrike.extend<StrikeOptions>({
           tooltip: t('editor.strike.tooltip'),
         },
       }),
-    };
+    }
   },
-});
+})

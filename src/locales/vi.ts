@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 const locale: Record<string, string> = {
   'editor.remove': 'Xóa',
   'editor.copy': 'Sao chép',
@@ -11,7 +10,7 @@ const locale: Record<string, string> = {
   'editor.draghandle.tooltip': 'Sửa đổi',
   'editor.copyToClipboard': 'CopyToClipboard',
   'editor.importWord.tooltip': 'Nhập Word',
-  'editor.slash': "Nhấn '/' để biết lệnh",
+  'editor.slash': 'Nhấn \'/\' để biết lệnh',
   'editor.slash.empty': 'Không có kết quả',
   'editor.slash.format': 'Định dạng',
   'editor.slash.insert': 'Chèn',
@@ -124,6 +123,6 @@ const locale: Record<string, string> = {
   'editor.table.menu.setCellsBgColor': 'Màu nền ô',
   'editor.emoji.tooltip': 'Biểu tượng',
   'editor.iframe.tooltip': 'Iframe',
-};
+}
 
-export default locale;
+export default locale
