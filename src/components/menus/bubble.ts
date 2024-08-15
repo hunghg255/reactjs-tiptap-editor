@@ -5,7 +5,6 @@ import { IMAGE_SIZE, VIDEO_SIZE } from '@/constants'
 import type { ButtonViewParams, ButtonViewReturn, ExtensionNameKeys } from '@/types'
 import { localeActions } from '@/locales'
 import ActionButton from '@/components/ActionButton'
-import { Bold, Code, Color, Highlight, Italic, Link, Strike, Underline } from '@/extensions'
 
 /** Represents the size types for bubble images or videos */
 type BubbleImageOrVideoSizeType = 'size-small' | 'size-medium' | 'size-large'
@@ -171,20 +170,29 @@ export function getBubbleVideo(editor: Editor): BubbleMenuItem[] {
   ]
 }
 
+const bubbleList = ['bold', 'italic', 'underline', 'strike', 'code', 'link', 'divider', 'color', 'highlight']
+
 export function getBubbleText(editor: Editor, t: any) {
-  return [
-    Bold.configure().options.button({ editor, t } as any),
-    Italic.configure().options.button({ editor, t } as any),
-    Underline.configure().options.button({ editor, t } as any),
-    Strike.configure().options.button({ editor, t } as any),
-    Code.configure().options.button({ editor, t } as any),
-    Link.configure().options.button({ editor, t } as any),
-    {
-      type: 'divider',
-      component: undefined,
-      componentProps: {},
-    },
-    Color.configure().options.button({ editor, t } as any),
-    Highlight.configure().options.button({ editor, t } as any),
-  ]
+  const bubbleMenu = bubbleList.filter((type) => {
+    if (type === 'divider') {
+      return true
+    }
+
+    const ext = editor.extensionManager.extensions.find(ext => ext.name === type)
+    return !!ext
+  }).map((it) => {
+    const ext: any = editor.extensionManager.extensions.find(ext => ext.name === it)
+
+    if (it === 'divider') {
+      return {
+        type: 'divider',
+        component: undefined,
+        componentProps: {},
+      }
+    }
+
+    return ext.configure().options.button({ editor, t } as any)
+  })
+
+  return bubbleMenu
 }
