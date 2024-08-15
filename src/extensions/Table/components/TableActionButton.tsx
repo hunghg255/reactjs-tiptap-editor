@@ -1,27 +1,27 @@
-import React from 'react';
+import React from 'react'
 
-import ActionButton from '@/components/ActionButton';
-import CreateTablePopover from '@/extensions/Table/components/CreateTablePopover';
-import { ButtonViewReturnComponentProps } from '@/types';
+import ActionButton from '@/components/ActionButton'
+import CreateTablePopover from '@/extensions/Table/components/CreateTablePopover'
+import type { ButtonViewReturnComponentProps } from '@/types'
 
 interface IPropsTableActionButton {
-  editor: any;
-  icon?: any;
-  tooltip?: string;
-  disabled?: boolean;
-  color?: string;
-  action?: ButtonViewReturnComponentProps['action'];
-  isActive?: ButtonViewReturnComponentProps['isActive'];
+  editor: any
+  icon?: any
+  tooltip?: string
+  disabled?: boolean
+  color?: string
+  action?: ButtonViewReturnComponentProps['action']
+  isActive?: ButtonViewReturnComponentProps['isActive']
 }
 
-const TableActionButton = (props: IPropsTableActionButton) => {
+function TableActionButton(props: IPropsTableActionButton) {
   function createTable(options: any) {
     if (!props.disabled) {
       props.editor
         .chain()
         .focus()
         .insertTable({ ...options, withHeaderRow: false })
-        .run();
+        .run()
     }
   }
 
@@ -36,7 +36,7 @@ const TableActionButton = (props: IPropsTableActionButton) => {
         isActive={props?.isActive}
       />
     </CreateTablePopover>
-  );
-};
+  )
+}
 
-export default TableActionButton;
+export default TableActionButton

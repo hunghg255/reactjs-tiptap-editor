@@ -1,6 +1,6 @@
-import { Extension } from '@tiptap/core';
+import { Extension } from '@tiptap/core'
 
-import ActionButton from '@/components/ActionButton';
+import ActionButton from '@/components/ActionButton'
 
 export const ColumnToolbar = Extension.create<any>({
   name: 'columnToolbar',
@@ -15,12 +15,12 @@ export const ColumnToolbar = Extension.create<any>({
               .chain()
               .setColumns()
               .focus(editor.state.selection.head - 1)
-              .run();
+              .run()
           },
           icon: 'Columns',
           tooltip: t('editor.columns.tooltip'),
         },
       }),
-    };
+    }
   },
-});
+})

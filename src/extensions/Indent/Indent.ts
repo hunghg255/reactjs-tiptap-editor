@@ -1,14 +1,14 @@
-import { Extension } from '@tiptap/core';
-import type { Editor } from '@tiptap/core';
+import { Extension } from '@tiptap/core'
+import type { Editor } from '@tiptap/core'
 
-import ActionButton from '@/components/ActionButton';
-import type { GeneralOptions } from '@/types';
-import { createIndentCommand, IndentProps } from '@/utils/indent';
+import ActionButton from '@/components/ActionButton'
+import type { GeneralOptions } from '@/types'
+import { IndentProps, createIndentCommand } from '@/utils/indent'
 
 export interface IndentOptions extends GeneralOptions<IndentOptions> {
-  types: string[];
-  minIndent: number;
-  maxIndent: number;
+  types: string[]
+  minIndent: number
+  maxIndent: number
 }
 
 declare module '@tiptap/core' {
@@ -17,12 +17,12 @@ declare module '@tiptap/core' {
       /**
        * Set the indent attribute
        */
-      indent: () => ReturnType;
+      indent: () => ReturnType
       /**
        * Set the outdent attribute
        */
-      outdent: () => ReturnType;
-    };
+      outdent: () => ReturnType
+    }
   }
 }
 
@@ -34,13 +34,13 @@ export const Indent = Extension.create<IndentOptions>({
       types: ['paragraph', 'heading', 'blockquote'],
       minIndent: IndentProps.min,
       maxIndent: IndentProps.max,
-      button({ editor, t }: { editor: Editor; t: (...args: any[]) => string }) {
+      button({ editor, t }: { editor: Editor, t: (...args: any[]) => string }) {
         return [
           {
             component: ActionButton,
             componentProps: {
               action: () => {
-                editor.commands.indent();
+                editor.commands.indent()
               },
               shortcutKeys: ['Tab'],
               icon: 'IndentIncrease',
@@ -51,16 +51,16 @@ export const Indent = Extension.create<IndentOptions>({
             component: ActionButton,
             componentProps: {
               action: () => {
-                editor.commands.outdent();
+                editor.commands.outdent()
               },
               shortcutKeys: ['Shift', 'Tab'],
               icon: 'IndentDecrease',
               tooltip: t('editor.outdent.tooltip'),
             },
           },
-        ];
+        ]
       },
-    };
+    }
   },
 
   addGlobalAttributes() {
@@ -71,19 +71,19 @@ export const Indent = Extension.create<IndentOptions>({
           indent: {
             default: 0,
             parseHTML: (element) => {
-              const identAttr = element.dataset.indent;
-              return (identAttr ? Number.parseInt(identAttr, 10) : 0) || 0;
+              const identAttr = element.dataset.indent
+              return (identAttr ? Number.parseInt(identAttr, 10) : 0) || 0
             },
             renderHTML: (attributes) => {
               if (!attributes.indent) {
-                return {};
+                return {}
               }
-              return { 'data-indent': attributes.indent };
+              return { 'data-indent': attributes.indent }
             },
           },
         },
       },
-    ];
+    ]
   },
 
   addCommands() {
@@ -98,13 +98,13 @@ export const Indent = Extension.create<IndentOptions>({
           delta: IndentProps.less,
           types: this.options.types,
         }),
-    };
+    }
   },
 
   addKeyboardShortcuts() {
     return {
-      Tab: () => this.editor.commands.indent(),
+      'Tab': () => this.editor.commands.indent(),
       'Shift-Tab': () => this.editor.commands.outdent(),
-    };
+    }
   },
-});
+})

@@ -1,8 +1,7 @@
-import { Extension } from '@tiptap/core';
+import { Extension } from '@tiptap/core'
 
-import type { GeneralOptions } from '@/types';
-
-import TextDropdown from './components/TextDropdown';
+import TextDropdown from './components/TextDropdown'
+import type { GeneralOptions } from '@/types'
 
 export interface TextBubbleOptions extends GeneralOptions<TextBubbleOptions> {}
 
@@ -16,8 +15,8 @@ export const TextBubble = Extension.create<TextBubbleOptions>({
         component: TextDropdown,
         componentProps: {},
       }),
-    };
+    }
   },
-});
+})
 
-export default TextBubble;
+export default TextBubble

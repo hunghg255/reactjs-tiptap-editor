@@ -1,12 +1,12 @@
-import type { BlockquoteOptions as TiptapBlockquoteOptions } from '@tiptap/extension-blockquote';
-import { Blockquote as TiptapBlockquote } from '@tiptap/extension-blockquote';
+import type { BlockquoteOptions as TiptapBlockquoteOptions } from '@tiptap/extension-blockquote'
+import { Blockquote as TiptapBlockquote } from '@tiptap/extension-blockquote'
 
-import ActionButton from '@/components/ActionButton';
-import { GeneralOptions } from '@/types';
+import ActionButton from '@/components/ActionButton'
+import type { GeneralOptions } from '@/types'
 
 export interface BlockquoteOptions
   extends TiptapBlockquoteOptions,
-    GeneralOptions<BlockquoteOptions> {}
+  GeneralOptions<BlockquoteOptions> {}
 
 export const Blockquote = TiptapBlockquote.extend<BlockquoteOptions>({
   addOptions() {
@@ -26,6 +26,6 @@ export const Blockquote = TiptapBlockquote.extend<BlockquoteOptions>({
           tooltip: t('editor.blockquote.tooltip'),
         },
       }),
-    };
+    }
   },
-});
+})

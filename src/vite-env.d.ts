@@ -1,3 +1,3 @@
 /// <reference types="vite/client" />
 
-declare const process;
+declare const process

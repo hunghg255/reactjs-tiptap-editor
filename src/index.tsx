@@ -1,9 +1,8 @@
-/* eslint-disable unicorn/prefer-export-from */
 /* eslint-disable import/first */
-export * from '@/extensions';
+export * from '@/extensions'
 
-export { default } from '@/components/RcTiptapEditor';
+export { default } from '@/components/RcTiptapEditor'
 
-import locale from './locales';
+import locale from './locales'
 
-export { locale };
+export { locale }

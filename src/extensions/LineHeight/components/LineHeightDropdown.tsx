@@ -1,75 +1,75 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react'
 
-import ActionButton from '@/components/ActionButton';
-import Icon from '@/components/icons/Icon';
+import ActionButton from '@/components/ActionButton'
+import Icon from '@/components/icons/Icon'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { useLocale } from '@/locales';
-import { ButtonViewReturnComponentProps } from '@/types';
+} from '@/components/ui/dropdown-menu'
+import { useLocale } from '@/locales'
+import type { ButtonViewReturnComponentProps } from '@/types'
 
 interface IPropsLineHeightDropdown {
-  editor: any;
-  icon?: any;
-  tooltip?: string;
-  disabled?: boolean;
-  action?: ButtonViewReturnComponentProps['action'];
-  isActive?: ButtonViewReturnComponentProps['isActive'];
+  editor: any
+  icon?: any
+  tooltip?: string
+  disabled?: boolean
+  action?: ButtonViewReturnComponentProps['action']
+  isActive?: ButtonViewReturnComponentProps['isActive']
 }
 
 function percentageToDecimal(percentageString: any) {
-  const percentage = Number.parseFloat(percentageString.replace('%', ''));
-  const decimal = percentage / 100;
-  return decimal;
+  const percentage = Number.parseFloat(percentageString.replace('%', ''))
+  const decimal = percentage / 100
+  return decimal
 }
 
-const LineHeightDropdown = (props: IPropsLineHeightDropdown) => {
-  const { t } = useLocale();
-  const [value, setValue] = useState('default');
+function LineHeightDropdown(props: IPropsLineHeightDropdown) {
+  const { t } = useLocale()
+  const [value, setValue] = useState('default')
 
   function toggleLightheight(key: string) {
     if (key === 'default') {
-      props.editor.commands.unsetLineHeight();
-    } else {
-      props.editor.commands.setLineHeight(key);
+      props.editor.commands.unsetLineHeight()
     }
-    setValue(key);
+    else {
+      props.editor.commands.setLineHeight(key)
+    }
+    setValue(key)
   }
 
   const LineHeights = useMemo(() => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const lineHeightOptions = props.editor.extensionManager.extensions.find(
       (e: any) => e.name === 'lineHeight',
-    )!.options;
-    const a = lineHeightOptions.lineHeights;
+    )!.options
+    const a = lineHeightOptions.lineHeights
     const b = a.map((item: any) => ({
       label: percentageToDecimal(item),
       value: item,
-    }));
+    }))
 
     b.unshift({
       label: t('editor.default'),
       value: 'default',
-    });
-    return b;
-  }, [props]);
+    })
+    return b
+  }, [props])
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger disabled={props?.disabled} asChild>
         <ActionButton
-          customClass='w-12'
-          icon='LineHeight'
+          customClass="w-12"
+          icon="LineHeight"
           tooltip={props?.tooltip}
           disabled={props?.disabled}
         >
-          <Icon className='w-3 h-3 ml-1 text-zinc-500' name='MenuDown' />
+          <Icon className="w-3 h-3 ml-1 text-zinc-500" name="MenuDown" />
         </ActionButton>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='min-w-24'>
+      <DropdownMenuContent className="min-w-24">
         {LineHeights?.map((item: any, index: any) => {
           return (
             <DropdownMenuCheckboxItem
@@ -79,11 +79,11 @@ const LineHeightDropdown = (props: IPropsLineHeightDropdown) => {
             >
               {item.label}
             </DropdownMenuCheckboxItem>
-          );
+          )
         })}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}
 
-export default LineHeightDropdown;
+export default LineHeightDropdown

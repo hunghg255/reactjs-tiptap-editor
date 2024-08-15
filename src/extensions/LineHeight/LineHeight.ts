@@ -1,26 +1,23 @@
-/* eslint-disable unicorn/consistent-function-scoping */
-/* eslint-disable indent */
-/* eslint-disable unicorn/no-null */
-import { Extension } from '@tiptap/core';
-import type { Editor } from '@tiptap/core';
+import { Extension } from '@tiptap/core'
+import type { Editor } from '@tiptap/core'
 
-import { DEFAULT_LINE_HEIGHT } from '@/constants';
-import LineHeightDropdown from '@/extensions/LineHeight/components/LineHeightDropdown';
-import type { GeneralOptions } from '@/types';
-import { createLineHeightCommand } from '@/utils/line-height';
+import { DEFAULT_LINE_HEIGHT } from '@/constants'
+import LineHeightDropdown from '@/extensions/LineHeight/components/LineHeightDropdown'
+import type { GeneralOptions } from '@/types'
+import { createLineHeightCommand } from '@/utils/line-height'
 
 export interface LineHeightOptions extends GeneralOptions<LineHeightOptions> {
-  types: string[];
-  lineHeights: string[];
-  defaultHeight: string;
+  types: string[]
+  lineHeights: string[]
+  defaultHeight: string
 }
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     lineHeight: {
-      setLineHeight: (lineHeight: string) => ReturnType;
-      unsetLineHeight: () => ReturnType;
-    };
+      setLineHeight: (lineHeight: string) => ReturnType
+      unsetLineHeight: () => ReturnType
+    }
   }
 }
 
@@ -32,16 +29,16 @@ export const LineHeight = Extension.create<LineHeightOptions>({
       types: ['paragraph', 'heading', 'list_item', 'todo_item'],
       lineHeights: ['100%', '115%', '150%', '200%', '250%', '300%'],
       defaultHeight: DEFAULT_LINE_HEIGHT,
-      button({ editor, t }: { editor: Editor; t: any }) {
+      button({ editor, t }: { editor: Editor, t: any }) {
         return {
           component: LineHeightDropdown,
           componentProps: {
             editor,
             tooltip: t('editor.lineheight.tooltip'),
           },
-        };
+        }
       },
-    };
+    }
   },
 
   addGlobalAttributes() {
@@ -52,28 +49,28 @@ export const LineHeight = Extension.create<LineHeightOptions>({
           lineHeight: {
             default: null,
             parseHTML: (element) => {
-              return element.style.lineHeight || this.options.defaultHeight;
+              return element.style.lineHeight || this.options.defaultHeight
             },
             renderHTML: (attributes) => {
               if (attributes.lineHeight === this.options.defaultHeight || !attributes.lineHeight) {
-                return {};
+                return {}
               }
-              return { style: `line-height: ${attributes.lineHeight}` };
+              return { style: `line-height: ${attributes.lineHeight}` }
             },
           },
         },
       },
-    ];
+    ]
   },
 
   addCommands() {
     return {
-      setLineHeight: (lineHeight) => createLineHeightCommand(lineHeight),
+      setLineHeight: lineHeight => createLineHeightCommand(lineHeight),
       unsetLineHeight:
         () =>
-        ({ commands }) => {
-          return this.options.types.every((type) => commands.resetAttributes(type, 'lineHeight'));
-        },
-    };
+          ({ commands }) => {
+            return this.options.types.every(type => commands.resetAttributes(type, 'lineHeight'))
+          },
+    }
   },
-});
+})

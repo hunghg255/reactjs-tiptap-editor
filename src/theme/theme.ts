@@ -1,17 +1,17 @@
-import { proxy, useSnapshot } from 'valtio';
+import { proxy, useSnapshot } from 'valtio'
 
 const themeProxy = proxy({
   theme: 'light',
-});
+})
 
-export const useTheme = () => {
-  const themeSnapshot = useSnapshot(themeProxy);
+export function useTheme() {
+  const themeSnapshot = useSnapshot(themeProxy)
 
-  return themeSnapshot.theme;
-};
+  return themeSnapshot.theme
+}
 
 export const themeActions = {
   setTheme: (theme: string) => {
-    themeProxy.theme = theme;
+    themeProxy.theme = theme
   },
-};
+}

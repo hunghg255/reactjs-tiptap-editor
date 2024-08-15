@@ -1,57 +1,56 @@
-/* eslint-disable unicorn/consistent-function-scoping */
-/* eslint-disable import/named */
-import React from 'react';
+import React from 'react'
 
-import { isActive } from '@tiptap/core';
-import { BubbleMenu } from '@tiptap/react';
-import { GetReferenceClientRect, sticky } from 'tippy.js';
+import { isActive } from '@tiptap/core'
+import { BubbleMenu } from '@tiptap/react'
+import type { GetReferenceClientRect } from 'tippy.js'
+import { sticky } from 'tippy.js'
 
-import ActionButton from '@/components/ActionButton';
-import { Separator } from '@/components/ui/separator';
-import HighlightActionButton from '@/extensions/Highlight/components/HighlightActionButton';
-import { useLocale } from '@/locales';
+import ActionButton from '@/components/ActionButton'
+import { Separator } from '@/components/ui/separator'
+import HighlightActionButton from '@/extensions/Highlight/components/HighlightActionButton'
+import { useLocale } from '@/locales'
 
-const TableBubbleMenu = (props: any) => {
+function TableBubbleMenu(props: any) {
   const shouldShow = ({ editor }: any) => {
-    return isActive(editor.view.state, 'table');
-  };
-  const { t } = useLocale();
+    return isActive(editor.view.state, 'table')
+  }
+  const { t } = useLocale()
 
   function onAddColumnBefore() {
-    props.editor.chain().focus().addColumnBefore().run();
+    props.editor.chain().focus().addColumnBefore().run()
   }
 
   function onAddColumnAfter() {
-    props.editor.chain().focus().addColumnAfter().run();
+    props.editor.chain().focus().addColumnAfter().run()
   }
 
   function onDeleteColumn() {
-    props.editor.chain().focus().deleteColumn().run();
+    props.editor.chain().focus().deleteColumn().run()
   }
   function onAddRowAbove() {
-    props.editor.chain().focus().addRowBefore().run();
+    props.editor.chain().focus().addRowBefore().run()
   }
 
   function onAddRowBelow() {
-    props.editor.chain().focus().addRowAfter().run();
+    props.editor.chain().focus().addRowAfter().run()
   }
 
   function onDeleteRow() {
-    props.editor.chain().focus().deleteRow().run();
+    props.editor.chain().focus().deleteRow().run()
   }
 
   function onMergeCell() {
-    props.editor.chain().focus().mergeCells().run();
+    props.editor.chain().focus().mergeCells().run()
   }
   function onSplitCell() {
-    props.editor?.chain().focus().splitCell().run();
+    props.editor?.chain().focus().splitCell().run()
   }
   function onDeleteTable() {
-    props.editor.chain().focus().deleteTable().run();
+    props.editor.chain().focus().deleteTable().run()
   }
 
   function onSetCellBackground(color: string) {
-    props.editor.chain().focus().setTableCellBackground(color).run();
+    props.editor.chain().focus().setTableCellBackground(color).run()
   }
   const getReferenceClientRect: GetReferenceClientRect = () => {
     const {
@@ -59,27 +58,27 @@ const TableBubbleMenu = (props: any) => {
       state: {
         selection: { from },
       },
-    } = props.editor;
+    } = props.editor
 
-    const node = view.domAtPos(from).node as HTMLElement;
+    const node = view.domAtPos(from).node as HTMLElement
     if (!node) {
-      return new DOMRect(-1000, -1000, 0, 0);
+      return new DOMRect(-1000, -1000, 0, 0)
     }
 
-    const tableWrapper = node?.closest('.tableWrapper');
+    const tableWrapper = node?.closest('.tableWrapper')
     if (!tableWrapper) {
-      return new DOMRect(-1000, -1000, 0, 0);
+      return new DOMRect(-1000, -1000, 0, 0)
     }
 
-    const rect = tableWrapper.getBoundingClientRect();
+    const rect = tableWrapper.getBoundingClientRect()
 
-    return rect;
-  };
+    return rect
+  }
 
   return (
     <BubbleMenu
       editor={props?.editor}
-      pluginKey='table'
+      pluginKey="table"
       shouldShow={shouldShow}
       updateDelay={0}
       tippyOptions={{
@@ -93,9 +92,9 @@ const TableBubbleMenu = (props: any) => {
         sticky: 'popper',
       }}
     >
-      <div className='min-w-32 flex flex-row h-full items-center leading-none gap-0.5 p-2 w-full bg-background rounded-lg shadow-sm border border-border'>
+      <div className="min-w-32 flex flex-row h-full items-center leading-none gap-0.5 p-2 w-full bg-background rounded-lg shadow-sm border border-border">
         <ActionButton
-          icon='BetweenHorizonalEnd'
+          icon="BetweenHorizonalEnd"
           tooltip={t('editor.table.menu.insertColumnBefore')}
           action={onAddColumnBefore}
           tooltip-options={{
@@ -104,7 +103,7 @@ const TableBubbleMenu = (props: any) => {
           disabled={!props?.editor?.can().addColumnBefore()}
         />
         <ActionButton
-          icon='BetweenHorizonalStart'
+          icon="BetweenHorizonalStart"
           tooltip={t('editor.table.menu.insertColumnAfter')}
           action={onAddColumnAfter}
           tooltip-options={{
@@ -113,7 +112,7 @@ const TableBubbleMenu = (props: any) => {
           disabled={!props?.editor?.can().addColumnAfter()}
         />
         <ActionButton
-          icon='DeleteColumn'
+          icon="DeleteColumn"
           action={onDeleteColumn}
           tooltip={t('editor.table.menu.deleteColumn')}
           tooltip-options={{
@@ -121,10 +120,10 @@ const TableBubbleMenu = (props: any) => {
           }}
           disabled={!props?.editor?.can().deleteColumn()}
         />
-        <Separator orientation='vertical' className='mx-1 me-2 h-[16px]' />
+        <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
 
         <ActionButton
-          icon='BetweenVerticalEnd'
+          icon="BetweenVerticalEnd"
           action={onAddRowAbove}
           tooltip={t('editor.table.menu.insertRowAbove')}
           tooltip-options={{
@@ -134,7 +133,7 @@ const TableBubbleMenu = (props: any) => {
         />
 
         <ActionButton
-          icon='BetweenVerticalStart'
+          icon="BetweenVerticalStart"
           action={onAddRowBelow}
           tooltip={t('editor.table.menu.insertRowBelow')}
           tooltip-options={{
@@ -143,7 +142,7 @@ const TableBubbleMenu = (props: any) => {
           disabled={!props?.editor?.can().addRowAfter()}
         />
         <ActionButton
-          icon='DeleteRow'
+          icon="DeleteRow"
           action={onDeleteRow}
           tooltip={t('editor.table.menu.deleteRow')}
           tooltip-options={{
@@ -151,9 +150,9 @@ const TableBubbleMenu = (props: any) => {
           }}
           disabled={!props?.editor?.can().deleteRow()}
         />
-        <Separator orientation='vertical' className='mx-1 me-2 h-[16px]' />
+        <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
         <ActionButton
-          icon='TableCellsMerge'
+          icon="TableCellsMerge"
           action={onMergeCell}
           tooltip={t('editor.table.menu.mergeCells')}
           tooltip-options={{
@@ -162,7 +161,7 @@ const TableBubbleMenu = (props: any) => {
           disabled={!props?.editor?.can().mergeCells()}
         />
         <ActionButton
-          icon='TableCellsSplit'
+          icon="TableCellsSplit"
           action={onSplitCell}
           tooltip={t('editor.table.menu.splitCells')}
           tooltip-options={{
@@ -170,7 +169,7 @@ const TableBubbleMenu = (props: any) => {
           }}
           disabled={!props?.editor?.can().splitCell()}
         />
-        <Separator orientation='vertical' className='mx-1 me-2 h-[16px]' />
+        <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
 
         <HighlightActionButton
           editor={props?.editor}
@@ -181,7 +180,7 @@ const TableBubbleMenu = (props: any) => {
           }}
         />
         <ActionButton
-          icon='Trash2'
+          icon="Trash2"
           tooltip={t('editor.table.menu.deleteTable')}
           action={onDeleteTable}
           tooltip-options={{
@@ -191,7 +190,7 @@ const TableBubbleMenu = (props: any) => {
         />
       </div>
     </BubbleMenu>
-  );
-};
+  )
+}
 
-export default TableBubbleMenu;
+export default TableBubbleMenu

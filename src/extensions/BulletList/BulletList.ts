@@ -1,12 +1,12 @@
-import type { BulletListOptions as TiptapBulletListOptions } from '@tiptap/extension-bullet-list';
-import { BulletList as TiptapBulletList } from '@tiptap/extension-bullet-list';
+import type { BulletListOptions as TiptapBulletListOptions } from '@tiptap/extension-bullet-list'
+import { BulletList as TiptapBulletList } from '@tiptap/extension-bullet-list'
 
-import ActionButton from '@/components/ActionButton';
-import type { GeneralOptions } from '@/types';
+import ActionButton from '@/components/ActionButton'
+import type { GeneralOptions } from '@/types'
 
 export interface BulletListOptions
   extends TiptapBulletListOptions,
-    GeneralOptions<BulletListOptions> {}
+  GeneralOptions<BulletListOptions> {}
 
 export const BulletList = TiptapBulletList.extend<BulletListOptions>({
   addOptions() {
@@ -23,6 +23,6 @@ export const BulletList = TiptapBulletList.extend<BulletListOptions>({
           tooltip: t('editor.bulletlist.tooltip'),
         },
       }),
-    };
+    }
   },
-});
+})
