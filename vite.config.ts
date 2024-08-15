@@ -1,4 +1,5 @@
 import * as path from 'node:path';
+import fs from 'node:fs';
 
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
@@ -15,7 +16,15 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       dts({
-        insertTypesEntry: true,
+        rollupTypes: true,
+        afterBuild: (emittedFiles) => {
+          emittedFiles.forEach((content, filePath) => {
+            if (filePath.endsWith('.d.ts')) {
+              const newFilePath = filePath.replace('.d.ts', '.d.cts');
+              fs.writeFileSync(newFilePath, content);
+            }
+          });
+        },
       }),
     ],
     resolve: {
