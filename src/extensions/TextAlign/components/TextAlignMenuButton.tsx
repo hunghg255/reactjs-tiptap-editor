@@ -55,7 +55,6 @@ const TextAlignMenuButton = (props: IPropsTextAlignMenuButton) => {
       <PopoverTrigger disabled={props?.disabled} asChild>
         <ActionButton
           customClass='w-12'
-          enable-tooltip
           icon={props?.icon}
           tooltip={props?.tooltip}
           disabled={props?.disabled}

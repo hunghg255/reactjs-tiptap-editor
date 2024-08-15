@@ -17,7 +17,7 @@ export const BulletList = TiptapBulletList.extend<BulletListOptions>({
         componentProps: {
           action: () => editor.commands.toggleBulletList(),
           isActive: () => editor.isActive('bulletList') || false,
-          disabled: !editor.can().toggleBulletList(),
+          disabled: false,
           shortcutKeys: ['shift', 'mod', '8'],
           icon: 'List',
           tooltip: t('editor.bulletlist.tooltip'),

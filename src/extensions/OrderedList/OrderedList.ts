@@ -17,7 +17,7 @@ export const OrderedList = TiptapOrderedList.extend<OrderedListOptions>({
         componentProps: {
           action: () => editor.commands.toggleOrderedList(),
           isActive: () => editor.isActive('orderedList') || false,
-          disabled: !editor.can().toggleOrderedList(),
+          disabled: false,
           icon: 'ListOrdered',
           shortcutKeys: ['mod', 'shift', '7'],
           tooltip: t('editor.orderedlist.tooltip'),
