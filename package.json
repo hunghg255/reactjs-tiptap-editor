@@ -2,15 +2,20 @@
   "name": "reactjs-tiptap-editor",
   "type": "module",
   "version": "0.0.5",
-  "main": "./lib/reactjs-tiptap-editor.js",
-  "module": "./lib/reactjs-tiptap-editor.mjs",
+  "main": "./lib/reactjs-tiptap-editor.cjs",
+  "module": "./lib/reactjs-tiptap-editor.js",
   "types": "./lib/index.d.ts",
   "packageManager": "pnpm@9.7.0",
   "exports": {
     ".": {
-      "types": "./lib/index.d.ts",
-      "import": "./lib/reactjs-tiptap-editor.mjs",
-      "require": "./lib/reactjs-tiptap-editor.js"
+      "import": {
+        "types": "./lib/index.d.ts",
+        "default": "./lib/reactjs-tiptap-editor.js"
+      },
+      "require": {
+        "types": "./lib/index.d.cts",
+        "default": "./lib/reactjs-tiptap-editor.cjs"
+      }
     },
     "./style.css": {
       "import": "./lib/style.css",
