@@ -23,6 +23,7 @@ interface IPropsActionButton {
   isActive?: ButtonViewReturnComponentProps['isActive'];
   children?: React.ReactNode;
   asChild?: boolean;
+  upload?: boolean;
 }
 
 const ActionButton = React.forwardRef<HTMLButtonElement, Partial<IPropsActionButton>>(
@@ -41,6 +42,9 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<IPropsActionBut
       isActive = undefined,
       children,
       asChild = false,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      upload = false,
+      ...rest
     } = props;
 
     const Icon = icons[icon as string];
@@ -57,6 +61,7 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<IPropsActionBut
             disabled={disabled}
             onClick={action}
             data-state={isActive?.() ? 'on' : 'off'}
+            {...rest}
           >
             {Icon && <Icon className='w-4 h-4' />}
             {children}
@@ -72,7 +77,7 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<IPropsActionBut
         )}
       </Tooltip>
     );
-  }
+  },
 );
 
 ActionButton.displayName = 'ActionButton';

@@ -33,6 +33,7 @@ const ActionMenuButton = React.forwardRef<HTMLButtonElement, IPropsActionMenuBut
             className='h-[32px] px-[5px] py-0 min-w-24 max-w-32 overflow-hidden'
             variant='ghost'
             disabled={props?.disabled}
+            {...props}
           >
             <div className='flex items-center h-full font-normal'>
               {props?.title && (
@@ -52,7 +53,7 @@ const ActionMenuButton = React.forwardRef<HTMLButtonElement, IPropsActionMenuBut
         </TooltipContent>
       </Tooltip>
     );
-  }
+  },
 );
 
 ActionMenuButton.displayName = 'ActionMenuButton';
