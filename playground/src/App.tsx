@@ -60,7 +60,7 @@ const extensions = [
   Italic,
   Underline,
   Strike,
-  MoreMark.configure({ bubble: true }),
+  MoreMark,
   Color.configure({ spacer: true }),
   Highlight,
   BulletList,

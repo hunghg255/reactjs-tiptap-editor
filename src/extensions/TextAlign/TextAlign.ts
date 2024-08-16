@@ -49,8 +49,8 @@ export const TextAlign = TiptapTextAlign.extend<TextAlignOptions>({
           icon: iconMap[k],
           shortcutKeys: shortcutKeysMap[k],
           isActive: () => editor.isActive({ textAlign: k }) || false,
-          action: () => editor.commands.setTextAlign(k),
-          disabled: !editor.can().setTextAlign(k),
+          action: () => editor.commands?.setTextAlign?.(k),
+          disabled: !editor?.can?.()?.setTextAlign?.(k),
         }))
         const disabled = items.filter(k => k.disabled).length === items.length
         return {
