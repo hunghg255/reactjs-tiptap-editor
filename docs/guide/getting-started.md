@@ -2,8 +2,8 @@
 description: How to install reactjs-tiptap-editor
 
 next:
-  text: Alignment
-  link: /extensions/align/text-align.md
+  text: Internationalization
+  link: /guide/internationalization.md
 ---
 
 # Installation

@@ -5,6 +5,7 @@
   "main": "./lib/reactjs-tiptap-editor.cjs",
   "module": "./lib/reactjs-tiptap-editor.js",
   "types": "./lib/index.d.ts",
+  "description": "A modern WYSIWYG rich text editor based on tiptap and shadcn ui for React",
   "packageManager": "pnpm@9.7.0",
   "exports": {
     ".": {
