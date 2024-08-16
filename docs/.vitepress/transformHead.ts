@@ -1,7 +1,7 @@
-import type { HeadConfig, TransformContext } from 'vitepress';
+import type { HeadConfig, TransformContext } from 'vitepress'
 
 export async function transformHead({ pageData }: TransformContext) {
-  const head: HeadConfig[] = [];
+  const head: HeadConfig[] = []
 
   if (pageData.relativePath === 'index.md') {
     head.push(
@@ -13,8 +13,8 @@ export async function transformHead({ pageData }: TransformContext) {
         'meta',
         { property: 'twitter:image', content: 'https://reactjs-tiptap-editor.vercel.app/og.png' },
       ],
-    );
-    return head;
+    )
+    return head
   }
 
   head.push(
@@ -23,7 +23,7 @@ export async function transformHead({ pageData }: TransformContext) {
       'meta',
       { property: 'twitter:image', content: 'https://reactjs-tiptap-editor.vercel.app/og.png' },
     ],
-  );
+  )
 
-  return head;
+  return head
 }

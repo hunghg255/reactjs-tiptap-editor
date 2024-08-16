@@ -95,10 +95,7 @@ export type { TableOptions } from './Table'
 export { FormatPainter } from './FormatPainter'
 export type { FormatPainterOptions } from './FormatPainter'
 
-// export { ImportWord } from './ImportWord';
-// export type { ImportWordOptions } from './ImportWord';
-
-export { Columns, ColumnToolbar } from './MultiColumn'
+export { MultiColumn, ColumnToolbar } from './MultiColumn'
 export type { ColumnsOptions } from './MultiColumn'
 
 export { Iframe } from './Iframe'

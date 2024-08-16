@@ -1,0 +1,67 @@
+[
+  {
+    "hash": "4aec3a84a7008a466c4c6423f55d11bb1e1807d1",
+    "date": "Thu Aug 15 16:23:39 2024 +0700",
+    "message": "chore: release v0.0.7",
+    "refs": "tag: v0.0.7",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.7"
+  },
+  {
+    "hash": "765cd766625da4d97e002aeff22a4bee41fbab85",
+    "date": "Thu Aug 15 16:19:39 2024 +0700",
+    "message": "fix: pass props to button",
+    "refs": "fix-style",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "BulletList",
+      "OrderedList",
+      "TaskList",
+      "TextAlignMenuButton"
+    ]
+  },
+  {
+    "hash": "3c1441f71738b386413666d6a62af1dca24ef9ab",
+    "date": "Thu Aug 15 13:15:53 2024 +0700",
+    "message": "chore: release v0.0.6",
+    "refs": "tag: v0.0.6",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.6"
+  },
+  {
+    "hash": "bad12f85368d099d976a6b5c3e205a8accbe12ea",
+    "date": "Wed Aug 14 18:04:43 2024 +0800",
+    "message": "fix: resolve nested button DOM warning",
+    "refs": "",
+    "author_name": "Condor Hero",
+    "author_email": "love2xinwei@gmail.com",
+    "functions": [
+      "FontFamilyButton",
+      "FontSizeMenuButton",
+      "HeadingButton",
+      "HistoryActionButton",
+      "LineHeightDropdown",
+      "LinkEditPopover",
+      "ActionMoreButton",
+      "CreateTablePopover",
+      "TableActionButton",
+      "TextAlignMenuButton",
+      "TextDropdown"
+    ]
+  },
+  {
+    "hash": "4e934c32e2548449f87dc630df361556ff51bf50",
+    "date": "Wed Aug 14 12:46:37 2024 +0700",
+    "message": "chore: release v0.0.5",
+    "refs": "tag: v0.0.5",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.5"
+  }
+]

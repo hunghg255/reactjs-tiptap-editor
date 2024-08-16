@@ -49,7 +49,8 @@
     "type-check": "tsc",
     "verify-commit": "verify-commit-msg",
     "prepare": "git-scm-hooks",
-    "release": "bumpp -r"
+    "release": "bumpp -r",
+    "gen-changelog": "esno ./scripts/genExtensions.ts && esno ./scripts/changelog.ts"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.1",
@@ -111,6 +112,7 @@
     "echo-drag-handle-plugin": "^0.0.2",
     "lodash-unified": "^1.0.3",
     "lucide-react": "^0.427.0",
+    "md5": "^2.3.0",
     "react-colorful": "^5.6.1",
     "tippy.js": "^6.3.7",
     "valtio": "^1.13.2"
@@ -128,7 +130,10 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.9",
+    "esno": "^4.7.0",
+    "execa": "^9.3.1",
     "git-scm-hooks": "^0.0.11",
+    "globby": "^14.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sass": "^1.77.8",

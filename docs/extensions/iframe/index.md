@@ -1,16 +1,19 @@
 ---
-description: Iframe Extension for the Editor.
+description: Iframe
+
+next:
+  text: Image
+  link: /extensions/Image/index.md
 ---
 
 ## Usage
 
 ```tsx
-import BaseKit, { Iframe } from 'reactjs-tiptap-editor'; // [!code ++]
+import { Iframe } from 'reactjs-tiptap-editor'; // [!code ++]
 
 const extensions = [
   ...,
   // Import Extensions Here
-  Iframe, // [!code ++]
+  Iframe // [!code ++]
 ];
-
 ```

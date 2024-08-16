@@ -1,12 +1,11 @@
 <script setup lang="ts">
-// @ts-expect-error virtual
 import changelog from '/virtual-changelog';
 import { computed } from 'vue';
 import { renderCommitMessage } from '../theme/utils';
-import funcUtils from '../../../scripts/funcUtils.json';
+import extensions from '../../../scripts/extensions.json';
 
 const props = defineProps<{ fn: string }>();
-const info = computed(() => funcUtils.find((i) => i.name === props.fn)) as any;
+const info = computed(() => extensions.find((i) => i.name === props.fn)) as any;
 
 const allCommits = changelog as any[];
 
@@ -17,7 +16,7 @@ const commits = computed(() => {
     (c) => c.version || c.functions?.some((i: any) => names.value.includes(i)),
   );
 
-  return related.filter((i, idx) => {
+  return  related.filter((i, idx) => {
     if (i.version && (!related[idx + 1] || related[idx + 1]?.version)) return false;
     return true;
   });

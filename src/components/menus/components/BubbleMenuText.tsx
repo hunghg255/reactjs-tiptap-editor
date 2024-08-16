@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from 'react'
+import React, { useMemo } from 'react'
 
 import type { Editor } from '@tiptap/core'
 import { TextSelection } from '@tiptap/pm/state'
