@@ -52,6 +52,8 @@ export interface GeneralOptions<T> {
   button: ButtonView<T>
   /** Show on Toolbar */
   toolbar?: boolean
+  /** Show on Bubble menu */
+  bubble?: boolean
 }
 
 /**

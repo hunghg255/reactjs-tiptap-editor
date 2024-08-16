@@ -170,28 +170,11 @@ export function getBubbleVideo(editor: Editor): BubbleMenuItem[] {
   ]
 }
 
-const bubbleList = ['bold', 'italic', 'underline', 'strike', 'code', 'link', 'divider', 'color', 'highlight']
-
 export function getBubbleText(editor: Editor, t: any) {
-  const bubbleMenu = bubbleList.filter((type) => {
-    if (type === 'divider') {
-      return true
-    }
-
-    const ext = editor.extensionManager.extensions.find(ext => ext.name === type)
-    return !!ext
-  }).map((it) => {
-    const ext: any = editor.extensionManager.extensions.find(ext => ext.name === it)
-
-    if (it === 'divider') {
-      return {
-        type: 'divider',
-        component: undefined,
-        componentProps: {},
-      }
-    }
-
-    return ext.configure().options.button({ editor, t } as any)
+  const bubbleMenu = editor.extensionManager.extensions.filter((ext) => {
+    return ext.options.bubble
+  }).sort((a, b) => a.options?.sort - b.options?.sort).map((ext) => {
+    return ext.configure().options.button({ editor, t, extension: ext } as any)
   })
 
   return bubbleMenu

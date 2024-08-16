@@ -1,21 +1,24 @@
 import type { Extension } from '@tiptap/core'
+import type { FontFamilyOptions as TiptapFontFamilyOptions } from '@tiptap/extension-font-family'
 import FontFamilyTiptap from '@tiptap/extension-font-family'
 
 // import type { GeneralOptions } from '@/types';
 
 import type { BaseKitOptions } from '../BaseKit'
 import FontFamilyButton from '@/extensions/FontFamily/components/FontFamilyButton'
+import type { GeneralOptions } from '@/types'
 
 // export interface FontFamilyOptions extends , GeneralOptions<FontFamilyOptions> {}
+export interface FontFamilyOptions extends TiptapFontFamilyOptions, GeneralOptions<FontFamilyOptions> {}
 
-export const FontFamily = FontFamilyTiptap.extend<any>({
+export const FontFamily = FontFamilyTiptap.extend<FontFamilyOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
       fonts: ['Inter', 'Comic Sans MS, Comic Sans', 'serif', 'monospace', 'cursive'],
       button({ editor, extension, t }: any) {
         const { extensions = [] } = editor.extensionManager ?? []
-        const fonts = extension.options?.fonts || []
+        const fonts = extension?.options?.fonts || []
         const baseKitExt = extensions.find(
           (k: any) => k.name === 'base-kit',
         ) as Extension<BaseKitOptions>

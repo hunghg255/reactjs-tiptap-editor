@@ -1,46 +1,44 @@
-/* eslint-disable unicorn/no-null */
-/* eslint-disable quotes */
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react'
 
-import { createLowlight, common } from 'lowlight';
+import { common, createLowlight } from 'lowlight'
 import RcTiptapEditor, {
   BaseKit,
-  History,
-  FormatPainter,
-  Clear,
-  Heading,
-  FontSize,
-  Bold,
-  Italic,
-  Underline,
-  Strike,
-  MoreMark,
-  Color,
-  Highlight,
-  BulletList,
-  OrderedList,
-  TextAlign,
-  Indent,
-  LineHeight,
-  TaskList,
-  Link,
-  Image,
-  ImageUpload,
-  Video,
-  VideoUpload,
   Blockquote,
-  SlashCommand,
-  HorizontalRule,
+  Bold,
+  BulletList,
+  Clear,
+  Code,
+  CodeBlock,
+  Color,
   ColumnToolbar,
   FontFamily,
-  CodeBlock,
-  Table,
-  Code,
-  locale,
+  FontSize,
+  FormatPainter,
+  Heading,
+  Highlight,
+  History,
+  HorizontalRule,
   Iframe,
-} from 'reactjs-tiptap-editor';
+  Image,
+  ImageUpload,
+  Indent,
+  Italic,
+  LineHeight,
+  Link,
+  MoreMark,
+  OrderedList,
+  SlashCommand,
+  Strike,
+  Table,
+  TaskList,
+  TextAlign,
+  Underline,
+  Video,
+  VideoUpload,
+  locale,
+} from 'reactjs-tiptap-editor'
 
-import 'reactjs-tiptap-editor/style.css';
+import 'reactjs-tiptap-editor/style.css'
 
 const extensions = [
   BaseKit.configure({
@@ -62,12 +60,12 @@ const extensions = [
   Italic,
   Underline,
   Strike,
-  MoreMark,
+  MoreMark.configure({ bubble: true }),
   Color.configure({ spacer: true }),
   Highlight,
   BulletList,
   OrderedList,
-  TextAlign.configure({ types: ['heading', 'paragraph'], spacer: true }),
+  TextAlign.configure({ types: ['heading', 'paragraph'], spacer: true, bubble: true }),
   Indent,
   LineHeight,
   TaskList.configure({
@@ -82,56 +80,59 @@ const extensions = [
     upload: (files: File) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(URL.createObjectURL(files));
-        }, 500);
-      });
+          resolve(URL.createObjectURL(files))
+        }, 500)
+      })
     },
   }),
   Video,
   VideoUpload.configure({
     upload: (files: File[]) => {
-      const f = files.map((file) => ({
+      const f = files.map(file => ({
         src: URL.createObjectURL(file),
         alt: file.name,
-      }));
-      return Promise.resolve(f);
+      }))
+      return Promise.resolve(f)
     },
   }),
   Blockquote,
   SlashCommand,
   HorizontalRule,
-  Code,
+  Code.configure({
+    toolbar: false,
+    bubble: true,
+  }),
   CodeBlock.configure({ lowlight: createLowlight(common) }),
   ColumnToolbar,
   Table,
   Iframe.configure({ spacer: true }),
-];
+]
 
-const DEFAULT = `<h1 style="text-align: center">Rc Tiptap Editor</h1><p>A modern WYSIWYG rich text editor based on <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://github.com/scrumpy/tiptap">tiptap</a> and <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://ui.shadcn.com/">shadcn ui</a> for Reactjs</p><p></p><p style="text-align: center"></p><p style="text-align: center"><img height="auto" src="https://picsum.photos/1920/1080.webp?t=1" width="500"></p><p></p><div data-type="horizontalRule"><hr></div><h2>Demo</h2><p>👉<a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://reactjs-tiptap-editor.vercel.app/">Demo</a></p><h2>Features</h2><ul><li><p>Use <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://ui.shadcn.com/">shadcn ui</a> components</p></li><li><p>Markdown support</p></li><li><p>TypeScript support</p></li><li><p>I18n support</p></li><li><p>React support</p></li><li><p>Slash Commands</p></li><li><p>Multi Column</p></li><li><p>TailwindCss</p></li><li><p>Support emoji</p></li><li><p>Support iframe</p></li></ul><h2>Installation</h2><pre><code>pnpm add reactjs-tiptap-editor</code></pre><p></p>`;
+const DEFAULT = `<h1 style="text-align: center">Rc Tiptap Editor</h1><p>A modern WYSIWYG rich text editor based on <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://github.com/scrumpy/tiptap">tiptap</a> and <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://ui.shadcn.com/">shadcn ui</a> for Reactjs</p><p></p><p style="text-align: center"></p><p style="text-align: center"><img height="auto" src="https://picsum.photos/1920/1080.webp?t=1" width="500"></p><p></p><div data-type="horizontalRule"><hr></div><h2>Demo</h2><p>👉<a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://reactjs-tiptap-editor.vercel.app/">Demo</a></p><h2>Features</h2><ul><li><p>Use <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://ui.shadcn.com/">shadcn ui</a> components</p></li><li><p>Markdown support</p></li><li><p>TypeScript support</p></li><li><p>I18n support</p></li><li><p>React support</p></li><li><p>Slash Commands</p></li><li><p>Multi Column</p></li><li><p>TailwindCss</p></li><li><p>Support emoji</p></li><li><p>Support iframe</p></li></ul><h2>Installation</h2><pre><code>pnpm add reactjs-tiptap-editor</code></pre><p></p>`
 
 function debounce(func: any, wait: number) {
-  let timeout: NodeJS.Timeout;
+  let timeout: NodeJS.Timeout
   return function (...args: any[]) {
-    clearTimeout(timeout);
+    clearTimeout(timeout)
     // @ts-ignore
-    timeout = setTimeout(() => func.apply(this, args), wait);
-  };
+    timeout = setTimeout(() => func.apply(this, args), wait)
+  }
 }
 
 function App() {
-  const [content, setContent] = useState(DEFAULT);
-  const [theme, setTheme] = useState('light');
-  const [disable, setDisable] = useState(false);
+  const [content, setContent] = useState(DEFAULT)
+  const [theme, setTheme] = useState('light')
+  const [disable, setDisable] = useState(false)
 
   const onValueChange = useCallback(
     debounce((value: any) => {
-      setContent(value);
+      setContent(value)
     }, 300),
     [],
-  );
+  )
   return (
     <div
-      className='p-[24px] flex flex-col w-full max-w-screen-lg gap-[24px] mx-[auto] my-0'
+      className="p-[24px] flex flex-col w-full max-w-screen-lg gap-[24px] mx-[auto] my-0"
       style={{
         maxWidth: 1024,
         margin: '40px auto',
@@ -155,7 +156,7 @@ function App() {
       </div>
 
       <RcTiptapEditor
-        output='html'
+        output="html"
         content={content as any}
         onChangeContent={onValueChange}
         extensions={extensions}
@@ -174,7 +175,7 @@ function App() {
         />
       )}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

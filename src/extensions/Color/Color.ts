@@ -10,6 +10,7 @@ export const Color = TiptapColor.extend<ColorOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
+      bubble: true,
       button({ editor, t }) {
         return {
           component: ColorActionButton,

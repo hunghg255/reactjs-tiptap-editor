@@ -28,13 +28,11 @@ function ItemA({ item, disabled, editor }: any) {
   }
 
   return (
-    <Fragment>
-      <Comp
-        {...item.componentProps}
-        editor={editor}
-        disabled={disabled || item?.componentProps?.disabled}
-      />
-    </Fragment>
+    <Comp
+      {...item.componentProps}
+      editor={editor}
+      disabled={disabled || item?.componentProps?.disabled}
+    />
   )
 }
 
@@ -63,40 +61,38 @@ function BubbleMenuText(props: IPropsBubbleMenuText) {
   }, [props.disabled, props.editor, lang, t])
 
   return (
-    <>
-      <BubbleMenu shouldShow={shouldShow} editor={props?.editor} tippyOptions={tippyOptions as any}>
-        {items?.length
-          ? (
-              <div className="border border-neutral-200 dark:border-neutral-800 px-3 py-2 transition-all select-none pointer-events-auto shadow-sm rounded-sm w-auto bg-background">
-                <div className="flex items-center gap-[4px] flex-nowrap whitespace-nowrap h-[26px] justify-start relative">
-                  {items?.map((item: any, key: any) => {
-                    if (item?.type === 'divider') {
-                      return (
-                        <Separator
-                          key={`bubbleMenu-divider-${key}`}
-                          orientation="vertical"
-                          className="mx-1 me-2 h-[16px]"
-                        />
-                      )
-                    }
-
+    <BubbleMenu shouldShow={shouldShow} editor={props?.editor} tippyOptions={tippyOptions as any}>
+      {items?.length
+        ? (
+            <div className="border border-neutral-200 dark:border-neutral-800 px-3 py-2 transition-all select-none pointer-events-auto shadow-sm rounded-sm w-auto bg-background">
+              <div className="flex items-center gap-[4px] flex-nowrap whitespace-nowrap h-[26px] justify-start relative">
+                {items?.map((item: any, key: any) => {
+                  if (item?.type === 'divider') {
                     return (
-                      <ItemA
-                        key={`bubbleMenu-text-${key}`}
-                        item={item}
-                        disabled={props.disabled}
-                        editor={props.editor}
+                      <Separator
+                        key={`bubbleMenu-divider-${key}`}
+                        orientation="vertical"
+                        className="mx-1 me-2 h-[16px]"
                       />
                     )
-                  })}
-                </div>
+                  }
+
+                  return (
+                    <ItemA
+                      key={`bubbleMenu-text-${key}`}
+                      item={item}
+                      disabled={props.disabled}
+                      editor={props.editor}
+                    />
+                  )
+                })}
               </div>
-            )
-          : (
-              <></>
-            )}
-      </BubbleMenu>
-    </>
+            </div>
+          )
+        : (
+            <></>
+          )}
+    </BubbleMenu>
   )
 }
 
