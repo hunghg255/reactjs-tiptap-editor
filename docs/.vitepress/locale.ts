@@ -11,7 +11,7 @@ export function getLocaleConfig(lang: string) {
   const urlPrefix = lang && lang !== 'en' ? `/${lang}` : '';
   const title = t('React Tiptap Editor');
   const description = t(
-    'A modern WYSIWYG rich text editor based on tiptap and shadcn ui for Reactjs',
+    'A modern WYSIWYG rich text editor based on tiptap and shadcn ui for React',
   );
 
   const head: HeadConfig[] = [
@@ -49,6 +49,10 @@ export function getLocaleConfig(lang: string) {
         {
           text: t('Getting Started'),
           link: `${urlPrefix}/guide/getting-started`,
+        },
+        {
+          text: t('Internationalization'),
+          link: `${urlPrefix}/guide/internationalization`,
         },
       ],
     },
@@ -133,7 +137,7 @@ export function getLocaleConfig(lang: string) {
         },
         {
           text: t('Column'),
-          link: '/extensions/column/multilple-column.md',
+          link: '/extensions/column/multiple-column.md',
         },
         {
           text: t('Iframe'),

@@ -1,4 +1,4 @@
-const locale: Record<string, string> = {
+const locale = {
   'editor.remove': 'Remove',
   'editor.copy': 'Copy',
   'editor.words': 'WORDS',

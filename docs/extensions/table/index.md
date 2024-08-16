@@ -3,7 +3,7 @@ description: Table
 
 next:
   text: Column
-  link: /extensions/column/multilple-column.md
+  link: /extensions/column/multiple-column.md
 ---
 
 ## Usage

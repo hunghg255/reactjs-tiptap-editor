@@ -3,6 +3,6 @@ export * from '@/extensions'
 
 export { default } from '@/components/RcTiptapEditor'
 
-import locale from './locales'
+import locale, { en, vi, zh_CN } from './locales'
 
-export { locale }
+export { locale, en, vi, zh_CN }
