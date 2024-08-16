@@ -4,7 +4,7 @@ const ID = '/virtual-contributors'
 
 export function Contributors(data: Record<string, any[]>): Plugin {
   return {
-    name: 'js-utils-contributors',
+    name: 'reactjs-tiptap-editor-contributors',
     resolveId(id) {
       return id === ID ? ID : null
     },

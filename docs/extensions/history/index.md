@@ -2,19 +2,18 @@
 description: History
 
 next:
-  text: Link
-  link: /extensions/link/index.md
+  text: HorizontalRule
+  link: /extensions/HorizontalRule/index.md
 ---
 
 ## Usage
 
 ```tsx
-import BaseKit, { History } from 'reactjs-tiptap-editor'; // [!code ++]
+import { History } from 'reactjs-tiptap-editor'; // [!code ++]
 
 const extensions = [
   ...,
   // Import Extensions Here
-  History, // [!code ++]
+  History // [!code ++]
 ];
-
 ```

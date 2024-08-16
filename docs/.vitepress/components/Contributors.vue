@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// @ts-expect-error missing types
 import _contributors from '/virtual-contributors'
 import { computed } from 'vue'
 
@@ -7,7 +6,23 @@ import { generateGithubAvatar, generateGithubLink, generateUserName } from '../t
 
 const props = defineProps<{ fn: string }>()
 
-const contributors = computed(() => _contributors[props.fn] || [] as any[])
+function uniqueObjects(arr, prop) {
+  const seen = new Set();
+  return arr.filter(item => {
+    const val = item[prop];
+    if (seen.has(val)) {
+      return false;
+    }
+    seen.add(val);
+    return true;
+  });
+}
+
+const contributors = computed(() => {
+  const allContributors = _contributors[props.fn] || [] as any[];
+
+  return uniqueObjects(allContributors, 'name');
+})
 </script>
 
 <template>

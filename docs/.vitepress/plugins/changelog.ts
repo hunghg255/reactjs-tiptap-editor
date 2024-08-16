@@ -4,7 +4,7 @@ const ID = '/virtual-changelog'
 
 export function ChangeLog(data: any[]): Plugin {
   return {
-    name: 'js-utils-changelog',
+    name: 'reactjs-tiptap-editor-changelog',
     resolveId(id) {
       return id === ID ? ID : null
     },

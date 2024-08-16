@@ -84,7 +84,7 @@ function imageSizeMenus(editor: Editor): BubbleMenuItem[] {
     type: `image-${size}`,
     component: ActionButton,
     componentProps: {
-      tooltip: localeActions.t(`editor.${size.replace('-', '.')}.tooltip`),
+      tooltip: localeActions.t(`editor.${size.replace('-', '.')}.tooltip` as any),
       icon: icons[i],
       action: () => editor.commands.updateImage({ width: IMAGE_SIZE[size] }),
       isActive: () => editor.isActive('image', { width: IMAGE_SIZE[size] }),
@@ -124,7 +124,7 @@ function videoSizeMenus(editor: Editor): BubbleMenuItem[] {
     type: `video-${size}`,
     component: ActionButton,
     componentProps: {
-      tooltip: localeActions.t(`editor.${size.replace('-', '.')}.tooltip`),
+      tooltip: localeActions.t(`editor.${size.replace('-', '.')}.tooltip` as any),
       icon: icons[i],
       action: () => editor.commands.updateVideo({ width: VIDEO_SIZE[size] }),
       isActive: () => editor.isActive('video', { width: VIDEO_SIZE[size] }),

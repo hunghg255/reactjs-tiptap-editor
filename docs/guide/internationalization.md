@@ -3,7 +3,7 @@ description: Internationalization
 
 next:
   text: Alignment
-  link: /extensions/align/text-align.md
+  link: /extensions/BaseKit.md
 ---
 
 # Internationalization (i18n)
@@ -48,8 +48,8 @@ To override part of the current language system, first choose a new language nam
 
 ```javascript
 import { en } from 'reactjs-tiptap-editor'
-locale.setMessage("en_US", {
+locale.setMessage('en_US', {
   ...en,
-  "editor.remove": "Delete"
+  'editor.remove': 'Delete'
 })
 ```

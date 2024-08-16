@@ -21,7 +21,7 @@ import type { TextStyleOptions } from '@tiptap/extension-text-style'
 import { TextStyle } from '@tiptap/extension-text-style'
 
 import { Document } from '@/extensions/Document'
-import { Columns } from '@/extensions/MultiColumn'
+import { MultiColumn } from '@/extensions/MultiColumn'
 import { Selection } from '@/extensions/Selection'
 import type { TextBubbleOptions } from '@/extensions/TextBubble'
 import { TextBubble } from '@/extensions/TextBubble'
@@ -150,7 +150,7 @@ export const BaseKit = Extension.create<BaseKitOptions>({
     const extensions: AnyExtension[] = []
     if (this.options.multiColumn) {
       extensions.push(Document.configure())
-      extensions.push(Columns)
+      extensions.push(MultiColumn)
     }
     else {
       extensions.push(TiptapDocumentDefault)
@@ -161,6 +161,7 @@ export const BaseKit = Extension.create<BaseKitOptions>({
         Placeholder.configure({
           placeholder: ({ node, pos }) => {
             if (node?.type?.name === 'heading') {
+              // @ts-expect-error
               return `${localeActions.t(`editor.heading.h${node.attrs.level}.tooltip`)}`
             }
             if (node?.type?.name === 'codeBlock' || node?.type?.name === 'table') {
