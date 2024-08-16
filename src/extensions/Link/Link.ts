@@ -32,6 +32,7 @@ export const Link = TiptapLink.extend<LinkOptions>({
     return {
       ...this.parent?.(),
       openOnClick: true,
+      bubble: true,
       button: ({ editor, t }) => {
         return {
           component: LinkEditPopover,

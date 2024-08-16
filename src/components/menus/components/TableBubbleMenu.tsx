@@ -100,7 +100,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can().addColumnBefore()}
+          disabled={!props?.editor?.can()?.addColumnBefore?.()}
         />
         <ActionButton
           icon="BetweenHorizonalStart"
@@ -109,7 +109,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can().addColumnAfter()}
+          disabled={!props?.editor?.can()?.addColumnAfter?.()}
         />
         <ActionButton
           icon="DeleteColumn"
@@ -118,7 +118,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can().deleteColumn()}
+          disabled={!props?.editor?.can().deleteColumn?.()}
         />
         <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
 
@@ -129,7 +129,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can().addRowBefore()}
+          disabled={!props?.editor?.can().addRowBefore?.()}
         />
 
         <ActionButton
@@ -139,7 +139,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can().addRowAfter()}
+          disabled={!props?.editor?.can()?.addRowAfter?.()}
         />
         <ActionButton
           icon="DeleteRow"
@@ -148,7 +148,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can().deleteRow()}
+          disabled={!props?.editor?.can()?.deleteRow?.()}
         />
         <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
         <ActionButton
@@ -158,7 +158,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can().mergeCells()}
+          disabled={!props?.editor?.can()?.mergeCells?.()}
         />
         <ActionButton
           icon="TableCellsSplit"
@@ -167,7 +167,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can().splitCell()}
+          disabled={!props?.editor?.can()?.splitCell?.()}
         />
         <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
 
@@ -186,7 +186,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can().deleteTable()}
+          disabled={!props?.editor?.can()?.deleteTable?.()}
         />
       </div>
     </BubbleMenu>

@@ -5,7 +5,6 @@ import { IMAGE_SIZE, VIDEO_SIZE } from '@/constants'
 import type { ButtonViewParams, ButtonViewReturn, ExtensionNameKeys } from '@/types'
 import { localeActions } from '@/locales'
 import ActionButton from '@/components/ActionButton'
-import { Bold, Code, Color, Highlight, Italic, Link, Strike, Underline } from '@/extensions'
 
 /** Represents the size types for bubble images or videos */
 type BubbleImageOrVideoSizeType = 'size-small' | 'size-medium' | 'size-large'
@@ -106,9 +105,9 @@ function imageAlignMenus(editor: Editor): BubbleMenuItem[] {
     componentProps: {
       tooltip: localeActions.t(`editor.textalign.${k}.tooltip`),
       icon: iconMap[k],
-      action: () => editor.commands.setTextAlign(k),
+      action: () => editor.commands?.setTextAlign?.(k),
       isActive: () => editor.isActive({ textAlign: k }) || false,
-      disabled: !editor.can().setTextAlign(k),
+      disabled: !editor.can()?.setTextAlign?.(k),
     },
   }))
 }
@@ -172,19 +171,11 @@ export function getBubbleVideo(editor: Editor): BubbleMenuItem[] {
 }
 
 export function getBubbleText(editor: Editor, t: any) {
-  return [
-    Bold.configure().options.button({ editor, t } as any),
-    Italic.configure().options.button({ editor, t } as any),
-    Underline.configure().options.button({ editor, t } as any),
-    Strike.configure().options.button({ editor, t } as any),
-    Code.configure().options.button({ editor, t } as any),
-    Link.configure().options.button({ editor, t } as any),
-    {
-      type: 'divider',
-      component: undefined,
-      componentProps: {},
-    },
-    Color.configure().options.button({ editor, t } as any),
-    Highlight.configure().options.button({ editor, t } as any),
-  ]
+  const bubbleMenu = editor.extensionManager.extensions.filter((ext) => {
+    return ext.options.bubble
+  }).sort((a, b) => a.options?.sort - b.options?.sort).map((ext) => {
+    return ext.configure().options.button({ editor, t, extension: ext } as any)
+  })
+
+  return bubbleMenu
 }
