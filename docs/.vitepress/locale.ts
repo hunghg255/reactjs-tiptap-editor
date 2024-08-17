@@ -118,7 +118,7 @@ export function getLocaleConfig(lang: string) {
         },
         {
           text: 'History',
-          link: '/extensions/History/index.md',
+          link: '/extensions/HistoryExtension/index.md',
         },
         {
           text: 'HorizontalRule',
@@ -126,7 +126,7 @@ export function getLocaleConfig(lang: string) {
         },
         {
           text: 'Iframe',
-          link: '/extensions/Iframe/index.md',
+          link: '/extensions/IframeExtension/index.md',
         },
         {
           text: 'Image',
@@ -150,7 +150,7 @@ export function getLocaleConfig(lang: string) {
         },
         {
           text: 'Link',
-          link: '/extensions/Link/index.md',
+          link: '/extensions/LinkExtension/index.md',
         },
         {
           text: 'ListItem',
@@ -186,7 +186,7 @@ export function getLocaleConfig(lang: string) {
         },
         {
           text: 'Table',
-          link: '/extensions/Table/index.md',
+          link: '/extensions/TableExtension/index.md',
         },
         {
           text: 'TaskList',
