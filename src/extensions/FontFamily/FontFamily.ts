@@ -2,8 +2,6 @@ import type { Extension } from '@tiptap/core'
 import type { FontFamilyOptions as TiptapFontFamilyOptions } from '@tiptap/extension-font-family'
 import FontFamilyTiptap from '@tiptap/extension-font-family'
 
-// import type { GeneralOptions } from '@/types';
-
 import type { BaseKitOptions } from '../BaseKit'
 import FontFamilyButton from '@/extensions/FontFamily/components/FontFamilyButton'
 import type { GeneralOptions } from '@/types'

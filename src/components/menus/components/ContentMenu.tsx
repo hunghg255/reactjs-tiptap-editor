@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import type { Editor } from '@tiptap/core'
 
 import type { Node } from '@tiptap/pm/model'
 import type { NodeSelection } from '@tiptap/pm/state'
@@ -21,13 +22,25 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { useLocale } from '@/locales'
 import { IndentProps, setNodeIndentMarkup } from '@/utils/indent'
 
-function ContentMenu(props: any) {
+export interface ContentMenuProps {
+  editor: Editor
+  disabled?: boolean
+  className?: string
+  pluginKey?: string
+}
+
+function ContentMenu(props: ContentMenuProps) {
+  const { pluginKey = dragHandlePluginDefaultKey } = props
   const { t } = useLocale()
   const [currentNode, setCurrentNode] = useState<Node | null>(null)
   const [currentNodePos, setCurrentNodePos] = useState(-1)
   const dragElement = useRef(null)
   const pluginRef = useRef<any | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const hasTextAlignExtension = props.editor.extensionManager.extensions.some(ext => ext.name === 'textAlign')
+  const hasIndentExtension = props.editor.extensionManager.extensions.some(ext => ext.name === 'indent')
+  const hasClearExtension = props.editor.extensionManager.extensions.some(ext => ext.name === 'clear')
 
   useEffect(() => {
     if (dragElement.current && !props.editor.isDestroyed) {
@@ -147,7 +160,7 @@ function ContentMenu(props: any) {
   useEffect(() => {
     return () => {
       if (pluginRef.current) {
-        props.editor.unregisterPlugin(dragHandlePluginDefaultKey)
+        props.editor.unregisterPlugin(pluginKey)
         pluginRef.current = null
       }
     }
@@ -155,7 +168,7 @@ function ContentMenu(props: any) {
 
   useEffect(() => {
     if (props.editor?.isDestroyed && pluginRef.current) {
-      props.editor.unregisterPlugin(props.pluginKey)
+      props.editor.unregisterPlugin(pluginKey)
       pluginRef.current = null
     }
   }, [props.editor?.isDestroyed])
@@ -189,7 +202,7 @@ function ContentMenu(props: any) {
             <Icon name="Plus" className="text-lg text-neutral-600 dark:text-neutral-200" />
           </Button>
           <DropdownMenu open={menuOpen} onOpenChange={handleMenuOpenChange}>
-            <div className="flex flex-col relative">
+            <div className="relative flex flex-col">
               <Tooltip>
                 <TooltipTrigger asChild disabled={props?.disabled}>
                   <Button
@@ -223,10 +236,16 @@ function ContentMenu(props: any) {
                 <Icon name="Trash2" />
                 <span>{t('editor.remove')}</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="flex gap-3" onClick={resetTextFormatting}>
-                <Icon name="PaintRoller" />
-                <span>{t('editor.clear.tooltip')}</span>
-              </DropdownMenuItem>
+
+              {hasClearExtension
+                ? (
+                    <DropdownMenuItem className="flex gap-3" onClick={resetTextFormatting}>
+                      <Icon name="PaintRoller" />
+                      <span>{t('editor.clear.tooltip')}</span>
+                    </DropdownMenuItem>
+                  )
+                : null}
+
               <DropdownMenuItem className="flex gap-3" onClick={copyNodeToClipboard}>
                 <Icon name="Clipboard" />
                 <span>{t('editor.copyToClipboard')}</span>
@@ -235,58 +254,72 @@ function ContentMenu(props: any) {
                 <Icon name="Copy" />
                 <span>{t('editor.copy')}</span>
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex gap-3">
-                  <Icon name="AlignCenter" />
-                  <span>{t('editor.textalign.tooltip')}</span>
-                </DropdownMenuSubTrigger>
-                <DropdownMenuPortal>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem className="flex gap-3" onClick={() => setTextAlign('left')}>
-                      <Icon name="AlignLeft" />
-                      <span>{t('editor.textalign.left.tooltip')}</span>
-                    </DropdownMenuItem>
 
-                    <DropdownMenuItem className="flex gap-3" onClick={() => setTextAlign('center')}>
-                      <Icon name="AlignCenter" />
-                      <span>{t('editor.textalign.center.tooltip')}</span>
-                    </DropdownMenuItem>
+              {hasTextAlignExtension || hasIndentExtension
+                ? (
+                    <DropdownMenuSeparator />
+                  )
+                : null}
 
-                    <DropdownMenuItem className="flex gap-3" onClick={() => setTextAlign('right')}>
-                      <Icon name="AlignRight" />
-                      <span>{t('editor.textalign.right.tooltip')}</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuPortal>
-              </DropdownMenuSub>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex gap-3">
-                  <Icon name="IndentIncrease" />
-                  <span>{t('editor.indent')}</span>
-                </DropdownMenuSubTrigger>
-                <DropdownMenuPortal>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem
-                      className="flex gap-3"
-                      onClick={increaseIndent}
-                      disabled={currentNode?.attrs?.indent >= IndentProps.max}
-                    >
-                      <Icon name="IndentIncrease" />
-                      <span>{t('editor.indent.tooltip')}</span>
-                    </DropdownMenuItem>
+              {hasTextAlignExtension
+                ? (
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger className="flex gap-3">
+                        <Icon name="AlignCenter" />
+                        <span>{t('editor.textalign.tooltip')}</span>
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuPortal>
+                        <DropdownMenuSubContent>
+                          <DropdownMenuItem className="flex gap-3" onClick={() => setTextAlign('left')}>
+                            <Icon name="AlignLeft" />
+                            <span>{t('editor.textalign.left.tooltip')}</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem className="flex gap-3" onClick={() => setTextAlign('center')}>
+                            <Icon name="AlignCenter" />
+                            <span>{t('editor.textalign.center.tooltip')}</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem className="flex gap-3" onClick={() => setTextAlign('right')}>
+                            <Icon name="AlignRight" />
+                            <span>{t('editor.textalign.right.tooltip')}</span>
+                          </DropdownMenuItem>
+                        </DropdownMenuSubContent>
+                      </DropdownMenuPortal>
+                    </DropdownMenuSub>
+                  )
+                : null}
 
-                    <DropdownMenuItem
-                      className="flex gap-3"
-                      onClick={decreaseIndent}
-                      disabled={currentNode?.attrs?.indent <= IndentProps.min}
-                    >
-                      <Icon name="IndentDecrease" />
-                      <span>{t('editor.outdent.tooltip')}</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuPortal>
-              </DropdownMenuSub>
+              {hasIndentExtension
+                ? (
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger className="flex gap-3">
+                        <Icon name="IndentIncrease" />
+                        <span>{t('editor.indent')}</span>
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuPortal>
+                        <DropdownMenuSubContent>
+                          <DropdownMenuItem
+                            className="flex gap-3"
+                            onClick={increaseIndent}
+                            disabled={currentNode?.attrs?.indent >= IndentProps.max}
+                          >
+                            <Icon name="IndentIncrease" />
+                            <span>{t('editor.indent.tooltip')}</span>
+                          </DropdownMenuItem>
+
+                          <DropdownMenuItem
+                            className="flex gap-3"
+                            onClick={decreaseIndent}
+                            disabled={currentNode?.attrs?.indent <= IndentProps.min}
+                          >
+                            <Icon name="IndentDecrease" />
+                            <span>{t('editor.outdent.tooltip')}</span>
+                          </DropdownMenuItem>
+                        </DropdownMenuSubContent>
+                      </DropdownMenuPortal>
+                    </DropdownMenuSub>
+                  )
+                : null}
+
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

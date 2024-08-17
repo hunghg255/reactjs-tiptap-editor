@@ -65,10 +65,10 @@ export const SlashCommand = Extension.create({
           props.action({ editor, range })
           view.focus()
         },
-        items: ({ query }: { query: string, editor: Editor }) => {
+        items: ({ query, editor }: { query: string, editor: Editor }) => {
           // get options
           // Filter commands
-          const groups = renderGroups()
+          const groups = renderGroups(editor.extensionManager.extensions)
           const withFilteredCommands = groups.map(group => ({
             ...group,
             commands: group.commands

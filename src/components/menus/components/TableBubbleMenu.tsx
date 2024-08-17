@@ -65,7 +65,7 @@ function TableBubbleMenu(props: any) {
       return new DOMRect(-1000, -1000, 0, 0)
     }
 
-    const tableWrapper = node?.closest('.tableWrapper')
+    const tableWrapper = node?.closest?.('.tableWrapper')
     if (!tableWrapper) {
       return new DOMRect(-1000, -1000, 0, 0)
     }

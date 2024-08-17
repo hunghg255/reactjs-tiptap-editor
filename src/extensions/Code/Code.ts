@@ -10,8 +10,6 @@ export const Code = TiptapCode.extend<CodeOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      bubble: true,
-
       button: ({ editor, t }) => ({
         component: ActionButton,
         componentProps: {

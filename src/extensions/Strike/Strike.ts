@@ -10,7 +10,6 @@ export const Strike = TiptapStrike.extend<StrikeOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      bubble: true,
       button: ({ editor, t }: any) => ({
         component: ActionButton,
         componentProps: {

@@ -10,7 +10,6 @@ export const Bold = TiptapBold.extend<BoldOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      bubble: true,
       button: ({ editor, t }: any) => ({
         component: ActionButton,
         componentProps: {

@@ -152,7 +152,7 @@
     "not op_mini all"
   ],
   "git-hooks": {
-    "pre-commit": "npm run lint",
+    "pre-commit": "npm run lint:fix",
     "commit-msg": "npm run verify-commit"
   },
   "peerDependencies": {

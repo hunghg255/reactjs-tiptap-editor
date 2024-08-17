@@ -159,7 +159,7 @@ export const BaseKit = Extension.create<BaseKitOptions>({
     if (this.options.placeholder !== false) {
       extensions.push(
         Placeholder.configure({
-          placeholder: ({ node, pos }) => {
+          placeholder: ({ node, pos, editor }) => {
             if (node?.type?.name === 'heading') {
               // @ts-expect-error
               return `${localeActions.t(`editor.heading.h${node.attrs.level}.tooltip`)}`
@@ -167,10 +167,13 @@ export const BaseKit = Extension.create<BaseKitOptions>({
             if (node?.type?.name === 'codeBlock' || node?.type?.name === 'table') {
               return ''
             }
+            if (editor.extensionManager.extensions.some(ext => ext.name === 'slashCommand')) {
+              return localeActions.t('editor.slash')
+            }
             if (pos === 0) {
               return localeActions.t('editor.content')
             }
-            return localeActions.t('editor.slash')
+            return localeActions.t('editor.content')
           },
           ...this.options.placeholder,
         }),

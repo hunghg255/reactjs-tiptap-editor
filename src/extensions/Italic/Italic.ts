@@ -11,7 +11,6 @@ export const Italic = TiptapItalic.extend<ItalicOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      bubble: true,
       button({ editor, t }: { editor: Editor, t: (...args: any[]) => string }) {
         return {
           component: ActionButton,

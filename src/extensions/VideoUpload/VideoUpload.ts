@@ -56,7 +56,8 @@ export const VideoUpload = Node.create<VideoOptions>({
           componentProps: {
             action: () => editor.commands.setVideoUpload(),
             isActive: () => editor.isActive('video') || false,
-            disabled: !editor.can().setVideo({}),
+            /* If setVideo is not available(when Video Component is not imported), the button is disabled */
+            disabled: !editor.can().setVideo?.({}),
             icon: 'Video',
             tooltip: t('editor.video.tooltip'),
           },

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 import type { Editor } from '@tiptap/core'
 import { TextSelection } from '@tiptap/pm/state'
@@ -56,7 +56,7 @@ function BubbleMenuText(props: IPropsBubbleMenuText) {
       return []
     }
 
-    return getBubbleText(props.editor as any, t)
+    return getBubbleText(props.editor, t)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.disabled, props.editor, lang, t])
 
@@ -64,7 +64,7 @@ function BubbleMenuText(props: IPropsBubbleMenuText) {
     <BubbleMenu shouldShow={shouldShow} editor={props?.editor} tippyOptions={tippyOptions as any}>
       {items?.length
         ? (
-            <div className="border border-neutral-200 dark:border-neutral-800 px-3 py-2 transition-all select-none pointer-events-auto shadow-sm rounded-sm w-auto bg-background">
+            <div className="w-auto px-3 py-2 transition-all border rounded-sm shadow-sm pointer-events-auto select-none border-neutral-200 dark:border-neutral-800 bg-background">
               <div className="flex items-center gap-[4px] flex-nowrap whitespace-nowrap h-[26px] justify-start relative">
                 {items?.map((item: any, key: any) => {
                   if (item?.type === 'divider') {

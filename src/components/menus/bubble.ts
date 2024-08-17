@@ -1,7 +1,7 @@
 import { deleteSelection } from '@tiptap/pm/commands'
 import type { Editor } from '@tiptap/react'
 
-import { IMAGE_SIZE, VIDEO_SIZE } from '@/constants'
+import { BUBBLE_TEXT_LIST, IMAGE_SIZE, VIDEO_SIZE } from '@/constants'
 import type { ButtonViewParams, ButtonViewReturn, ExtensionNameKeys } from '@/types'
 import { localeActions } from '@/locales'
 import ActionButton from '@/components/ActionButton'
@@ -170,12 +170,24 @@ export function getBubbleVideo(editor: Editor): BubbleMenuItem[] {
   ]
 }
 
+/**
+ * Bubble menu text list
+ */
 export function getBubbleText(editor: Editor, t: any) {
-  const bubbleMenu = editor.extensionManager.extensions.filter((ext) => {
-    return ext.options.bubble
-  }).sort((a, b) => a.options?.sort - b.options?.sort).map((ext) => {
-    return ext.configure().options.button({ editor, t, extension: ext } as any)
-  })
+  return BUBBLE_TEXT_LIST.reduce((acc, type) => {
+    if (type === 'divider' && acc.length > 0) {
+      return [...acc, {
+        type: 'divider',
+        component: undefined,
+        componentProps: {},
+      }]
+    }
 
-  return bubbleMenu
+    const ext = editor.extensionManager.extensions.find(ext => ext.name === type)
+    if (ext) {
+      return [...acc, ext.configure().options.button({ editor, t, extension: ext })]
+    }
+
+    return acc
+  }, [] as BubbleMenuItem[])
 }

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { BubbleMenu, isActive } from '@tiptap/react'
 import { sticky } from 'tippy.js'
 
@@ -52,8 +50,8 @@ function ColumnsMenu(props: IPropsColumnsMenu) {
         sticky: 'popper',
       }}
     >
-      <div className="p-2 bg-white rounded-lg dark:bg-black shadow-sm border border-neutral-200 dark:border-neutral-800">
-        <div className="flex gap-1 items-center">
+      <div className="p-2 bg-white border rounded-lg shadow-sm dark:bg-black border-neutral-200 dark:border-neutral-800">
+        <div className="flex items-center gap-1">
           <ActionButton
             title="ok"
             icon="PanelLeft"
