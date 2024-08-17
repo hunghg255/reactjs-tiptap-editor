@@ -3,10 +3,8 @@ import React, { useCallback, useState } from 'react'
 import type { TooltipContentProps } from '@radix-ui/react-tooltip'
 import { debounce } from 'lodash-unified'
 
-import ActionButton from '@/components/ActionButton'
-import ColorPicker from '@/components/ColorPicker'
-import Icon from '@/components/icons/Icon'
-import { Button } from '@/components/ui/button'
+import { ActionButton, Button, ColorPicker } from '@/components'
+import { IconComponent } from '@/components/icons'
 import type { ButtonViewReturnComponentProps } from '@/types'
 
 interface IPropsHighlightActionButton {
@@ -88,7 +86,7 @@ function HighlightActionButton(props: IPropsHighlightActionButton) {
         tooltipOptions={props?.tooltipOptions}
         shortcutKeys={props?.shortcutKeys}
       >
-        <span className="text-sm flex items-center justify-center">
+        <span className="flex items-center justify-center text-sm">
           <IconC fill={selectedColor} />
         </span>
       </ActionButton>
@@ -100,7 +98,7 @@ function HighlightActionButton(props: IPropsHighlightActionButton) {
         disabled={props?.disabled}
       >
         <Button variant="ghost" size="icon" className="w-3 h-[32px]" disabled={props?.disabled}>
-          <Icon className="w-3 h-3 text-zinc-500" name="MenuDown" />
+          <IconComponent className="w-3 h-3 text-zinc-500" name="MenuDown" />
         </Button>
       </ColorPicker>
     </div>

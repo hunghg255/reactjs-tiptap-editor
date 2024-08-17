@@ -3,7 +3,7 @@ import { TaskItem } from '@tiptap/extension-task-item'
 import type { TaskListOptions as TiptapTaskListOptions } from '@tiptap/extension-task-list'
 import { TaskList as TiptapTaskList } from '@tiptap/extension-task-list'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import type { GeneralOptions } from '@/types'
 
 /**

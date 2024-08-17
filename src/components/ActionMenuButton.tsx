@@ -2,9 +2,7 @@ import React from 'react'
 
 import { Slot } from '@radix-ui/react-slot'
 
-import icons from '@/components/icons/icons'
-import { Button } from '@/components/ui/button'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Button, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components'
 import type { ButtonViewReturnComponentProps } from '@/types'
 import { getShortcutKeys } from '@/utils/plateform'
 
@@ -56,6 +54,4 @@ const ActionMenuButton = React.forwardRef<HTMLButtonElement, IPropsActionMenuBut
   },
 )
 
-ActionMenuButton.displayName = 'ActionMenuButton'
-
-export default ActionMenuButton
+export { ActionMenuButton }

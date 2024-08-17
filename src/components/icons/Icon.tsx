@@ -1,18 +1,15 @@
-import React from 'react'
-import icons from '@/components/icons/icons'
+import { icons } from '@/components'
 
-interface IPropsIcon {
+export interface IconComponentProps {
   name: string
   className?: string
   onClick?: (e?: any) => void
 }
 
-function Icon(props: IPropsIcon) {
+function IconComponent(props: IconComponentProps) {
   const Icon = icons[props.name]
 
-  return (
-    <>{Icon && <Icon onClick={props?.onClick} className={`w-4 h-4 ${props?.className || ''}`} />}</>
-  )
+  return Icon ? <Icon onClick={props?.onClick} className={`w-4 h-4 ${props?.className || ''}`} /> : null
 }
 
-export default Icon
+export { IconComponent }

@@ -4,8 +4,7 @@ import type { Editor } from '@tiptap/core'
 import { TextSelection } from '@tiptap/pm/state'
 import { BubbleMenu } from '@tiptap/react'
 
-import { getBubbleText } from '@/components/menus/bubble'
-import { Separator } from '@/components/ui/separator'
+import { Separator, getBubbleText } from '@/components'
 import { useLocale } from '@/locales'
 
 interface IPropsBubbleMenuText {
@@ -96,4 +95,4 @@ function BubbleMenuText(props: IPropsBubbleMenuText) {
   )
 }
 
-export default BubbleMenuText
+export { BubbleMenuText }

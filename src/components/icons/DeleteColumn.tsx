@@ -25,4 +25,4 @@ function DeleteColumn() {
   )
 }
 
-export default DeleteColumn
+export { DeleteColumn }

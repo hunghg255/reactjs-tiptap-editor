@@ -4,7 +4,7 @@ import type { Editor } from '@tiptap/react'
 import { BUBBLE_TEXT_LIST, IMAGE_SIZE, VIDEO_SIZE } from '@/constants'
 import type { ButtonViewParams, ButtonViewReturn, ExtensionNameKeys } from '@/types'
 import { localeActions } from '@/locales'
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 
 /** Represents the size types for bubble images or videos */
 type BubbleImageOrVideoSizeType = 'size-small' | 'size-medium' | 'size-large'

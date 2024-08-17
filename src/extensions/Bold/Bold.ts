@@ -1,7 +1,7 @@
 import type { BoldOptions as TiptapImageOptions } from '@tiptap/extension-bold'
 import { Bold as TiptapBold } from '@tiptap/extension-bold'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import type { GeneralOptions } from '@/types'
 
 export interface BoldOptions extends TiptapImageOptions, GeneralOptions<BoldOptions> {}

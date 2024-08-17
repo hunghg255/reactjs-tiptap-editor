@@ -25,4 +25,4 @@ function DeleteRow() {
   )
 }
 
-export default DeleteRow
+export { DeleteRow }

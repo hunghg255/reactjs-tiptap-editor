@@ -45,7 +45,7 @@ export default defineConfig(({ mode }) => {
       outDir: 'lib',
       sourcemap: true,
       lib: {
-        entry: path.resolve(__dirname, 'src/index.tsx'),
+        entry: path.resolve(__dirname, 'src/index.ts'),
         formats: ['es', 'cjs'],
       },
       rollupOptions: {

@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react'
 
-import ActionButton from '@/components/ActionButton'
-import Icon from '@/components/icons/Icon'
-import { MenuDown } from '@/components/icons/MenuDown'
 import {
+  ActionButton,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+  IconComponent,
+  MenuDown,
+} from '@/components'
 import type { ButtonViewReturnComponentProps } from '@/types'
 import { getShortcutKeys } from '@/utils/plateform'
 
@@ -72,7 +72,7 @@ function ActionMoreButton(props: IPropsActionMoreButton) {
               key={index}
               className="flex items-center gap-3"
             >
-              <Icon name={item?.icon} />
+              <IconComponent name={item?.icon} />
               <span className="ml-1">{item.title}</span>
               {!!item?.shortcutKeys && (
                 <span className="ml-auto text-xs tracking-widest opacity-60">

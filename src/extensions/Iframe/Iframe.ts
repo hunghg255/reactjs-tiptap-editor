@@ -1,7 +1,7 @@
 import { Node } from '@tiptap/core'
 import { ReactNodeViewRenderer } from '@tiptap/react'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import IframeNodeView from '@/extensions/Iframe/components/IframeNodeView'
 import type { GeneralOptions } from '@/types'
 

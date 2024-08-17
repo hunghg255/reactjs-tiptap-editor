@@ -3,10 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Plus } from 'lucide-react'
 import { HexColorPicker } from 'react-colorful'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Separator } from '@/components/ui/separator'
+import { Button, Input, Popover, PopoverContent, PopoverTrigger, Separator } from '@/components'
 import { COLORS_LIST, DEFAULT_COLOR } from '@/constants'
 import { useLocale } from '@/locales'
 
@@ -268,4 +265,4 @@ function ColorPicker(props: IPropsColorPicker) {
   )
 }
 
-export default ColorPicker
+export { ColorPicker }

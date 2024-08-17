@@ -5,9 +5,8 @@ import type { Node } from '@tiptap/pm/model'
 import type { NodeSelection } from '@tiptap/pm/state'
 import { DragHandlePlugin, dragHandlePluginDefaultKey } from 'echo-drag-handle-plugin'
 
-import Icon from '@/components/icons/Icon'
-import { Button } from '@/components/ui/button'
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -17,8 +16,11 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+  IconComponent,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components'
 import { useLocale } from '@/locales'
 import { IndentProps, setNodeIndentMarkup } from '@/utils/indent'
 
@@ -199,7 +201,7 @@ function ContentMenu(props: ContentMenuProps) {
             disabled={props?.disabled}
             onClick={handleAdd}
           >
-            <Icon name="Plus" className="text-lg text-neutral-600 dark:text-neutral-200" />
+            <IconComponent name="Plus" className="text-lg text-neutral-600 dark:text-neutral-200" />
           </Button>
           <DropdownMenu open={menuOpen} onOpenChange={handleMenuOpenChange}>
             <div className="relative flex flex-col">
@@ -217,7 +219,7 @@ function ContentMenu(props: ContentMenuProps) {
                       setMenuOpen(true)
                     }}
                   >
-                    <Icon name="Grip" className="text-sm dark:text-neutral-200 text-neutral-600" />
+                    <IconComponent name="Grip" className="text-sm dark:text-neutral-200 text-neutral-600" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -233,25 +235,25 @@ function ContentMenu(props: ContentMenuProps) {
                 onClick={deleteNode}
                 className="flex gap-3 focus:text-red-500 focus:bg-red-400 hover:bg-red-400 dark:hover:text-red-500 bg-opacity-10 hover:bg-opacity-20 focus:bg-opacity-30 dark:hover:bg-opacity-20"
               >
-                <Icon name="Trash2" />
+                <IconComponent name="Trash2" />
                 <span>{t('editor.remove')}</span>
               </DropdownMenuItem>
 
               {hasClearExtension
                 ? (
                     <DropdownMenuItem className="flex gap-3" onClick={resetTextFormatting}>
-                      <Icon name="PaintRoller" />
+                      <IconComponent name="PaintRoller" />
                       <span>{t('editor.clear.tooltip')}</span>
                     </DropdownMenuItem>
                   )
                 : null}
 
               <DropdownMenuItem className="flex gap-3" onClick={copyNodeToClipboard}>
-                <Icon name="Clipboard" />
+                <IconComponent name="Clipboard" />
                 <span>{t('editor.copyToClipboard')}</span>
               </DropdownMenuItem>
               <DropdownMenuItem className="flex gap-3" onClick={duplicateNode}>
-                <Icon name="Copy" />
+                <IconComponent name="Copy" />
                 <span>{t('editor.copy')}</span>
               </DropdownMenuItem>
 
@@ -265,21 +267,21 @@ function ContentMenu(props: ContentMenuProps) {
                 ? (
                     <DropdownMenuSub>
                       <DropdownMenuSubTrigger className="flex gap-3">
-                        <Icon name="AlignCenter" />
+                        <IconComponent name="AlignCenter" />
                         <span>{t('editor.textalign.tooltip')}</span>
                       </DropdownMenuSubTrigger>
                       <DropdownMenuPortal>
                         <DropdownMenuSubContent>
                           <DropdownMenuItem className="flex gap-3" onClick={() => setTextAlign('left')}>
-                            <Icon name="AlignLeft" />
+                            <IconComponent name="AlignLeft" />
                             <span>{t('editor.textalign.left.tooltip')}</span>
                           </DropdownMenuItem>
                           <DropdownMenuItem className="flex gap-3" onClick={() => setTextAlign('center')}>
-                            <Icon name="AlignCenter" />
+                            <IconComponent name="AlignCenter" />
                             <span>{t('editor.textalign.center.tooltip')}</span>
                           </DropdownMenuItem>
                           <DropdownMenuItem className="flex gap-3" onClick={() => setTextAlign('right')}>
-                            <Icon name="AlignRight" />
+                            <IconComponent name="AlignRight" />
                             <span>{t('editor.textalign.right.tooltip')}</span>
                           </DropdownMenuItem>
                         </DropdownMenuSubContent>
@@ -292,7 +294,7 @@ function ContentMenu(props: ContentMenuProps) {
                 ? (
                     <DropdownMenuSub>
                       <DropdownMenuSubTrigger className="flex gap-3">
-                        <Icon name="IndentIncrease" />
+                        <IconComponent name="IndentIncrease" />
                         <span>{t('editor.indent')}</span>
                       </DropdownMenuSubTrigger>
                       <DropdownMenuPortal>
@@ -302,7 +304,7 @@ function ContentMenu(props: ContentMenuProps) {
                             onClick={increaseIndent}
                             disabled={currentNode?.attrs?.indent >= IndentProps.max}
                           >
-                            <Icon name="IndentIncrease" />
+                            <IconComponent name="IndentIncrease" />
                             <span>{t('editor.indent.tooltip')}</span>
                           </DropdownMenuItem>
 
@@ -311,7 +313,7 @@ function ContentMenu(props: ContentMenuProps) {
                             onClick={decreaseIndent}
                             disabled={currentNode?.attrs?.indent <= IndentProps.min}
                           >
-                            <Icon name="IndentDecrease" />
+                            <IconComponent name="IndentDecrease" />
                             <span>{t('editor.outdent.tooltip')}</span>
                           </DropdownMenuItem>
                         </DropdownMenuSubContent>
@@ -328,4 +330,4 @@ function ContentMenu(props: ContentMenuProps) {
   )
 }
 
-export default ContentMenu
+export { ContentMenu }

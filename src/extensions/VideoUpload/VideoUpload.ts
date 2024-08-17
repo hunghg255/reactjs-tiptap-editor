@@ -1,7 +1,7 @@
 import { Node } from '@tiptap/core'
 import { ReactNodeViewRenderer } from '@tiptap/react'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import VideoUploaderView from '@/extensions/VideoUpload/components/VideoUploaderView'
 
 export interface VideoOptions {

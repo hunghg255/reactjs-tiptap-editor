@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components'
 import {
   TABLE_DEFAULT_SELECTED_GRID_SIZE,
   TABLE_INIT_GRID_SIZE,

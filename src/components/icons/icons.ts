@@ -61,16 +61,18 @@ import {
   TextAlignLeftIcon,
   TextAlignRightIcon,
 } from '@radix-ui/react-icons'
-import { SizeS } from '@/components/icons/SizeS'
-import { SizeM } from '@/components/icons/SizeM'
-import { SizeL } from '@/components/icons/SizeL'
-import { AspectRatio } from '@/components/icons/AspectRatio'
-import { FormatLineHeight } from '@/components/icons/LineHeight'
-import { FileWordOutline } from '@/components/icons/FileWordOutline'
-import { MenuDown } from '@/components/icons/MenuDown'
-import { BlockquoteLeft } from '@/components/icons/Blockquote'
-import DeleteColumn from '@/components/icons/DeleteColumn'
-import DeleteRow from '@/components/icons/DeleteRow'
+import {
+  AspectRatio,
+  BlockquoteLeft,
+  DeleteColumn,
+  DeleteRow,
+  FileWordOutline,
+  FormatLineHeight,
+  MenuDown,
+  SizeL,
+  SizeM,
+  SizeS,
+} from '@/components/icons'
 
 export const icons = {
   Bold,
@@ -147,5 +149,3 @@ export const icons = {
   DeleteColumn,
   DeleteRow,
 } as any
-
-export default icons

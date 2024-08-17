@@ -90,4 +90,4 @@ function BubbleMenuLink(props: any) {
   )
 }
 
-export default BubbleMenuLink
+export { BubbleMenuLink }

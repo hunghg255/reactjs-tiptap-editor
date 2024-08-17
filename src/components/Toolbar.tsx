@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-import { Separator } from '@/components/ui/separator'
+import { Separator } from '@/components'
 import { useLocale } from '@/locales'
 import { isFunction } from '@/utils/utils'
 
@@ -46,13 +46,13 @@ function Toolbar({ editor, disabled }: any) {
 
   return (
     <div
-      className="border-b py-2 px-1"
+      className="px-1 py-2 border-b"
       style={{
         pointerEvents: disabled ? 'none' : 'auto',
         opacity: disabled ? 0.5 : 1,
       }}
     >
-      <div className="flex flex-wrap h-auto relative gap-y-1 gap-x-1">
+      <div className="relative flex flex-wrap h-auto gap-y-1 gap-x-1">
         {items.map((item: any, key) => {
           const ButtonComponent = item.button.component
 
@@ -74,4 +74,4 @@ function Toolbar({ editor, disabled }: any) {
   )
 }
 
-export default Toolbar
+export { Toolbar }

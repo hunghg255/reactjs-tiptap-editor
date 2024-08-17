@@ -3,8 +3,7 @@ import { Fragment, useMemo } from 'react'
 import type { Editor } from '@tiptap/react'
 import { BubbleMenu as BubbleMenuReact } from '@tiptap/react'
 
-import { getBubbleImage, getBubbleVideo } from '@/components/menus/bubble'
-import { Separator } from '@/components/ui/separator'
+import { Separator, getBubbleImage, getBubbleVideo } from '@/components'
 import { useLocale } from '@/locales'
 
 interface IPropsBubbleMenu {
@@ -88,7 +87,7 @@ function BubbleMenuImage(props: IPropsBubbleMenu) {
       >
         {items?.length
           ? (
-              <div className="border border-neutral-200 dark:border-neutral-800 px-3 py-2 transition-all select-none pointer-events-auto shadow-sm rounded-sm w-auto bg-background">
+              <div className="w-auto px-3 py-2 transition-all border rounded-sm shadow-sm pointer-events-auto select-none border-neutral-200 dark:border-neutral-800 bg-background">
                 <div className="flex items-center flex-nowrap whitespace-nowrap h-[26px] justify-start relative">
                   {items?.map((item: any, key: any) => {
                     return (
@@ -147,7 +146,7 @@ function BubbleMenuVideo(props: IPropsBubbleMenu) {
       >
         {items?.length
           ? (
-              <div className="border border-neutral-200 dark:border-neutral-800 px-3 py-2 transition-all select-none pointer-events-auto shadow-sm rounded-sm w-auto bg-background">
+              <div className="w-auto px-3 py-2 transition-all border rounded-sm shadow-sm pointer-events-auto select-none border-neutral-200 dark:border-neutral-800 bg-background">
                 <div className="flex items-center flex-nowrap whitespace-nowrap h-[26px] justify-start relative">
                   {items?.map((item: any, key: any) => {
                     return (

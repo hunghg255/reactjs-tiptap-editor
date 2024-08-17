@@ -3,10 +3,8 @@ import React, { useCallback, useState } from 'react'
 import type { Editor } from '@tiptap/react'
 import { debounce } from 'lodash-unified'
 
-import ActionButton from '@/components/ActionButton'
-import ColorPicker from '@/components/ColorPicker'
-import Icon from '@/components/icons/Icon'
-import { Button } from '@/components/ui/button'
+import { ActionButton, Button, ColorPicker } from '@/components'
+import { IconComponent } from '@/components/icons'
 import type { ButtonViewReturnComponentProps } from '@/types'
 
 interface IProps {
@@ -76,7 +74,7 @@ function ColorActionButton(props: IProps) {
   return (
     <div className="flex items-center h-[32px]">
       <ActionButton tooltip={props?.tooltip} disabled={props?.disabled} action={toggleColor}>
-        <span className="text-sm flex justify-center items-center">
+        <span className="flex items-center justify-center text-sm">
           <IconC fill={selectedColor} />
         </span>
       </ActionButton>
@@ -88,7 +86,7 @@ function ColorActionButton(props: IProps) {
         disabled={props?.disabled}
       >
         <Button variant="ghost" size="icon" className="h-[32px] w-3" disabled={props?.disabled}>
-          <Icon className="w-3 h-3 text-zinc-500" name="MenuDown" />
+          <IconComponent className="w-3 h-3 text-zinc-500" name="MenuDown" />
         </Button>
       </ColorPicker>
     </div>

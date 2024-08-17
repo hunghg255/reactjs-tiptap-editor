@@ -5,8 +5,7 @@ import { BubbleMenu } from '@tiptap/react'
 import type { GetReferenceClientRect } from 'tippy.js'
 import { sticky } from 'tippy.js'
 
-import ActionButton from '@/components/ActionButton'
-import { Separator } from '@/components/ui/separator'
+import { ActionButton, Separator } from '@/components'
 import HighlightActionButton from '@/extensions/Highlight/components/HighlightActionButton'
 import { useLocale } from '@/locales'
 
@@ -193,4 +192,4 @@ function TableBubbleMenu(props: any) {
   )
 }
 
-export default TableBubbleMenu
+export { TableBubbleMenu }

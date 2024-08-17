@@ -2,11 +2,7 @@ import React, { useRef, useState } from 'react'
 
 import { NodeViewWrapper } from '@tiptap/react'
 
-import Icon from '@/components/icons/Icon'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Button, IconComponent, Input, Popover, PopoverContent, PopoverTrigger, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components'
 import { useLocale } from '@/locales'
 import { createImageUpload } from '@/plugins/image-upload'
 
@@ -57,13 +53,13 @@ function ImageUploader(props: any) {
     <NodeViewWrapper className="p-0 m-0" data-drag-handle>
       <Popover defaultOpen modal>
         <PopoverTrigger asChild>
-          <div className="flex items-center w-full p-3 my-3 hover:bg-accent border border-border text-muted-foreground cursor-pointer rounded-sm transition-all">
-            <div className="flex justify-between items-center w-full">
-              <div className="flex justify-center items-center gap-3">
-                <Icon name="ImageUp" className="w-6 h-6" />
+          <div className="flex items-center w-full p-3 my-3 transition-all border rounded-sm cursor-pointer hover:bg-accent border-border text-muted-foreground">
+            <div className="flex items-center justify-between w-full">
+              <div className="flex items-center justify-center gap-3">
+                <IconComponent name="ImageUp" className="w-6 h-6" />
                 <span className="text-sm">{t('editor.image.dialog.title')}</span>
               </div>
-              <Icon name="Trash2" className="hover:text-foreground" onClick={handleDelete} />
+              <IconComponent name="Trash2" className="hover:text-foreground" onClick={handleDelete} />
             </div>
           </div>
         </PopoverTrigger>

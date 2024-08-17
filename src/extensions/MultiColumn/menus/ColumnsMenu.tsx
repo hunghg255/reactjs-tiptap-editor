@@ -1,7 +1,7 @@
 import { BubbleMenu, isActive } from '@tiptap/react'
 import { sticky } from 'tippy.js'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import { ColumnLayout } from '@/extensions/MultiColumn/MultiColumn'
 import getRenderContainer from '@/utils/getRenderContainer'
 

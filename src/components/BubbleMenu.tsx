@@ -1,10 +1,6 @@
 import type { Editor } from '@tiptap/core'
 
-import BubbleMenuLink from '@/components/menus/components/BubbleMenuLink'
-import { BubbleMenuImage, BubbleMenuVideo } from '@/components/menus/components/BubbleMenuMedia'
-import BubbleMenuText from '@/components/menus/components/BubbleMenuText'
-import ContentMenu from '@/components/menus/components/ContentMenu'
-import TableBubbleMenu from '@/components/menus/components/TableBubbleMenu'
+import { BubbleMenuImage, BubbleMenuLink, BubbleMenuText, BubbleMenuVideo, ContentMenu, TableBubbleMenu } from '@/components'
 import ColumnsMenu from '@/extensions/MultiColumn/menus/ColumnsMenu'
 import type { BubbleMenuProps as BubbleMenuPropsType } from '@/types'
 

@@ -1,7 +1,7 @@
 import type { BlockquoteOptions as TiptapBlockquoteOptions } from '@tiptap/extension-blockquote'
 import { Blockquote as TiptapBlockquote } from '@tiptap/extension-blockquote'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import type { GeneralOptions } from '@/types'
 
 export interface BlockquoteOptions

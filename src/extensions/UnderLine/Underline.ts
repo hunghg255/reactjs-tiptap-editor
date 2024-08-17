@@ -1,7 +1,7 @@
 import type { UnderlineOptions as TiptapUnderlineOptions } from '@tiptap/extension-underline'
 import TiptapUnderline from '@tiptap/extension-underline'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import type { GeneralOptions } from '@/types'
 
 export interface UnderlineOptions

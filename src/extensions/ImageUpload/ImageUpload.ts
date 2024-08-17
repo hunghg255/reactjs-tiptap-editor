@@ -2,7 +2,7 @@
 import { Plugin } from '@tiptap/pm/state'
 import { Node, ReactNodeViewRenderer } from '@tiptap/react'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import ImageUploader from '@/extensions/ImageUpload/components/ImageUploader'
 import {
   UploadImagesPlugin,

@@ -5,9 +5,7 @@ import React from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import type { TooltipContentProps } from '@radix-ui/react-tooltip'
 
-import icons from '@/components/icons/icons'
-import { Toggle } from '@/components/ui/toggle'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Toggle, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components'
 import type { ButtonViewReturnComponentProps } from '@/types'
 import { getShortcutKeys } from '@/utils/plateform'
 
@@ -81,6 +79,6 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<IPropsActionBut
   },
 )
 
-ActionButton.displayName = 'ActionButton'
-
-export default ActionButton
+export {
+  ActionButton,
+}

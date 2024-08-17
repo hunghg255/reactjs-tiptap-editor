@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react'
 
-import ActionMenuButton from '@/components/ActionMenuButton'
 import {
+  ActionMenuButton,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from '@/components'
 import { useLocale } from '@/locales'
 import type { ButtonViewReturnComponentProps } from '@/types'
 
