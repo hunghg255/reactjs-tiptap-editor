@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import type { Editor } from '@tiptap/react'
 import { debounce } from 'lodash-unified'
@@ -7,16 +7,22 @@ import { ActionButton, Button, ColorPicker } from '@/components'
 import { IconComponent } from '@/components/icons'
 import type { ButtonViewReturnComponentProps } from '@/types'
 
-interface IProps {
+interface ColorActionButtonProps {
   editor: Editor
-  icon?: any
+  colors?: string[]
+  defaultColor?: string
+  icon?: React.ReactNode
   tooltip?: string
   disabled?: boolean
   action?: ButtonViewReturnComponentProps['action']
   isActive?: ButtonViewReturnComponentProps['isActive']
 }
 
-function IconC({ fill }: any) {
+interface IconCProps {
+  fill?: string
+}
+
+function IconC({ fill }: IconCProps) {
   return (
     <svg
       width="18px"
@@ -53,8 +59,8 @@ function IconC({ fill }: any) {
   )
 }
 
-function ColorActionButton(props: IProps) {
-  const [selectedColor, setSelectedColor] = useState<any>(undefined)
+function ColorActionButton(props: ColorActionButtonProps) {
+  const [selectedColor, setSelectedColor] = useState<string | undefined>(undefined)
 
   function onChange(color: string | undefined) {
     props.action?.(color)
@@ -65,7 +71,7 @@ function ColorActionButton(props: IProps) {
   }
 
   const setSelectedColorDebounce = useCallback(
-    debounce((color: any) => {
+    debounce((color: string | undefined) => {
       setSelectedColor(color)
     }, 350),
     [],
@@ -84,6 +90,8 @@ function ColorActionButton(props: IProps) {
         setSelectedColor={setSelectedColorDebounce}
         onChange={onChange}
         disabled={props?.disabled}
+        colors={props?.colors}
+        defaultColor={props?.defaultColor}
       >
         <Button variant="ghost" size="icon" className="h-[32px] w-3" disabled={props?.disabled}>
           <IconComponent className="w-3 h-3 text-zinc-500" name="MenuDown" />
