@@ -1,9 +1,10 @@
+import React from 'react'
 import { icons } from '@/components'
 
 export interface IconComponentProps {
   name: string
   className?: string
-  onClick?: (e?: any) => void
+  onClick?: React.MouseEventHandler<SVGElement>
 }
 
 function IconComponent(props: IconComponentProps) {

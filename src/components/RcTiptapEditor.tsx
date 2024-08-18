@@ -131,7 +131,7 @@ function RcTiptapEditor(props: IPropsRcTiptapEditor, ref: any) {
         {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu} editor={editor} disabled={props?.disabled} />}
 
         <div className="flex flex-col w-full max-h-full">
-          {!props?.hideToolbar && <Toolbar editor={editor} disabled={props?.disabled} />}
+          {!props?.hideToolbar && <Toolbar editor={editor} disabled={!!props?.disabled} />}
 
           <EditorContent className={`relative ${props?.contentClass || ''}`} editor={editor} />
 

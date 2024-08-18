@@ -136,9 +136,9 @@ export interface BubbleMenuProps {
      */
     hidden?: boolean
   }
-  contentConfig?: {
+  floatingMenuConfig?: {
     /**
-     * @description Content menu hidden
+     * @description Floating menu hidden
      * @default false
      */
     hidden?: boolean

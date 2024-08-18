@@ -7,22 +7,26 @@ import { Button, Input, Popover, PopoverContent, PopoverTrigger, Separator } fro
 import { COLORS_LIST, DEFAULT_COLOR } from '@/constants'
 import { useLocale } from '@/locales'
 
-interface IPropsColorPicker {
+export interface ColorPickerProps {
   highlight?: boolean
   disabled?: boolean
   children: React.ReactNode
-  onChange?: (color: any) => void
-  setSelectedColor?: (color: any) => void
+  onChange?: (color: string | undefined) => void
+  setSelectedColor?: (color: string | undefined) => void
   selectedColor?: string
 }
 
 const colorsArray = COLORS_LIST
-const chunkedColors: any = []
+const chunkedColors: string[][] = []
 for (let i = 0; i < colorsArray.length; i += 10) {
   chunkedColors.push(colorsArray.slice(i, i + 10))
 }
 
-function AddMoreColor({ setColor }: any) {
+interface AddMoreColorProps {
+  setColor: (color: string) => void
+}
+
+function AddMoreColor({ setColor }: AddMoreColorProps) {
   const [colorMore, setColorMore] = useState('#000000')
   const [openColorMore, setOpenColorMore] = useState(false)
   const { t } = useLocale()
@@ -64,7 +68,7 @@ function AddMoreColor({ setColor }: any) {
 
         <Separator className="my-[10px]" />
         <Button
-          onClick={(e: any) => {
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             e.preventDefault()
             setColor(colorMore)
             setOpenColorMore(false)
@@ -78,7 +82,7 @@ function AddMoreColor({ setColor }: any) {
   )
 }
 
-function ColorPicker(props: IPropsColorPicker) {
+function ColorPicker(props: ColorPickerProps) {
   const { t } = useLocale()
 
   const { highlight = false, disabled = false, selectedColor, setSelectedColor, onChange } = props

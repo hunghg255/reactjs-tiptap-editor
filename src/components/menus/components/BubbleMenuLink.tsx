@@ -1,25 +1,31 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
+import type { Editor } from '@tiptap/react'
 import { BubbleMenu } from '@tiptap/react'
 
 import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock'
 import LinkViewBlock from '@/extensions/Link/components/LinkViewBlock'
 
-function BubbleMenuLink(props: any) {
+export interface BubbleMenuLinkProps {
+  editor: Editor
+  disabled?: boolean
+}
+
+function BubbleMenuLink({ editor, disabled }: BubbleMenuLinkProps) {
   const [showEdit, setShowEdit] = useState(false)
 
   const link = useMemo(() => {
-    const { href: link } = props.editor.getAttributes('link')
-    return link
-  }, [props])
+    const { href: link } = editor.getAttributes('link')
+    return link as string
+  }, [editor])
 
-  const shouldShow: any = useCallback(({ editor }: any) => {
+  const shouldShow = useCallback(({ editor }: { editor: Editor }) => {
     const isActive = editor.isActive('link')
     return isActive
   }, [])
 
   const onSetLink = (url: string, text?: string, openInNewTab?: boolean) => {
-    props.editor
+    editor
       .chain()
       .extendMarkRange('link')
       .insertContent({
@@ -42,14 +48,14 @@ function BubbleMenuLink(props: any) {
   }
 
   const unSetLink = useCallback(() => {
-    props.editor.chain().extendMarkRange('link').unsetLink().focus().run()
+    editor.chain().extendMarkRange('link').unsetLink().focus().run()
     setShowEdit(false)
-  }, [props.editor])
+  }, [editor])
 
   return (
     <>
       <BubbleMenu
-        editor={props?.editor}
+        editor={editor}
         shouldShow={shouldShow}
         tippyOptions={{
           popperOptions: {
@@ -63,7 +69,7 @@ function BubbleMenuLink(props: any) {
           },
         }}
       >
-        {props?.disabled
+        {disabled
           ? (
               <></>
             )
@@ -71,11 +77,11 @@ function BubbleMenuLink(props: any) {
               <>
                 {showEdit
                   ? (
-                      <LinkEditBlock onSetLink={onSetLink} editor={props?.editor} />
+                      <LinkEditBlock onSetLink={onSetLink} editor={editor} />
                     )
                   : (
                       <LinkViewBlock
-                        editor={props?.editor}
+                        editor={editor}
                         onClear={unSetLink}
                         onEdit={() => {
                           setShowEdit(true)

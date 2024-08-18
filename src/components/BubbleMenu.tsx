@@ -4,7 +4,7 @@ import { BubbleMenuImage, BubbleMenuLink, BubbleMenuText, BubbleMenuVideo, Conte
 import ColumnsMenu from '@/extensions/MultiColumn/menus/ColumnsMenu'
 import type { BubbleMenuProps as BubbleMenuPropsType } from '@/types'
 
-interface BubbleMenuComponentProps {
+export interface BubbleMenuComponentProps {
   editor: Editor
   disabled?: boolean
   bubbleMenu?: BubbleMenuPropsType
@@ -27,7 +27,7 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
     extensionsNames.includes('link') && !bubbleMenu?.linkConfig?.hidden ? <BubbleMenuLink key="link" editor={editor} disabled={disabled} /> : null,
     extensionsNames.includes('image') && !bubbleMenu?.imageConfig?.hidden ? <BubbleMenuImage key="image" editor={editor} disabled={disabled} /> : null,
     extensionsNames.includes('video') && !bubbleMenu?.videoConfig?.hidden ? <BubbleMenuVideo key="video" editor={editor} disabled={disabled} /> : null,
-    !bubbleMenu?.contentConfig?.hidden ? <ContentMenu key="content" editor={editor} disabled={disabled} /> : null,
+    !bubbleMenu?.floatingMenuConfig?.hidden ? <ContentMenu key="content" editor={editor} disabled={disabled} /> : null,
     !bubbleMenu?.textConfig?.hidden ? <BubbleMenuText key="text" editor={editor} disabled={disabled} /> : null,
   ]
 

@@ -9,24 +9,38 @@ import { Toggle, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/compon
 import type { ButtonViewReturnComponentProps } from '@/types'
 import { getShortcutKeys } from '@/utils/plateform'
 
-interface IPropsActionButton {
+export interface ActionButtonProps {
+  /* Icon name to display */
   icon?: string
+  /* Button title */
   title?: string
+  /* Tooltip text */
   tooltip?: string
+  /* Whether the button is disabled */
   disabled?: boolean
+  /* Keyboard shortcut keys */
   shortcutKeys?: string[]
+  /* Custom CSS class */
   customClass?: string
+  /* Loading state */
   loading?: boolean
+  /* Tooltip options */
   tooltipOptions?: TooltipContentProps
+  /* Button color */
   color?: string
+  /* Click action handler */
   action?: ButtonViewReturnComponentProps['action']
+  /* Active state checker */
   isActive?: ButtonViewReturnComponentProps['isActive']
+  /* Child components */
   children?: React.ReactNode
+  /* Whether to render as child */
   asChild?: boolean
+  /* Whether it's an upload button */
   upload?: boolean
 }
 
-const ActionButton = React.forwardRef<HTMLButtonElement, Partial<IPropsActionButton>>(
+const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonProps>>(
   (props, ref) => {
     const {
       icon = undefined,

@@ -7,7 +7,7 @@ import { BubbleMenu } from '@tiptap/react'
 import { Separator, getBubbleText } from '@/components'
 import { useLocale } from '@/locales'
 
-interface IPropsBubbleMenuText {
+export interface BubbleMenuTextProps {
   editor: Editor
   disabled?: boolean
 }
@@ -35,7 +35,7 @@ function ItemA({ item, disabled, editor }: any) {
   )
 }
 
-function BubbleMenuText(props: IPropsBubbleMenuText) {
+function BubbleMenuText(props: BubbleMenuTextProps) {
   const { t, lang } = useLocale()
 
   const shouldShow = ({ editor }: any) => {
