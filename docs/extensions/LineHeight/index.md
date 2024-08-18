@@ -22,7 +22,7 @@ const extensions = [
 
 ### lineHeights
 
-Type: `string[]`
+Type: `string[]`\
 Default: `['100%', '115%', '150%', '200%', '250%', '300%']`
 
 ```js
