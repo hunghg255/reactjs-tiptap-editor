@@ -22,8 +22,7 @@ const extensions = [
 
 ### colors
 
-Type: `string[]`
-
+Type: `string[]`\
 Default: `undefined`
 
 An array of color options to display in the color picker. If not provided, a default set of colors will be used.
@@ -34,7 +33,7 @@ import { COLORS_LIST } from 'reactjs-tiptap-editor';
 
 ### defaultColor
 
-Type: `string`
+Type: `string`\
 Default: `undefined`
 
 ```js

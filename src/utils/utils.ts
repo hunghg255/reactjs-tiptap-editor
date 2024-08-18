@@ -1,5 +1,7 @@
 import type { Editor } from '@tiptap/core'
 
+import type { NameValueOption } from '@/types'
+
 export function clamp(val: number, min: number, max: number) {
   if (val < min) {
     return min
@@ -54,6 +56,18 @@ export function hasExtension(editor: Editor, name: string): boolean {
     return false
   }
   return true
+}
+
+/**
+ * Normalizes an array of strings or objects to an array of objects with 'value' and 'name' properties.
+ */
+export function ensureNameValueOptions(arr: (string | NameValueOption)[]) {
+  return arr.map((item) => {
+    if (isString(item)) {
+      return { value: item, name: item }
+    }
+    return item
+  })
 }
 
 export { differenceBy, isEqual, throttle, truncate } from 'lodash-unified'

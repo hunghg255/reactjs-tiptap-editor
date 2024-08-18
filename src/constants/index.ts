@@ -99,6 +99,15 @@ export const COLORS_LIST = [
   '#780650',
 ] as const
 
+/** Default font family list */
+export const DEFAULT_FONT_FAMILY_LIST = [
+  'Inter',
+  'Comic Sans MS, Comic Sans',
+  'serif',
+  'monospace',
+  'cursive',
+]
+
 /** Default font size list */
 export const DEFAULT_FONT_SIZE_LIST = [
   '10px',
