@@ -52,8 +52,6 @@ export interface GeneralOptions<T> {
   button: ButtonView<T>
   /** Show on Toolbar */
   toolbar?: boolean
-  /** Show on Bubble menu */
-  bubble?: boolean
 }
 
 /**
@@ -109,4 +107,69 @@ export interface ButtonViewParams<T = any> {
  */
 export interface ButtonView<T = any> {
   (options: ButtonViewParams<T>): ButtonViewReturn | ButtonViewReturn[]
+}
+
+/**
+ * Represents the BubbleMenuRenderProps.
+ */
+export interface BubbleMenuRenderProps {
+  editor: Editor
+  disabled: boolean
+  bubbleMenu: BubbleMenuProps
+}
+
+/**
+ * Represents the BubbleMenuProps.
+ */
+export interface BubbleMenuProps {
+  columnConfig?: {
+    /**
+     * @description Column menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
+  tableConfig?: {
+    /**
+     * @description Table menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
+  floatingMenuConfig?: {
+    /**
+     * @description Floating menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
+  linkConfig?: {
+    /**
+     * @description Link menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
+  textConfig?: {
+    /**
+     * @description Text menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
+  imageConfig?: {
+    /**
+     * @description Image menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
+  videoConfig?: {
+    /**
+     * @description Video menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
+  render?: (props: BubbleMenuRenderProps, dom: React.ReactNode) => React.ReactNode
 }

@@ -1,56 +1,58 @@
-import React from 'react'
-
+import type { Editor } from '@tiptap/core'
 import { isActive } from '@tiptap/core'
 import { BubbleMenu } from '@tiptap/react'
 import type { GetReferenceClientRect } from 'tippy.js'
 import { sticky } from 'tippy.js'
 
-import ActionButton from '@/components/ActionButton'
-import { Separator } from '@/components/ui/separator'
+import { ActionButton, Separator } from '@/components'
 import HighlightActionButton from '@/extensions/Highlight/components/HighlightActionButton'
 import { useLocale } from '@/locales'
 
-function TableBubbleMenu(props: any) {
-  const shouldShow = ({ editor }: any) => {
+export interface TableBubbleMenuProps {
+  editor: Editor
+}
+
+function TableBubbleMenu({ editor }: TableBubbleMenuProps) {
+  const shouldShow = ({ editor }: { editor: Editor }) => {
     return isActive(editor.view.state, 'table')
   }
   const { t } = useLocale()
 
   function onAddColumnBefore() {
-    props.editor.chain().focus().addColumnBefore().run()
+    editor.chain().focus().addColumnBefore().run()
   }
 
   function onAddColumnAfter() {
-    props.editor.chain().focus().addColumnAfter().run()
+    editor.chain().focus().addColumnAfter().run()
   }
 
   function onDeleteColumn() {
-    props.editor.chain().focus().deleteColumn().run()
+    editor.chain().focus().deleteColumn().run()
   }
   function onAddRowAbove() {
-    props.editor.chain().focus().addRowBefore().run()
+    editor.chain().focus().addRowBefore().run()
   }
 
   function onAddRowBelow() {
-    props.editor.chain().focus().addRowAfter().run()
+    editor.chain().focus().addRowAfter().run()
   }
 
   function onDeleteRow() {
-    props.editor.chain().focus().deleteRow().run()
+    editor.chain().focus().deleteRow().run()
   }
 
   function onMergeCell() {
-    props.editor.chain().focus().mergeCells().run()
+    editor.chain().focus().mergeCells().run()
   }
   function onSplitCell() {
-    props.editor?.chain().focus().splitCell().run()
+    editor?.chain().focus().splitCell().run()
   }
   function onDeleteTable() {
-    props.editor.chain().focus().deleteTable().run()
+    editor.chain().focus().deleteTable().run()
   }
 
   function onSetCellBackground(color: string) {
-    props.editor.chain().focus().setTableCellBackground(color).run()
+    editor.chain().focus().setTableCellBackground(color).run()
   }
   const getReferenceClientRect: GetReferenceClientRect = () => {
     const {
@@ -58,14 +60,14 @@ function TableBubbleMenu(props: any) {
       state: {
         selection: { from },
       },
-    } = props.editor
+    } = editor
 
     const node = view.domAtPos(from).node as HTMLElement
     if (!node) {
       return new DOMRect(-1000, -1000, 0, 0)
     }
 
-    const tableWrapper = node?.closest('.tableWrapper')
+    const tableWrapper = node?.closest?.('.tableWrapper')
     if (!tableWrapper) {
       return new DOMRect(-1000, -1000, 0, 0)
     }
@@ -77,7 +79,7 @@ function TableBubbleMenu(props: any) {
 
   return (
     <BubbleMenu
-      editor={props?.editor}
+      editor={editor}
       pluginKey="table"
       shouldShow={shouldShow}
       updateDelay={0}
@@ -100,7 +102,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can()?.addColumnBefore?.()}
+          disabled={!editor?.can()?.addColumnBefore?.()}
         />
         <ActionButton
           icon="BetweenHorizonalStart"
@@ -109,7 +111,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can()?.addColumnAfter?.()}
+          disabled={!editor?.can()?.addColumnAfter?.()}
         />
         <ActionButton
           icon="DeleteColumn"
@@ -118,7 +120,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can().deleteColumn?.()}
+          disabled={!editor?.can().deleteColumn?.()}
         />
         <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
 
@@ -129,7 +131,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can().addRowBefore?.()}
+          disabled={!editor?.can().addRowBefore?.()}
         />
 
         <ActionButton
@@ -139,7 +141,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can()?.addRowAfter?.()}
+          disabled={!editor?.can()?.addRowAfter?.()}
         />
         <ActionButton
           icon="DeleteRow"
@@ -148,7 +150,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can()?.deleteRow?.()}
+          disabled={!editor?.can()?.deleteRow?.()}
         />
         <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
         <ActionButton
@@ -158,7 +160,7 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can()?.mergeCells?.()}
+          disabled={!editor?.can()?.mergeCells?.()}
         />
         <ActionButton
           icon="TableCellsSplit"
@@ -167,12 +169,12 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can()?.splitCell?.()}
+          disabled={!editor?.can()?.splitCell?.()}
         />
         <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
 
         <HighlightActionButton
-          editor={props?.editor}
+          editor={editor}
           tooltip={t('editor.table.menu.setCellsBgColor')}
           action={onSetCellBackground}
           tooltipOptions={{
@@ -186,11 +188,11 @@ function TableBubbleMenu(props: any) {
           tooltip-options={{
             sideOffset: 15,
           }}
-          disabled={!props?.editor?.can()?.deleteTable?.()}
+          disabled={!editor?.can()?.deleteTable?.()}
         />
       </div>
     </BubbleMenu>
   )
 }
 
-export default TableBubbleMenu
+export { TableBubbleMenu }

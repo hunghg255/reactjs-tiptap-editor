@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 
 import { NodeViewWrapper } from '@tiptap/react'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { Button, Input } from '@/components'
 import { getServiceSrc } from '@/extensions/Iframe/embed'
 
 function IframeNodeView(props: any) {

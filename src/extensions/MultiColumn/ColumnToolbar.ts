@@ -1,6 +1,6 @@
 import { Extension } from '@tiptap/core'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 
 export const ColumnToolbar = Extension.create<any>({
   name: 'columnToolbar',

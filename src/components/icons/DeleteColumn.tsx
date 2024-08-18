@@ -1,5 +1,3 @@
-import React from 'react'
-
 function DeleteColumn() {
   return (
     <svg
@@ -25,4 +23,4 @@ function DeleteColumn() {
   )
 }
 
-export default DeleteColumn
+export { DeleteColumn }

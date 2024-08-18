@@ -1,13 +1,13 @@
 import React, { useMemo, useState } from 'react'
 
-import ActionButton from '@/components/ActionButton'
-import Icon from '@/components/icons/Icon'
 import {
+  ActionButton,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+  IconComponent,
+} from '@/components'
 import { useLocale } from '@/locales'
 import type { ButtonViewReturnComponentProps } from '@/types'
 
@@ -66,7 +66,7 @@ function LineHeightDropdown(props: IPropsLineHeightDropdown) {
           tooltip={props?.tooltip}
           disabled={props?.disabled}
         >
-          <Icon className="w-3 h-3 ml-1 text-zinc-500" name="MenuDown" />
+          <IconComponent className="w-3 h-3 ml-1 text-zinc-500" name="MenuDown" />
         </ActionButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-24">

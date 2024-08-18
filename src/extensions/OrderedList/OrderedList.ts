@@ -1,7 +1,7 @@
 import type { OrderedListOptions as TiptapOrderedListOptions } from '@tiptap/extension-ordered-list'
 import { OrderedList as TiptapOrderedList } from '@tiptap/extension-ordered-list'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import type { GeneralOptions } from '@/types'
 
 export interface OrderedListOptions

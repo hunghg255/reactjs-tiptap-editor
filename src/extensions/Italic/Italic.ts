@@ -2,7 +2,7 @@ import type { Editor } from '@tiptap/core'
 import type { ItalicOptions as TiptapItalicOptions } from '@tiptap/extension-italic'
 import TiptapItalic from '@tiptap/extension-italic'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import type { GeneralOptions } from '@/types'
 
 export interface ItalicOptions extends TiptapItalicOptions, GeneralOptions<ItalicOptions> {}
@@ -11,7 +11,6 @@ export const Italic = TiptapItalic.extend<ItalicOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      bubble: true,
       button({ editor, t }: { editor: Editor, t: (...args: any[]) => string }) {
         return {
           component: ActionButton,

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import CreateTablePopover from '@/extensions/Table/components/CreateTablePopover'
 import type { ButtonViewReturnComponentProps } from '@/types'
 

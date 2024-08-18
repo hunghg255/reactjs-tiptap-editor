@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react'
 
-import Icon from '@/components/icons/Icon'
+import { IconComponent } from '@/components'
 import { useLocale } from '@/locales'
 
 function CommandsList(props: any, ref: any) {
@@ -149,7 +149,7 @@ function CommandsList(props: any, ref: any) {
                         >
                           {command.iconUrl && <img className="w-6 h-6" src={command.iconUrl} alt="" />}
                           {command.iconName && (
-                            <Icon name={command.iconName} className="mr-1 text-lg" />
+                            <IconComponent name={command.iconName} className="mr-1 text-lg" />
                           )}
                           {command.label}
                         </button>

@@ -1,6 +1,6 @@
 import { Node } from '@tiptap/core'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import type { GeneralOptions } from '@/types'
 
 export interface ClearOptions extends GeneralOptions<ClearOptions> {}

@@ -3,11 +3,8 @@ import React, { useRef, useState } from 'react'
 import type { Editor } from '@tiptap/react'
 import { NodeViewWrapper } from '@tiptap/react'
 
-import Icon from '@/components/icons/Icon'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { IconComponent } from '@/components/icons'
+import { Button, Input, Popover, PopoverContent, PopoverTrigger, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui'
 import { useLocale } from '@/locales'
 
 interface IPropsVideoUploaderView {
@@ -70,11 +67,11 @@ function VideoUploaderView(props: IPropsVideoUploaderView) {
     <NodeViewWrapper as="div" data-drag-handle>
       <Popover defaultOpen modal>
         <PopoverTrigger asChild>
-          <div className="flex items-center w-full p-3 my-3 hover:bg-accent border border-border text-muted-foreground cursor-pointer rounded-sm transition-all">
+          <div className="flex items-center w-full p-3 my-3 transition-all border rounded-sm cursor-pointer hover:bg-accent border-border text-muted-foreground">
             {loading
               ? (
-                  <div className="flex justify-center items-center gap-3 text-s">
-                    <Icon className="animate-spin w-6 h-6" name="LoaderCircle" />
+                  <div className="flex items-center justify-center gap-3 text-s">
+                    <IconComponent className="w-6 h-6 animate-spin" name="LoaderCircle" />
                     <span>
                       {t('editor.video.dialog.uploading')}
                       ...
@@ -82,12 +79,12 @@ function VideoUploaderView(props: IPropsVideoUploaderView) {
                   </div>
                 )
               : (
-                  <div className="flex justify-between items-center w-full">
-                    <div className="flex justify-center items-center gap-3">
-                      <Icon name="Video" className="w-6 h-6" />
+                  <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center justify-center gap-3">
+                      <IconComponent name="Video" className="w-6 h-6" />
                       <span className="text-sm">{t('editor.video.dialog.title')}</span>
                     </div>
-                    <Icon name="Trash2" className="hover:text-foreground" onClick={handleDelete} />
+                    <IconComponent name="Trash2" className="hover:text-foreground" onClick={handleDelete} />
                   </div>
                 )}
           </div>

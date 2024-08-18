@@ -1,14 +1,14 @@
 import React, { Fragment, useMemo } from 'react'
 
-import ActionMenuButton from '@/components/ActionMenuButton'
 import {
+  ActionMenuButton,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from '@/components'
 import type { ButtonViewReturnComponentProps } from '@/types'
 import { getShortcutKey } from '@/utils/plateform'
 

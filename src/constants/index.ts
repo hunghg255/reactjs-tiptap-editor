@@ -170,3 +170,17 @@ export const NODE_TYPE_MENU: any = {
   video: ['video-size-small', 'video-size-medium', 'video-size-large', 'divider', 'remove'],
   table: ['removeTable'],
 }
+
+/** display in bubble text menu */
+export const BUBBLE_TEXT_LIST = [
+  'bold',
+  'italic',
+  'underline',
+  'strike',
+  'code',
+  'link',
+  'divider',
+  'color',
+  'highlight',
+  'textAlign',
+]

@@ -12,7 +12,6 @@ export const Highlight = TiptapHighlight.extend<HighlightOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      bubble: true,
       multicolor: true,
       button: ({ editor, t }) => ({
         component: HighlightActionButton,

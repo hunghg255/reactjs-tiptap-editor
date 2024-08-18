@@ -5,7 +5,7 @@ import { Subscript as TiptapSubscript } from '@tiptap/extension-subscript'
 import type { SuperscriptExtensionOptions as TiptapSuperscriptOptions } from '@tiptap/extension-superscript'
 import { Superscript as TiptapSuperscript } from '@tiptap/extension-superscript'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import type { ButtonViewReturn, GeneralOptions } from '@/types'
 
 /**

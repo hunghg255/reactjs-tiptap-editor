@@ -2,14 +2,7 @@ import React, { useMemo } from 'react'
 
 import { ChevronDown } from 'lucide-react'
 
-import icons from '@/components/icons/icons'
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+import { Button, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger, icons } from '@/components'
 import { useLocale } from '@/locales'
 
 interface IPropsTextDropdown {

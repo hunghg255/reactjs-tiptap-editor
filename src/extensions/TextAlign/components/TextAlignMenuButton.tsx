@@ -1,10 +1,7 @@
 import React, { useMemo } from 'react'
 
-import ActionButton from '@/components/ActionButton'
-import Icon from '@/components/icons/Icon'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Toggle } from '@/components/ui/toggle'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { ActionButton, IconComponent } from '@/components'
+import { Popover, PopoverContent, PopoverTrigger, Toggle, Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui'
 import type { ButtonViewReturnComponentProps } from '@/types'
 import { getShortcutKey } from '@/utils/plateform'
 
@@ -58,7 +55,7 @@ function TextAlignMenuButton(props: IPropsTextAlignMenuButton) {
           tooltip={props?.tooltip}
           disabled={props?.disabled}
         >
-          <Icon className="w-3 h-3 ml-1 text-zinc-500" name="MenuDown" />
+          <IconComponent className="w-3 h-3 ml-1 text-zinc-500" name="MenuDown" />
         </ActionButton>
       </PopoverTrigger>
 
@@ -78,7 +75,7 @@ function TextAlignMenuButton(props: IPropsTextAlignMenuButton) {
                   pressed={active.title === item.title}
                   data-state={active.title === item.title ? 'on' : 'off'}
                 >
-                  {item?.icon && <Icon name={item.icon} />}
+                  {item?.icon && <IconComponent name={item.icon} />}
                 </Toggle>
               </TooltipTrigger>
               <TooltipContent className="flex flex-col items-center">

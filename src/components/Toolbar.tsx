@@ -1,36 +1,51 @@
 import React, { useMemo } from 'react'
+import type { Editor } from '@tiptap/core'
 
-import { Separator } from '@/components/ui/separator'
+import { Separator } from '@/components'
 import { useLocale } from '@/locales'
 import { isFunction } from '@/utils/utils'
 
-function Toolbar({ editor, disabled }: any) {
+export interface ToolbarProps {
+  editor: Editor
+  disabled?: boolean
+}
+
+interface ToolbarItemProps {
+  button: {
+    component: React.ComponentType<any>
+    componentProps: Record<string, any>
+  }
+  divider: boolean
+  spacer: boolean
+}
+
+function Toolbar({ editor, disabled }: ToolbarProps) {
   const { t, lang } = useLocale()
 
   const items = useMemo(() => {
     const extensions = [...editor.extensionManager.extensions]
     const sortExtensions = extensions.sort((arr, acc) => {
-      const a = arr.options.sort ?? -1
-      const b = acc.options.sort ?? -1
+      const a = (arr.options).sort ?? -1
+      const b = (acc.options).sort ?? -1
       return a - b
     })
 
-    let menus: any[] = []
+    let menus: ToolbarItemProps[] = []
 
     for (const extension of sortExtensions) {
-      const { button, divider = false, spacer = false, toolbar = true } = extension.options
+      const { button, divider = false, spacer = false, toolbar = true } = extension.options as any
       if (!button || !isFunction(button) || !toolbar) {
         continue
       }
 
-      const _button: any = button({
+      const _button: ToolbarItemProps['button'] | ToolbarItemProps['button'][] = button({
         editor,
         extension,
         t,
       })
 
       if (Array.isArray(_button)) {
-        const menu: any[] = _button.map((k, i) => ({
+        const menu: ToolbarItemProps[] = _button.map((k, i) => ({
           button: k,
           divider: i === _button.length - 1 ? divider : false,
           spacer: i === 0 ? spacer : false,
@@ -46,14 +61,14 @@ function Toolbar({ editor, disabled }: any) {
 
   return (
     <div
-      className="border-b py-2 px-1"
+      className="px-1 py-2 border-b"
       style={{
         pointerEvents: disabled ? 'none' : 'auto',
         opacity: disabled ? 0.5 : 1,
       }}
     >
-      <div className="flex flex-wrap h-auto relative gap-y-1 gap-x-1">
-        {items.map((item: any, key) => {
+      <div className="relative flex flex-wrap h-auto gap-y-1 gap-x-1">
+        {items.map((item: ToolbarItemProps, key) => {
           const ButtonComponent = item.button.component
 
           return (
@@ -74,4 +89,4 @@ function Toolbar({ editor, disabled }: any) {
   )
 }
 
-export default Toolbar
+export { Toolbar }

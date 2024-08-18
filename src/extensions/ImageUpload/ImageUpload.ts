@@ -2,7 +2,7 @@
 import { Plugin } from '@tiptap/pm/state'
 import { Node, ReactNodeViewRenderer } from '@tiptap/react'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import ImageUploader from '@/extensions/ImageUpload/components/ImageUploader'
 import {
   UploadImagesPlugin,
@@ -89,7 +89,8 @@ export const ImageUpload = Node.create<ImageUploadOptions>({
         componentProps: {
           action: () => editor.commands.setImageUpload(),
           upload: extension.options.upload,
-          disabled: !editor.can().setImage({}),
+          /* If setImage is not available(when Image Component is not imported), the button is disabled */
+          disabled: !editor.can().setImage?.({}),
           icon: 'ImageUp',
           tooltip: t('editor.image.tooltip'),
         },

@@ -1,13 +1,13 @@
 import React, { Fragment, useMemo } from 'react'
 
-import ActionMenuButton from '@/components/ActionMenuButton'
 import {
+  ActionMenuButton,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from '@/components'
 import { useLocale } from '@/locales'
 import type { ButtonViewReturnComponentProps } from '@/types'
 
@@ -73,7 +73,7 @@ function FontFamilyButton(props: Props) {
           return (
             <Fragment key={index}>
               <DropdownMenuCheckboxItem checked={active?.font === item.font} onClick={item.action}>
-                <div className="ml-1 h-full" style={style}>
+                <div className="h-full ml-1" style={style}>
                   {item.font}
                 </div>
               </DropdownMenuCheckboxItem>

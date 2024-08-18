@@ -1,7 +1,7 @@
 import type { CodeOptions as TiptapCodeOptions } from '@tiptap/extension-code'
 import { Code as TiptapCode } from '@tiptap/extension-code'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import type { GeneralOptions } from '@/types'
 
 export interface CodeOptions extends TiptapCodeOptions, GeneralOptions<CodeOptions> {}
@@ -10,8 +10,6 @@ export const Code = TiptapCode.extend<CodeOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      bubble: true,
-
       button: ({ editor, t }) => ({
         component: ActionButton,
         componentProps: {

@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import Icon from '@/components/icons/Icon'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Switch } from '@/components/ui/switch'
+import { Button, IconComponent, Input, Label, Switch } from '@/components'
 import { useLocale } from '@/locales'
 
 interface IPropsLinkEditBlock {
@@ -41,7 +37,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
   }
 
   return (
-    <div className="p-2 bg-white rounded-lg dark:bg-black shadow-sm border border-neutral-200 dark:border-neutral-800">
+    <div className="p-2 bg-white border rounded-lg shadow-sm dark:bg-black border-neutral-200 dark:border-neutral-800">
       <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
         <Label>
           {' '}
@@ -49,7 +45,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
           {' '}
         </Label>
         <div className="flex w-full max-w-sm items-center gap-1.5">
-          <div className="relative w-full max-w-sm items-center">
+          <div className="relative items-center w-full max-w-sm">
             <Input
               type="text"
               value={form.text}
@@ -62,7 +58,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
         </div>
         <Label>{t('editor.link.dialog.link')}</Label>
         <div className="flex w-full max-w-sm items-center gap-1.5">
-          <div className="relative w-full max-w-sm items-center">
+          <div className="relative items-center w-full max-w-sm">
             <Input
               type="url"
               value={form.link}
@@ -70,8 +66,8 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
               className="pl-10"
               onChange={e => setForm({ ...form, link: e.target.value })}
             />
-            <span className="absolute start-0 inset-y-0 flex items-center justify-center px-2">
-              <Icon className="size-5 text-muted-foreground" name="Link" />
+            <span className="absolute inset-y-0 flex items-center justify-center px-2 start-0">
+              <IconComponent className="size-5 text-muted-foreground" name="Link" />
             </span>
           </div>
         </div>
@@ -84,7 +80,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
             }}
           />
         </div>
-        <Button type="submit" className="mt-2 self-end">
+        <Button type="submit" className="self-end mt-2">
           {t('editor.link.dialog.button.apply')}
         </Button>
       </form>

@@ -1,5 +1,3 @@
-import React from 'react'
-
 function DeleteRow() {
   return (
     <svg
@@ -25,4 +23,4 @@ function DeleteRow() {
   )
 }
 
-export default DeleteRow
+export { DeleteRow }

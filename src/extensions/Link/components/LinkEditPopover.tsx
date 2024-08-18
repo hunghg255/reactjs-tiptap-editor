@@ -1,6 +1,4 @@
-import ActionButton from '@/components/ActionButton'
-import Icon from '@/components/icons/Icon'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { ActionButton, IconComponent, Popover, PopoverContent, PopoverTrigger } from '@/components'
 import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock'
 import type { ButtonViewReturnComponentProps } from '@/types'
 
@@ -30,7 +28,7 @@ function LinkEditPopover(props: IPropsLinkEditPopover) {
           isActive={props?.isActive}
           disabled={props?.disabled}
         >
-          <Icon name={props?.icon} />
+          <IconComponent name={props?.icon} />
         </ActionButton>
       </PopoverTrigger>
       <PopoverContent hideWhenDetached className="w-full" align="start" side="bottom">

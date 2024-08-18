@@ -6,15 +6,9 @@ import type { UseEditorOptions } from '@tiptap/react'
 import { EditorContent, useEditor } from '@tiptap/react'
 import { differenceBy, throttle } from 'lodash-unified'
 
-import BubbleMenuLink from '@/components/menus/components/BubbleMenuLink'
-import { BubbleMenuImage, BubbleMenuVideo } from '@/components/menus/components/BubbleMenuMedia'
-import BubbleMenuText from '@/components/menus/components/BubbleMenuText'
-import ContentMenu from '@/components/menus/components/ContentMenu'
-import TableBubbleMenu from '@/components/menus/components/TableBubbleMenu'
-import Toolbar from '@/components/Toolbar'
-import { TooltipProvider } from '@/components/ui/tooltip'
+import type { BubbleMenuProps } from '@/types'
+import { BubbleMenu, Toolbar, TooltipProvider } from '@/components'
 import { EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME } from '@/constants'
-import ColumnsMenu from '@/extensions/MultiColumn/menus/ColumnsMenu'
 import { useLocale } from '@/locales'
 import { themeActions } from '@/theme/theme'
 import { hasExtension } from '@/utils/utils'
@@ -41,6 +35,7 @@ interface IPropsRcTiptapEditor {
   editorClass?: string | string[] | Record<string, any>
   contentClass?: string | string[] | Record<string, any>
   onChangeContent?: (val: any) => void
+  bubbleMenu?: BubbleMenuProps
 
   useEditorOptions?: UseEditorOptions
 }
@@ -133,25 +128,14 @@ function RcTiptapEditor(props: IPropsRcTiptapEditor, ref: any) {
   return (
     <TooltipProvider delayDuration={0}>
       <div className="reactjs-tiptap-editor rounded-[0.5rem] bg-background shadow overflow-hidden outline outline-1">
-        {!props?.hideBubble && (
-          <>
-            <ColumnsMenu editor={editor} />
-            <TableBubbleMenu editor={editor} />
-            <ContentMenu editor={editor} disabled={props?.disabled} />
-
-            <BubbleMenuLink editor={editor} disabled={props?.disabled} />
-            <BubbleMenuText editor={editor} disabled={props?.disabled} />
-            <BubbleMenuImage editor={editor as any} disabled={props?.disabled} />
-            <BubbleMenuVideo editor={editor as any} disabled={props?.disabled} />
-          </>
-        )}
+        {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu} editor={editor} disabled={props?.disabled} />}
 
         <div className="flex flex-col w-full max-h-full">
-          {!props?.hideToolbar && <Toolbar editor={editor} disabled={props?.disabled} />}
+          {!props?.hideToolbar && <Toolbar editor={editor} disabled={!!props?.disabled} />}
 
           <EditorContent className={`relative ${props?.contentClass || ''}`} editor={editor} />
 
-          <div className="flex justify-between border-t p-3 items-center">
+          <div className="flex items-center justify-between p-3 border-t">
             {hasExtensionValue && (
               <div className="flex flex-col">
                 <div className="flex justify-end gap-3 text-sm">

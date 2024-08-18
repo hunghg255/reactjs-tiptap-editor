@@ -2,9 +2,7 @@ import React from 'react'
 
 import type { TooltipContentProps } from '@radix-ui/react-tooltip'
 
-import icons from '@/components/icons/icons'
-import { Toggle } from '@/components/ui/toggle'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Toggle, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components'
 import type { ButtonViewReturnComponentProps } from '@/types'
 import { getShortcutKeys } from '@/utils/plateform'
 

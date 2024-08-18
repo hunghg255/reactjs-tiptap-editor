@@ -2,25 +2,32 @@ import React from 'react'
 
 import { Slot } from '@radix-ui/react-slot'
 
-import icons from '@/components/icons/icons'
-import { Button } from '@/components/ui/button'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Button, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components'
 import type { ButtonViewReturnComponentProps } from '@/types'
 import { getShortcutKeys } from '@/utils/plateform'
 
-interface IPropsActionMenuButton {
+export interface ActionMenuButtonProps {
+  /** Icon name to display */
   icon?: any
+  /** Button title text */
   title?: string
+  /** Tooltip text */
   tooltip?: string
+  /** Whether the button is disabled */
   disabled?: boolean
+  /** Keyboard shortcut keys */
   shortcutKeys?: string[]
+  /** Button color */
   color?: string
+  /** Click action handler */
   action?: ButtonViewReturnComponentProps['action']
+  /** Active state checker */
   isActive?: ButtonViewReturnComponentProps['isActive']
+  /** Whether to render as child */
   asChild?: boolean
 }
 
-const ActionMenuButton = React.forwardRef<HTMLButtonElement, IPropsActionMenuButton>(
+const ActionMenuButton = React.forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
   ({ asChild, ...props }, ref) => {
     const Icon = icons[props.icon]
     const Comp = asChild ? Slot : Button
@@ -56,6 +63,4 @@ const ActionMenuButton = React.forwardRef<HTMLButtonElement, IPropsActionMenuBut
   },
 )
 
-ActionMenuButton.displayName = 'ActionMenuButton'
-
-export default ActionMenuButton
+export { ActionMenuButton }

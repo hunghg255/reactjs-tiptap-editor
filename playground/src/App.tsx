@@ -65,7 +65,7 @@ const extensions = [
   Highlight,
   BulletList,
   OrderedList,
-  TextAlign.configure({ types: ['heading', 'paragraph'], spacer: true, bubble: true }),
+  TextAlign.configure({ types: ['heading', 'paragraph'], spacer: true }),
   Indent,
   LineHeight,
   TaskList.configure({
@@ -100,7 +100,6 @@ const extensions = [
   HorizontalRule,
   Code.configure({
     toolbar: false,
-    bubble: true,
   }),
   CodeBlock.configure({ lowlight: createLowlight(common) }),
   ColumnToolbar,

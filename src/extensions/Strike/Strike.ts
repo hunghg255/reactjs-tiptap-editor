@@ -1,7 +1,7 @@
 import type { StrikeOptions as TiptapStrikeOptions } from '@tiptap/extension-strike'
 import { Strike as TiptapStrike } from '@tiptap/extension-strike'
 
-import ActionButton from '@/components/ActionButton'
+import { ActionButton } from '@/components'
 import type { GeneralOptions } from '@/types'
 
 export interface StrikeOptions extends TiptapStrikeOptions, GeneralOptions<StrikeOptions> {}
@@ -10,7 +10,6 @@ export const Strike = TiptapStrike.extend<StrikeOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      bubble: true,
       button: ({ editor, t }: any) => ({
         component: ActionButton,
         componentProps: {
