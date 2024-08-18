@@ -127,7 +127,7 @@ export const DEFAULT_FONT_SIZE_LIST = [
 ] as const
 
 /** Default font size value */
-export const DEFAULT_FONT_SIZE_VALUE = 'default' as const
+export const DEFAULT_FONT_SIZE_VALUE = 'default'
 
 /** Options for setting image size in the bubble menu */
 export enum IMAGE_SIZE {
