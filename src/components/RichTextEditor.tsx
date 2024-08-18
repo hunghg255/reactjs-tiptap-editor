@@ -15,32 +15,55 @@ import { hasExtension } from '@/utils/utils'
 
 import '../styles/index.scss'
 
-interface IPropsRichTextEditor {
+/**
+ * Interface for RichTextEditor component props
+ */
+export interface RichTextEditorProps {
+  /** Content of the editor */
   content: string
+  /** Extensions for the editor */
   extensions: AnyExtension[]
 
+  /** Output format */
   output: 'html' | 'json' | 'text'
+  /** Model value */
   modelValue?: string | object
+  /** Dark mode flag */
   dark?: boolean
+  /** Dense mode flag */
   dense?: boolean
+  /** Disabled flag */
   disabled?: boolean
+  /** Label for the editor */
   label?: string
+  /** Hide toolbar flag */
   hideToolbar?: boolean
+  /** Disable bubble menu flag */
   disableBubble?: boolean
+  /** Hide bubble menu flag */
   hideBubble?: boolean
+  /** Remove default wrapper flag */
   removeDefaultWrapper?: boolean
+  /** Maximum width */
   maxWidth?: string | number
+  /** Minimum height */
   minHeight?: string | number
+  /** Maximum height */
   maxHeight?: string | number
+  /** Editor class */
   editorClass?: string | string[] | Record<string, any>
+  /** Content class */
   contentClass?: string | string[] | Record<string, any>
+  /** Content change callback */
   onChangeContent?: (val: any) => void
+  /** Bubble menu props */
   bubbleMenu?: BubbleMenuProps
 
+  /** Use editor options */
   useEditorOptions?: UseEditorOptions
 }
 
-function RichTextEditor(props: IPropsRichTextEditor, ref: any) {
+function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ editor: CoreEditor | null }>) {
   const { content, extensions, useEditorOptions = {} } = props
   const { t } = useLocale()
 
@@ -87,7 +110,7 @@ function RichTextEditor(props: IPropsRichTextEditor, ref: any) {
     editor?.setEditable(!props?.disabled)
   }, [editor, props?.disabled])
 
-  function getOutput(editor: CoreEditor, output: IPropsRichTextEditor['output']) {
+  function getOutput(editor: CoreEditor, output: RichTextEditorProps['output']) {
     if (props?.removeDefaultWrapper) {
       if (output === 'html') {
         return editor.isEmpty ? '' : editor.getHTML()

@@ -99,6 +99,15 @@ export const COLORS_LIST = [
   '#780650',
 ] as const
 
+/** Default font family list */
+export const DEFAULT_FONT_FAMILY_LIST = [
+  'Inter',
+  'Comic Sans MS, Comic Sans',
+  'serif',
+  'monospace',
+  'cursive',
+]
+
 /** Default font size list */
 export const DEFAULT_FONT_SIZE_LIST = [
   '10px',
@@ -118,7 +127,7 @@ export const DEFAULT_FONT_SIZE_LIST = [
 ] as const
 
 /** Default font size value */
-export const DEFAULT_FONT_SIZE_VALUE = 'default' as const
+export const DEFAULT_FONT_SIZE_VALUE = 'default'
 
 /** Options for setting image size in the bubble menu */
 export enum IMAGE_SIZE {
@@ -134,6 +143,8 @@ export enum VIDEO_SIZE {
   'size-large' = '100%',
 }
 
+/** Line Height List */
+export const DEFAULT_LINE_HEIGHT_LIST = ['100%', '115%', '150%', '200%', '250%', '300%']
 export const LINE_HEIGHT_100 = 1.7
 export const DEFAULT_LINE_HEIGHT = '1'
 

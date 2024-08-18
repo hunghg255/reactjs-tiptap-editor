@@ -3,32 +3,38 @@ import type { FontFamilyOptions as TiptapFontFamilyOptions } from '@tiptap/exten
 import FontFamilyTiptap from '@tiptap/extension-font-family'
 
 import type { BaseKitOptions } from '../BaseKit'
+import { ensureNameValueOptions } from '@/utils/utils'
+import { DEFAULT_FONT_FAMILY_LIST } from '@/constants'
 import FontFamilyButton from '@/extensions/FontFamily/components/FontFamilyButton'
-import type { GeneralOptions } from '@/types'
+import type { GeneralOptions, NameValueOption } from '@/types'
 
-// export interface FontFamilyOptions extends , GeneralOptions<FontFamilyOptions> {}
-export interface FontFamilyOptions extends TiptapFontFamilyOptions, GeneralOptions<FontFamilyOptions> {}
+export interface FontFamilyOptions extends TiptapFontFamilyOptions, GeneralOptions<FontFamilyOptions> {
+  /**
+   * Font family list.
+   */
+  fontFamilyList: (string | NameValueOption)[]
+}
 
 export const FontFamily = FontFamilyTiptap.extend<FontFamilyOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      fonts: ['Inter', 'Comic Sans MS, Comic Sans', 'serif', 'monospace', 'cursive'],
+      fontFamilyList: DEFAULT_FONT_FAMILY_LIST,
       button({ editor, extension, t }: any) {
         const { extensions = [] } = editor.extensionManager ?? []
-        const fonts = extension?.options?.fonts || []
+        const fontFamilyList = ensureNameValueOptions(extension?.options?.fontFamilyList || [])
         const baseKitExt = extensions.find(
           (k: any) => k.name === 'base-kit',
         ) as Extension<BaseKitOptions>
 
-        const items: any[] = fonts.map((font: any) => ({
+        const items = fontFamilyList.map(font => ({
           action: () => {
-            editor.chain().focus().setFontFamily(font).run()
+            editor.chain().focus().setFontFamily(font.value).run()
           },
-          isActive: () => editor.isActive('textStyle', { fontFamily: font }) || false,
-          disabled: !editor.can().setFontFamily(font),
-          title: font,
-          font,
+          isActive: () => editor.isActive('textStyle', { fontFamily: font.value }) || false,
+          disabled: !editor.can().setFontFamily(font.value),
+          title: font.name,
+          font: font.value,
         }))
 
         if (baseKitExt && baseKitExt.options.textStyle !== false) {
