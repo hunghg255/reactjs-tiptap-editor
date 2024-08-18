@@ -21,17 +21,17 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
-    ]
-  },
-  {
     "name": "Clear.ts",
     "package": "Clear",
     "alias": [
       "Clear"
+    ]
+  },
+  {
+    "name": "BulletList.ts",
+    "package": "BulletList",
+    "alias": [
+      "BulletList"
     ]
   },
   {
@@ -126,17 +126,17 @@
     ]
   },
   {
-    "name": "ImageUpload.ts",
-    "package": "ImageUpload",
-    "alias": [
-      "ImageUpload"
-    ]
-  },
-  {
     "name": "Image.ts",
     "package": "Image",
     "alias": [
       "Image"
+    ]
+  },
+  {
+    "name": "ImageUpload.ts",
+    "package": "ImageUpload",
+    "alias": [
+      "ImageUpload"
     ]
   },
   {
@@ -154,10 +154,10 @@
     ]
   },
   {
-    "name": "ListItem.ts",
-    "package": "ListItem",
+    "name": "LineHeight.ts",
+    "package": "LineHeight",
     "alias": [
-      "ListItem"
+      "LineHeight"
     ]
   },
   {
@@ -168,10 +168,17 @@
     ]
   },
   {
-    "name": "LineHeight.ts",
-    "package": "LineHeight",
+    "name": "ListItem.ts",
+    "package": "ListItem",
     "alias": [
-      "LineHeight"
+      "ListItem"
+    ]
+  },
+  {
+    "name": "MoreMark.ts",
+    "package": "MoreMark",
+    "alias": [
+      "MoreMark"
     ]
   },
   {
@@ -196,10 +203,10 @@
     ]
   },
   {
-    "name": "MoreMark.ts",
-    "package": "MoreMark",
+    "name": "Selection.ts",
+    "package": "Selection",
     "alias": [
-      "MoreMark"
+      "Selection"
     ]
   },
   {
@@ -207,13 +214,6 @@
     "package": "OrderedList",
     "alias": [
       "OrderedList"
-    ]
-  },
-  {
-    "name": "Selection.ts",
-    "package": "Selection",
-    "alias": [
-      "Selection"
     ]
   },
   {
@@ -238,13 +238,6 @@
     ]
   },
   {
-    "name": "Subscript.ts",
-    "package": "Subscript",
-    "alias": [
-      "Subscript"
-    ]
-  },
-  {
     "name": "Strike.ts",
     "package": "Strike",
     "alias": [
@@ -252,10 +245,10 @@
     ]
   },
   {
-    "name": "TaskList.ts",
-    "package": "TaskList",
+    "name": "Subscript.ts",
+    "package": "Subscript",
     "alias": [
-      "TaskList"
+      "Subscript"
     ]
   },
   {
@@ -273,6 +266,13 @@
     ]
   },
   {
+    "name": "TaskList.ts",
+    "package": "TaskList",
+    "alias": [
+      "TaskList"
+    ]
+  },
+  {
     "name": "TextAlign.ts",
     "package": "TextAlign",
     "alias": [
@@ -280,17 +280,17 @@
     ]
   },
   {
-    "name": "TrailingNode.ts",
-    "package": "TrailingNode",
-    "alias": [
-      "TrailingNode"
-    ]
-  },
-  {
     "name": "TextBubble.ts",
     "package": "TextBubble",
     "alias": [
       "TextBubble"
+    ]
+  },
+  {
+    "name": "TrailingNode.ts",
+    "package": "TrailingNode",
+    "alias": [
+      "TrailingNode"
     ]
   },
   {

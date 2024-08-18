@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 
 import { common, createLowlight } from 'lowlight'
-import RcTiptapEditor, {
+import RichTextEditor, {
   BaseKit,
   Blockquote,
   Bold,
@@ -154,7 +154,7 @@ function App() {
         <button onClick={() => setDisable(!disable)}>{disable ? 'Editable' : 'Readonly'}</button>
       </div>
 
-      <RcTiptapEditor
+      <RichTextEditor
         output="html"
         content={content as any}
         onChangeContent={onValueChange}

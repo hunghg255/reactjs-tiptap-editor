@@ -2,7 +2,7 @@
 export * from '@/extensions'
 
 export * from '@/components'
-export { default } from '@/components/RcTiptapEditor'
+export { default } from '@/components/RichTextEditor'
 
 import locale, { en, vi, zh_CN } from './locales'
 

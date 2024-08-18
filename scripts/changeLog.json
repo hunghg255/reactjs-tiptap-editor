@@ -1,5 +1,126 @@
 [
   {
+    "hash": "d436da9374eb32f8674586f3ef1358923bf46d84",
+    "date": "Sun Aug 18 01:27:07 2024 +0800",
+    "message": "feat: support dynamic rendering of bubble menu and remove bubble option",
+    "refs": "",
+    "author_name": "Condor Hero",
+    "author_email": "love2xinwei@gmail.com",
+    "functions": [
+      "BaseKit",
+      "Bold",
+      "Code",
+      "Color",
+      "FontFamily",
+      "Highlight",
+      "ImageUpload",
+      "Italic",
+      "Link",
+      "ColumnsMenu",
+      "SlashCommand",
+      "groups",
+      "Strike",
+      "Underline",
+      "VideoUpload",
+      "VideoUploaderView"
+    ]
+  },
+  {
+    "hash": "d306712f1d4ef0072dc6337b31a272b65571feb5",
+    "date": "Sat Aug 17 08:46:27 2024 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "3ebadb18cbd22fec97515fbc2ea7ae7eac3f4e96",
+    "date": "Sat Aug 17 08:39:45 2024 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "71d98effeffed7faae60be51a4936784801c02a8",
+    "date": "Fri Aug 16 22:36:21 2024 +0700",
+    "message": "chore: release v0.0.8",
+    "refs": "tag: v0.0.8",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.8"
+  },
+  {
+    "hash": "5caab13dba1ca35693fb37d36e66c349a063b2fc",
+    "date": "Fri Aug 16 22:30:49 2024 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "TableExtension",
+      "index",
+      "table"
+    ]
+  },
+  {
+    "hash": "594076098c3a94d1a98269933709353e2a636f4f",
+    "date": "Fri Aug 16 22:28:17 2024 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "TableExtension",
+      "table"
+    ]
+  },
+  {
+    "hash": "9abff4c459aa690d68d0cb6bce68f2181d85e4b2",
+    "date": "Fri Aug 16 22:22:21 2024 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md",
+      "text-align.md",
+      "clear-format.md",
+      "format-painter.md",
+      "code-block.md",
+      "code.md",
+      "background-color.md",
+      "text-color.md",
+      "multiple-column.md",
+      "bullet-list.md",
+      "ordered-list.md",
+      "task-list.md",
+      "image.md",
+      "video.md",
+      "font-bold.md",
+      "font-family.md",
+      "font-italic.md",
+      "font-size.md",
+      "font-strike.md",
+      "font-underline.md",
+      "heading.md",
+      "subscript.md",
+      "extensions.json",
+      "BaseKit",
+      "Columns",
+      "MultiColumn",
+      "index",
+      "ColumnsMenu"
+    ]
+  },
+  {
     "hash": "4aec3a84a7008a466c4c6423f55d11bb1e1807d1",
     "date": "Thu Aug 15 16:23:39 2024 +0700",
     "message": "chore: release v0.0.7",

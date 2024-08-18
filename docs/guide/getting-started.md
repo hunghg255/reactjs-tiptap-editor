@@ -58,7 +58,7 @@ const App = () => {
   };
 
   return (
-    <RcTiptapEditor
+    <RichTextEditor
       output='html'
       content={content}
       onChangeContent={onChangeContent}
@@ -71,7 +71,7 @@ const App = () => {
 ## Props
 
 ```ts
-interface IPropsRcTiptapEditor {
+interface IPropsRichTextEditor {
   content: string;
   extensions: AnyExtension[];
   output: 'html' | 'json' | 'text';

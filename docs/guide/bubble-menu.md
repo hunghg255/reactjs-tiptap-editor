@@ -31,7 +31,7 @@ The system provides the following default bubble menus:
 If you don't want to use the bubble menu, you can disable it using the `hideBubble` property.
 
 ```jsx
-<RcTiptapEditor
+<RichTextEditor
   {...otherProps}
   hideBubble={true}
 />
@@ -42,7 +42,7 @@ If you don't want to use the bubble menu, you can disable it using the `hideBubb
 If you want to disable a specific bubble menu, you can do so using the `bubbleMenu` property. For example, to disable the text-related menu:
 
 ```jsx
-<RcTiptapEditor
+<RichTextEditor
   {...otherProps}
   bubbleMenu={{
     textConfig: {
@@ -57,7 +57,7 @@ If you want to disable a specific bubble menu, you can do so using the `bubbleMe
 If you want to customize the bubble menu, you can configure it using the `render` function within the `bubbleMenu` property.
 
 ```jsx
-<RcTiptapEditor
+<RichTextEditor
   {...otherProps}
   bubbleMenu={{
     render: (props, menuDom) => {

@@ -15,7 +15,7 @@ import { hasExtension } from '@/utils/utils'
 
 import '../styles/index.scss'
 
-interface IPropsRcTiptapEditor {
+interface IPropsRichTextEditor {
   content: string
   extensions: AnyExtension[]
 
@@ -40,7 +40,7 @@ interface IPropsRcTiptapEditor {
   useEditorOptions?: UseEditorOptions
 }
 
-function RcTiptapEditor(props: IPropsRcTiptapEditor, ref: any) {
+function RichTextEditor(props: IPropsRichTextEditor, ref: any) {
   const { content, extensions, useEditorOptions = {} } = props
   const { t } = useLocale()
 
@@ -87,7 +87,7 @@ function RcTiptapEditor(props: IPropsRcTiptapEditor, ref: any) {
     editor?.setEditable(!props?.disabled)
   }, [editor, props?.disabled])
 
-  function getOutput(editor: CoreEditor, output: IPropsRcTiptapEditor['output']) {
+  function getOutput(editor: CoreEditor, output: IPropsRichTextEditor['output']) {
     if (props?.removeDefaultWrapper) {
       if (output === 'html') {
         return editor.isEmpty ? '' : editor.getHTML()
@@ -154,4 +154,4 @@ function RcTiptapEditor(props: IPropsRcTiptapEditor, ref: any) {
   )
 }
 
-export default forwardRef(RcTiptapEditor)
+export default forwardRef(RichTextEditor)
