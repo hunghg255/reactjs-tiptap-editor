@@ -143,6 +143,8 @@ export enum VIDEO_SIZE {
   'size-large' = '100%',
 }
 
+/** Line Height List */
+export const DEFAULT_LINE_HEIGHT_LIST = ['100%', '115%', '150%', '200%', '250%', '300%']
 export const LINE_HEIGHT_100 = 1.7
 export const DEFAULT_LINE_HEIGHT = '1'
 
