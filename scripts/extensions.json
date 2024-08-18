@@ -21,17 +21,17 @@
     ]
   },
   {
-    "name": "Clear.ts",
-    "package": "Clear",
-    "alias": [
-      "Clear"
-    ]
-  },
-  {
     "name": "BulletList.ts",
     "package": "BulletList",
     "alias": [
       "BulletList"
+    ]
+  },
+  {
+    "name": "Clear.ts",
+    "package": "Clear",
+    "alias": [
+      "Clear"
     ]
   },
   {
@@ -154,17 +154,17 @@
     ]
   },
   {
-    "name": "LineHeight.ts",
-    "package": "LineHeight",
-    "alias": [
-      "LineHeight"
-    ]
-  },
-  {
     "name": "Link.ts",
     "package": "Link",
     "alias": [
       "Link"
+    ]
+  },
+  {
+    "name": "LineHeight.ts",
+    "package": "LineHeight",
+    "alias": [
+      "LineHeight"
     ]
   },
   {
@@ -203,17 +203,17 @@
     ]
   },
   {
-    "name": "Selection.ts",
-    "package": "Selection",
-    "alias": [
-      "Selection"
-    ]
-  },
-  {
     "name": "OrderedList.ts",
     "package": "OrderedList",
     "alias": [
       "OrderedList"
+    ]
+  },
+  {
+    "name": "Selection.ts",
+    "package": "Selection",
+    "alias": [
+      "Selection"
     ]
   },
   {

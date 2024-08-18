@@ -1,5 +1,15 @@
 [
   {
+    "hash": "0736ba9c58fa803327fa560939d5e6cc72634330",
+    "date": "Sun Aug 18 13:33:03 2024 +0700",
+    "message": "chore: release v0.0.9",
+    "refs": "HEAD -> master, tag: v0.0.9, origin/master, origin/HEAD",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.9"
+  },
+  {
     "hash": "d436da9374eb32f8674586f3ef1358923bf46d84",
     "date": "Sun Aug 18 01:27:07 2024 +0800",
     "message": "feat: support dynamic rendering of bubble menu and remove bubble option",
