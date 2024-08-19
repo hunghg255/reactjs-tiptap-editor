@@ -1,28 +1,49 @@
-import { CodeBlockLowlight as TiptapCodeBlock } from '@tiptap/extension-code-block-lowlight'
-import type { CodeBlockLowlightOptions as TiptapCodeBlockOptions } from '@tiptap/extension-code-block-lowlight'
-
-import { ActionButton } from '@/components'
+import type { BundledLanguage, BundledTheme } from 'shiki'
+import type { CodeBlockOptions as CodeBlockExtOptions } from '@tiptap/extension-code-block'
+import CodeBlockExt from '@tiptap/extension-code-block'
 import type { GeneralOptions } from '@/types'
+import { ShikiPlugin } from '@/extensions/CodeBlock/shiki-plugin'
+import CodeBlockActiveButton from '@/extensions/CodeBlock/components/CodeBlockActiveButton'
+import { DEFAULT_LANGUAGE_CODE_BLOCK } from '@/constants'
 
 export interface CodeBlockOptions
-  extends TiptapCodeBlockOptions,
-  GeneralOptions<CodeBlockOptions> {}
+  extends GeneralOptions<CodeBlockExtOptions> {
+  languages?: BundledLanguage[]
+  defaultTheme: BundledTheme
+}
 
-export const CodeBlock = TiptapCodeBlock.extend<CodeBlockOptions>({
+export const CodeBlock = CodeBlockExt.extend<CodeBlockOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      defaultLanguage: null,
-      button: ({ editor, t }: any) => ({
-        component: ActionButton,
-        componentProps: {
-          action: () => editor.commands.toggleCodeBlock(),
-          isActive: () => editor.isActive('codeBlock') || false,
-          disabled: !editor.can().toggleCodeBlock(),
-          icon: 'Code2',
-          tooltip: t('editor.codeblock.tooltip'),
-        },
-      }),
+      languages: [],
+      button: ({ editor, t, extension }: any) => {
+        const languages = extension?.options?.languages?.length ? extension?.options?.languages : DEFAULT_LANGUAGE_CODE_BLOCK
+
+        return {
+          component: CodeBlockActiveButton,
+          componentProps: {
+            action: (language = 'js') => editor.commands.setCodeBlock({
+              language,
+            }),
+            isActive: () => editor.isActive('codeBlock') || false,
+            disabled: !editor.can().toggleCodeBlock(),
+            icon: 'Code2',
+            tooltip: t('editor.codeblock.tooltip'),
+            languages,
+          },
+        }
+      },
     }
+  },
+  addProseMirrorPlugins() {
+    return [
+      ...(this.parent?.() || []),
+      ShikiPlugin({
+        name: this.name,
+        defaultLanguage: null,
+        defaultTheme: this.options.defaultTheme,
+      }),
+    ]
   },
 })
