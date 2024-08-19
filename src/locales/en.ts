@@ -123,6 +123,12 @@ const locale = {
   'editor.table.menu.setCellsBgColor': 'Cell Background Color',
   'editor.emoji.tooltip': 'Emoji',
   'editor.iframe.tooltip': 'Iframe',
+  'editor.searchAndReplace.tooltip': 'Search and Replace',
+  'editor.search.dialog.text': 'Search',
+  'editor.replace.dialog.text': 'Replace',
+  'editor.replaceAll.dialog.text': 'Replace All',
+  'editor.previous.dialog.text': 'Previous',
+  'editor.next.dialog.text': 'Next',
 }
 
 export default locale

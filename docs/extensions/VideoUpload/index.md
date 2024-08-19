@@ -1,6 +1,9 @@
 ---
 description: VideoUpload
 
+next:
+  text: SearchAndReplace
+  link: /extensions/SearchAndReplace/index.md
 ---
 
 ## Usage

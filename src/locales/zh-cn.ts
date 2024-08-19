@@ -123,6 +123,12 @@ const locale = {
   'editor.table.menu.setCellsBgColor': '设置单元格背景色',
   'editor.emoji.tooltip': '表情',
   'editor.iframe.tooltip': '内嵌框架',
+  'editor.searchAndReplace.tooltip': '搜索和替换',
+  'editor.search.dialog.text': '搜索',
+  'editor.replace.dialog.text': '替换',
+  'editor.replaceAll.dialog.text': '全部替换',
+  'editor.previous.dialog.text': '上一个',
+  'editor.next.dialog.text': '下一个',
 }
 
 export default locale

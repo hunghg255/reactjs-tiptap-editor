@@ -99,3 +99,5 @@ export { MultiColumn, ColumnToolbar } from './MultiColumn'
 export type { ColumnsOptions } from './MultiColumn'
 
 export { Iframe } from './Iframe'
+
+export { SearchAndReplace } from './SearchAndReplace'

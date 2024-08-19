@@ -123,6 +123,12 @@ const locale = {
   'editor.table.menu.setCellsBgColor': 'Màu nền ô',
   'editor.emoji.tooltip': 'Biểu tượng',
   'editor.iframe.tooltip': 'Iframe',
+  'editor.searchAndReplace.tooltip': 'Tìm kiếm và thay thế',
+  'editor.search.dialog.text': 'Tìm kiếm',
+  'editor.replace.dialog.text': 'Thay thế',
+  'editor.replaceAll.dialog.text': 'Thay thế tất cả',
+  'editor.previous.dialog.text': 'Trước',
+  'editor.next.dialog.text': 'Tiếp theo',
 }
 
 export default locale

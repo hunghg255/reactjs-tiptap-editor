@@ -148,4 +148,5 @@ export const icons = {
 
   DeleteColumn,
   DeleteRow,
+  SearchAndReplace: Replace,
 } as any
