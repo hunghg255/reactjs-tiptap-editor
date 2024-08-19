@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react'
 
-import { common, createLowlight } from 'lowlight'
 import RichTextEditor, {
   BaseKit,
   Blockquote,

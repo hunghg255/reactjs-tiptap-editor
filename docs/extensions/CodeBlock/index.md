@@ -15,9 +15,6 @@ The `CodeBlock` extension allows you to add code blocks to your editor. It uses 
 ```tsx
 import { CodeBlock } from 'reactjs-tiptap-editor'; // [!code ++]
 
-// Import Lowlight and Common to create a highlighter
-import { createLowlight, common } from 'lowlight'; // [!code ++]
-
 const extensions = [
   ...,
   // Import Extensions Here
