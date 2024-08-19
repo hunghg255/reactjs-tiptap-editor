@@ -123,6 +123,7 @@ const locale = {
   'editor.table.menu.setCellsBgColor': '设置单元格背景色',
   'editor.emoji.tooltip': '表情',
   'editor.iframe.tooltip': '内嵌框架',
+  'editor.exportPdf.tooltip': '导出 PDF',
 }
 
 export default locale

@@ -73,6 +73,7 @@ import {
   SizeM,
   SizeS,
 } from '@/components/icons'
+import { ExportPdf } from '@/components/icons/ExportPdf'
 
 export const icons = {
   Bold,
@@ -148,4 +149,5 @@ export const icons = {
 
   DeleteColumn,
   DeleteRow,
+  ExportPdf,
 } as any
