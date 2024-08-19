@@ -220,6 +220,10 @@ export function getLocaleConfig(lang: string) {
           text: 'VideoUpload',
           link: '/extensions/VideoUpload/index.md',
         },
+        {
+          text: 'SearchAndReplace',
+          link: '/extensions/SearchAndReplace/index.md',
+        },
       ],
     },
   ]

@@ -39,12 +39,10 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
   return (
     <div className="p-2 bg-white border rounded-lg shadow-sm dark:bg-black border-neutral-200 dark:border-neutral-800">
       <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
-        <Label>
-          {' '}
+        <Label className="mb-[6px]">
           {t('editor.link.dialog.text')}
-          {' '}
         </Label>
-        <div className="flex w-full max-w-sm items-center gap-1.5">
+        <div className="flex w-full max-w-sm items-center gap-1.5 mb-[10px]">
           <div className="relative items-center w-full max-w-sm">
             <Input
               type="text"
@@ -56,7 +54,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
             />
           </div>
         </div>
-        <Label>{t('editor.link.dialog.link')}</Label>
+        <Label className="mb-[6px]">{t('editor.link.dialog.link')}</Label>
         <div className="flex w-full max-w-sm items-center gap-1.5">
           <div className="relative items-center w-full max-w-sm">
             <Input
