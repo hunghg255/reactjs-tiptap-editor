@@ -49,6 +49,20 @@
     ]
   },
   {
+    "name": "CodeBlock.ts",
+    "package": "CodeBlock",
+    "alias": [
+      "highlighter"
+    ]
+  },
+  {
+    "name": "CodeBlock.ts",
+    "package": "CodeBlock",
+    "alias": [
+      "shiki-plugin"
+    ]
+  },
+  {
     "name": "Color.ts",
     "package": "Color",
     "alias": [
@@ -154,13 +168,6 @@
     ]
   },
   {
-    "name": "Link.ts",
-    "package": "Link",
-    "alias": [
-      "Link"
-    ]
-  },
-  {
     "name": "LineHeight.ts",
     "package": "LineHeight",
     "alias": [
@@ -172,6 +179,13 @@
     "package": "ListItem",
     "alias": [
       "ListItem"
+    ]
+  },
+  {
+    "name": "Link.ts",
+    "package": "Link",
+    "alias": [
+      "Link"
     ]
   },
   {
@@ -280,17 +294,17 @@
     ]
   },
   {
-    "name": "TextBubble.ts",
-    "package": "TextBubble",
-    "alias": [
-      "TextBubble"
-    ]
-  },
-  {
     "name": "TrailingNode.ts",
     "package": "TrailingNode",
     "alias": [
       "TrailingNode"
+    ]
+  },
+  {
+    "name": "TextBubble.ts",
+    "package": "TextBubble",
+    "alias": [
+      "TextBubble"
     ]
   },
   {

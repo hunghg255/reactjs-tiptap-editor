@@ -1,9 +1,94 @@
 [
   {
+    "hash": "7c75d92269705411c3e57e2d037f5425f3fa8764",
+    "date": "Mon Aug 19 13:56:27 2024 +0700",
+    "message": "chore: release v0.0.10",
+    "refs": "HEAD -> main, tag: v0.0.10, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.10"
+  },
+  {
+    "hash": "1cde81df165a0eb7275d518815d4b749b63f861f",
+    "date": "Mon Aug 19 13:50:26 2024 +0700",
+    "message": "feat: codeblock highlight use shiki",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md",
+      "CodeBlock",
+      "CodeBlockActiveButton",
+      "highlighter",
+      "shiki-plugin"
+    ]
+  },
+  {
+    "hash": "d832e952fd47ef4f94d96b097794b858cd7636db",
+    "date": "Sun Aug 18 17:53:02 2024 +0800",
+    "message": "docs(LineHeight): add options docs",
+    "refs": "",
+    "author_name": "Condor Hero",
+    "author_email": "love2xinwei@gmail.com",
+    "functions": [
+      "index.md",
+      "LineHeight"
+    ]
+  },
+  {
+    "hash": "867ceaf270ff5d1020ce09dc41f9b2dc1543d8fd",
+    "date": "Sun Aug 18 17:39:03 2024 +0800",
+    "message": "feat(FontSize): Add options support for FontSize extension",
+    "refs": "",
+    "author_name": "Condor Hero",
+    "author_email": "love2xinwei@gmail.com",
+    "functions": [
+      "index.md",
+      "FontSize"
+    ]
+  },
+  {
+    "hash": "1b2c88e1e0a6099611d9da07b430d07a5b62ee2f",
+    "date": "Sun Aug 18 17:13:51 2024 +0800",
+    "message": "feat(FontFamily): Add options support for FontFamily extension",
+    "refs": "",
+    "author_name": "Condor Hero",
+    "author_email": "love2xinwei@gmail.com",
+    "functions": [
+      "index.md",
+      "FontFamily"
+    ]
+  },
+  {
+    "hash": "61e811e201159e8dc531afbb92027d53a3e736c9",
+    "date": "Sun Aug 18 16:27:12 2024 +0800",
+    "message": "feat(Color): Add options support for Color extension",
+    "refs": "",
+    "author_name": "Condor Hero",
+    "author_email": "love2xinwei@gmail.com",
+    "functions": [
+      "index.md",
+      "Color",
+      "ColorActionButton"
+    ]
+  },
+  {
+    "hash": "7c3fdf4cbba73ec6249d54b08e3d3dbb2370f5d7",
+    "date": "Sun Aug 18 13:33:51 2024 +0700",
+    "message": "docs: update",
+    "refs": "tag: v0.0.9, master",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "0736ba9c58fa803327fa560939d5e6cc72634330",
     "date": "Sun Aug 18 13:33:03 2024 +0700",
     "message": "chore: release v0.0.9",
-    "refs": "HEAD -> master, tag: v0.0.9, origin/master, origin/HEAD",
+    "refs": "",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -144,7 +229,7 @@
     "hash": "765cd766625da4d97e002aeff22a4bee41fbab85",
     "date": "Thu Aug 15 16:19:39 2024 +0700",
     "message": "fix: pass props to button",
-    "refs": "fix-style",
+    "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
     "functions": [
