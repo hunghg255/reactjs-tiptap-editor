@@ -14,13 +14,6 @@
     ]
   },
   {
-    "name": "Bold.ts",
-    "package": "Bold",
-    "alias": [
-      "Bold"
-    ]
-  },
-  {
     "name": "BulletList.ts",
     "package": "BulletList",
     "alias": [
@@ -28,10 +21,10 @@
     ]
   },
   {
-    "name": "Clear.ts",
-    "package": "Clear",
+    "name": "Bold.ts",
+    "package": "Bold",
     "alias": [
-      "Clear"
+      "Bold"
     ]
   },
   {
@@ -39,6 +32,13 @@
     "package": "Code",
     "alias": [
       "Code"
+    ]
+  },
+  {
+    "name": "Clear.ts",
+    "package": "Clear",
+    "alias": [
+      "Clear"
     ]
   },
   {
@@ -84,17 +84,17 @@
     ]
   },
   {
-    "name": "FontSize.ts",
-    "package": "FontSize",
-    "alias": [
-      "FontSize"
-    ]
-  },
-  {
     "name": "FormatPainter.ts",
     "package": "FormatPainter",
     "alias": [
       "FormatPainter"
+    ]
+  },
+  {
+    "name": "FontSize.ts",
+    "package": "FontSize",
+    "alias": [
+      "FontSize"
     ]
   },
   {
@@ -175,17 +175,17 @@
     ]
   },
   {
-    "name": "ListItem.ts",
-    "package": "ListItem",
-    "alias": [
-      "ListItem"
-    ]
-  },
-  {
     "name": "Link.ts",
     "package": "Link",
     "alias": [
       "Link"
+    ]
+  },
+  {
+    "name": "ListItem.ts",
+    "package": "ListItem",
+    "alias": [
+      "ListItem"
     ]
   },
   {
@@ -224,6 +224,13 @@
     ]
   },
   {
+    "name": "SearchAndReplace.ts",
+    "package": "SearchAndReplace",
+    "alias": [
+      "SearchAndReplace"
+    ]
+  },
+  {
     "name": "Selection.ts",
     "package": "Selection",
     "alias": [
@@ -252,17 +259,17 @@
     ]
   },
   {
-    "name": "Strike.ts",
-    "package": "Strike",
-    "alias": [
-      "Strike"
-    ]
-  },
-  {
     "name": "Subscript.ts",
     "package": "Subscript",
     "alias": [
       "Subscript"
+    ]
+  },
+  {
+    "name": "Strike.ts",
+    "package": "Strike",
+    "alias": [
+      "Strike"
     ]
   },
   {
@@ -294,17 +301,17 @@
     ]
   },
   {
-    "name": "TrailingNode.ts",
-    "package": "TrailingNode",
-    "alias": [
-      "TrailingNode"
-    ]
-  },
-  {
     "name": "TextBubble.ts",
     "package": "TextBubble",
     "alias": [
       "TextBubble"
+    ]
+  },
+  {
+    "name": "TrailingNode.ts",
+    "package": "TrailingNode",
+    "alias": [
+      "TrailingNode"
     ]
   },
   {

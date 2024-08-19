@@ -1,9 +1,45 @@
 [
   {
+    "hash": "621e8987bc2495938d6bf1949d86fa2341452df9",
+    "date": "Mon Aug 19 18:32:40 2024 +0700",
+    "message": "chore: release v0.0.11",
+    "refs": "HEAD -> main, tag: v0.0.11, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.11"
+  },
+  {
+    "hash": "db3eff0691fe984d692817866cfef6911cf52906",
+    "date": "Mon Aug 19 18:29:59 2024 +0700",
+    "message": "feat: search and replace text",
+    "refs": "origin/feat-search-replace, feat-search-replace",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md",
+      "LinkEditBlock",
+      "SearchAndReplace",
+      "SearchAndReplaceButton",
+      "index"
+    ]
+  },
+  {
+    "hash": "e5a942c88fae527114b3f800b8f8a7aae319b4da",
+    "date": "Mon Aug 19 13:57:19 2024 +0700",
+    "message": "docs: gen changelog",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "7c75d92269705411c3e57e2d037f5425f3fa8764",
     "date": "Mon Aug 19 13:56:27 2024 +0700",
     "message": "chore: release v0.0.10",
-    "refs": "HEAD -> main, tag: v0.0.10, origin/main",
+    "refs": "tag: v0.0.10",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
