@@ -1,7 +1,7 @@
 import { Extension } from '@tiptap/core'
 import type { Editor } from '@tiptap/core'
 
-import { DEFAULT_LINE_HEIGHT } from '@/constants'
+import { DEFAULT_LINE_HEIGHT, DEFAULT_LINE_HEIGHT_LIST } from '@/constants'
 import LineHeightDropdown from '@/extensions/LineHeight/components/LineHeightDropdown'
 import type { GeneralOptions } from '@/types'
 import { createLineHeightCommand } from '@/utils/line-height'
@@ -27,7 +27,7 @@ export const LineHeight = Extension.create<LineHeightOptions>({
     return {
       ...this.parent?.(),
       types: ['paragraph', 'heading', 'list_item', 'todo_item'],
-      lineHeights: ['100%', '115%', '150%', '200%', '250%', '300%'],
+      lineHeights: DEFAULT_LINE_HEIGHT_LIST,
       defaultHeight: DEFAULT_LINE_HEIGHT,
       button({ editor, t }: { editor: Editor, t: any }) {
         return {

@@ -173,3 +173,8 @@ export interface BubbleMenuProps {
   }
   render?: (props: BubbleMenuRenderProps, dom: React.ReactNode) => React.ReactNode
 }
+
+export interface NameValueOption<T = string> {
+  name: string
+  value: T
+}
