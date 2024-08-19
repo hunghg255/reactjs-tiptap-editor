@@ -108,6 +108,20 @@ export const DEFAULT_FONT_FAMILY_LIST = [
   'cursive',
 ]
 
+export const DEFAULT_LANGUAGE_CODE_BLOCK = [
+  'html',
+  'css',
+  'js',
+  'ts',
+]
+
+export const MAP_LANGUAGE_CODE_LABELS = {
+  html: 'HTML',
+  css: 'CSS',
+  js: 'JavaScript',
+  ts: 'TypeScript',
+} as any
+
 /** Default font size list */
 export const DEFAULT_FONT_SIZE_LIST = [
   '10px',
