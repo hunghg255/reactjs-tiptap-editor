@@ -1,9 +1,63 @@
 [
   {
+    "hash": "21746e3190d453addeb94086e35c1fcb0db50287",
+    "date": "Tue Aug 20 08:39:11 2024 +0700",
+    "message": "chore: release v0.0.12",
+    "refs": "HEAD -> main, tag: v0.0.12, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.12"
+  },
+  {
+    "hash": "ef8e08f611f9acfaddad130f48dcab2a1c071329",
+    "date": "Tue Aug 20 08:36:35 2024 +0700",
+    "message": "feat: add extention katex",
+    "refs": "origin/feat-katex, feat-katex",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md",
+      "Katex",
+      "KatexActiveButton",
+      "KatexWrapper",
+      "index"
+    ]
+  },
+  {
+    "hash": "f2e955a0930abf9b3f0c4207f1fa528f2864720e",
+    "date": "Tue Aug 20 07:04:40 2024 +0700",
+    "message": "feat: add extention emoji",
+    "refs": "origin/feat-emoji, feat-emoji",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md",
+      "Emoji",
+      "EmojiList",
+      "emojis",
+      "EmojiPicker",
+      "constants",
+      "emoji.json",
+      "index"
+    ]
+  },
+  {
+    "hash": "625cc324d73b1a35ddabbc0a862f8d7ce30537ee",
+    "date": "Mon Aug 19 18:33:48 2024 +0700",
+    "message": "docs: gen changelog",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "621e8987bc2495938d6bf1949d86fa2341452df9",
     "date": "Mon Aug 19 18:32:40 2024 +0700",
     "message": "chore: release v0.0.11",
-    "refs": "HEAD -> main, tag: v0.0.11, origin/main",
+    "refs": "tag: v0.0.11",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",

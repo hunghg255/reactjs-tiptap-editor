@@ -14,13 +14,6 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
-    ]
-  },
-  {
     "name": "Bold.ts",
     "package": "Bold",
     "alias": [
@@ -28,17 +21,17 @@
     ]
   },
   {
-    "name": "Code.ts",
-    "package": "Code",
-    "alias": [
-      "Code"
-    ]
-  },
-  {
     "name": "Clear.ts",
     "package": "Clear",
     "alias": [
       "Clear"
+    ]
+  },
+  {
+    "name": "BulletList.ts",
+    "package": "BulletList",
+    "alias": [
+      "BulletList"
     ]
   },
   {
@@ -63,6 +56,13 @@
     ]
   },
   {
+    "name": "Code.ts",
+    "package": "Code",
+    "alias": [
+      "Code"
+    ]
+  },
+  {
     "name": "Color.ts",
     "package": "Color",
     "alias": [
@@ -77,6 +77,13 @@
     ]
   },
   {
+    "name": "Emoji.ts",
+    "package": "Emoji",
+    "alias": [
+      "Emoji"
+    ]
+  },
+  {
     "name": "FontFamily.ts",
     "package": "FontFamily",
     "alias": [
@@ -84,17 +91,17 @@
     ]
   },
   {
-    "name": "FormatPainter.ts",
-    "package": "FormatPainter",
-    "alias": [
-      "FormatPainter"
-    ]
-  },
-  {
     "name": "FontSize.ts",
     "package": "FontSize",
     "alias": [
       "FontSize"
+    ]
+  },
+  {
+    "name": "FormatPainter.ts",
+    "package": "FormatPainter",
+    "alias": [
+      "FormatPainter"
     ]
   },
   {
@@ -119,13 +126,6 @@
     ]
   },
   {
-    "name": "HorizontalRule.ts",
-    "package": "HorizontalRule",
-    "alias": [
-      "HorizontalRule"
-    ]
-  },
-  {
     "name": "Iframe.ts",
     "package": "Iframe",
     "alias": [
@@ -140,10 +140,10 @@
     ]
   },
   {
-    "name": "Image.ts",
-    "package": "Image",
+    "name": "HorizontalRule.ts",
+    "package": "HorizontalRule",
     "alias": [
-      "Image"
+      "HorizontalRule"
     ]
   },
   {
@@ -151,6 +151,13 @@
     "package": "ImageUpload",
     "alias": [
       "ImageUpload"
+    ]
+  },
+  {
+    "name": "Image.ts",
+    "package": "Image",
+    "alias": [
+      "Image"
     ]
   },
   {
@@ -165,6 +172,13 @@
     "package": "Italic",
     "alias": [
       "Italic"
+    ]
+  },
+  {
+    "name": "Katex.ts",
+    "package": "Katex",
+    "alias": [
+      "Katex"
     ]
   },
   {
@@ -224,17 +238,17 @@
     ]
   },
   {
-    "name": "SearchAndReplace.ts",
-    "package": "SearchAndReplace",
-    "alias": [
-      "SearchAndReplace"
-    ]
-  },
-  {
     "name": "Selection.ts",
     "package": "Selection",
     "alias": [
       "Selection"
+    ]
+  },
+  {
+    "name": "SearchAndReplace.ts",
+    "package": "SearchAndReplace",
+    "alias": [
+      "SearchAndReplace"
     ]
   },
   {
@@ -259,17 +273,17 @@
     ]
   },
   {
-    "name": "Subscript.ts",
-    "package": "Subscript",
-    "alias": [
-      "Subscript"
-    ]
-  },
-  {
     "name": "Strike.ts",
     "package": "Strike",
     "alias": [
       "Strike"
+    ]
+  },
+  {
+    "name": "Subscript.ts",
+    "package": "Subscript",
+    "alias": [
+      "Subscript"
     ]
   },
   {
@@ -333,6 +347,20 @@
     "package": "VideoUpload",
     "alias": [
       "VideoUpload"
+    ]
+  },
+  {
+    "name": "Emoji.ts",
+    "package": "Emoji",
+    "alias": [
+      "components"
+    ]
+  },
+  {
+    "name": "Emoji.ts",
+    "package": "Emoji",
+    "alias": [
+      "components"
     ]
   }
 ]
