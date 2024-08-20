@@ -228,6 +228,10 @@ export function getLocaleConfig(lang: string) {
           text: 'Emoji',
           link: '/extensions/Emoji/index.md',
         },
+        {
+          text: 'Katex',
+          link: '/extensions/Katex/index.md',
+        },
       ],
     },
   ]

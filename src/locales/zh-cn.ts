@@ -137,7 +137,8 @@ const locale = {
   'Symbol': '符号',
   'Object': '物体',
   'Activity': '活动',
-
+  'editor.formula.dialog.text': '公式',
+  'editor.katex.tooltip': '数学公式',
 }
 
 export default locale
