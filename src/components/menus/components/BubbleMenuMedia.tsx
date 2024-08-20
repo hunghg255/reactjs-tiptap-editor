@@ -1,3 +1,4 @@
+/* eslint-disable react/no-useless-fragment */
 import { Fragment, useMemo } from 'react'
 
 import type { Editor } from '@tiptap/react'
@@ -29,16 +30,14 @@ function ItemA({ item, disabled, editor }: any) {
     <Fragment>
       {item.type === 'divider'
         ? (
-            <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
+            <Separator orientation="vertical" className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" />
           )
         : (
-            <>
-              <Comp
-                {...item.componentProps}
-                editor={editor}
-                disabled={disabled || item?.componentProps?.disabled}
-              />
-            </>
+            <Comp
+              {...item.componentProps}
+              editor={editor}
+              disabled={disabled || item?.componentProps?.disabled}
+            />
           )}
     </Fragment>
   )
@@ -87,8 +86,8 @@ function BubbleMenuImage(props: IPropsBubbleMenu) {
       >
         {items?.length
           ? (
-              <div className="w-auto px-3 py-2 transition-all border rounded-sm shadow-sm pointer-events-auto select-none border-neutral-200 dark:border-neutral-800 bg-background">
-                <div className="flex items-center flex-nowrap whitespace-nowrap h-[26px] justify-start relative">
+              <div className="richtext-w-auto richtext-px-3 richtext-py-2 richtext-transition-all richtext-border richtext-rounded-sm richtext-shadow-sm richtext-pointer-events-auto richtext-select-none richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-bg-background">
+                <div className="richtext-flex richtext-items-center richtext-flex-nowrap richtext-whitespace-nowrap richtext-h-[26px] richtext-justify-start richtext-relative">
                   {items?.map((item: any, key: any) => {
                     return (
                       <ItemA
@@ -146,8 +145,8 @@ function BubbleMenuVideo(props: IPropsBubbleMenu) {
       >
         {items?.length
           ? (
-              <div className="w-auto px-3 py-2 transition-all border rounded-sm shadow-sm pointer-events-auto select-none border-neutral-200 dark:border-neutral-800 bg-background">
-                <div className="flex items-center flex-nowrap whitespace-nowrap h-[26px] justify-start relative">
+              <div className="richtext-w-auto richtext-px-3 richtext-py-2 richtext-transition-all richtext-border richtext-rounded-sm richtext-shadow-sm richtext-pointer-events-auto richtext-select-none richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-bg-background">
+                <div className="richtext-flex richtext-items-center richtext-flex-nowrap richtext-whitespace-nowrap richtext-h-[26px] richtext-justify-start richtext-relative">
                   {items?.map((item: any, key: any) => {
                     return (
                       <ItemA

@@ -1,14 +1,14 @@
-import * as path from 'node:path';
+import * as path from 'node:path'
 
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
-import checker from 'vite-plugin-checker';
-import EnvironmentPlugin from 'vite-plugin-environment';
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+import checker from 'vite-plugin-checker'
+import EnvironmentPlugin from 'vite-plugin-environment'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const isDev = mode !== 'production';
-  const isAnalyze = mode === 'analyze';
+  const isDev = mode !== 'production'
+  const isAnalyze = mode === 'analyze'
 
   return {
     plugins: [
@@ -45,5 +45,5 @@ export default defineConfig(({ mode }) => {
     esbuild: {
       sourcemap: isDev,
     },
-  };
-});
+  }
+})

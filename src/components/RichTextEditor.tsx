@@ -102,7 +102,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
   })
 
   useEffect(() => {
-    document.body.classList.toggle('dark', props.dark)
+    document.documentElement.classList.toggle('dark', props.dark)
     themeActions.setTheme(props.dark ? 'dark' : 'light')
   }, [props.dark])
 
@@ -150,18 +150,18 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
 
   return (
     <TooltipProvider delayDuration={0}>
-      <div className="reactjs-tiptap-editor rounded-[0.5rem] bg-background shadow overflow-hidden outline outline-1">
+      <div className="reactjs-tiptap-editor richtext-rounded-[0.5rem] richtext-bg-background richtext-shadow richtext-overflow-hidden richtext-outline richtext-outline-1">
         {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu} editor={editor} disabled={props?.disabled} />}
 
-        <div className="flex flex-col w-full max-h-full">
+        <div className="richtext-flex richtext-flex-col richtext-w-full richtext-max-h-full">
           {!props?.hideToolbar && <Toolbar editor={editor} disabled={!!props?.disabled} />}
 
-          <EditorContent className={`relative ${props?.contentClass || ''}`} editor={editor} />
+          <EditorContent className={`richtext-relative ${props?.contentClass || ''}`} editor={editor} />
 
-          <div className="flex items-center justify-between p-3 border-t">
+          <div className="richtext-flex richtext-items-center richtext-justify-between richtext-p-3 richtext-border-t">
             {hasExtensionValue && (
-              <div className="flex flex-col">
-                <div className="flex justify-end gap-3 text-sm">
+              <div className="richtext-flex richtext-flex-col">
+                <div className="richtext-flex richtext-justify-end richtext-gap-3 richtext-text-sm">
                   <span>
                     {(editor as any).storage.characterCount.characters()}
                     {' '}

@@ -1,10 +1,10 @@
-import animate from 'tailwindcss-animate';
+import animate from 'tailwindcss-animate'
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: ['class'],
+  darkMode: ['class', '[class~=\'dark\']'],
   safelist: ['dark'],
-  prefix: '',
+  prefix: 'richtext-',
 
   content: [
     './pages/**/*.{ts,tsx}',
@@ -90,4 +90,4 @@ export default {
     },
   },
   plugins: [animate],
-};
+}

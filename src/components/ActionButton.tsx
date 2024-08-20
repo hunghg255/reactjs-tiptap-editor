@@ -8,6 +8,7 @@ import type { TooltipContentProps } from '@radix-ui/react-tooltip'
 import { Toggle, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components'
 import type { ButtonViewReturnComponentProps } from '@/types'
 import { getShortcutKeys } from '@/utils/plateform'
+import { cn } from '@/lib/utils'
 
 export interface ActionButtonProps {
   /* Icon name to display */
@@ -69,20 +70,20 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
           <Comp
             ref={ref}
             size="sm"
-            className={`w-[32px] h-[32px] ${customClass}`}
+            className={cn('richtext-w-[32px] richtext-h-[32px]', customClass)}
             // pressed={isActive?.() || false}
             disabled={disabled}
             onClick={action}
             data-state={isActive?.() ? 'on' : 'off'}
             {...rest}
           >
-            {Icon && <Icon className="w-4 h-4" />}
+            {Icon && <Icon className="richtext-w-4 richtext-h-4" />}
             {children}
           </Comp>
         </TooltipTrigger>
         {tooltip && (
           <TooltipContent {...tooltipOptions}>
-            <div className="flex flex-col items-center text-center max-w-24">
+            <div className="richtext-flex richtext-flex-col richtext-items-center richtext-text-center richtext-max-w-24">
               <div>{tooltip}</div>
               {!!shortcutKeys?.length && <span>{getShortcutKeys(shortcutKeys)}</span>}
             </div>

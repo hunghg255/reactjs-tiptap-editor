@@ -67,11 +67,11 @@ function VideoUploaderView(props: IPropsVideoUploaderView) {
     <NodeViewWrapper as="div" data-drag-handle>
       <Popover defaultOpen modal>
         <PopoverTrigger asChild>
-          <div className="flex items-center w-full p-3 my-3 transition-all border rounded-sm cursor-pointer hover:bg-accent border-border text-muted-foreground">
+          <div className="richtext-flex richtext-items-center richtext-w-full richtext-p-3 richtext-my-3 richtext-transition-all richtext-border richtext-rounded-sm richtext-cursor-pointer hover:richtext-bg-accent richtext-border-border richtext-text-muted-foreground">
             {loading
               ? (
-                  <div className="flex items-center justify-center gap-3 text-s">
-                    <IconComponent className="w-6 h-6 animate-spin" name="LoaderCircle" />
+                  <div className="richtext-flex richtext-items-center richtext-justify-center richtext-gap-3 richtext-text-sm">
+                    <IconComponent className="richtext-w-6 richtext-h-6 richtext-animate-spin" name="LoaderCircle" />
                     <span>
                       {t('editor.video.dialog.uploading')}
                       ...
@@ -79,19 +79,19 @@ function VideoUploaderView(props: IPropsVideoUploaderView) {
                   </div>
                 )
               : (
-                  <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center justify-center gap-3">
-                      <IconComponent name="Video" className="w-6 h-6" />
-                      <span className="text-sm">{t('editor.video.dialog.title')}</span>
+                  <div className="richtext-flex richtext-items-center richtext-justify-between richtext-w-full">
+                    <div className="richtext-flex richtext-items-center richtext-justify-center richtext-gap-3">
+                      <IconComponent name="Video" className="richtext-w-6 richtext-h-6" />
+                      <span className="richtext-text-sm">{t('editor.video.dialog.title')}</span>
                     </div>
-                    <IconComponent name="Trash2" className="hover:text-foreground" onClick={handleDelete} />
+                    <IconComponent name="Trash2" className="hover:richtext-text-foreground" onClick={handleDelete} />
                   </div>
                 )}
           </div>
         </PopoverTrigger>
-        <PopoverContent className="w-full" onOpenAutoFocus={e => e.preventDefault()}>
-          <Tabs defaultValue="upload" className="w-[400px]" activationMode="manual">
-            <TabsList className="grid w-full grid-cols-2">
+        <PopoverContent className="richtext-w-full" onOpenAutoFocus={e => e.preventDefault()}>
+          <Tabs defaultValue="upload" className="richtext-w-[400px]" activationMode="manual">
+            <TabsList className="richtext-grid richtext-w-full richtext-grid-cols-2">
               <TabsTrigger value="upload">
                 {t('editor.video.dialog.tab.upload')}
                 {' '}
@@ -103,7 +103,7 @@ function VideoUploaderView(props: IPropsVideoUploaderView) {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="upload">
-              <Button className="w-full mt-1" size="sm" onClick={handleClick}>
+              <Button className="richtext-w-full richtext-mt-1" size="sm" onClick={handleClick}>
                 {t('editor.video.dialog.tab.upload')}
               </Button>
               <input
@@ -119,7 +119,7 @@ function VideoUploaderView(props: IPropsVideoUploaderView) {
             </TabsContent>
             <TabsContent value="link">
               <form onSubmit={handleLink}>
-                <div className="flex items-center gap-2">
+                <div className="richtext-flex richtext-items-center richtext-gap-2">
                   <Input
                     type="url"
                     autoFocus={true}

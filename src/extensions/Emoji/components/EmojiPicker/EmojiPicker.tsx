@@ -80,9 +80,9 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
     <Popover>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
 
-      <PopoverContent hideWhenDetached className="w-full h-full p-2" align="start" side="bottom">
+      <PopoverContent hideWhenDetached className="richtext-w-full richtext-h-full richtext-p-2" align="start" side="bottom">
         <Tabs defaultValue="Recently Used">
-          <TabsList className="flex items-center gap-[6px]">
+          <TabsList className="richtext-flex richtext-items-center richtext-gap-[6px]">
             {renderedList.map((list) => {
               return (
                 <TabsTrigger
@@ -101,13 +101,13 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
                 key={list.title}
                 value={list.title}
               >
-                <p className="mb-[6px] font-semibold">{t(list.title as any)}</p>
-                <div className="grid grid-cols-8 gap-1 ">
+                <p className="richtext-mb-[6px] richtext-font-semibold">{t(list.title as any)}</p>
+                <div className="richtext-grid richtext-grid-cols-8 richtext-gap-1 ">
                   {(list.data || []).map(ex => (
                     <div
                       key={ex}
                       onClick={() => selectEmoji(ex)}
-                      className="text-center cursor-pointer"
+                      className="richtext-text-center richtext-cursor-pointer"
                     >
                       {ex}
                     </div>

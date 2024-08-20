@@ -98,41 +98,39 @@ function TextDropdown(props: IPropsTextDropdown) {
   }, [menus])
 
   return (
-    <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-[32px] flex gap-1 px-1.5">
-            <span className="text-sm font-normal whitespace-nowrap">
-              {' '}
-              {activeItem?.label}
-            </span>
-            <ChevronDown className="w-4 h-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent hideWhenDetached className="w-full p-1" align="start" sideOffset={5}>
-          {menus.map((item, index) => {
-            const Icon = icons[item.iconName as any]
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="richtext-h-[32px] richtext-flex richtext-gap-1 richtext-px-1.5">
+          <span className="richtext-text-sm richtext-font-normal richtext-whitespace-nowrap">
+            {' '}
+            {activeItem?.label}
+          </span>
+          <ChevronDown className="richtext-w-4 richtext-h-4" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent hideWhenDetached className="richtext-w-full richtext-p-1" align="start" sideOffset={5}>
+        {menus.map((item, index) => {
+          const Icon = icons[item.iconName as any]
 
-            return (
-              <DropdownMenuCheckboxItem
-                key={index}
-                checked={item.isActive?.() || false}
-                onClick={() => item.action()}
-                className="cursor-pointer"
-              >
-                <div className="flex items-center gap-2 px-2">
-                  <Icon className="w-3 h3" />
-                  <span>
-                    {' '}
-                    {item.label}
-                  </span>
-                </div>
-              </DropdownMenuCheckboxItem>
-            )
-          })}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </>
+          return (
+            <DropdownMenuCheckboxItem
+              key={index}
+              checked={item.isActive?.() || false}
+              onClick={() => item.action()}
+              className="richtext-cursor-pointer"
+            >
+              <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-px-2">
+                <Icon className="richtext-w-3 richtext-h3" />
+                <span>
+                  {' '}
+                  {item.label}
+                </span>
+              </div>
+            </DropdownMenuCheckboxItem>
+          )
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
 

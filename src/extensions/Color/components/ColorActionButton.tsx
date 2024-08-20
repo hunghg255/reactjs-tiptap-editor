@@ -78,9 +78,9 @@ function ColorActionButton(props: ColorActionButtonProps) {
   )
 
   return (
-    <div className="flex items-center h-[32px]">
+    <div className="richtext-flex richtext-items-center richtext-h-[32px]">
       <ActionButton tooltip={props?.tooltip} disabled={props?.disabled} action={toggleColor}>
-        <span className="flex items-center justify-center text-sm">
+        <span className="richtext-flex richtext-items-center richtext-justify-center richtext-text-sm">
           <IconC fill={selectedColor} />
         </span>
       </ActionButton>
@@ -93,8 +93,8 @@ function ColorActionButton(props: ColorActionButtonProps) {
         colors={props?.colors}
         defaultColor={props?.defaultColor}
       >
-        <Button variant="ghost" size="icon" className="h-[32px] w-3" disabled={props?.disabled}>
-          <IconComponent className="w-3 h-3 text-zinc-500" name="MenuDown" />
+        <Button variant="ghost" size="icon" className="richtext-h-[32px] richtext-w-3" disabled={props?.disabled}>
+          <IconComponent className="richtext-w-3 richtext-h-3 richtext-text-zinc-500" name="MenuDown" />
         </Button>
       </ColorPicker>
     </div>
