@@ -2,8 +2,8 @@
 import type React from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { Bike, Clock3, Cloudy, Component, FolderDot, Laugh, Pointer } from 'lucide-react'
-import { ACTIVITIES, EXPRESSIONES, GESTURES, OBJECTS, SKY_WEATHER, SYMBOLS } from './constants'
+import { Bike, Clock3, Cloudy, Component, Flag, FolderDot, Laugh, Pointer } from 'lucide-react'
+import { ACTIVITIES, EXPRESSIONES, FLAGS, GESTURES, OBJECTS, SKY_WEATHER, SYMBOLS } from './constants'
 import { createKeysLocalStorageLRUCache } from '@/utils/lru-cache'
 import { ActionButton, Popover, PopoverContent, PopoverTrigger, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components'
 import { useLocale } from '@/locales'
@@ -40,6 +40,11 @@ const LIST = [
     title: 'Activity',
     data: ACTIVITIES,
     icon: Bike,
+  },
+  {
+    title: 'Flags',
+    data: FLAGS,
+    icon: Flag,
   },
 ]
 
@@ -102,16 +107,18 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
                 value={list.title}
               >
                 <p className="richtext-mb-[6px] richtext-font-semibold">{t(list.title as any)}</p>
-                <div className="richtext-grid richtext-grid-cols-8 richtext-gap-1 ">
-                  {(list.data || []).map(ex => (
-                    <div
-                      key={ex}
-                      onClick={() => selectEmoji(ex)}
-                      className="richtext-text-center richtext-cursor-pointer"
-                    >
-                      {ex}
-                    </div>
-                  ))}
+                <div className="richtext-max-h-[300px] richtext-overflow-y-auto">
+                  <div className="richtext-grid richtext-grid-cols-8 richtext-gap-1 ">
+                    {(list.data || []).map(ex => (
+                      <div
+                        key={ex}
+                        onClick={() => selectEmoji(ex)}
+                        className="richtext-text-center richtext-cursor-pointer"
+                      >
+                        {ex}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </TabsContent>
             )

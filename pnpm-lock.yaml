@@ -233,7 +233,7 @@ importers:
         version: 4.3.1(vite@5.4.0(@types/node@22.3.0)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.8)(terser@5.31.3))
       autoprefixer:
         specifier: ^10.4.20
-        version: 10.4.20(postcss@8.4.40)
+        version: 10.4.20(postcss@8.4.41)
       bumpp:
         specifier: ^9.5.1
         version: 9.5.1
@@ -261,9 +261,15 @@ importers:
       md5:
         specifier: ^2.3.0
         version: 2.3.0
+      postcss:
+        specifier: ^8.4.41
+        version: 8.4.41
       postcss-replace:
         specifier: ^2.0.1
-        version: 2.0.1(postcss@8.4.40)
+        version: 2.0.1(postcss@8.4.41)
+      postcss-scss:
+        specifier: ^4.0.9
+        version: 4.0.9(postcss@8.4.41)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -299,13 +305,13 @@ importers:
     devDependencies:
       '@nolebase/vitepress-plugin-enhanced-mark':
         specifier: ^2.4.0
-        version: 2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
+        version: 2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
       '@nolebase/vitepress-plugin-enhanced-readabilities':
         specifier: ^2.4.0
-        version: 2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
+        version: 2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
       '@nolebase/vitepress-plugin-highlight-targeted-heading':
         specifier: ^2.4.0
-        version: 2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
+        version: 2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
       '@shikijs/transformers':
         specifier: ^1.13.0
         version: 1.13.0
@@ -326,13 +332,13 @@ importers:
         version: 1.13.0
       unocss:
         specifier: ^0.62.1
-        version: 0.62.1(postcss@8.4.40)(rollup@4.19.1)(vite@5.4.0(@types/node@22.3.0)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.8)(terser@5.31.3))
+        version: 0.62.1(postcss@8.4.41)(rollup@4.19.1)(vite@5.4.0(@types/node@22.3.0)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.8)(terser@5.31.3))
       vite:
         specifier: ^5.4.0
         version: 5.4.0(@types/node@22.3.0)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.8)(terser@5.31.3)
       vitepress:
         specifier: ^1.3.2
-        version: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
+        version: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
       vue:
         specifier: ^3.4.37
         version: 3.4.37(typescript@5.5.4)
@@ -5609,6 +5615,12 @@ packages:
     peerDependencies:
       postcss: ^8.4
 
+  postcss-scss@4.0.9:
+    resolution: {integrity: sha512-AjKOeiwAitL/MXxQW2DliT28EKukvvbEWx3LBmJIRN8KfBGZbRTxNYW0kSqi1COiTZ57nZ9NW06S6ux//N1c9A==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.4.29
+
   postcss-selector-parser@6.1.1:
     resolution: {integrity: sha512-b4dlw/9V8A71rLIDsSwVmak9z2DuBUB7CA1/wSdelNEzqsjoSPeADTWNO09lpH49Diy3/JIZ2bSPB1dI3LJCHg==}
     engines: {node: '>=4'}
@@ -5618,6 +5630,10 @@ packages:
 
   postcss@8.4.40:
     resolution: {integrity: sha512-YF2kKIUzAofPMpfH6hOi2cGnv/HrUlfucspc7pDyvv7kGdqXrfj8SCl/t8owkEgKEuu8ZcRjSOxFxVLqwChZ2Q==}
+    engines: {node: ^10 || ^12 || >=14}
+
+  postcss@8.4.41:
+    resolution: {integrity: sha512-TesUflQ0WKZqAvg52PWL6kHgLKP6xB6heTOdoYM0Wt2UHyxNa4K25EZZMgKns3BH1RLVbZCREPpLY0rhnNoHVQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   preact@10.23.1:
@@ -8573,11 +8589,11 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@nolebase/ui@2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)':
+  '@nolebase/ui@2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)':
     dependencies:
       '@iconify-json/octicon': 1.1.57
       less: 4.2.0
-      vitepress: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
+      vitepress: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
       vue: 3.4.37(typescript@5.5.4)
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -8608,10 +8624,10 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-enhanced-mark@2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)':
+  '@nolebase/vitepress-plugin-enhanced-mark@2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)':
     dependencies:
       less: 4.2.0
-      vitepress: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
+      vitepress: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/node'
@@ -8641,13 +8657,13 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-enhanced-readabilities@2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)':
+  '@nolebase/vitepress-plugin-enhanced-readabilities@2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)':
     dependencies:
       '@iconify-json/carbon': 1.1.37
       '@iconify-json/icon-park-outline': 1.1.16
-      '@nolebase/ui': 2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
+      '@nolebase/ui': 2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
       less: 4.2.0
-      vitepress: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
+      vitepress: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/node'
@@ -8677,10 +8693,10 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)':
+  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.4.0(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)':
     dependencies:
       less: 4.2.0
-      vitepress: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
+      vitepress: 1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/node'
@@ -9867,14 +9883,14 @@ snapshots:
       gzip-size: 6.0.0
       sirv: 2.0.4
 
-  '@unocss/postcss@0.62.1(postcss@8.4.40)':
+  '@unocss/postcss@0.62.1(postcss@8.4.41)':
     dependencies:
       '@unocss/config': 0.62.1
       '@unocss/core': 0.62.1
       '@unocss/rule-utils': 0.62.1
       css-tree: 2.3.1
       magic-string: 0.30.11
-      postcss: 8.4.40
+      postcss: 8.4.41
       tinyglobby: 0.2.2
     transitivePeerDependencies:
       - supports-color
@@ -10382,14 +10398,14 @@ snapshots:
 
   async@3.2.5: {}
 
-  autoprefixer@10.4.20(postcss@8.4.40):
+  autoprefixer@10.4.20(postcss@8.4.41):
     dependencies:
       browserslist: 4.23.3
       caniuse-lite: 1.0.30001651
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.1
-      postcss: 8.4.40
+      postcss: 8.4.41
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -13113,35 +13129,39 @@ snapshots:
 
   possible-typed-array-names@1.0.0: {}
 
-  postcss-import@15.1.0(postcss@8.4.40):
+  postcss-import@15.1.0(postcss@8.4.41):
     dependencies:
-      postcss: 8.4.40
+      postcss: 8.4.41
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.8
 
-  postcss-js@4.0.1(postcss@8.4.40):
+  postcss-js@4.0.1(postcss@8.4.41):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.40
+      postcss: 8.4.41
 
-  postcss-load-config@4.0.2(postcss@8.4.40):
+  postcss-load-config@4.0.2(postcss@8.4.41):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.5.0
     optionalDependencies:
-      postcss: 8.4.40
+      postcss: 8.4.41
 
-  postcss-nested@6.2.0(postcss@8.4.40):
+  postcss-nested@6.2.0(postcss@8.4.41):
     dependencies:
-      postcss: 8.4.40
+      postcss: 8.4.41
       postcss-selector-parser: 6.1.1
 
-  postcss-replace@2.0.1(postcss@8.4.40):
+  postcss-replace@2.0.1(postcss@8.4.41):
     dependencies:
       kind-of: 6.0.3
       object-path: 0.11.8
-      postcss: 8.4.40
+      postcss: 8.4.41
+
+  postcss-scss@4.0.9(postcss@8.4.41):
+    dependencies:
+      postcss: 8.4.41
 
   postcss-selector-parser@6.1.1:
     dependencies:
@@ -13151,6 +13171,12 @@ snapshots:
   postcss-value-parser@4.2.0: {}
 
   postcss@8.4.40:
+    dependencies:
+      nanoid: 3.3.7
+      picocolors: 1.0.1
+      source-map-js: 1.2.0
+
+  postcss@8.4.41:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.0.1
@@ -13824,11 +13850,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.1
-      postcss: 8.4.40
-      postcss-import: 15.1.0(postcss@8.4.40)
-      postcss-js: 4.0.1(postcss@8.4.40)
-      postcss-load-config: 4.0.2(postcss@8.4.40)
-      postcss-nested: 6.2.0(postcss@8.4.40)
+      postcss: 8.4.41
+      postcss-import: 15.1.0(postcss@8.4.41)
+      postcss-js: 4.0.1(postcss@8.4.41)
+      postcss-load-config: 4.0.2(postcss@8.4.41)
+      postcss-nested: 6.2.0(postcss@8.4.41)
       postcss-selector-parser: 6.1.1
       resolve: 1.22.8
       sucrase: 3.35.0
@@ -14070,13 +14096,13 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  unocss@0.62.1(postcss@8.4.40)(rollup@4.19.1)(vite@5.4.0(@types/node@22.3.0)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.8)(terser@5.31.3)):
+  unocss@0.62.1(postcss@8.4.41)(rollup@4.19.1)(vite@5.4.0(@types/node@22.3.0)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.8)(terser@5.31.3)):
     dependencies:
       '@unocss/astro': 0.62.1(rollup@4.19.1)(vite@5.4.0(@types/node@22.3.0)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.8)(terser@5.31.3))
       '@unocss/cli': 0.62.1(rollup@4.19.1)
       '@unocss/core': 0.62.1
       '@unocss/extractor-arbitrary-variants': 0.62.1
-      '@unocss/postcss': 0.62.1(postcss@8.4.40)
+      '@unocss/postcss': 0.62.1(postcss@8.4.41)
       '@unocss/preset-attributify': 0.62.1
       '@unocss/preset-icons': 0.62.1
       '@unocss/preset-mini': 0.62.1
@@ -14232,7 +14258,7 @@ snapshots:
   vite@5.4.0(@types/node@22.3.0)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.8)(terser@5.31.3):
     dependencies:
       esbuild: 0.21.5
-      postcss: 8.4.40
+      postcss: 8.4.41
       rollup: 4.19.1
     optionalDependencies:
       '@types/node': 22.3.0
@@ -14242,7 +14268,7 @@ snapshots:
       sass: 1.77.8
       terser: 5.31.3
 
-  vitepress@1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4):
+  vitepress@1.3.2(@algolia/client-search@4.24.0)(@types/node@22.3.0)(@types/react@18.3.3)(less@4.2.0)(lightningcss@1.25.1)(postcss@8.4.41)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)(search-insights@2.15.0)(terser@5.31.3)(typescript@5.5.4):
     dependencies:
       '@docsearch/css': 3.6.1
       '@docsearch/js': 3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.15.0)
@@ -14261,7 +14287,7 @@ snapshots:
       vite: 5.4.0(@types/node@22.3.0)(less@4.2.0)(lightningcss@1.25.1)(sass@1.77.8)(terser@5.31.3)
       vue: 3.4.37(typescript@5.5.4)
     optionalDependencies:
-      postcss: 8.4.40
+      postcss: 8.4.41
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/node'

@@ -186,11 +186,13 @@
   }
 
   table {
+    border: 1px solid;
     @apply richtext-border-collapse richtext-border-black/10 richtext-table-fixed richtext-box-border richtext-overflow-x-auto richtext-overflow-y-hidden richtext-block;
     @apply dark:richtext-border-white/20;
 
     td,
     th {
+    border: 1px solid;
       @apply richtext-border richtext-border-black/10 richtext-min-w-[1em] richtext-p-2 richtext-box-border richtext-relative richtext-text-left richtext-align-top;
       @apply dark:richtext-border-white/20;
 

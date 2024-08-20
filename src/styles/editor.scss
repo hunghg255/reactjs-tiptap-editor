@@ -1,5 +1,5 @@
-.reactjs-tiptap-editor {
-  .ProseMirror {
+.reactjs-tiptap-editor.reactjs-tiptap-editor {
+  .ProseMirror.ProseMirror.ProseMirror {
     @apply richtext-caret-black dark:richtext-caret-white richtext-outline-0 richtext-pr-8 richtext-pl-20 richtext-py-16 richtext-z-0 lg:richtext-pl-8 lg:richtext-pr-8;
     min-height: 180px;
     padding: 32px 80px;
@@ -43,6 +43,7 @@
         }
       }
     }
+
     /* Column */
     & > *:first-child,
     [data-type='column'] > * {

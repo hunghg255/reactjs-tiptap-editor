@@ -137,6 +137,7 @@ const locale = {
   'Symbol': 'Symbol',
   'Object': 'Object',
   'Activity': 'Activity',
+  'Flags': 'Flags',
   'editor.formula.dialog.text': 'Formula',
   'editor.katex.tooltip': 'Math Formula',
 }

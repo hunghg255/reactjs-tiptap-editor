@@ -137,6 +137,7 @@ const locale = {
   'Symbol': 'Ký hiệu',
   'Object': 'Đối tượng',
   'Activity': 'Hoạt động',
+  'Flags': 'Cờ',
   'editor.formula.dialog.text': 'Công thức',
   'editor.katex.tooltip': 'Công thức toán học',
 
