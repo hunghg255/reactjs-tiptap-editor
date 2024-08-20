@@ -129,6 +129,14 @@ const locale = {
   'editor.replaceAll.dialog.text': 'Replace All',
   'editor.previous.dialog.text': 'Previous',
   'editor.next.dialog.text': 'Next',
+  'no_result_found': 'No results found',
+  'Recently Used': 'Recently Used',
+  'Expression': 'Expression',
+  'Weather': 'Weather',
+  'Gesture': 'Gesture',
+  'Symbol': 'Symbol',
+  'Object': 'Object',
+  'Activity': 'Activity',
 }
 
 export default locale

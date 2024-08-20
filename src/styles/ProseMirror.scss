@@ -263,14 +263,6 @@
       @apply font-bold text-left;
     }
   }
-
-  // Emoji extension styles
-  [data-type='emoji'] {
-    img {
-      height: 1em;
-      width: 1em;
-    }
-  }
 }
 
 .ProseMirror {
@@ -282,3 +274,4 @@
     background: #6cd58b;
   }
 }
+

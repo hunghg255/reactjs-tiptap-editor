@@ -7,6 +7,11 @@ next:
   link: /extensions/Blockquote/index.md
 ---
 
+# BaseKit
+
+- BaseKit Extension for Tiptap Editor.
+- This extension is required for all other extensions.
+
 ## Usage
 
 ```tsx

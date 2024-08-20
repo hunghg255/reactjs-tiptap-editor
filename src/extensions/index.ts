@@ -101,3 +101,5 @@ export type { ColumnsOptions } from './MultiColumn'
 export { Iframe } from './Iframe'
 
 export { SearchAndReplace } from './SearchAndReplace'
+
+export { Emoji } from './Emoji'

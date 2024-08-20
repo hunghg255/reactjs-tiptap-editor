@@ -1,5 +1,9 @@
 ---
-description: SearchAndReplace
+description: Search And Replace
+
+next:
+  text: Emoji
+  link: /extensions/Emoji/index.md
 ---
 
 # Search And Replace
