@@ -61,7 +61,7 @@ function BubbleMenuKatex({ editor, ...props }: any) {
             <></>
           )
         : (
-            <div className="p-2 bg-white border rounded-lg shadow-sm dark:bg-black border-neutral-200 dark:border-neutral-800">
+            <div className="richtext-p-2 richtext-bg-white richtext-border richtext-rounded-lg richtext-shadow-sm dark:richtext-bg-black richtext-border-neutral-200 dark:richtext-border-neutral-800">
               {visible
                 ? (
                     <>
@@ -73,8 +73,8 @@ function BubbleMenuKatex({ editor, ...props }: any) {
                         defaultValue={text}
                         style={{ marginBottom: 8 }}
                       />
-                      <div className="flex items-center justify-between gap-[6px]">
-                        <Button onClick={submit} className="flex-1">Submit</Button>
+                      <div className="richtext-flex richtext-items-center richtext-justify-between richtext-gap-[6px]">
+                        <Button onClick={submit} className="richtext-flex-1">Submit</Button>
 
                         <a href="https://katex.org/" target="_blank" rel="noreferrer noopener">
                           <HelpCircle size={16} />
@@ -83,7 +83,7 @@ function BubbleMenuKatex({ editor, ...props }: any) {
                     </>
                   )
                 : (
-                    <div className="flex items-center justify-center gap-[6px]">
+                    <div className="richtext-flex richtext-items-center richtext-justify-center richtext-gap-[6px]">
                       <ActionButton tooltip="Edit" action={() => toggleVisible(!visible)}>
                         <Pencil size={16} />
                       </ActionButton>

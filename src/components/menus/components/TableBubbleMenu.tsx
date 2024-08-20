@@ -94,7 +94,7 @@ function TableBubbleMenu({ editor }: TableBubbleMenuProps) {
         sticky: 'popper',
       }}
     >
-      <div className="min-w-32 flex flex-row h-full items-center leading-none gap-0.5 p-2 w-full bg-background rounded-lg shadow-sm border border-border">
+      <div className="richtext-min-w-32 richtext-flex richtext-flex-row richtext-h-full richtext-items-center richtext-leading-none richtext-gap-0.5 richtext-p-2 richtext-w-full richtext-bg-background richtext-rounded-lg richtext-shadow-sm richtext-border richtext-border-border">
         <ActionButton
           icon="BetweenHorizonalEnd"
           tooltip={t('editor.table.menu.insertColumnBefore')}
@@ -122,7 +122,7 @@ function TableBubbleMenu({ editor }: TableBubbleMenuProps) {
           }}
           disabled={!editor?.can().deleteColumn?.()}
         />
-        <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
+        <Separator orientation="vertical" className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" />
 
         <ActionButton
           icon="BetweenVerticalEnd"
@@ -152,7 +152,7 @@ function TableBubbleMenu({ editor }: TableBubbleMenuProps) {
           }}
           disabled={!editor?.can()?.deleteRow?.()}
         />
-        <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
+        <Separator orientation="vertical" className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" />
         <ActionButton
           icon="TableCellsMerge"
           action={onMergeCell}
@@ -171,7 +171,7 @@ function TableBubbleMenu({ editor }: TableBubbleMenuProps) {
           }}
           disabled={!editor?.can()?.splitCell?.()}
         />
-        <Separator orientation="vertical" className="mx-1 me-2 h-[16px]" />
+        <Separator orientation="vertical" className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" />
 
         <HighlightActionButton
           editor={editor}

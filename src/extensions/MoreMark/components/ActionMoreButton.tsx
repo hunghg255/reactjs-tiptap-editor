@@ -55,12 +55,12 @@ function ActionMoreButton(props: IPropsActionMoreButton) {
     <DropdownMenu>
       <DropdownMenuTrigger disabled={props?.disabled} asChild>
         <ActionButton
-          customClass="w-12"
+          customClass="!richtext-w-12 richtext-h-12"
           icon={props?.icon}
           tooltip={props?.tooltip}
           disabled={props?.disabled}
         >
-          <MenuDown className="w-3 h-3 text-gray-500" />
+          <MenuDown className="richtext-w-3 richtext-h-3 richtext-text-gray-500" />
         </ActionButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-full">
@@ -70,12 +70,12 @@ function ActionMoreButton(props: IPropsActionMoreButton) {
               checked={active.title === item.title}
               onClick={item.action}
               key={index}
-              className="flex items-center gap-3"
+              className="richtext-flex richtext-items-center richtext-gap-3"
             >
               <IconComponent name={item?.icon} />
-              <span className="ml-1">{item.title}</span>
+              <span className="richtext-ml-1">{item.title}</span>
               {!!item?.shortcutKeys && (
-                <span className="ml-auto text-xs tracking-widest opacity-60">
+                <span className="richtext-ml-auto richtext-text-xs richtext-tracking-widest richtext-opacity-60">
                   {getShortcutKeys(item.shortcutKeys)}
                 </span>
               )}

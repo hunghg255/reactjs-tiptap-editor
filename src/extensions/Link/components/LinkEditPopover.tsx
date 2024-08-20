@@ -31,7 +31,7 @@ function LinkEditPopover(props: IPropsLinkEditPopover) {
           <IconComponent name={props?.icon} />
         </ActionButton>
       </PopoverTrigger>
-      <PopoverContent hideWhenDetached className="w-full" align="start" side="bottom">
+      <PopoverContent hideWhenDetached className="richtext-w-full" align="start" side="bottom">
         <LinkEditBlock editor={props.editor} onSetLink={onSetLink} />
       </PopoverContent>
     </Popover>

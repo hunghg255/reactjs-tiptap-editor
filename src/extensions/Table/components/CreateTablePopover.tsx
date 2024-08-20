@@ -85,25 +85,25 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
       <PopoverTrigger asChild>
         {props?.children}
       </PopoverTrigger>
-      <PopoverContent className="w-full !p-2" align="start" side="bottom">
-        <div className="p-0 table-grid-size-editor">
-          <div className="flex flex-col flex-wrap justify-between gap-1">
+      <PopoverContent className="richtext-w-full !richtext-p-2" align="start" side="bottom">
+        <div className="richtext-p-0 table-grid-size-editor">
+          <div className="richtext-flex richtext-flex-col richtext-flex-wrap richtext-justify-between richtext-gap-1">
             {createArray(tableGridSize?.rows)?.map((row: any) => {
               return (
-                <div key={`r-${row}`} className="flex gap-1">
+                <div key={`r-${row}`} className="richtext-flex richtext-gap-1">
                   {createArray(tableGridSize?.cols)?.map((col: any) => {
                     return (
                       <div
                         key={`c-${col}`}
-                        className={`pa-1 cursor-pointer border-border ${
+                        className={`richtext-cursor-pointer richtext-border-border ${
                           col <= selectedTableGridSize.cols
                           && row <= selectedTableGridSize.rows
-                          && 'bg-foreground'
+                          && '!richtext-bg-foreground tableCellActive'
                         }`}
                         onMouseOver={() => selectTableGridSize(row, col)}
                         onMouseDown={() => onMouseDown(row, col)}
                       >
-                        <div className="w-4 h-4 p-1 border rounded-[2px] box-border border-solid"></div>
+                        <div className="richtext-w-4 richtext-h-4 richtext-p-1 richtext-border richtext-rounded-[2px] richtext-box-border richtext-border-solid"></div>
                       </div>
                     )
                   })}
@@ -111,7 +111,7 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
               )
             })}
           </div>
-          <div className="mt-2 text-sm text-center text-zinc-600">
+          <div className="richtext-mt-2 richtext-text-sm richtext-text-center richtext-text-zinc-600">
             {selectedTableGridSize.rows}
             {' '}
             x

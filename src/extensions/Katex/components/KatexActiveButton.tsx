@@ -41,25 +41,25 @@ function KatexActiveButton({ editor, ...props }: any) {
         />
       </PopoverTrigger>
 
-      <PopoverContent hideWhenDetached className="w-full h-full p-2" align="start" side="bottom">
-        <Label className="mb-[6px]">
+      <PopoverContent hideWhenDetached className="richtext-w-full richtext-h-full richtext-p-2" align="start" side="bottom">
+        <Label className="richtext-mb-[6px]">
           {t('editor.formula.dialog.text')}
         </Label>
-        <div className="flex w-full max-w-sm items-center gap-1.5 mb-[16px]">
-          <div className="relative w-full max-w-sm">
+        <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5 richtext-mb-[16px]">
+          <div className="richtext-relative richtext-w-full richtext-max-w-sm">
             <Textarea
               ref={ref}
               autoFocus
               required
               rows={3}
               defaultValue={text}
-              className="w-full"
+              className="richtext-w-full"
               placeholder="Text"
             />
           </div>
         </div>
-        <div className="flex items-center justify-between gap-[6px]">
-          <Button onClick={submit} className="flex-1">Submit</Button>
+        <div className="richtext-flex richtext-items-center richtext-justify-between richtext-gap-[6px]">
+          <Button onClick={submit} className="richtext-flex-1">Submit</Button>
 
           <a href="https://katex.org/" target="_blank" rel="noreferrer noopener">
             <HelpCircle size={16} />

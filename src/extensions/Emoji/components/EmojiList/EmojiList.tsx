@@ -66,17 +66,17 @@ export const EmojiList: React.FC<IProps> = forwardRef((props, ref) => {
   }))
 
   return (
-    <div className="w-[200px] max-h-[320px] overflow-x-hidden overflow-y-auto rounded-sm border bg-popover p-1 text-popover-foreground shadow-md outline-none">
+    <div className="richtext-w-[200px] richtext-max-h-[320px] richtext-overflow-x-hidden richtext-overflow-y-auto richtext-rounded-sm richtext-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
       <div ref={$container}>
         {props.items.length
           ? (
               props.items.map((item, index) => (
                 <span
-                  className={clsx(' flex relative  cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground  hover:bg-accent', index === selectedIndex ? 'bg-accent' : '')}
+                  className={clsx(' richtext-flex richtext-relative  richtext-cursor-default richtext-select-none richtext-items-center richtext-rounded-sm richtext-px-2 richtext-py-1.5 richtext-text-sm richtext-outline-none richtext-transition-colors focus:richtext-bg-accent focus:richtext-text-accent-foreground  hover:richtext-bg-accent', index === selectedIndex ? 'bg-accent' : '')}
                   key={index}
                   onClick={() => selectItem(index)}
                 >
-                  {item.fallbackImage ? <img src={item.fallbackImage} className="w-[1em] h-[1em]" /> : item.emoji}
+                  {item.fallbackImage ? <img src={item.fallbackImage} className="richtext-w-[1em] richtext-h-[1em]" /> : item.emoji}
                   :
                   {item.name}
                   :
@@ -84,7 +84,7 @@ export const EmojiList: React.FC<IProps> = forwardRef((props, ref) => {
               ))
             )
           : (
-              <div className="flex relative  cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors">
+              <div className="richtext-flex richtext-relative  richtext-cursor-default richtext-select-none richtext-items-center richtext-rounded-sm richtext-px-2 richtext-py-1.5 richtext-text-sm richtext-outline-none richtext-transition-colors">
                 <span>{t('no_result_found')}</span>
               </div>
             )}

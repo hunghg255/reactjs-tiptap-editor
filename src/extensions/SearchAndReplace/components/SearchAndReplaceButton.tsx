@@ -88,39 +88,39 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
       </PopoverTrigger>
       <PopoverContent
         hideWhenDetached
-        className="w-full"
+        className="richtext-w-full"
         align="start"
         side="bottom"
       >
-        <div className="p-2 bg-white border rounded-lg shadow-sm dark:bg-black border-neutral-200 dark:border-neutral-800">
-          <div className="mb-[6px flex items-center justify-between">
+        <div className="richtext-p-2 richtext-bg-white richtext-border richtext-rounded-lg richtext-shadow-sm dark:richtext-bg-black richtext-border-neutral-200 dark:richtext-border-neutral-800">
+          <div className="richtext-mb-[6px richtext-flex richtext-items-center richtext-justify-between">
             <Label>
               {t('editor.search.dialog.text')}
             </Label>
-            <span className="font-semibold">
+            <span className="richtext-font-semibold">
               {results.length ? `${currentIndex + 1}/${results.length}` : '0/0'}
             </span>
           </div>
-          <div className="flex w-full max-w-sm items-center gap-1.5 mb-[10px]">
+          <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5 richtext-mb-[10px]">
             <Input
               type="text"
               required
-              className="w-full"
+              className="richtext-w-full"
               placeholder="Text"
               autoFocus
               value={searchValue}
               onChange={e => setSearchValue(e.target.value)}
             />
           </div>
-          <Label className="mb-[6px]">
+          <Label className="richtext-mb-[6px]">
             {t('editor.replace.dialog.text')}
           </Label>
-          <div className="flex w-full max-w-sm items-center gap-1.5 mb-[16px]">
-            <div className="relative items-center w-full max-w-sm">
+          <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5 richtext-mb-[16px]">
+            <div className="richtext-relative richtext-items-center richtext-w-full richtext-max-w-sm">
               <Input
                 type="text"
                 required
-                className="w-80"
+                className="richtext-w-80"
                 placeholder="Text"
                 value={replaceValue}
                 onChange={e => setReplaceValue(e.target.value)}
@@ -128,22 +128,22 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
             </div>
           </div>
 
-          <div className="flex items-center gap-[10px] mb-[10px]">
-            <Button disabled={!results.length} className="flex-1" onClick={editor.commands.goToPrevSearchResult}>
+          <div className="richtext-flex richtext-items-center richtext-gap-[10px] richtext-mb-[10px]">
+            <Button disabled={!results.length} className="richtext-flex-1" onClick={editor.commands.goToPrevSearchResult}>
               {t('editor.previous.dialog.text')}
             </Button>
 
-            <Button disabled={!results.length} className="flex-1" onClick={editor.commands.goToNextSearchResult}>
+            <Button disabled={!results.length} className="richtext-flex-1" onClick={editor.commands.goToNextSearchResult}>
               {t('editor.next.dialog.text')}
             </Button>
           </div>
 
-          <div className="flex items-center gap-[10px]">
-            <Button disabled={!results.length} className="flex-1" onClick={editor.commands.replace}>
+          <div className="richtext-flex richtext-items-center richtext-gap-[10px]">
+            <Button disabled={!results.length} className="richtext-flex-1" onClick={editor.commands.replace}>
               {t('editor.replace.dialog.text')}
             </Button>
 
-            <Button disabled={!results.length} className="flex-1" onClick={editor.commands.replaceAll}>
+            <Button disabled={!results.length} className="richtext-flex-1" onClick={editor.commands.replaceAll}>
               {t('editor.replaceAll.dialog.text')}
             </Button>
           </div>

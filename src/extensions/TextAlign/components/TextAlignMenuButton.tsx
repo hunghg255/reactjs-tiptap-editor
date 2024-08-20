@@ -50,17 +50,17 @@ function TextAlignMenuButton(props: IPropsTextAlignMenuButton) {
     <Popover>
       <PopoverTrigger disabled={props?.disabled} asChild>
         <ActionButton
-          customClass="w-12"
+          customClass="!richtext-w-12 richtext-h-12"
           icon={props?.icon}
           tooltip={props?.tooltip}
           disabled={props?.disabled}
         >
-          <IconComponent className="w-3 h-3 ml-1 text-zinc-500" name="MenuDown" />
+          <IconComponent className="richtext-w-3 richtext-h-3 richtext-ml-1 richtext-text-zinc-500" name="MenuDown" />
         </ActionButton>
       </PopoverTrigger>
 
       <PopoverContent
-        className="min-w-4 w-full !p-[4px] flex flex-row gap-1"
+        className="richtext-min-w-4 richtext-w-full !richtext-p-[4px] richtext-flex richtext-flex-row richtext-gap-1"
         align="start"
         side="bottom"
       >
@@ -71,14 +71,14 @@ function TextAlignMenuButton(props: IPropsTextAlignMenuButton) {
                 <Toggle
                   size="sm"
                   onClick={item?.action}
-                  className="p-1 w-7 h-7"
+                  className="richtext-p-1 richtext-w-7 richtext-h-7"
                   pressed={active.title === item.title}
                   data-state={active.title === item.title ? 'on' : 'off'}
                 >
                   {item?.icon && <IconComponent name={item.icon} />}
                 </Toggle>
               </TooltipTrigger>
-              <TooltipContent className="flex flex-col items-center">
+              <TooltipContent className="richtext-flex richtext-flex-col richtext-items-center">
                 <span>{item.title}</span>
                 {!!item.shortcutKeys?.length && (
                   <span>{item.shortcutKeys?.map(item => getShortcutKey(item)).join(' ')}</span>

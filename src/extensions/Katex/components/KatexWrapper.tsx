@@ -45,7 +45,7 @@ export function KatexWrapper({ node }: any) {
         backgroundColor,
       }}
     >
-      <div className="flex px-[4px] py-4 text-[1em] text-[#000] cursor-pointer justify-center">{content}</div>
+      <div className="richtext-flex richtext-px-[4px] richtext-py-4 richtext-text-[1em] richtext-text-[#000] richtext-cursor-pointer richtext-justify-center">{content}</div>
     </NodeViewWrapper>
   )
 }

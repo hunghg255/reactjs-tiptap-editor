@@ -37,23 +37,23 @@ const ActionMenuButton = React.forwardRef<HTMLButtonElement, ActionMenuButtonPro
         <TooltipTrigger asChild>
           <Comp
             ref={ref}
-            className="h-[32px] px-[5px] py-0 min-w-24 max-w-32 overflow-hidden"
+            className="richtext-h-[32px] richtext-px-[5px] richtext-py-0 richtext-min-w-24  richtext-overflow-hidden"
             variant="ghost"
             disabled={props?.disabled}
             {...props}
           >
-            <div className="flex items-center h-full font-normal">
+            <div className="richtext-flex richtext-items-center richtext-h-full richtext-font-normal">
               {props?.title && (
-                <div className="flex-grow text-sm text-left truncate">{props?.title}</div>
+                <div className="richtext-flex-grow richtext-text-sm richtext-text-left richtext-truncate">{props?.title}</div>
               )}
-              {Icon && <Icon className="flex-shrink-0 w-3 h-3 ml-1 text-zinc-500" />}
+              {Icon && <Icon className="richtext-flex-shrink-0 richtext-w-3 richtext-h-3 richtext-ml-1 richtext-text-zinc-500" />}
             </div>
           </Comp>
         </TooltipTrigger>
         <TooltipContent>
-          <div className="flex flex-col items-center text-center max-w-24">
+          <div className="richtext-flex richtext-flex-col richtext-items-center richtext-text-center richtext-max-w-24">
             {props?.tooltip && <div>{props?.tooltip}</div>}
-            <div className="flex">
+            <div className="richtext-flex">
               {!!props?.shortcutKeys?.length && <span>{getShortcutKeys(props?.shortcutKeys)}</span>}
             </div>
           </div>

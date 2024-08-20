@@ -1,35 +1,35 @@
 .ProseMirror {
   /* Typography */
   p {
-    @apply leading-relaxed mb-1.5 first:mt-0 last:mb-0;
+    @apply richtext-leading-relaxed richtext-mb-1.5 first:richtext-mt-0 last:richtext-mb-0;
   }
 
   & > p {
-    @apply mb-1.5 first:mt-0 last:mb-0;
+    @apply richtext-mb-1.5 first:richtext-mt-0 last:richtext-mb-0;
   }
 
   h1 {
-    @apply text-3xl;
+    @apply richtext-text-3xl;
   }
 
   h2 {
-    @apply text-2xl;
+    @apply richtext-text-2xl;
   }
 
   h3 {
-    @apply text-xl;
+    @apply richtext-text-xl;
   }
 
   h4 {
-    @apply text-lg;
+    @apply richtext-text-lg;
   }
 
   h5 {
-    @apply text-base;
+    @apply richtext-text-base;
   }
 
   h6 {
-    @apply text-sm;
+    @apply richtext-text-sm;
   }
 
   h1,
@@ -38,31 +38,31 @@
   h4,
   h5,
   h6 {
-    @apply font-bold first:mt-0 last:mb-0;
+    @apply richtext-font-bold first:richtext-mt-0 last:richtext-mb-0;
   }
 
   h1,
   h2,
   h3 {
-    @apply mt-12;
+    @apply richtext-mt-12;
   }
 
   h4,
   h5,
   h6 {
-    @apply mt-8;
+    @apply richtext-mt-8;
   }
 
   a.link {
-    @apply text-blue-500 font-extrabold dark:text-blue-400;
+    @apply richtext-text-blue-500 richtext-font-extrabold dark:richtext-text-blue-400;
   }
 
   mark {
-    @apply bg-red-500 rounded-sm decoration-clone text-inherit py-1 px-0 dark:bg-red-400;
+    @apply richtext-bg-red-500 richtext-rounded-sm richtext-decoration-clone richtext-text-inherit richtext-py-1 richtext-px-0 dark:richtext-bg-red-400;
   }
 
   & img {
-    @apply h-auto max-w-full;
+    @apply richtext-h-auto richtext-max-w-full;
   }
 
   @for $i from 1 through 7 /* max-indent */ {
@@ -73,25 +73,25 @@
     }
   }
   iframe {
-    @apply w-full border border-border mt-2 rounded-sm h-[400px];
+    @apply richtext-w-full richtext-border richtext-border-border richtext-mt-2 richtext-rounded-sm richtext-h-[400px];
   }
 
   [data-type='horizontalRule'] {
-    @apply my-8 py-4;
+    @apply richtext-my-8 richtext-py-4;
 
     hr {
-      @apply border-0 border-t border-black/20 bg-black/80;
-      @apply dark:border-white/20 dark:bg-white/80;
+      @apply richtext-border-0 richtext-border-t richtext-border-black/20 richtext-bg-black/80;
+      @apply dark:richtext-border-white/20 dark:richtext-bg-white/80;
     }
   }
   /* Block Quote */
   .blockquote {
-    @apply border-l-4 text-black border-l-neutral-700 py-2 px-4 bg-opacity-80 rounded-lg rounded-tl-none rounded-bl-none;
-    @apply dark:border-l-neutral-300 dark:text-white;
+    @apply richtext-border-l-4 richtext-text-black richtext-border-l-neutral-700 richtext-py-2 richtext-px-4 richtext-bg-opacity-80 richtext-rounded-lg richtext-rounded-tl-none richtext-rounded-bl-none;
+    @apply dark:richtext-border-l-neutral-300 dark:richtext-text-white;
   }
   /* Columns */
   [data-type='columns'] {
-    @apply grid gap-4 mt-14 mb-12;
+    @apply richtext-grid richtext-gap-4 richtext-mt-14 richtext-mb-12;
 
     &.layout-sidebar-left {
       grid-template-columns: 40fr 60fr;
@@ -111,156 +111,104 @@
   }
 
   [data-type='column'] {
-    @apply overflow-auto;
+    @apply richtext-overflow-auto;
   }
   code {
-    @apply caret-white text-white bg-neutral-900 rounded-sm shadow-lg font-mono;
+    @apply richtext-caret-white richtext-text-white richtext-bg-neutral-900 richtext-rounded-sm richtext-shadow-lg richtext-font-mono;
 
     &::selection {
-      @apply bg-white/30;
+      @apply richtext-bg-white/30;
     }
   }
 
   pre {
-    @apply caret-white bg-neutral-700 text-white rounded my-12 p-4 border border-black dark:bg-neutral-900 dark:border-neutral-800;
+    @apply richtext-caret-white richtext-bg-neutral-700 richtext-text-white richtext-rounded richtext-my-12 richtext-p-4 richtext-border richtext-border-black dark:richtext-bg-neutral-900 dark:richtext-border-neutral-800;
 
     *::selection {
-      @apply bg-white/20;
+      @apply richtext-bg-white/20;
     }
 
     code {
-      @apply bg-inherit text-inherit p-0 shadow-none;
-    }
-
-    .hljs-comment,
-    .hljs-quote {
-      @apply text-neutral-400;
-    }
-
-    .hljs-variable,
-    .hljs-template-variable,
-    .hljs-attribute,
-    .hljs-tag,
-    .hljs-name,
-    .hljs-regexp,
-    .hljs-link,
-    .hljs-name,
-    .hljs-selector-id,
-    .hljs-selector-class {
-      @apply text-red-300;
-    }
-
-    .hljs-number,
-    .hljs-meta,
-    .hljs-built_in,
-    .hljs-builtin-name,
-    .hljs-literal,
-    .hljs-type,
-    .hljs-params {
-      @apply text-orange-300;
-    }
-
-    .hljs-string,
-    .hljs-symbol,
-    .hljs-bullet {
-      @apply text-lime-300;
-    }
-
-    .hljs-title,
-    .hljs-section {
-      @apply text-yellow-300;
-    }
-
-    .hljs-keyword,
-    .hljs-selector-tag {
-      @apply text-teal-300;
-    }
-
-    .hljs-emphasis {
-      font-style: italic;
-    }
-
-    .hljs-strong {
-      font-weight: 700;
+      @apply richtext-bg-inherit richtext-text-inherit richtext-p-0 richtext-shadow-none;
     }
   }
   /* List */
   ol {
-    @apply list-decimal;
+    @apply richtext-list-decimal;
   }
 
   ul {
-    @apply list-disc;
+    @apply richtext-list-disc;
   }
 
   ul,
   ol {
-    @apply py-0 px-8 my-6 first:mt-0 last:mb-0;
+    @apply richtext-py-0 richtext-px-8 richtext-my-6 first:richtext-mt-0 last:richtext-mb-0;
 
     ul,
     ol,
     li {
-      @apply my-1;
+      @apply richtext-my-1;
     }
 
     p {
-      @apply mt-0 mb-1;
+      @apply richtext-mt-0 richtext-mb-1;
     }
   }
 
   & > ul,
   & > ol {
-    @apply my-8 first:mt-0 last:mb-0;
+    @apply richtext-my-8 first:richtext-mt-0 last:richtext-mb-0;
   }
 
   ul[data-type='taskList'] {
-    @apply list-none p-0;
+    @apply richtext-list-none richtext-p-0;
 
     p {
-      @apply m-0;
+      @apply richtext-m-0;
     }
 
     li {
-      @apply flex;
+      @apply richtext-flex;
 
       > label {
-        @apply grow-0 shrink-0 flex-auto inline-flex mr-2 select-none;
+        @apply richtext-grow-0 richtext-shrink-0 richtext-flex-auto richtext-inline-flex richtext-mr-2 richtext-select-none;
       }
 
       > div {
-        @apply flex-auto;
+        @apply richtext-flex-auto;
       }
 
       &[data-checked='true'] {
-        @apply line-through;
+        @apply richtext-line-through;
       }
     }
   }
 
   table {
-    @apply border-collapse border-black/10 table-fixed box-border overflow-x-auto overflow-y-hidden block;
-    @apply dark:border-white/20;
+    @apply richtext-border-collapse richtext-border-black/10 richtext-table-fixed richtext-box-border richtext-overflow-x-auto richtext-overflow-y-hidden richtext-block;
+    @apply dark:richtext-border-white/20;
 
     td,
     th {
-      @apply border border-black/10 min-w-[1em] p-2 box-border relative text-left align-top;
-      @apply dark:border-white/20;
+      @apply richtext-border richtext-border-black/10 richtext-min-w-[1em] richtext-p-2 richtext-box-border richtext-relative richtext-text-left richtext-align-top;
+      @apply dark:richtext-border-white/20;
 
       &:first-of-type:not(a) {
-        @apply mt-0;
+        @apply richtext-mt-0;
       }
 
       p {
-        @apply m-0;
+        @apply richtext-m-0;
 
         & + p {
-          @apply mt-3;
+          @apply richtext-mt-3;
         }
       }
     }
 
     th {
-      @apply font-bold text-left;
+      @apply richtext-font-bold richtext-text-left;
     }
   }
 }

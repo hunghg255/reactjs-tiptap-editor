@@ -20,35 +20,34 @@ function IframeNodeView(props: any) {
   }
 
   return (
-    <>
-      <NodeViewWrapper as="section">
-        {!props?.node?.attrs?.src && (
-          <div className="max-w-[600px] mx-[auto] my-[12px] flex items-center justify-center gap-[10px] p-[10px] border-[1px] border-solid border-[#ccc] rounded-[12px]">
-            <Input
-              value={originalLink}
-              onInput={(e: any) => setOriginalLink(e.target.value)}
-              type="url"
-              className="flex-1"
-              autoFocus
-              placeholder="Enter link"
-            />
-            <Button className="w-[60px]" onClick={handleConfirm}>
-              OK
-            </Button>
-          </div>
-        )}
-        {props?.node?.attrs?.src && (
-          <iframe
-            src={props?.node?.attrs?.src}
-            frameBorder="0"
-            allowFullScreen={true}
-            title={props?.node?.attrs?.src}
-            className="my-[12px]"
-          >
-          </iframe>
-        )}
-      </NodeViewWrapper>
-    </>
+
+    <NodeViewWrapper as="section">
+      {!props?.node?.attrs?.src && (
+        <div className="richtext-max-w-[600px] richtext-mx-[auto] richtext-my-[12px] richtext-flex richtext-items-center richtext-justify-center richtext-gap-[10px] richtext-p-[10px] richtext-border-[1px] richtext-border-solid richtext-border-[#ccc] richtext-rounded-[12px]">
+          <Input
+            value={originalLink}
+            onInput={(e: any) => setOriginalLink(e.target.value)}
+            type="url"
+            className="richtext-flex-1"
+            autoFocus
+            placeholder="Enter link"
+          />
+          <Button className="richtext-w-[60px]" onClick={handleConfirm}>
+            OK
+          </Button>
+        </div>
+      )}
+      {props?.node?.attrs?.src && (
+        <iframe
+          src={props?.node?.attrs?.src}
+          frameBorder="0"
+          allowFullScreen={true}
+          title={props?.node?.attrs?.src}
+          className="richtext-my-[12px]"
+        >
+        </iframe>
+      )}
+    </NodeViewWrapper>
   )
 }
 

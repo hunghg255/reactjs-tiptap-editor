@@ -76,15 +76,15 @@ function ColorPicker(props: ColorPickerProps) {
     <Popover>
       <PopoverTrigger disabled={disabled} asChild>{props?.children}</PopoverTrigger>
 
-      <PopoverContent hideWhenDetached className="w-full h-full p-2" align="start" side="bottom">
-        <div className="flex flex-col">
+      <PopoverContent hideWhenDetached className="richtext-w-full richtext-h-full richtext-p-2" align="start" side="bottom">
+        <div className="richtext-flex richtext-flex-col">
           {highlight
             ? (
                 <div
-                  className="flex items-center p-1 cursor-pointer rd-1 hover:bg-accent"
+                  className="richtext-flex richtext-items-center richtext-p-1 richtext-cursor-pointer rd-1 hover:richtext-bg-accent"
                   onClick={() => setColor(undefined)}
                 >
-                  <span className="w-6 h-6 p-0.5 inline-block rounded-sm border cursor-pointer hover:border-border hover:shadow-sm relative after:border-b-2 after:border-b-red-500 after:top-[10px] after:h-0 after:left-0 after:w-6 after:absolute after:block after:rotate-[45deg]">
+                  <span className="richtext-w-6 richtext-h-6 richtext-p-0.5 richtext-inline-block richtext-rounded-sm richtext-border richtext-cursor-pointer hover:richtext-border-border hover:richtext-shadow-sm richtext-relative after:richtext-border-b-2 after:richtext-border-b-red-500 after:richtext-top-[10px] after:richtext-h-0 after:richtext-left-0 after:richtext-w-6 after:richtext-absolute after:richtext-block after:richtext-rotate-[45deg]">
                     <span
                       style={{
                         backgroundColor: 'transparent',
@@ -101,47 +101,45 @@ function ColorPicker(props: ColorPickerProps) {
                       </svg>
                     </span>
                   </span>
-                  <span className="ml-1 text-sm">{t('editor.nofill')}</span>
+                  <span className="richtext-ml-1 richtext-text-sm">{t('editor.nofill')}</span>
                 </div>
               )
             : (
-                <>
-                  <div
-                    className="flex items-center p-1 cursor-pointer rd-1 hover:bg-accent"
-                    onClick={() => {
-                      setColor(undefined)
-                    }}
-                  >
-                    <span className="w-6 h-6 p-0.5 inline-block rounded-sm border border-transparent cursor-pointer">
-                      <span
+                <div
+                  className="richtext-flex richtext-items-center richtext-p-1 richtext-cursor-pointer rd-1 hover:richtext-bg-accent"
+                  onClick={() => {
+                    setColor(undefined)
+                  }}
+                >
+                  <span className="richtext-w-6 richtext-h-6 richtext-p-0.5 richtext-inline-block richtext-rounded-sm richtext-border richtext-border-transparent richtext-cursor-pointer">
+                    <span
+                      style={{
+                        backgroundColor: defaultColor,
+                      }}
+                      className="richtext-relative w-[18px] h-[18px] richtext-block richtext-rounded-[2px] richtext-border-transparent"
+                    >
+                      <svg
+                        viewBox="0 0 18 18"
                         style={{
-                          backgroundColor: defaultColor,
+                          fill: 'rgb(255, 255, 255)',
+                          display: 'none',
                         }}
-                        className="relative w-[18px] h-[18px] block rounded-[2px] border-transparent"
                       >
-                        <svg
-                          viewBox="0 0 18 18"
-                          style={{
-                            fill: 'rgb(255, 255, 255)',
-                            display: 'none',
-                          }}
-                        >
-                          <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path>
-                        </svg>
-                      </span>
+                        <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path>
+                      </svg>
                     </span>
-                    <span className="ml-1 text-sm">{t('editor.default')}</span>
-                  </div>
-                </>
+                  </span>
+                  <span className="richtext-ml-1 richtext-text-sm">{t('editor.default')}</span>
+                </div>
               )}
 
           {chunkedColors.map((items: string[], index: number) => {
             return (
-              <span className="relative flex w-full h-auto p-0 last:pb-2" key={index}>
+              <span className="richtext-relative richtext-flex richtext-w-full richtext-h-auto richtext-p-0 last:richtext-pb-2" key={index}>
                 {items.map((item: string, idx) => {
                   return (
                     <span
-                      className="w-6 h-6 p-0.5 inline-block rounded-sm border border-transparent flex-[0 0 auto] cursor-pointer hover:border-border hover:shadow-sm"
+                      className="richtext-w-6 richtext-h-6 richtext-p-0.5 richtext-inline-block richtext-rounded-sm richtext-border richtext-border-transparent richtext-flex-[0_0_auto] richtext-cursor-pointer hover:richtext-border-border hover:richtext-shadow-sm"
                       key={`sub-color-${idx}`}
                       onClick={() => setColor(item)}
                     >
@@ -149,16 +147,15 @@ function ColorPicker(props: ColorPickerProps) {
                         style={{
                           backgroundColor: item,
                         }}
-                        className="relative w-[18px] h-[18px] block rounded-[2px] border-transparent"
+                        className="richtext-relative richtext-w-[18px] richtext-h-[18px] richtext-block richtext-rounded-[2px] richtext-border-transparent"
                       >
                         {item === selectedColor
                           ? (
                               <svg
-                                className="absolute top-[-1px] left-[1px] w-3 h-3"
+                                className="richtext-absolute richtext-block richtext-top-[-1px] richtext-left-[1px] richtext-w-3 richtext-h-3"
                                 viewBox="0 0 18 18"
                                 style={{
                                   fill: 'rgb(255, 255, 255)',
-                                  display: 'block',
                                 }}
                               >
                                 <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path>
@@ -184,17 +181,17 @@ function ColorPicker(props: ColorPickerProps) {
           })}
 
           <div>
-            <div className="my-1 text-sm">{t('editor.recent')}</div>
-            <span className="relative flex w-full h-auto p-0 last:pb-2">
+            <div className="richtext-my-1 richtext-text-sm">{t('editor.recent')}</div>
+            <span className="richtext-relative richtext-flex richtext-w-full richtext-h-auto richtext-p-0 last:richtext-pb-2">
               {recentColorsStore?.map((item, index) => {
                 return (
                   <span
-                    className="w-6 h-6 p-0.5 inline-block rounded-sm border border-transparent flex-[0 0 auto] cursor-pointer hover:border-border hover:shadow-sm"
+                    className="richtext-w-6 richtext-h-6 richtext-p-0.5 richtext-inline-block richtext-rounded-sm richtext-border richtext-border-transparent richtext-flex-[0_0_auto] richtext-cursor-pointer hover:richtext-border-border hover:richtext-shadow-sm"
                     key={index}
                     onClick={() => setColor(item)}
                   >
                     <span
-                      className="relative w-[18px] h-[18px] block rounded-[2px] border-transparent"
+                      className="richtext-relative richtext-w-[18px] richtext-h-[18px] richtext-block richtext-rounded-[2px] richtext-border-transparent"
                       style={{
                         backgroundColor: item,
                       }}
@@ -245,18 +242,18 @@ function AddMoreColor({ setColor }: AddMoreColorProps) {
             e.preventDefault()
             setOpenColorMore(true)
           }}
-          className="text-sm hover:cursor-pointer hover:bg-accent py-1.5 px-1.5"
+          className="richtext-text-sm hover:richtext-cursor-pointer hover:richtext-bg-accent richtext-py-1.5 richtext-px-1.5"
         >
           {t('editor.color.more')}
           ...
         </div>
       </PopoverTrigger>
       <PopoverContent>
-        <div className="flex flex-col items-center justify-center">
+        <div className="richtext-flex richtext-flex-col richtext-items-center richtext-justify-center">
           <HexColorPicker color={colorMore} onChange={setColorMore} />
 
           <Input
-            className="mt-[8px] w-full"
+            className="richtext-mt-[8px] richtext-w-full"
             type="text"
             onChange={(e) => {
               e.preventDefault()
@@ -266,14 +263,14 @@ function AddMoreColor({ setColor }: AddMoreColorProps) {
           />
         </div>
 
-        <Separator className="my-[10px]" />
+        <Separator className="richtext-my-[10px]" />
         <Button
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             e.preventDefault()
             setColor(colorMore)
             setOpenColorMore(false)
           }}
-          className="w-full"
+          className="richtext-w-full"
         >
           <Plus size={16} />
         </Button>

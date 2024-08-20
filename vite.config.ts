@@ -6,6 +6,7 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import tailwind from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
+import postcssReplace from 'postcss-replace'
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -29,7 +30,13 @@ export default defineConfig(() => {
     },
     css: {
       postcss: {
-        plugins: [tailwind(), autoprefixer()],
+        plugins: [tailwind(), autoprefixer(), postcssReplace({
+          pattern: /(--tw|\*, ::before, ::after)/g,
+          data: {
+            '--tw': '--richtext', // Prefixing
+            '*, ::before, ::after': ':root', // So variables does not pollute every element
+          },
+        })],
       },
       preprocessorOptions: {
         scss: {
