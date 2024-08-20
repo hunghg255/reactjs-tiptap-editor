@@ -103,3 +103,5 @@ export { Iframe } from './Iframe'
 export { SearchAndReplace } from './SearchAndReplace'
 
 export { Emoji } from './Emoji'
+
+export { Katex } from './Katex'
