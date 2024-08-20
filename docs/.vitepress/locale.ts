@@ -221,8 +221,12 @@ export function getLocaleConfig(lang: string) {
           link: '/extensions/VideoUpload/index.md',
         },
         {
-          text: 'SearchAndReplace',
+          text: 'Search And Replace',
           link: '/extensions/SearchAndReplace/index.md',
+        },
+        {
+          text: 'Emoji',
+          link: '/extensions/Emoji/index.md',
         },
       ],
     },

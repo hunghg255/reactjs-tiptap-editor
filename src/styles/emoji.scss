@@ -1,0 +1,21 @@
+
+
+.listWrapEmoji {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  list-style: none;
+  flex-wrap: wrap;
+
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}

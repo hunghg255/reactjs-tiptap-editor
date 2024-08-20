@@ -40,6 +40,7 @@ import {
   Redo2,
   Replace,
   SmilePlus,
+  SmilePlusIcon,
   Sparkles,
   Strikethrough,
   Subscript,
@@ -149,4 +150,5 @@ export const icons = {
   DeleteColumn,
   DeleteRow,
   SearchAndReplace: Replace,
+  EmojiIcon: SmilePlusIcon,
 } as any

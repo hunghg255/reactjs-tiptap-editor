@@ -129,6 +129,15 @@ const locale = {
   'editor.replaceAll.dialog.text': 'Thay thế tất cả',
   'editor.previous.dialog.text': 'Trước',
   'editor.next.dialog.text': 'Tiếp theo',
+  'no_result_found': 'Không tìm thấy kết quả',
+  'Recently Used': 'Đã sử dụng gần đây',
+  'Expression': 'Biểu cảm',
+  'Weather': 'Thời tiết',
+  'Gesture': 'Cử chỉ',
+  'Symbol': 'Ký hiệu',
+  'Object': 'Đối tượng',
+  'Activity': 'Hoạt động',
+
 }
 
 export default locale

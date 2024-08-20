@@ -129,6 +129,15 @@ const locale = {
   'editor.replaceAll.dialog.text': '全部替换',
   'editor.previous.dialog.text': '上一个',
   'editor.next.dialog.text': '下一个',
+  'no_result_found': '未找到结果',
+  'Recently Used': '最近使用',
+  'Expression': '表情',
+  'Weather': '天气',
+  'Gesture': '手势',
+  'Symbol': '符号',
+  'Object': '物体',
+  'Activity': '活动',
+
 }
 
 export default locale
