@@ -30,13 +30,17 @@ export default defineConfig(() => {
     },
     css: {
       postcss: {
-        plugins: [tailwind(), autoprefixer(), postcssReplace({
-          pattern: /(--tw|\*, ::before, ::after)/g,
-          data: {
-            '--tw': '--richtext', // Prefixing
-            '*, ::before, ::after': ':root', // So variables does not pollute every element
-          },
-        })],
+        plugins: [
+          tailwind(),
+          autoprefixer(),
+          postcssReplace({
+            pattern: /(--tw|\*, ::before, ::after)/g,
+            data: {
+              '--tw': '--richtext', // Prefixing
+              '*, ::before, ::after': ':root', // So variables does not pollute every element
+            },
+          }),
+        ],
       },
       preprocessorOptions: {
         scss: {
