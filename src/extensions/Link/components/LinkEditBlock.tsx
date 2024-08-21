@@ -37,7 +37,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
   }
 
   return (
-    <div className="richtext-p-2 richtext-bg-white richtext-border richtext-rounded-lg richtext-shadow-sm dark:richtext-bg-black border-neutral-200 dark:richtext-border-neutral-800">
+    <div className="richtext-p-2 richtext-bg-white !richtext-border richtext-rounded-lg richtext-shadow-sm dark:richtext-bg-black border-neutral-200 dark:richtext-border-neutral-800">
       <form className="richtext-flex richtext-flex-col richtext-gap-2" onSubmit={handleSubmit}>
         <Label className="mb-[6px]">
           {t('editor.link.dialog.text')}

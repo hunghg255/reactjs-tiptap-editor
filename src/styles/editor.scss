@@ -65,7 +65,7 @@
     }
 
     [data-type='column'] {
-      @apply richtext-rounded richtext-border richtext-border-solid richtext-border-transparent richtext-p-1;
+      @apply richtext-rounded !richtext-border richtext-border-solid richtext-border-transparent richtext-p-1;
       transition: border 160ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
 
       &:hover {
@@ -215,7 +215,8 @@
       z-index: 1;
       width: 100%;
       height: 100%;
-      @apply richtext-border richtext-border-border;
+      @apply richtext-border !important;
+      @apply richtext-border-border !important;
       border-style: dashed;
 
       &__handler {

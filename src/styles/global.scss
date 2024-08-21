@@ -70,10 +70,11 @@
 
 @layer base {
   * {
-    @apply richtext-border-border;
+    @apply richtext-border-border !important;
   }
   body {
-    @apply richtext-bg-background richtext-text-foreground;
+    @apply richtext-bg-background !important;
+    @apply richtext-text-foreground !important;
   }
 }
 

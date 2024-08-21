@@ -53,7 +53,7 @@ function ImageUploader(props: any) {
     <NodeViewWrapper className="richtext-p-0 richtext-m-0" data-drag-handle>
       <Popover defaultOpen modal>
         <PopoverTrigger asChild>
-          <div className="richtext-flex richtext-items-center richtext-w-full richtext-p-3 richtext-my-3 richtext-transition-all richtext-border richtext-rounded-sm richtext-cursor-pointer hover:richtext-bg-accent richtext-border-border richtext-text-muted-foreground">
+          <div className="richtext-flex richtext-items-center richtext-w-full richtext-p-3 richtext-my-3 richtext-transition-all !richtext-border richtext-rounded-sm richtext-cursor-pointer hover:richtext-bg-accent richtext-border-border richtext-text-muted-foreground">
             <div className="richtext-flex richtext-items-center richtext-justify-between richtext-w-full">
               <div className="richtext-flex richtext-items-center richtext-justify-center richtext-gap-3">
                 <IconComponent name="ImageUp" className="richtext-w-6 richtext-h-6" />

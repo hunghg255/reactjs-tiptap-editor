@@ -10,6 +10,7 @@ import React, {
 
 import { IconComponent } from '@/components'
 import { useLocale } from '@/locales'
+import { cn } from '@/lib/utils'
 
 function CommandsList(props: any, ref: any) {
   // 选中的索引
@@ -123,7 +124,7 @@ function CommandsList(props: any, ref: any) {
 
   return (
     <div
-      className="richtext-bg-white richtext-rounded-lg dark:richtext-bg-black richtext-shadow-sm richtext-border richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-text-black richtext-max-h-[min(80vh,24rem)] richtext-overflow-auto richtext-flex-wrap richtext-mb-8 richtext-p-1"
+      className="!richtext-bg-white richtext-rounded-lg dark:!richtext-bg-black richtext-shadow-sm !richtext-border !richtext-border-neutral-200 dark:!richtext-border-neutral-800 !richtext-text-black richtext-max-h-[min(80vh,24rem)] richtext-overflow-auto richtext-flex-wrap richtext-mb-8 richtext-p-1"
       ref={scrollContainer}
     >
       {props?.items?.length
@@ -132,25 +133,24 @@ function CommandsList(props: any, ref: any) {
               {props?.items?.map((group: any, groupIndex: any) => {
                 return (
                   <Fragment key={group.title}>
-                    <div className="richtext-text-neutral-500 richtext-text-[0.65rem] richtext-col-[1/-1] richtext-mx-2 richtext-mt-2 richtext-font-semibold richtext-tracking-wider richtext-select-none richtext-uppercase first:richtext-mt-0.5">
+                    <div className="!richtext-text-neutral-500 richtext-text-[0.65rem] richtext-col-[1/-1] richtext-mx-2 richtext-mt-2 richtext-font-semibold richtext-tracking-wider richtext-select-none richtext-uppercase first:richtext-mt-0.5">
                       {group.title}
                     </div>
 
                     {group.commands.map((command: any, commandIndex: any) => {
                       return (
                         <button
-                          className={`richtext-flex richtext-items-center richtext-gap-3 richtext-px-2 richtext-py-1.5 richtext-text-sm richtext-text-neutral-800 dark:richtext-text-neutral-200 richtext-text-left richtext-w-full richtext-rounded-sm richtext-outline-none richtext-transition-colors ${
-                      selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex
-                        ? 'richtext-bg-accent richtext-text-neutral-800 dark:richtext-bg-neutral-900 dark:richtext-text-neutral-200'
-                        : 'hover:richtext-bg-accent hover:richtext-text-neutral-800 dark:hover:richtext-bg-neutral-900 dark:hover:richtext-text-neutral-200'
-                    }`}
+                          className={cn(`richtext-flex richtext-items-center richtext-gap-3 richtext-px-2 richtext-py-1.5 richtext-text-sm !richtext-text-neutral-800 dark:!richtext-text-neutral-200 richtext-text-left richtext-w-full richtext-rounded-sm richtext-outline-none richtext-transition-colors !richtext-bg-transparent hover:!richtext-bg-accent `)}
+                          style={{
+                            backgroundColor: selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex ? 'hsl(var(--accent)) !important' : '',
+                          }}
                           ref={el => setActiveItemRef(groupIndex, commandIndex, el)}
                           key={`command-${commandIndex}`}
                           onClick={() => createCommandClickHandler(groupIndex, commandIndex)}
                         >
                           {command.iconUrl && <img className="richtext-w-6 richtext-h-6" src={command.iconUrl} alt="" />}
                           {command.iconName && (
-                            <IconComponent name={command.iconName} className="richtext-mr-1 richtext-text-lg" />
+                            <IconComponent name={command.iconName} className="!richtext-mr-1 !richtext-text-lg" />
                           )}
                           {command.label}
                         </button>

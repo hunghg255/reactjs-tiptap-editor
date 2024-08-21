@@ -105,7 +105,7 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
                 <TabsTrigger
                   key={list.title}
                   value={list.title}
-                  className="!richtext-p-[6px]"
+                  className="!richtext-p-[6px] richtext-bg-accent hover:richtext-text-accent-foreground"
                 >
                   {list.icon && <list.icon size={16} />}
                 </TabsTrigger>

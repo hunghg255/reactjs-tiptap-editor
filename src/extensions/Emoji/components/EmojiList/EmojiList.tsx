@@ -66,7 +66,7 @@ export const EmojiList: React.FC<IProps> = forwardRef((props, ref) => {
   }))
 
   return (
-    <div className="richtext-w-[200px] richtext-max-h-[320px] richtext-overflow-x-hidden richtext-overflow-y-auto richtext-rounded-sm richtext-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
+    <div className="richtext-w-[200px] richtext-max-h-[320px] richtext-overflow-x-hidden richtext-overflow-y-auto richtext-rounded-sm !richtext-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
       <div ref={$container}>
         {props.items.length
           ? (

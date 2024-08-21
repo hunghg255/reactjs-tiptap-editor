@@ -97,8 +97,8 @@ function HighlightActionButton(props: IPropsHighlightActionButton) {
         highlight
         disabled={props?.disabled}
       >
-        <Button variant="ghost" size="icon" className="richtext-w-3 richtext-h-[32px]" disabled={props?.disabled}>
-          <IconComponent className="richtext-w-3 richtext-h-3 richtext-text-zinc-500" name="MenuDown" />
+        <Button variant="ghost" size="icon" className="!richtext-w-3 !richtext-h-[32px]" disabled={props?.disabled}>
+          <IconComponent className="!richtext-w-3 !richtext-h-3 richtext-text-zinc-500" name="MenuDown" />
         </Button>
       </ColorPicker>
     </div>

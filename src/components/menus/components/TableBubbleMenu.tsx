@@ -94,7 +94,7 @@ function TableBubbleMenu({ editor }: TableBubbleMenuProps) {
         sticky: 'popper',
       }}
     >
-      <div className="richtext-min-w-32 richtext-flex richtext-flex-row richtext-h-full richtext-items-center richtext-leading-none richtext-gap-0.5 richtext-p-2 richtext-w-full richtext-bg-background richtext-rounded-lg richtext-shadow-sm richtext-border richtext-border-border">
+      <div className="richtext-min-w-32 richtext-flex richtext-flex-row richtext-h-full richtext-items-center richtext-leading-none richtext-gap-0.5 richtext-p-2 richtext-w-full richtext-bg-background richtext-rounded-lg richtext-shadow-sm !richtext-border richtext-border-border">
         <ActionButton
           icon="BetweenHorizonalEnd"
           tooltip={t('editor.table.menu.insertColumnBefore')}

@@ -86,7 +86,7 @@ function BubbleMenuImage(props: IPropsBubbleMenu) {
       >
         {items?.length
           ? (
-              <div className="richtext-w-auto richtext-px-3 richtext-py-2 richtext-transition-all richtext-border richtext-rounded-sm richtext-shadow-sm richtext-pointer-events-auto richtext-select-none richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-bg-background">
+              <div className="richtext-w-auto richtext-px-3 richtext-py-2 richtext-transition-all !richtext-border richtext-rounded-sm richtext-shadow-sm richtext-pointer-events-auto richtext-select-none richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-bg-background">
                 <div className="richtext-flex richtext-items-center richtext-flex-nowrap richtext-whitespace-nowrap richtext-h-[26px] richtext-justify-start richtext-relative">
                   {items?.map((item: any, key: any) => {
                     return (
@@ -145,7 +145,7 @@ function BubbleMenuVideo(props: IPropsBubbleMenu) {
       >
         {items?.length
           ? (
-              <div className="richtext-w-auto richtext-px-3 richtext-py-2 richtext-transition-all richtext-border richtext-rounded-sm richtext-shadow-sm richtext-pointer-events-auto richtext-select-none richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-bg-background">
+              <div className="richtext-w-auto richtext-px-3 richtext-py-2 richtext-transition-all !richtext-border richtext-rounded-sm richtext-shadow-sm richtext-pointer-events-auto richtext-select-none richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-bg-background">
                 <div className="richtext-flex richtext-items-center richtext-flex-nowrap richtext-whitespace-nowrap richtext-h-[26px] richtext-justify-start richtext-relative">
                   {items?.map((item: any, key: any) => {
                     return (

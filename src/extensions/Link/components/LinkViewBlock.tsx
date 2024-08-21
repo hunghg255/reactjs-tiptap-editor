@@ -16,7 +16,7 @@ function LinkViewBlock(props: IPropsLinkViewBlock) {
   const { t } = useLocale()
 
   return (
-    <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-p-2 richtext-bg-white richtext-border richtext-rounded-lg richtext-shadow-sm dark:richtext-bg-black richtext-border-neutral-200 dark:richtext-border-neutral-800">
+    <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-p-2 richtext-bg-white !richtext-border richtext-rounded-lg richtext-shadow-sm dark:richtext-bg-black richtext-border-neutral-200 dark:richtext-border-neutral-800">
       <a
         href={props?.link}
         target="_blank"

@@ -93,8 +93,8 @@ function ColorActionButton(props: ColorActionButtonProps) {
         colors={props?.colors}
         defaultColor={props?.defaultColor}
       >
-        <Button variant="ghost" size="icon" className="richtext-h-[32px] richtext-w-3" disabled={props?.disabled}>
-          <IconComponent className="richtext-w-3 richtext-h-3 richtext-text-zinc-500" name="MenuDown" />
+        <Button variant="ghost" size="icon" className="r!ichtext-h-[32px] !richtext-w-3" disabled={props?.disabled}>
+          <IconComponent className="!richtext-w-3 !richtext-h-3 richtext-text-zinc-500" name="MenuDown" />
         </Button>
       </ColorPicker>
     </div>

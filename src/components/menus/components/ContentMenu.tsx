@@ -222,7 +222,7 @@ function ContentMenu(props: ContentMenuProps) {
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{t('editor.draghandle.tooltip')}</p>
+                {t('editor.draghandle.tooltip')}
               </TooltipContent>
             </Tooltip>
 

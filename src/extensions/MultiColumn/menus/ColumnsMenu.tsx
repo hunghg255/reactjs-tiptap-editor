@@ -50,7 +50,7 @@ function ColumnsMenu(props: IPropsColumnsMenu) {
         sticky: 'popper',
       }}
     >
-      <div className="richtext-p-2 richtext-bg-white richtext-border richtext-rounded-lg richtext-shadow-sm dark:richtext-bg-black richtext-border-neutral-200 dark:richtext-border-neutral-800">
+      <div className="richtext-p-2 richtext-bg-white !richtext-border richtext-rounded-lg richtext-shadow-sm dark:richtext-bg-black richtext-border-neutral-200 dark:richtext-border-neutral-800">
         <div className="richtext-flex richtext-items-center richtext-gap-1">
           <ActionButton
             title="ok"

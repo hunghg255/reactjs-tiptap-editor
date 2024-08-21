@@ -9,9 +9,11 @@ import { differenceBy, throttle } from 'lodash-unified'
 import type { BubbleMenuProps } from '@/types'
 import { BubbleMenu, Toolbar, TooltipProvider } from '@/components'
 import { EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME } from '@/constants'
+import { RESET_CSS } from '@/constants/resetCSS'
 import { useLocale } from '@/locales'
 import { themeActions } from '@/theme/theme'
 import { hasExtension } from '@/utils/utils'
+import { removeCSS, updateCSS } from '@/utils/dynamicCSS'
 
 import '../styles/index.scss'
 
@@ -61,6 +63,9 @@ export interface RichTextEditorProps {
 
   /** Use editor options */
   useEditorOptions?: UseEditorOptions
+
+  /** Use editor options */
+  resetCSS?: boolean
 }
 
 function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ editor: CoreEditor | null }>) {
@@ -110,6 +115,16 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
     editor?.setEditable(!props?.disabled)
   }, [editor, props?.disabled])
 
+  useEffect(() => {
+    if (props?.resetCSS !== false) {
+      updateCSS(RESET_CSS, 'react-tiptap-reset')
+    }
+
+    return () => {
+      removeCSS('react-tiptap-reset')
+    }
+  }, [props?.resetCSS])
+
   function getOutput(editor: CoreEditor, output: RichTextEditorProps['output']) {
     if (props?.removeDefaultWrapper) {
       if (output === 'html') {
@@ -149,31 +164,33 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
   }
 
   return (
-    <TooltipProvider delayDuration={0}>
-      <div className="reactjs-tiptap-editor richtext-rounded-[0.5rem] richtext-bg-background richtext-shadow richtext-overflow-hidden richtext-outline richtext-outline-1">
-        {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu} editor={editor} disabled={props?.disabled} />}
+    <div className="reactjs-tiptap-editor">
+      <TooltipProvider delayDuration={0}>
+        <div className="richtext-rounded-[0.5rem] richtext-bg-background richtext-shadow richtext-overflow-hidden richtext-outline richtext-outline-1">
+          {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu} editor={editor} disabled={props?.disabled} />}
 
-        <div className="richtext-flex richtext-flex-col richtext-w-full richtext-max-h-full">
-          {!props?.hideToolbar && <Toolbar editor={editor} disabled={!!props?.disabled} />}
+          <div className="richtext-flex richtext-flex-col richtext-w-full richtext-max-h-full">
+            {!props?.hideToolbar && <Toolbar editor={editor} disabled={!!props?.disabled} />}
 
-          <EditorContent className={`richtext-relative ${props?.contentClass || ''}`} editor={editor} />
+            <EditorContent className={`richtext-relative ${props?.contentClass || ''}`} editor={editor} />
 
-          <div className="richtext-flex richtext-items-center richtext-justify-between richtext-p-3 richtext-border-t">
-            {hasExtensionValue && (
-              <div className="richtext-flex richtext-flex-col">
-                <div className="richtext-flex richtext-justify-end richtext-gap-3 richtext-text-sm">
-                  <span>
-                    {(editor as any).storage.characterCount.characters()}
-                    {' '}
-                    {t('editor.characters')}
-                  </span>
+            <div className="richtext-flex richtext-items-center richtext-justify-between richtext-p-3 richtext-border-t">
+              {hasExtensionValue && (
+                <div className="richtext-flex richtext-flex-col">
+                  <div className="richtext-flex richtext-justify-end richtext-gap-3 richtext-text-sm">
+                    <span>
+                      {(editor as any).storage.characterCount.characters()}
+                      {' '}
+                      {t('editor.characters')}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </TooltipProvider>
+      </TooltipProvider>
+    </div>
   )
 }
 

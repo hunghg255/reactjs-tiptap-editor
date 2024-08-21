@@ -67,7 +67,7 @@ function VideoUploaderView(props: IPropsVideoUploaderView) {
     <NodeViewWrapper as="div" data-drag-handle>
       <Popover defaultOpen modal>
         <PopoverTrigger asChild>
-          <div className="richtext-flex richtext-items-center richtext-w-full richtext-p-3 richtext-my-3 richtext-transition-all richtext-border richtext-rounded-sm richtext-cursor-pointer hover:richtext-bg-accent richtext-border-border richtext-text-muted-foreground">
+          <div className="richtext-flex richtext-items-center richtext-w-full richtext-p-3 richtext-my-3 richtext-transition-all !richtext-border richtext-rounded-sm richtext-cursor-pointer hover:richtext-bg-accent richtext-border-border richtext-text-muted-foreground">
             {loading
               ? (
                   <div className="richtext-flex richtext-items-center richtext-justify-center richtext-gap-3 richtext-text-sm">
