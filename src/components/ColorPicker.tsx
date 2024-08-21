@@ -116,7 +116,7 @@ function ColorPicker(props: ColorPickerProps) {
                       style={{
                         backgroundColor: defaultColor,
                       }}
-                      className="richtext-relative w-[18px] h-[18px] richtext-block richtext-rounded-[2px] richtext-border-transparent"
+                      className="richtext-relative richtext-w-[18px] richtext-h-[18px] richtext-block richtext-rounded-[2px] richtext-border-transparent"
                     >
                       <svg
                         viewBox="0 0 18 18"

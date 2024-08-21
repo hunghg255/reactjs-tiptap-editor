@@ -2,44 +2,56 @@
 import type React from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { Bike, Clock3, Cloudy, Component, Flag, FolderDot, Laugh, Pointer } from 'lucide-react'
-import { ACTIVITIES, EXPRESSIONES, FLAGS, GESTURES, OBJECTS, SKY_WEATHER, SYMBOLS } from './constants'
-import { createKeysLocalStorageLRUCache } from '@/utils/lru-cache'
+import { Clock3, Laugh } from 'lucide-react'
+import { ACTIVITIES, ANIMALS, EXPRESSIONES, FLAGS, FOODS, OBJECTS, SYMBOLS, TRAVELS } from './constants'
 import { ActionButton, Popover, PopoverContent, PopoverTrigger, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components'
+import Activity from '@/components/icons/Activity'
+import Animal from '@/components/icons/Animas'
+import Flag from '@/components/icons/Flag'
+import Food from '@/components/icons/Food'
+import Object from '@/components/icons/Object'
+import Symbol from '@/components/icons/Symbol'
+import Travel from '@/components/icons/Travel'
 import { useLocale } from '@/locales'
+import { createKeysLocalStorageLRUCache } from '@/utils/lru-cache'
 
 const emojiLocalStorageLRUCache = createKeysLocalStorageLRUCache('EMOJI_PICKER', 20)
 
 const LIST = [
   {
-    title: 'Expression',
+    title: 'Smileys & People',
     data: EXPRESSIONES,
     icon: Laugh,
   },
   {
-    title: 'Weather',
-    data: SKY_WEATHER,
-    icon: Cloudy,
+    title: 'Animals & Nature',
+    data: ANIMALS,
+    icon: Animal,
   },
   {
-    title: 'Gesture',
-    data: GESTURES,
-    icon: Pointer,
-  },
-  {
-    title: 'Symbol',
-    data: SYMBOLS,
-    icon: Component,
-  },
-  {
-    title: 'Object',
-    data: OBJECTS,
-    icon: FolderDot,
+    title: 'Food & Drink',
+    data: FOODS,
+    icon: Food,
   },
   {
     title: 'Activity',
     data: ACTIVITIES,
-    icon: Bike,
+    icon: Activity,
+  },
+  {
+    title: 'Travel & Places',
+    data: TRAVELS,
+    icon: Travel,
+  },
+  {
+    title: 'Object',
+    data: OBJECTS,
+    icon: Object,
+  },
+  {
+    title: 'Symbol',
+    data: SYMBOLS,
+    icon: Symbol,
   },
   {
     title: 'Flags',
@@ -60,7 +72,7 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
 
   const renderedList = useMemo(
     () => (recentUsed.length
-      ? [{ title: 'Recently Used', icon: Clock3, data: recentUsed }, ...LIST]
+      ? [{ title: 'Frequently used', icon: Clock3, data: recentUsed }, ...LIST]
       : LIST),
     [recentUsed],
   )
@@ -86,13 +98,14 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
       <PopoverTrigger asChild>{children}</PopoverTrigger>
 
       <PopoverContent hideWhenDetached className="richtext-w-full richtext-h-full richtext-p-2" align="start" side="bottom">
-        <Tabs defaultValue="Recently Used">
-          <TabsList className="richtext-flex richtext-items-center richtext-gap-[6px]">
+        <Tabs defaultValue="Frequently used">
+          <TabsList className="richtext-flex richtext-items-center richtext-gap-[4px]">
             {renderedList.map((list) => {
               return (
                 <TabsTrigger
                   key={list.title}
                   value={list.title}
+                  className="!richtext-p-[6px]"
                 >
                   {list.icon && <list.icon size={16} />}
                 </TabsTrigger>
@@ -107,7 +120,7 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
                 value={list.title}
               >
                 <p className="richtext-mb-[6px] richtext-font-semibold">{t(list.title as any)}</p>
-                <div className="richtext-max-h-[300px] richtext-overflow-y-auto">
+                <div className="richtext-max-h-[280px] richtext-overflow-y-auto">
                   <div className="richtext-grid richtext-grid-cols-8 richtext-gap-1 ">
                     {(list.data || []).map(ex => (
                       <div
