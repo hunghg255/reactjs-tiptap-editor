@@ -4,6 +4,9 @@ import animate from 'tailwindcss-animate'
 export default {
   darkMode: ['class', '[class~=\'dark\']'],
   safelist: ['dark'],
+  corePlugins: {
+    preflight: false,
+  },
   prefix: 'richtext-',
 
   content: [
