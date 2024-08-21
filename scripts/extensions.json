@@ -21,17 +21,17 @@
     ]
   },
   {
-    "name": "Clear.ts",
-    "package": "Clear",
-    "alias": [
-      "Clear"
-    ]
-  },
-  {
     "name": "BulletList.ts",
     "package": "BulletList",
     "alias": [
       "BulletList"
+    ]
+  },
+  {
+    "name": "Clear.ts",
+    "package": "Clear",
+    "alias": [
+      "Clear"
     ]
   },
   {
@@ -126,6 +126,13 @@
     ]
   },
   {
+    "name": "HorizontalRule.ts",
+    "package": "HorizontalRule",
+    "alias": [
+      "HorizontalRule"
+    ]
+  },
+  {
     "name": "Iframe.ts",
     "package": "Iframe",
     "alias": [
@@ -140,10 +147,10 @@
     ]
   },
   {
-    "name": "HorizontalRule.ts",
-    "package": "HorizontalRule",
+    "name": "Image.ts",
+    "package": "Image",
     "alias": [
-      "HorizontalRule"
+      "Image"
     ]
   },
   {
@@ -151,13 +158,6 @@
     "package": "ImageUpload",
     "alias": [
       "ImageUpload"
-    ]
-  },
-  {
-    "name": "Image.ts",
-    "package": "Image",
-    "alias": [
-      "Image"
     ]
   },
   {
@@ -175,17 +175,17 @@
     ]
   },
   {
-    "name": "Katex.ts",
-    "package": "Katex",
-    "alias": [
-      "Katex"
-    ]
-  },
-  {
     "name": "LineHeight.ts",
     "package": "LineHeight",
     "alias": [
       "LineHeight"
+    ]
+  },
+  {
+    "name": "Katex.ts",
+    "package": "Katex",
+    "alias": [
+      "Katex"
     ]
   },
   {
@@ -238,17 +238,17 @@
     ]
   },
   {
-    "name": "Selection.ts",
-    "package": "Selection",
-    "alias": [
-      "Selection"
-    ]
-  },
-  {
     "name": "SearchAndReplace.ts",
     "package": "SearchAndReplace",
     "alias": [
       "SearchAndReplace"
+    ]
+  },
+  {
+    "name": "Selection.ts",
+    "package": "Selection",
+    "alias": [
+      "Selection"
     ]
   },
   {
@@ -336,17 +336,17 @@
     ]
   },
   {
-    "name": "Video.ts",
-    "package": "Video",
-    "alias": [
-      "Video"
-    ]
-  },
-  {
     "name": "VideoUpload.ts",
     "package": "VideoUpload",
     "alias": [
       "VideoUpload"
+    ]
+  },
+  {
+    "name": "Video.ts",
+    "package": "Video",
+    "alias": [
+      "Video"
     ]
   },
   {
