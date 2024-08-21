@@ -272,8 +272,12 @@
   .ProseMirror[contenteditable='true'].resize-cursor {
     cursor: col-resize;
   }
+
 }
 
+.slash-command-active.slash-command-active {
+  background-color: hsl(var(--accent)) !important;
+}
 
 [data-dui-1-3-5~='dui-tooltip-wrapper'] {
   display: inline-block;

@@ -140,10 +140,9 @@ function CommandsList(props: any, ref: any) {
                     {group.commands.map((command: any, commandIndex: any) => {
                       return (
                         <button
-                          className={cn(`richtext-flex richtext-items-center richtext-gap-3 richtext-px-2 richtext-py-1.5 richtext-text-sm !richtext-text-neutral-800 dark:!richtext-text-neutral-200 richtext-text-left richtext-w-full richtext-rounded-sm richtext-outline-none richtext-transition-colors !richtext-bg-transparent hover:!richtext-bg-accent `)}
-                          style={{
-                            backgroundColor: selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex ? 'hsl(var(--accent)) !important' : '',
-                          }}
+                          className={cn(`richtext-flex richtext-items-center richtext-gap-3 richtext-px-2 richtext-py-1.5 richtext-text-sm !richtext-text-neutral-800 dark:!richtext-text-neutral-200 richtext-text-left richtext-w-full richtext-rounded-sm richtext-outline-none richtext-transition-colors !richtext-bg-transparent hover:!richtext-bg-accent `, {
+                            'slash-command-active': selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex,
+                          })}
                           ref={el => setActiveItemRef(groupIndex, commandIndex, el)}
                           key={`command-${commandIndex}`}
                           onClick={() => createCommandClickHandler(groupIndex, commandIndex)}

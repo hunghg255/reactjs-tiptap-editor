@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react'
 import { HexColorPicker } from 'react-colorful'
 
 import { Button, Input, Popover, PopoverContent, PopoverTrigger, Separator } from '@/components'
-import { COLORS_LIST as DEFAULT_COLORS_LIST, DEFAULT_COLOR as FALLBACK_DEFAULT_COLOR } from '@/constants'
+import { COLORS_LIST as DEFAULT_COLORS_LIST } from '@/constants'
 import { useLocale } from '@/locales'
 import { NoFill } from '@/components/icons/NoFill'
 
