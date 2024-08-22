@@ -1,5 +1,9 @@
 ---
 description: Katex
+
+next:
+  text: ExportPdf
+  link: /extensions/ExportPdf/index.md
 ---
 
 # Katex
