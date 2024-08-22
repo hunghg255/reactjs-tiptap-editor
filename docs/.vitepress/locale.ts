@@ -232,6 +232,10 @@ export function getLocaleConfig(lang: string) {
           text: 'Katex',
           link: '/extensions/Katex/index.md',
         },
+        {
+          text: 'ExportPdf',
+          link: '/extensions/ExportPdf/index.md',
+        },
       ],
     },
   ]

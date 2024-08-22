@@ -75,6 +75,7 @@ import {
   SizeM,
   SizeS,
 } from '@/components/icons'
+import { ExportPdf } from '@/components/icons/ExportPdf'
 
 export const icons = {
   Bold,
@@ -153,4 +154,5 @@ export const icons = {
   SearchAndReplace: Replace,
   EmojiIcon: SmilePlusIcon,
   KatexIcon: Sigma,
+  ExportPdf,
 } as any

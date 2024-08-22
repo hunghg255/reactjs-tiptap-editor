@@ -141,6 +141,7 @@ const locale = {
   'Frequently used': 'Frequently used',
   'editor.formula.dialog.text': 'Formula',
   'editor.katex.tooltip': 'Math Formula',
+  'editor.exportPdf.tooltip': 'Export PDF',
 }
 
 export default locale
