@@ -45,7 +45,6 @@ div[data-tippy-root] {
   border-width: 0;
   border-style: solid;
   border-color: #e5e7eb;
-    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
 }
 
 html,
