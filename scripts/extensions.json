@@ -35,13 +35,6 @@
     ]
   },
   {
-    "name": "Code.ts",
-    "package": "Code",
-    "alias": [
-      "Code"
-    ]
-  },
-  {
     "name": "CodeBlock.ts",
     "package": "CodeBlock",
     "alias": [
@@ -63,6 +56,13 @@
     ]
   },
   {
+    "name": "Code.ts",
+    "package": "Code",
+    "alias": [
+      "Code"
+    ]
+  },
+  {
     "name": "Color.ts",
     "package": "Color",
     "alias": [
@@ -74,6 +74,13 @@
     "package": "Document",
     "alias": [
       "Document"
+    ]
+  },
+  {
+    "name": "Emoji.ts",
+    "package": "Emoji",
+    "alias": [
+      "Emoji"
     ]
   },
   {
@@ -175,10 +182,10 @@
     ]
   },
   {
-    "name": "ListItem.ts",
-    "package": "ListItem",
+    "name": "Katex.ts",
+    "package": "Katex",
     "alias": [
-      "ListItem"
+      "Katex"
     ]
   },
   {
@@ -186,6 +193,13 @@
     "package": "Link",
     "alias": [
       "Link"
+    ]
+  },
+  {
+    "name": "ListItem.ts",
+    "package": "ListItem",
+    "alias": [
+      "ListItem"
     ]
   },
   {
@@ -221,6 +235,13 @@
     "package": "OrderedList",
     "alias": [
       "OrderedList"
+    ]
+  },
+  {
+    "name": "SearchAndReplace.ts",
+    "package": "SearchAndReplace",
+    "alias": [
+      "SearchAndReplace"
     ]
   },
   {
@@ -294,17 +315,17 @@
     ]
   },
   {
-    "name": "TrailingNode.ts",
-    "package": "TrailingNode",
-    "alias": [
-      "TrailingNode"
-    ]
-  },
-  {
     "name": "TextBubble.ts",
     "package": "TextBubble",
     "alias": [
       "TextBubble"
+    ]
+  },
+  {
+    "name": "TrailingNode.ts",
+    "package": "TrailingNode",
+    "alias": [
+      "TrailingNode"
     ]
   },
   {
@@ -315,6 +336,13 @@
     ]
   },
   {
+    "name": "VideoUpload.ts",
+    "package": "VideoUpload",
+    "alias": [
+      "VideoUpload"
+    ]
+  },
+  {
     "name": "Video.ts",
     "package": "Video",
     "alias": [
@@ -322,10 +350,17 @@
     ]
   },
   {
-    "name": "VideoUpload.ts",
-    "package": "VideoUpload",
+    "name": "Emoji.ts",
+    "package": "Emoji",
     "alias": [
-      "VideoUpload"
+      "components"
+    ]
+  },
+  {
+    "name": "Emoji.ts",
+    "package": "Emoji",
+    "alias": [
+      "components"
     ]
   }
 ]

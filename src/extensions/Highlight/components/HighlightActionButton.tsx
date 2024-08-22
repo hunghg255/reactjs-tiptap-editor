@@ -78,7 +78,7 @@ function HighlightActionButton(props: IPropsHighlightActionButton) {
   )
 
   return (
-    <div className="flex items-center h-[32px]">
+    <div className="richtext-flex richtext-items-center richtext-h-[32px]">
       <ActionButton
         tooltip={props?.tooltip}
         disabled={props?.disabled}
@@ -86,7 +86,7 @@ function HighlightActionButton(props: IPropsHighlightActionButton) {
         tooltipOptions={props?.tooltipOptions}
         shortcutKeys={props?.shortcutKeys}
       >
-        <span className="flex items-center justify-center text-sm">
+        <span className="richtext-flex richtext-items-center richtext-justify-center richtext-text-sm">
           <IconC fill={selectedColor} />
         </span>
       </ActionButton>
@@ -97,8 +97,8 @@ function HighlightActionButton(props: IPropsHighlightActionButton) {
         highlight
         disabled={props?.disabled}
       >
-        <Button variant="ghost" size="icon" className="w-3 h-[32px]" disabled={props?.disabled}>
-          <IconComponent className="w-3 h-3 text-zinc-500" name="MenuDown" />
+        <Button variant="ghost" size="icon" className="!richtext-w-3 !richtext-h-[32px]" disabled={props?.disabled}>
+          <IconComponent className="!richtext-w-3 !richtext-h-3 richtext-text-zinc-500" name="MenuDown" />
         </Button>
       </ColorPicker>
     </div>

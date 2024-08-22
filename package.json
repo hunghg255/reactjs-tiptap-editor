@@ -1,7 +1,7 @@
 {
   "name": "reactjs-tiptap-editor",
   "type": "module",
-  "version": "0.0.10",
+  "version": "0.0.20",
   "main": "./lib/reactjs-tiptap-editor.cjs",
   "module": "./lib/reactjs-tiptap-editor.js",
   "types": "./lib/index.d.ts",
@@ -35,7 +35,7 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build:lib": "vite build",
+    "build:lib": "vite build && pnpm modify-css",
     "build:lib:dev": "vite build --watch",
     "build:playground": "pnpm build:lib && pnpm --dir ./playground run build",
     "docs:dev": "pnpm --parallel --filter docs... dev",
@@ -50,7 +50,8 @@
     "verify-commit": "verify-commit-msg",
     "prepare": "git-scm-hooks",
     "release": "bumpp -r",
-    "gen-changelog": "esno ./scripts/genExtensions.ts && esno ./scripts/changelog.ts"
+    "gen-changelog": "esno ./scripts/genExtensions.ts && esno ./scripts/changelog.ts",
+    "modify-css": "esno ./scripts/modifyCss.ts"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.1",
@@ -108,11 +109,13 @@
     "@tiptap/suggestion": "^2.6.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "deep-equal": "^2.2.3",
     "echo-drag-handle-plugin": "^0.0.2",
+    "katex": "^0.16.11",
     "lodash-unified": "^1.0.3",
     "lucide-react": "^0.427.0",
-    "md5": "^2.3.0",
     "react-colorful": "^5.6.1",
+    "scroll-into-view-if-needed": "^3.1.0",
     "shiki": "^1.13.0",
     "tippy.js": "^6.3.7",
     "valtio": "^1.13.2"
@@ -121,6 +124,8 @@
     "@antfu/eslint-config": "^2.25.1",
     "@eslint-react/eslint-plugin": "^1.10.1",
     "@total-typescript/ts-reset": "^0.5.1",
+    "@types/deep-equal": "^1.0.4",
+    "@types/katex": "^0.16.7",
     "@types/node": "^22.3.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -134,6 +139,10 @@
     "execa": "^9.3.1",
     "git-scm-hooks": "^0.0.11",
     "globby": "^14.0.2",
+    "md5": "^2.3.0",
+    "postcss": "^8.4.41",
+    "postcss-replace": "^2.0.1",
+    "postcss-scss": "^4.0.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sass": "^1.77.8",

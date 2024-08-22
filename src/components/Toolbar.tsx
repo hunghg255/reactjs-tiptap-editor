@@ -61,26 +61,26 @@ function Toolbar({ editor, disabled }: ToolbarProps) {
 
   return (
     <div
-      className="px-1 py-2 border-b"
+      className="richtext-px-1 richtext-py-2 !richtext-border-b"
       style={{
         pointerEvents: disabled ? 'none' : 'auto',
         opacity: disabled ? 0.5 : 1,
       }}
     >
-      <div className="relative flex flex-wrap h-auto gap-y-1 gap-x-1">
+      <div className="richtext-relative richtext-flex richtext-flex-wrap richtext-h-auto richtext-gap-y-1 richtext-gap-x-1">
         {items.map((item: ToolbarItemProps, key) => {
           const ButtonComponent = item.button.component
 
           return (
-            <div className="flex items-center" key={key}>
-              {item?.spacer && <Separator orientation="vertical" className="h-[16px] mx-[10px]" />}
+            <div className="richtext-flex richtext-items-center" key={key}>
+              {item?.spacer && <Separator orientation="vertical" className="!richtext-h-[16px] !richtext-mx-[10px]" />}
 
               <ButtonComponent
                 {...item.button.componentProps}
                 disabled={disabled || item?.button?.componentProps?.disabled}
               />
 
-              {item?.divider && <Separator orientation="vertical" className="h-auto mx-2" />}
+              {item?.divider && <Separator orientation="vertical" className="!richtext-h-auto !richtext-mx-2" />}
             </div>
           )
         })}

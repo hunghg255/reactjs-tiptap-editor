@@ -1,3 +1,4 @@
+/* eslint-disable react-dom/no-missing-button-type */
 import React, {
   Fragment,
   forwardRef,
@@ -9,6 +10,7 @@ import React, {
 
 import { IconComponent } from '@/components'
 import { useLocale } from '@/locales'
+import { cn } from '@/lib/utils'
 
 function CommandsList(props: any, ref: any) {
   // 选中的索引
@@ -122,34 +124,32 @@ function CommandsList(props: any, ref: any) {
 
   return (
     <div
-      className="bg-white rounded-lg dark:bg-black shadow-sm border border-neutral-200 dark:border-neutral-800 text-black max-h-[min(80vh,24rem)] overflow-auto flex-wrap mb-8 p-1"
+      className="!richtext-bg-white richtext-rounded-lg dark:!richtext-bg-black richtext-shadow-sm !richtext-border !richtext-border-neutral-200 dark:!richtext-border-neutral-800 !richtext-text-black richtext-max-h-[min(80vh,24rem)] richtext-overflow-auto richtext-flex-wrap richtext-mb-8 richtext-p-1"
       ref={scrollContainer}
     >
       {props?.items?.length
         ? (
-            <div className="grid grid-cols-1 gap-0.5 min-w-48">
+            <div className="richtext-grid richtext-grid-cols-1 richtext-gap-0.5 richtext-min-w-48">
               {props?.items?.map((group: any, groupIndex: any) => {
                 return (
                   <Fragment key={group.title}>
-                    <div className="text-neutral-500 text-[0.65rem] col-[1/-1] mx-2 mt-2 font-semibold tracking-wider select-none uppercase first:mt-0.5">
+                    <div className="!richtext-text-neutral-500 richtext-text-[0.65rem] richtext-col-[1/-1] richtext-mx-2 richtext-mt-2 richtext-font-semibold richtext-tracking-wider richtext-select-none richtext-uppercase first:richtext-mt-0.5">
                       {group.title}
                     </div>
 
                     {group.commands.map((command: any, commandIndex: any) => {
                       return (
                         <button
-                          className={`flex items-center gap-3 px-2 py-1.5 text-sm text-neutral-800 dark:text-neutral-200 text-left w-full rounded-sm outline-none transition-colors ${
-                        selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex
-                          ? 'bg-accent text-neutral-800 dark:bg-neutral-900 dark:text-neutral-200'
-                          : 'hover:bg-accent hover:text-neutral-800 dark:hover:bg-neutral-900 dark:hover:text-neutral-200'
-                      }`}
+                          className={cn(`richtext-flex richtext-items-center richtext-gap-3 richtext-px-2 richtext-py-1.5 richtext-text-sm !richtext-text-neutral-800 dark:!richtext-text-neutral-200 richtext-text-left richtext-w-full richtext-rounded-sm richtext-outline-none richtext-transition-colors !richtext-bg-transparent hover:!richtext-bg-accent `, {
+                            'slash-command-active': selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex,
+                          })}
                           ref={el => setActiveItemRef(groupIndex, commandIndex, el)}
                           key={`command-${commandIndex}`}
                           onClick={() => createCommandClickHandler(groupIndex, commandIndex)}
                         >
-                          {command.iconUrl && <img className="w-6 h-6" src={command.iconUrl} alt="" />}
+                          {command.iconUrl && <img className="richtext-w-6 richtext-h-6" src={command.iconUrl} alt="" />}
                           {command.iconName && (
-                            <IconComponent name={command.iconName} className="mr-1 text-lg" />
+                            <IconComponent name={command.iconName} className="!richtext-mr-1 !richtext-text-lg" />
                           )}
                           {command.label}
                         </button>
@@ -161,8 +161,8 @@ function CommandsList(props: any, ref: any) {
             </div>
           )
         : (
-            <div className="p-3">
-              <span className="text-xs text-gray-800 dark:text-gray-100">
+            <div className="richtext-p-3">
+              <span className="richtext-text-xs richtext-text-gray-800 dark:richtext-text-gray-100">
                 {t('editor.slash.empty')}
               </span>
             </div>

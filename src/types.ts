@@ -171,6 +171,13 @@ export interface BubbleMenuProps {
      */
     hidden?: boolean
   }
+  katexConfig?: {
+    /**
+     * @description katex menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
   render?: (props: BubbleMenuRenderProps, dom: React.ReactNode) => React.ReactNode
 }
 

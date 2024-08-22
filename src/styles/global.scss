@@ -70,10 +70,11 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply richtext-border-border !important;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply richtext-bg-background !important;
+    @apply richtext-text-foreground !important;
   }
 }
 
@@ -83,3 +84,4 @@ html body[data-scroll-locked] {
   // margin-right: 0 !important;
   position: initial !important;
 }
+

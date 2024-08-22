@@ -39,7 +39,9 @@ import {
   Quote,
   Redo2,
   Replace,
+  Sigma,
   SmilePlus,
+  SmilePlusIcon,
   Sparkles,
   Strikethrough,
   Subscript,
@@ -149,5 +151,8 @@ export const icons = {
 
   DeleteColumn,
   DeleteRow,
+  SearchAndReplace: Replace,
+  EmojiIcon: SmilePlusIcon,
+  KatexIcon: Sigma,
   ExportPdf,
 } as any
