@@ -13,7 +13,13 @@ function printHtml(dom: Element) {
   document.body.appendChild(iframe)
 
   const frameWindow = iframe.contentWindow
-  const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document)
+  const doc: any = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document)
+
+  // load style from CDN to iframe
+  const link = document.createElement('link')
+  link.rel = 'stylesheet'
+  link.href = 'https://cdn.jsdelivr.net/npm/reactjs-tiptap-editor/lib/style.css'
+  doc.head.appendChild(link)
 
   if (doc) {
     doc.open()
