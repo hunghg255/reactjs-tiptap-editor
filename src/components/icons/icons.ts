@@ -63,6 +63,7 @@ import {
   TextAlignLeftIcon,
   TextAlignRightIcon,
 } from '@radix-ui/react-icons'
+import ImportWord from './ImportWord'
 import {
   AspectRatio,
   BlockquoteLeft,
@@ -76,6 +77,7 @@ import {
   SizeS,
 } from '@/components/icons'
 import { ExportPdf } from '@/components/icons/ExportPdf'
+import ExportWord from '@/components/icons/ExportWord'
 
 export const icons = {
   Bold,
@@ -155,4 +157,6 @@ export const icons = {
   EmojiIcon: SmilePlusIcon,
   KatexIcon: Sigma,
   ExportPdf,
+  ExportWord,
+  ImportWord,
 } as any

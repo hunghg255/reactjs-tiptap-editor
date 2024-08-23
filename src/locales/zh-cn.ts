@@ -142,6 +142,8 @@ const locale = {
   'editor.formula.dialog.text': '公式',
   'editor.katex.tooltip': '数学公式',
   'editor.exportPdf.tooltip': '导出 PDF',
+  'editor.exportWord.tooltip': '导出 Word',
+  'editor.importWrod.tooltip': '导入 Word',
 }
 
 export default locale
