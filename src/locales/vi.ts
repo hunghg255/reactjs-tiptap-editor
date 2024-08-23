@@ -142,6 +142,8 @@ const locale = {
   'editor.formula.dialog.text': 'Công thức',
   'editor.katex.tooltip': 'Công thức toán học',
   'editor.exportPdf.tooltip': 'Xuất PDF',
+  'editor.exportWord.tooltip': 'Xuất Word',
+  'editor.importWrod.tooltip': 'Nhập Word',
 }
 
 export default locale
