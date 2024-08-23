@@ -14,13 +14,6 @@
     ]
   },
   {
-    "name": "Bold.ts",
-    "package": "Bold",
-    "alias": [
-      "Bold"
-    ]
-  },
-  {
     "name": "BulletList.ts",
     "package": "BulletList",
     "alias": [
@@ -28,10 +21,24 @@
     ]
   },
   {
+    "name": "Bold.ts",
+    "package": "Bold",
+    "alias": [
+      "Bold"
+    ]
+  },
+  {
     "name": "Clear.ts",
     "package": "Clear",
     "alias": [
       "Clear"
+    ]
+  },
+  {
+    "name": "Code.ts",
+    "package": "Code",
+    "alias": [
+      "Code"
     ]
   },
   {
@@ -56,13 +63,6 @@
     ]
   },
   {
-    "name": "Code.ts",
-    "package": "Code",
-    "alias": [
-      "Code"
-    ]
-  },
-  {
     "name": "Color.ts",
     "package": "Color",
     "alias": [
@@ -81,6 +81,20 @@
     "package": "Emoji",
     "alias": [
       "Emoji"
+    ]
+  },
+  {
+    "name": "ExportWord.ts",
+    "package": "ExportWord",
+    "alias": [
+      "ExportWord"
+    ]
+  },
+  {
+    "name": "ExportPdf.ts",
+    "package": "ExportPdf",
+    "alias": [
+      "ExportPdf"
     ]
   },
   {
@@ -161,6 +175,13 @@
     ]
   },
   {
+    "name": "ImportWord.ts",
+    "package": "ImportWord",
+    "alias": [
+      "ImportWord"
+    ]
+  },
+  {
     "name": "Indent.ts",
     "package": "Indent",
     "alias": [
@@ -175,17 +196,17 @@
     ]
   },
   {
-    "name": "LineHeight.ts",
-    "package": "LineHeight",
-    "alias": [
-      "LineHeight"
-    ]
-  },
-  {
     "name": "Katex.ts",
     "package": "Katex",
     "alias": [
       "Katex"
+    ]
+  },
+  {
+    "name": "LineHeight.ts",
+    "package": "LineHeight",
+    "alias": [
+      "LineHeight"
     ]
   },
   {
@@ -273,17 +294,17 @@
     ]
   },
   {
-    "name": "Strike.ts",
-    "package": "Strike",
-    "alias": [
-      "Strike"
-    ]
-  },
-  {
     "name": "Subscript.ts",
     "package": "Subscript",
     "alias": [
       "Subscript"
+    ]
+  },
+  {
+    "name": "Strike.ts",
+    "package": "Strike",
+    "alias": [
+      "Strike"
     ]
   },
   {
@@ -336,17 +357,17 @@
     ]
   },
   {
-    "name": "VideoUpload.ts",
-    "package": "VideoUpload",
-    "alias": [
-      "VideoUpload"
-    ]
-  },
-  {
     "name": "Video.ts",
     "package": "Video",
     "alias": [
       "Video"
+    ]
+  },
+  {
+    "name": "VideoUpload.ts",
+    "package": "VideoUpload",
+    "alias": [
+      "VideoUpload"
     ]
   },
   {
