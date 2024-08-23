@@ -1,5 +1,9 @@
 ---
 description: Export PDF
+
+next:
+  text: Import Word
+  link: /extensions/ImportWord/index.md
 ---
 
 # Export PDF

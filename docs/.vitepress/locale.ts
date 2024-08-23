@@ -236,6 +236,14 @@ export function getLocaleConfig(lang: string) {
           text: 'ExportPdf',
           link: '/extensions/ExportPdf/index.md',
         },
+        {
+          text: 'ImportWord',
+          link: '/extensions/ImportWord/index.md',
+        },
+        {
+          text: 'ExportWord',
+          link: '/extensions/ExportWord/index.md',
+        },
       ],
     },
   ]
