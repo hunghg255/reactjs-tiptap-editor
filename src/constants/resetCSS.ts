@@ -44,8 +44,12 @@ div[data-tippy-root] {
   box-sizing: border-box;
   border-width: 0;
   border-style: solid;
-  border-color: #e5e7eb;
+  border-color: hsl(var(--richtext-border));
 }
+
+background-color: hsl(var(--richtext-background));
+color: hsl(var(--richtext-foreground));
+
 
 html,
 :host {

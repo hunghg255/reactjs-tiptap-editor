@@ -68,16 +68,6 @@
   }
 }
 
-@layer base {
-  * {
-    @apply richtext-border-border !important;
-  }
-  body {
-    @apply richtext-bg-background !important;
-    @apply richtext-text-foreground !important;
-  }
-}
-
 // https://github.com/radix-ui/primitives/issues/1496
 html body[data-scroll-locked] {
   --removed-body-scroll-bar-size: 0 !important;
