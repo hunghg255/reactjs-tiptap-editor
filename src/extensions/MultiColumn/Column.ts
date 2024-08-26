@@ -4,27 +4,33 @@ export const Column = Node.create({
   name: 'column',
   content: 'block+',
   isolating: true,
-  addAttributes() {
+
+  addOptions() {
     return {
-      position: {
-        default: '',
-        parseHTML: element => element.dataset.position,
-        renderHTML: attributes => ({ 'data-position': attributes.position }),
+      HTMLAttributes: {
+        class: 'column',
       },
     }
   },
 
-  renderHTML({ HTMLAttributes }) {
-    return ['div', mergeAttributes(HTMLAttributes, { 'data-type': 'column' }), 0]
+  addAttributes() {
+    return {
+      index: {
+        default: 0,
+        parseHTML: element => element.getAttribute('index'),
+      },
+    }
   },
 
   parseHTML() {
     return [
       {
-        tag: 'div[data-type="column"]',
+        tag: 'div[class=column]',
       },
     ]
   },
-})
 
-export default Column
+  renderHTML({ HTMLAttributes }) {
+    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
+  },
+})

@@ -1,4 +1,3 @@
-/* eslint-disable ts/no-unused-expressions */
 import type React from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
@@ -60,6 +59,8 @@ const LIST = [
   },
 ]
 
+const RECENT_DEFAULT = ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣']
+
 interface IProps {
   showClear?: boolean
   onSelectEmoji: (arg: string) => void
@@ -80,17 +81,27 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
   const selectEmoji = useCallback(
     (emoji: any) => {
       emojiLocalStorageLRUCache.put(emoji)
-      // @ts-ignore
+      // @ts-expect-error
       setRecentUsed(emojiLocalStorageLRUCache.get() as string[])
-      onSelectEmoji && onSelectEmoji(emoji)
+
+      if (onSelectEmoji)
+        onSelectEmoji(emoji)
     },
     [onSelectEmoji],
   )
 
   useEffect(() => {
     emojiLocalStorageLRUCache.syncFromStorage()
-    // @ts-expect-error
-    setRecentUsed(emojiLocalStorageLRUCache.get() as string[])
+    const defaultEmoji = emojiLocalStorageLRUCache.get() as string[]
+
+    if (!defaultEmoji?.length) {
+      RECENT_DEFAULT.forEach((emoji) => {
+        emojiLocalStorageLRUCache.put(emoji)
+      })
+    }
+
+    const defaultEmojiNew = emojiLocalStorageLRUCache.get() as string[]
+    setRecentUsed(defaultEmojiNew as any)
   }, [])
 
   return (

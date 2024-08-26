@@ -158,24 +158,17 @@ export function renderGroups(extensions: Extensions) {
       })
     }
 
-    // if (extension.name.toLowerCase() === 'columns') {
-    //   groups[1].commands.push({
-    //     name: 'columns',
-    //     label: localeActions.t('editor.columns.tooltip'),
-    //     iconName: 'Columns2',
-    //     description: 'Add two column content',
-    //     aliases: ['columns', 'cols', '2cols'],
-    //     shouldBeHidden: (editor) => editor.isActive('columns'),
-    //     action: ({ editor, range }) => {
-    //       editor
-    //         .chain()
-    //         .deleteRange(range)
-    //         .setColumns()
-    //         .focus(editor.state.selection.head - 1)
-    //         .run();
-    //     },
-    //   })
-    // }
+    if (extension.name.toLowerCase() === 'columns') {
+      groups[1].commands.push({
+        name: 'columns',
+        label: localeActions.t('editor.columns.tooltip'),
+        iconName: 'Columns2',
+        description: 'Add two column content',
+        action: ({ editor }) => {
+          editor.chain().focus().insertColumns({ cols: 2 }).run()
+        },
+      })
+    }
   })
 
   return groups

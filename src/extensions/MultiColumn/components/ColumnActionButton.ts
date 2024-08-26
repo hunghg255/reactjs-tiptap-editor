@@ -2,8 +2,8 @@ import { Extension } from '@tiptap/core'
 
 import { ActionButton } from '@/components'
 
-export const ColumnToolbar = Extension.create<any>({
-  name: 'columnToolbar',
+export const ColumnActionButton = Extension.create<any>({
+  name: 'columnActionButton',
   addOptions() {
     return {
       ...this.parent?.(),
@@ -11,11 +11,7 @@ export const ColumnToolbar = Extension.create<any>({
         component: ActionButton,
         componentProps: {
           action: () => {
-            editor
-              .chain()
-              .setColumns()
-              .focus(editor.state.selection.head - 1)
-              .run()
+            editor.chain().focus().insertColumns({ cols: 2 }).run()
           },
           icon: 'Columns',
           tooltip: t('editor.columns.tooltip'),

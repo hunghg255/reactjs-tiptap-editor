@@ -2,7 +2,6 @@ import type { AnyExtension } from '@tiptap/core'
 import { Extension } from '@tiptap/core'
 import type { CharacterCountOptions } from '@tiptap/extension-character-count'
 import { CharacterCount } from '@tiptap/extension-character-count'
-import { Document as TiptapDocumentDefault } from '@tiptap/extension-document'
 import type { DropcursorOptions } from '@tiptap/extension-dropcursor'
 import { Dropcursor } from '@tiptap/extension-dropcursor'
 import type { FocusOptions } from '@tiptap/extension-focus'
@@ -21,7 +20,7 @@ import type { TextStyleOptions } from '@tiptap/extension-text-style'
 import { TextStyle } from '@tiptap/extension-text-style'
 
 import { Document } from '@/extensions/Document'
-import { MultiColumn } from '@/extensions/MultiColumn'
+import { Column, MultiColumn } from '@/extensions/MultiColumn'
 import { Selection } from '@/extensions/Selection'
 import type { TextBubbleOptions } from '@/extensions/TextBubble'
 import { TextBubble } from '@/extensions/TextBubble'
@@ -36,10 +35,15 @@ export interface BaseKitOptions {
   /**
    * Whether to enable the document option
    *
+   * @default true
+   */
+  document: false
+  /**
+   * Whether to enable the document option
+   *
    * @default false
    */
   multiColumn?: boolean
-
   /**
    * Whether to enable the text option
    *
@@ -148,18 +152,19 @@ export const BaseKit = Extension.create<BaseKitOptions>({
 
   addExtensions() {
     const extensions: AnyExtension[] = []
-    if (this.options.multiColumn) {
+
+    if (this.options.document !== false) {
       extensions.push(Document.configure())
-      extensions.push(MultiColumn)
-    }
-    else {
-      extensions.push(TiptapDocumentDefault)
     }
 
     if (this.options.placeholder !== false) {
       extensions.push(
         Placeholder.configure({
           placeholder: ({ node, pos, editor }) => {
+            if (node?.type?.name === 'columns') {
+              return ''
+            }
+
             if (node?.type?.name === 'heading') {
               // @ts-expect-error
               return `${localeActions.t(`editor.heading.h${node.attrs.level}.tooltip`)}`
@@ -236,6 +241,11 @@ export const BaseKit = Extension.create<BaseKitOptions>({
 
     if (this.options.selection !== false) {
       extensions.push(Selection)
+    }
+
+    if (this.options.multiColumn !== false) {
+      extensions.push(Column)
+      extensions.push(MultiColumn)
     }
 
     return extensions

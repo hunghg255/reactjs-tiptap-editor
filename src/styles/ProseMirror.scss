@@ -90,30 +90,7 @@
     @apply richtext-border-l-4 richtext-text-black richtext-border-l-neutral-700 richtext-py-2 richtext-px-4 richtext-bg-opacity-80 richtext-rounded-lg richtext-rounded-tl-none richtext-rounded-bl-none;
     @apply dark:richtext-border-l-neutral-300 dark:richtext-text-white;
   }
-  /* Columns */
-  [data-type='columns'] {
-    @apply richtext-grid richtext-gap-4 richtext-mt-14 richtext-mb-12;
 
-    &.layout-sidebar-left {
-      grid-template-columns: 40fr 60fr;
-    }
-
-    &.layout-sidebar-right {
-      grid-template-columns: 60fr 40fr;
-    }
-
-    &.layout-two-column {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  .layout-two-column.is-empty::before {
-    display: none !important;
-  }
-
-  [data-type='column'] {
-    @apply richtext-overflow-auto;
-  }
   code {
     @apply richtext-caret-white richtext-text-white richtext-bg-neutral-900 richtext-rounded-sm richtext-shadow-lg richtext-font-mono;
 

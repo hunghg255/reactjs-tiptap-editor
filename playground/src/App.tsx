@@ -9,7 +9,7 @@ import RichTextEditor, {
   Code,
   CodeBlock,
   Color,
-  ColumnToolbar,
+  ColumnActionButton,
   Emoji,
   ExportPdf,
   ExportWord,
@@ -47,7 +47,6 @@ import 'reactjs-tiptap-editor/style.css'
 
 const extensions = [
   BaseKit.configure({
-    multiColumn: true,
     placeholder: {
       showOnlyCurrent: true,
     },
@@ -110,7 +109,7 @@ const extensions = [
     toolbar: false,
   }),
   CodeBlock.configure({ defaultTheme: 'dracula' }),
-  ColumnToolbar,
+  ColumnActionButton,
   Table,
   Iframe,
   ExportPdf.configure({ spacer: true }),

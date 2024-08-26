@@ -81,6 +81,8 @@ import {
 } from '@/components/icons'
 import { ExportPdf } from '@/components/icons/ExportPdf'
 import ExportWord from '@/components/icons/ExportWord'
+import { ColumnAddLeft } from '@/components/icons/ColumnAddLeft'
+import { ColumnAddRight } from '@/components/icons/ColumnAddRight'
 
 export const icons = {
   Bold,
@@ -165,4 +167,6 @@ export const icons = {
   ExportPdf,
   ExportWord,
   ImportWord,
+  ColumnAddLeft,
+  ColumnAddRight,
 } as any

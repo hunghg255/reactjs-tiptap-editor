@@ -1,0 +1,23 @@
+.columns {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  margin-top: 0.75em;
+
+  .column {
+    min-width: 0;
+    padding: 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: hsl(var(--border));
+    border-radius: 2px;
+    flex: 1 1 0%;
+    box-sizing: border-box;
+
+    p {
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+}

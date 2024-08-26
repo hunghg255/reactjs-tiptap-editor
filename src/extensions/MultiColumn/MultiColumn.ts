@@ -1,77 +1,111 @@
-import { Node } from '@tiptap/core'
+import { Node, mergeAttributes } from '@tiptap/core'
 
-import { Column } from './Column'
-import type { GeneralOptions } from '@/types'
+import { TextSelection } from '@tiptap/pm/state'
+import { addOrDeleteCol, createColumns, gotoCol } from '@/utils/columns'
 
-export enum ColumnLayout {
-  SidebarLeft = 'sidebar-left',
-  SidebarRight = 'sidebar-right',
-  TwoColumn = 'two-column',
-}
+export const EXTENSION_PRIORITY_HIGHEST = 200
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     columns: {
-      setColumns: () => ReturnType
-      setLayout: (layout: ColumnLayout) => ReturnType
+      insertColumns: (attrs?: { cols: number }) => ReturnType
+      addColBefore: () => ReturnType
+      addColAfter: () => ReturnType
+      deleteCol: () => ReturnType
     }
   }
 }
-export interface ColumnsOptions extends GeneralOptions<ColumnsOptions> {
-  columnOptions: any
-  layout: ColumnLayout
-}
 
-export const MultiColumn = Node.create<ColumnsOptions>({
+export const MultiColumn = Node.create({
   name: 'columns',
-  group: 'columns',
-  content: 'column+',
+  group: 'block',
   defining: true,
   isolating: true,
+  allowGapCursor: false,
+  content: 'column{1,}',
+  priority: EXTENSION_PRIORITY_HIGHEST,
+
   addOptions() {
     return {
-      ...this.parent?.(),
-      layout: ColumnLayout.TwoColumn,
+      HTMLAttributes: {
+        class: 'columns',
+      },
     }
   },
 
   addAttributes() {
     return {
-      layout: {
-        default: ColumnLayout.TwoColumn,
+      cols: {
+        default: 2,
+        parseHTML: element => element.getAttribute('cols'),
       },
     }
   },
-  addCommands() {
-    return {
-      setColumns:
-        () =>
-          ({ commands }) => {
-            commands.insertContent(
-              '<div data-type="columns"><div data-type="column" data-position="left"><p></p></div><div data-type="column" data-position="right"><p></p></div></div>',
-            )
-            return true
-          },
 
-      setLayout:
-        (layout: ColumnLayout) =>
-          ({ commands }) =>
-            commands.updateAttributes('columns', { layout }),
-    }
-  },
-  renderHTML({ HTMLAttributes }) {
-    return ['div', { 'data-type': 'columns', 'class': `layout-${HTMLAttributes.layout}` }, 0]
-  },
   parseHTML() {
     return [
       {
-        tag: 'div[data-type="columns"]',
+        tag: 'div[class=grid]',
       },
     ]
   },
-  addExtensions() {
-    return [Column.configure(this.options.columnOptions)]
+
+  renderHTML({ HTMLAttributes }) {
+    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
+  },
+
+  addCommands() {
+    return {
+      insertColumns:
+        attrs =>
+          ({ tr, dispatch, editor }) => {
+            const node = createColumns(editor.schema, (attrs && attrs.cols) || 3)
+
+            if (dispatch) {
+              const offset = tr.selection.anchor + 1
+
+              tr.replaceSelectionWith(node)
+                .scrollIntoView()
+                .setSelection(TextSelection.near(tr.doc.resolve(offset)))
+            }
+
+            return true
+          },
+      addColBefore:
+        () =>
+          ({ dispatch, state }) => {
+            return addOrDeleteCol({ dispatch, state, type: 'addBefore' })
+          },
+      addColAfter:
+        () =>
+          ({ dispatch, state }) => {
+            return addOrDeleteCol({ dispatch, state, type: 'addAfter' })
+          },
+      deleteCol:
+        () =>
+          ({ dispatch, state }) => {
+            return addOrDeleteCol({ dispatch, state, type: 'delete' })
+          },
+    }
+  },
+
+  addKeyboardShortcuts() {
+    return {
+      'Mod-Alt-G': () => this.editor.commands.insertColumns(),
+      'Tab': () => {
+        return gotoCol({
+          state: this.editor.state,
+          dispatch: this.editor.view.dispatch,
+          type: 'after',
+        })
+      },
+      'Shift-Tab': () => {
+        return gotoCol({
+          state: this.editor.state,
+          dispatch: this.editor.view.dispatch,
+          type: 'before',
+        })
+      },
+    }
   },
 })
-
-export default MultiColumn

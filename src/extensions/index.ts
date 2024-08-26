@@ -57,9 +57,6 @@ export type { HorizontalRuleOptions } from './HorizontalRule'
 export { History } from './History'
 export type { HistoryOptions } from './History'
 
-// export { Fullscreen } from './Fullscreen';
-// export type { FullscreenOptions } from './Fullscreen';
-
 export { BaseKit } from './BaseKit'
 export type { BaseKitOptions } from './BaseKit'
 
@@ -95,8 +92,7 @@ export type { TableOptions } from './Table'
 export { FormatPainter } from './FormatPainter'
 export type { FormatPainterOptions } from './FormatPainter'
 
-export { MultiColumn, ColumnToolbar } from './MultiColumn'
-export type { ColumnsOptions } from './MultiColumn'
+export { Column, MultiColumn, ColumnActionButton } from './MultiColumn'
 
 export { Iframe } from './Iframe'
 

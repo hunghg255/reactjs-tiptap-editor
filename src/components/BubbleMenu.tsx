@@ -1,7 +1,6 @@
 import type { Editor } from '@tiptap/core'
 
-import { BubbleMenuImage, BubbleMenuLink, BubbleMenuText, BubbleMenuVideo, ContentMenu, TableBubbleMenu } from '@/components'
-import ColumnsMenu from '@/extensions/MultiColumn/menus/ColumnsMenu'
+import { BubbleMenuImage, BubbleMenuLink, BubbleMenuText, BubbleMenuVideo, ColumnsBubbleMenu, ContentMenu, TableBubbleMenu } from '@/components'
 import type { BubbleMenuProps as BubbleMenuPropsType } from '@/types'
 import BubbleMenuKatex from '@/components/menus/components/BubbleMenuKatex'
 
@@ -23,7 +22,7 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
   const extensionsNames = editor.extensionManager.extensions.map(ext => ext.name)
 
   const renderMenuItems = () => [
-    extensionsNames.includes('columns') && !bubbleMenu?.columnConfig?.hidden ? <ColumnsMenu key="columns" editor={editor} /> : null,
+    extensionsNames.includes('columns') && !bubbleMenu?.columnConfig?.hidden ? <ColumnsBubbleMenu key="columns" editor={editor} /> : null,
     extensionsNames.includes('table') && !bubbleMenu?.tableConfig?.hidden ? <TableBubbleMenu key="table" editor={editor} /> : null,
     extensionsNames.includes('link') && !bubbleMenu?.linkConfig?.hidden ? <BubbleMenuLink key="link" editor={editor} disabled={disabled} /> : null,
     extensionsNames.includes('image') && !bubbleMenu?.imageConfig?.hidden ? <BubbleMenuImage key="image" editor={editor} disabled={disabled} /> : null,
