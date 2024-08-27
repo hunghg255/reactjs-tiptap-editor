@@ -1,6 +1,5 @@
 import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core'
 import { ReactNodeViewRenderer } from '@tiptap/react'
-import { getDatasetAttribute } from '@/utils/dom-dataset'
 import { KatexWrapper } from '@/extensions/Katex/components/KatexWrapper'
 import KatexActiveButton from '@/extensions/Katex/components/KatexActiveButton'
 
@@ -11,6 +10,12 @@ export interface IKatexAttrs {
 
 interface IKatexOptions {
   HTMLAttributes: Record<string, any>
+}
+
+function getDatasetAttribute(attribute: string) {
+  return (element: any) => {
+    return element.getAttribute(attribute)
+  }
 }
 
 declare module '@tiptap/core' {
