@@ -1,7 +1,7 @@
 {
   "name": "reactjs-tiptap-editor",
   "type": "module",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "main": "./lib/reactjs-tiptap-editor.cjs",
   "module": "./lib/reactjs-tiptap-editor.js",
   "types": "./lib/index.d.ts",
