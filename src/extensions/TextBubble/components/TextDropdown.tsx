@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import React, { useMemo } from 'react'
 
 import { ChevronDown } from 'lucide-react'
@@ -114,7 +115,7 @@ function TextDropdown(props: IPropsTextDropdown) {
 
           return (
             <DropdownMenuCheckboxItem
-              key={index}
+              key={`text-bubble-${index}`}
               checked={item.isActive?.() || false}
               onClick={() => item.action()}
               className="richtext-cursor-pointer"

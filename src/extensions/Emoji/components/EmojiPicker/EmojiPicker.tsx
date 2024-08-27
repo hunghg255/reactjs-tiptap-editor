@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import type React from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
@@ -114,7 +115,7 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
             {renderedList.map((list) => {
               return (
                 <TabsTrigger
-                  key={list.title}
+                  key={`emoji-picker-title-${list.title}`}
                   value={list.title}
                   className="!richtext-p-[6px] richtext-bg-accent hover:richtext-text-accent-foreground"
                 >
@@ -127,7 +128,7 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
           {renderedList.map((list) => {
             return (
               <TabsContent
-                key={list.title}
+                key={`emoji-picker-content-${list.title}`}
                 value={list.title}
               >
                 <p className="richtext-mb-[6px] richtext-font-semibold">{t(list.title as any)}</p>
@@ -135,7 +136,7 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
                   <div className="richtext-grid richtext-grid-cols-8 richtext-gap-1 ">
                     {(list.data || []).map(ex => (
                       <div
-                        key={ex}
+                        key={`emoji-picker-${ex}`}
                         onClick={() => selectEmoji(ex)}
                         className="richtext-text-center richtext-cursor-pointer"
                       >

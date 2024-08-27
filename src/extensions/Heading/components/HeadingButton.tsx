@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import React, { Fragment, useMemo } from 'react'
 
 import {
@@ -65,7 +66,7 @@ function HeadingButton(props: Props) {
       <DropdownMenuContent className="richtext-w-full">
         {props?.items?.map((item: any, index) => {
           return (
-            <Fragment key={index}>
+            <Fragment key={`heading-k-${index}`}>
               <DropdownMenuCheckboxItem
                 checked={active?.title === item.title}
                 onClick={item.action}

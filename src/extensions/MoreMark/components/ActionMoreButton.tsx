@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import React, { useMemo } from 'react'
 
 import {
@@ -69,7 +70,7 @@ function ActionMoreButton(props: IPropsActionMoreButton) {
             <DropdownMenuCheckboxItem
               checked={active.title === item.title}
               onClick={item.action}
-              key={index}
+              key={`more-mark-${index}`}
               className="richtext-flex richtext-items-center richtext-gap-3"
             >
               <IconComponent name={item?.icon} />

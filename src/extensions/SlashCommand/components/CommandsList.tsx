@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 /* eslint-disable react-dom/no-missing-button-type */
 import React, {
   Fragment,
@@ -132,7 +133,7 @@ function CommandsList(props: any, ref: any) {
             <div className="richtext-grid richtext-grid-cols-1 richtext-gap-0.5 richtext-min-w-48">
               {props?.items?.map((group: any, groupIndex: any) => {
                 return (
-                  <Fragment key={group.title}>
+                  <Fragment key={`slash-${group.title}`}>
                     <div className="!richtext-text-neutral-500 richtext-text-[0.65rem] richtext-col-[1/-1] richtext-mx-2 richtext-mt-2 richtext-font-semibold richtext-tracking-wider richtext-select-none richtext-uppercase first:richtext-mt-0.5">
                       {group.title}
                     </div>

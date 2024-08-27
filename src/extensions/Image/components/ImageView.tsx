@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { NodeViewWrapper } from '@tiptap/react'
@@ -244,7 +245,7 @@ function ImageView(props: any) {
             {resizeDirections?.map((direction) => {
               return (
                 <span
-                  key={direction}
+                  key={`image-dir-${direction}`}
                   className={`image-resizer__handler image-resizer__handler--${direction}`}
                   onMouseDown={(e: any) => onMouseDown(e, direction)}
                 >

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import React, { useMemo } from 'react'
 
 import type { BundledLanguage } from 'shiki'

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 /* eslint-disable ts/no-unused-expressions */
 import clsx from 'clsx'
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
@@ -73,7 +74,7 @@ export const EmojiList: React.FC<IProps> = forwardRef((props, ref) => {
               props.items.map((item, index) => (
                 <span
                   className={clsx(' richtext-flex richtext-relative  richtext-cursor-default richtext-select-none richtext-items-center richtext-rounded-sm richtext-px-2 richtext-py-1.5 richtext-text-sm richtext-outline-none richtext-transition-colors focus:richtext-bg-accent focus:richtext-text-accent-foreground  hover:richtext-bg-accent', index === selectedIndex ? 'bg-accent' : '')}
-                  key={index}
+                  key={`emoji-list-code-${index}`}
                   onClick={() => selectItem(index)}
                 >
                   {item.fallbackImage ? <img src={item.fallbackImage} className="richtext-w-[1em] richtext-h-[1em]" /> : item.emoji}

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import React, { Fragment, useMemo } from 'react'
 
 import {
@@ -71,7 +72,7 @@ function FontFamilyButton(props: Props) {
             = item.font === t('editor.fontFamily.default.tooltip') ? {} : { fontFamily: item.font }
 
           return (
-            <Fragment key={index}>
+            <Fragment key={`font-family-${index}`}>
               <DropdownMenuCheckboxItem checked={active?.font === item.font} onClick={item.action}>
                 <div className="richtext-h-full richtext-ml-1" style={style}>
                   {item.font}

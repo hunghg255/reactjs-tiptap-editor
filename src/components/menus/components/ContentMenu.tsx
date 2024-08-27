@@ -185,7 +185,7 @@ function ContentMenu(props: ContentMenuProps) {
   return (
     <div
       className={
-          `drag-handle [transition-property:top,_left] richtext-ease-in-out richtext-duration-200 ${props?.className}`
+        `drag-handle [transition-property:top,_left] richtext-ease-in-out richtext-duration-200 ${props?.className}`
       }
       style={{
         opacity: props?.disabled ? 0 : 1,

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import { useMemo } from 'react'
 
 import type { Editor } from '@tiptap/core'

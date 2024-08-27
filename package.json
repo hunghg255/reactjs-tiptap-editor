@@ -45,7 +45,7 @@
     "playground": "pnpm --dir ./playground run dev",
     "preview": "pnpm --dir ./playground run preview",
     "lint": "eslint src --quiet",
-    "lint:fix": "eslint src --fix",
+    "lint:fix": "eslint src --fix --quiet",
     "type-check": "tsc",
     "verify-commit": "verify-commit-msg",
     "prepare": "git-scm-hooks",

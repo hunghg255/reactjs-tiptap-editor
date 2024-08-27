@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import React, { useMemo, useState } from 'react'
 
 import {

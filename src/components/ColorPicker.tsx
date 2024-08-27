@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import React, { useEffect, useMemo, useState } from 'react'
 
 import { Plus } from 'lucide-react'
@@ -154,7 +155,7 @@ function ColorPicker(props: ColorPickerProps) {
                 return (
                   <span
                     className="richtext-w-6 richtext-h-6 richtext-p-0.5 richtext-inline-block richtext-rounded-sm !richtext-border richtext-border-transparent richtext-flex-[0_0_auto] richtext-cursor-pointer hover:richtext-border-border hover:richtext-shadow-sm"
-                    key={index}
+                    key={`sub-color-recent-${index}`}
                     onClick={() => setColor(item)}
                   >
                     <span

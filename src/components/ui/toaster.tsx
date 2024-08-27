@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 'use client'
 
 import {

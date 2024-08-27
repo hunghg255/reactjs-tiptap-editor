@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import React, { useMemo } from 'react'
 
 import {
@@ -59,7 +60,7 @@ function FontSizeMenuButton(props: IPropsFontSizeMenuButton) {
         {props?.items?.map((item: any, index) => {
           return (
             <DropdownMenuCheckboxItem
-              key={index}
+              key={`font-size-${index}`}
               checked={active.title === item.title}
               onClick={item.action}
             >

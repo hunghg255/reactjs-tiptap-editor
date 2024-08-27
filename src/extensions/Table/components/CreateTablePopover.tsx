@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import React, { useState } from 'react'
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components'

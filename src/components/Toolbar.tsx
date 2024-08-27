@@ -1,3 +1,4 @@
+/* eslint-disable react/no-duplicate-key */
 import React, { useMemo } from 'react'
 import type { Editor } from '@tiptap/core'
 
@@ -72,7 +73,7 @@ function Toolbar({ editor, disabled }: ToolbarProps) {
           const ButtonComponent = item.button.component
 
           return (
-            <div className="richtext-flex richtext-items-center" key={key}>
+            <div className="richtext-flex richtext-items-center" key={`toolbar-item-${key}`}>
               {item?.spacer && <Separator orientation="vertical" className="!richtext-h-[16px] !richtext-mx-[10px]" />}
 
               <ButtonComponent
