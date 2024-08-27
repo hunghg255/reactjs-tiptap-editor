@@ -4,7 +4,7 @@ import { forwardRef, useEffect, useImperativeHandle, useMemo } from 'react'
 import type { AnyExtension, Editor as CoreEditor } from '@tiptap/core'
 import type { UseEditorOptions } from '@tiptap/react'
 import { EditorContent, useEditor } from '@tiptap/react'
-import { differenceBy, throttle } from 'lodash-unified'
+import { differenceBy, throttle } from 'lodash-es'
 
 import type { BubbleMenuProps } from '@/types'
 import { BubbleMenu, Toolbar, TooltipProvider } from '@/components'

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Editor } from '@tiptap/core'
 
-import type { Node } from '@tiptap/pm/model'
 import type { NodeSelection } from '@tiptap/pm/state'
 import { DragHandlePlugin, dragHandlePluginDefaultKey } from 'echo-drag-handle-plugin'
 
+import type { Node } from '@tiptap/pm/model'
 import {
   Button,
   DropdownMenu,

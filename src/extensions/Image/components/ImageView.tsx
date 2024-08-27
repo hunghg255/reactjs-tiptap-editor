@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { NodeViewWrapper } from '@tiptap/react'
 import { flushSync } from 'react-dom'
 
+import { clamp, isNumber, throttle } from 'lodash-es'
 import { IMAGE_MAX_SIZE, IMAGE_MIN_SIZE, IMAGE_THROTTLE_WAIT_TIME } from '@/constants'
-import { clamp, isNumber, throttle } from '@/utils/utils'
 
 interface Size {
   width: number

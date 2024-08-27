@@ -9,7 +9,9 @@ import autoprefixer from 'autoprefixer'
 import postcssReplace from 'postcss-replace'
 
 // https://vitejs.dev/config/
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
+  const isDev = mode !== 'production'
+
   return {
     plugins: [
       react(),
@@ -49,9 +51,10 @@ export default defineConfig(() => {
       },
     },
     build: {
+      cssMinify: 'esbuild',
       minify: 'esbuild',
       outDir: 'lib',
-      sourcemap: true,
+      sourcemap: isDev,
       lib: {
         entry: path.resolve(__dirname, 'src/index.ts'),
         formats: ['es', 'cjs'],
@@ -59,12 +62,33 @@ export default defineConfig(() => {
       rollupOptions: {
         output: {
           manualChunks(id) {
+            if (id.includes('@radix-ui')) {
+              return 'radix'
+            }
+            if (id.includes('@tiptap')) {
+              return 'tiptap'
+            }
             if (id.includes('node_modules')) {
               return 'vendor'
             }
+            if (id.includes('src/components')) {
+              return 'components'
+            }
+            if (id.includes('src/extensions')) {
+              return 'extensions'
+            }
+            if (id.includes('src/utils')) {
+              return 'utils'
+            }
+            if (id.includes('src/locales')) {
+              return 'utils'
+            }
+            if (id.includes('src/locales')) {
+              return 'locales'
+            }
           },
         },
-        external: ['react', 'react-dom', 'react/jsx-runtime', 'katex', 'shiki'],
+        external: ['react', 'react-dom', 'react/jsx-runtime', 'katex', 'shiki', 'docx'],
       },
     },
   }

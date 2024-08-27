@@ -69,5 +69,3 @@ export function ensureNameValueOptions(arr: (string | NameValueOption)[]) {
     return item
   })
 }
-
-export { differenceBy, isEqual, throttle, truncate } from 'lodash-unified'

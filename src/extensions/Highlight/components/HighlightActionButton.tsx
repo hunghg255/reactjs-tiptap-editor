@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 
 import type { TooltipContentProps } from '@radix-ui/react-tooltip'
-import { debounce } from 'lodash-unified'
+import { debounce } from 'lodash-es'
 
 import { ActionButton, Button, ColorPicker } from '@/components'
 import { IconComponent } from '@/components/icons'

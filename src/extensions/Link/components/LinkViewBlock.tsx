@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { truncate } from 'lodash-unified'
+import { truncate } from 'lodash-es'
 
 import { ActionButton, Separator } from '@/components'
 import { useLocale } from '@/locales'
