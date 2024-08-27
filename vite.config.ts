@@ -54,7 +54,7 @@ export default defineConfig(({ mode }) => {
       cssMinify: 'esbuild',
       minify: 'esbuild',
       outDir: 'lib',
-      sourcemap: isDev,
+      sourcemap: true,
       lib: {
         entry: path.resolve(__dirname, 'src/index.ts'),
         formats: ['es', 'cjs'],
@@ -71,16 +71,7 @@ export default defineConfig(({ mode }) => {
             if (id.includes('node_modules')) {
               return 'vendor'
             }
-            if (id.includes('src/components')) {
-              return 'components'
-            }
-            if (id.includes('src/extensions')) {
-              return 'extensions'
-            }
             if (id.includes('src/utils')) {
-              return 'utils'
-            }
-            if (id.includes('src/locales')) {
               return 'utils'
             }
             if (id.includes('src/locales')) {
