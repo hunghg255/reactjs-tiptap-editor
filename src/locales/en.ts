@@ -7,6 +7,7 @@ const locale = {
   'editor.recent': 'Recently Used',
   'editor.nofill': 'No Fill',
   'editor.format': 'Format Painter',
+  'editor.table_of_content': 'Table of Content',
   'editor.draghandle.tooltip': 'Modify',
   'editor.copyToClipboard': 'CopyToClipboard',
   'editor.importWord.tooltip': 'Import Word',

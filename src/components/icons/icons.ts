@@ -4,6 +4,7 @@ import {
   BetweenVerticalEnd,
   BetweenVerticalStart,
   Bold,
+  BookMarked,
   ChevronDown,
   ChevronsUpDown,
   Clipboard,
@@ -169,4 +170,5 @@ export const icons = {
   ImportWord,
   ColumnAddLeft,
   ColumnAddRight,
+  BookMarked,
 } as any

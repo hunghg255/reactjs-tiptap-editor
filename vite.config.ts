@@ -64,7 +64,7 @@ export default defineConfig(() => {
             }
           },
         },
-        external: ['react', 'react-dom', 'react/jsx-runtime'],
+        external: ['react', 'react-dom', 'react/jsx-runtime', 'katex', 'shiki'],
       },
     },
   }

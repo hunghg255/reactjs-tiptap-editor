@@ -7,6 +7,7 @@ const locale = {
   'editor.recent': 'Đã sử dụng gần đây',
   'editor.nofill': 'Không tô',
   'editor.format': 'Format Painter',
+  'editor.table_of_content': 'Mục lục',
   'editor.draghandle.tooltip': 'Sửa đổi',
   'editor.copyToClipboard': 'CopyToClipboard',
   'editor.importWord.tooltip': 'Nhập Word',

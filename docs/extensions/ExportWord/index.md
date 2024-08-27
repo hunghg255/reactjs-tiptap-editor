@@ -1,5 +1,9 @@
 ---
 description: Export Word
+
+next:
+  text: Table Of Contents
+  link: /extensions/TableOfContents/index.md
 ---
 
 # Export Word

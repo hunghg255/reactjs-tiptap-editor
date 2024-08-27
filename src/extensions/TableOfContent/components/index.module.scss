@@ -1,0 +1,40 @@
+.toc {
+  width: max-content;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  opacity: 0.75;
+
+  &.visible {
+    padding: 0.75rem;
+    margin: 0.75em 0;
+  }
+
+  .list {
+    padding: 0;
+    margin: 0 0 12px;
+    list-style: none;
+
+  }
+
+  .item {
+    a:hover {
+      opacity: 0.5;
+    }
+
+    &--3 {
+      padding-left: 1rem;
+    }
+
+    &--4 {
+      padding-left: 2rem;
+    }
+
+    &--5 {
+      padding-left: 3rem;
+    }
+
+    &--6 {
+      padding-left: 4rem;
+    }
+  }
+}

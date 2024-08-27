@@ -244,6 +244,10 @@ export function getLocaleConfig(lang: string) {
           text: 'ExportWord',
           link: '/extensions/ExportWord/index.md',
         },
+        {
+          text: 'TableOfContents',
+          link: '/extensions/TableOfContents/index.md',
+        },
       ],
     },
   ]

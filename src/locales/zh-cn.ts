@@ -7,6 +7,7 @@ const locale = {
   'editor.recent': '最近使用',
   'editor.nofill': '无填充',
   'editor.format': '格式刷',
+  'editor.table_of_content': '目录',
   'editor.draghandle.tooltip': '修改',
   'editor.copyToClipboard': '复制到剪贴板',
   'editor.importWord.tooltip': '导入 Word',
