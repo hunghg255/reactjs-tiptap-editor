@@ -54,7 +54,7 @@ export default defineConfig(({ mode }) => {
       cssMinify: 'esbuild',
       minify: 'esbuild',
       outDir: 'lib',
-      sourcemap: true,
+      sourcemap: isDev,
       lib: {
         entry: path.resolve(__dirname, 'src/index.ts'),
         formats: ['es', 'cjs'],
