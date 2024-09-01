@@ -117,6 +117,7 @@
     "lodash-es": "^4.17.21",
     "lucide-react": "^0.427.0",
     "prosemirror-docx": "^0.2.0",
+    "re-resizable": "^6.9.17",
     "react-colorful": "^5.6.1",
     "scroll-into-view-if-needed": "^3.1.0",
     "shiki": "^1.14.1",

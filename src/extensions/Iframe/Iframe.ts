@@ -1,15 +1,15 @@
-import { Node } from '@tiptap/core'
+/* eslint-disable eqeqeq */
+import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core'
 import { ReactNodeViewRenderer } from '@tiptap/react'
-
 import { ActionButton } from '@/components'
+import { getDatasetAttribute } from '@/utils/dom-dataset'
 import IframeNodeView from '@/extensions/Iframe/components/IframeNodeView'
-import type { GeneralOptions } from '@/types'
 
-export interface IframeOptions extends GeneralOptions<IframeOptions> {
-  allowFullscreen: boolean
-  HTMLAttributes: {
-    [key: string]: any
-  }
+export interface IIframeAttrs {
+  width?: number | string
+  height?: number
+  url?: string
+  defaultShowPicker?: boolean
 }
 
 declare module '@tiptap/core' {
@@ -23,16 +23,20 @@ declare module '@tiptap/core' {
   }
 }
 
-export const Iframe = Node.create<IframeOptions>({
-  name: 'iframes',
+export const Iframe = Node.create({
+  name: 'iframe',
+  content: '',
+  marks: '',
   group: 'block',
+  selectable: true,
   atom: true,
+  draggable: true,
+
   addOptions() {
     return {
       ...this.parent?.(),
-      allowFullscreen: true,
       HTMLAttributes: {
-        class: 'iframe-wrapper',
+        class: 'iframe',
       },
       button: ({
         editor,
@@ -54,13 +58,23 @@ export const Iframe = Node.create<IframeOptions>({
       }),
     }
   },
+
   addAttributes() {
     return {
-      src: {
-        default: null,
+      width: {
+        default: 600,
+        parseHTML: getDatasetAttribute('width'),
       },
-      service: {
+      height: {
+        default: 300,
+        parseHTML: getDatasetAttribute('height'),
+      },
+      url: {
         default: null,
+        parseHTML: getDatasetAttribute('url'),
+      },
+      defaultShowPicker: {
+        default: false,
       },
       frameborder: {
         default: 0,
@@ -71,6 +85,7 @@ export const Iframe = Node.create<IframeOptions>({
       },
     }
   },
+
   parseHTML() {
     return [
       {
@@ -78,25 +93,47 @@ export const Iframe = Node.create<IframeOptions>({
       },
     ]
   },
+
   renderHTML({ HTMLAttributes }) {
-    return ['div', this.options.HTMLAttributes, ['iframe', HTMLAttributes]]
+    return ['iframe', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
   },
-  addNodeView() {
-    return ReactNodeViewRenderer(IframeNodeView)
-  },
+
   addCommands() {
     return {
       setIframe:
-        (options: { src: string, service: string }) =>
-          ({ tr, dispatch }) => {
-            const { selection } = tr
-            const node = this.type.create(options)
-
-            if (dispatch) {
-              tr.replaceRangeWith(selection.from, selection.to, node)
+        options =>
+          ({ tr, commands, chain }) => {
+          // @ts-ignore
+            if (tr.selection?.node?.type?.name == this.name) {
+              return commands.updateAttributes(this.name, options)
             }
-            return true
+
+            const attrs = options || { url: '' }
+            // const { selection } = editor.state
+
+            return chain()
+              .insertContent({
+                type: this.name,
+                attrs,
+              })
+              .run()
           },
     }
+  },
+
+  addInputRules() {
+    return [
+      nodeInputRule({
+        find: /^\$iframe\$$/,
+        type: this.type,
+        getAttributes: () => {
+          return { width: '100%' }
+        },
+      }),
+    ]
+  },
+
+  addNodeView() {
+    return ReactNodeViewRenderer(IframeNodeView)
   },
 })
