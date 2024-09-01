@@ -3,6 +3,7 @@ import type { Editor } from '@tiptap/core'
 import { BubbleMenuImage, BubbleMenuLink, BubbleMenuText, BubbleMenuVideo, ColumnsBubbleMenu, ContentMenu, TableBubbleMenu } from '@/components'
 import type { BubbleMenuProps as BubbleMenuPropsType } from '@/types'
 import BubbleMenuKatex from '@/components/menus/components/BubbleMenuKatex'
+import { BubbleMenuExcalidraw } from '@/components/menus/components/BubbleMenuExcalidraw'
 
 export interface BubbleMenuComponentProps {
   editor: Editor
@@ -28,6 +29,7 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
     extensionsNames.includes('image') && !bubbleMenu?.imageConfig?.hidden ? <BubbleMenuImage key="image" editor={editor} disabled={disabled} /> : null,
     extensionsNames.includes('video') && !bubbleMenu?.videoConfig?.hidden ? <BubbleMenuVideo key="video" editor={editor} disabled={disabled} /> : null,
     extensionsNames.includes('katex') && !bubbleMenu?.katexConfig?.hidden ? <BubbleMenuKatex key="katex" editor={editor} disabled={disabled} /> : null,
+    extensionsNames.includes('excalidraw') && !bubbleMenu?.excalidrawConfig?.hidden ? <BubbleMenuExcalidraw key="excalidraw" editor={editor} disabled={disabled} /> : null,
     !bubbleMenu?.floatingMenuConfig?.hidden ? <ContentMenu key="content" editor={editor} disabled={disabled} /> : null,
     !bubbleMenu?.textConfig?.hidden ? <BubbleMenuText key="text" editor={editor} disabled={disabled} /> : null,
   ]

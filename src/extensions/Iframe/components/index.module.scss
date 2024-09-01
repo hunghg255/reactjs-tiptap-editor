@@ -1,0 +1,40 @@
+.wrap {
+  display: flex;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  flex-direction: column;
+  border: 1px dashed hsl(var(--border)) !important;
+  border-radius: 6px;
+
+  .handlerWrap {
+    display: flex;
+    padding: 10px;
+  }
+
+  .innerWrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    flex: 1;
+  }
+
+  .emptyWrap {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  :global {
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border: none !important;
+    }
+  }
+}

@@ -106,14 +106,6 @@
       }
     }
 
-    .iframe-wrapper {
-      &.focus {
-        > div {
-          @apply richtext-outline-primary richtext-outline-4 richtext-outline;
-        }
-      }
-    }
-
     .image-view {
       $root: &;
 
