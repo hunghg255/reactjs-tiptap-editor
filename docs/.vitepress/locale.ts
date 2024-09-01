@@ -248,6 +248,10 @@ export function getLocaleConfig(lang: string) {
           text: 'TableOfContents',
           link: '/extensions/TableOfContents/index.md',
         },
+        {
+          text: 'Excalidraw',
+          link: '/extensions/Excalidraw/index.md',
+        },
       ],
     },
   ]

@@ -1,5 +1,9 @@
 ---
 description: TableOfContents
+
+next:
+  text: Excalidraw
+  link: /extensions/Excalidraw/index.md
 ---
 
 ## Usage

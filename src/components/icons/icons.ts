@@ -43,6 +43,7 @@ import {
   Quote,
   Redo2,
   Replace,
+  Settings,
   Sigma,
   SmilePlus,
   SmilePlusIcon,
@@ -60,6 +61,8 @@ import {
   Undo2,
   Unlink,
   Video,
+  ZoomIn,
+  ZoomOut,
 } from 'lucide-react'
 import {
   TextAlignCenterIcon,
@@ -84,6 +87,7 @@ import { ExportPdf } from '@/components/icons/ExportPdf'
 import ExportWord from '@/components/icons/ExportWord'
 import { ColumnAddLeft } from '@/components/icons/ColumnAddLeft'
 import { ColumnAddRight } from '@/components/icons/ColumnAddRight'
+import { Excalidraw } from '@/components/icons/Excalidraw'
 
 export const icons = {
   Bold,
@@ -171,4 +175,8 @@ export const icons = {
   ColumnAddLeft,
   ColumnAddRight,
   BookMarked,
+  Excalidraw,
+  ZoomIn,
+  ZoomOut,
+  Settings,
 } as any

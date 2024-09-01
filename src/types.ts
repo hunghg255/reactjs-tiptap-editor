@@ -178,6 +178,13 @@ export interface BubbleMenuProps {
      */
     hidden?: boolean
   }
+  excalidrawConfig?: {
+    /**
+     * @description excalidraw menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
   render?: (props: BubbleMenuRenderProps, dom: React.ReactNode) => React.ReactNode
 }
 
