@@ -1,0 +1,32 @@
+.wrap {
+  position: relative;
+
+  .handleWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    .selectorWrap {
+      margin-right: 8px;
+    }
+
+    button {
+      border: 1px solid hsl(var(--border)) !important;
+    }
+  }
+
+  code {
+    margin: 0 !important;
+  }
+
+  pre {
+    margin: 10px 0 !important;
+  }
+
+  &.maxHeight {
+    code {
+      max-height: 370px;
+    }
+  }
+}

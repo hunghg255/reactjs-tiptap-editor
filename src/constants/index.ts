@@ -113,6 +113,7 @@ export const DEFAULT_LANGUAGE_CODE_BLOCK = [
   'css',
   'js',
   'ts',
+  'bash',
 ]
 
 export const MAP_LANGUAGE_CODE_LABELS = {
@@ -120,6 +121,7 @@ export const MAP_LANGUAGE_CODE_LABELS = {
   css: 'CSS',
   js: 'JavaScript',
   ts: 'TypeScript',
+  bash: 'Bash',
 } as any
 
 /** Default font size list */

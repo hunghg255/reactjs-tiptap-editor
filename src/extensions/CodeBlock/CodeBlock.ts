@@ -1,10 +1,12 @@
 import type { BundledLanguage, BundledTheme } from 'shiki'
 import type { CodeBlockOptions as CodeBlockExtOptions } from '@tiptap/extension-code-block'
 import CodeBlockExt from '@tiptap/extension-code-block'
+import { ReactNodeViewRenderer } from '@tiptap/react'
 import type { GeneralOptions } from '@/types'
 import { ShikiPlugin } from '@/extensions/CodeBlock/shiki-plugin'
 import CodeBlockActiveButton from '@/extensions/CodeBlock/components/CodeBlockActiveButton'
 import { DEFAULT_LANGUAGE_CODE_BLOCK } from '@/constants'
+import { NodeViewCodeBlock } from '@/extensions/CodeBlock/components/NodeViewCodeBlock/NodeViewCodeBlock'
 
 export interface CodeBlockOptions
   extends GeneralOptions<CodeBlockExtOptions> {
@@ -35,6 +37,9 @@ export const CodeBlock = CodeBlockExt.extend<CodeBlockOptions>({
         }
       },
     }
+  },
+  addNodeView() {
+    return ReactNodeViewRenderer(NodeViewCodeBlock)
   },
   addProseMirrorPlugins() {
     return [
