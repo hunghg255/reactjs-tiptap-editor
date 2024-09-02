@@ -15,6 +15,7 @@ import {
   Columns4,
   Copy,
   Eraser,
+  Eye,
   Frame,
   GripVertical,
   Heading1,
@@ -179,4 +180,5 @@ export const icons = {
   ZoomIn,
   ZoomOut,
   Settings,
+  Eye,
 } as any

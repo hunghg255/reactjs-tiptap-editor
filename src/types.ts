@@ -185,6 +185,13 @@ export interface BubbleMenuProps {
      */
     hidden?: boolean
   }
+  iframeConfig?: {
+    /**
+     * @description iframe menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
   render?: (props: BubbleMenuRenderProps, dom: React.ReactNode) => React.ReactNode
 }
 
