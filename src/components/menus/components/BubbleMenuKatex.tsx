@@ -1,6 +1,7 @@
 import { BubbleMenu } from '@tiptap/react'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { HelpCircle, Pencil, Trash2 } from 'lucide-react'
+import katex from 'katex'
 import { Katex } from '@/extensions'
 import { deleteNode } from '@/utils/delete-node'
 import { useAttributes } from '@/hooks/useAttributes'
@@ -15,7 +16,8 @@ function BubbleMenuKatex({ editor, ...props }: any) {
     defaultShowPicker: false,
   })
   const { text, defaultShowPicker } = attrs
-  const ref: any = useRef<HTMLTextAreaElement>()
+
+  const [currentValue, setCurrentValue] = useState('')
   const [visible, toggleVisible] = useState(false)
 
   const shouldShow = useCallback(() => editor.isActive(Katex.name), [editor])
@@ -23,8 +25,9 @@ function BubbleMenuKatex({ editor, ...props }: any) {
   const deleteMe = useCallback(() => deleteNode(Katex.name, editor), [editor])
 
   const submit = useCallback(() => {
-    editor.chain().focus().setKatex({ text: ref.current.value }).run()
-  }, [editor])
+    editor.chain().focus().setKatex({ text: currentValue }).run()
+    toggleVisible(false)
+  }, [editor, currentValue])
 
   useEffect(() => {
     if (defaultShowPicker) {
@@ -34,10 +37,31 @@ function BubbleMenuKatex({ editor, ...props }: any) {
   }, [editor, defaultShowPicker, toggleVisible])
 
   useEffect(() => {
-    if (visible) {
-      setTimeout(() => ref.current?.focus(), 200)
-    }
+    if (visible)
+      setCurrentValue(text || '')
   }, [visible])
+
+  const formatText = useMemo(() => {
+    try {
+      return katex.renderToString(`${currentValue}`)
+    }
+    catch {
+      return currentValue
+    }
+  }, [currentValue])
+
+  const previewContent = useMemo(
+    () => {
+      if (`${currentValue}`.trim()) {
+        return (
+          <span contentEditable={false} dangerouslySetInnerHTML={{ __html: formatText || '' }}></span>
+        )
+      }
+
+      return null
+    },
+    [currentValue, formatText],
+  )
 
   return (
     <BubbleMenu
@@ -66,17 +90,25 @@ function BubbleMenuKatex({ editor, ...props }: any) {
                 ? (
                     <>
                       <Textarea
-                        ref={ref}
+                        value={currentValue}
+                        onChange={e => setCurrentValue(e.target.value)}
                         autoFocus
                         placeholder="Formula text"
                         rows={3}
                         defaultValue={text}
                         style={{ marginBottom: 8 }}
                       />
+
+                      {previewContent && (
+                        <div className="richtext-my-[10px] richtext-p-[10px] richtext-rounded-[6px] !richtext-border-[1px]">
+                          {previewContent}
+                        </div>
+                      )}
+
                       <div className="richtext-flex richtext-items-center richtext-justify-between richtext-gap-[6px]">
                         <Button onClick={submit} className="richtext-flex-1">Submit</Button>
 
-                        <a href="https://katex.org/" target="_blank" rel="noreferrer noopener">
+                        <a href="https://katex.org/docs/supported" target="_blank" rel="noreferrer noopener">
                           <HelpCircle size={16} />
                         </a>
                       </div>

@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useRef } from 'react'
+/* eslint-disable react-dom/no-dangerously-set-innerhtml */
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { HelpCircle } from 'lucide-react'
+import katex from 'katex'
 import { ActionButton, Button, Label, Popover, PopoverContent, PopoverTrigger } from '@/components'
 import { Textarea } from '@/components/ui/textarea'
 import type { IKatexAttrs } from '@/extensions/Katex/Katex'
@@ -16,11 +18,13 @@ function KatexActiveButton({ editor, ...props }: any) {
     defaultShowPicker: false,
   })
   const { text, defaultShowPicker } = attrs
-  const ref: any = useRef<HTMLTextAreaElement>(null)
+
+  const [currentValue, setCurrentValue] = useState('')
 
   const submit = useCallback(() => {
-    editor.chain().focus().setKatex({ text: ref.current.value }).run()
-  }, [editor])
+    editor.chain().focus().setKatex({ text: currentValue }).run()
+    setCurrentValue('')
+  }, [editor, currentValue])
 
   useEffect(() => {
     if (defaultShowPicker) {
@@ -28,9 +32,27 @@ function KatexActiveButton({ editor, ...props }: any) {
     }
   }, [editor, defaultShowPicker])
 
-  useEffect(() => {
-    setTimeout(() => ref.current?.focus(), 200)
-  }, [])
+  const formatText = useMemo(() => {
+    try {
+      return katex.renderToString(`${currentValue}`)
+    }
+    catch {
+      return currentValue
+    }
+  }, [currentValue])
+
+  const previewContent = useMemo(
+    () => {
+      if (`${currentValue}`.trim()) {
+        return (
+          <span contentEditable={false} dangerouslySetInnerHTML={{ __html: formatText || '' }}></span>
+        )
+      }
+
+      return null
+    },
+    [currentValue, formatText],
+  )
 
   return (
     <Popover>
@@ -48,7 +70,8 @@ function KatexActiveButton({ editor, ...props }: any) {
         <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5 richtext-mb-[16px]">
           <div className="richtext-relative richtext-w-full richtext-max-w-sm">
             <Textarea
-              ref={ref}
+              value={currentValue}
+              onChange={e => setCurrentValue(e.target.value)}
               autoFocus
               required
               rows={3}
@@ -58,10 +81,15 @@ function KatexActiveButton({ editor, ...props }: any) {
             />
           </div>
         </div>
+        {previewContent && (
+          <div className="richtext-my-[10px] richtext-p-[10px] richtext-rounded-[6px] !richtext-border-[1px]">
+            {previewContent}
+          </div>
+        )}
         <div className="richtext-flex richtext-items-center richtext-justify-between richtext-gap-[6px]">
           <Button onClick={submit} className="richtext-flex-1">Submit</Button>
 
-          <a href="https://katex.org/" target="_blank" rel="noreferrer noopener">
+          <a href="https://katex.org/docs/supported" target="_blank" rel="noreferrer noopener">
             <HelpCircle size={16} />
           </a>
         </div>
