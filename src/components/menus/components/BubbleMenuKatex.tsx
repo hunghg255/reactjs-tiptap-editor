@@ -1,5 +1,5 @@
 import { BubbleMenu } from '@tiptap/react'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { HelpCircle, Pencil, Trash2 } from 'lucide-react'
 import katex from 'katex'
 import { Katex } from '@/extensions'
