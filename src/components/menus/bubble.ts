@@ -105,9 +105,9 @@ function imageAlignMenus(editor: Editor): BubbleMenuItem[] {
     componentProps: {
       tooltip: localeActions.t(`editor.textalign.${k}.tooltip`),
       icon: iconMap[k],
-      action: () => editor.commands?.setTextAlign?.(k),
-      isActive: () => editor.isActive({ textAlign: k }) || false,
-      disabled: !editor.can()?.setTextAlign?.(k),
+      action: () => editor.commands?.setAlignImage?.(k),
+      isActive: () => editor.isActive({ align: k }) || false,
+      disabled: false,
     },
   }))
 }

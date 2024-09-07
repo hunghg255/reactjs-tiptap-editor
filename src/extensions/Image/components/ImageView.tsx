@@ -47,8 +47,11 @@ function ImageView(props: any) {
     dir: '',
   })
 
+  const { align } = props?.node?.attrs
+
   const imgAttrs = useMemo(() => {
     const { src, alt, width: w, height: h } = props?.node?.attrs
+
     const width = isNumber(w) ? `${w}px` : w
     const height = isNumber(h) ? `${h}px` : h
     return {
@@ -222,7 +225,7 @@ function ImageView(props: any) {
   }, [props.editor.view.dom, resizeOb])
 
   return (
-    <NodeViewWrapper className="image-view" style={{ ...imageMaxStyle, width: '100%' }}>
+    <NodeViewWrapper className="image-view" style={{ ...imageMaxStyle, width: '100%', textAlign: align }}>
       <div
         draggable="true"
         data-drag-handle
