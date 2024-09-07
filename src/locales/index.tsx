@@ -2,13 +2,13 @@ import { useEffect, useMemo } from 'react'
 
 import { proxy, useSnapshot } from 'valtio'
 
-import { DEFAULT_LANG_VALUE } from '@/constants'
-import type { EventType } from '@/utils/mitt'
-import mitt from '@/utils/mitt'
 import en from './en'
 import pt_BR from './pt-br'
 import vi from './vi'
 import zh_CN from './zh-cn'
+import mitt from '@/utils/mitt'
+import type { EventType } from '@/utils/mitt'
+import { DEFAULT_LANG_VALUE } from '@/constants'
 
 // Define supported language types
 type LanguageType = 'en' | 'vi' | 'zh_CN' | 'pt_BR' | (string & {})
@@ -161,4 +161,3 @@ export { default as en } from './en'
 export { default as pt_BR } from './pt-br'
 export { default as vi } from './vi'
 export { default as zh_CN } from './zh-cn'
-
