@@ -14,9 +14,9 @@ The editor provides built-in internationalization support, with English as the d
 
 ```javascript
 // Import the locale object
-import { locale } from 'reactjs-tiptap-editor'
+import { locale } from 'reactjs-tiptap-editor';
 // Set the language to English
-locale.setLang('en')
+locale.setLang('en');
 // End
 ```
 
@@ -24,11 +24,12 @@ locale.setLang('en')
 
 Currently, the editor supports the following languages:
 
-| Language           | Config | Version                                                                          |
-|--------------------|--------|----------------------------------------------------------------------------------|
-| English            | en     | [v0.0.5](https://github.com/hunghg255/reactjs-tiptap-editor/releases/tag/v0.0.5) |
-| Vietnamese         | vi     |                                                                                  |
-| Simplified Chinese | zh_CN  |                                                                                  |
+| Language             | Config | Version                                                                          |
+| -------------------- | ------ | -------------------------------------------------------------------------------- |
+| English              | en     | [v0.0.5](https://github.com/hunghg255/reactjs-tiptap-editor/releases/tag/v0.0.5) |
+| Vietnamese           | vi     |                                                                                  |
+| Simplified Chinese   | zh_CN  |                                                                                  |
+| Brazilian Portuguese | pt_BR  |                                                                                  |
 
 ## Adding a New Language
 
@@ -37,9 +38,9 @@ If the platform doesn't support your desired language, you can add a custom lang
 ```javascript
 // Don't worry about which content to translate; setMessage supports TypeScript
 locale.setMessage('fr', {
-  'editor.remove': 'Supprimer'
+  'editor.remove': 'Supprimer',
   // ...
-})
+});
 ```
 
 ### Overriding Default Language
@@ -47,9 +48,9 @@ locale.setMessage('fr', {
 To override part of the current language system, first choose a new language name, then import the default language data, and finally override the translations you want.
 
 ```javascript
-import { en } from 'reactjs-tiptap-editor'
+import { en } from 'reactjs-tiptap-editor';
 locale.setMessage('en_US', {
   ...en,
-  'editor.remove': 'Delete'
-})
+  'editor.remove': 'Delete',
+});
 ```

@@ -2,15 +2,16 @@ import { useEffect, useMemo } from 'react'
 
 import { proxy, useSnapshot } from 'valtio'
 
+import { DEFAULT_LANG_VALUE } from '@/constants'
+import type { EventType } from '@/utils/mitt'
+import mitt from '@/utils/mitt'
 import en from './en'
+import pt_BR from './pt-br'
 import vi from './vi'
 import zh_CN from './zh-cn'
-import mitt from '@/utils/mitt'
-import type { EventType } from '@/utils/mitt'
-import { DEFAULT_LANG_VALUE } from '@/constants'
 
 // Define supported language types
-type LanguageType = 'en' | 'vi' | 'zh_CN' | string
+type LanguageType = 'en' | 'vi' | 'zh_CN' | 'pt_BR' | (string & {})
 
 // Define message key types based on the 'en' locale
 type MessageKeysType = keyof typeof en
@@ -33,6 +34,7 @@ export const DEFAULT_LOCALE: LocaleInterface = {
     en,
     vi,
     zh_CN,
+    pt_BR,
   },
 }
 
@@ -153,8 +155,10 @@ const localeActions = {
 }
 
 export default locale
-export { Locale, useLocale, localeActions }
+export { Locale, localeActions, useLocale }
 
 export { default as en } from './en'
+export { default as pt_BR } from './pt-br'
 export { default as vi } from './vi'
 export { default as zh_CN } from './zh-cn'
+
