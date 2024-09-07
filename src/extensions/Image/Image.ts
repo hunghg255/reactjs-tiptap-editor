@@ -14,6 +14,8 @@ export interface SetImageAttrsOptions {
   title?: string
   /** The width of the image. */
   width?: number | string | null
+  /** The alignment of the image. */
+  align?: 'left' | 'center' | 'right'
 }
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -26,15 +28,25 @@ declare module '@tiptap/core' {
        * Update an image
        */
       updateImage: (options: Partial<SetImageAttrsOptions>) => ReturnType
+      /**
+       * Set image alignment
+       */
+      setAlignImage: (align: 'left' | 'center' | 'right') => ReturnType
     }
   }
 }
 export const Image = TiptapImage.extend({
-  inline() {
-    return true
-  },
-  group() {
-    return 'inline'
+  addOptions() {
+    return {
+      ...this.parent?.(),
+      inline: false,
+      content: '',
+      marks: '',
+      group: 'block',
+      draggable: false,
+      selectable: true,
+      atom: true,
+    }
   },
   addAttributes() {
     return {
@@ -51,14 +63,15 @@ export const Image = TiptapImage.extend({
           }
         },
       },
-    }
-  },
-
-  addOptions() {
-    return {
-      ...this.parent?.(),
-      inline: true,
-      upload: null,
+      align: {
+        default: 'left',
+        parseHTML: element => element.getAttribute('align'),
+        renderHTML: (attributes) => {
+          return {
+            align: attributes.align,
+          }
+        },
+      },
     }
   },
 
@@ -73,26 +86,53 @@ export const Image = TiptapImage.extend({
           ({ commands }) => {
             return commands.updateAttributes(this.name, options)
           },
+      setAlignImage:
+          align =>
+            ({ commands }) => {
+              return commands.updateAttributes(this.name, { align })
+            },
     }
   },
   renderHTML({ HTMLAttributes }) {
+    const { align } = HTMLAttributes
+
+    const style = align ? `text-align: ${align};` : ''
     return [
-      'img',
-      mergeAttributes(
-        // Always render the `height="auto"
-        {
-          height: 'auto',
-        },
-        this.options.HTMLAttributes,
-        HTMLAttributes,
-      ),
+      'div', // Parent element
+      {
+        style,
+        class: 'image',
+      },
+      [
+        'img',
+        mergeAttributes(
+          // Always render the `height="auto"`
+          {
+            height: 'auto',
+          },
+          this.options.HTMLAttributes,
+          HTMLAttributes,
+        ),
+      ],
     ]
   },
-
   parseHTML() {
     return [
       {
-        tag: 'img[src]',
+        tag: 'div[class=image]',
+        getAttrs: (element) => {
+          const img = element.querySelector('img')
+
+          const width = img?.getAttribute('width')
+
+          return {
+            src: img?.getAttribute('src'),
+            alt: img?.getAttribute('alt'),
+            title: img?.getAttribute('title'),
+            width: width ? Number.parseInt(width as string, 10) : null,
+            align: img?.getAttribute('align') || element.style.textAlign || null,
+          }
+        },
       },
     ]
   },
