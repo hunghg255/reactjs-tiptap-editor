@@ -3,6 +3,6 @@ export * from '@/extensions'
 
 export { default } from '@/components/RichTextEditor'
 
-import locale, { en, vi, zh_CN } from './locales'
+import locale, { en, pt_BR, vi, zh_CN } from './locales'
 
-export { locale, en, vi, zh_CN }
+export { locale, en, vi, zh_CN, pt_BR }
