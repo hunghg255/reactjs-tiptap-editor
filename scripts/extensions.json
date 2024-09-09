@@ -21,13 +21,6 @@
     ]
   },
   {
-    "name": "Clear.ts",
-    "package": "Clear",
-    "alias": [
-      "Clear"
-    ]
-  },
-  {
     "name": "BulletList.ts",
     "package": "BulletList",
     "alias": [
@@ -35,17 +28,10 @@
     ]
   },
   {
-    "name": "Code.ts",
-    "package": "Code",
+    "name": "Clear.ts",
+    "package": "Clear",
     "alias": [
-      "Code"
-    ]
-  },
-  {
-    "name": "Color.ts",
-    "package": "Color",
-    "alias": [
-      "Color"
+      "Clear"
     ]
   },
   {
@@ -70,6 +56,20 @@
     ]
   },
   {
+    "name": "Code.ts",
+    "package": "Code",
+    "alias": [
+      "Code"
+    ]
+  },
+  {
+    "name": "Color.ts",
+    "package": "Color",
+    "alias": [
+      "Color"
+    ]
+  },
+  {
     "name": "Document.ts",
     "package": "Document",
     "alias": [
@@ -88,6 +88,13 @@
     "package": "ExportPdf",
     "alias": [
       "ExportPdf"
+    ]
+  },
+  {
+    "name": "Excalidraw.ts",
+    "package": "Excalidraw",
+    "alias": [
+      "Excalidraw"
     ]
   },
   {
@@ -126,17 +133,17 @@
     ]
   },
   {
-    "name": "Highlight.ts",
-    "package": "Highlight",
-    "alias": [
-      "Highlight"
-    ]
-  },
-  {
     "name": "History.ts",
     "package": "History",
     "alias": [
       "History"
+    ]
+  },
+  {
+    "name": "Highlight.ts",
+    "package": "Highlight",
+    "alias": [
+      "Highlight"
     ]
   },
   {
@@ -266,6 +273,13 @@
     ]
   },
   {
+    "name": "Strike.ts",
+    "package": "Strike",
+    "alias": [
+      "Strike"
+    ]
+  },
+  {
     "name": "SlashCommand.ts",
     "package": "SlashCommand",
     "alias": [
@@ -294,13 +308,6 @@
     ]
   },
   {
-    "name": "Strike.ts",
-    "package": "Strike",
-    "alias": [
-      "Strike"
-    ]
-  },
-  {
     "name": "Table.ts",
     "package": "Table",
     "alias": [
@@ -312,6 +319,13 @@
     "package": "Table",
     "alias": [
       "cell-background"
+    ]
+  },
+  {
+    "name": "TableOfContent.ts",
+    "package": "TableOfContent",
+    "alias": [
+      "TableOfContent"
     ]
   },
   {
@@ -350,17 +364,17 @@
     ]
   },
   {
-    "name": "VideoUpload.ts",
-    "package": "VideoUpload",
-    "alias": [
-      "VideoUpload"
-    ]
-  },
-  {
     "name": "Video.ts",
     "package": "Video",
     "alias": [
       "Video"
+    ]
+  },
+  {
+    "name": "VideoUpload.ts",
+    "package": "VideoUpload",
+    "alias": [
+      "VideoUpload"
     ]
   },
   {
