@@ -131,7 +131,7 @@ export const ImageUpload = Node.create<ImageUploadOptions>({
             if (!event.clipboardData) {
               return false
             }
-            const items = [...(event.clipboardData.items || [])]
+            const items = [...(event.clipboardData.files || [])]
             if (items.some(x => x.type === 'text/html')) {
               return false
             }
