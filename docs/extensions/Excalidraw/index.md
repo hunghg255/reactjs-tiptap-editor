@@ -1,5 +1,9 @@
 ---
 description: Excalidraw
+
+next:
+  text: TextDirection
+  link: /extensions/TextDirection/index.md
 ---
 
 ## Usage

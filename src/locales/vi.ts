@@ -148,6 +148,10 @@ const locale = {
   'editor.exportPdf.tooltip': 'Xuất PDF',
   'editor.exportWord.tooltip': 'Xuất Word',
   'editor.importWrod.tooltip': 'Nhập Word',
+
+  'editor.textDirection.tooltip': 'Hướng văn bản',
+  'editor.textDirection.ltr.tooltip': 'Trái sang Phải',
+  'editor.textDirection.rtl.tooltip': 'Phải sang Trái',
 }
 
 export default locale

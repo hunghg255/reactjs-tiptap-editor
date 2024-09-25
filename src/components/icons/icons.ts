@@ -89,6 +89,9 @@ import ExportWord from '@/components/icons/ExportWord'
 import { ColumnAddLeft } from '@/components/icons/ColumnAddLeft'
 import { ColumnAddRight } from '@/components/icons/ColumnAddRight'
 import { Excalidraw } from '@/components/icons/Excalidraw'
+import { Direction } from '@/components/icons/Direction'
+import { LeftToRight } from '@/components/icons/LeftToRight'
+import { RightToLeft } from '@/components/icons/RightToLeft'
 
 export const icons = {
   Bold,
@@ -181,4 +184,8 @@ export const icons = {
   ZoomOut,
   Settings,
   Eye,
+
+  TextDirection: Direction,
+  LeftToRight,
+  RightToLeft,
 } as any
