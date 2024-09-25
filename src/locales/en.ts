@@ -149,6 +149,7 @@ const locale = {
   'editor.exportWord.tooltip': 'Export Word',
   'editor.importWrod.tooltip': 'Import Word',
   'editor.textDirection.tooltip': 'Text Direction',
+  'editor.textDirection.auto.tooltip': 'Auto',
   'editor.textDirection.ltr.tooltip': 'Left to Right',
   'editor.textDirection.rtl.tooltip': 'Right to Left',
 }

@@ -150,6 +150,7 @@ const locale = {
   'editor.importWrod.tooltip': 'Nhập Word',
 
   'editor.textDirection.tooltip': 'Hướng văn bản',
+  'editor.textDirection.auto.tooltip': 'Tự động',
   'editor.textDirection.ltr.tooltip': 'Trái sang Phải',
   'editor.textDirection.rtl.tooltip': 'Phải sang Trái',
 }

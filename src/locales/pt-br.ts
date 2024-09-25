@@ -150,6 +150,7 @@ const locale = {
   'editor.importWrod.tooltip': 'Importar Word',
 
   'editor.textDirection.tooltip': 'Direção do texto',
+  'editor.textDirection.auto.tooltip': 'Automático',
   'editor.textDirection.ltr.tooltip': 'Esquerda para Direita',
   'editor.textDirection.rtl.tooltip': 'Direita para Esquerda',
 }

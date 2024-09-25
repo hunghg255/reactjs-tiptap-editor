@@ -1,4 +1,3 @@
-import type { Editor } from '@tiptap/core'
 import { Extension } from '@tiptap/core'
 import TextDirectionButton from '@/extensions/TextDirection/components/TextDirectionButton'
 
@@ -8,8 +7,8 @@ const TextDirection = Extension.create({
     return {
       ...this.parent?.(),
       types: ['heading', 'paragraph'],
-      directions: ['ltr', 'rtl'],
-      defaultDirection: 'ltr',
+      directions: ['auto', 'ltr', 'rtl'],
+      defaultDirection: 'auto',
       button({
         editor,
         extension,
@@ -22,6 +21,7 @@ const TextDirection = Extension.create({
         const directions = (extension.options?.directions as any[]) || []
 
         const iconMap = {
+          auto: 'TextDirection',
           ltr: 'LeftToRight',
           rtl: 'RightToLeft',
         } as any
@@ -30,7 +30,14 @@ const TextDirection = Extension.create({
           title: t(`editor.textDirection.${k}.tooltip`),
           icon: iconMap[k],
           isActive: () => false,
-          action: () => editor.commands?.setTextDirection?.(k),
+          action: () => {
+            if (k === 'auto') {
+              editor.commands?.unsetTextDirection?.()
+              return
+            }
+
+            editor.commands?.setTextDirection?.(k)
+          },
           disabled: false,
         }))
         const disabled = items.filter(k => k.disabled).length === items.length
