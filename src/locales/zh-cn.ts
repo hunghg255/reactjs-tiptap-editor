@@ -150,6 +150,7 @@ const locale = {
   'editor.importWrod.tooltip': '导入 Word',
 
   'editor.textDirection.tooltip': '文本方向',
+  'editor.textDirection.auto.tooltip': '自动',
   'editor.textDirection.ltr.tooltip': '从左到右',
   'editor.textDirection.rtl.tooltip': '从右到左',
 }
