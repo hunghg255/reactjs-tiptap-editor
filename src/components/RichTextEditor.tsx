@@ -167,7 +167,6 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
     <div className="reactjs-tiptap-editor">
       <TooltipProvider delayDuration={0}>
         <div className="richtext-rounded-[0.5rem] richtext-bg-background richtext-shadow richtext-overflow-hidden richtext-outline richtext-outline-1">
-          {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu} editor={editor} disabled={props?.disabled} />}
 
           <div className="richtext-flex richtext-flex-col richtext-w-full richtext-max-h-full">
             {!props?.hideToolbar && <Toolbar editor={editor} disabled={!!props?.disabled} />}
@@ -187,6 +186,8 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
                 </div>
               )}
             </div>
+
+            {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu} editor={editor} disabled={props?.disabled} />}
           </div>
         </div>
       </TooltipProvider>
