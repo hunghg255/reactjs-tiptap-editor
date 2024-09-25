@@ -111,3 +111,5 @@ export { ExportWord } from './ExportWord'
 export { TableOfContents } from './TableOfContent'
 
 export { Excalidraw } from './Excalidraw'
+
+export { TextDirection } from './TextDirection'

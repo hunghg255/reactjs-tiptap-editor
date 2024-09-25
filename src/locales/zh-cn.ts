@@ -148,6 +148,10 @@ const locale = {
   'editor.exportPdf.tooltip': '导出 PDF',
   'editor.exportWord.tooltip': '导出 Word',
   'editor.importWrod.tooltip': '导入 Word',
+
+  'editor.textDirection.tooltip': '文本方向',
+  'editor.textDirection.ltr.tooltip': '从左到右',
+  'editor.textDirection.rtl.tooltip': '从右到左',
 }
 
 export default locale

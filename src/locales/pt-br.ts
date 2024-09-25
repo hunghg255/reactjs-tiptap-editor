@@ -148,6 +148,10 @@ const locale = {
   'editor.exportPdf.tooltip': 'Exportar PDF',
   'editor.exportWord.tooltip': 'Exportar Word',
   'editor.importWrod.tooltip': 'Importar Word',
+
+  'editor.textDirection.tooltip': 'Direção do texto',
+  'editor.textDirection.ltr.tooltip': 'Esquerda para Direita',
+  'editor.textDirection.rtl.tooltip': 'Direita para Esquerda',
 }
 
 export default locale

@@ -252,6 +252,10 @@ export function getLocaleConfig(lang: string) {
           text: 'Excalidraw',
           link: '/extensions/Excalidraw/index.md',
         },
+        {
+          text: 'TextDirection',
+          link: '/extensions/TextDirection/index.md',
+        },
       ],
     },
   ]
