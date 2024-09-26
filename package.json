@@ -91,6 +91,7 @@
     "@tiptap/extension-italic": "^2.7.2",
     "@tiptap/extension-link": "^2.7.2",
     "@tiptap/extension-list-item": "^2.7.2",
+    "@tiptap/extension-mention": "^2.7.3",
     "@tiptap/extension-ordered-list": "^2.7.2",
     "@tiptap/extension-paragraph": "^2.7.2",
     "@tiptap/extension-placeholder": "^2.7.2",

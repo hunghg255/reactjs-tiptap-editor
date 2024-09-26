@@ -256,6 +256,10 @@ export function getLocaleConfig(lang: string) {
           text: 'TextDirection',
           link: '/extensions/TextDirection/index.md',
         },
+        {
+          text: 'Mention',
+          link: '/extensions/Mention/index.md',
+        },
       ],
     },
   ]
