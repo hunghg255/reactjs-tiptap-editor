@@ -153,6 +153,9 @@ const locale = {
   'editor.textDirection.auto.tooltip': '自动',
   'editor.textDirection.ltr.tooltip': '从左到右',
   'editor.textDirection.rtl.tooltip': '从右到左',
+  'editor.attachment.tooltip': '附件',
+  'editor.attachment.uploading': '上传中',
+  'editor.attachment.please_upload': '请上传文件',
 }
 
 export default locale
