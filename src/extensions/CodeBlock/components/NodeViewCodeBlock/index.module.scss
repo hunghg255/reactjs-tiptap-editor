@@ -30,12 +30,11 @@
   right: 2px;
   cursor: pointer;
   transition: all .3s;
-  background: rgb(255, 255, 255);
   border-radius: 4px;
-  border: 1px solid hsl(var(--border));
+  border-width: 1px !important;
 
   > button {
-    padding: 2px 4px !important;
+    padding: 4px 10px !important;
     height: initial !important;
   }
 }
