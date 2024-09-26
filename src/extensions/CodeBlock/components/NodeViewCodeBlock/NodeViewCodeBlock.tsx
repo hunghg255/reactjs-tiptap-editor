@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/prefer-dom-node-text-content */
-/* eslint-disable react/no-duplicate-key */
+
 import React, { useCallback, useMemo, useRef } from 'react'
 
 import { NodeViewContent, NodeViewWrapper } from '@tiptap/react'
@@ -7,12 +7,12 @@ import { NodeViewContent, NodeViewWrapper } from '@tiptap/react'
 import { Copy, CopyCheck } from 'lucide-react'
 import clsx from 'clsx'
 import styles from './index.module.scss'
-import { ActionButton } from '@/components/ActionButton'
 import { CodeBlock } from '@/extensions'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import useCopy from '@/hooks/useCopy'
 import { deleteNode } from '@/utils/delete-node'
 import { DEFAULT_LANGUAGE_CODE_BLOCK } from '@/constants'
+import { IconComponent } from '@/components'
 
 export function NodeViewCodeBlock({ editor, node: { attrs }, updateAttributes, extension }: any) {
   const { isCopied, copyToClipboard } = useCopy()
@@ -30,11 +30,13 @@ export function NodeViewCodeBlock({ editor, node: { attrs }, updateAttributes, e
 
   return (
     <NodeViewWrapper className={clsx(styles.wrap, !isPrint && styles.maxHeight, 'render-wrapper')}>
-      <div className={styles.handleWrap}>
+
+      <div className={styles.selectLang}>
         <Select
           defaultValue={defaultLanguage || 'auto'}
           disabled={!isEditable}
           onValueChange={value => updateAttributes({ language: value })}
+
         >
           <SelectTrigger>
             <SelectValue placeholder="Language" />
@@ -50,17 +52,23 @@ export function NodeViewCodeBlock({ editor, node: { attrs }, updateAttributes, e
           </SelectContent>
         </Select>
 
-        <ActionButton
-          action={() => copyToClipboard($container.current.innerText)}
-        >
-          {!isCopied ? <Copy size={16} /> : <CopyCheck size={16} />}
-        </ActionButton>
-
-        <ActionButton
-          action={deleteMe}
-          icon="Trash2"
-        />
       </div>
+      <span
+        onClick={() => copyToClipboard($container.current.innerText)}
+        className={clsx(styles.btnCopy, isCopied && styles.copied)}
+      >
+        {!isCopied ? <Copy size={16} /> : <CopyCheck size={16} />}
+      </span>
+
+      <span
+        onClick={deleteMe}
+        className={styles.btnDelete}
+      >
+        <IconComponent
+          name="Trash2"
+        />
+      </span>
+
       <pre ref={$container}>
         <NodeViewContent as="code" />
       </pre>

@@ -1,21 +1,6 @@
 .wrap {
   position: relative;
 
-  .handleWrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-
-    .selectorWrap {
-      margin-right: 8px;
-    }
-
-    button {
-      border: 1px solid hsl(var(--border)) !important;
-    }
-  }
-
   code {
     margin: 0 !important;
   }
@@ -28,5 +13,59 @@
     code {
       max-height: 370px;
     }
+  }
+
+  &:hover {
+    .btnCopy,
+    .btnDelete {
+      opacity: 1;
+    }
+  }
+}
+
+.selectLang {
+  position: absolute;
+  z-index: 2;
+  top: -30px;
+  right: 2px;
+  cursor: pointer;
+  transition: all .3s;
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
+  border: 1px solid hsl(var(--border));
+
+  > button {
+    padding: 2px 4px !important;
+    height: initial !important;
+  }
+}
+
+.btnCopy {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 34px;
+  color: #ebebebbf;
+  cursor: pointer;
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+.copied {
+  color: rgb(125, 207, 2);
+}
+
+.btnDelete {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 10px;
+  color: #ebebebbf;
+  cursor: pointer;
+  transition: all 0.3s;
+  opacity: 0;
+
+  &:hover {
+    color: #ff4d4f;
   }
 }
