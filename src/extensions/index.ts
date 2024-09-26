@@ -115,3 +115,5 @@ export { Excalidraw } from './Excalidraw'
 export { TextDirection } from './TextDirection'
 
 export { Mention } from './Mention'
+
+export { Attachment } from './Attachment'

@@ -153,6 +153,9 @@ const locale = {
   'editor.textDirection.auto.tooltip': 'Tự động',
   'editor.textDirection.ltr.tooltip': 'Trái sang Phải',
   'editor.textDirection.rtl.tooltip': 'Phải sang Trái',
+  'editor.attachment.tooltip': 'Đính kèm',
+  'editor.attachment.uploading': 'Đang tải lên',
+  'editor.attachment.please_upload': 'Vui lòng tải lên tệp',
 }
 
 export default locale

@@ -260,6 +260,10 @@ export function getLocaleConfig(lang: string) {
           text: 'Mention',
           link: '/extensions/Mention/index.md',
         },
+        {
+          text: 'Attachment',
+          link: '/extensions/Attachment/index.md',
+        },
       ],
     },
   ]

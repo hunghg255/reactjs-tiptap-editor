@@ -39,6 +39,7 @@ import {
   PaintRoller,
   PanelLeft,
   PanelRight,
+  Paperclip,
   Pencil,
   Plus,
   Quote,
@@ -188,4 +189,6 @@ export const icons = {
   TextDirection: Direction,
   LeftToRight,
   RightToLeft,
+
+  Attachment: Paperclip,
 } as any
