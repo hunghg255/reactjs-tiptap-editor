@@ -35,6 +35,13 @@
     ]
   },
   {
+    "name": "Code.ts",
+    "package": "Code",
+    "alias": [
+      "Code"
+    ]
+  },
+  {
     "name": "CodeBlock.ts",
     "package": "CodeBlock",
     "alias": [
@@ -53,13 +60,6 @@
     "package": "CodeBlock",
     "alias": [
       "shiki-plugin"
-    ]
-  },
-  {
-    "name": "Code.ts",
-    "package": "Code",
-    "alias": [
-      "Code"
     ]
   },
   {
@@ -133,17 +133,17 @@
     ]
   },
   {
-    "name": "History.ts",
-    "package": "History",
-    "alias": [
-      "History"
-    ]
-  },
-  {
     "name": "Highlight.ts",
     "package": "Highlight",
     "alias": [
       "Highlight"
+    ]
+  },
+  {
+    "name": "History.ts",
+    "package": "History",
+    "alias": [
+      "History"
     ]
   },
   {
@@ -175,17 +175,17 @@
     ]
   },
   {
-    "name": "ImageUpload.ts",
-    "package": "ImageUpload",
-    "alias": [
-      "ImageUpload"
-    ]
-  },
-  {
     "name": "ImportWord.ts",
     "package": "ImportWord",
     "alias": [
       "ImportWord"
+    ]
+  },
+  {
+    "name": "ImageUpload.ts",
+    "package": "ImageUpload",
+    "alias": [
+      "ImageUpload"
     ]
   },
   {
@@ -210,13 +210,6 @@
     ]
   },
   {
-    "name": "LineHeight.ts",
-    "package": "LineHeight",
-    "alias": [
-      "LineHeight"
-    ]
-  },
-  {
     "name": "Link.ts",
     "package": "Link",
     "alias": [
@@ -224,10 +217,24 @@
     ]
   },
   {
+    "name": "LineHeight.ts",
+    "package": "LineHeight",
+    "alias": [
+      "LineHeight"
+    ]
+  },
+  {
     "name": "ListItem.ts",
     "package": "ListItem",
     "alias": [
       "ListItem"
+    ]
+  },
+  {
+    "name": "Mention.ts",
+    "package": "Mention",
+    "alias": [
+      "Mention"
     ]
   },
   {
@@ -252,13 +259,6 @@
     ]
   },
   {
-    "name": "OrderedList.ts",
-    "package": "OrderedList",
-    "alias": [
-      "OrderedList"
-    ]
-  },
-  {
     "name": "SearchAndReplace.ts",
     "package": "SearchAndReplace",
     "alias": [
@@ -266,17 +266,17 @@
     ]
   },
   {
+    "name": "OrderedList.ts",
+    "package": "OrderedList",
+    "alias": [
+      "OrderedList"
+    ]
+  },
+  {
     "name": "Selection.ts",
     "package": "Selection",
     "alias": [
       "Selection"
-    ]
-  },
-  {
-    "name": "Strike.ts",
-    "package": "Strike",
-    "alias": [
-      "Strike"
     ]
   },
   {
@@ -301,6 +301,13 @@
     ]
   },
   {
+    "name": "Strike.ts",
+    "package": "Strike",
+    "alias": [
+      "Strike"
+    ]
+  },
+  {
     "name": "Subscript.ts",
     "package": "Subscript",
     "alias": [
@@ -322,13 +329,6 @@
     ]
   },
   {
-    "name": "TableOfContent.ts",
-    "package": "TableOfContent",
-    "alias": [
-      "TableOfContent"
-    ]
-  },
-  {
     "name": "TaskList.ts",
     "package": "TaskList",
     "alias": [
@@ -347,6 +347,13 @@
     "package": "TextBubble",
     "alias": [
       "TextBubble"
+    ]
+  },
+  {
+    "name": "TextDirection.ts",
+    "package": "TextDirection",
+    "alias": [
+      "TextDirection"
     ]
   },
   {
@@ -375,6 +382,13 @@
     "package": "VideoUpload",
     "alias": [
       "VideoUpload"
+    ]
+  },
+  {
+    "name": "TableOfContent.ts",
+    "package": "TableOfContent",
+    "alias": [
+      "TableOfContent"
     ]
   },
   {

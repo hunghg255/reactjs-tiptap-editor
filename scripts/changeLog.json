@@ -1,9 +1,131 @@
 [
   {
+    "hash": "f8be7b3cbfccfed661011c2da40eb67f94e58555",
+    "date": "Thu Sep 26 20:26:00 2024 +0700",
+    "message": "chore: release v0.0.39",
+    "refs": "HEAD -> main, tag: v0.0.39, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.39"
+  },
+  {
+    "hash": "1c325f51506bccb892668ef71fb8e4f16e2d43fb",
+    "date": "Thu Sep 26 20:25:16 2024 +0700",
+    "message": "docs: update doc",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "1a1789f16eadea20c0191e54b683e4e111cbc6a1",
+    "date": "Thu Sep 26 19:57:32 2024 +0700",
+    "message": "feat: add mention",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md",
+      "Mention",
+      "NodeViewMentionList",
+      "index.module.scss",
+      "index"
+    ]
+  },
+  {
+    "hash": "19384910eba9f58d44c2845fac21e69ebba79c5f",
+    "date": "Wed Sep 25 13:54:52 2024 +0700",
+    "message": "chore: release v0.0.38",
+    "refs": "tag: v0.0.38",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.38"
+  },
+  {
+    "hash": "f7ace9d7bc5e6bf4f3eed3b5616d22ad41058eb4",
+    "date": "Wed Sep 25 13:48:06 2024 +0700",
+    "message": "chore: release v0.0.39",
+    "refs": "",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.39"
+  },
+  {
+    "hash": "c85825b21a8ea90e144e39bec67ebcadefe076b3",
+    "date": "Wed Sep 25 13:33:50 2024 +0700",
+    "message": "chore: release v0.0.38",
+    "refs": "",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.38"
+  },
+  {
+    "hash": "c12670448f40b8a0609a6d2fdbb5f432e7c0f677",
+    "date": "Wed Sep 25 13:25:05 2024 +0700",
+    "message": "feat: add text direction",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md",
+      "TextDirection",
+      "TextDirectionButton",
+      "index"
+    ]
+  },
+  {
+    "hash": "0d425a66300a7a3bd6fdb4eb452ce64fceb059d4",
+    "date": "Fri Sep 20 10:24:52 2024 +0700",
+    "message": "chore: release v0.0.37",
+    "refs": "tag: v0.0.37",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.37"
+  },
+  {
+    "hash": "8770e62d579b5cff3f6ab645f63eea661160910d",
+    "date": "Fri Sep 20 10:24:25 2024 +0700",
+    "message": "fix: paste image from clipboard",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "ImageUpload"
+    ]
+  },
+  {
+    "hash": "d9b0c54b5ffc51ff47577bfc049b8f67a6965e70",
+    "date": "Tue Sep 17 16:37:03 2024 +0700",
+    "message": "chore: release v0.0.36",
+    "refs": "tag: v0.0.36",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.36"
+  },
+  {
+    "hash": "49f629327882d8a4614e29fead3d89da6d04eb89",
+    "date": "Mon Sep 9 14:32:39 2024 +0700",
+    "message": "docs: update changelog",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "9915590367d2429973c74024f96df8fb9e5a20d5",
     "date": "Mon Sep 9 11:11:59 2024 +0700",
     "message": "chore: release v0.0.35",
-    "refs": "HEAD -> main, tag: v0.0.35, origin/main",
+    "refs": "tag: v0.0.35",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
