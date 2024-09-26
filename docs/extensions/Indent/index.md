@@ -6,6 +6,10 @@ next:
   link: /extensions/Italic/index.md
 ---
 
+# Indent
+
+- Handles indenting text in the editor.
+
 ## Usage
 
 ```tsx

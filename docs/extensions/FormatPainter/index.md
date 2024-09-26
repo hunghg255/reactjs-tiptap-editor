@@ -6,6 +6,10 @@ next:
   link: /extensions/Heading/index.md
 ---
 
+# Format Painter
+
+The Format Painter extension allows you to copy the format of a text and apply it to another text.
+
 ## Usage
 
 ```tsx

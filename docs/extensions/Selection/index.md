@@ -6,6 +6,10 @@ next:
   link: /extensions/SlashCommand/index.md
 ---
 
+# Selection
+
+The Selection extension allows you to add a selection to your editor.
+
 ## Usage
 
 ```tsx

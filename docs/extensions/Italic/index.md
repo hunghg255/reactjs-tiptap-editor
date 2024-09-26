@@ -6,6 +6,10 @@ next:
   link: /extensions/LineHeight/index.md
 ---
 
+# Italic
+
+- Based on TipTap's Italic extension. [@tiptap/extension-italic](https://tiptap.dev/docs/editor/extensions/marks/italic)
+
 ## Usage
 
 ```tsx

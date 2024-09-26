@@ -6,6 +6,10 @@ next:
   link: /extensions/Table/index.md
 ---
 
+# Subscript
+
+The Subscript extension allows you to subscript text in your editor.
+
 ## Usage
 
 ```tsx

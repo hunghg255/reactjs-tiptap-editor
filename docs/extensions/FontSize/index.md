@@ -6,6 +6,10 @@ next:
   link: /extensions/FormatPainter/index.md
 ---
 
+# Font Size
+
+The Font Size extension allows you to change the font size of your editor.
+
 ## Usage
 
 ```tsx
@@ -18,7 +22,6 @@ const extensions = [
 ];
 ```
 
-
 ## Options
 
 ### fontSizes
@@ -26,9 +29,9 @@ const extensions = [
 Type: `(string | { value: string; name: string })[]`
 
 ```js
-import { DEFAULT_FONT_SIZE_LIST, FontSize } from 'reactjs-tiptap-editor';
+import { DEFAULT_FONT_SIZE_LIST, FontSize } from 'reactjs-tiptap-editor'
 
-FontSize.configure({ 
+FontSize.configure({
   fontSizes: [
     // Use default font size list
     ...DEFAULT_FONT_SIZE_LIST,
@@ -37,7 +40,7 @@ FontSize.configure({
     //   2. { name: 'xxx', value: 'xxx' }
 
     '10px',
-    { name: "200 pixel", value: "200px" }
+    { name: '200 pixel', value: '200px' }
   ]
 })
 ```

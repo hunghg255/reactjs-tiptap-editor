@@ -8,7 +8,7 @@ next:
 
 # Emoji
 
-- Emoji Extension for Tiptap Editor.
+The Document extension allows you to add a emoji to your editor.
 
 ## Usage
 

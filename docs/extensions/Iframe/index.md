@@ -6,6 +6,10 @@ next:
   link: /extensions/Image/index.md
 ---
 
+# Iframe
+
+The Iframe extension allows you to add an Iframe to your editor.
+
 ## Usage
 
 ```tsx

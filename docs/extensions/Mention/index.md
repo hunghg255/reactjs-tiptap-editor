@@ -2,6 +2,12 @@
 description: Mention
 ---
 
+# Mention
+
+Mention is a node extension that allows you to add a Mention to your editor.
+
+- Based on TipTap's Link extension. [@tiptap/extension-mention](https://tiptap.dev/docs/editor/extensions/nodes/mention)
+
 ## Usage
 
 ```tsx

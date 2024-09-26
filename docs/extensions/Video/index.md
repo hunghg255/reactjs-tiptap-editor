@@ -6,6 +6,10 @@ next:
   link: /extensions/VideoUpload/index.md
 ---
 
+# Video
+
+The Video extension allows you to add a video to your editor.
+
 ## Usage
 
 ```tsx

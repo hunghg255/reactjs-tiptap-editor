@@ -6,6 +6,12 @@ next:
   link: /extensions/Subscript/index.md
 ---
 
+# Strike
+
+The Strike extension allows you to strike through text in your editor.
+
+- Based on TipTap's strike extension. [@tiptap/extension-strike](https://tiptap.dev/docs/editor/extensions/marks/strike)
+
 ## Usage
 
 ```tsx

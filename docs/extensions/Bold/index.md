@@ -6,6 +6,12 @@ next:
   link: /extensions/BulletList/index.md
 ---
 
+# Bold
+
+The Bold extension allows you to add bold text to your editor.
+
+- Based on TipTap's Bold extension. [@tiptap/extension-bold](https://tiptap.dev/docs/editor/extensions/marks/bold)
+
 ## Usage
 
 ```tsx

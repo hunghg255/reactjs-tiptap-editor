@@ -6,6 +6,12 @@ next:
   link: /extensions/CodeBlock/index.md
 ---
 
+# Code
+
+The Code extension allows you to add code to your editor.
+
+- Based on TipTap's Code extension. [@tiptap/extension-code](https://tiptap.dev/docs/editor/extensions/marks/code)
+
 ## Usage
 
 ```tsx

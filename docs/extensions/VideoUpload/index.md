@@ -6,6 +6,10 @@ next:
   link: /extensions/SearchAndReplace/index.md
 ---
 
+# Video Upload
+
+The Video Upload extension allows you to upload a video to your editor.
+
 ## Usage
 
 ```tsx

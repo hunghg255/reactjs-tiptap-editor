@@ -6,6 +6,12 @@ next:
   link: /extensions/Bold/index.md
 ---
 
+# Blockquote
+
+The Blockquote extension allows you to add blockquotes to your editor.
+
+- Based on TipTap's Blockquote extension. [@tiptap/extension-blockquote](https://tiptap.dev/docs/editor/extensions/nodes/blockquote)
+
 ## Usage
 
 ```tsx

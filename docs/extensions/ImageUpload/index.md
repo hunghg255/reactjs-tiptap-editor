@@ -6,6 +6,10 @@ next:
   link: /extensions/Indent/index.md
 ---
 
+# ImageUpload
+
+- Handles uploading images to the editor.
+
 ## Usage
 
 ```tsx

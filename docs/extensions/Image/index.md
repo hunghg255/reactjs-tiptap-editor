@@ -6,6 +6,10 @@ next:
   link: /extensions/ImageUpload/index.md
 ---
 
+# Image
+
+- Based on TipTap's Image extension. [@tiptap/extension-image](https://tiptap.dev/docs/editor/extensions/nodes/image)
+
 ## Usage
 
 ```tsx

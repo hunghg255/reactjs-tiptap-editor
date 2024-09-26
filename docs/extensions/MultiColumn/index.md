@@ -6,6 +6,10 @@ next:
   link: /extensions/OrderedList/index.md
 ---
 
+# Multi Column
+
+The MultiColumn extension allows you to create multi-column layouts in your editor.
+
 ## Usage
 
 ```tsx

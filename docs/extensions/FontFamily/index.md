@@ -6,6 +6,12 @@ next:
   link: /extensions/FontSize/index.md
 ---
 
+# Font Family
+
+The Font Family extension allows you to change the font family of your editor.
+
+- Based on TipTap's font family extension. [@tiptap/extension-font-family](https://tiptap.dev/docs/editor/extensions/functionality/fontfamily)
+
 ## Usage
 
 ```tsx
@@ -27,9 +33,9 @@ Type: `(string | { value: string; name: string })[]`
 Set the font list, supporting two formats:
 
 ```js
-import { DEFAULT_FONT_FAMILY_LIST, FontFamily } from 'reactjs-tiptap-editor';
+import { DEFAULT_FONT_FAMILY_LIST, FontFamily } from 'reactjs-tiptap-editor'
 
-FontFamily.configure({ 
+FontFamily.configure({
   fontFamilyList: [
     // Use default font list
     ...DEFAULT_FONT_FAMILY_LIST,

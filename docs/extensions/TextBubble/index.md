@@ -6,6 +6,10 @@ next:
   link: /extensions/TrailingNode/index.md
 ---
 
+# Text Bubble
+
+ The Text Bubble extension allows you to show a bubble around the selected text in the editor.
+
 ## Usage
 
 ```tsx

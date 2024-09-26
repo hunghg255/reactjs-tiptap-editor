@@ -6,6 +6,10 @@ next:
   link: /extensions/Code/index.md
 ---
 
+# Clear
+
+The Clear extension allows you to clear the editor content.
+
 ## Usage
 
 ```tsx

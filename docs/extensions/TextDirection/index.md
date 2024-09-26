@@ -1,6 +1,14 @@
 ---
 description: TextDirection
+
+next:
+  text: Mention
+  link: /extensions/Mention/index.md
 ---
+
+# Text Direction
+
+The Text Direction extension allows you to change the text direction of your editor.
 
 ## Usage
 

@@ -6,6 +6,10 @@ next:
   link: /extensions/UnderLine/index.md
 ---
 
+# Trailing Node
+
+ The Trailing Node extension allows you to add a trailing node to your editor.
+
 ## Usage
 
 ```tsx
