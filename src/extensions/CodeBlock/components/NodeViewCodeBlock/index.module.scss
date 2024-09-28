@@ -23,27 +23,35 @@
   }
 }
 
-.selectLang {
+
+
+.blockInfo {
+  display: flex;
+  align-items: center;
   position: absolute;
   z-index: 2;
-  top: -30px;
-  right: 2px;
+  top: 5px;
+  right: 5px;
+  gap: 8px;
+}
+
+.selectLang {
   cursor: pointer;
   transition: all .3s;
   border-radius: 4px;
-  border-width: 1px !important;
+  border-width: 0px !important;
 
   > button {
-    padding: 4px 10px !important;
+    padding: 0px !important;
     height: initial !important;
+    outline: none !important;
+    border: none !important;
+    outline-offset: 0px !important;
+    color: white !important;
   }
 }
 
 .btnCopy {
-  position: absolute;
-  z-index: 2;
-  top: 10px;
-  right: 34px;
   color: #ebebebbf;
   cursor: pointer;
   transition: all 0.3s;
@@ -55,10 +63,6 @@
 }
 
 .btnDelete {
-  position: absolute;
-  z-index: 2;
-  top: 10px;
-  right: 10px;
   color: #ebebebbf;
   cursor: pointer;
   transition: all 0.3s;
