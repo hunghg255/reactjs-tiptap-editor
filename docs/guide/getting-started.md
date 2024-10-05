@@ -27,7 +27,7 @@ yarn add reactjs-tiptap-editor
 ## Usage
 
 ```tsx
-import BaseKit from 'reactjs-tiptap-editor';
+import RichTextEditor, { BaseKit } from 'reactjs-tiptap-editor';
 
 // Import CSS
 import 'reactjs-tiptap-editor/style.css';
