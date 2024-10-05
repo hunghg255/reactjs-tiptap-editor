@@ -199,6 +199,7 @@ function ContentMenu(props: ContentMenuProps) {
           className="richtext-w-7 richtext-h-7 richtext-cursor-grab"
           disabled={props?.disabled}
           onClick={handleAdd}
+          type="button"
         >
           <IconComponent name="Plus" className="richtext-text-lg richtext-text-neutral-600 dark:richtext-text-neutral-200" />
         </Button>
@@ -211,12 +212,14 @@ function ContentMenu(props: ContentMenuProps) {
                   size="icon"
                   className="richtext-w-7 richtext-h-7 richtext-cursor-grab richtext-relative richtext-z-[1]"
                   disabled={props?.disabled}
-                  onMouseUp={() => {
+                  onMouseUp={(e) => {
+                    e.preventDefault()
                     if (props?.disabled) {
                       return
                     }
                     setMenuOpen(true)
                   }}
+                  type="button"
                 >
                   <IconComponent name="Grip" className="richtext-text-sm dark:richtext-text-neutral-200 richtext-text-neutral-600" />
                 </Button>
