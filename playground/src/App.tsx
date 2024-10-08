@@ -109,6 +109,9 @@ const extensions = [
         }, 500)
       })
     },
+    postUpload: async (url) => {
+      return url
+    },
   }),
   Video,
   VideoUpload.configure({
