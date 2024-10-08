@@ -92,7 +92,7 @@ export function createImageUpload({ validateFn, onUpload }: ImageUploadOptions):
       onUpload(file).then(
         (src) => {
           const { schema } = view.state
-          const placeholderPos = findPlaceholder(view.state, id)
+          let placeholderPos = findPlaceholder(view.state, id)
           if (placeholderPos === null) {
             return
           }
@@ -103,9 +103,16 @@ export function createImageUpload({ validateFn, onUpload }: ImageUploadOptions):
             return
           }
 
+          // check position larger than doc.content.size
+          const { doc } = view.state
+          if (placeholderPos > doc.content.size) {
+            placeholderPos = doc.content.size - 1
+          }
+
           const transaction = view.state.tr
             .replaceWith(placeholderPos, placeholderPos, node)
             .setMeta(uploadKey, { remove: [id] })
+
           view.dispatch(transaction)
         },
         () => {
