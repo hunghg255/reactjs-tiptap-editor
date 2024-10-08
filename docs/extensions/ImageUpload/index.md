@@ -29,3 +29,8 @@ const extensions = [
   }),// [!code ++]
 ];
 ```
+
+## Props
+
+- `upload` - A function that returns a promise that resolves to the image URL.
+- `postUpload` - A function that is called after the image is uploaded. It receives the image URL as an argument.
