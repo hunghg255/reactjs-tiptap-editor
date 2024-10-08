@@ -13,6 +13,7 @@ import {
 
 export interface ImageUploadOptions {
   upload: (file: File) => Promise<string>
+  postUpload?: (url: string) => Promise<string>
   acceptMimes: string[]
   maxSize: number
 }
@@ -122,6 +123,7 @@ export const ImageUpload = Node.create<ImageUploadOptions>({
     const uploadFn = createImageUpload({
       validateFn: validateFile,
       onUpload: this.options.upload,
+      postUpload: this.options.postUpload,
     })
 
     return [

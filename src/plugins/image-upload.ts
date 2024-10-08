@@ -66,11 +66,12 @@ function findPlaceholder(state: EditorState, id: string): number | null {
 export interface ImageUploadOptions {
   validateFn?: (file: File) => boolean
   onUpload: (file: File) => Promise<string | object>
+  postUpload?: (src: string) => Promise<string>
 }
 
 export type UploadFn = (files: File[], view: EditorView, pos: number) => void
 
-export function createImageUpload({ validateFn, onUpload }: ImageUploadOptions): UploadFn {
+export function createImageUpload({ validateFn, onUpload, postUpload }: ImageUploadOptions): UploadFn {
   return (files, view, pos) => {
     for (const file of files) {
       if (validateFn && !validateFn(file)) {
@@ -90,7 +91,11 @@ export function createImageUpload({ validateFn, onUpload }: ImageUploadOptions):
       view.dispatch(tr)
 
       onUpload(file).then(
-        (src) => {
+        async (src) => {
+          if (postUpload && typeof src === 'string') {
+            src = await postUpload(src)
+          }
+
           const { schema } = view.state
           let placeholderPos = findPlaceholder(view.state, id)
           if (placeholderPos === null) {

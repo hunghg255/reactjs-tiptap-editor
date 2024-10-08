@@ -27,6 +27,7 @@ function ImageUploader(props: any) {
         return true
       },
       onUpload: uploadOptions.upload,
+      postUpload: uploadOptions.postUpload,
     })
     uploadFn([file], props.editor.view, props.getPos())
   }
