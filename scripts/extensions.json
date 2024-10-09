@@ -7,6 +7,20 @@
     ]
   },
   {
+    "name": "Attachment.ts",
+    "package": "Attachment",
+    "alias": [
+      "Attachment"
+    ]
+  },
+  {
+    "name": "BulletList.ts",
+    "package": "BulletList",
+    "alias": [
+      "BulletList"
+    ]
+  },
+  {
     "name": "Blockquote.ts",
     "package": "Blockquote",
     "alias": [
@@ -18,13 +32,6 @@
     "package": "Bold",
     "alias": [
       "Bold"
-    ]
-  },
-  {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
     ]
   },
   {
@@ -84,13 +91,6 @@
     ]
   },
   {
-    "name": "ExportPdf.ts",
-    "package": "ExportPdf",
-    "alias": [
-      "ExportPdf"
-    ]
-  },
-  {
     "name": "Excalidraw.ts",
     "package": "Excalidraw",
     "alias": [
@@ -98,17 +98,17 @@
     ]
   },
   {
+    "name": "ExportPdf.ts",
+    "package": "ExportPdf",
+    "alias": [
+      "ExportPdf"
+    ]
+  },
+  {
     "name": "ExportWord.ts",
     "package": "ExportWord",
     "alias": [
       "ExportWord"
-    ]
-  },
-  {
-    "name": "FontFamily.ts",
-    "package": "FontFamily",
-    "alias": [
-      "FontFamily"
     ]
   },
   {
@@ -154,6 +154,13 @@
     ]
   },
   {
+    "name": "FontFamily.ts",
+    "package": "FontFamily",
+    "alias": [
+      "FontFamily"
+    ]
+  },
+  {
     "name": "Iframe.ts",
     "package": "Iframe",
     "alias": [
@@ -175,10 +182,10 @@
     ]
   },
   {
-    "name": "ImportWord.ts",
-    "package": "ImportWord",
+    "name": "ImageGif.ts",
+    "package": "ImageGif",
     "alias": [
-      "ImportWord"
+      "ImageGif"
     ]
   },
   {
@@ -189,6 +196,13 @@
     ]
   },
   {
+    "name": "ImportWord.ts",
+    "package": "ImportWord",
+    "alias": [
+      "ImportWord"
+    ]
+  },
+  {
     "name": "Indent.ts",
     "package": "Indent",
     "alias": [
@@ -196,17 +210,17 @@
     ]
   },
   {
-    "name": "Italic.ts",
-    "package": "Italic",
-    "alias": [
-      "Italic"
-    ]
-  },
-  {
     "name": "Katex.ts",
     "package": "Katex",
     "alias": [
       "Katex"
+    ]
+  },
+  {
+    "name": "Italic.ts",
+    "package": "Italic",
+    "alias": [
+      "Italic"
     ]
   },
   {
@@ -231,13 +245,6 @@
     ]
   },
   {
-    "name": "Mention.ts",
-    "package": "Mention",
-    "alias": [
-      "Mention"
-    ]
-  },
-  {
     "name": "MoreMark.ts",
     "package": "MoreMark",
     "alias": [
@@ -245,17 +252,17 @@
     ]
   },
   {
-    "name": "MultiColumn.ts",
-    "package": "MultiColumn",
+    "name": "OrderedList.ts",
+    "package": "OrderedList",
     "alias": [
-      "Column"
+      "OrderedList"
     ]
   },
   {
-    "name": "MultiColumn.ts",
-    "package": "MultiColumn",
+    "name": "Mention.ts",
+    "package": "Mention",
     "alias": [
-      "MultiColumn"
+      "Mention"
     ]
   },
   {
@@ -263,13 +270,6 @@
     "package": "SearchAndReplace",
     "alias": [
       "SearchAndReplace"
-    ]
-  },
-  {
-    "name": "OrderedList.ts",
-    "package": "OrderedList",
-    "alias": [
-      "OrderedList"
     ]
   },
   {
@@ -301,6 +301,13 @@
     ]
   },
   {
+    "name": "Subscript.ts",
+    "package": "Subscript",
+    "alias": [
+      "Subscript"
+    ]
+  },
+  {
     "name": "Strike.ts",
     "package": "Strike",
     "alias": [
@@ -308,10 +315,17 @@
     ]
   },
   {
-    "name": "Subscript.ts",
-    "package": "Subscript",
+    "name": "MultiColumn.ts",
+    "package": "MultiColumn",
     "alias": [
-      "Subscript"
+      "Column"
+    ]
+  },
+  {
+    "name": "MultiColumn.ts",
+    "package": "MultiColumn",
+    "alias": [
+      "MultiColumn"
     ]
   },
   {
@@ -326,6 +340,13 @@
     "package": "Table",
     "alias": [
       "cell-background"
+    ]
+  },
+  {
+    "name": "TableOfContent.ts",
+    "package": "TableOfContent",
+    "alias": [
+      "TableOfContent"
     ]
   },
   {
@@ -350,13 +371,6 @@
     ]
   },
   {
-    "name": "TextDirection.ts",
-    "package": "TextDirection",
-    "alias": [
-      "TextDirection"
-    ]
-  },
-  {
     "name": "TrailingNode.ts",
     "package": "TrailingNode",
     "alias": [
@@ -378,17 +392,17 @@
     ]
   },
   {
+    "name": "TextDirection.ts",
+    "package": "TextDirection",
+    "alias": [
+      "TextDirection"
+    ]
+  },
+  {
     "name": "VideoUpload.ts",
     "package": "VideoUpload",
     "alias": [
       "VideoUpload"
-    ]
-  },
-  {
-    "name": "TableOfContent.ts",
-    "package": "TableOfContent",
-    "alias": [
-      "TableOfContent"
     ]
   },
   {
