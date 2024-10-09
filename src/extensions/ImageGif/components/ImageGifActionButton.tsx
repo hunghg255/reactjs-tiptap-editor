@@ -75,7 +75,7 @@ function ImageGifWrap({ selectImage, giphyApiKey, children }: IProps) {
             ? (
                 <>
                   <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5 richtext-mb-[10px]">
-                    <div className="richtext-relative richtext-items-center richtext-w-full richtext-max-w-sm">
+                    <div className="richtext-relative richtext-items-center richtext-w-full">
                       <Input
                         ref={inputRef}
                         type="text"
