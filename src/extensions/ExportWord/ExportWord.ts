@@ -1,5 +1,4 @@
 import { Extension } from '@tiptap/core'
-import { saveAs } from 'file-saver'
 import { DocxSerializer, defaultMarks, defaultNodes } from 'prosemirror-docx'
 import { Packer } from 'docx'
 import { ActionButton } from '@/components'
@@ -50,11 +49,12 @@ export const ExportWord = Extension.create<ExportWordOptions>({
       }),
     }
   },
+  // @ts-expect-error
   addCommands() {
     return {
       exportToWord:
         () =>
-          ({ editor }) => {
+          async ({ editor }) => {
             const opts: any = {
               getImageBuffer: async (src: string) => {
                 const response = await fetch(src)
@@ -62,8 +62,10 @@ export const ExportWord = Extension.create<ExportWordOptions>({
                 return new Uint8Array(arrayBuffer)
               },
             }
+            const fileSaver = await import('file-saver')
+
             const wordDocument = docxSerializer.serialize(editor.state.doc, opts)
-            Packer.toBlob(wordDocument).then(blob => saveAs(new Blob([blob]), 'document.docx'))
+            Packer.toBlob(wordDocument).then(blob => fileSaver.saveAs(new Blob([blob]), 'document.docx'))
             return true
           },
     }
