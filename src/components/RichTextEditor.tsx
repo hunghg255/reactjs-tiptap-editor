@@ -10,12 +10,12 @@ import type { BubbleMenuProps } from '@/types'
 import { BubbleMenu, Toolbar, TooltipProvider } from '@/components'
 import { EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME } from '@/constants'
 import { RESET_CSS } from '@/constants/resetCSS'
-import { useLocale } from '@/locales'
 import { themeActions } from '@/theme/theme'
 import { hasExtension } from '@/utils/utils'
 import { removeCSS, updateCSS } from '@/utils/dynamicCSS'
 
 import '../styles/index.scss'
+import CharactorCount from '@/components/CharactorCount'
 
 /**
  * Interface for RichTextEditor component props
@@ -70,7 +70,6 @@ export interface RichTextEditorProps {
 
 function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ editor: CoreEditor | null }>) {
   const { content, extensions, useEditorOptions = {} } = props
-  const { t } = useLocale()
 
   const sortExtensions = useMemo(() => {
     const diff = differenceBy(extensions, extensions, 'name')
@@ -173,19 +172,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
 
             <EditorContent className={`richtext-relative ${props?.contentClass || ''}`} editor={editor} />
 
-            <div className="richtext-flex richtext-items-center richtext-justify-between richtext-p-3 richtext-border-t">
-              {hasExtensionValue && (
-                <div className="richtext-flex richtext-flex-col">
-                  <div className="richtext-flex richtext-justify-end richtext-gap-3 richtext-text-sm">
-                    <span>
-                      {(editor as any).storage.characterCount.characters()}
-                      {' '}
-                      {t('editor.characters')}
-                    </span>
-                  </div>
-                </div>
-              )}
-            </div>
+            {hasExtensionValue && <CharactorCount editor={editor} extensions={extensions} />}
 
             {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu} editor={editor} disabled={props?.disabled} />}
           </div>

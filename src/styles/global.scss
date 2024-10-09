@@ -34,6 +34,8 @@
     --ring: 240 10% 3.9%;
 
     --radius: 0.5rem;
+
+    --red: #FF5C33;
   }
 
   .dark {
@@ -65,6 +67,8 @@
     --destructive-foreground: 0 0% 98%;
 
     --ring: 240 4.9% 83.9%;
+
+    --red: #FF5C33;
   }
 }
 
@@ -75,3 +79,9 @@ html body[data-scroll-locked] {
   position: initial !important;
 }
 
+/* Character count */
+.character-count {
+  &--warning {
+    color: var(--red) !important;
+  }
+}

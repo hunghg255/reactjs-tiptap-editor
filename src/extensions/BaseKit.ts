@@ -1,7 +1,7 @@
 import type { AnyExtension } from '@tiptap/core'
 import { Extension } from '@tiptap/core'
 import type { CharacterCountOptions } from '@tiptap/extension-character-count'
-import { CharacterCount } from '@tiptap/extension-character-count'
+import CharacterCount from '@tiptap/extension-character-count'
 import type { DropcursorOptions } from '@tiptap/extension-dropcursor'
 import { Dropcursor } from '@tiptap/extension-dropcursor'
 import type { FocusOptions } from '@tiptap/extension-focus'
