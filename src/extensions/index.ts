@@ -117,3 +117,5 @@ export { TextDirection } from './TextDirection'
 export { Mention } from './Mention'
 
 export { Attachment } from './Attachment'
+
+export { ImageGif } from './ImageGif'

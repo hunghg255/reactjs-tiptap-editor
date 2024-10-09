@@ -21,3 +21,8 @@ const extensions = [
   Image // [!code ++]
 ];
 ```
+
+## Image Gif
+
+- ImageGif is a node extension that allows you to add an ImageGif to your editor.
+- More: [ImageGif](/extensions/ImageGif/index.md)

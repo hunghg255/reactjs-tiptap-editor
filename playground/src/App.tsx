@@ -24,6 +24,7 @@ import RichTextEditor, {
   HorizontalRule,
   Iframe,
   Image,
+  ImageGif,
   ImageUpload,
   ImportWord,
   Indent,
@@ -109,9 +110,6 @@ const extensions = [
         }, 500)
       })
     },
-    postUpload: async (url) => {
-      return url
-    },
   }),
   Video,
   VideoUpload.configure({
@@ -123,6 +121,9 @@ const extensions = [
       return Promise.resolve(f)
     },
   }),
+  // ImageGif.configure({
+  //   GIPHY_API_KEY: '',
+  // }),
   Blockquote,
   SlashCommand,
   HorizontalRule,
@@ -163,7 +164,7 @@ const extensions = [
   }),
 ]
 
-const DEFAULT = `<div class="attachment" filename="Drought_insurance_policy_wording_Vie" filesize="547068" filetype="application/pdf" fileext="pdf" url="blob:http://localhost:5173/06d65427-5453-4902-88ec-5be6f975ef0f" hastrigger="true"></div><p dir="auto"></p>`
+const DEFAULT = `<div class="attachment" filename="Drought_insurance_policy_wording_Vie" filesize="547068" filetype="application/pdf" fileext="pdf" url="blob:http://localhost:5173/06d65427-5453-4902-88ec-5be6f975ef0f" hastrigger="true" error=""></div><p dir="auto"></p><div style="text-align: left;" class="image"><img height="auto" src="https://media2.giphy.com/media/qpXx6IVZ7PjHtPsDj8/giphy.gif?cid=05e2c1e1e1i06b96si957vklsjfj8vjdca1ud55j4noxc0t2&amp;ep=v1_gifs_trending&amp;rid=giphy.gif&amp;ct=g" width="273" align="left"></div><p dir="auto"></p>`
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout

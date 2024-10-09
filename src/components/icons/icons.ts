@@ -93,6 +93,7 @@ import { Excalidraw } from '@/components/icons/Excalidraw'
 import { Direction } from '@/components/icons/Direction'
 import { LeftToRight } from '@/components/icons/LeftToRight'
 import { RightToLeft } from '@/components/icons/RightToLeft'
+import { GifIcon } from '@/components/icons/GIfIcon'
 
 export const icons = {
   Bold,
@@ -191,4 +192,5 @@ export const icons = {
   RightToLeft,
 
   Attachment: Paperclip,
+  GifIcon,
 } as any

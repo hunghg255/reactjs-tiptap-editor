@@ -1,12 +1,12 @@
-/* eslint-disable react/no-duplicate-key */
 /* eslint-disable react/no-useless-fragment */
 import { Fragment, useMemo } from 'react'
 
 import type { Editor } from '@tiptap/react'
 import { BubbleMenu as BubbleMenuReact } from '@tiptap/react'
 
-import { Separator, getBubbleImage, getBubbleVideo } from '@/components'
+import { Separator, getBubbleImage, getBubbleImageGif, getBubbleVideo } from '@/components'
 import { useLocale } from '@/locales'
+import { ImageGif } from '@/extensions'
 
 interface IPropsBubbleMenu {
   editor: Editor
@@ -46,6 +46,10 @@ function ItemA({ item, disabled, editor }: any) {
 
 function isImageNode(node: any) {
   return node.type.name === 'image'
+}
+
+function isImageGifNode(node: any) {
+  return node.type.name === ImageGif.name
 }
 
 function isVideoNode(node: any) {
@@ -93,6 +97,64 @@ function BubbleMenuImage(props: IPropsBubbleMenu) {
                     return (
                       <ItemA
                         key={`bubbleMenu-image-${key}`}
+                        item={item}
+                        disabled={props.disabled}
+                        editor={props.editor}
+                      />
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          : (
+              <></>
+            )}
+      </BubbleMenuReact>
+    </>
+  )
+}
+
+function BubbleMenuImageGif(props: IPropsBubbleMenu) {
+  const { lang } = useLocale()
+
+  const shouldShow = ({ editor }: any) => {
+    const { selection } = editor.view.state
+    const { $from, to } = selection
+    let isImage = false
+
+    editor.view.state.doc.nodesBetween($from.pos, to, (node: any) => {
+      if (isImageGifNode(node)) {
+        isImage = true
+        return false // Stop iteration if an image is found
+      }
+    })
+
+    return isImage
+  }
+
+  const items = useMemo(() => {
+    if (props.disabled) {
+      return []
+    }
+    return getBubbleImageGif(props.editor)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.disabled, props.editor, lang])
+
+  return (
+    <>
+      <BubbleMenuReact
+        shouldShow={shouldShow}
+        editor={props?.editor}
+        tippyOptions={tippyOptions as any}
+      >
+        {items?.length
+          ? (
+              <div className="richtext-w-auto richtext-px-3 richtext-py-2 richtext-transition-all !richtext-border richtext-rounded-sm richtext-shadow-sm richtext-pointer-events-auto richtext-select-none richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-bg-background">
+                <div className="richtext-flex richtext-items-center richtext-flex-nowrap richtext-whitespace-nowrap richtext-h-[26px] richtext-justify-start richtext-relative">
+                  {items?.map((item: any, key: any) => {
+                    return (
+                      <ItemA
+                        key={`bubbleMenu-image-gif-${key}`}
                         item={item}
                         disabled={props.disabled}
                         editor={props.editor}
@@ -169,4 +231,4 @@ function BubbleMenuVideo(props: IPropsBubbleMenu) {
   )
 }
 
-export { BubbleMenuImage, BubbleMenuVideo }
+export { BubbleMenuImage, BubbleMenuVideo, BubbleMenuImageGif }
