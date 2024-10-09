@@ -155,6 +155,7 @@ const locale = {
   'editor.attachment.tooltip': 'Attachment',
   'editor.attachment.uploading': 'Uploading',
   'editor.attachment.please_upload': 'Please upload the file',
+  'editor.imageGif.tooltip': 'Gif',
 }
 
 export default locale

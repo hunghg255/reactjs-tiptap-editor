@@ -92,6 +92,27 @@ function imageSizeMenus(editor: Editor): BubbleMenuItem[] {
   }))
 }
 
+function imageGifSizeMenus(editor: Editor): BubbleMenuItem[] {
+  const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large']
+  const icons: NonNullable<ButtonViewReturn['componentProps']['icon']>[] = [
+    'SizeS',
+    'SizeM',
+    'SizeL',
+  ]
+
+  return types.map((size, i) => ({
+    type: `image-${size}`,
+    component: ActionButton,
+    componentProps: {
+      tooltip: localeActions.t(`editor.${size.replace('-', '.')}.tooltip` as any),
+      icon: icons[i],
+      // @ts-expect-error
+      action: () => editor.commands.updateImageGif({ width: IMAGE_SIZE[size] }),
+      isActive: () => editor.isActive('image', { width: IMAGE_SIZE[size] }),
+    },
+  }))
+}
+
 function imageAlignMenus(editor: Editor): BubbleMenuItem[] {
   const types: ImageAlignments[] = ['left', 'center', 'right']
   const iconMap: any = {
@@ -106,6 +127,27 @@ function imageAlignMenus(editor: Editor): BubbleMenuItem[] {
       tooltip: localeActions.t(`editor.textalign.${k}.tooltip`),
       icon: iconMap[k],
       action: () => editor.commands?.setAlignImage?.(k),
+      isActive: () => editor.isActive({ align: k }) || false,
+      disabled: false,
+    },
+  }))
+}
+
+function imageGifAlignMenus(editor: Editor): BubbleMenuItem[] {
+  const types: ImageAlignments[] = ['left', 'center', 'right']
+  const iconMap: any = {
+    left: 'AlignLeft',
+    center: 'AlignCenter',
+    right: 'AlignRight',
+  }
+  return types.map(k => ({
+    type: `image-${k}`,
+    component: ActionButton,
+    componentProps: {
+      tooltip: localeActions.t(`editor.textalign.${k}.tooltip`),
+      icon: iconMap[k],
+      // @ts-expect-error
+      action: () => editor.commands?.setAlignImageGif?.(k),
       isActive: () => editor.isActive({ align: k }) || false,
       disabled: false,
     },
@@ -135,6 +177,26 @@ export function getBubbleImage(editor: Editor): BubbleMenuItem[] {
   return [
     ...imageSizeMenus(editor),
     ...imageAlignMenus(editor),
+    {
+      type: 'remove',
+      component: ActionButton,
+      componentProps: {
+        editor,
+        tooltip: localeActions.t('editor.remove'),
+        icon: 'Trash2',
+        action: () => {
+          const { state, dispatch } = editor.view
+          deleteSelection(state, dispatch)
+        },
+      },
+    },
+  ]
+}
+
+export function getBubbleImageGif(editor: Editor): BubbleMenuItem[] {
+  return [
+    ...imageGifSizeMenus(editor),
+    ...imageGifAlignMenus(editor),
     {
       type: 'remove',
       component: ActionButton,

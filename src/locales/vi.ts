@@ -156,6 +156,7 @@ const locale = {
   'editor.attachment.tooltip': 'Đính kèm',
   'editor.attachment.uploading': 'Đang tải lên',
   'editor.attachment.please_upload': 'Vui lòng tải lên tệp',
+  'editor.imageGif.tooltip': 'Gif',
 }
 
 export default locale

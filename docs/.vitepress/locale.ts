@@ -264,6 +264,10 @@ export function getLocaleConfig(lang: string) {
           text: 'Attachment',
           link: '/extensions/Attachment/index.md',
         },
+        {
+          text: 'ImageGif',
+          link: '/extensions/ImageGif/index.md',
+        },
       ],
     },
   ]

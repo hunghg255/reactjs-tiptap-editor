@@ -164,6 +164,13 @@ export interface BubbleMenuProps {
      */
     hidden?: boolean
   }
+  imageGifConfig?: {
+    /**
+     * @description Image menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
   videoConfig?: {
     /**
      * @description Video menu hidden

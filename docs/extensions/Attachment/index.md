@@ -1,5 +1,9 @@
 ---
 description: Attachment
+
+next:
+  text: ImageGif
+  link: /extensions/ImageGif/index.md
 ---
 
 # Attachment

@@ -156,6 +156,7 @@ const locale = {
   'editor.attachment.tooltip': '附件',
   'editor.attachment.uploading': '上传中',
   'editor.attachment.please_upload': '请上传文件',
+  'editor.imageGif.tooltip': 'Gif',
 }
 
 export default locale
