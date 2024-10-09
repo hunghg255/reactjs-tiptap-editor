@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import type React from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
+import { debounce } from 'lodash-es'
 import { ActionButton, Input, Popover, PopoverContent, PopoverTrigger } from '@/components'
 
 interface IProps {
@@ -13,8 +14,7 @@ interface IProps {
 
 function ImageGifWrap({ selectImage, giphyApiKey, children }: IProps) {
   const [gifs, setGifs] = useState([])
-  const [limit] = useState(10)
-  const [term, setTerm] = useState('')
+  const [limit] = useState(15)
 
   const inputRef = useRef(null)
 
@@ -32,7 +32,6 @@ function ImageGifWrap({ selectImage, giphyApiKey, children }: IProps) {
     fetch(link).then(r => r.json()).then((response) => {
       // handle success
       setGifs(response.data)
-      // console.log(response);
     })
       .catch((error) => {
         // handle error
@@ -44,25 +43,17 @@ function ImageGifWrap({ selectImage, giphyApiKey, children }: IProps) {
     search('', 'trend')
   }, [])
 
-  const onSearchSubmit = (e: any) => {
-    if (e.key !== 'Enter') {
-      return
-    }
-
-    // @ts-ignore
-    const term = inputRef.current.value
-
-    search(term)
-  }
-
-  // const limitSubmit = (limit: any) => {
-  //   setLimit(limit)
-  // }
-
-  const handleChange = (e: any) => {
-    const term = e.target.value
-    setTerm(term)
-  }
+  const handleInputChange = useCallback(
+    debounce((event: React.ChangeEvent<HTMLInputElement>) => {
+      if (!event.target.value) {
+        search('', 'trend')
+        return
+      }
+      // Add your logic here
+      search(event.target.value)
+    }, 350), // Adjust the debounce delay as needed
+    [],
+  )
 
   return (
     <Popover>
@@ -74,37 +65,40 @@ function ImageGifWrap({ selectImage, giphyApiKey, children }: IProps) {
           giphyApiKey
             ? (
                 <>
-                  <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5 richtext-mb-[10px]">
-                    <div className="richtext-relative richtext-items-center richtext-w-full">
-                      <Input
-                        ref={inputRef}
-                        type="text"
-                        placeholder="Search GIF"
-                        value={term}
-                        onChange={handleChange}
-                        onKeyDown={onSearchSubmit}
-                      />
-                    </div>
+                  <div className="richtext-w-full richtext-mb-[10px]">
+                    <Input
+                      ref={inputRef}
+                      type="text"
+                      placeholder="Search GIF"
+                      onChange={handleInputChange}
+                    />
                   </div>
 
                   <div className="richtext-max-h-[280px] richtext-overflow-y-auto">
                     <div className="richtext-grid richtext-grid-cols-2 richtext-gap-1 ">
-                      {gifs?.map((o: any) => (
-                        <img
-                          alt="giphy"
-                          key={`giphy-${o.id}`}
-                          className="richtext-text-center richtext-cursor-pointer"
-                          onClick={_e => selectImage(o)}
-                          height={o.images.fixed_width_downsampled.height}
-                          width={o.images.fixed_width_downsampled.width}
-                          src={o.images.fixed_width_downsampled.url}
-                        />
-                      ))}
+
+                      {gifs?.length
+                        ? gifs?.map((o: any) => (
+                          <img
+                            alt="giphy"
+                            key={`giphy-${o.id}`}
+                            className="richtext-text-center richtext-cursor-pointer"
+                            onClick={_e => selectImage(o)}
+                            height={o.images.fixed_width_downsampled.height}
+                            width={o.images.fixed_width_downsampled.width}
+                            src={o.images.fixed_width_downsampled.url}
+                          />
+                        ))
+                        : <p>No GIFs found</p>}
                     </div>
                   </div>
                 </>
               )
-            : <div>Missing Giphy API Key</div>
+            : (
+                <div>
+                  <p>Missing Giphy API Key</p>
+                </div>
+              )
         }
       </PopoverContent>
     </Popover>

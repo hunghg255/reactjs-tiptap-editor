@@ -3,6 +3,7 @@ import { DocxSerializer, defaultMarks, defaultNodes } from 'prosemirror-docx'
 import { Packer } from 'docx'
 import { ActionButton } from '@/components'
 import type { GeneralOptions } from '@/types'
+import { downloadFromBlob } from '@/utils/download'
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -62,10 +63,11 @@ export const ExportWord = Extension.create<ExportWordOptions>({
                 return new Uint8Array(arrayBuffer)
               },
             }
-            const fileSaver = await import('file-saver')
 
             const wordDocument = docxSerializer.serialize(editor.state.doc, opts)
-            Packer.toBlob(wordDocument).then(blob => fileSaver.saveAs(new Blob([blob]), 'document.docx'))
+
+            Packer.toBlob(wordDocument).then(blob => downloadFromBlob(new Blob([blob]), 'export-document.docx'))
+
             return true
           },
     }
