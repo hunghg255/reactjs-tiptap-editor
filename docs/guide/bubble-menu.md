@@ -28,6 +28,7 @@ The system provides the following default bubble menus:
 |   BubbleMenuExcalidraw     | Provides excalidraw-related operations like changing size, edit etc.   | excalidrawConfig          |
 |   ColumnsMenu   | Provides multi-column layout operations like adjusting column numbers, widths, etc.          | columnConfig        |
 |   ContentMenu   | Provides general content-related operations like copy, paste, delete, etc.                   | floatingMenuConfig  |
+|   BubbleMenuImageGif   | Provides general content-related operations like copy, paste, delete, image gif etc.                   | imageGifConfig  |
 
 ## Disabling the Bubble Menu
 
