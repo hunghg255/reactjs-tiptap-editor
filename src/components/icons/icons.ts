@@ -6,6 +6,7 @@ import {
   Bold,
   BookMarked,
   ChevronDown,
+  ChevronUp,
   ChevronsUpDown,
   Clipboard,
   Code,
@@ -193,4 +194,5 @@ export const icons = {
 
   Attachment: Paperclip,
   GifIcon,
+  ChevronUp,
 } as any

@@ -47,29 +47,39 @@ function ImportWordButton(props: any) {
       )?.options
       if (uploadOptions && typeof uploadOptions.upload === 'function') {
         const files: File[] = []
+        // convert base64 image to blob file
         for (const img of images) {
           const originalSrc = img.getAttribute('src')
           const blob = base64ToBlob(originalSrc, 'image/jpeg')
-
           const file = blobToFile(blob, 'image.jpeg')
           files.push(file)
         }
         const uploadRes = await uploadOptions.upload(files)
-
+        // images
         for (let i = 0; i < images.length; i++) {
           const img = images[i]
           img.setAttribute('src', uploadRes[i].src)
+          const parent = img.parentElement
+          if (parent?.tagName === 'P') {
+            parent.insertAdjacentElement('beforebegin', img)
+            if (!parent.hasChildNodes() && parent.textContent === '') {
+              parent.remove()
+            }
+          }
         }
         return doc.body.innerHTML
       }
       else {
+        console.warn('Image Upload method found, skip image conversion')
         return doc.body.innerHTML
       }
     }
     else {
+      console.error('Image extension not found, unable to convert image')
       return doc.body.innerHTML
     }
   }
+
   async function importWord() {
     if (props.convert) {
       const result = await props.convert(file)

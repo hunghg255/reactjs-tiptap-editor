@@ -12,7 +12,7 @@ export const ExportPdf = Extension.create<any>({
         component: ActionButton,
         componentProps: {
           action: () => {
-            printEditorContent(editor.view)
+            printEditorContent(editor)
           },
           icon: 'ExportPdf',
           tooltip: t('editor.exportPdf.tooltip'),
