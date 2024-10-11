@@ -104,8 +104,18 @@ export const DEFAULT_FONT_FAMILY_LIST = [
   'Inter',
   'Comic Sans MS, Comic Sans',
   'serif',
-  'monospace',
   'cursive',
+  'Arial',
+  'Arial Black',
+  'Georgia',
+  'Impact',
+  'Tahoma',
+  'Times New Roman',
+  'Verdana',
+  'Courier New',
+  'Lucida Console',
+  'Monaco',
+  'monospace',
 ]
 
 export const DEFAULT_LANGUAGE_CODE_BLOCK = [

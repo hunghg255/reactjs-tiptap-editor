@@ -157,6 +157,7 @@ const locale = {
   'editor.attachment.uploading': '上传中',
   'editor.attachment.please_upload': '请上传文件',
   'editor.imageGif.tooltip': 'Gif',
+  'editor.replace.caseSensitive': '区分大小写',
 }
 
 export default locale

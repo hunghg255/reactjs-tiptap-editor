@@ -1,16 +1,25 @@
 import type { Editor } from '@tiptap/core'
 
-function printHtml(dom: Element) {
-  const style: string = Array.from(document.querySelectorAll('style, link')).reduce(
-    (str, style) => str + style.outerHTML,
-    '',
-  )
-
-  const content: string = style + dom.outerHTML
-
+function printHtml(content: string) {
   const iframe: HTMLIFrameElement = document.createElement('iframe')
   iframe.setAttribute('style', 'position: absolute; width: 0; height: 0; top: 0; left: 0;')
   document.body.appendChild(iframe)
+
+  iframe.textContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>Echo Editor</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body class="is-print">
+      <div class="tiptap ProseMirror" translate="no" aria-expanded="false">
+          ${content}
+      </div>
+    </body>
+    </html>
+  `
 
   const frameWindow = iframe.contentWindow
   const doc: any = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document)
@@ -18,7 +27,7 @@ function printHtml(dom: Element) {
   // load style from CDN to iframe
   const link = document.createElement('link')
   link.rel = 'stylesheet'
-  link.href = 'https://cdn.jsdelivr.net/npm/reactjs-tiptap-editor/lib/style.css'
+  link.href = 'https://cdn.jsdelivr.net/npm/reactjs-tiptap-editor@latest/lib/style.css'
   doc.head.appendChild(link)
 
   if (doc) {
@@ -54,11 +63,11 @@ function printHtml(dom: Element) {
   }
 }
 
-export function printEditorContent(view: Editor['view']) {
-  const editorContent = view.dom.closest('.ProseMirror')
+export function printEditorContent(editor: Editor) {
+  const content = editor.getHTML()
 
-  if (editorContent) {
-    printHtml(editorContent)
+  if (content) {
+    printHtml(content)
     return true
   }
   return false

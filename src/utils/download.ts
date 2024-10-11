@@ -8,6 +8,7 @@ export function downloadFromBlob(blob: Blob, filename: string) {
     a.download = filename
     a.click()
     window.URL.revokeObjectURL(url)
+    return Promise.resolve()
   }
 
   console.error('Download is not supported in Node.js')

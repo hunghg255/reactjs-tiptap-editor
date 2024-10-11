@@ -157,6 +157,7 @@ const locale = {
   'editor.attachment.uploading': 'Đang tải lên',
   'editor.attachment.please_upload': 'Vui lòng tải lên tệp',
   'editor.imageGif.tooltip': 'Gif',
+  'editor.replace.caseSensitive': 'Phân biệt chữ hoa chữ thường',
 }
 
 export default locale

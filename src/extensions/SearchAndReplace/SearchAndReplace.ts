@@ -17,6 +17,7 @@ declare module '@tiptap/core' {
       replaceAll: () => ReturnType
       goToPrevSearchResult: () => void
       goToNextSearchResult: () => void
+      setCaseSensitive: (caseSensitive: boolean) => ReturnType
     }
   }
 }
@@ -263,6 +264,11 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
 
             return false
           },
+      setCaseSensitive: (caseSensitive: boolean) => ({ state, dispatch }) => {
+        this.options.caseSensitive = caseSensitive
+        updateView(state, dispatch)
+        return false
+      },
       replace:
         () =>
           ({ state, dispatch }) => {

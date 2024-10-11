@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import deepEqual from 'deep-equal'
-import { ActionButton, Button, IconComponent, Input, Label, Popover, PopoverContent, PopoverTrigger } from '@/components'
+import { ActionButton, Button, IconComponent, Input, Label, Popover, PopoverContent, PopoverTrigger, Switch } from '@/components'
 import { useLocale } from '@/locales'
 import { ON_SEARCH_RESULTS, SearchAndReplace } from '@/extensions/SearchAndReplace/SearchAndReplace'
 
@@ -12,6 +12,7 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
   const [searchValue, setSearchValue] = useState('')
   const [replaceValue, setReplaceValue] = useState('')
   const [visible, setVisible] = useState(false)
+  const [caseSensitive, setCaseSensitive] = useState(false)
 
   useEffect(() => {
     if (!visible) {
@@ -93,7 +94,7 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
         side="bottom"
       >
 
-        <div className="richtext-mb-[6px richtext-flex richtext-items-center richtext-justify-between">
+        <div className="richtext-mb-[6px] richtext-flex richtext-items-center richtext-justify-between">
           <Label>
             {t('editor.search.dialog.text')}
           </Label>
@@ -111,11 +112,20 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
             value={searchValue}
             onChange={e => setSearchValue(e.target.value)}
           />
+
+          <Button disabled={!results.length} className="richtext-flex-1" onClick={editor.commands.goToPrevSearchResult}>
+            <IconComponent name="ChevronUp" />
+          </Button>
+
+          <Button disabled={!results.length} className="richtext-flex-1" onClick={editor.commands.goToNextSearchResult}>
+            <IconComponent name="ChevronDown" />
+          </Button>
+
         </div>
         <Label className="richtext-mb-[6px]">
           {t('editor.replace.dialog.text')}
         </Label>
-        <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5 richtext-mb-[16px]">
+        <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5 richtext-mb-[5px]">
           <div className="richtext-relative richtext-items-center richtext-w-full richtext-max-w-sm">
             <Input
               type="text"
@@ -128,14 +138,15 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
           </div>
         </div>
 
-        <div className="richtext-flex richtext-items-center richtext-gap-[10px] richtext-mb-[10px]">
-          <Button disabled={!results.length} className="richtext-flex-1" onClick={editor.commands.goToPrevSearchResult}>
-            {t('editor.previous.dialog.text')}
-          </Button>
-
-          <Button disabled={!results.length} className="richtext-flex-1" onClick={editor.commands.goToNextSearchResult}>
-            {t('editor.next.dialog.text')}
-          </Button>
+        <div className="richtext-flex richtext-items-center richtext-space-x-2 richtext-mb-[10px]">
+          <Switch
+            checked={caseSensitive}
+            onCheckedChange={(e: any) => {
+              setCaseSensitive(e)
+              editor.commands.setCaseSensitive(e)
+            }}
+          />
+          <Label>{t('editor.replace.caseSensitive')}</Label>
         </div>
 
         <div className="richtext-flex richtext-items-center richtext-gap-[10px]">
