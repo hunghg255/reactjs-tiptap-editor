@@ -150,7 +150,6 @@ export function ImageCropper({ editor, getPos }: any) {
           </div>
           <DialogFooter>
             <Button
-              variant="outline"
               onClick={() => {
                 setDialogOpen(false)
                 setUrlUpload({
