@@ -5,6 +5,7 @@ import { NodeViewWrapper } from '@tiptap/react'
 import { Button, IconComponent, Input, Popover, PopoverContent, PopoverTrigger, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components'
 import { useLocale } from '@/locales'
 import { createImageUpload } from '@/plugins/image-upload'
+import { ImageCropper } from '@/extensions/ImageUpload/components/ImageCropper'
 
 function ImageUploader(props: any) {
   const { t } = useLocale()
@@ -78,9 +79,12 @@ function ImageUploader(props: any) {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="upload">
-              <Button className="richtext-w-full richtext-mt-1" size="sm" onClick={handleClick}>
-                {t('editor.image.dialog.tab.upload')}
-              </Button>
+              <div className="richtext-flex richtext-items-center richtext-gap-[10px]">
+                <Button className="richtext-w-full richtext-mt-1" size="sm" onClick={handleClick}>
+                  {t('editor.image.dialog.tab.upload')}
+                </Button>
+                <ImageCropper editor={props.editor} getPos={props.getPos} />
+              </div>
               <input
                 type="file"
                 accept="image/*"

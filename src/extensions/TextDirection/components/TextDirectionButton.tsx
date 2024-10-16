@@ -48,7 +48,7 @@ function TextDirectionButton(props: IPropsTextDirectionButton) {
   }, [props])
 
   return (
-    <Popover>
+    <Popover modal>
       <PopoverTrigger disabled={props?.disabled} asChild>
         <ActionButton
           customClass="!richtext-w-12 richtext-h-12"

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-duplicate-key */
 import React, { useEffect, useMemo, useState } from 'react'
 
 import { Plus } from 'lucide-react'
@@ -74,7 +73,7 @@ function ColorPicker(props: ColorPickerProps) {
   }
 
   return (
-    <Popover>
+    <Popover modal>
       <PopoverTrigger className="!richtext-p-0" disabled={disabled} asChild>{props?.children}</PopoverTrigger>
 
       <PopoverContent hideWhenDetached className="richtext-w-full richtext-h-full richtext-p-2" align="start" side="bottom">

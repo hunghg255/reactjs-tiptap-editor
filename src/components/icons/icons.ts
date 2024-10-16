@@ -15,6 +15,7 @@ import {
   Columns3,
   Columns4,
   Copy,
+  CropIcon,
   Eraser,
   Eye,
   Frame,
@@ -195,4 +196,5 @@ export const icons = {
   Attachment: Paperclip,
   GifIcon,
   ChevronUp,
+  Crop: CropIcon,
 } as any
