@@ -82,7 +82,7 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
   }
 
   return (
-    <Popover>
+    <Popover modal>
       <PopoverTrigger asChild>
         {props?.children}
       </PopoverTrigger>

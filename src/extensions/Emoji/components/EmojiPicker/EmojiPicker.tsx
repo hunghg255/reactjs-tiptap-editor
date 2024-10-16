@@ -106,7 +106,7 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
   }, [])
 
   return (
-    <Popover>
+    <Popover modal>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
 
       <PopoverContent hideWhenDetached className="richtext-w-full richtext-h-full richtext-p-2" align="start" side="bottom">

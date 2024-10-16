@@ -21,7 +21,7 @@ function LinkEditPopover(props: IPropsLinkEditPopover) {
   }
 
   return (
-    <Popover>
+    <Popover modal>
       <PopoverTrigger disabled={props?.disabled} asChild>
         <ActionButton
           tooltip={props?.tooltip}

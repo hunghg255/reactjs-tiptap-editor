@@ -37,7 +37,7 @@ export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, ch
   }
 
   return (
-    <Popover>
+    <Popover modal>
       <PopoverTrigger asChild>
         {children}
       </PopoverTrigger>
