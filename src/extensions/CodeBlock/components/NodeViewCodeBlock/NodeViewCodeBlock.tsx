@@ -57,7 +57,7 @@ export function NodeViewCodeBlock({ editor, node: { attrs }, updateAttributes, e
             <SelectTrigger>
               <SelectValue placeholder="Language" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="richtext-max-h-60 richtext-overflow-y-auto">
               <SelectItem value="auto">Auto</SelectItem>
 
               {listLang.map((lang: any, index: any) => (

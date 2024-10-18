@@ -23,8 +23,6 @@
   }
 }
 
-
-
 .blockInfo {
   display: flex;
   align-items: center;
@@ -48,6 +46,11 @@
     border: none !important;
     outline-offset: 0px !important;
     color: white !important;
+  }
+
+  .richtext-SelectContent {
+    max-height: 200px;
+    overflow-y: auto;
   }
 }
 
