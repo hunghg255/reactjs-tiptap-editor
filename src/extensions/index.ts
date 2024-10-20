@@ -119,3 +119,5 @@ export { Mention } from './Mention'
 export { Attachment } from './Attachment'
 
 export { ImageGif } from './ImageGif'
+
+export { Mermaid } from './Mermaid'

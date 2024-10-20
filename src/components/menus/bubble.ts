@@ -154,6 +154,26 @@ function imageGifAlignMenus(editor: Editor): BubbleMenuItem[] {
   }))
 }
 
+function imageMermaidAlignMenus(editor: Editor): BubbleMenuItem[] {
+  const types: ImageAlignments[] = ['left', 'center', 'right']
+  const iconMap: any = {
+    left: 'AlignLeft',
+    center: 'AlignCenter',
+    right: 'AlignRight',
+  }
+  return types.map(k => ({
+    type: `image-${k}`,
+    component: ActionButton,
+    componentProps: {
+      tooltip: localeActions.t(`editor.textalign.${k}.tooltip`),
+      icon: iconMap[k],
+      action: () => editor.commands?.setAlignImageMermaid?.(k),
+      isActive: () => editor.isActive({ align: k }) || false,
+      disabled: false,
+    },
+  }))
+}
+
 function videoSizeMenus(editor: Editor): BubbleMenuItem[] {
   const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large']
   const icons: NonNullable<ButtonViewReturn['componentProps']['icon']>[] = [
@@ -197,6 +217,37 @@ export function getBubbleImageGif(editor: Editor): BubbleMenuItem[] {
   return [
     ...imageGifSizeMenus(editor),
     ...imageGifAlignMenus(editor),
+    {
+      type: 'remove',
+      component: ActionButton,
+      componentProps: {
+        editor,
+        tooltip: localeActions.t('editor.remove'),
+        icon: 'Trash2',
+        action: () => {
+          const { state, dispatch } = editor.view
+          deleteSelection(state, dispatch)
+        },
+      },
+    },
+  ]
+}
+
+export function getBubbleMermaid(editor: Editor): BubbleMenuItem[] {
+  return [
+    ...imageMermaidAlignMenus(editor),
+    {
+      type: 'edit',
+      component: ActionButton,
+      componentProps: {
+        editor,
+        tooltip: localeActions.t('editor.edit'),
+        icon: 'Pencil',
+        action: () => {
+
+        },
+      },
+    },
     {
       type: 'remove',
       component: ActionButton,

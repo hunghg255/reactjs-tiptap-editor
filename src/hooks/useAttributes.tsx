@@ -21,7 +21,7 @@ export function useAttributes<T, R = T>(editor: Editor, attrbute: string, defaul
       Object.keys(attrs).forEach((key) => {
         if (attrs[key] === null || attrs[key] === undefined) {
           // @ts-ignore
-          attrs[key] = defaultValue[key]
+          attrs[key] = defaultValue ? defaultValue[key] : null
         }
       })
       const nextAttrs = mapFn(attrs)

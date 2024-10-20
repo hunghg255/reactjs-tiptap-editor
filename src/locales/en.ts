@@ -160,6 +160,7 @@ const locale = {
   'editor.attachment.please_upload': 'Please upload the file',
   'editor.imageGif.tooltip': 'Gif',
   'editor.replace.caseSensitive': 'Case Sensitive',
+  'editor.mermaid.tooltip': 'Mermaid',
 }
 
 export default locale

@@ -161,6 +161,7 @@ const locale = {
   'editor.attachment.please_upload': '请上传文件',
   'editor.imageGif.tooltip': 'Gif',
   'editor.replace.caseSensitive': '区分大小写',
+  'editor.mermaid.tooltip': 'Mermaid',
 }
 
 export default locale

@@ -268,6 +268,10 @@ export function getLocaleConfig(lang: string) {
           text: 'ImageGif',
           link: '/extensions/ImageGif/index.md',
         },
+        {
+          text: 'Mermaid',
+          link: '/extensions/Mermaid/index.md',
+        },
       ],
     },
   ]

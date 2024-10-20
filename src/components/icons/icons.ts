@@ -96,6 +96,7 @@ import { Direction } from '@/components/icons/Direction'
 import { LeftToRight } from '@/components/icons/LeftToRight'
 import { RightToLeft } from '@/components/icons/RightToLeft'
 import { GifIcon } from '@/components/icons/GIfIcon'
+import { Mermaid } from '@/components/icons/Mermaid'
 
 export const icons = {
   Bold,
@@ -197,4 +198,5 @@ export const icons = {
   GifIcon,
   ChevronUp,
   Crop: CropIcon,
+  Mermaid,
 } as any

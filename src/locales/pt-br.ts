@@ -161,6 +161,7 @@ const locale = {
   'editor.attachment.please_upload': 'Por favor, envie o arquivo',
   'editor.imageGif.tooltip': 'Gif',
   'editor.replace.caseSensitive': 'Sensível a maiúsculas e minúsculas',
+  'editor.mermaid.tooltip': 'Mermaid',
 }
 
 export default locale
