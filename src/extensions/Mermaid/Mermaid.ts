@@ -1,5 +1,5 @@
 import type { CommandProps } from '@tiptap/core'
-import { Node, mergeAttributes } from '@tiptap/core'
+import { mergeAttributes } from '@tiptap/core'
 
 import { ReactNodeViewRenderer } from '@tiptap/react'
 import TiptapImage from '@tiptap/extension-image'

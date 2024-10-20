@@ -80,6 +80,7 @@ const locale = {
   'editor.image.dialog.tab.url': 'Url',
   'editor.image.dialog.tab.upload': 'Tải lên',
   'editor.image.dialog.tab.uploadCrop': 'Tải lên & Cắt',
+  'editor.image.dialog.uploading': 'Đang tải lên',
   'editor.image.dialog.form.link': 'Liên kết',
   'editor.image.dialog.placeholder': 'Liên kết',
   'editor.image.dialog.form.alt': 'Alt',

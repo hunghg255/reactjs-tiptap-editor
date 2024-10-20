@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { NodeViewWrapper, isNumber } from '@tiptap/react'
 import { throttle } from 'lodash-es'
 import { flushSync } from 'react-dom'
-import { useLocale } from '@/locales'
 import { IMAGE_MAX_SIZE, IMAGE_MIN_SIZE, IMAGE_THROTTLE_WAIT_TIME } from '@/constants'
 import { clamp } from '@/utils/utils'
 

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-duplicate-key */
 import React, { useMemo } from 'react'
 
 import type { BundledLanguage } from 'shiki'
@@ -8,7 +7,6 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from '@/components'
 import { MAP_LANGUAGE_CODE_LABELS } from '@/constants'
 
@@ -53,7 +51,11 @@ function CodeBlockActiveButton({ action, languages, ...props }: Props) {
       <SelectContent className="richtext-w-full richtext-max-h-60 richtext-overflow-y-auto">
         {langs?.map((item: any) => {
           return (
-            <SelectItem key={`codeblock-${item.title}`} onClick={() => onClick(item.language)}>
+            <SelectItem
+              value={item.language}
+              key={`codeblock-${item.title}`}
+              onClick={() => onClick(item.language)}
+            >
               <div className="richtext-h-full richtext-ml-1">
                 {item.title}
               </div>

@@ -1,5 +1,5 @@
 /* eslint-disable react-dom/no-dangerously-set-innerhtml */
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import mermaid from 'mermaid'
 // @ts-ignore
 import svg64 from 'svg64'
