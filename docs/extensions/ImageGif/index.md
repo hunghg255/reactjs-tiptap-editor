@@ -1,5 +1,9 @@
 ---
 description: ImageGif
+
+next:
+  text: Mermaid
+  link: /extensions/Mermaid/index.md
 ---
 
 # ImageGif

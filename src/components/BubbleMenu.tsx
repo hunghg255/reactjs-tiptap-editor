@@ -6,6 +6,7 @@ import BubbleMenuKatex from '@/components/menus/components/BubbleMenuKatex'
 import { BubbleMenuExcalidraw } from '@/components/menus/components/BubbleMenuExcalidraw'
 import { BubbleMenuIframe } from '@/components/menus/components/BubbleMenuIframe'
 import { ImageGif } from '@/extensions'
+import { BubbleMenuMermaid } from '@/components/menus/components/BubbleMenuMermaid'
 
 export interface BubbleMenuComponentProps {
   editor: Editor
@@ -33,6 +34,7 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
     extensionsNames.includes('video') && !bubbleMenu?.videoConfig?.hidden ? <BubbleMenuVideo key="video" editor={editor} disabled={disabled} /> : null,
     extensionsNames.includes('katex') && !bubbleMenu?.katexConfig?.hidden ? <BubbleMenuKatex key="katex" editor={editor} disabled={disabled} /> : null,
     extensionsNames.includes('excalidraw') && !bubbleMenu?.excalidrawConfig?.hidden ? <BubbleMenuExcalidraw key="excalidraw" editor={editor} disabled={disabled} /> : null,
+    extensionsNames.includes('mermaid') && !bubbleMenu?.mermaidConfig?.hidden ? <BubbleMenuMermaid key="mermaid" editor={editor} disabled={disabled} /> : null,
     extensionsNames.includes('iframe') && !bubbleMenu?.iframeConfig?.hidden ? <BubbleMenuIframe key="iframe" editor={editor} disabled={disabled} /> : null,
     !bubbleMenu?.floatingMenuConfig?.hidden ? <ContentMenu key="content" editor={editor} disabled={disabled} /> : null,
     !bubbleMenu?.textConfig?.hidden ? <BubbleMenuText key="text" editor={editor} disabled={disabled} /> : null,

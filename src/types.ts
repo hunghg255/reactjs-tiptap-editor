@@ -199,6 +199,13 @@ export interface BubbleMenuProps {
      */
     hidden?: boolean
   }
+  mermaidConfig?: {
+    /**
+     * @description mermaid menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
   render?: (props: BubbleMenuRenderProps, dom: React.ReactNode) => React.ReactNode
 }
 

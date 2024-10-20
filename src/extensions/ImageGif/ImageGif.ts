@@ -92,7 +92,7 @@ export const ImageGif = TiptapImage.extend<ImageGifOptions>({
         },
       },
       align: {
-        default: 'left',
+        default: 'center',
         parseHTML: element => element.getAttribute('align'),
         renderHTML: (attributes) => {
           return {
