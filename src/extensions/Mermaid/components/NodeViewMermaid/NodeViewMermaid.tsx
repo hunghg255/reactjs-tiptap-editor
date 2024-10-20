@@ -229,7 +229,7 @@ export function NodeViewMermaid({ editor, node, updateAttributes, getPos, select
         className={`image-view__body ${selected ? 'image-view__body--focused' : ''} ${
           resizing ? 'image-view__body--resizing' : ''
         }`}
-        style={imageMaxStyle}
+        style={{ ...imageMaxStyle, background: '#fff' }}
       >
         <img
           src={imgAttrs.src}
