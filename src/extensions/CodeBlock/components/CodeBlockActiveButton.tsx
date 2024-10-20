@@ -3,10 +3,10 @@ import React, { useMemo } from 'react'
 import type { BundledLanguage } from 'shiki'
 import {
   ActionButton,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
 } from '@/components'
 import { MAP_LANGUAGE_CODE_LABELS } from '@/constants'
 
@@ -40,30 +40,26 @@ function CodeBlockActiveButton({ action, languages, ...props }: Props) {
   }, [languages])
 
   return (
-    <Select>
-      <SelectTrigger disabled={props?.disabled} asChild>
+    <DropdownMenu>
+      <DropdownMenuTrigger disabled={props?.disabled} asChild>
         <ActionButton
           tooltip={props?.tooltip}
           disabled={props?.disabled}
           icon={props?.icon}
         />
-      </SelectTrigger>
-      <SelectContent className="richtext-w-full richtext-max-h-60 richtext-overflow-y-auto">
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="richtext-w-full !richtext-max-h-[180px] !richtext-overflow-y-scroll">
         {langs?.map((item: any) => {
           return (
-            <SelectItem
-              value={item.language}
-              key={`codeblock-${item.title}`}
-              onClick={() => onClick(item.language)}
-            >
+            <DropdownMenuItem key={`codeblock-${item.title}`} onClick={() => onClick(item.language)}>
               <div className="richtext-h-full richtext-ml-1">
                 {item.title}
               </div>
-            </SelectItem>
+            </DropdownMenuItem>
           )
         })}
-      </SelectContent>
-    </Select>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
 
