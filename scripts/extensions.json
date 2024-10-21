@@ -14,10 +14,10 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
+    "name": "Bold.ts",
+    "package": "Bold",
     "alias": [
-      "BulletList"
+      "Bold"
     ]
   },
   {
@@ -28,10 +28,10 @@
     ]
   },
   {
-    "name": "Bold.ts",
-    "package": "Bold",
+    "name": "BulletList.ts",
+    "package": "BulletList",
     "alias": [
-      "Bold"
+      "BulletList"
     ]
   },
   {
@@ -112,6 +112,13 @@
     ]
   },
   {
+    "name": "FontFamily.ts",
+    "package": "FontFamily",
+    "alias": [
+      "FontFamily"
+    ]
+  },
+  {
     "name": "FontSize.ts",
     "package": "FontSize",
     "alias": [
@@ -151,13 +158,6 @@
     "package": "HorizontalRule",
     "alias": [
       "HorizontalRule"
-    ]
-  },
-  {
-    "name": "FontFamily.ts",
-    "package": "FontFamily",
-    "alias": [
-      "FontFamily"
     ]
   },
   {
@@ -210,13 +210,6 @@
     ]
   },
   {
-    "name": "Katex.ts",
-    "package": "Katex",
-    "alias": [
-      "Katex"
-    ]
-  },
-  {
     "name": "Italic.ts",
     "package": "Italic",
     "alias": [
@@ -224,10 +217,10 @@
     ]
   },
   {
-    "name": "Link.ts",
-    "package": "Link",
+    "name": "Katex.ts",
+    "package": "Katex",
     "alias": [
-      "Link"
+      "Katex"
     ]
   },
   {
@@ -238,10 +231,31 @@
     ]
   },
   {
+    "name": "Link.ts",
+    "package": "Link",
+    "alias": [
+      "Link"
+    ]
+  },
+  {
     "name": "ListItem.ts",
     "package": "ListItem",
     "alias": [
       "ListItem"
+    ]
+  },
+  {
+    "name": "Mention.ts",
+    "package": "Mention",
+    "alias": [
+      "Mention"
+    ]
+  },
+  {
+    "name": "Mermaid.ts",
+    "package": "Mermaid",
+    "alias": [
+      "Mermaid"
     ]
   },
   {
@@ -252,17 +266,24 @@
     ]
   },
   {
+    "name": "MultiColumn.ts",
+    "package": "MultiColumn",
+    "alias": [
+      "Column"
+    ]
+  },
+  {
+    "name": "MultiColumn.ts",
+    "package": "MultiColumn",
+    "alias": [
+      "MultiColumn"
+    ]
+  },
+  {
     "name": "OrderedList.ts",
     "package": "OrderedList",
     "alias": [
       "OrderedList"
-    ]
-  },
-  {
-    "name": "Mention.ts",
-    "package": "Mention",
-    "alias": [
-      "Mention"
     ]
   },
   {
@@ -301,13 +322,6 @@
     ]
   },
   {
-    "name": "Subscript.ts",
-    "package": "Subscript",
-    "alias": [
-      "Subscript"
-    ]
-  },
-  {
     "name": "Strike.ts",
     "package": "Strike",
     "alias": [
@@ -315,17 +329,10 @@
     ]
   },
   {
-    "name": "MultiColumn.ts",
-    "package": "MultiColumn",
+    "name": "Subscript.ts",
+    "package": "Subscript",
     "alias": [
-      "Column"
-    ]
-  },
-  {
-    "name": "MultiColumn.ts",
-    "package": "MultiColumn",
-    "alias": [
-      "MultiColumn"
+      "Subscript"
     ]
   },
   {
@@ -371,6 +378,13 @@
     ]
   },
   {
+    "name": "TextDirection.ts",
+    "package": "TextDirection",
+    "alias": [
+      "TextDirection"
+    ]
+  },
+  {
     "name": "TrailingNode.ts",
     "package": "TrailingNode",
     "alias": [
@@ -389,13 +403,6 @@
     "package": "Video",
     "alias": [
       "Video"
-    ]
-  },
-  {
-    "name": "TextDirection.ts",
-    "package": "TextDirection",
-    "alias": [
-      "TextDirection"
     ]
   },
   {
