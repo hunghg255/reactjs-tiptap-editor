@@ -52,8 +52,6 @@ export interface RichTextEditorProps {
   minHeight?: string | number
   /** Maximum height */
   maxHeight?: string | number
-  /** Editor class */
-  editorClass?: string | string[] | Record<string, any>
   /** Content class */
   contentClass?: string | string[] | Record<string, any>
   /** Content change callback */

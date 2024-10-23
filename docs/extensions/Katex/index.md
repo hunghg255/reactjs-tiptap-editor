@@ -10,6 +10,7 @@ next:
 
 - Katex Extension for Tiptap Editor.
 - This extension allows you to add Katex math equations to your editor.
+- Supports inline and block math equations.
 - This extension is based on [katex](https://katex.org/).
 
 ## Usage
