@@ -81,8 +81,9 @@ function KatexActiveButton({ editor, ...props }: any) {
             />
           </div>
         </div>
+
         {previewContent && (
-          <div className="richtext-my-[10px] richtext-p-[10px] richtext-rounded-[6px] !richtext-border-[1px]">
+          <div className="richtext-my-[10px] richtext-p-[10px] richtext-rounded-[6px] !richtext-border-[1px] richtext-max-w-[286px] richtext-whitespace-nowrap richtext-overflow-auto">
             {previewContent}
           </div>
         )}

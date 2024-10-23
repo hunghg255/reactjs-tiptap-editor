@@ -100,7 +100,7 @@ function BubbleMenuKatex({ editor, ...props }: any) {
                       />
 
                       {previewContent && (
-                        <div className="richtext-my-[10px] richtext-p-[10px] richtext-rounded-[6px] !richtext-border-[1px]">
+                        <div className="richtext-my-[10px] richtext-p-[10px] richtext-rounded-[6px] !richtext-border-[1px] richtext-whitespace-nowrap richtext-overflow-auto">
                           {previewContent}
                         </div>
                       )}
