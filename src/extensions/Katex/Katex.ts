@@ -1,7 +1,7 @@
 import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core'
 import { ReactNodeViewRenderer } from '@tiptap/react'
-import { KatexWrapper } from '@/extensions/Katex/components/KatexWrapper'
 import KatexActiveButton from '@/extensions/Katex/components/KatexActiveButton'
+import { KatexWrapper } from '@/extensions/Katex/components/KatexWrapper'
 
 export interface IKatexAttrs {
   text?: string
@@ -28,10 +28,11 @@ declare module '@tiptap/core' {
 
 export const Katex = Node.create<IKatexOptions>({
   name: 'katex',
-  group: 'block',
-  selectable: true,
-  atom: true,
+  group: 'inline',
+  inline: true,
+  defining: true,
   draggable: true,
+  selectable: true,
 
   addOptions() {
     return {

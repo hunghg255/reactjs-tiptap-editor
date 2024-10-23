@@ -122,9 +122,9 @@ const extensions = [
       return Promise.resolve(f)
     },
   }),
-  // ImageGif.configure({
-  //   GIPHY_API_KEY: '',
-  // }),
+  ImageGif.configure({
+    GIPHY_API_KEY: import.meta.env.VITE_GIPHY_API_KEY as string,
+  }),
   Blockquote,
   SlashCommand,
   HorizontalRule,

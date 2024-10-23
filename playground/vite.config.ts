@@ -45,5 +45,11 @@ export default defineConfig(({ mode }) => {
     esbuild: {
       sourcemap: isDev,
     },
+    server: {
+      port: 8000,
+    },
+    preview: {
+      port: 8000,
+    },
   }
 })
