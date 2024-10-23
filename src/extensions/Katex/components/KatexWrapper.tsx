@@ -40,12 +40,13 @@ export function KatexWrapper({ node }: any) {
 
   return (
     <NodeViewWrapper
-      className="render-wrapper"
       style={{
+        display: 'inline-block',
         backgroundColor,
       }}
+      as="span"
     >
-      <div className="richtext-flex richtext-px-[4px] richtext-py-4 richtext-text-[1em] richtext-text-[#000] richtext-cursor-pointer richtext-justify-center">{content}</div>
+      {content}
     </NodeViewWrapper>
   )
 }

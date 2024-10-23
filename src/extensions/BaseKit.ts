@@ -161,7 +161,7 @@ export const BaseKit = Extension.create<BaseKitOptions>({
       extensions.push(
         Placeholder.configure({
           placeholder: ({ node, pos, editor }) => {
-            if (node?.type?.name === 'columns') {
+            if (node?.type?.name === 'columns' || node?.content?.size !== 0) {
               return ''
             }
 
