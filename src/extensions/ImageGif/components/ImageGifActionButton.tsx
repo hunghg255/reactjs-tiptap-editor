@@ -109,7 +109,7 @@ export function ImageGifActionButton({ editor, icon, giphyApiKey, ...props }: an
   const selectImage = (giphyblock: any) => {
     const { url } = giphyblock.images.original
 
-    editor.chain().focus().setImage({ src: url }).run()
+    editor.chain().focus().setImageGif({ src: url }).run()
   }
 
   return (

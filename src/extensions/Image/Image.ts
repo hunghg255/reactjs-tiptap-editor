@@ -1,21 +1,24 @@
-/* eslint-disable eqeqeq */
-
+/* eslint-disable prefer-promise-reject-errors */
 import { mergeAttributes } from '@tiptap/core'
 import TiptapImage from '@tiptap/extension-image'
 import { ReactNodeViewRenderer } from '@tiptap/react'
 
 import ImageView from '@/extensions/Image/components/ImageView'
+import ActionImageButton from '@/extensions/Image/components/ActionImageButton'
+import type { GeneralOptions } from '@/types'
 
 export interface SetImageAttrsOptions {
   src?: string
   /** The alternative text for the image. */
   alt?: string
-  /** The title of the image. */
-  title?: string
+  /** The caption of the image. */
+  caption?: string
   /** The width of the image. */
   width?: number | string | null
   /** The alignment of the image. */
   align?: 'left' | 'center' | 'right'
+
+  inline?: boolean
 }
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -23,7 +26,7 @@ declare module '@tiptap/core' {
       /**
        * Add an image
        */
-      setImage: (options: Partial<SetImageAttrsOptions>) => ReturnType
+      setImageInline: (options: Partial<SetImageAttrsOptions>) => ReturnType
       /**
        * Update an image
        */
@@ -35,17 +38,45 @@ declare module '@tiptap/core' {
     }
   }
 }
-export const Image = TiptapImage.extend({
+
+export interface IImageOptions extends GeneralOptions<IImageOptions> {
+  /** Function for uploading files */
+  upload?: (file: File) => Promise<string>
+
+  HTMLAttributes?: any
+}
+
+export const Image = TiptapImage.extend<IImageOptions>({
+  group: 'inline',
+  inline: true,
+  defining: true,
+  draggable: true,
+  selectable: true,
+
   addOptions() {
     return {
       ...this.parent?.(),
-      inline: false,
-      content: '',
-      marks: '',
-      group: 'block',
-      draggable: false,
-      selectable: true,
-      atom: true,
+      upload: () => Promise.reject('Image Upload Function'),
+      button: ({
+        editor,
+        extension,
+        t,
+      }: {
+        editor: any
+        extension: any
+        t: (key: string) => string
+      }) => ({
+        component: ActionImageButton,
+        componentProps: {
+          action: () => {},
+          upload: extension.options.upload,
+          /* If setImage is not available(when Image Component is not imported), the button is disabled */
+          disabled: !editor.can().setImage?.({}),
+          icon: 'ImageUp',
+          tooltip: t('editor.image.tooltip'),
+          editor,
+        },
+      }),
     }
   },
   addAttributes() {
@@ -55,7 +86,7 @@ export const Image = TiptapImage.extend({
         default: null,
         parseHTML: (element) => {
           const width = element.style.width || element.getAttribute('width') || null
-          return width == undefined ? null : Number.parseInt(width, 10)
+          return !width ? null : Number.parseInt(width, 10)
         },
         renderHTML: (attributes) => {
           return {
@@ -72,6 +103,15 @@ export const Image = TiptapImage.extend({
           }
         },
       },
+      inline: {
+        default: false,
+        parseHTML: element => Boolean(element.getAttribute('inline')),
+        renderHTML: (attributes) => {
+          return {
+            inline: attributes.inline,
+          }
+        },
+      },
     }
   },
 
@@ -81,6 +121,12 @@ export const Image = TiptapImage.extend({
   addCommands() {
     return {
       ...this.parent?.(),
+      setImageInline: (options: any) => ({ commands }: any) => {
+        return commands.insertContent({
+          type: this.name,
+          attrs: options,
+        })
+      },
       updateImage:
         options =>
           ({ commands }) => {
@@ -94,11 +140,12 @@ export const Image = TiptapImage.extend({
     }
   },
   renderHTML({ HTMLAttributes }) {
-    const { align } = HTMLAttributes
+    const { align, inline } = HTMLAttributes
 
     const style = align ? `text-align: ${align};` : ''
+
     return [
-      'div', // Parent element
+      inline ? 'span' : 'div', // Parent element
       {
         style,
         class: 'image',
@@ -119,6 +166,23 @@ export const Image = TiptapImage.extend({
   parseHTML() {
     return [
       {
+        tag: 'span[class=image]',
+        getAttrs: (element) => {
+          const img = element.querySelector('img')
+
+          const width = img?.getAttribute('width')
+
+          return {
+            src: img?.getAttribute('src'),
+            alt: img?.getAttribute('alt'),
+            caption: img?.getAttribute('caption'),
+            width: width ? Number.parseInt(width as string, 10) : null,
+            align: img?.getAttribute('align') || element.style.textAlign || null,
+            inline: img?.getAttribute('inline') || false,
+          }
+        },
+      },
+      {
         tag: 'div[class=image]',
         getAttrs: (element) => {
           const img = element.querySelector('img')
@@ -128,9 +192,10 @@ export const Image = TiptapImage.extend({
           return {
             src: img?.getAttribute('src'),
             alt: img?.getAttribute('alt'),
-            title: img?.getAttribute('title'),
+            caption: img?.getAttribute('caption'),
             width: width ? Number.parseInt(width as string, 10) : null,
             align: img?.getAttribute('align') || element.style.textAlign || null,
+            inline: img?.getAttribute('inline') || false,
           }
         },
       },

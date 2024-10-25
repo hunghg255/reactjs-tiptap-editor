@@ -137,10 +137,6 @@ export function getLocaleConfig(lang: string) {
           link: '/extensions/Image/index.md',
         },
         {
-          text: 'ImageUpload',
-          link: '/extensions/ImageUpload/index.md',
-        },
-        {
           text: 'Indent',
           link: '/extensions/Indent/index.md',
         },
@@ -215,10 +211,6 @@ export function getLocaleConfig(lang: string) {
         {
           text: 'Video',
           link: '/extensions/Video/index.md',
-        },
-        {
-          text: 'VideoUpload',
-          link: '/extensions/VideoUpload/index.md',
         },
         {
           text: 'Search And Replace',

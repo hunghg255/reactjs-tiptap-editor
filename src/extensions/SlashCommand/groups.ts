@@ -3,6 +3,8 @@ import type { Extensions } from '@tiptap/core'
 import type { Group } from './types'
 import type { HeadingOptions } from '@/extensions'
 import { localeActions } from '@/locales'
+import { actionDialogImage } from '@/extensions/Image/store'
+import { actionDialogVideo } from '@/extensions/Video/store'
 
 export function renderGroups(extensions: Extensions) {
   const groups: Group[] = [
@@ -107,7 +109,8 @@ export function renderGroups(extensions: Extensions) {
         aliases: ['image', 'tp', 'tupian'],
         shouldBeHidden: editor => editor.isActive('columns'),
         action: ({ editor, range }) => {
-          editor.chain().focus().deleteRange(range).setImageUpload().run()
+          editor.chain().focus().deleteRange(range).run()
+          actionDialogImage.setOpen(true)
         },
       })
     }
@@ -121,7 +124,8 @@ export function renderGroups(extensions: Extensions) {
         aliases: ['video', 'sp', 'shipin'],
         shouldBeHidden: editor => editor.isActive('columns'),
         action: ({ editor, range }) => {
-          editor.chain().focus().deleteRange(range).setVideoUpload().run()
+          editor.chain().focus().deleteRange(range).run()
+          actionDialogVideo.setOpen(true)
         },
       })
     }

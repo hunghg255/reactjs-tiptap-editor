@@ -77,13 +77,8 @@ export { SlashCommand } from './SlashCommand'
 export { Image } from './Image'
 export type { SetImageAttrsOptions } from './Image'
 
-export { ImageUpload } from './ImageUpload'
-export type { ImageUploadOptions } from './ImageUpload'
-
 export { Video } from './Video/Video'
 export type { VideoOptions } from './Video'
-
-export { VideoUpload } from './VideoUpload'
 
 export { Table } from './Table'
 

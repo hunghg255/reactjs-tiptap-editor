@@ -11,17 +11,17 @@ import {
   Dialog,
   DialogContent,
   DialogFooter,
+  DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
 
 import { useLocale } from '@/locales'
 import { dataURLtoFile, readImageAsBase64 } from '@/utils/file'
-import { createImageUpload } from '@/plugins/image-upload'
 
 import 'react-image-crop/dist/ReactCrop.css'
 import { IconComponent } from '@/components'
 
-export function ImageCropper({ editor, getPos }: any) {
+export function ImageCropper({ editor, imageInline, onClose }: any) {
   const { t } = useLocale()
 
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -77,17 +77,18 @@ export function ImageCropper({ editor, getPos }: any) {
       const fileCrop = await dataURLtoFile(croppedImageUrl, urlUpload?.file?.name || 'image.png')
 
       const uploadOptions = editor.extensionManager.extensions.find(
-        (extension: any) => extension.name === 'imageUpload',
+        (extension: any) => extension.name === 'image',
       )?.options
 
-      const uploadFn = createImageUpload({
-        validateFn: () => {
-          return true
-        },
-        onUpload: uploadOptions.upload,
-        postUpload: uploadOptions.postUpload,
-      })
-      uploadFn([fileCrop], editor.view, getPos())
+      let src = ''
+      if (uploadOptions.upload) {
+        src = await uploadOptions.upload(fileCrop)
+      }
+      else {
+        src = URL.createObjectURL(fileCrop)
+      }
+
+      editor.chain().focus().setImageInline({ src, inline: imageInline }).run()
 
       setDialogOpen(false)
 
@@ -95,6 +96,7 @@ export function ImageCropper({ editor, getPos }: any) {
         src: '',
         file: null,
       })
+      onClose()
     }
     catch (error) {
       console.log('Error cropping image', error)
@@ -132,6 +134,8 @@ export function ImageCropper({ editor, getPos }: any) {
         <DialogTrigger />
 
         <DialogContent className="[&>button]:richtext-hidden">
+          <DialogTitle>{t('editor.image.dialog.tab.uploadCrop')}</DialogTitle>
+
           <div>
             {urlUpload.src && (
               <ReactCrop

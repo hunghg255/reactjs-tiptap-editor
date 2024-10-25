@@ -2,8 +2,8 @@
 description: Image
 
 next:
-  text: ImageUpload
-  link: /extensions/ImageUpload/index.md
+  text: Indent
+  link: /extensions/Indent/index.md
 ---
 
 # Image
@@ -18,7 +18,15 @@ import { Image } from 'reactjs-tiptap-editor'; // [!code ++]
 const extensions = [
   ...,
   // Import Extensions Here
-  Image // [!code ++]
+  Image.configure({// [!code ++]
+    upload: (files: File) => {// [!code ++]
+      return new Promise((resolve) => {// [!code ++]
+        setTimeout(() => {// [!code ++]
+          resolve(URL.createObjectURL(files))// [!code ++]
+        }, 500)// [!code ++]
+      })// [!code ++]
+    },// [!code ++]
+  }),// [!code ++]
 ];
 ```
 

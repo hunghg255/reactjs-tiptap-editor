@@ -79,6 +79,7 @@ const locale = {
   'editor.image.dialog.title': 'Adicionar uma imagem',
   'editor.image.dialog.tab.url': 'Url',
   'editor.image.dialog.tab.upload': 'Enviar',
+  'editor.link.dialog.inline': 'Inline',
   'editor.image.dialog.tab.uploadCrop': 'Enviar e cortar',
   'editor.image.dialog.uploading': 'Enviando',
   'editor.image.dialog.form.link': 'Link',
