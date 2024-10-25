@@ -19,12 +19,12 @@ const extensions = [
   ...,
   // Import Extensions Here
   Video.configure({// [!code ++]
-    upload: (files: File[]) => {// [!code ++]
-      const f = files.map(file => ({// [!code ++]
-        src: URL.createObjectURL(file),// [!code ++]
-        alt: file.name,// [!code ++]
-      }))// [!code ++]
-      return Promise.resolve(f)// [!code ++]
+    upload: (files: File) => {// [!code ++]
+      return new Promise((resolve) => {// [!code ++]
+        setTimeout(() => {// [!code ++]
+          resolve(URL.createObjectURL(files))// [!code ++]
+        }, 500)// [!code ++]
+      })// [!code ++]
     },// [!code ++]
   }), // [!code ++]
 ];
