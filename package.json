@@ -130,8 +130,7 @@
     "shiki": "^1.22.1",
     "svg64": "^2.0.0",
     "tippy.js": "^6.3.7",
-    "valtio": "^1.13.2",
-    "y-prosemirror": "^1.2.12"
+    "valtio": "^1.13.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.27.3",

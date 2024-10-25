@@ -239,9 +239,6 @@ importers:
       valtio:
         specifier: ^1.13.2
         version: 1.13.2(@types/react@18.3.12)(react@18.3.1)
-      y-prosemirror:
-        specifier: ^1.2.12
-        version: 1.2.12(prosemirror-model@1.22.3)(prosemirror-state@1.4.3)(prosemirror-view@1.34.3)(y-protocols@1.0.6(yjs@13.6.20))(yjs@13.6.20)
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.27.3
