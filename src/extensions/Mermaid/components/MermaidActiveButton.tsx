@@ -107,7 +107,7 @@ export const MermaidActiveButton: React.FC<IProps> = ({ editor, upload }) => {
       <DialogContent className="!richtext-max-w-[1300px] richtext-z-[99999]">
         <DialogTitle>Mermaid</DialogTitle>
 
-        <div style={{ height: '100%', border: '1px solid hsl(var(--border))' }}>
+        <div style={{ height: '100%', borderWidth: 1 }}>
           <div className="richtext-flex richtext-gap-[10px] richtext-rounded-[10px] richtext-p-[10px]">
             <Textarea
               className="richtext-flex-1"
@@ -125,7 +125,7 @@ export const MermaidActiveButton: React.FC<IProps> = ({ editor, upload }) => {
 
             <div
               className="richtext-flex-1 richtext-flex richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]"
-              style={{ height: '100%', border: '1px solid hsl(var(--border))', minHeight: 500, background: '#fff' }}
+              style={{ height: '100%', borderWidth: 1, minHeight: 500, background: '#fff' }}
               ref={mermaidRef as any}
               dangerouslySetInnerHTML={{ __html: svgCode }}
             />

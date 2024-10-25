@@ -110,12 +110,12 @@ const extensions = [
     },
   }),
   Video.configure({
-    upload: (files: File[]) => {
-      const f = files.map(file => ({
-        src: URL.createObjectURL(file),
-        alt: file.name,
-      }))
-      return Promise.resolve(f)
+    upload: (files: File) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(URL.createObjectURL(files))
+        }, 500)
+      })
     },
   }),
   ImageGif.configure({

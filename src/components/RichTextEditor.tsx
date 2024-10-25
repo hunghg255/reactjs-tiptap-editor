@@ -162,7 +162,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
 
   return (
     <div className="reactjs-tiptap-editor">
-      <TooltipProvider delayDuration={0}>
+      <TooltipProvider delayDuration={0} disableHoverableContent>
         <div className="richtext-rounded-[0.5rem] richtext-bg-background richtext-shadow richtext-overflow-hidden richtext-outline richtext-outline-1">
 
           <div className="richtext-flex richtext-flex-col richtext-w-full richtext-max-h-full">

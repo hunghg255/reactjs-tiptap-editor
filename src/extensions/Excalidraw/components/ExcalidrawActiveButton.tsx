@@ -90,7 +90,7 @@ export const ExcalidrawActiveButton: React.FC<IProps> = ({ editor }) => {
       <DialogContent className="!richtext-max-w-[1300px] richtext-z-[99999]">
         <DialogTitle>Excalidraw</DialogTitle>
 
-        <div style={{ height: '100%', border: '1px solid hsl(var(--border))' }}>
+        <div style={{ height: '100%', borderWidth: 1 }}>
           {loading && (
             <p>
               Loading...

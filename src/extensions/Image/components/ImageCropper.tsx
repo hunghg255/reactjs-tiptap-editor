@@ -133,7 +133,7 @@ export function ImageCropper({ editor, imageInline, onClose }: any) {
       <Dialog open={dialogOpen}>
         <DialogTrigger />
 
-        <DialogContent className="[&>button]:richtext-hidden">
+        <DialogContent>
           <DialogTitle>{t('editor.image.dialog.tab.uploadCrop')}</DialogTitle>
 
           <div>

@@ -1,5 +1,5 @@
 export const RESET_CSS = `
-.reactjs-tiptap-editor {
+.reactjs-tiptap-editor, .richtext-dialog-content {
   button,
   input:where([type=button]),
   input:where([type=reset]),
@@ -36,6 +36,7 @@ export const RESET_CSS = `
 }
 
 .reactjs-tiptap-editor,
+.richtext-dialog-content,
 div[data-radix-popper-content-wrapper],
 div[data-tippy-root] {
 *,
