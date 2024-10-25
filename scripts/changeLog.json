@@ -1,9 +1,121 @@
 [
   {
+    "hash": "c0346e35cef298af7b4275c6b548349abbf7bef2",
+    "date": "Fri Oct 25 09:04:55 2024 +0700",
+    "message": "chore: release v0.1.0",
+    "refs": "HEAD -> main, tag: v0.1.0, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.0"
+  },
+  {
+    "hash": "aa530df32f190b0fcdbb4036a57fe9a6d5269e5d",
+    "date": "Fri Oct 25 08:15:44 2024 +0700",
+    "message": "chore: release v0.0.57",
+    "refs": "tag: v0.0.57",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.57"
+  },
+  {
+    "hash": "548794f63504fe3e6fd267987fd21747e3e96bf5",
+    "date": "Fri Oct 25 08:11:32 2024 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "47930babbc5e7d2017bd1a94029ecfd969946911",
+    "date": "Fri Oct 25 08:04:15 2024 +0700",
+    "message": "chore: release v0.0.56",
+    "refs": "tag: v0.0.56",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.56"
+  },
+  {
+    "hash": "fcd95bf86ff6a815ca7691a2ecb0f45da3492a0f",
+    "date": "Fri Oct 25 08:00:33 2024 +0700",
+    "message": "feat: image inline, refactor video upload",
+    "refs": "origin/feat-inline-image, feat-inline-image",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md",
+      "Image",
+      "ActionImageButton",
+      "ImageCropper",
+      "ImageView",
+      "store",
+      "ImageGif",
+      "ImageGifActionButton",
+      "ImageUpload",
+      "ImageUploader",
+      "index",
+      "Mermaid",
+      "groups",
+      "Video",
+      "ActiveVideoButton",
+      "VideoUpload",
+      "VideoUploaderView"
+    ]
+  },
+  {
+    "hash": "0711dde13c6ddf55c9c058256bb9552efad6c753",
+    "date": "Wed Oct 23 14:26:22 2024 +0700",
+    "message": "chore: release v0.0.55",
+    "refs": "tag: v0.0.55",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.55"
+  },
+  {
+    "hash": "9ad4176bf6b6826ae931e48f486604a24c7ff0db",
+    "date": "Wed Oct 23 14:02:27 2024 +0700",
+    "message": "chore: release v0.0.54",
+    "refs": "tag: v0.0.54",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.0.54"
+  },
+  {
+    "hash": "7a87f03900163d2bfeb58a18e05ef8e048ae17b3",
+    "date": "Wed Oct 23 13:59:53 2024 +0700",
+    "message": "feat: inline katex",
+    "refs": "origin/feat-inline-katex, feat-inline-katex",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "BaseKit",
+      "Katex",
+      "KatexWrapper"
+    ]
+  },
+  {
+    "hash": "d6ea4c28e06957ba5ff7cae7dc6b60e49dd6d294",
+    "date": "Mon Oct 21 17:04:37 2024 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "d486299d2d23c1a07b9656153d9138c70540aec4",
     "date": "Sun Oct 20 14:08:26 2024 +0700",
     "message": "chore: release v0.0.53",
-    "refs": "HEAD -> main, tag: v0.0.53, origin/main",
+    "refs": "tag: v0.0.53",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",

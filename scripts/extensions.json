@@ -14,13 +14,6 @@
     ]
   },
   {
-    "name": "Bold.ts",
-    "package": "Bold",
-    "alias": [
-      "Bold"
-    ]
-  },
-  {
     "name": "Blockquote.ts",
     "package": "Blockquote",
     "alias": [
@@ -28,10 +21,10 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
+    "name": "Bold.ts",
+    "package": "Bold",
     "alias": [
-      "BulletList"
+      "Bold"
     ]
   },
   {
@@ -39,6 +32,13 @@
     "package": "Clear",
     "alias": [
       "Clear"
+    ]
+  },
+  {
+    "name": "BulletList.ts",
+    "package": "BulletList",
+    "alias": [
+      "BulletList"
     ]
   },
   {
@@ -182,17 +182,17 @@
     ]
   },
   {
+    "name": "Image.ts",
+    "package": "Image",
+    "alias": [
+      "store"
+    ]
+  },
+  {
     "name": "ImageGif.ts",
     "package": "ImageGif",
     "alias": [
       "ImageGif"
-    ]
-  },
-  {
-    "name": "ImageUpload.ts",
-    "package": "ImageUpload",
-    "alias": [
-      "ImageUpload"
     ]
   },
   {
@@ -287,17 +287,17 @@
     ]
   },
   {
-    "name": "SearchAndReplace.ts",
-    "package": "SearchAndReplace",
-    "alias": [
-      "SearchAndReplace"
-    ]
-  },
-  {
     "name": "Selection.ts",
     "package": "Selection",
     "alias": [
       "Selection"
+    ]
+  },
+  {
+    "name": "SearchAndReplace.ts",
+    "package": "SearchAndReplace",
+    "alias": [
+      "SearchAndReplace"
     ]
   },
   {
@@ -336,6 +336,13 @@
     ]
   },
   {
+    "name": "TableOfContent.ts",
+    "package": "TableOfContent",
+    "alias": [
+      "TableOfContent"
+    ]
+  },
+  {
     "name": "Table.ts",
     "package": "Table",
     "alias": [
@@ -347,13 +354,6 @@
     "package": "Table",
     "alias": [
       "cell-background"
-    ]
-  },
-  {
-    "name": "TableOfContent.ts",
-    "package": "TableOfContent",
-    "alias": [
-      "TableOfContent"
     ]
   },
   {
@@ -406,10 +406,10 @@
     ]
   },
   {
-    "name": "VideoUpload.ts",
-    "package": "VideoUpload",
+    "name": "Video.ts",
+    "package": "Video",
     "alias": [
-      "VideoUpload"
+      "store"
     ]
   },
   {
