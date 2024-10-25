@@ -81,6 +81,7 @@ const locale = {
   'editor.image.dialog.tab.upload': 'Upload',
   'editor.image.dialog.tab.uploadCrop': 'Upload & Crop',
   'editor.image.dialog.uploading': 'Uploading',
+  'editor.link.dialog.inline': 'Inline',
   'editor.image.dialog.form.link': 'Link',
   'editor.image.dialog.placeholder': 'Link',
   'editor.image.dialog.form.alt': 'Alt',

@@ -2,8 +2,8 @@
 description: Video
 
 next:
-  text: VideoUpload
-  link: /extensions/VideoUpload/index.md
+  text: SearchAndReplace
+  link: /extensions/SearchAndReplace/index.md
 ---
 
 # Video
@@ -18,6 +18,14 @@ import { Video } from 'reactjs-tiptap-editor'; // [!code ++]
 const extensions = [
   ...,
   // Import Extensions Here
-  Video // [!code ++]
+  Video.configure({// [!code ++]
+    upload: (files: File[]) => {// [!code ++]
+      const f = files.map(file => ({// [!code ++]
+        src: URL.createObjectURL(file),// [!code ++]
+        alt: file.name,// [!code ++]
+      }))// [!code ++]
+      return Promise.resolve(f)// [!code ++]
+    },// [!code ++]
+  }), // [!code ++]
 ];
 ```

@@ -2,11 +2,13 @@ import { Node } from '@tiptap/core'
 
 import { VIDEO_SIZE } from '@/constants'
 import { getCssUnitWithDefault } from '@/utils/utils'
+import ActionVideoButton from '@/extensions/Video/components/ActiveVideoButton'
+import type { GeneralOptions } from '@/types'
 
 /**
  * Represents the interface for video options, extending GeneralOptions.
  */
-export interface VideoOptions {
+export interface VideoOptions extends GeneralOptions<VideoOptions> {
   /**
    * Indicates whether fullscreen play is allowed
    *
@@ -29,6 +31,7 @@ export interface VideoOptions {
   HTMLAttributes: {
     [key: string]: any
   }
+  /** Function for uploading files */
   upload?: (file: File) => Promise<string>
 }
 
@@ -87,6 +90,36 @@ export const Video = Node.create<VideoOptions>({
   group: 'block',
   atom: true,
   draggable: true,
+
+  addOptions() {
+    return {
+      divider: false,
+      spacer: false,
+      allowFullscreen: true,
+      upload: undefined,
+      frameborder: false,
+      width: VIDEO_SIZE['size-medium'],
+      HTMLAttributes: {
+        class: 'iframe-wrapper',
+        style: 'display: flex;justify-content: center;',
+      },
+      button: ({ editor, t }: any) => {
+        return {
+          component: ActionVideoButton,
+          componentProps: {
+            action: () => {},
+            isActive: () => editor.isActive('video') || false,
+            /* If setVideo is not available(when Video Component is not imported), the button is disabled */
+            disabled: !editor.can().setVideo?.({}),
+            icon: 'Video',
+            tooltip: t('editor.video.tooltip'),
+            editor,
+          },
+        }
+      },
+    }
+  },
+
   addAttributes() {
     return {
       src: {
@@ -162,18 +195,4 @@ export const Video = Node.create<VideoOptions>({
     }
   },
 
-  addOptions() {
-    return {
-      divider: false,
-      spacer: false,
-      allowFullscreen: true,
-      upload: undefined,
-      frameborder: false,
-      width: VIDEO_SIZE['size-medium'],
-      HTMLAttributes: {
-        class: 'iframe-wrapper',
-        style: 'display: flex;justify-content: center;',
-      },
-    }
-  },
 })

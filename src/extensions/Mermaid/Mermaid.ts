@@ -134,7 +134,7 @@ export const Mermaid = TiptapImage.extend<MermaidOptions>({
       'div', // Parent element
       {
         style,
-        class: 'mermaid',
+        class: 'imageMermaid',
       },
       [
         'img',
@@ -149,7 +149,7 @@ export const Mermaid = TiptapImage.extend<MermaidOptions>({
   parseHTML() {
     return [
       {
-        tag: 'div[class=mermaid]',
+        tag: 'div[class=imageMermaid]',
         getAttrs: (element) => {
           const img = element.querySelector('img')
 

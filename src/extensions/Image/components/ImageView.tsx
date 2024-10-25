@@ -1,4 +1,3 @@
-/* eslint-disable react/no-duplicate-key */
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { NodeViewWrapper } from '@tiptap/react'
@@ -47,7 +46,7 @@ function ImageView(props: any) {
     dir: '',
   })
 
-  const { align } = props?.node?.attrs
+  const { align, inline } = props?.node?.attrs
 
   const imgAttrs = useMemo(() => {
     const { src, alt, width: w, height: h } = props?.node?.attrs
@@ -225,7 +224,11 @@ function ImageView(props: any) {
   }, [props.editor.view.dom, resizeOb])
 
   return (
-    <NodeViewWrapper className="image-view" style={{ ...imageMaxStyle, width: '100%', textAlign: align }}>
+    <NodeViewWrapper
+      className="image-view"
+      style={{ ...imageMaxStyle, textAlign: align, display: inline ? 'inline' : 'block' }}
+      as={inline ? 'span' : 'div'}
+    >
       <div
         draggable="true"
         data-drag-handle

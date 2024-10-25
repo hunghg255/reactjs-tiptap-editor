@@ -109,6 +109,12 @@ export const ImageGif = TiptapImage.extend<ImageGifOptions>({
   addCommands() {
     return {
       ...this.parent?.(),
+      setImageGif: (options: any) => ({ commands }: any) => {
+        return commands.insertContent({
+          type: this.name,
+          attrs: options,
+        })
+      },
       updateImageGif:
         (options: any) =>
           ({ commands }: any) => {
@@ -129,7 +135,7 @@ export const ImageGif = TiptapImage.extend<ImageGifOptions>({
       'div', // Parent element
       {
         style,
-        class: 'image',
+        class: 'imageGIf',
       },
       [
         'img',
@@ -147,7 +153,7 @@ export const ImageGif = TiptapImage.extend<ImageGifOptions>({
   parseHTML() {
     return [
       {
-        tag: 'div[class=image]',
+        tag: 'div[class=imageGIf]',
         getAttrs: (element) => {
           const img = element.querySelector('img')
 
