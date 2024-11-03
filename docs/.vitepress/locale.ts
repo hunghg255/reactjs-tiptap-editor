@@ -55,6 +55,10 @@ export function getLocaleConfig(lang: string) {
           link: `${urlPrefix}/guide/bubble-menu`,
         },
         {
+          text: t('Customize'),
+          link: `${urlPrefix}/guide/customize.md`,
+        },
+        {
           text: t('Internationalization'),
           link: `${urlPrefix}/guide/internationalization`,
         },
