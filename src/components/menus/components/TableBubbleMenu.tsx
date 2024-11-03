@@ -10,9 +10,10 @@ import { useLocale } from '@/locales'
 
 export interface TableBubbleMenuProps {
   editor: Editor
+  disabled?: boolean
 }
 
-function TableBubbleMenu({ editor }: TableBubbleMenuProps) {
+function TableBubbleMenu({ editor, disabled }: TableBubbleMenuProps) {
   const shouldShow = ({ editor }: { editor: Editor }) => {
     return isActive(editor.view.state, 'table')
   }
@@ -94,103 +95,110 @@ function TableBubbleMenu({ editor }: TableBubbleMenuProps) {
         sticky: 'popper',
       }}
     >
-      <div className="richtext-min-w-32 richtext-flex richtext-flex-row richtext-h-full richtext-items-center richtext-leading-none richtext-gap-0.5 richtext-p-2 richtext-w-full richtext-bg-background richtext-rounded-lg richtext-shadow-sm !richtext-border richtext-border-border">
-        <ActionButton
-          icon="BetweenHorizonalEnd"
-          tooltip={t('editor.table.menu.insertColumnBefore')}
-          action={onAddColumnBefore}
-          tooltip-options={{
-            sideOffset: 15,
-          }}
-          disabled={!editor?.can()?.addColumnBefore?.()}
-        />
-        <ActionButton
-          icon="BetweenHorizonalStart"
-          tooltip={t('editor.table.menu.insertColumnAfter')}
-          action={onAddColumnAfter}
-          tooltip-options={{
-            sideOffset: 15,
-          }}
-          disabled={!editor?.can()?.addColumnAfter?.()}
-        />
-        <ActionButton
-          icon="DeleteColumn"
-          action={onDeleteColumn}
-          tooltip={t('editor.table.menu.deleteColumn')}
-          tooltip-options={{
-            sideOffset: 15,
-          }}
-          disabled={!editor?.can().deleteColumn?.()}
-        />
-        <Separator orientation="vertical" className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" />
+      {
+        disabled
+          ? <></>
+          : (
+              <div className="richtext-min-w-32 richtext-flex richtext-flex-row richtext-h-full richtext-items-center richtext-leading-none richtext-gap-0.5 richtext-p-2 richtext-w-full richtext-bg-background richtext-rounded-lg richtext-shadow-sm !richtext-border richtext-border-border">
+                <ActionButton
+                  icon="BetweenHorizonalEnd"
+                  tooltip={t('editor.table.menu.insertColumnBefore')}
+                  action={onAddColumnBefore}
+                  tooltip-options={{
+                    sideOffset: 15,
+                  }}
+                  disabled={!editor?.can()?.addColumnBefore?.()}
+                />
+                <ActionButton
+                  icon="BetweenHorizonalStart"
+                  tooltip={t('editor.table.menu.insertColumnAfter')}
+                  action={onAddColumnAfter}
+                  tooltip-options={{
+                    sideOffset: 15,
+                  }}
+                  disabled={!editor?.can()?.addColumnAfter?.()}
+                />
+                <ActionButton
+                  icon="DeleteColumn"
+                  action={onDeleteColumn}
+                  tooltip={t('editor.table.menu.deleteColumn')}
+                  tooltip-options={{
+                    sideOffset: 15,
+                  }}
+                  disabled={!editor?.can().deleteColumn?.()}
+                />
+                <Separator orientation="vertical" className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" />
 
-        <ActionButton
-          icon="BetweenVerticalEnd"
-          action={onAddRowAbove}
-          tooltip={t('editor.table.menu.insertRowAbove')}
-          tooltip-options={{
-            sideOffset: 15,
-          }}
-          disabled={!editor?.can().addRowBefore?.()}
-        />
+                <ActionButton
+                  icon="BetweenVerticalEnd"
+                  action={onAddRowAbove}
+                  tooltip={t('editor.table.menu.insertRowAbove')}
+                  tooltip-options={{
+                    sideOffset: 15,
+                  }}
+                  disabled={!editor?.can().addRowBefore?.()}
+                />
 
-        <ActionButton
-          icon="BetweenVerticalStart"
-          action={onAddRowBelow}
-          tooltip={t('editor.table.menu.insertRowBelow')}
-          tooltip-options={{
-            sideOffset: 15,
-          }}
-          disabled={!editor?.can()?.addRowAfter?.()}
-        />
-        <ActionButton
-          icon="DeleteRow"
-          action={onDeleteRow}
-          tooltip={t('editor.table.menu.deleteRow')}
-          tooltip-options={{
-            sideOffset: 15,
-          }}
-          disabled={!editor?.can()?.deleteRow?.()}
-        />
-        <Separator orientation="vertical" className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" />
-        <ActionButton
-          icon="TableCellsMerge"
-          action={onMergeCell}
-          tooltip={t('editor.table.menu.mergeCells')}
-          tooltip-options={{
-            sideOffset: 15,
-          }}
-          disabled={!editor?.can()?.mergeCells?.()}
-        />
-        <ActionButton
-          icon="TableCellsSplit"
-          action={onSplitCell}
-          tooltip={t('editor.table.menu.splitCells')}
-          tooltip-options={{
-            sideOffset: 15,
-          }}
-          disabled={!editor?.can()?.splitCell?.()}
-        />
-        <Separator orientation="vertical" className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" />
+                <ActionButton
+                  icon="BetweenVerticalStart"
+                  action={onAddRowBelow}
+                  tooltip={t('editor.table.menu.insertRowBelow')}
+                  tooltip-options={{
+                    sideOffset: 15,
+                  }}
+                  disabled={!editor?.can()?.addRowAfter?.()}
+                />
+                <ActionButton
+                  icon="DeleteRow"
+                  action={onDeleteRow}
+                  tooltip={t('editor.table.menu.deleteRow')}
+                  tooltip-options={{
+                    sideOffset: 15,
+                  }}
+                  disabled={!editor?.can()?.deleteRow?.()}
+                />
+                <Separator orientation="vertical" className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" />
+                <ActionButton
+                  icon="TableCellsMerge"
+                  action={onMergeCell}
+                  tooltip={t('editor.table.menu.mergeCells')}
+                  tooltip-options={{
+                    sideOffset: 15,
+                  }}
+                  disabled={!editor?.can()?.mergeCells?.()}
+                />
+                <ActionButton
+                  icon="TableCellsSplit"
+                  action={onSplitCell}
+                  tooltip={t('editor.table.menu.splitCells')}
+                  tooltip-options={{
+                    sideOffset: 15,
+                  }}
+                  disabled={!editor?.can()?.splitCell?.()}
+                />
+                <Separator orientation="vertical" className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" />
 
-        <HighlightActionButton
-          editor={editor}
-          tooltip={t('editor.table.menu.setCellsBgColor')}
-          action={onSetCellBackground}
-          tooltipOptions={{
-            sideOffset: 15,
-          }}
-        />
-        <ActionButton
-          icon="Trash2"
-          tooltip={t('editor.table.menu.deleteTable')}
-          action={onDeleteTable}
-          tooltip-options={{
-            sideOffset: 15,
-          }}
-          disabled={!editor?.can()?.deleteTable?.()}
-        />
-      </div>
+                <HighlightActionButton
+                  editor={editor}
+                  tooltip={t('editor.table.menu.setCellsBgColor')}
+                  action={onSetCellBackground}
+                  tooltipOptions={{
+                    sideOffset: 15,
+                  }}
+                />
+                <ActionButton
+                  icon="Trash2"
+                  tooltip={t('editor.table.menu.deleteTable')}
+                  action={onDeleteTable}
+                  tooltip-options={{
+                    sideOffset: 15,
+                  }}
+                  disabled={!editor?.can()?.deleteTable?.()}
+                />
+              </div>
+            )
+      }
+
     </BubbleMenu>
   )
 }
