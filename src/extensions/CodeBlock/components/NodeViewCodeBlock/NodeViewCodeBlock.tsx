@@ -13,6 +13,7 @@ import useCopy from '@/hooks/useCopy'
 import { deleteNode } from '@/utils/delete-node'
 import { DEFAULT_LANGUAGE_CODE_BLOCK } from '@/constants'
 import { IconComponent } from '@/components'
+import { useEditableEditor } from '@/store/editableEditor'
 
 export function NodeViewCodeBlock({ editor, node: { attrs }, updateAttributes, extension }: any) {
   const { isCopied, copyToClipboard } = useCopy()
@@ -21,7 +22,8 @@ export function NodeViewCodeBlock({ editor, node: { attrs }, updateAttributes, e
     return extension.options.languages?.length ? extension.options.languages : DEFAULT_LANGUAGE_CODE_BLOCK
   }, [extension.options.languages])
 
-  const isEditable = editor.isEditable
+  const isEditable = useEditableEditor()
+
   const isPrint = editor?.options?.editorProps?.print
   const { language: defaultLanguage } = attrs
   const $container: any = useRef<HTMLPreElement>()
@@ -31,7 +33,11 @@ export function NodeViewCodeBlock({ editor, node: { attrs }, updateAttributes, e
   return (
     <NodeViewWrapper className={clsx(styles.wrap, !isPrint && styles.maxHeight, 'render-wrapper')}>
 
-      <div className={styles.blockInfo}>
+      <div className={clsx(styles.blockInfo, {
+        [styles.blockInfoEditable]: !isEditable,
+      })}
+
+      >
         <span
           onClick={() => copyToClipboard($container.current.innerText)}
           className={clsx(styles.btnCopy, isCopied && styles.copied)}
