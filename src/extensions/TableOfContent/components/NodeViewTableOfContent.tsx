@@ -1,4 +1,3 @@
-/* eslint-disable react/no-duplicate-key */
 /* eslint-disable ts/no-unused-expressions */
 import { useCallback, useEffect, useState } from 'react'
 
@@ -8,6 +7,7 @@ import cls from 'clsx'
 
 import styles from './index.module.scss'
 import { useLocale } from '@/locales'
+import { useEditableEditor } from '@/store/editableEditor'
 
 function arrToTree(tocs: any) {
   const result = [] as any
@@ -29,7 +29,7 @@ function arrToTree(tocs: any) {
 }
 
 export function NodeViewTableOfContent({ editor }: any) {
-  const isEditable = editor.isEditable
+  const isEditable = useEditableEditor()
   const [items, setItems] = useState([])
   const { t } = useLocale()
 

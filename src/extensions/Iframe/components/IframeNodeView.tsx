@@ -9,9 +9,11 @@ import styles from './index.module.scss'
 // import { getEditorContainerDOMSize } from '@/utils'
 import { Button, Input } from '@/components/ui'
 import { Iframe } from '@/extensions/Iframe/Iframe'
+import { useEditableEditor } from '@/store/editableEditor'
 
 function IframeNodeView({ editor, node, updateAttributes }: any) {
-  const isEditable = editor.isEditable
+  const isEditable = useEditableEditor()
+
   const { url, width, height } = node.attrs
   // const { width: maxWidth } = getEditorContainerDOMSize(editor)
 

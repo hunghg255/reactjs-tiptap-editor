@@ -16,6 +16,7 @@ import { removeCSS, updateCSS } from '@/utils/dynamicCSS'
 
 import '../styles/index.scss'
 import CharactorCount from '@/components/CharactorCount'
+import { editableEditorActions } from '@/store/editableEditor'
 
 /**
  * Interface for RichTextEditor component props
@@ -110,6 +111,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
 
   useEffect(() => {
     editor?.setEditable(!props?.disabled)
+    editableEditorActions.setDisable(!props?.disabled)
   }, [editor, props?.disabled])
 
   useEffect(() => {

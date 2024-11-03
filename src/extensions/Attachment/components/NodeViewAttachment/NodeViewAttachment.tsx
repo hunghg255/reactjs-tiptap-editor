@@ -10,10 +10,13 @@ import styles from './index.module.scss'
 import { extractFileExtension, extractFilename, normalizeFileSize } from '@/utils/file'
 import { ActionButton } from '@/components'
 import { useLocale } from '@/locales'
+import { useEditableEditor } from '@/store/editableEditor'
 
 export function NodeViewAttachment({ editor, node, updateAttributes, deleteNode, extension }: any) {
   const $upload: any = useRef<HTMLInputElement>()
-  const isEditable = editor.isEditable
+
+  const isEditable = useEditableEditor()
+
   const { hasTrigger, fileName, fileSize, fileExt, fileType, url, error } = node.attrs
   const [loading, setLoading] = useState(false)
   const { t } = useLocale()
