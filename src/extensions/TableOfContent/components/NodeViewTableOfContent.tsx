@@ -94,7 +94,7 @@ export function NodeViewTableOfContent({ editor }: any) {
               <p className="richtext-mb-[8px] text-[20px] richtext-font-semibold">{t('editor.table_of_content')}</p>
               <ul className={styles.list}>
                 {items.map((item: any, index) => (
-                  <li key={`table-of-content-${index}`} className={styles.item} style={{ paddingLeft: `${item.level - 2}rem` }}>
+                  <li key={`table-of-content-${index}`} className={styles.item} style={{ paddingLeft: `${item.level - 1}rem` }}>
                     <a href={`#${item.id}`}>{item.text}</a>
                   </li>
                 ))}

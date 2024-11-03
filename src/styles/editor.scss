@@ -299,3 +299,7 @@
   border: unset !important;
 }
 
+.node-tableOfContents.focus {
+  border-width: 1px;
+  border-radius: 6px;
+}
