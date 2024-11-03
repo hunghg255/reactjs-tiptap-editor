@@ -29,6 +29,7 @@
       table {
         overflow: hidden;
         display: table;
+        margin: 0 auto;
 
         .column-resize-handle {
           @apply richtext-bottom-[-2px] richtext-absolute richtext-right-[-2px] richtext-top-0 richtext-w-1 richtext-z-10 richtext-pointer-events-none richtext-bg-primary;
