@@ -165,8 +165,6 @@ export const EXPRESSIONES = [
   '👄',
   '💋',
   '🩸',
-
-  '💋',
   '💌',
   '💘',
   '💝',
