@@ -166,9 +166,9 @@ export const Image = TiptapImage.extend<IImageOptions>({
   parseHTML() {
     return [
       {
-        tag: 'span[class=image]',
-        getAttrs: (element) => {
-          const img = element.querySelector('img')
+        tag: 'span.image img',
+        getAttrs: (img) => {
+          const element = img?.parentElement
 
           const width = img?.getAttribute('width')
 
@@ -177,7 +177,7 @@ export const Image = TiptapImage.extend<IImageOptions>({
             alt: img?.getAttribute('alt'),
             caption: img?.getAttribute('caption'),
             width: width ? Number.parseInt(width as string, 10) : null,
-            align: img?.getAttribute('align') || element.style.textAlign || null,
+            align: img?.getAttribute('align') || element?.style?.textAlign || null,
             inline: img?.getAttribute('inline') || false,
           }
         },
