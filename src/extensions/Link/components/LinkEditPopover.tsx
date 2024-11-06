@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { ActionButton, IconComponent, Popover, PopoverContent, PopoverTrigger } from '@/components'
 import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock'
 import type { ButtonViewReturnComponentProps } from '@/types'
@@ -14,14 +16,17 @@ interface IPropsLinkEditPopover {
 }
 
 function LinkEditPopover(props: IPropsLinkEditPopover) {
+  const [open, setOpen] = useState(false)
+
   function onSetLink(link: string, text?: string, openInNewTab?: boolean) {
     if (props.action) {
       props.action({ link, text, openInNewTab })
+      setOpen(false)
     }
   }
 
   return (
-    <Popover modal>
+    <Popover modal open={open} onOpenChange={setOpen}>
       <PopoverTrigger disabled={props?.disabled} asChild>
         <ActionButton
           tooltip={props?.tooltip}
