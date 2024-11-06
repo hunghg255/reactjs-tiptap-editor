@@ -7,10 +7,17 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
+    "name": "Attachment.ts",
+    "package": "Attachment",
     "alias": [
-      "BulletList"
+      "Attachment"
+    ]
+  },
+  {
+    "name": "Blockquote.ts",
+    "package": "Blockquote",
+    "alias": [
+      "Blockquote"
     ]
   },
   {
@@ -21,10 +28,10 @@
     ]
   },
   {
-    "name": "Blockquote.ts",
-    "package": "Blockquote",
+    "name": "BulletList.ts",
+    "package": "BulletList",
     "alias": [
-      "Blockquote"
+      "BulletList"
     ]
   },
   {
@@ -39,13 +46,6 @@
     "package": "Code",
     "alias": [
       "Code"
-    ]
-  },
-  {
-    "name": "Attachment.ts",
-    "package": "Attachment",
-    "alias": [
-      "Attachment"
     ]
   },
   {
@@ -105,17 +105,10 @@
     ]
   },
   {
-    "name": "FormatPainter.ts",
-    "package": "FormatPainter",
+    "name": "ExportWord.ts",
+    "package": "ExportWord",
     "alias": [
-      "FormatPainter"
-    ]
-  },
-  {
-    "name": "FontSize.ts",
-    "package": "FontSize",
-    "alias": [
-      "FontSize"
+      "ExportWord"
     ]
   },
   {
@@ -126,24 +119,24 @@
     ]
   },
   {
+    "name": "FontSize.ts",
+    "package": "FontSize",
+    "alias": [
+      "FontSize"
+    ]
+  },
+  {
+    "name": "FormatPainter.ts",
+    "package": "FormatPainter",
+    "alias": [
+      "FormatPainter"
+    ]
+  },
+  {
     "name": "Heading.ts",
     "package": "Heading",
     "alias": [
       "Heading"
-    ]
-  },
-  {
-    "name": "ExportWord.ts",
-    "package": "ExportWord",
-    "alias": [
-      "ExportWord"
-    ]
-  },
-  {
-    "name": "HorizontalRule.ts",
-    "package": "HorizontalRule",
-    "alias": [
-      "HorizontalRule"
     ]
   },
   {
@@ -158,6 +151,13 @@
     "package": "History",
     "alias": [
       "History"
+    ]
+  },
+  {
+    "name": "HorizontalRule.ts",
+    "package": "HorizontalRule",
+    "alias": [
+      "HorizontalRule"
     ]
   },
   {
@@ -189,6 +189,13 @@
     ]
   },
   {
+    "name": "ImageGif.ts",
+    "package": "ImageGif",
+    "alias": [
+      "ImageGif"
+    ]
+  },
+  {
     "name": "ImportWord.ts",
     "package": "ImportWord",
     "alias": [
@@ -210,6 +217,13 @@
     ]
   },
   {
+    "name": "Katex.ts",
+    "package": "Katex",
+    "alias": [
+      "Katex"
+    ]
+  },
+  {
     "name": "LineHeight.ts",
     "package": "LineHeight",
     "alias": [
@@ -224,17 +238,24 @@
     ]
   },
   {
-    "name": "Katex.ts",
-    "package": "Katex",
-    "alias": [
-      "Katex"
-    ]
-  },
-  {
     "name": "ListItem.ts",
     "package": "ListItem",
     "alias": [
       "ListItem"
+    ]
+  },
+  {
+    "name": "Mention.ts",
+    "package": "Mention",
+    "alias": [
+      "Mention"
+    ]
+  },
+  {
+    "name": "Mermaid.ts",
+    "package": "Mermaid",
+    "alias": [
+      "Mermaid"
     ]
   },
   {
@@ -266,17 +287,10 @@
     ]
   },
   {
-    "name": "ImageGif.ts",
-    "package": "ImageGif",
+    "name": "SearchAndReplace.ts",
+    "package": "SearchAndReplace",
     "alias": [
-      "ImageGif"
-    ]
-  },
-  {
-    "name": "Selection.ts",
-    "package": "Selection",
-    "alias": [
-      "Selection"
+      "SearchAndReplace"
     ]
   },
   {
@@ -301,24 +315,10 @@
     ]
   },
   {
-    "name": "SearchAndReplace.ts",
-    "package": "SearchAndReplace",
+    "name": "Selection.ts",
+    "package": "Selection",
     "alias": [
-      "SearchAndReplace"
-    ]
-  },
-  {
-    "name": "Mention.ts",
-    "package": "Mention",
-    "alias": [
-      "Mention"
-    ]
-  },
-  {
-    "name": "Mermaid.ts",
-    "package": "Mermaid",
-    "alias": [
-      "Mermaid"
+      "Selection"
     ]
   },
   {
@@ -326,6 +326,13 @@
     "package": "Strike",
     "alias": [
       "Strike"
+    ]
+  },
+  {
+    "name": "Subscript.ts",
+    "package": "Subscript",
+    "alias": [
+      "Subscript"
     ]
   },
   {
@@ -343,17 +350,17 @@
     ]
   },
   {
+    "name": "TableOfContent.ts",
+    "package": "TableOfContent",
+    "alias": [
+      "TableOfContent"
+    ]
+  },
+  {
     "name": "TaskList.ts",
     "package": "TaskList",
     "alias": [
       "TaskList"
-    ]
-  },
-  {
-    "name": "Subscript.ts",
-    "package": "Subscript",
-    "alias": [
-      "Subscript"
     ]
   },
   {
@@ -371,10 +378,24 @@
     ]
   },
   {
+    "name": "TextDirection.ts",
+    "package": "TextDirection",
+    "alias": [
+      "TextDirection"
+    ]
+  },
+  {
     "name": "TrailingNode.ts",
     "package": "TrailingNode",
     "alias": [
       "TrailingNode"
+    ]
+  },
+  {
+    "name": "Twitter.ts",
+    "package": "Twitter",
+    "alias": [
+      "Twitter"
     ]
   },
   {
@@ -399,36 +420,22 @@
     ]
   },
   {
-    "name": "TableOfContent.ts",
-    "package": "TableOfContent",
-    "alias": [
-      "TableOfContent"
-    ]
-  },
-  {
-    "name": "TextDirection.ts",
-    "package": "TextDirection",
-    "alias": [
-      "TextDirection"
-    ]
-  },
-  {
-    "name": "Emoji.ts",
-    "package": "Emoji",
-    "alias": [
-      "components"
-    ]
-  },
-  {
-    "name": "Emoji.ts",
-    "package": "Emoji",
-    "alias": [
-      "components"
-    ]
-  },
-  {
     "name": "MultiColumn.ts",
     "package": "MultiColumn",
+    "alias": [
+      "components"
+    ]
+  },
+  {
+    "name": "Emoji.ts",
+    "package": "Emoji",
+    "alias": [
+      "components"
+    ]
+  },
+  {
+    "name": "Emoji.ts",
+    "package": "Emoji",
     "alias": [
       "components"
     ]

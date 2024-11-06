@@ -1,9 +1,52 @@
 [
   {
+    "hash": "dfd76778760ad10a627cddaa4918dec78a998af6",
+    "date": "Wed Nov 6 18:05:16 2024 +0700",
+    "message": "chore: release v0.1.4",
+    "refs": "HEAD -> main, tag: v0.1.4, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.4"
+  },
+  {
+    "hash": "8eda263c235c8c3b2092866996810513cca86d96",
+    "date": "Wed Nov 6 17:57:26 2024 +0700",
+    "message": "feat: add extension twitter",
+    "refs": "origin/feat-twitter, feat-twitter",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md",
+      "ActionImageButton",
+      "LinkEditBlock",
+      "Twitter",
+      "FormEditLinkTwitter",
+      "NodeViewTweet",
+      "TwitterActiveButton",
+      "index",
+      "ActiveVideoButton"
+    ]
+  },
+  {
+    "hash": "ba803079e2eb26bacc1f41a25f643a2edc4e48a0",
+    "date": "Wed Nov 6 10:58:04 2024 +0100",
+    "message": "fix(button propagation): stop the submit button propagation and close the link popover when applying (close #99)",
+    "refs": "",
+    "author_name": "Angel",
+    "author_email": "hi@asiles.dev",
+    "functions": [
+      "ActionImageButton",
+      "LinkEditBlock",
+      "LinkEditPopover",
+      "ActiveVideoButton"
+    ]
+  },
+  {
     "hash": "d1ee3e1460ba4de5b9c5ac4a0523d65860de7fe3",
     "date": "Wed Nov 6 01:05:01 2024 +0700",
     "message": "chore: release v0.1.3",
-    "refs": "HEAD -> main, tag: v0.1.3, origin/main",
+    "refs": "tag: v0.1.3",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
