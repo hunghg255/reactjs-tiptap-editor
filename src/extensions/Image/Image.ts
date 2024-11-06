@@ -3,9 +3,11 @@ import { mergeAttributes } from '@tiptap/core'
 import TiptapImage from '@tiptap/extension-image'
 import { ReactNodeViewRenderer } from '@tiptap/react'
 
+import { Plugin } from '@tiptap/pm/state'
 import ImageView from '@/extensions/Image/components/ImageView'
 import ActionImageButton from '@/extensions/Image/components/ActionImageButton'
 import type { GeneralOptions } from '@/types'
+import { UploadImagesPlugin, createImageUpload, handleImageDrop, handleImagePaste } from '@/plugins/image-upload'
 
 export interface SetImageAttrsOptions {
   src?: string
@@ -20,6 +22,12 @@ export interface SetImageAttrsOptions {
 
   inline?: boolean
 }
+
+const DEFAULT_OPTIONS: any = {
+  acceptMimes: ['image/jpeg', 'image/gif', 'image/png', 'image/jpg'],
+  maxSize: 1024 * 1024 * 5, // 5MB
+}
+
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     imageResize: {
@@ -44,6 +52,9 @@ export interface IImageOptions extends GeneralOptions<IImageOptions> {
   upload?: (file: File) => Promise<string>
 
   HTMLAttributes?: any
+
+  acceptMimes?: string[]
+  maxSize?: number
 }
 
 export const Image = TiptapImage.extend<IImageOptions>({
@@ -55,6 +66,7 @@ export const Image = TiptapImage.extend<IImageOptions>({
 
   addOptions() {
     return {
+      ...DEFAULT_OPTIONS,
       ...this.parent?.(),
       upload: () => Promise.reject('Image Upload Function'),
       button: ({
@@ -199,6 +211,58 @@ export const Image = TiptapImage.extend<IImageOptions>({
           }
         },
       },
+    ]
+  },
+  addProseMirrorPlugins() {
+    // const { toast } = useToast();
+    // const { t } = useLocale();
+
+    const validateFile = (file: File): boolean => {
+      if (!this.options.acceptMimes.includes(file.type)) {
+        // toast({ description: t.value('editor.imageUpload.fileTypeNotSupported'), duration: 2000 });
+        return false
+      }
+      if (file.size > this.options.maxSize) {
+        // toast({
+        //   description: `${t.value('editor.imageUpload.fileSizeTooBig')} ${formatFileSize(
+        //     this.options.maxSize,
+        //   )}.`,
+        //   duration: 2000,
+        // });
+        return false
+      }
+      return true
+    }
+
+    const uploadFn = createImageUpload({
+      validateFn: validateFile,
+      onUpload: this.options.upload as any,
+      // postUpload: this.options.postUpload,
+    })
+
+    return [
+      new Plugin({
+        props: {
+          handlePaste: (view, event) => {
+            if (!event.clipboardData) {
+              return false
+            }
+            const items = [...(event.clipboardData.files || [])]
+            if (items.some(x => x.type === 'text/html')) {
+              return false
+            }
+            return handleImagePaste(view, event, uploadFn)
+          },
+          handleDrop: (view, event, _, moved) => {
+            if (!(event instanceof DragEvent) || !event.dataTransfer) {
+              return false
+            }
+            handleImageDrop(view, event, moved, uploadFn)
+            return false
+          },
+        },
+      }),
+      UploadImagesPlugin(),
     ]
   },
 })
