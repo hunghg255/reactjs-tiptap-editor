@@ -33,6 +33,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
 
   function handleSubmit(event: any) {
     event.preventDefault()
+    event.stopPropagation()
     props?.onSetLink(form.link, form.text, openInNewTab)
   }
 

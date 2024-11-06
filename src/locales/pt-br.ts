@@ -163,6 +163,7 @@ const locale = {
   'editor.imageGif.tooltip': 'Gif',
   'editor.replace.caseSensitive': 'Sensível a maiúsculas e minúsculas',
   'editor.mermaid.tooltip': 'Mermaid',
+  'editor.twitter.tooltip': 'Twitter',
 }
 
 export default locale

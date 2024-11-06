@@ -97,6 +97,7 @@ import { LeftToRight } from '@/components/icons/LeftToRight'
 import { RightToLeft } from '@/components/icons/RightToLeft'
 import { GifIcon } from '@/components/icons/GIfIcon'
 import { Mermaid } from '@/components/icons/Mermaid'
+import { Twitter } from '@/components/icons/Twitter'
 
 export const icons = {
   Bold,
@@ -199,4 +200,5 @@ export const icons = {
   ChevronUp,
   Crop: CropIcon,
   Mermaid,
+  Twitter,
 } as any

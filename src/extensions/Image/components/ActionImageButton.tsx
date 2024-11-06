@@ -40,6 +40,7 @@ function ActionImageButton(props: any) {
   }
   function handleLink(e: any) {
     e.preventDefault()
+    e.stopPropagation()
 
     props.editor.chain().focus().setImageInline({ src: link, inline: imageInline }).run()
     actionDialogImage.setOpen(false)
