@@ -2,8 +2,8 @@
 description: Mermaid
 
 next:
-  text: Mermaid
-  link: /extensions/Mermaid/index.md
+  text: Twitter
+  link: /extensions/Twitter/index.md
 ---
 
 # Mermaid

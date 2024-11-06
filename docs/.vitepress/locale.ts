@@ -268,6 +268,10 @@ export function getLocaleConfig(lang: string) {
           text: 'Mermaid',
           link: '/extensions/Mermaid/index.md',
         },
+        {
+          text: 'Twitter',
+          link: '/extensions/Twitter/index.md',
+        },
       ],
     },
   ]

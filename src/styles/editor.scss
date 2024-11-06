@@ -303,3 +303,12 @@
   border-width: 1px;
   border-radius: 6px;
 }
+
+div[data-twitter] > div {
+  margin: 10px auto;
+}
+
+.react-renderer.node-twitter.focus {
+  border-width: 1px;
+  border-radius: 6px;
+}

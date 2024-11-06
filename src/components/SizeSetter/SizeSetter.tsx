@@ -33,6 +33,7 @@ export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, ch
 
   function handleSubmit(event: any) {
     event.preventDefault()
+    event.stopPropagation()
     onOk(form)
   }
 

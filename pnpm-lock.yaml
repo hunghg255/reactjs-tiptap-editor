@@ -221,6 +221,9 @@ importers:
       react-image-crop:
         specifier: ^11.0.7
         version: 11.0.7(react@18.3.1)
+      react-tweet:
+        specifier: ^3.2.1
+        version: 3.2.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-visibility-sensor:
         specifier: ^5.1.1
         version: 5.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2842,6 +2845,9 @@ packages:
     peerDependencies:
       eslint: '>=8.40.0'
 
+  '@swc/helpers@0.5.13':
+    resolution: {integrity: sha512-UoKGxQ3r5kYI9dALKJapMmuK+1zWM/H17Z1+iwnNmzcJRnfFuevZs375TA5rW31pu4BS4NoSy1fRsexDXfWn5w==}
+
   '@tiptap/core@2.9.1':
     resolution: {integrity: sha512-tifnLL/ARzQ6/FGEJjVwj9UT3v+pENdWHdk9x6F3X0mB1y0SeCjV21wpFLYESzwNdBPAj8NMp8Behv7dBnhIfw==}
     peerDependencies:
@@ -4025,6 +4031,9 @@ packages:
   clean-regexp@1.0.0:
     resolution: {integrity: sha512-GfisEZEJvzKrmGWkvfhgzcz/BllN1USeqD2V6tg14OAOgaCD2Z/PUEuxnAZ/nPvmaHRG7a8y77p1T/IRQ4D1Hw==}
     engines: {node: '>=4'}
+
+  client-only@0.0.1:
+    resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
 
   cliui@7.0.4:
     resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
@@ -6644,6 +6653,12 @@ packages:
       '@types/react':
         optional: true
 
+  react-tweet@3.2.1:
+    resolution: {integrity: sha512-dktP3RMuwRB4pnSDocKpSsW5Hq1IXRW6fONkHhxT5EBIXsKZzdQuI70qtub1XN2dtZdkJWWxfBm/Q+kN+vRYFA==}
+    peerDependencies:
+      react: '>= 18.0.0'
+      react-dom: '>= 18.0.0'
+
   react-visibility-sensor@5.1.1:
     resolution: {integrity: sha512-cTUHqIK+zDYpeK19rzW6zF9YfT4486TIgizZW53wEZ+/GPBbK7cNS0EHyJVyHYacwFEvvHLEKfgJndbemWhB/w==}
     peerDependencies:
@@ -7101,6 +7116,11 @@ packages:
 
   svg64@2.0.0:
     resolution: {integrity: sha512-EVgAisxMctUNDSjKGFcx4tkcFrvdqtLIy/MdbBdqcwfpPwsBcwoSKQi+WYoc82c4XWFNVVIwpCup3rpY+M9KJw==}
+
+  swr@2.2.5:
+    resolution: {integrity: sha512-QtxqyclFeAsxEUeZIYmsaQ0UjimSq1RZ9Un7I68/0ClKK/U3LoyQunwkQfJZr2fc22DfIXLNDc2wFyTEikCUpg==}
+    peerDependencies:
+      react: ^16.11.0 || ^17.0.0 || ^18.0.0
 
   synckit@0.6.2:
     resolution: {integrity: sha512-Vhf+bUa//YSTYKseDiiEuQmhGCoIF3CVBhunm3r/DQnYiGT4JssmnKQc44BIyOZRK2pKjXXAgbhfmbeoC9CJpA==}
@@ -10759,6 +10779,10 @@ snapshots:
       - supports-color
       - typescript
 
+  '@swc/helpers@0.5.13':
+    dependencies:
+      tslib: 2.6.3
+
   '@tiptap/core@2.9.1(@tiptap/pm@2.9.1)':
     dependencies:
       '@tiptap/pm': 2.9.1
@@ -12232,6 +12256,8 @@ snapshots:
   clean-regexp@1.0.0:
     dependencies:
       escape-string-regexp: 1.0.5
+
+  client-only@0.0.1: {}
 
   cliui@7.0.4:
     dependencies:
@@ -15469,6 +15495,14 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.12
 
+  react-tweet@3.2.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@swc/helpers': 0.5.13
+      clsx: 2.1.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      swr: 2.2.5(react@18.3.1)
+
   react-visibility-sensor@5.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       prop-types: 15.8.1
@@ -16023,6 +16057,12 @@ snapshots:
   svg-tags@1.0.0: {}
 
   svg64@2.0.0: {}
+
+  swr@2.2.5(react@18.3.1):
+    dependencies:
+      client-only: 0.0.1
+      react: 18.3.1
+      use-sync-external-store: 1.2.2(react@18.3.1)
 
   synckit@0.6.2:
     dependencies:

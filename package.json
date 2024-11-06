@@ -125,6 +125,7 @@
     "re-resizable": "^6.10.0",
     "react-colorful": "^5.6.1",
     "react-image-crop": "^11.0.7",
+    "react-tweet": "^3.2.1",
     "react-visibility-sensor": "^5.1.1",
     "scroll-into-view-if-needed": "^3.1.0",
     "shiki": "^1.22.1",
