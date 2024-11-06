@@ -1,5 +1,5 @@
 /* eslint-disable react/no-useless-fragment */
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import type { Editor } from '@tiptap/react'
 import { BubbleMenu } from '@tiptap/react'
