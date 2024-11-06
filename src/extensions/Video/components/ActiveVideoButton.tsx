@@ -43,6 +43,7 @@ function ActionVideoButton(props: any) {
   }
   function handleLink(e: any) {
     e.preventDefault()
+    e.stopPropagation()
 
     props.editor
       .chain()
