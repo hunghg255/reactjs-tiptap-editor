@@ -1,18 +1,28 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Button, Input, Label } from '@/components'
 import { useLocale } from '@/locales'
+import { Twitter } from '@/extensions/Twitter/Twitter'
 
 interface IPropsFormEditLinkTwitter {
   editor: any
   onSetLink: (src: string) => void
-  srcInit?: string
 }
 
 function FormEditLinkTwitter(props: IPropsFormEditLinkTwitter) {
   const { t } = useLocale()
 
-  const [src, setSrc] = useState(props?.srcInit || '')
+  const [src, setSrc] = useState('')
+
+  useEffect(() => {
+    if (props?.editor) {
+      const { src: srcInit } = props.editor?.getAttributes(Twitter.name)
+
+      if (srcInit) {
+        setSrc(srcInit)
+      }
+    }
+  }, [props?.editor])
 
   function handleSubmit(event: any) {
     event.preventDefault()

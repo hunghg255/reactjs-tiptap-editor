@@ -37,7 +37,7 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
     extensionsNames.includes('excalidraw') && !bubbleMenu?.excalidrawConfig?.hidden ? <BubbleMenuExcalidraw key="excalidraw" editor={editor} disabled={disabled} /> : null,
     extensionsNames.includes('mermaid') && !bubbleMenu?.mermaidConfig?.hidden ? <BubbleMenuMermaid key="mermaid" editor={editor} disabled={disabled} /> : null,
     extensionsNames.includes('iframe') && !bubbleMenu?.iframeConfig?.hidden ? <BubbleMenuIframe key="iframe" editor={editor} disabled={disabled} /> : null,
-    extensionsNames.includes('twitter') && !bubbleMenu?.twitterConfig?.hidden ? <BubbleMenuTwitter key="iframe" editor={editor} disabled={disabled} /> : null,
+    extensionsNames.includes('twitter') && !bubbleMenu?.twitterConfig?.hidden ? <BubbleMenuTwitter key="twitter" editor={editor} disabled={disabled} /> : null,
     !bubbleMenu?.floatingMenuConfig?.hidden ? <ContentMenu key="content" editor={editor} disabled={disabled} /> : null,
     !bubbleMenu?.textConfig?.hidden ? <BubbleMenuText key="text" editor={editor} disabled={disabled} /> : null,
   ]

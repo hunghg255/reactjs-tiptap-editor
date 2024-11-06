@@ -19,11 +19,6 @@ function BubbleMenuTwitter({ editor, disabled }: BubbleMenuTwitterProps) {
   const [showEdit, setShowEdit] = useState(false)
   const { t } = useLocale()
 
-  const srcInit = useMemo(() => {
-    const { src } = editor.getAttributes(Twitter.name)
-    return src as string
-  }, [editor])
-
   const shouldShow = useCallback(({ editor }: { editor: Editor }) => {
     const isActive = editor.isActive(Twitter.name)
     return isActive
@@ -64,7 +59,6 @@ function BubbleMenuTwitter({ editor, disabled }: BubbleMenuTwitterProps) {
                       <FormEditLinkTwitter
                         onSetLink={onSetLink}
                         editor={editor}
-                        srcInit={srcInit}
                       />
                     )
                   : (

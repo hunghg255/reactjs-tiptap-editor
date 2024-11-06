@@ -177,7 +177,7 @@ const extensions = [
   Twitter,
 ]
 
-const DEFAULT = `<div data-twitter="" src="https://x.com/cryptocevo/status/1854058823394160878"></div><p dir="auto"></p>`
+const DEFAULT = ``
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout
