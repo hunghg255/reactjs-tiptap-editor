@@ -30,7 +30,7 @@ const DEFAULT_OPTIONS: any = {
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
-    imageResize: {
+    imageUpload: {
       /**
        * Add an image
        */
@@ -214,14 +214,13 @@ export const Image = TiptapImage.extend<IImageOptions>({
     ]
   },
   addProseMirrorPlugins() {
-    // const { toast } = useToast();
-    // const { t } = useLocale();
-
     const validateFile = (file: File): boolean => {
+      // @ts-expect-error
       if (!this.options.acceptMimes.includes(file.type)) {
         // toast({ description: t.value('editor.imageUpload.fileTypeNotSupported'), duration: 2000 });
         return false
       }
+      // @ts-expect-error
       if (file.size > this.options.maxSize) {
         // toast({
         //   description: `${t.value('editor.imageUpload.fileSizeTooBig')} ${formatFileSize(

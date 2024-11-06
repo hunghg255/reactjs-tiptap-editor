@@ -27,8 +27,7 @@ interface ImageGifOptions extends ImageOptions {
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
-    // @ts-expect-error
-    imageResize: {
+    imageGifUpload: {
       /**
        * Add an image gif
        */

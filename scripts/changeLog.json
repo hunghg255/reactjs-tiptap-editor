@@ -1,9 +1,40 @@
 [
   {
+    "hash": "2794c3065eb364efc4adf1a29f3c7d7edf4cc33a",
+    "date": "Wed Nov 6 22:44:39 2024 +0700",
+    "message": "chore: release v0.1.6",
+    "refs": "tag: v0.1.6",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.6"
+  },
+  {
+    "hash": "639a1fc3794c8d116e8ed7e8f94c8a8af965a13d",
+    "date": "Wed Nov 6 18:20:24 2024 +0700",
+    "message": "chore: release v0.1.5",
+    "refs": "tag: v0.1.5",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.5"
+  },
+  {
+    "hash": "b5ca97b7ea4cc140c88149d9101f08f4736b9d66",
+    "date": "Wed Nov 6 18:19:58 2024 +0700",
+    "message": "fix: twitter bubble",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "FormEditLinkTwitter"
+    ]
+  },
+  {
     "hash": "dfd76778760ad10a627cddaa4918dec78a998af6",
     "date": "Wed Nov 6 18:05:16 2024 +0700",
     "message": "chore: release v0.1.4",
-    "refs": "HEAD -> main, tag: v0.1.4, origin/main",
+    "refs": "tag: v0.1.4",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
