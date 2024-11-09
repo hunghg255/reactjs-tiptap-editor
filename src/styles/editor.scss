@@ -146,7 +146,7 @@
 
         &--focused:hover,
         &--resizing:hover {
-          outline-color: transparent;
+          outline-color: hsl(var(--primary));
         }
 
         &__placeholder {
@@ -164,12 +164,15 @@
         }
       }
 
+      .image-view__body--focused {
+        outline-color: hsl(var(--primary)) !important;
+      }
+
       &.focus {
         img {
           @apply richtext-outline-primary richtext-outline-2 richtext-outline;
         }
       }
-
 
       img {
         display: inline;
@@ -188,7 +191,7 @@
       height: 100%;
       @apply richtext-border !important;
       @apply richtext-border-border !important;
-      border-style: dashed;
+
 
       &__handler {
         position: absolute;
@@ -199,7 +202,7 @@
         height: 12px;
         border: 1px solid #fff;
         border-radius: 2px;
-        @apply richtext-bg-blue-500;
+        background-color: hsl(var(--primary));
 
         &--tl {
           top: -6px;

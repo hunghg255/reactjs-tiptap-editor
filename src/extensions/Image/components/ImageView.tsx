@@ -49,16 +49,25 @@ function ImageView(props: any) {
   const { align, inline } = props?.node?.attrs
 
   const imgAttrs = useMemo(() => {
-    const { src, alt, width: w, height: h } = props?.node?.attrs
+    const { src, alt, width: w, height: h, flipX, flipY } = props?.node?.attrs
 
     const width = isNumber(w) ? `${w}px` : w
     const height = isNumber(h) ? `${h}px` : h
+    const transformStyles: any = []
+
+    if (flipX)
+      transformStyles.push('rotateX(180deg)')
+    if (flipY)
+      transformStyles.push('rotateY(180deg)')
+    const transform = transformStyles.join(' ')
+
     return {
       src: src || undefined,
       alt: alt || undefined,
       style: {
         width: width || undefined,
         height: height || undefined,
+        transform: transform || 'none',
       },
     }
   }, [props?.node?.attrs])

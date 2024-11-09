@@ -106,7 +106,6 @@ function imageGifSizeMenus(editor: Editor): BubbleMenuItem[] {
     componentProps: {
       tooltip: localeActions.t(`editor.${size.replace('-', '.')}.tooltip` as any),
       icon: icons[i],
-      // @ts-expect-error
       action: () => editor.commands.updateImageGif({ width: IMAGE_SIZE[size] }),
       isActive: () => editor.isActive('image', { width: IMAGE_SIZE[size] }),
     },
@@ -146,7 +145,6 @@ function imageGifAlignMenus(editor: Editor): BubbleMenuItem[] {
     componentProps: {
       tooltip: localeActions.t(`editor.textalign.${k}.tooltip`),
       icon: iconMap[k],
-      // @ts-expect-error
       action: () => editor.commands?.setAlignImageGif?.(k),
       isActive: () => editor.isActive({ align: k }) || false,
       disabled: false,
@@ -195,6 +193,46 @@ function videoSizeMenus(editor: Editor): BubbleMenuItem[] {
 }
 export function getBubbleImage(editor: Editor): BubbleMenuItem[] {
   return [
+    {
+      type: 'flipX',
+      component: ActionButton,
+      componentProps: {
+        editor,
+        tooltip: localeActions.t('editor.tooltip.flipX'),
+        icon: 'FlipX',
+        action: () => {
+          const image = editor.getAttributes('image')
+          const { flipX } = image as any
+          editor
+            .chain()
+            .focus(undefined, { scrollIntoView: false })
+            .updateImage({
+              flipX: !flipX,
+            })
+            .run()
+        },
+      },
+    },
+    {
+      type: 'flipY',
+      component: ActionButton,
+      componentProps: {
+        editor,
+        tooltip: localeActions.t('editor.tooltip.flipY'),
+        icon: 'FlipY',
+        action: () => {
+          const image = editor.getAttributes('image')
+          const { flipY } = image as any
+          editor
+            .chain()
+            .focus(undefined, { scrollIntoView: false })
+            .updateImage({
+              flipY: !flipY,
+            })
+            .run()
+        },
+      },
+    },
     ...imageSizeMenus(editor),
     ...imageAlignMenus(editor),
     {
