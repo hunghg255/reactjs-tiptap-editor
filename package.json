@@ -201,7 +201,7 @@
   "homepage": "https://reactjs-tiptap-editor.vercel.app/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hunghg255/reactjs-tiptap-editor.git"
+    "url": "git+https://github.com/hunghg255/reactjs-tiptap-editor.git"
   },
   "bugs": "https://github.com/hunghg255/reactjs-tiptap-editor/issues"
 }

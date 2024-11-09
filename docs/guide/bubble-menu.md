@@ -30,6 +30,7 @@ The system provides the following default bubble menus:
 |   ContentMenu   | Provides general content-related operations like copy, paste, delete, etc.                   | floatingMenuConfig  |
 |   BubbleMenuImageGif   | Provides general content-related operations like copy, paste, delete, image gif etc.                   | imageGifConfig  |
 |   BubbleMenuMermaid   | Provides general content-related operations like copy, paste, delete, mermaid  etc.                   | mermaidConfig  |
+|   BubbleMenuTwitter   | Provides general content-related operations like copy, paste, delete, twitter  etc.                   | twitterConfig  |
 
 ## Disabling the Bubble Menu
 

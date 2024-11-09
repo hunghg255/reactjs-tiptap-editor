@@ -164,6 +164,8 @@ const locale = {
   'editor.replace.caseSensitive': 'Phân biệt chữ hoa chữ thường',
   'editor.mermaid.tooltip': 'Mermaid',
   'editor.twitter.tooltip': 'Twitter',
+  'editor.tooltip.flipX': 'Lật Ngang',
+  'editor.tooltip.flipY': 'Lật Dọc',
 }
 
 export default locale

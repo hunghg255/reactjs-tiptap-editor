@@ -164,6 +164,8 @@ const locale = {
   'editor.replace.caseSensitive': 'Sensível a maiúsculas e minúsculas',
   'editor.mermaid.tooltip': 'Mermaid',
   'editor.twitter.tooltip': 'Twitter',
+  'editor.tooltip.flipX': 'Inverter Horizontal',
+  'editor.tooltip.flipY': 'Inverter Vertical',
 }
 
 export default locale

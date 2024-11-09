@@ -18,6 +18,8 @@ import {
   CropIcon,
   Eraser,
   Eye,
+  FlipHorizontal,
+  FlipVertical,
   Frame,
   GripVertical,
   Heading1,
@@ -201,4 +203,6 @@ export const icons = {
   Crop: CropIcon,
   Mermaid,
   Twitter,
+  FlipX: FlipVertical,
+  FlipY: FlipHorizontal,
 } as any

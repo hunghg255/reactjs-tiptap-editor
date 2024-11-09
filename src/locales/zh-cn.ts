@@ -164,6 +164,8 @@ const locale = {
   'editor.replace.caseSensitive': '区分大小写',
   'editor.mermaid.tooltip': 'Mermaid',
   'editor.twitter.tooltip': 'Twitter',
+  'editor.tooltip.flipX': '水平翻转',
+  'editor.tooltip.flipY': '垂直翻转',
 }
 
 export default locale

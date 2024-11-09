@@ -177,7 +177,7 @@ const extensions = [
   Twitter,
 ]
 
-const DEFAULT = ``
+const DEFAULT = `<p dir="auto"></p><p dir="auto"></p><p dir="auto"></p><p dir="auto"><div style="text-align: center;" class="image"><img height="auto" style="transform: rotateX(0deg) rotateY(180deg);" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1729198819038/684c0adb-b189-4af8-b9d8-d26e4097ce27.png?auto=compress,format&amp;format=webp" flipx="false" flipy="true" align="center" inline="false"></div></p><p dir="auto"></p><p dir="auto"></p><p dir="auto"></p>`
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout

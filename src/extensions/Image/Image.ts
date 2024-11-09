@@ -19,8 +19,12 @@ export interface SetImageAttrsOptions {
   width?: number | string | null
   /** The alignment of the image. */
   align?: 'left' | 'center' | 'right'
-
+  /** Whether the image is inline. */
   inline?: boolean
+  /** image FlipX */
+  flipX?: boolean
+  /** image FlipY */
+  flipY?: boolean
 }
 
 const DEFAULT_OPTIONS: any = {
@@ -94,6 +98,12 @@ export const Image = TiptapImage.extend<IImageOptions>({
   addAttributes() {
     return {
       ...this.parent?.(),
+      flipX: {
+        default: false,
+      },
+      flipY: {
+        default: false,
+      },
       width: {
         default: null,
         parseHTML: (element) => {
@@ -152,22 +162,25 @@ export const Image = TiptapImage.extend<IImageOptions>({
     }
   },
   renderHTML({ HTMLAttributes }) {
-    const { align, inline } = HTMLAttributes
+    const { flipX, flipY, align, inline } = HTMLAttributes
 
-    const style = align ? `text-align: ${align};` : ''
+    const transformStyle
+      = flipX || flipY ? `transform: rotateX(${flipX ? '180' : '0'}deg) rotateY(${flipY ? '180' : '0'}deg);` : ''
+
+    const textAlignStyle = align ? `text-align: ${align};` : ''
 
     return [
-      inline ? 'span' : 'div', // Parent element
+      inline ? 'span' : 'div',
       {
-        style,
+        style: textAlignStyle,
         class: 'image',
       },
       [
         'img',
         mergeAttributes(
-          // Always render the `height="auto"`
           {
             height: 'auto',
+            style: transformStyle,
           },
           this.options.HTMLAttributes,
           HTMLAttributes,
@@ -184,6 +197,9 @@ export const Image = TiptapImage.extend<IImageOptions>({
 
           const width = img?.getAttribute('width')
 
+          const flipX = img?.getAttribute('flipx') || false
+          const flipY = img?.getAttribute('flipy') || false
+
           return {
             src: img?.getAttribute('src'),
             alt: img?.getAttribute('alt'),
@@ -191,6 +207,8 @@ export const Image = TiptapImage.extend<IImageOptions>({
             width: width ? Number.parseInt(width as string, 10) : null,
             align: img?.getAttribute('align') || element?.style?.textAlign || null,
             inline: img?.getAttribute('inline') || false,
+            flipX: flipX === 'true',
+            flipY: flipY === 'true',
           }
         },
       },
@@ -200,6 +218,8 @@ export const Image = TiptapImage.extend<IImageOptions>({
           const img = element.querySelector('img')
 
           const width = img?.getAttribute('width')
+          const flipX = img?.getAttribute('flipx') || false
+          const flipY = img?.getAttribute('flipy') || false
 
           return {
             src: img?.getAttribute('src'),
@@ -208,6 +228,8 @@ export const Image = TiptapImage.extend<IImageOptions>({
             width: width ? Number.parseInt(width as string, 10) : null,
             align: img?.getAttribute('align') || element.style.textAlign || null,
             inline: img?.getAttribute('inline') || false,
+            flipX: flipX === 'true',
+            flipY: flipY === 'true',
           }
         },
       },
