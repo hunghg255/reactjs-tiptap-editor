@@ -1,5 +1,27 @@
 [
   {
+    "hash": "85b4053890a69d6992469da31165fe2a2cf5ebb4",
+    "date": "Sat Nov 9 22:34:33 2024 +0700",
+    "message": "chore: release v0.1.7",
+    "refs": "HEAD -> main, tag: v0.1.7, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.7"
+  },
+  {
+    "hash": "83270794b35baa20dc2ffbc9ce9615adf62b95f2",
+    "date": "Sat Nov 9 21:56:11 2024 +0700",
+    "message": "feat: flip image",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "Image",
+      "ImageView"
+    ]
+  },
+  {
     "hash": "2794c3065eb364efc4adf1a29f3c7d7edf4cc33a",
     "date": "Wed Nov 6 22:44:39 2024 +0700",
     "message": "chore: release v0.1.6",

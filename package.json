@@ -51,7 +51,8 @@
     "prepare": "git-scm-hooks",
     "release": "bumpp -r",
     "gen-changelog": "esno ./scripts/genExtensions.ts && esno ./scripts/changelog.ts",
-    "modify-css": "esno ./scripts/modifyCss.ts"
+    "modify-css": "esno ./scripts/modifyCss.ts",
+    "gen-contributors": "contributorkit"
   },
   "dependencies": {
     "@excalidraw/excalidraw": "^0.17.6",
@@ -146,6 +147,7 @@
     "@vitejs/plugin-react": "^4.3.3",
     "autoprefixer": "^10.4.20",
     "bumpp": "^9.8.1",
+    "contributorkit": "^0.0.4",
     "eslint": "^8.57.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.14",

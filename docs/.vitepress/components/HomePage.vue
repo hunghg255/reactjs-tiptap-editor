@@ -27,4 +27,9 @@ const members = computed(() => [
   <div flex="~ col wrap" mt8 items-center>
     <VPTeamMembers size="small" :members="members" />
   </div>
+
+  <h4 class="text-center mt-[50px] mb-[10px] font-bold">Thanks to the following friends for their contributions to project</h4>
+  <div class="flex items-center justify-center">
+    <img class="max-w-[300px]" src="/contributor-circles.svg" alt="logo" />
+  </div>
 </template>

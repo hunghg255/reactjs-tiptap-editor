@@ -56,9 +56,7 @@ npm run playground
 
 Thanks to the following friends for their contributions to project:
 
-<a href="https://github.com/hunghg255/reactjs-tiptap-editor/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=hunghg255/reactjs-tiptap-editor" alt="contributors">
-</a>
+![App Screenshot](./screenshot/contributor-wide.svg)
 
 ## Related
 

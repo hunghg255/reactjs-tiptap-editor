@@ -84,17 +84,17 @@
     ]
   },
   {
-    "name": "Emoji.ts",
-    "package": "Emoji",
-    "alias": [
-      "Emoji"
-    ]
-  },
-  {
     "name": "Excalidraw.ts",
     "package": "Excalidraw",
     "alias": [
       "Excalidraw"
+    ]
+  },
+  {
+    "name": "Emoji.ts",
+    "package": "Emoji",
+    "alias": [
+      "Emoji"
     ]
   },
   {
@@ -203,17 +203,17 @@
     ]
   },
   {
-    "name": "Indent.ts",
-    "package": "Indent",
-    "alias": [
-      "Indent"
-    ]
-  },
-  {
     "name": "Italic.ts",
     "package": "Italic",
     "alias": [
       "Italic"
+    ]
+  },
+  {
+    "name": "Indent.ts",
+    "package": "Indent",
+    "alias": [
+      "Indent"
     ]
   },
   {
@@ -224,17 +224,17 @@
     ]
   },
   {
-    "name": "Link.ts",
-    "package": "Link",
-    "alias": [
-      "Link"
-    ]
-  },
-  {
     "name": "LineHeight.ts",
     "package": "LineHeight",
     "alias": [
       "LineHeight"
+    ]
+  },
+  {
+    "name": "Link.ts",
+    "package": "Link",
+    "alias": [
+      "Link"
     ]
   },
   {
@@ -399,13 +399,6 @@
     ]
   },
   {
-    "name": "UnderLine.ts",
-    "package": "UnderLine",
-    "alias": [
-      "Underline"
-    ]
-  },
-  {
     "name": "Video.ts",
     "package": "Video",
     "alias": [
@@ -417,6 +410,13 @@
     "package": "Video",
     "alias": [
       "store"
+    ]
+  },
+  {
+    "name": "UnderLine.ts",
+    "package": "UnderLine",
+    "alias": [
+      "Underline"
     ]
   },
   {
