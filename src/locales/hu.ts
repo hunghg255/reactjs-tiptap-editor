@@ -107,7 +107,7 @@ const locale = {
   'editor.table.menu.merge_or_split_cells': 'Cellák egyesítése vagy szétválasztása',
   'editor.table.menu.delete_table': 'Táblázat törlése',
   'editor.blockquote.tooltip': 'Blokkidézet',
-  'editor.horizontalrule.tooltip': 'Horizontal Rule',
+  'editor.horizontalrule.tooltip': 'Vízszintes vonal',
   'editor.code.tooltip': 'Kód',
   'editor.codeblock.tooltip': 'Kód Blokk',
   'editor.clear.tooltip': 'Formatálás Törlése',
