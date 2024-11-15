@@ -219,6 +219,7 @@ function App() {
         <button type="button" onClick={() => locale.setLang('en')}>English</button>
         <button type="button" onClick={() => locale.setLang('zh_CN')}>Chinese</button>
         <button type="button" onClick={() => locale.setLang('pt_BR')}>Português</button>
+        <button type="button" onClick={() => locale.setLang('hu_HU')}>Hungarian</button>
         <button type="button" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
           {theme === 'dark' ? 'Light' : 'Dark'}
         </button>

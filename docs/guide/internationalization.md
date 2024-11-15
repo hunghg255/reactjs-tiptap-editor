@@ -30,6 +30,7 @@ Currently, the editor supports the following languages:
 | Vietnamese           | vi     |                                                                                  |
 | Simplified Chinese   | zh_CN  |                                                                                  |
 | Brazilian Portuguese | pt_BR  |                                                                                  |
+| Hungarian            | hu_HU  |                                                                                  |
 
 ## Adding a New Language
 
