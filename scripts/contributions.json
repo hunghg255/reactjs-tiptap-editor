@@ -91,7 +91,7 @@
       "hash": "147f1cfa51786ab49717622c44dddf11"
     }
   ],
-  "Code.ts": [
+  "Color.ts": [
     {
       "name": "Condor Hero",
       "count": 2,
@@ -125,7 +125,7 @@
       "hash": "147f1cfa51786ab49717622c44dddf11"
     }
   ],
-  "Color.ts": [
+  "Code.ts": [
     {
       "name": "Condor Hero",
       "count": 2,
@@ -154,14 +154,14 @@
       "hash": "147f1cfa51786ab49717622c44dddf11"
     }
   ],
-  "Excalidraw.ts": [
+  "Emoji.ts": [
     {
       "name": "hunghg255",
       "count": 1,
       "hash": "3732f6a5b9cdd33a2f401844e7daf029"
     }
   ],
-  "Emoji.ts": [
+  "Excalidraw.ts": [
     {
       "name": "hunghg255",
       "count": 1,
@@ -334,23 +334,6 @@
       "hash": "3732f6a5b9cdd33a2f401844e7daf029"
     }
   ],
-  "Italic.ts": [
-    {
-      "name": "Condor Hero",
-      "count": 2,
-      "hash": "0953cda44390f22b04619b9647311c0b"
-    },
-    {
-      "name": "hunghg255",
-      "count": 2,
-      "hash": "3732f6a5b9cdd33a2f401844e7daf029"
-    },
-    {
-      "name": "hunghg255",
-      "count": 1,
-      "hash": "147f1cfa51786ab49717622c44dddf11"
-    }
-  ],
   "Indent.ts": [
     {
       "name": "Condor Hero",
@@ -360,6 +343,23 @@
     {
       "name": "hunghg255",
       "count": 1,
+      "hash": "3732f6a5b9cdd33a2f401844e7daf029"
+    },
+    {
+      "name": "hunghg255",
+      "count": 1,
+      "hash": "147f1cfa51786ab49717622c44dddf11"
+    }
+  ],
+  "Italic.ts": [
+    {
+      "name": "Condor Hero",
+      "count": 2,
+      "hash": "0953cda44390f22b04619b9647311c0b"
+    },
+    {
+      "name": "hunghg255",
+      "count": 2,
       "hash": "3732f6a5b9cdd33a2f401844e7daf029"
     },
     {
@@ -524,6 +524,13 @@
       "hash": "147f1cfa51786ab49717622c44dddf11"
     }
   ],
+  "Table.ts": [
+    {
+      "name": "hunghg255",
+      "count": 1,
+      "hash": "3732f6a5b9cdd33a2f401844e7daf029"
+    }
+  ],
   "Subscript.ts": [
     {
       "name": "Condor Hero",
@@ -539,13 +546,6 @@
       "name": "hunghg255",
       "count": 1,
       "hash": "147f1cfa51786ab49717622c44dddf11"
-    }
-  ],
-  "Table.ts": [
-    {
-      "name": "hunghg255",
-      "count": 1,
-      "hash": "3732f6a5b9cdd33a2f401844e7daf029"
     }
   ],
   "TableOfContent.ts": [
@@ -572,10 +572,10 @@
       "hash": "147f1cfa51786ab49717622c44dddf11"
     }
   ],
-  "TextAlign.ts": [
+  "TextBubble.ts": [
     {
       "name": "hunghg255",
-      "count": 2,
+      "count": 1,
       "hash": "3732f6a5b9cdd33a2f401844e7daf029"
     },
     {
@@ -584,10 +584,10 @@
       "hash": "147f1cfa51786ab49717622c44dddf11"
     }
   ],
-  "TextBubble.ts": [
+  "TextAlign.ts": [
     {
       "name": "hunghg255",
-      "count": 1,
+      "count": 2,
       "hash": "3732f6a5b9cdd33a2f401844e7daf029"
     },
     {
@@ -622,6 +622,7 @@
       "hash": "3732f6a5b9cdd33a2f401844e7daf029"
     }
   ],
+  "UnderLine.ts": [],
   "Video.ts": [
     {
       "name": "hunghg255",
@@ -633,6 +634,5 @@
       "count": 1,
       "hash": "147f1cfa51786ab49717622c44dddf11"
     }
-  ],
-  "UnderLine.ts": []
+  ]
 }

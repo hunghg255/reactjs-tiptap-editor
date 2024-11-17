@@ -1,9 +1,19 @@
 [
   {
+    "hash": "6e5afb0b4ef6ae4aaa9038d9f98236faece81314",
+    "date": "Sun Nov 17 22:42:48 2024 +0700",
+    "message": "chore: release v0.1.8",
+    "refs": "HEAD -> main, tag: v0.1.8, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.8"
+  },
+  {
     "hash": "85b4053890a69d6992469da31165fe2a2cf5ebb4",
     "date": "Sat Nov 9 22:34:33 2024 +0700",
     "message": "chore: release v0.1.7",
-    "refs": "HEAD -> main, tag: v0.1.7, origin/main",
+    "refs": "tag: v0.1.7",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",

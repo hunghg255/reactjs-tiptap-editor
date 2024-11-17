@@ -42,10 +42,10 @@
     ]
   },
   {
-    "name": "Code.ts",
-    "package": "Code",
+    "name": "Color.ts",
+    "package": "Color",
     "alias": [
-      "Code"
+      "Color"
     ]
   },
   {
@@ -70,10 +70,10 @@
     ]
   },
   {
-    "name": "Color.ts",
-    "package": "Color",
+    "name": "Code.ts",
+    "package": "Code",
     "alias": [
-      "Color"
+      "Code"
     ]
   },
   {
@@ -84,17 +84,17 @@
     ]
   },
   {
-    "name": "Excalidraw.ts",
-    "package": "Excalidraw",
-    "alias": [
-      "Excalidraw"
-    ]
-  },
-  {
     "name": "Emoji.ts",
     "package": "Emoji",
     "alias": [
       "Emoji"
+    ]
+  },
+  {
+    "name": "Excalidraw.ts",
+    "package": "Excalidraw",
+    "alias": [
+      "Excalidraw"
     ]
   },
   {
@@ -203,17 +203,17 @@
     ]
   },
   {
-    "name": "Italic.ts",
-    "package": "Italic",
-    "alias": [
-      "Italic"
-    ]
-  },
-  {
     "name": "Indent.ts",
     "package": "Indent",
     "alias": [
       "Indent"
+    ]
+  },
+  {
+    "name": "Italic.ts",
+    "package": "Italic",
+    "alias": [
+      "Italic"
     ]
   },
   {
@@ -329,13 +329,6 @@
     ]
   },
   {
-    "name": "Subscript.ts",
-    "package": "Subscript",
-    "alias": [
-      "Subscript"
-    ]
-  },
-  {
     "name": "Table.ts",
     "package": "Table",
     "alias": [
@@ -347,6 +340,13 @@
     "package": "Table",
     "alias": [
       "cell-background"
+    ]
+  },
+  {
+    "name": "Subscript.ts",
+    "package": "Subscript",
+    "alias": [
+      "Subscript"
     ]
   },
   {
@@ -364,17 +364,17 @@
     ]
   },
   {
-    "name": "TextAlign.ts",
-    "package": "TextAlign",
-    "alias": [
-      "TextAlign"
-    ]
-  },
-  {
     "name": "TextBubble.ts",
     "package": "TextBubble",
     "alias": [
       "TextBubble"
+    ]
+  },
+  {
+    "name": "TextAlign.ts",
+    "package": "TextAlign",
+    "alias": [
+      "TextAlign"
     ]
   },
   {
@@ -399,6 +399,13 @@
     ]
   },
   {
+    "name": "UnderLine.ts",
+    "package": "UnderLine",
+    "alias": [
+      "Underline"
+    ]
+  },
+  {
     "name": "Video.ts",
     "package": "Video",
     "alias": [
@@ -410,13 +417,6 @@
     "package": "Video",
     "alias": [
       "store"
-    ]
-  },
-  {
-    "name": "UnderLine.ts",
-    "package": "UnderLine",
-    "alias": [
-      "Underline"
     ]
   },
   {
