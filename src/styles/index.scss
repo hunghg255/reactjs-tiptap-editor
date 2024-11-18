@@ -1,6 +1,5 @@
-@import './global';
-@import './editor';
-@import './ProseMirror';
-@import 'katex/dist/katex.min.css';
-@import './columns.scss';
-@import './mention.scss';
+@use './global';
+@use './editor';
+@use './ProseMirror';
+@use './columns';
+@use './mention';

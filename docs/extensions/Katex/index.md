@@ -16,6 +16,8 @@ next:
 ## Usage
 
 ```tsx
+
+import 'katex/dist/katex.min.css'; // [!code ++]
 import { Katex } from 'reactjs-tiptap-editor'; // [!code ++]
 
 const extensions = [
