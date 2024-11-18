@@ -4,6 +4,11 @@ import { ActionButton, Button, Input, Tabs, TabsContent, TabsList, TabsTrigger }
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { useLocale } from '@/locales'
 import { actionDialogVideo, useDialogVideo } from '@/extensions/Video/store'
+import { Video } from '@/extensions/Video/Video'
+
+function checkIsVideo(url: string) {
+  return /\.(?:mp4|webm|ogg|mov)$/i.test(url)
+}
 
 function ActionVideoButton(props: any) {
   const { t } = useLocale()
@@ -12,6 +17,7 @@ function ActionVideoButton(props: any) {
   const fileInput = useRef<HTMLInputElement>(null)
 
   const dialogVideo = useDialogVideo()
+  const [error, setError] = useState<string>('')
 
   async function handleFile(event: any) {
     const files = event?.target?.files
@@ -20,7 +26,7 @@ function ActionVideoButton(props: any) {
     }
     const file = files[0]
     const uploadOptions = props.editor.extensionManager.extensions.find(
-      (extension: any) => extension.name === 'video',
+      (extension: any) => extension.name === Video.name,
     )?.options
 
     let src = ''
@@ -44,6 +50,10 @@ function ActionVideoButton(props: any) {
   function handleLink(e: any) {
     e.preventDefault()
     e.stopPropagation()
+
+    if (!link) {
+      return
+    }
 
     props.editor
       .chain()
@@ -109,15 +119,29 @@ function ActionVideoButton(props: any) {
               <div className="richtext-flex richtext-items-center richtext-gap-2">
                 <Input
                   type="url"
-                  autoFocus={true}
+                  autoFocus
                   value={link}
-                  onChange={e => setLink(e.target.value)}
+                  onChange={(e) => {
+                    const url = e.target.value
+
+                    const isVideoUrl = checkIsVideo(url)
+
+                    if (!isVideoUrl) {
+                      setError('Invalid video URL')
+                      setLink('')
+                      return
+                    }
+                    setError('')
+                    setLink(url)
+                  }}
                   required
                   placeholder={t('editor.video.dialog.placeholder')}
                 />
+
                 <Button type="submit">{t('editor.video.dialog.button.apply')}</Button>
               </div>
             </form>
+            {error && <div className="richtext-text-red-500 richtext-my-[5px]">{error}</div>}
           </TabsContent>
         </Tabs>
       </DialogContent>
