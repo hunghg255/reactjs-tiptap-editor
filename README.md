@@ -13,6 +13,8 @@
   <a href="https://bundlephobia.com/result?p=reactjs-tiptap-editor" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/bundlephobia/minzip/reactjs-tiptap-editor" alt="Minizip" /></a>
   <a href="https://github.com/hunghg255/reactjs-tiptap-editor/graphs/contributors" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg" alt="Contributors" /></a>
   <a href="https://github.com/hunghg255/reactjs-tiptap-editor/blob/main/LICENSE" target="_blank" rel="noopener noreferrer"><img src="https://badgen.net/github/license/hunghg255/reactjs-tiptap-editor" alt="License" /></a>
+  <a href="https://webuild.community" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/webuild-community/badge/master/svg/love.svg" alt="webuild" /></a>
+  <a href="https://webuild.community" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/webuild-community/badge/master/svg/WeBuild.svg" alt="member" /></a>
 </p>
 
 ![App Screenshot](./screenshot/screenshot.png)
