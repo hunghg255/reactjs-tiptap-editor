@@ -60,6 +60,10 @@ Thanks to the following friends for their contributions to project:
 
 ![App Screenshot](./screenshot/contributor-wide.svg)
 
+## Star History
+
+<img src="https://api.star-history.com/svg?repos=hunghg255/reactjs-tiptap-editor" />
+
 ## Related
 
 Here are some related projects
