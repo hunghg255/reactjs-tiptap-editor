@@ -5,6 +5,8 @@ import { getDatasetAttribute } from '@/utils/dom-dataset'
 import { NodeViewAttachment } from '@/extensions/Attachment/components/NodeViewAttachment/NodeViewAttachment'
 import { ActionButton } from '@/components'
 import type { GeneralOptions } from '@/types'
+import { getFileTypeIcon } from '@/extensions/Attachment/components/NodeViewAttachment/FileIcon'
+import { normalizeFileSize } from '@/utils/file'
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -52,8 +54,43 @@ export const Attachment = Node.create<AttachmentOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
-    // @ts-expect-error
-    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
+    // Destructure and provide fallback defaults
+    const {
+      url = '',
+      fileName = '',
+      fileSize = '',
+      fileType = '',
+      fileExt = '',
+    } = HTMLAttributes || {}
+
+    // Validate attributes and merge safely
+    const mergedAttributes = mergeAttributes(
+      // @ts-expect-error
+      this.options.HTMLAttributes || {},
+      HTMLAttributes || {},
+    )
+
+    // Return the structured array
+    return [
+      'div',
+      mergedAttributes,
+      url
+        ? [
+            'a',
+            { href: url || '#' },
+            [
+              'span',
+              { class: 'attachment__icon' },
+              getFileTypeIcon(fileType, true),
+            ],
+            [
+              'span',
+              { class: 'attachment__text' },
+              `${fileName}.${fileExt} (${normalizeFileSize(fileSize)})`,
+            ],
+          ]
+        : ['div', { class: 'attachment__placeholder' }],
+    ]
   },
 
   addAttributes() {
