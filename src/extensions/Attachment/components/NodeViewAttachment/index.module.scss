@@ -1,4 +1,5 @@
-.wrap {
+.attachment, /* for browser ready HTML */
+.wrap { /* for NodeView */
   border-width: 1px !important;
   border-radius: 4px;
   padding: 10px;
@@ -6,4 +7,17 @@
   align-items: center;
   justify-content: space-between;
   margin: 10px 0;
+
+  :global {
+    .attachment__icon {
+      width: 32px;
+      text-align: center;
+    }
+
+    .attachment__icon svg {
+      width: 32px;
+      display: inline-block;
+    }
+  }
 }
+
