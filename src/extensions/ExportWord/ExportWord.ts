@@ -64,7 +64,7 @@ export const ExportWord = Extension.create<ExportWordOptions>({
               },
             }
 
-            const wordDocument = docxSerializer.serialize(editor.state.doc, opts)
+            const wordDocument = docxSerializer.serialize(editor.state.doc as any, opts)
 
             Packer.toBlob(wordDocument).then(blob => downloadFromBlob(new Blob([blob]), 'export-document.docx'))
 
