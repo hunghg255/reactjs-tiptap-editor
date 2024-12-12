@@ -1,9 +1,40 @@
 [
   {
+    "hash": "3b395b8c20d8e4e9f27cd1a10bb9f615a9c4fbb3",
+    "date": "Thu Dec 12 07:07:40 2024 +0700",
+    "message": "chore: release v0.1.10",
+    "refs": "HEAD -> main, tag: v0.1.10, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.10"
+  },
+  {
+    "hash": "3969b5699661737a5badd897085e38139bdb809b",
+    "date": "Mon Nov 18 16:20:46 2024 +0700",
+    "message": "chore: release v0.1.9",
+    "refs": "tag: v0.1.9",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.9"
+  },
+  {
+    "hash": "8a95a169d60baad6d2e8720043812c04522ee182",
+    "date": "Mon Nov 18 12:03:21 2024 +0800",
+    "message": "feat: manually import katex styles",
+    "refs": "",
+    "author_name": "Condor Hero",
+    "author_email": "love2xinwei@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
     "hash": "6e5afb0b4ef6ae4aaa9038d9f98236faece81314",
     "date": "Sun Nov 17 22:42:48 2024 +0700",
     "message": "chore: release v0.1.8",
-    "refs": "HEAD -> main, tag: v0.1.8, origin/main",
+    "refs": "tag: v0.1.8",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",

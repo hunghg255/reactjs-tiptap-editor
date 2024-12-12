@@ -28,13 +28,6 @@
     ]
   },
   {
-    "name": "Clear.ts",
-    "package": "Clear",
-    "alias": [
-      "Clear"
-    ]
-  },
-  {
     "name": "BulletList.ts",
     "package": "BulletList",
     "alias": [
@@ -42,10 +35,17 @@
     ]
   },
   {
-    "name": "Color.ts",
-    "package": "Color",
+    "name": "Code.ts",
+    "package": "Code",
     "alias": [
-      "Color"
+      "Code"
+    ]
+  },
+  {
+    "name": "Clear.ts",
+    "package": "Clear",
+    "alias": [
+      "Clear"
     ]
   },
   {
@@ -70,10 +70,10 @@
     ]
   },
   {
-    "name": "Code.ts",
-    "package": "Code",
+    "name": "Color.ts",
+    "package": "Color",
     "alias": [
-      "Code"
+      "Color"
     ]
   },
   {
@@ -84,17 +84,17 @@
     ]
   },
   {
-    "name": "Emoji.ts",
-    "package": "Emoji",
-    "alias": [
-      "Emoji"
-    ]
-  },
-  {
     "name": "Excalidraw.ts",
     "package": "Excalidraw",
     "alias": [
       "Excalidraw"
+    ]
+  },
+  {
+    "name": "Emoji.ts",
+    "package": "Emoji",
+    "alias": [
+      "Emoji"
     ]
   },
   {
@@ -133,17 +133,17 @@
     ]
   },
   {
-    "name": "Heading.ts",
-    "package": "Heading",
-    "alias": [
-      "Heading"
-    ]
-  },
-  {
     "name": "Highlight.ts",
     "package": "Highlight",
     "alias": [
       "Highlight"
+    ]
+  },
+  {
+    "name": "Heading.ts",
+    "package": "Heading",
+    "alias": [
+      "Heading"
     ]
   },
   {
@@ -196,13 +196,6 @@
     ]
   },
   {
-    "name": "ImportWord.ts",
-    "package": "ImportWord",
-    "alias": [
-      "ImportWord"
-    ]
-  },
-  {
     "name": "Indent.ts",
     "package": "Indent",
     "alias": [
@@ -210,10 +203,10 @@
     ]
   },
   {
-    "name": "Italic.ts",
-    "package": "Italic",
+    "name": "ImportWord.ts",
+    "package": "ImportWord",
     "alias": [
-      "Italic"
+      "ImportWord"
     ]
   },
   {
@@ -221,6 +214,13 @@
     "package": "Katex",
     "alias": [
       "Katex"
+    ]
+  },
+  {
+    "name": "Italic.ts",
+    "package": "Italic",
+    "alias": [
+      "Italic"
     ]
   },
   {
@@ -259,13 +259,6 @@
     ]
   },
   {
-    "name": "MoreMark.ts",
-    "package": "MoreMark",
-    "alias": [
-      "MoreMark"
-    ]
-  },
-  {
     "name": "MultiColumn.ts",
     "package": "MultiColumn",
     "alias": [
@@ -277,6 +270,13 @@
     "package": "MultiColumn",
     "alias": [
       "MultiColumn"
+    ]
+  },
+  {
+    "name": "MoreMark.ts",
+    "package": "MoreMark",
+    "alias": [
+      "MoreMark"
     ]
   },
   {
@@ -329,6 +329,13 @@
     ]
   },
   {
+    "name": "Subscript.ts",
+    "package": "Subscript",
+    "alias": [
+      "Subscript"
+    ]
+  },
+  {
     "name": "Table.ts",
     "package": "Table",
     "alias": [
@@ -343,10 +350,10 @@
     ]
   },
   {
-    "name": "Subscript.ts",
-    "package": "Subscript",
+    "name": "TaskList.ts",
+    "package": "TaskList",
     "alias": [
-      "Subscript"
+      "TaskList"
     ]
   },
   {
@@ -357,10 +364,10 @@
     ]
   },
   {
-    "name": "TaskList.ts",
-    "package": "TaskList",
+    "name": "TextAlign.ts",
+    "package": "TextAlign",
     "alias": [
-      "TaskList"
+      "TextAlign"
     ]
   },
   {
@@ -368,13 +375,6 @@
     "package": "TextBubble",
     "alias": [
       "TextBubble"
-    ]
-  },
-  {
-    "name": "TextAlign.ts",
-    "package": "TextAlign",
-    "alias": [
-      "TextAlign"
     ]
   },
   {
