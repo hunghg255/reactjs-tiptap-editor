@@ -47,6 +47,10 @@ export function getLocaleConfig(lang: string) {
       text: t('Playground'),
       link: `https://reactjs-tiptap-editor-playground.vercel.app/`,
     },
+    {
+      text: `v${version}`,
+      items: VERSIONS,
+    },
   ]
 
   const sidebar: DefaultTheme.SidebarItem[] = [
@@ -280,10 +284,6 @@ export function getLocaleConfig(lang: string) {
           link: '/extensions/Twitter/index.md',
         },
       ],
-    },
-    {
-      text: `v${version}`,
-      items: VERSIONS,
     },
   ]
 
