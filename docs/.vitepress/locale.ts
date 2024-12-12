@@ -1,9 +1,16 @@
 import type { DefaultTheme, HeadConfig, LocaleConfig } from 'vitepress'
+import { version } from '../../package.json'
 import { createTranslate } from './i18n/utils'
 
 const docsLink = 'https://reactjs-tiptap-editor.vercel.app'
 const githubRepo = 'hunghg255/reactjs-tiptap-editor'
 const githubLink: 'https://github.com/hunghg255/reactjs-tiptap-editor' = `https://github.com/${githubRepo}`
+
+const VERSIONS: (DefaultTheme.NavItemWithLink | DefaultTheme.NavItemChildren)[] = [
+  { text: `v${version} (current)`, link: '/' },
+  { text: `Release Notes`, link: 'https://github.com/hunghg255/reactjs-tiptap-editor/releases' },
+  { text: `Contributing`, link: 'https://github.com/hunghg255/reactjs-tiptap-editor/blob/main/CONTRIBUTING.md' },
+]
 
 export function getLocaleConfig(lang: string) {
   const t = createTranslate(lang)
@@ -273,6 +280,10 @@ export function getLocaleConfig(lang: string) {
           link: '/extensions/Twitter/index.md',
         },
       ],
+    },
+    {
+      text: `v${version}`,
+      items: VERSIONS,
     },
   ]
 
