@@ -50,7 +50,7 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
       disabled = false,
       customClass = '',
       // color = undefined,
-      // loading = false,
+      loading = undefined,
       shortcutKeys = undefined,
       tooltipOptions = {},
       action = undefined,
@@ -75,7 +75,7 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
             disabled={disabled}
             onClick={action}
             data-state={isActive?.() ? 'on' : 'off'}
-            {...rest}
+            {...(rest as Omit<typeof rest, 'loading'>)}
           >
             {Icon && <Icon className="richtext-w-4 richtext-h-4" />}
             {children}
