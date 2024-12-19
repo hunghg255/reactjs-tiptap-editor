@@ -29,3 +29,37 @@ const extensions = [
   }), // [!code ++]
 ];
 ```
+
+## Props
+
+```ts
+interface VideoOptions extends GeneralOptions<VideoOptions> {
+  /**
+   * Indicates whether fullscreen play is allowed
+   *
+   * @default true
+   */
+  allowFullscreen: boolean
+  /**
+   * Indicates whether to display the frameborder
+   *
+   * @default false
+   */
+  frameborder: boolean
+  /**
+   * Width of the video, can be a number or string
+   *
+   * @default VIDEO_SIZE['size-medium']
+   */
+  width: number | string
+  /** HTML attributes object for passing additional attributes */
+  HTMLAttributes: {
+    [key: string]: any
+  }
+  /** Function for uploading files */
+  upload?: (file: File) => Promise<string>
+
+  /** The source URL of the video */
+  resourceVideo: 'upload' | 'link' | 'both'
+}
+```

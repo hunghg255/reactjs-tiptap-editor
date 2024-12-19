@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 
 import { ActionButton, Button, Input, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components'
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
@@ -19,15 +19,20 @@ function ActionVideoButton(props: any) {
   const dialogVideo = useDialogVideo()
   const [error, setError] = useState<string>('')
 
+  const uploadOptions = useMemo(() => {
+    const uploadOptions = props.editor.extensionManager.extensions.find(
+      (extension: any) => extension.name === Video.name,
+    )?.options
+
+    return uploadOptions
+  }, [props.editor])
+
   async function handleFile(event: any) {
     const files = event?.target?.files
     if (!props.editor || props.editor.isDestroyed || files.length === 0) {
       return
     }
     const file = files[0]
-    const uploadOptions = props.editor.extensionManager.extensions.find(
-      (extension: any) => extension.name === Video.name,
-    )?.options
 
     let src = ''
     if (uploadOptions.upload) {
@@ -84,17 +89,23 @@ function ActionVideoButton(props: any) {
       <DialogContent>
         <DialogTitle>{t('editor.video.dialog.title')}</DialogTitle>
 
-        <Tabs defaultValue="upload" activationMode="manual">
+        <Tabs
+          defaultValue={
+            (uploadOptions?.resourceVideo === 'both' || uploadOptions?.resourceVideo === 'upload') ? 'upload' : 'link'
+          }
+          activationMode="manual"
+        >
           <TabsList className="richtext-grid richtext-w-full richtext-grid-cols-2">
-            <TabsTrigger value="upload">
-              {t('editor.video.dialog.tab.upload')}
-              {' '}
-            </TabsTrigger>
-            <TabsTrigger value="link">
-              {' '}
-              {t('editor.video.dialog.link')}
-              {' '}
-            </TabsTrigger>
+            {(uploadOptions?.resourceVideo === 'both' || uploadOptions?.resourceVideo === 'upload') && (
+              <TabsTrigger value="upload">
+                {t('editor.video.dialog.tab.upload')}
+              </TabsTrigger>
+            )}
+            {(uploadOptions?.resourceVideo === 'both' || uploadOptions?.resourceVideo === 'link') && (
+              <TabsTrigger value="link">
+                {t('editor.video.dialog.link')}
+              </TabsTrigger>
+            )}
           </TabsList>
 
           <TabsContent value="upload">
