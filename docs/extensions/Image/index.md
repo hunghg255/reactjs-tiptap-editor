@@ -34,3 +34,20 @@ const extensions = [
 
 - ImageGif is a node extension that allows you to add an ImageGif to your editor.
 - More: [ImageGif](/extensions/ImageGif/index.md)
+
+## Props
+
+```ts
+interface IImageOptions extends GeneralOptions<IImageOptions> {
+  /** Function for uploading files */
+  upload?: (file: File) => Promise<string>
+
+  HTMLAttributes?: any
+
+  acceptMimes?: string[]
+  maxSize?: number
+
+  /** The source URL of the image */
+  resourceImage: 'upload' | 'link' | 'both'
+}
+```

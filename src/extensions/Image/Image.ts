@@ -30,6 +30,7 @@ export interface SetImageAttrsOptions {
 const DEFAULT_OPTIONS: any = {
   acceptMimes: ['image/jpeg', 'image/gif', 'image/png', 'image/jpg'],
   maxSize: 1024 * 1024 * 5, // 5MB
+  resourceImage: 'both',
 }
 
 declare module '@tiptap/core' {
@@ -59,6 +60,9 @@ export interface IImageOptions extends GeneralOptions<IImageOptions> {
 
   acceptMimes?: string[]
   maxSize?: number
+
+  /** The source URL of the image */
+  resourceImage: 'upload' | 'link' | 'both'
 }
 
 export const Image = TiptapImage.extend<IImageOptions>({

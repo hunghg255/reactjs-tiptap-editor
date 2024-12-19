@@ -33,6 +33,9 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
   }
   /** Function for uploading files */
   upload?: (file: File) => Promise<string>
+
+  /** The source URL of the video */
+  resourceVideo: 'upload' | 'link' | 'both'
 }
 
 /**
@@ -98,6 +101,7 @@ export const Video = Node.create<VideoOptions>({
       allowFullscreen: true,
       upload: undefined,
       frameborder: false,
+      resourceVideo: 'both',
       width: VIDEO_SIZE['size-medium'],
       HTMLAttributes: {
         class: 'iframe-wrapper',

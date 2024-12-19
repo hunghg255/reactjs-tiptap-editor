@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 
 import { ActionButton, Button, Checkbox, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components'
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { ImageCropper } from '@/extensions/Image/components/ImageCropper'
 import { useLocale } from '@/locales'
 import { actionDialogImage, useDialogImage } from '@/extensions/Image/store'
+import Image from '@/extensions/Image/Image'
 
 function ActionImageButton(props: any) {
   const { t } = useLocale()
@@ -16,15 +17,20 @@ function ActionImageButton(props: any) {
 
   const [imageInline, setImageInline] = useState(false)
 
+  const uploadOptions = useMemo(() => {
+    const uploadOptions = props.editor.extensionManager.extensions.find(
+      (extension: any) => extension.name === Image.name,
+    )?.options
+
+    return uploadOptions
+  }, [props.editor])
+
   async function handleFile(event: any) {
     const files = event?.target?.files
     if (!props.editor || props.editor.isDestroyed || files.length === 0) {
       return
     }
     const file = files[0]
-    const uploadOptions = props.editor.extensionManager.extensions.find(
-      (extension: any) => extension.name === 'image',
-    )?.options
 
     let src = ''
     if (uploadOptions.upload) {
@@ -65,17 +71,29 @@ function ActionImageButton(props: any) {
       <DialogContent>
         <DialogTitle>{t('editor.image.dialog.title')}</DialogTitle>
 
-        <Tabs defaultValue="upload" activationMode="manual">
+        <Tabs
+          defaultValue={
+            uploadOptions.resourceImage === 'both' || uploadOptions.resourceImage === 'upload'
+              ? 'upload'
+              : 'link'
+          }
+          activationMode="manual"
+        >
           <TabsList className="richtext-grid richtext-w-full richtext-grid-cols-2">
-            <TabsTrigger value="upload">
-              {t('editor.image.dialog.tab.upload')}
-              {' '}
-            </TabsTrigger>
-            <TabsTrigger value="link">
-              {' '}
-              {t('editor.image.dialog.tab.url')}
-              {' '}
-            </TabsTrigger>
+            {uploadOptions.resourceImage === 'both' || uploadOptions.resourceImage === 'upload'
+              ? (
+                  <TabsTrigger value="upload">
+                    {t('editor.image.dialog.tab.upload')}
+                  </TabsTrigger>
+                )
+              : <></>}
+            {uploadOptions.resourceImage === 'both' || uploadOptions.resourceImage === 'link'
+              ? (
+                  <TabsTrigger value="link">
+                    {t('editor.image.dialog.tab.url')}
+                  </TabsTrigger>
+                )
+              : <></>}
           </TabsList>
 
           <div className="richtext-flex richtext-items-center richtext-gap-[4px] richtext-my-[10px]">
@@ -115,7 +133,7 @@ function ActionImageButton(props: any) {
               <div className="richtext-flex richtext-items-center richtext-gap-2">
                 <Input
                   type="url"
-                  autoFocus={true}
+                  autoFocus
                   value={link}
                   onChange={e => setLink(e.target.value)}
                   required
