@@ -228,8 +228,8 @@ importers:
         specifier: ^5.1.1
         version: 5.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       reactjs-signal:
-        specifier: ^1.0.1
-        version: 1.0.1(alien-signals@0.4.11)(react@18.3.1)
+        specifier: ^1.0.3
+        version: 1.0.3(alien-signals@0.4.11)(react@18.3.1)
       scroll-into-view-if-needed:
         specifier: ^3.1.0
         version: 3.1.0
@@ -7070,8 +7070,8 @@ packages:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
 
-  reactjs-signal@1.0.1:
-    resolution: {integrity: sha512-ye+SvEwiYTQp8pPy/aziEiVOrTPeoynThxdUl6qz4qx+EcHPxKAQ75b28WszIzdD9WNAtwy1kR+A9cds7yyGdA==}
+  reactjs-signal@1.0.3:
+    resolution: {integrity: sha512-cYmcL1kk+iztg4NXt1kPYu1MO630c8d8pSDeAFYX9ODDlUZvRo69dfBK7ooH4kwKwuL6+udaFDJ24HNinDpemQ==}
     peerDependencies:
       alien-signals: '>=0.4'
       react: '>=18'
@@ -16402,7 +16402,7 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
-  reactjs-signal@1.0.1(alien-signals@0.4.11)(react@18.3.1):
+  reactjs-signal@1.0.3(alien-signals@0.4.11)(react@18.3.1):
     dependencies:
       alien-signals: 0.4.11
       react: 18.3.1
