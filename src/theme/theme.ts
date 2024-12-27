@@ -1,17 +1,13 @@
-import { proxy, useSnapshot } from 'valtio'
+import { createSignal, useSignalValue } from 'reactjs-signal'
 
-const themeProxy = proxy({
-  theme: 'light',
-})
+const themeProxy = createSignal('light')
 
 export function useTheme() {
-  const themeSnapshot = useSnapshot(themeProxy)
-
-  return themeSnapshot.theme
+  return useSignalValue(themeProxy)
 }
 
 export const themeActions = {
   setTheme: (theme: string) => {
-    themeProxy.theme = theme
+    themeProxy.set(theme)
   },
 }

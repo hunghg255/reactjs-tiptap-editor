@@ -59,7 +59,7 @@ function ActionImageButton(props: any) {
   }
 
   return (
-    <Dialog open={dialogImage.isOpen} onOpenChange={actionDialogImage.setOpen}>
+    <Dialog open={dialogImage} onOpenChange={actionDialogImage.setOpen}>
       <DialogTrigger asChild>
         <ActionButton
           icon={props.icon}

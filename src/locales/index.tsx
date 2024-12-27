@@ -1,6 +1,5 @@
 import { useEffect, useMemo } from 'react'
-
-import { proxy, useSnapshot } from 'valtio'
+import { createSignal, useSignal } from 'reactjs-signal'
 
 import en from './en'
 import pt_BR from './pt-br'
@@ -123,20 +122,18 @@ class Locale {
 const locale = new Locale()
 
 // Proxy for reactive language state
-const atomLang = proxy({
-  lang: DEFAULT_LOCALE.lang,
-})
+const atomLang = createSignal(DEFAULT_LOCALE.lang)
 
 function useLocale() {
-  const atomLangSnap = useSnapshot(atomLang)
+  const [lang, setLang] = useSignal(atomLang)
 
   const t = useMemo(() => {
-    return locale.buildLocalesHandler(atomLangSnap.lang)
-  }, [atomLangSnap.lang])
+    return locale.buildLocalesHandler(lang)
+  }, [lang])
 
   useEffect(() => {
     const watchLang = locale.registerWatchLang((val) => {
-      atomLang.lang = val
+      setLang(val)
     })
 
     return () => {
@@ -145,14 +142,14 @@ function useLocale() {
   }, [])
 
   return {
-    lang: atomLangSnap.lang,
+    lang,
     t,
   }
 }
 
 const localeActions = {
   t: (path: MessageKeysType) => {
-    return locale.buildLocalesHandler(atomLang.lang)(path)
+    return locale.buildLocalesHandler(atomLang.get())(path)
   },
 }
 

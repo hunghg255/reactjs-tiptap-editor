@@ -1,16 +1,13 @@
-import { proxy, useSnapshot } from 'valtio'
+import { createSignal, useSignalValue } from 'reactjs-signal'
 
-const editableEditorProxy = proxy({
-  disable: false,
-})
+const editableEditorProxy = createSignal(false)
 
 export function useEditableEditor() {
-  const editableEditor = useSnapshot(editableEditorProxy)
-  return editableEditor.disable
+  return useSignalValue(editableEditorProxy)
 }
 
 export const editableEditorActions = {
   setDisable: (disable: boolean) => {
-    editableEditorProxy.disable = disable
+    editableEditorProxy.set(disable)
   },
 }

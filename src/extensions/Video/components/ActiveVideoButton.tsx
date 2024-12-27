@@ -77,7 +77,7 @@ function ActionVideoButton(props: any) {
   }
 
   return (
-    <Dialog open={dialogVideo.isOpen} onOpenChange={actionDialogVideo.setOpen}>
+    <Dialog open={dialogVideo} onOpenChange={actionDialogVideo.setOpen}>
       <DialogTrigger asChild>
         <ActionButton
           icon={props.icon}

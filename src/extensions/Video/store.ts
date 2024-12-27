@@ -1,17 +1,13 @@
-import { proxy, useSnapshot } from 'valtio'
+import { createSignal, useSignalValue } from 'reactjs-signal'
 
-const dialogVideo = proxy({
-  isOpen: false,
-})
+const dialogVideo = createSignal(false)
 
 export function useDialogVideo() {
-  const snap = useSnapshot(dialogVideo)
-
-  return snap
+  return useSignalValue(dialogVideo)
 }
 
 export const actionDialogVideo = {
   setOpen: (value: boolean) => {
-    dialogVideo.isOpen = value
+    dialogVideo.set(value)
   },
 }
