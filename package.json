@@ -31,6 +31,20 @@
     "./style.css": {
       "import": "./lib/style.css",
       "require": "./lib/style.css"
+    },
+    "./lib/*": "./lib/*",
+    "./package.json": "./package.json",
+    "./*": "./lib/*"
+  },
+  "typesVersions": {
+    "*": {
+      "bundle/full": [
+        "./lib/index.d.ts"
+      ],
+      "*": [
+        "./lib/*",
+        "./*"
+      ]
     }
   },
   "sideEffects": false,
