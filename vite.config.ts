@@ -59,6 +59,7 @@ export default defineConfig(({ mode }) => {
       lib: {
         entry: path.resolve(__dirname, 'src/index.ts'),
         formats: ['es', 'cjs'],
+        fileName: 'index',
       },
       rollupOptions: {
         output: {

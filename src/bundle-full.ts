@@ -10,5 +10,5 @@ export { locale, en, hu_HU, vi, zh_CN, pt_BR }
 
 export type { UseEditorStateReturn } from '@/hooks/useEditorState'
 export { useEditorState }
-export { BubbleMenu } from '@tiptap/react'
 export type { Editor, UseEditorOptions } from '@tiptap/react'
+export { BubbleMenu } from '@tiptap/react'

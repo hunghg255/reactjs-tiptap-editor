@@ -68,6 +68,14 @@ const App = () => {
 };
 ```
 
+## Import full bundle
+
+- There are error when install by yarn, you can import full bundle by using `bundle/full` path
+
+```tsx
+import RichTextEditor from 'reactjs-tiptap-editor/bundle/full'
+```
+
 ## Props
 
 ```ts

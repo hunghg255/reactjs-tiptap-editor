@@ -2,8 +2,8 @@
   "name": "reactjs-tiptap-editor",
   "type": "module",
   "version": "0.1.11",
-  "main": "./lib/reactjs-tiptap-editor.cjs",
-  "module": "./lib/reactjs-tiptap-editor.js",
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "description": "A modern WYSIWYG rich text editor based on tiptap and shadcn ui for React",
   "packageManager": "pnpm@9.15.0",
@@ -11,11 +11,21 @@
     ".": {
       "import": {
         "types": "./lib/index.d.ts",
-        "default": "./lib/reactjs-tiptap-editor.js"
+        "default": "./lib/index.js"
       },
       "require": {
         "types": "./lib/index.d.cts",
-        "default": "./lib/reactjs-tiptap-editor.cjs"
+        "default": "./lib/index.cjs"
+      }
+    },
+    "./bundle/full": {
+      "import": {
+        "types": "./lib/index.d.ts",
+        "default": "./lib/bundle-full.js"
+      },
+      "require": {
+        "types": "./lib/index.d.cts",
+        "default": "./lib/bundle-full.cjs"
       }
     },
     "./style.css": {
@@ -35,7 +45,7 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build:lib": "vite build && pnpm modify-css",
+    "build:lib": "esno ./scripts/build.ts && pnpm modify-css",
     "build:lib:dev": "vite build  --mode development --watch",
     "build:playground": "pnpm build:lib && pnpm --dir ./playground run build",
     "docs:dev": "pnpm --parallel --filter docs... dev",
