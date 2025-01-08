@@ -25,8 +25,8 @@ Bold.configure({
 ```jsx
 <RichTextEditor
   toolbar={{
-    render: (props, dom, domContent, containerDom) => {
-      return containerDom(domContent)
+    render: (props, toolbarItems, dom, containerDom) => {
+      return containerDom(dom)
     }
   }}
 />
@@ -50,6 +50,6 @@ export interface ToolbarRenderProps {
   disabled: boolean
 }
 export interface ToolbarProps {
-  render?: (props: ToolbarRenderProps, dom: ToolbarItemProps[], domContent: React.ReactNode, containerDom: (innerContent: React.ReactNode) => React.ReactNode) => React.ReactNode
+  render?: (props: ToolbarRenderProps, toolbarItems: ToolbarItemProps[], dom: JSX.Element[], containerDom: (innerContent: React.ReactNode) => React.ReactNode) => React.ReactNode
 }
 ```

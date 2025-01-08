@@ -235,7 +235,7 @@ export interface ToolbarRenderProps {
   disabled: boolean
 }
 export interface ToolbarProps {
-  render?: (props: ToolbarRenderProps, dom: ToolbarItemProps[], domContent: React.ReactNode, containerDom: (innerContent: React.ReactNode) => React.ReactNode) => React.ReactNode
+  render?: (props: ToolbarRenderProps, toolbarItems: ToolbarItemProps[], dom: JSX.Element[], containerDom: (innerContent: React.ReactNode) => React.ReactNode) => React.ReactNode
 }
 
 export interface NameValueOption<T = string> {

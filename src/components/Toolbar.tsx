@@ -15,7 +15,7 @@ export interface ToolbarComponentProps {
 function Toolbar({ editor, disabled, toolbar }: ToolbarComponentProps) {
   const { t, lang } = useLocale()
 
-  const items = useMemo(() => {
+  const toolbarItems = useMemo(() => {
     const extensions = [...editor.extensionManager.extensions]
     const sortExtensions = extensions.sort((arr, acc) => {
       const a = (arr.options).sort ?? -1
@@ -81,7 +81,7 @@ function Toolbar({ editor, disabled, toolbar }: ToolbarComponentProps) {
     )
   }
 
-  const domContent = items.map((item: ToolbarItemProps, key) => {
+  const dom = toolbarItems.map((item: ToolbarItemProps, key) => {
     const ButtonComponent = item.button.component
 
     return (
@@ -99,10 +99,10 @@ function Toolbar({ editor, disabled, toolbar }: ToolbarComponentProps) {
   })
 
   if (toolbar && toolbar?.render) {
-    return toolbar.render({ editor, disabled: disabled || false }, items, domContent, containerDom)
+    return toolbar.render({ editor, disabled: disabled || false }, toolbarItems, dom, containerDom)
   }
 
-  return containerDom(domContent)
+  return containerDom(dom)
 }
 
 export { Toolbar }
