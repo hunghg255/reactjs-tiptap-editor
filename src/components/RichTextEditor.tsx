@@ -6,7 +6,7 @@ import type { UseEditorOptions } from '@tiptap/react'
 import { EditorContent, useEditor } from '@tiptap/react'
 import { differenceBy, throttle } from 'lodash-es'
 
-import type { BubbleMenuProps } from '@/types'
+import type { BubbleMenuProps, ToolbarProps } from '@/types'
 import { BubbleMenu, Toolbar, TooltipProvider } from '@/components'
 import { EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME } from '@/constants'
 import { RESET_CSS } from '@/constants/resetCSS'
@@ -59,6 +59,8 @@ export interface RichTextEditorProps {
   onChangeContent?: (val: any) => void
   /** Bubble menu props */
   bubbleMenu?: BubbleMenuProps
+  /** Toolbar props */
+  toolbar?: ToolbarProps
 
   /** Use editor options */
   useEditorOptions?: UseEditorOptions
@@ -168,7 +170,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
         <div className="richtext-rounded-[0.5rem] richtext-bg-background richtext-shadow richtext-overflow-hidden richtext-outline richtext-outline-1">
 
           <div className="richtext-flex richtext-flex-col richtext-w-full richtext-max-h-full">
-            {!props?.hideToolbar && <Toolbar editor={editor} disabled={!!props?.disabled} />}
+            {!props?.hideToolbar && <Toolbar editor={editor} disabled={!!props?.disabled} toolbar={props.toolbar} />}
 
             <EditorContent className={`richtext-relative ${props?.contentClass || ''}`} editor={editor} />
 
