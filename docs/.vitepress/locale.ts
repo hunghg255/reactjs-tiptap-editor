@@ -62,6 +62,10 @@ export function getLocaleConfig(lang: string) {
           link: `${urlPrefix}/guide/getting-started`,
         },
         {
+          text: t('Toolbar'),
+          link: `${urlPrefix}/guide/toolbar`,
+        },
+        {
           text: t('Bubble Menu'),
           link: `${urlPrefix}/guide/bubble-menu`,
         },

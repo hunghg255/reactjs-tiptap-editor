@@ -2,8 +2,8 @@
 description: How to install reactjs-tiptap-editor
 
 next:
-  text: Bubble Menu
-  link: /guide/bubble-menu.md
+  text: Toolbar
+  link: /guide/toolbar.md
 ---
 
 # Installation

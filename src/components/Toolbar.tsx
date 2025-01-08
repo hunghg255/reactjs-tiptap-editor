@@ -1,29 +1,21 @@
-/* eslint-disable react/no-duplicate-key */
 import React, { useMemo } from 'react'
 import type { Editor } from '@tiptap/core'
+import type { ToolbarItemProps, ToolbarProps } from '@/types'
 
 import { Separator } from '@/components'
 import { useLocale } from '@/locales'
 import { isFunction } from '@/utils/utils'
 
-export interface ToolbarProps {
+export interface ToolbarComponentProps {
   editor: Editor
   disabled?: boolean
+  toolbar?: ToolbarProps
 }
 
-interface ToolbarItemProps {
-  button: {
-    component: React.ComponentType<any>
-    componentProps: Record<string, any>
-  }
-  divider: boolean
-  spacer: boolean
-}
-
-function Toolbar({ editor, disabled }: ToolbarProps) {
+function Toolbar({ editor, disabled, toolbar }: ToolbarComponentProps) {
   const { t, lang } = useLocale()
 
-  const items = useMemo(() => {
+  const toolbarItems = useMemo(() => {
     const extensions = [...editor.extensionManager.extensions]
     const sortExtensions = extensions.sort((arr, acc) => {
       const a = (arr.options).sort ?? -1
@@ -34,7 +26,12 @@ function Toolbar({ editor, disabled }: ToolbarProps) {
     let menus: ToolbarItemProps[] = []
 
     for (const extension of sortExtensions) {
-      const { button, divider = false, spacer = false, toolbar = true } = extension.options as any
+      const {
+        button,
+        divider = false,
+        spacer = false,
+        toolbar = true,
+      } = extension.options
       if (!button || !isFunction(button) || !toolbar) {
         continue
       }
@@ -50,44 +47,62 @@ function Toolbar({ editor, disabled }: ToolbarProps) {
           button: k,
           divider: i === _button.length - 1 ? divider : false,
           spacer: i === 0 ? spacer : false,
+          type: extension.type,
+          name: extension.name,
         }))
         menus = [...menus, ...menu]
         continue
       }
 
-      menus.push({ button: _button, divider, spacer })
+      menus.push({
+        button: _button,
+        divider,
+        spacer,
+        type: extension.type,
+        name: extension.name,
+      })
     }
     return menus
   }, [editor, t, lang])
 
-  return (
-    <div
-      className="richtext-px-1 richtext-py-2 !richtext-border-b"
-      style={{
-        pointerEvents: disabled ? 'none' : 'auto',
-        opacity: disabled ? 0.5 : 1,
-      }}
-    >
-      <div className="richtext-relative richtext-flex richtext-flex-wrap richtext-h-auto richtext-gap-y-1 richtext-gap-x-1">
-        {items.map((item: ToolbarItemProps, key) => {
-          const ButtonComponent = item.button.component
-
-          return (
-            <div className="richtext-flex richtext-items-center" key={`toolbar-item-${key}`}>
-              {item?.spacer && <Separator orientation="vertical" className="!richtext-h-[16px] !richtext-mx-[10px]" />}
-
-              <ButtonComponent
-                {...item.button.componentProps}
-                disabled={disabled || item?.button?.componentProps?.disabled}
-              />
-
-              {item?.divider && <Separator orientation="vertical" className="!richtext-h-auto !richtext-mx-2" />}
-            </div>
-          )
-        })}
+  const containerDom = (innerContent: React.ReactNode) => {
+    return (
+      <div
+        className="richtext-px-1 richtext-py-2 !richtext-border-b"
+        style={{
+          pointerEvents: disabled ? 'none' : 'auto',
+          opacity: disabled ? 0.5 : 1,
+        }}
+      >
+        <div className="richtext-relative richtext-flex richtext-flex-wrap richtext-h-auto richtext-gap-y-1 richtext-gap-x-1">
+          {innerContent}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
+
+  const dom = toolbarItems.map((item: ToolbarItemProps, key) => {
+    const ButtonComponent = item.button.component
+
+    return (
+      <div className="richtext-flex richtext-items-center" key={`toolbar-item-${key}`}>
+        {item?.spacer && <Separator orientation="vertical" className="!richtext-h-[16px] !richtext-mx-[10px]" />}
+
+        <ButtonComponent
+          {...item.button.componentProps}
+          disabled={disabled || item?.button?.componentProps?.disabled}
+        />
+
+        {item?.divider && <Separator orientation="vertical" className="!richtext-h-auto !richtext-mx-2" />}
+      </div>
+    )
+  })
+
+  if (toolbar && toolbar?.render) {
+    return toolbar.render({ editor, disabled: disabled || false }, toolbarItems, dom, containerDom)
+  }
+
+  return containerDom(dom)
 }
 
 export { Toolbar }

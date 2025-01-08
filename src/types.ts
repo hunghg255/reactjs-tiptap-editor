@@ -216,6 +216,28 @@ export interface BubbleMenuProps {
   render?: (props: BubbleMenuRenderProps, dom: React.ReactNode) => React.ReactNode
 }
 
+/**
+ * Represents the ToolbarItemProps.
+ */
+export interface ToolbarItemProps {
+  button: {
+    component: React.ComponentType<any>
+    componentProps: Record<string, any>
+  }
+  divider: boolean
+  spacer: boolean
+  type: string
+  name: string
+}
+
+export interface ToolbarRenderProps {
+  editor: Editor
+  disabled: boolean
+}
+export interface ToolbarProps {
+  render?: (props: ToolbarRenderProps, toolbarItems: ToolbarItemProps[], dom: JSX.Element[], containerDom: (innerContent: React.ReactNode) => React.ReactNode) => React.ReactNode
+}
+
 export interface NameValueOption<T = string> {
   name: string
   value: T
