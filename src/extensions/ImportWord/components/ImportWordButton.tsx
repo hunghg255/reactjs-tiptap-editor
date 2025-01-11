@@ -1,5 +1,10 @@
-import React, { useRef, useState } from 'react'
-import { ActionButton } from '@/components'
+import type { Editor } from '@tiptap/core'
+
+import { useRef, useState } from 'react'
+import mammoth from 'mammoth'
+
+import { useLocale } from '@/locales'
+import { ActionButton, useToast } from '@/components'
 import { hasExtension } from '@/utils/utils'
 
 function base64ToBlob(base64: any, mimeType: any) {
@@ -16,21 +21,41 @@ function blobToFile(blob: any, fileName: any) {
   return new File([blob], fileName, { type: blob.type })
 }
 
-function ImportWordButton(props: any) {
+interface ImportWordButtonProps {
+  editor: Editor
+  disabled?: boolean
+  icon?: string
+  tooltip?: string
+  shortcutKeys?: string[]
+  action?: () => boolean
+  convert?: (file: File) => Promise<string>
+  limit?: number
+  mammothOptions?: any
+}
+
+function ImportWordButton(props: ImportWordButtonProps) {
+  const { toast } = useToast()
+  const { t } = useLocale()
   const [loading, setLoading] = useState(false)
-  const [file, setFile] = useState<any>()
-  const fileInput: any = useRef()
+  const fileInput = useRef<HTMLInputElement>(null)
 
   function triggerFileInput() {
-    fileInput.current.click()
+    fileInput.current?.click()
   }
 
   function handleFileChange(event: any) {
-    const f = event.target.files[0]
-    setFile(f)
-    if (f) {
-      importWord()
+    const file = event.target.files[0]
+    if (!file) {
+      return
     }
+    if (file.size > props.limit!) {
+      toast({
+        variant: 'destructive',
+        title: t('editor.importWord.limitSize'),
+      })
+      return
+    }
+    importWord(file)
   }
 
   async function filerImage(html: string) {
@@ -43,7 +68,7 @@ function ImportWordButton(props: any) {
     const hasImage = hasExtension(props.editor, 'image')
     if (hasImage) {
       const uploadOptions = props.editor.extensionManager.extensions.find(
-        (extension: any) => extension.name === 'importWord',
+        extension => extension.name === 'importWord',
       )?.options
       if (uploadOptions && typeof uploadOptions.upload === 'function') {
         const files: File[] = []
@@ -80,47 +105,30 @@ function ImportWordButton(props: any) {
     }
   }
 
-  async function importWord() {
-    if (props.convert) {
-      const result = await props.convert(file)
-      handleResult(result)
+  async function importWord(importFile: File) {
+    setLoading(true)
+    try {
+      if (props.convert) {
+        const result = await props.convert(importFile)
+        handleResult(result)
+      }
+      else {
+        const arrayBuffer = await importFile.arrayBuffer()
+        // TODO: add messages
+        const { value } = await mammoth.convertToHtml(
+          { arrayBuffer },
+          props?.mammothOptions,
+        )
+        handleResult(value)
+      }
     }
-    else {
-      const formData = new FormData()
-      const config = JSON.stringify({
-        collaboration_features: {
-          comments: true,
-          user_id: 'e3',
-          track_changes: true,
-        },
-        formatting: {
-          resets: 'none',
-          defaults: 'inline',
-          styles: 'inline',
-          comments: 'basic',
-        },
-      })
-      formData.append('config', config)
-      formData.append('file', file)
-      setLoading(true)
-      fetch('https://docx-converter.cke-cs.com/v2/convert/docx-html', {
-        method: 'POST',
-        body: formData,
-      })
-        .then(response => response.json())
-        .then(async (data) => {
-          handleResult(data.html)
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-          setLoading(false)
-        })
+    finally {
+      setLoading(false)
     }
   }
   async function handleResult(htmlResult: string) {
     const html = await filerImage(htmlResult)
     props.editor.chain().setContent(html, true).run()
-    setLoading(false)
   }
 
   return (

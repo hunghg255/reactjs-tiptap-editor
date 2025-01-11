@@ -8,6 +8,7 @@ import { differenceBy, throttle } from 'lodash-es'
 
 import type { BubbleMenuProps, ToolbarProps } from '@/types'
 import { BubbleMenu, Toolbar, TooltipProvider } from '@/components'
+import { Toaster } from '@/components/ui/toaster'
 import { EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME } from '@/constants'
 import { RESET_CSS } from '@/constants/resetCSS'
 import { themeActions } from '@/theme/theme'
@@ -180,6 +181,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
           </div>
         </div>
       </TooltipProvider>
+      <Toaster />
     </div>
   )
 }

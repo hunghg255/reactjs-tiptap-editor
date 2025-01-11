@@ -12,6 +12,22 @@ next:
 
 ## Usage
 
+::: code-group
+
+```sh [npm]
+npm install mammoth
+```
+
+```sh [pnpm]
+pnpm install mammoth
+```
+
+```sh [yarn]
+yarn add mammoth
+```
+
+:::
+
 ```tsx
 import { ImportWord } from 'reactjs-tiptap-editor'; // [!code ++]
 
