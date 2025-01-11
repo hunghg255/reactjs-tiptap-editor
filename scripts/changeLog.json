@@ -1,9 +1,62 @@
 [
   {
+    "hash": "7f7340085a8c7bafe7445d844be01878836de5d2",
+    "date": "Sat Jan 11 22:24:58 2025 +0700",
+    "message": "chore: release v0.1.14",
+    "refs": "HEAD -> main, tag: v0.1.14, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.14"
+  },
+  {
+    "hash": "761ac3675c043673ed8ff933b61f0e80e65ede4b",
+    "date": "Thu Jan 9 22:15:17 2025 +0800",
+    "message": "fix: import Word file by mammoth",
+    "refs": "",
+    "author_name": "Condor Hero",
+    "author_email": "love2xinwei@gmail.com",
+    "functions": [
+      "index.md",
+      "ImportWord",
+      "ImportWordButton"
+    ]
+  },
+  {
+    "hash": "ea806f6616d1052ad437560d8131b077a33b37ac",
+    "date": "Sat Jan 4 17:34:54 2025 +0700",
+    "message": "chore: release v0.1.13",
+    "refs": "tag: v0.1.13",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.13"
+  },
+  {
+    "hash": "48b68408ca7132b964f411a75d39858dcbedfc07",
+    "date": "Sat Jan 4 16:53:37 2025 +0700",
+    "message": "chore: release v0.1.12",
+    "refs": "tag: v0.1.12",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.12"
+  },
+  {
+    "hash": "c8ea494018660f151df95c7144c785c36c3c9fa5",
+    "date": "Thu Dec 19 14:06:43 2024 +0700",
+    "message": "chore: release v0.1.11",
+    "refs": "tag: v0.1.11",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.11"
+  },
+  {
     "hash": "3b395b8c20d8e4e9f27cd1a10bb9f615a9c4fbb3",
     "date": "Thu Dec 12 07:07:40 2024 +0700",
     "message": "chore: release v0.1.10",
-    "refs": "HEAD -> main, tag: v0.1.10, origin/main",
+    "refs": "tag: v0.1.10",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
