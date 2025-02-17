@@ -15,7 +15,7 @@ The Font Family extension allows you to change the font family of your editor.
 ## Usage
 
 ```tsx
-import { FontFamily } from 'reactjs-tiptap-editor'; // [!code ++]
+import { FontFamily } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

@@ -15,7 +15,7 @@ The Color extension allows you to add color to your editor.
 ## Usage
 
 ```tsx
-import { Color } from 'reactjs-tiptap-editor'; // [!code ++]
+import { Color } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

@@ -15,7 +15,7 @@ next:
 ## Usage
 
 ```tsx
-import { MoreMark } from 'reactjs-tiptap-editor'; // [!code ++]
+import { MoreMark } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

@@ -8,6 +8,6 @@ export function useTheme() {
 
 export const themeActions = {
   setTheme: (theme: string) => {
-    themeProxy.set(theme)
+    themeProxy(theme)
   },
 }

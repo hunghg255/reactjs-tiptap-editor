@@ -8,6 +8,6 @@ export function useDialogVideo() {
 
 export const actionDialogVideo = {
   setOpen: (value: boolean) => {
-    dialogVideo.set(value)
+    dialogVideo(value)
   },
 }

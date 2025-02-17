@@ -15,7 +15,7 @@ Mermaid is a node extension that allows you to add an Mermaid to your editor.
 ## Usage
 
 ```tsx
-import { Mermaid } from 'reactjs-tiptap-editor'; // [!code ++]
+import { Mermaid } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

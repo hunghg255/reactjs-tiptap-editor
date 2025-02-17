@@ -13,7 +13,7 @@ The Subscript extension allows you to subscript text in your editor.
 ## Usage
 
 ```tsx
-import { Subscript } from 'reactjs-tiptap-editor'; // [!code ++]
+import { Subscript } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

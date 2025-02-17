@@ -14,7 +14,7 @@ The editor provides built-in internationalization support, with English as the d
 
 ```javascript
 // Import the locale object
-import { locale } from 'reactjs-tiptap-editor';
+import { locale } from 'reactjs-tiptap-editor/locale-bundle';
 // Set the language to English
 locale.setLang('en');
 // End
@@ -49,7 +49,7 @@ locale.setMessage('fr', {
 To override part of the current language system, first choose a new language name, then import the default language data, and finally override the translations you want.
 
 ```javascript
-import { en } from 'reactjs-tiptap-editor';
+import { en } from 'reactjs-tiptap-editor/locale-bundle';
 locale.setMessage('en_US', {
   ...en,
   'editor.remove': 'Delete',

@@ -13,7 +13,7 @@ The Iframe extension allows you to add an Iframe to your editor.
 ## Usage
 
 ```tsx
-import { Iframe } from 'reactjs-tiptap-editor'; // [!code ++]
+import { Iframe } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

@@ -8,6 +8,6 @@ export function useDialogImage() {
 
 export const actionDialogImage = {
   setOpen: (value: boolean) => {
-    dialogImage.set(value)
+    dialogImage(value)
   },
 }

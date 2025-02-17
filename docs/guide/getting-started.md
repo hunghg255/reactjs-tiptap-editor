@@ -27,7 +27,8 @@ yarn add reactjs-tiptap-editor
 ## Usage
 
 ```tsx
-import RichTextEditor, { BaseKit } from 'reactjs-tiptap-editor';
+import RichTextEditor from 'reactjs-tiptap-editor';
+import { BaseKit } from 'reactjs-tiptap-editor/extension-bundle';
 
 // Import CSS
 import 'reactjs-tiptap-editor/style.css';
@@ -66,14 +67,6 @@ const App = () => {
     />
   );
 };
-```
-
-## Import full bundle
-
-- There are error when install by yarn, you can import full bundle by using `bundle/full` path
-
-```tsx
-import RichTextEditor from 'reactjs-tiptap-editor/bundle/full'
 ```
 
 ## Props

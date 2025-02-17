@@ -57,9 +57,17 @@ export default defineConfig(({ mode }) => {
       outDir: 'lib',
       sourcemap: isDev,
       lib: {
-        entry: path.resolve(__dirname, 'src/index.ts'),
+        entry: [
+          path.resolve(__dirname, 'src/index.ts'),
+          path.resolve(__dirname, 'src/extension-bundle.ts'),
+          path.resolve(__dirname, 'src/locale-bundle.ts')
+        ],
         formats: ['es', 'cjs'],
-        fileName: 'index',
+        fileName: (format, entryName) => {
+          if (format === 'es') return `${entryName}.js`;
+
+          return `${entryName}.cjs`;
+        },
       },
       rollupOptions: {
         output: {
@@ -69,12 +77,6 @@ export default defineConfig(({ mode }) => {
             }
             if (id.includes('node_modules')) {
               return 'vendor'
-            }
-            if (id.includes('src/utils')) {
-              return 'utils'
-            }
-            if (id.includes('src/locales')) {
-              return 'locales'
             }
           },
         },

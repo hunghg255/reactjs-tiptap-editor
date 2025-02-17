@@ -15,7 +15,7 @@ next:
 ## Usage
 
 ```tsx
-import { CodeBlock } from 'reactjs-tiptap-editor'; // [!code ++]
+import { CodeBlock } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

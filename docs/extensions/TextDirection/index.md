@@ -13,7 +13,7 @@ The Text Direction extension allows you to change the text direction of your edi
 ## Usage
 
 ```tsx
-import { TextDirection } from 'reactjs-tiptap-editor'; // [!code ++]
+import { TextDirection } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,
@@ -25,7 +25,7 @@ const extensions = [
 ## Configuration
 
 ```tsx
-import { TextDirection } from 'reactjs-tiptap-editor'; // [!code ++]
+import { TextDirection } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

@@ -15,7 +15,7 @@ next:
 ## Usage
 
 ```tsx
-import { TextAlign } from 'reactjs-tiptap-editor'; // [!code ++]
+import { TextAlign } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

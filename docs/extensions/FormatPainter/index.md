@@ -13,7 +13,7 @@ The Format Painter extension allows you to copy the format of a text and apply i
 ## Usage
 
 ```tsx
-import { FormatPainter } from 'reactjs-tiptap-editor'; // [!code ++]
+import { FormatPainter } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

@@ -15,7 +15,7 @@ The History extension allows you to undo and redo changes in your editor.
 ## Usage
 
 ```tsx
-import { History } from 'reactjs-tiptap-editor'; // [!code ++]
+import { History } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

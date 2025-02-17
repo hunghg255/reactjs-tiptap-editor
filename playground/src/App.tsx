@@ -1,6 +1,10 @@
 import { useCallback, useState } from 'react'
 
-import RichTextEditor, {
+import RichTextEditor from 'reactjs-tiptap-editor'
+
+import { locale } from 'reactjs-tiptap-editor/locale-bundle'
+
+import {
   Attachment,
   BaseKit,
   Blockquote,
@@ -46,8 +50,7 @@ import RichTextEditor, {
   Twitter,
   Underline,
   Video,
-  locale,
-} from 'reactjs-tiptap-editor'
+} from 'reactjs-tiptap-editor/extension-bundle'
 
 import 'reactjs-tiptap-editor/style.css'
 import 'katex/dist/katex.min.css'

@@ -13,7 +13,7 @@ next:
 ## Usage
 
 ```tsx
-import { TrailingNode } from 'reactjs-tiptap-editor'; // [!code ++]
+import { TrailingNode } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

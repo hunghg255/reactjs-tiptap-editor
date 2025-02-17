@@ -13,7 +13,7 @@ next:
 ## Usage
 
 ```tsx
-import { SearchAndReplace } from 'reactjs-tiptap-editor'; // [!code ++]
+import { SearchAndReplace } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

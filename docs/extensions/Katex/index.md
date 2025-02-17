@@ -18,7 +18,7 @@ next:
 ```tsx
 
 import 'katex/dist/katex.min.css'; // [!code ++]
-import { Katex } from 'reactjs-tiptap-editor'; // [!code ++]
+import { Katex } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

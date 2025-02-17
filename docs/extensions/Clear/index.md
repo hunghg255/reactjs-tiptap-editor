@@ -13,7 +13,7 @@ The Clear extension allows you to clear the editor content.
 ## Usage
 
 ```tsx
-import { Clear } from 'reactjs-tiptap-editor'; // [!code ++]
+import { Clear } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

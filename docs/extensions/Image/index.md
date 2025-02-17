@@ -13,7 +13,7 @@ next:
 ## Usage
 
 ```tsx
-import { Image } from 'reactjs-tiptap-editor'; // [!code ++]
+import { Image } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

@@ -8,6 +8,6 @@ export function useEditableEditor() {
 
 export const editableEditorActions = {
   setDisable: (disable: boolean) => {
-    editableEditorProxy.set(disable)
+    editableEditorProxy(disable)
   },
 }

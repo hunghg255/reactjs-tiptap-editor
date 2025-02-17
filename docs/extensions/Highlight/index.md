@@ -15,7 +15,7 @@ The Highlight extension allows you to highlight text in your editor.
 ## Usage
 
 ```tsx
-import { Highlight } from 'reactjs-tiptap-editor'; // [!code ++]
+import { Highlight } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

@@ -149,7 +149,7 @@ function useLocale() {
 
 const localeActions = {
   t: (path: MessageKeysType) => {
-    return locale.buildLocalesHandler(atomLang.get())(path)
+    return locale.buildLocalesHandler(atomLang())(path)
   },
 }
 

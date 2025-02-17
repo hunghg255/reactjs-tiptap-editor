@@ -13,7 +13,7 @@ The Video extension allows you to add a video to your editor.
 ## Usage
 
 ```tsx
-import { Video } from 'reactjs-tiptap-editor'; // [!code ++]
+import { Video } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

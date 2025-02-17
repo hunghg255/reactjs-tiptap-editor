@@ -15,7 +15,7 @@ next:
 ## Usage
 
 ```tsx
-import { UnderLine } from 'reactjs-tiptap-editor'; // [!code ++]
+import { UnderLine } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,

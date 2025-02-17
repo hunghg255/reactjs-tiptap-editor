@@ -16,7 +16,8 @@ Add extensions to enhance editor functionality:
 
 ```tsx
 import React from 'react'
-import RichTextEditor, { BaseKit, Bold, BulletList, Heading, Italic } from 'reactjs-tiptap-editor'
+import RichTextEditor from 'reactjs-tiptap-editor'
+import { BaseKit, Bold, BulletList, Heading, Italic } from 'reactjs-tiptap-editor/extension-bundle'
 import 'reactjs-tiptap-editor/style.css'
 
 const extensions = [BaseKit, Heading, Italic, Bold, BulletList]
@@ -83,7 +84,8 @@ Example with editor options:
 
 ```tsx
 import React from 'react'
-import RichTextEditor, { BaseKit, type UseEditorOptions } from 'reactjs-tiptap-editor'
+import RichTextEditor, { type UseEditorOptions } from 'reactjs-tiptap-editor'
+import { BaseKit } from 'reactjs-tiptap-editor/extension-bundle'
 import 'reactjs-tiptap-editor/style.css'
 
 const extensions = [BaseKit]
@@ -118,7 +120,8 @@ Direct access to the editor instance using `useRef` or `useEditorState`
 
 ```tsx
 import React, { useRef } from 'react'
-import RichTextEditor, { BaseKit, type Editor } from 'reactjs-tiptap-editor'
+import RichTextEditor, { type Editor } from 'reactjs-tiptap-editor'
+import { BaseKit } from 'reactjs-tiptap-editor/extension-bundle'
 import 'reactjs-tiptap-editor/style.css'
 
 const extensions = [BaseKit]
@@ -152,7 +155,8 @@ export default function App() {
 #### Using useEditorState:
 
 ```tsx
-import RichTextEditor, { BaseKit, useEditorState } from 'reactjs-tiptap-editor'
+import RichTextEditor, { useEditorState } from 'reactjs-tiptap-editor'
+import { BaseKit } from 'reactjs-tiptap-editor/extension-bundle'
 import 'reactjs-tiptap-editor/style.css'
 
 const extensions = [BaseKit]
@@ -188,7 +192,8 @@ export default function App() {
 ### Example: Custom Bubble Menu with Selection Text
 
 ```tsx
-import RichTextEditor, { BaseKit, BubbleMenu, useEditorState } from 'reactjs-tiptap-editor'
+import RichTextEditor, { BubbleMenu, useEditorState } from 'reactjs-tiptap-editor'
+import { BaseKit } from 'reactjs-tiptap-editor/extension-bundle'
 import type { Editor } from 'reactjs-tiptap-editor'
 import 'reactjs-tiptap-editor/style.css'
 
