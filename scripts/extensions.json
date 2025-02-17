@@ -28,17 +28,17 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
-    ]
-  },
-  {
     "name": "Clear.ts",
     "package": "Clear",
     "alias": [
       "Clear"
+    ]
+  },
+  {
+    "name": "BulletList.ts",
+    "package": "BulletList",
+    "alias": [
+      "BulletList"
     ]
   },
   {
@@ -175,6 +175,13 @@
     ]
   },
   {
+    "name": "ImageGif.ts",
+    "package": "ImageGif",
+    "alias": [
+      "ImageGif"
+    ]
+  },
+  {
     "name": "Image.ts",
     "package": "Image",
     "alias": [
@@ -186,13 +193,6 @@
     "package": "Image",
     "alias": [
       "store"
-    ]
-  },
-  {
-    "name": "ImageGif.ts",
-    "package": "ImageGif",
-    "alias": [
-      "ImageGif"
     ]
   },
   {
@@ -301,13 +301,6 @@
     ]
   },
   {
-    "name": "Strike.ts",
-    "package": "Strike",
-    "alias": [
-      "Strike"
-    ]
-  },
-  {
     "name": "SlashCommand.ts",
     "package": "SlashCommand",
     "alias": [
@@ -326,6 +319,13 @@
     "package": "SlashCommand",
     "alias": [
       "types"
+    ]
+  },
+  {
+    "name": "Strike.ts",
+    "package": "Strike",
+    "alias": [
+      "Strike"
     ]
   },
   {
@@ -350,17 +350,17 @@
     ]
   },
   {
-    "name": "TaskList.ts",
-    "package": "TaskList",
-    "alias": [
-      "TaskList"
-    ]
-  },
-  {
     "name": "TableOfContent.ts",
     "package": "TableOfContent",
     "alias": [
       "TableOfContent"
+    ]
+  },
+  {
+    "name": "TaskList.ts",
+    "package": "TaskList",
+    "alias": [
+      "TaskList"
     ]
   },
   {

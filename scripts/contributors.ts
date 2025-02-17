@@ -1,4 +1,6 @@
-import contributors from './contributors.json'
+import cache from '../screenshot/.cache.json';
+
+const users = cache.map((item) => item.login);
 
 export interface Contributor {
   name: string
@@ -22,7 +24,7 @@ function getAvatarUrl(name: string) {
   return `https://avatars.githubusercontent.com/${name}?v=4`
 }
 
-const contributorList = (contributors as string[]).reduce((acc, name) => {
+const contributorList = (users as string[]).reduce((acc, name) => {
   contributorsAvatars[name] = getAvatarUrl(name)
   acc.push({ name, avatar: contributorsAvatars[name] })
   return acc

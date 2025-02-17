@@ -1,9 +1,19 @@
 [
   {
+    "hash": "9bd2d8ac7c8ad0d9197be2e263e5933f5bdea0fa",
+    "date": "Mon Feb 17 22:43:39 2025 +0700",
+    "message": "chore: release v0.1.15",
+    "refs": "HEAD -> main, tag: v0.1.15, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.15"
+  },
+  {
     "hash": "7f7340085a8c7bafe7445d844be01878836de5d2",
     "date": "Sat Jan 11 22:24:58 2025 +0700",
     "message": "chore: release v0.1.14",
-    "refs": "HEAD -> main, tag: v0.1.14, origin/main",
+    "refs": "tag: v0.1.14",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1536,36 +1546,5 @@
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
     "version": "v0.0.6"
-  },
-  {
-    "hash": "bad12f85368d099d976a6b5c3e205a8accbe12ea",
-    "date": "Wed Aug 14 18:04:43 2024 +0800",
-    "message": "fix: resolve nested button DOM warning",
-    "refs": "",
-    "author_name": "Condor Hero",
-    "author_email": "love2xinwei@gmail.com",
-    "functions": [
-      "FontFamilyButton",
-      "FontSizeMenuButton",
-      "HeadingButton",
-      "HistoryActionButton",
-      "LineHeightDropdown",
-      "LinkEditPopover",
-      "ActionMoreButton",
-      "CreateTablePopover",
-      "TableActionButton",
-      "TextAlignMenuButton",
-      "TextDropdown"
-    ]
-  },
-  {
-    "hash": "4e934c32e2548449f87dc630df361556ff51bf50",
-    "date": "Wed Aug 14 12:46:37 2024 +0700",
-    "message": "chore: release v0.0.5",
-    "refs": "tag: v0.0.5",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.5"
   }
 ]

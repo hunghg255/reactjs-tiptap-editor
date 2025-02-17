@@ -295,7 +295,10 @@ export function getLocaleConfig(lang: string) {
     logo: '/logo.png',
     nav,
     sidebar,
-    socialLinks: [{ icon: 'github', link: githubLink }],
+    socialLinks: [
+      { icon: 'github', link: githubLink },
+      { icon: 'npm', link: 'https://www.npmjs.com/package/reactjs-tiptap-editor' },
+    ],
     footer: {
       message: t('Made with ❤️'),
       copyright: 'MIT License © 2024-PRESENT <a href="https://github.com/hunghg255">hunghg255</a>',
