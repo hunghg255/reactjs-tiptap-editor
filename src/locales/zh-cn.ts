@@ -78,7 +78,7 @@ const locale = {
   'editor.image.dialog.title': '添加图片',
   'editor.image.dialog.tab.url': '链接',
   'editor.image.dialog.tab.upload': '上传',
-  'editor.link.dialog.inline': 'Inline',
+  'editor.link.dialog.inline': '行内嵌入图片',
   'editor.image.dialog.uploading': '上传中',
   'editor.image.dialog.form.link': '链接',
   'editor.image.dialog.placeholder': '链接',
