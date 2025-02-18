@@ -51,6 +51,7 @@ function ActionImageButton(props: any) {
     props.editor.chain().focus().setImageInline({ src: link, inline: imageInline }).run()
     actionDialogImage.setOpen(false)
     setImageInline(false)
+    setLink('')
   }
 
   function handleClick(e: any) {
