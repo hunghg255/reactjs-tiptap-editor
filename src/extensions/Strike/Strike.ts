@@ -17,7 +17,7 @@ export const Strike = TiptapStrike.extend<StrikeOptions>({
           isActive: () => editor.isActive('strike') || false,
           disabled: !editor.can().toggleStrike(),
           icon: 'Strikethrough',
-          shortcutKeys: ['shift', 'mod', 'X'],
+          shortcutKeys: ['shift', 'mod', 'S'],
           tooltip: t('editor.strike.tooltip'),
         },
       }),
