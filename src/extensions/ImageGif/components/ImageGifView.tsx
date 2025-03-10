@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { NodeViewWrapper } from '@tiptap/react';
 import { clamp, isNumber, throttle } from 'lodash-es';
-import { flushSync } from 'react-dom';
 
 import { IMAGE_MAX_SIZE, IMAGE_MIN_SIZE, IMAGE_THROTTLE_WAIT_TIME } from '@/constants';
 
@@ -125,16 +124,14 @@ function ImageGifView(props: any) {
       width = width > maxWidth ? maxWidth : width;
     }
 
-    flushSync(() => {
-      setResizing(true);
+    setResizing(true);
 
-      setResizerState({
-        x: e.clientX,
-        y: e.clientY,
-        w: width,
-        h: height,
-        dir,
-      });
+    setResizerState({
+      x: e.clientX,
+      y: e.clientY,
+      w: width,
+      h: height,
+      dir,
     });
   }
 
@@ -171,16 +168,14 @@ function ImageGifView(props: any) {
         return;
       }
 
-      flushSync(() => {
-        setResizerState({
-          x: 0,
-          y: 0,
-          w: 0,
-          h: 0,
-          dir: '',
-        });
-        setResizing(false);
+      setResizerState({
+        x: 0,
+        y: 0,
+        w: 0,
+        h: 0,
+        dir: '',
       });
+      setResizing(false);
 
       selectImage();
     },

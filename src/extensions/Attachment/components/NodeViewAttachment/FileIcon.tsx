@@ -1,13 +1,14 @@
 import { LucideAudioLines, LucideFile, LucideImage, LucideSheet, LucideTableProperties, LucideVideo } from 'lucide-react';
-import ReactDOMServer from 'react-dom/server';
+// import ReactDOMServer from 'react-dom/server';
 
 import { ExportPdf } from '@/components/icons/ExportPdf';
 import ExportWord from '@/components/icons/ExportWord';
+import { FileIconString } from '@/extensions/Attachment/components/NodeViewAttachment/FileIconString';
 import { normalizeFileType } from '@/utils/file';
 
-function iconToProseMirror(icon: any) {
+function iconToProseMirror(typeIcon: any) {
   // Render SVG as a static string
-  const svgString = ReactDOMServer.renderToStaticMarkup(icon);
+  const svgString = FileIconString[typeIcon];
 
   // Parse the string into ProseMirror-compatible structure
   const parser = new DOMParser();
@@ -64,5 +65,5 @@ export function getFileTypeIcon(fileType: string, forProseMirror = false) {
   const icon = icons[type] || <></>;
 
   // Return ProseMirror-compatible structure or React component
-  return forProseMirror ? iconToProseMirror(icon) : icon;
+  return forProseMirror ? iconToProseMirror(type) : icon;
 }
