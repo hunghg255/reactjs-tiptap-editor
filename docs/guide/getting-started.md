@@ -6,23 +6,43 @@ next:
   link: /guide/toolbar.md
 ---
 
-# Installation
+# Installation React 19
 
 ::: code-group
 
 ```sh [npm]
-npm install reactjs-tiptap-editor
+npm install reactjs-tiptap-editor@latest
 ```
 
 ```sh [pnpm]
-pnpm install reactjs-tiptap-editor
+pnpm install reactjs-tiptap-editor@latest
 ```
 
 ```sh [yarn]
-yarn add reactjs-tiptap-editor
+yarn add reactjs-tiptap-editor@latest
 ```
 
 :::
+
+## Install React version less than 18.0.0
+
+::: code-group
+
+```sh [npm]
+npm install reactjs-tiptap-editor@0.1.16
+```
+```
+
+```sh [pnpm]
+pnpm install reactjs-tiptap-editor@0.1.16
+```
+
+```sh [yarn]
+yarn add reactjs-tiptap-editor@0.1.16
+```
+
+:::
+
 
 ## Usage
 

@@ -28,17 +28,17 @@
     ]
   },
   {
-    "name": "Clear.ts",
-    "package": "Clear",
-    "alias": [
-      "Clear"
-    ]
-  },
-  {
     "name": "BulletList.ts",
     "package": "BulletList",
     "alias": [
       "BulletList"
+    ]
+  },
+  {
+    "name": "Clear.ts",
+    "package": "Clear",
+    "alias": [
+      "Clear"
     ]
   },
   {
@@ -84,17 +84,17 @@
     ]
   },
   {
-    "name": "Emoji.ts",
-    "package": "Emoji",
-    "alias": [
-      "Emoji"
-    ]
-  },
-  {
     "name": "Excalidraw.ts",
     "package": "Excalidraw",
     "alias": [
       "Excalidraw"
+    ]
+  },
+  {
+    "name": "Emoji.ts",
+    "package": "Emoji",
+    "alias": [
+      "Emoji"
     ]
   },
   {
@@ -175,13 +175,6 @@
     ]
   },
   {
-    "name": "ImageGif.ts",
-    "package": "ImageGif",
-    "alias": [
-      "ImageGif"
-    ]
-  },
-  {
     "name": "Image.ts",
     "package": "Image",
     "alias": [
@@ -203,10 +196,10 @@
     ]
   },
   {
-    "name": "Indent.ts",
-    "package": "Indent",
+    "name": "ImageGif.ts",
+    "package": "ImageGif",
     "alias": [
-      "Indent"
+      "ImageGif"
     ]
   },
   {
@@ -214,6 +207,13 @@
     "package": "Italic",
     "alias": [
       "Italic"
+    ]
+  },
+  {
+    "name": "Indent.ts",
+    "package": "Indent",
+    "alias": [
+      "Indent"
     ]
   },
   {
@@ -259,13 +259,6 @@
     ]
   },
   {
-    "name": "MoreMark.ts",
-    "package": "MoreMark",
-    "alias": [
-      "MoreMark"
-    ]
-  },
-  {
     "name": "MultiColumn.ts",
     "package": "MultiColumn",
     "alias": [
@@ -277,6 +270,13 @@
     "package": "MultiColumn",
     "alias": [
       "MultiColumn"
+    ]
+  },
+  {
+    "name": "MoreMark.ts",
+    "package": "MoreMark",
+    "alias": [
+      "MoreMark"
     ]
   },
   {
@@ -329,13 +329,6 @@
     ]
   },
   {
-    "name": "Subscript.ts",
-    "package": "Subscript",
-    "alias": [
-      "Subscript"
-    ]
-  },
-  {
     "name": "Table.ts",
     "package": "Table",
     "alias": [
@@ -350,10 +343,10 @@
     ]
   },
   {
-    "name": "TableOfContent.ts",
-    "package": "TableOfContent",
+    "name": "Subscript.ts",
+    "package": "Subscript",
     "alias": [
-      "TableOfContent"
+      "Subscript"
     ]
   },
   {
@@ -361,6 +354,13 @@
     "package": "TaskList",
     "alias": [
       "TaskList"
+    ]
+  },
+  {
+    "name": "TableOfContent.ts",
+    "package": "TableOfContent",
+    "alias": [
+      "TableOfContent"
     ]
   },
   {
@@ -378,17 +378,17 @@
     ]
   },
   {
-    "name": "TextDirection.ts",
-    "package": "TextDirection",
-    "alias": [
-      "TextDirection"
-    ]
-  },
-  {
     "name": "TrailingNode.ts",
     "package": "TrailingNode",
     "alias": [
       "TrailingNode"
+    ]
+  },
+  {
+    "name": "TextDirection.ts",
+    "package": "TextDirection",
+    "alias": [
+      "TextDirection"
     ]
   },
   {

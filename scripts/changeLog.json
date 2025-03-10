@@ -1,9 +1,40 @@
 [
   {
+    "hash": "fb6074907bf871bbc79377e8574cd22818aa01b1",
+    "date": "Mon Mar 10 12:00:14 2025 +0700",
+    "message": "chore: release v0.2.0",
+    "refs": "HEAD -> main, tag: v0.2.0, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.2.0"
+  },
+  {
+    "hash": "198590d6e0f71a46c24c3ba0fc39e47e9b21c022",
+    "date": "Thu Mar 6 22:35:21 2025 +0700",
+    "message": "chore: release v0.1.16",
+    "refs": "tag: v0.1.16",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.1.16"
+  },
+  {
+    "hash": "d4edc2d7e6bb19ac64d8aa0230cd33ef7e2e3831",
+    "date": "Mon Feb 17 22:51:56 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "9bd2d8ac7c8ad0d9197be2e263e5933f5bdea0fa",
     "date": "Mon Feb 17 22:43:39 2025 +0700",
     "message": "chore: release v0.1.15",
-    "refs": "HEAD -> main, tag: v0.1.15, origin/main",
+    "refs": "tag: v0.1.15",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1536,15 +1567,5 @@
       "TaskList",
       "TextAlignMenuButton"
     ]
-  },
-  {
-    "hash": "3c1441f71738b386413666d6a62af1dca24ef9ab",
-    "date": "Thu Aug 15 13:15:53 2024 +0700",
-    "message": "chore: release v0.0.6",
-    "refs": "tag: v0.0.6",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.6"
   }
 ]
