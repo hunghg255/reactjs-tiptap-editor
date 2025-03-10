@@ -13,9 +13,6 @@ export default defineConfig(({ mode }) => {
   const isDev = mode !== 'production'
 
   return {
-    define: {
-      'process.env': {}
-    },
     plugins: [
       react(),
       dts({
@@ -77,11 +74,6 @@ export default defineConfig(({ mode }) => {
           assetFileNames: (assetInfo) => {
             if (assetInfo.name == "reactjs-tiptap-editor.css") return "style.css";
             return assetInfo.name;
-          },
-          globals: {
-            'react-dom': 'ReactDom',
-            react: 'React',
-            'react/jsx-runtime': 'ReactJsxRuntime',
           },
           manualChunks(id) {
             if (id.includes('@tiptap')) {
