@@ -1,1 +1,1 @@
-export { default } from '@tiptap/extension-list-item'
+export { default } from '@tiptap/extension-list-item';

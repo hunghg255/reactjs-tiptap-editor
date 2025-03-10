@@ -1,1 +1,1 @@
-export * from './Excalidraw'
+export * from './Excalidraw';

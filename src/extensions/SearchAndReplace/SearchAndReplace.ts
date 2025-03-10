@@ -1,12 +1,13 @@
-/* eslint-disable ts/no-this-alias */
-/* eslint-disable ts/no-unused-expressions */
-import { Extension } from '@tiptap/core'
-import scrollIntoView from 'scroll-into-view-if-needed'
-import { Decoration, DecorationSet } from '@tiptap/pm/view'
-import type { EditorState } from '@tiptap/pm/state'
-import { Plugin, PluginKey } from '@tiptap/pm/state'
-import SearchAndReplaceButton from '@/extensions/SearchAndReplace/components/SearchAndReplaceButton'
-import type { GeneralOptions } from '@/types'
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-this-alias */
+import { Extension } from '@tiptap/core';
+import type { EditorState } from '@tiptap/pm/state';
+import { Plugin, PluginKey } from '@tiptap/pm/state';
+import { Decoration, DecorationSet } from '@tiptap/pm/view';
+import scrollIntoView from 'scroll-into-view-if-needed';
+
+import SearchAndReplaceButton from '@/extensions/SearchAndReplace/components/SearchAndReplaceButton';
+import type { GeneralOptions } from '@/types';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -32,10 +33,10 @@ interface TextNodesWithPosition {
   pos: number
 }
 
-const updateView = (state: EditorState, dispatch: any) => dispatch(state.tr)
+const updateView = (state: EditorState, dispatch: any) => dispatch(state.tr);
 
 function regex(s: string, disableRegex: boolean, caseSensitive: boolean): RegExp {
-  return RegExp(disableRegex ? s.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&') : s, caseSensitive ? 'gu' : 'gui')
+  return RegExp(disableRegex ? s.replace(/[$()*+./?[\\\]^{|}-]/g, String.raw`\$&`) : s, caseSensitive ? 'gu' : 'gui');
 }
 
 function processSearches(
@@ -43,14 +44,14 @@ function processSearches(
   searchTerm: RegExp,
   searchResultClass: string,
 ): { decorationsToReturn: any[], results: Result[] } {
-  const decorations: Decoration[] = []
-  let textNodesWithPosition: TextNodesWithPosition[] = []
-  const results: Result[] = []
+  const decorations: Decoration[] = [];
+  let textNodesWithPosition: TextNodesWithPosition[] = [];
+  const results: Result[] = [];
 
-  let index = 0
+  let index = 0;
 
   if (!searchTerm)
-    return { decorationsToReturn: [], results: [] }
+    return { decorationsToReturn: [], results: [] };
 
   doc?.descendants((node: any, pos: any) => {
     if (node.isText) {
@@ -58,139 +59,134 @@ function processSearches(
         textNodesWithPosition[index] = {
           text: textNodesWithPosition[index].text + node.text,
           pos: textNodesWithPosition[index].pos,
-        }
-      }
-      else {
+        };
+      } else {
         textNodesWithPosition[index] = {
           text: `${node.text}`,
           pos,
-        }
+        };
       }
+    } else {
+      index += 1;
     }
-    else {
-      index += 1
-    }
-  })
+  });
 
-  textNodesWithPosition = textNodesWithPosition.filter(Boolean)
+  textNodesWithPosition = textNodesWithPosition.filter(Boolean);
 
-  for (let i = 0; i < textNodesWithPosition.length; i += 1) {
-    const { text, pos } = textNodesWithPosition[i]
+  for (const { text, pos } of textNodesWithPosition) {
 
-    const matches = [...text.matchAll(searchTerm)]
+    const matches = [...text.matchAll(searchTerm)];
 
-    for (let j = 0; j < matches.length; j += 1) {
-      const m = matches[j]
+    for (const m of matches) {
 
       if (m[0] === '')
-        break
+        break;
 
       if (m.index !== undefined) {
         results.push({
           from: pos + m.index,
           to: pos + m.index + m[0].length,
-        })
+        });
       }
     }
   }
 
-  for (let i = 0; i < results.length; i += 1) {
-    const r = results[i]
-    decorations.push(Decoration.inline(r.from, r.to, { class: searchResultClass }))
+  for (const r of results) {
+    decorations.push(Decoration.inline(r.from, r.to, { class: searchResultClass }));
   }
 
   return {
     decorationsToReturn: decorations,
     results,
-  }
+  };
 }
 
 function replace(replaceTerm: string, results: Result[], { state, dispatch }: any) {
-  const firstResult = results[0]
+  const firstResult = results[0];
 
   if (!firstResult)
-    return
+    return;
 
-  const { from, to } = results[0]
+  const { from, to } = results[0];
 
   if (dispatch)
-    dispatch(state.tr.insertText(replaceTerm, from, to))
+    dispatch(state.tr.insertText(replaceTerm, from, to));
 }
 
 function rebaseNextResult(replaceTerm: string, index: number, lastOffset: number, results: Result[]): [number, Result[]] | null {
-  const nextIndex = index + 1
+  const nextIndex = index + 1;
 
   if (!results[nextIndex])
-    return null
+    return null;
 
-  const { from: currentFrom, to: currentTo } = results[index]
+  const { from: currentFrom, to: currentTo } = results[index];
 
-  const offset = currentTo - currentFrom - replaceTerm.length + lastOffset
+  const offset = currentTo - currentFrom - replaceTerm.length + lastOffset;
 
-  const { from, to } = results[nextIndex]
+  const { from, to } = results[nextIndex];
 
   results[nextIndex] = {
     to: to - offset,
     from: from - offset,
-  }
+  };
 
-  return [offset, results]
+  return [offset, results];
 }
 
 function replaceAll(replaceTerm: string, results: Result[], { tr, dispatch }: any) {
-  let offset = 0
+  let offset = 0;
 
-  let ourResults = results.slice()
+  let ourResults = results.slice();
 
-  if (!ourResults.length)
-    return false
+  if (ourResults.length === 0)
+    return false;
 
   for (let i = 0; i < ourResults.length; i += 1) {
-    const { from, to } = ourResults[i]
+    const { from, to } = ourResults[i];
 
-    tr.insertText(replaceTerm, from, to)
+    tr.insertText(replaceTerm, from, to);
 
-    const rebaseNextResultResponse = rebaseNextResult(replaceTerm, i, offset, ourResults)
+    const rebaseNextResultResponse = rebaseNextResult(replaceTerm, i, offset, ourResults);
 
     if (rebaseNextResultResponse) {
-      offset = rebaseNextResultResponse[0]
-      ourResults = rebaseNextResultResponse[1]
+      offset = rebaseNextResultResponse[0];
+      ourResults = rebaseNextResultResponse[1];
     }
   }
 
-  dispatch(tr)
+  dispatch(tr);
 
-  return true
+  return true;
 }
 
 function gotoSearchResult({ view, tr, searchResults, searchResultCurrentClass, gotoIndex }: any) {
-  const result = searchResults[gotoIndex]
+  const result = searchResults[gotoIndex];
 
   if (result) {
     const transaction = tr.setMeta('directDecoration', {
       fromPos: result.from,
       toPos: result.to,
       attrs: { class: searchResultCurrentClass },
-    })
-    view?.dispatch(transaction)
+    });
+    view?.dispatch(transaction);
 
     setTimeout(() => {
-      const el = window.document.querySelector(`.${searchResultCurrentClass}`)
+      const el = window.document.querySelector(`.${searchResultCurrentClass}`);
       if (el) {
-        scrollIntoView(el, { behavior: 'smooth', scrollMode: 'if-needed' })
+        scrollIntoView(el, { behavior: 'smooth', scrollMode: 'if-needed' });
       }
-    }, 0)
+    }, 0);
 
-    return true
+    return true;
   }
 
-  return false
+  return false;
 }
 
-export const ON_SEARCH_RESULTS = 'ON_SEARCH_RESULTS'
+export const ON_SEARCH_RESULTS = 'ON_SEARCH_RESULTS';
 
 // Create a custom event
-export const customEventSearch = new CustomEvent(ON_SEARCH_RESULTS)
+export const customEventSearch = new CustomEvent(ON_SEARCH_RESULTS);
 
 interface SearchOptions extends GeneralOptions<SearchOptions> {
   searchTerm: string
@@ -221,11 +217,15 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
       searchResultCurrentClass: 'search-result-current',
       caseSensitive: false,
       disableRegex: false,
-      onChange: () => {},
+      onChange: () => {
+        return;
+      },
       button: ({ editor, t }: any) => ({
         component: SearchAndReplaceButton,
         componentProps: {
-          action: () => {},
+          action: () => {
+            return;
+          },
           icon: 'SearchAndReplace',
           tooltip: t('editor.searchAndReplace.tooltip'),
           isActive: () => false,
@@ -233,14 +233,14 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
           editor,
         },
       }),
-    }
+    };
   },
 
   addStorage() {
     return {
       results: [],
       currentIndex: -1,
-    }
+    };
   },
 
   addCommands() {
@@ -248,73 +248,72 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
       setSearchTerm:
         (searchTerm: string) =>
           ({ state, dispatch }) => {
-            this.options.searchTerm = searchTerm
-            this.storage.results = []
-            this.storage.currentIndex = 0
-            window.dispatchEvent(customEventSearch)
-            updateView(state, dispatch)
-            return false
+            this.options.searchTerm = searchTerm;
+            this.storage.results = [];
+            this.storage.currentIndex = 0;
+            window.dispatchEvent(customEventSearch);
+            updateView(state, dispatch);
+            return false;
           },
       setReplaceTerm:
         (replaceTerm: string) =>
           ({ state, dispatch }) => {
-            this.options.replaceTerm = replaceTerm
+            this.options.replaceTerm = replaceTerm;
 
-            updateView(state, dispatch)
+            updateView(state, dispatch);
 
-            return false
+            return false;
           },
       setCaseSensitive: (caseSensitive: boolean) => ({ state, dispatch }) => {
-        this.options.caseSensitive = caseSensitive
-        updateView(state, dispatch)
-        return false
+        this.options.caseSensitive = caseSensitive;
+        updateView(state, dispatch);
+        return false;
       },
       replace:
         () =>
           ({ state, dispatch }) => {
-            const { replaceTerm } = this.options
-            const { currentIndex, results } = this.storage
-            const currentResult = results[currentIndex]
+            const { replaceTerm } = this.options;
+            const { currentIndex, results } = this.storage;
+            const currentResult = results[currentIndex];
 
             if (currentResult) {
-              replace(replaceTerm, [currentResult], { state, dispatch })
-              this.storage.results.splice(currentIndex, 1)
+              replace(replaceTerm, [currentResult], { state, dispatch });
+              this.storage.results.splice(currentIndex, 1);
+            } else {
+              replace(replaceTerm, results, { state, dispatch });
+              this.storage.results.shift();
             }
-            else {
-              replace(replaceTerm, results, { state, dispatch })
-              this.storage.results.shift()
-            }
 
-            window.dispatchEvent(customEventSearch)
+            window.dispatchEvent(customEventSearch);
 
-            updateView(state, dispatch)
+            updateView(state, dispatch);
 
-            return false
+            return false;
           },
       replaceAll:
         () =>
           ({ state, tr, dispatch }) => {
-            const { replaceTerm } = this.options
-            const { results } = this.storage
+            const { replaceTerm } = this.options;
+            const { results } = this.storage;
 
-            replaceAll(replaceTerm, results, { tr, dispatch })
+            replaceAll(replaceTerm, results, { tr, dispatch });
 
-            this.storage.currentIndex = -1
-            this.storage.results = []
-            window.dispatchEvent(customEventSearch)
+            this.storage.currentIndex = -1;
+            this.storage.results = [];
+            window.dispatchEvent(customEventSearch);
 
-            updateView(state, dispatch)
+            updateView(state, dispatch);
 
-            return false
+            return false;
           },
       goToPrevSearchResult:
         () =>
           ({ view, tr }: any) => {
-            const { searchResultCurrentClass } = this.options
-            const { currentIndex, results } = this.storage
-            const nextIndex = (currentIndex + results.length - 1) % results.length
-            this.storage.currentIndex = nextIndex
-            window.dispatchEvent(customEventSearch)
+            const { searchResultCurrentClass } = this.options;
+            const { currentIndex, results } = this.storage;
+            const nextIndex = (currentIndex + results.length - 1) % results.length;
+            this.storage.currentIndex = nextIndex;
+            window.dispatchEvent(customEventSearch);
 
             return gotoSearchResult({
               view,
@@ -322,17 +321,17 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
               searchResults: results,
               searchResultCurrentClass,
               gotoIndex: nextIndex,
-            })
+            });
           },
       goToNextSearchResult:
         () =>
           ({ view, tr }: any) => {
-            const { searchResultCurrentClass } = this.options
-            const { currentIndex, results } = this.storage
-            const nextIndex = (currentIndex + 1) % results.length
-            this.storage.currentIndex = nextIndex
-            this.options.onChange && this.options.onChange()
-            window.dispatchEvent(customEventSearch)
+            const { searchResultCurrentClass } = this.options;
+            const { currentIndex, results } = this.storage;
+            const nextIndex = (currentIndex + 1) % results.length;
+            this.storage.currentIndex = nextIndex;
+            this.options.onChange && this.options.onChange();
+            window.dispatchEvent(customEventSearch);
 
             return gotoSearchResult({
               view,
@@ -340,61 +339,60 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
               searchResults: results,
               searchResultCurrentClass,
               gotoIndex: nextIndex,
-            })
+            });
           },
-    }
+    };
   },
 
   addProseMirrorPlugins() {
-    const extensionThis = this
+    const extensionThis = this;
 
     return [
       new Plugin({
         key: new PluginKey('search'),
         state: {
           init() {
-            return DecorationSet.empty
+            return DecorationSet.empty;
           },
           apply(ctx) {
-            const { doc, docChanged } = ctx
+            const { doc, docChanged } = ctx;
 
             const { searchTerm, searchResultClass, searchResultCurrentClass, disableRegex, caseSensitive }
-              = extensionThis.options
+              = extensionThis.options;
 
             if (docChanged || searchTerm) {
               const { decorationsToReturn, results } = processSearches(
                 doc,
                 regex(searchTerm, disableRegex, caseSensitive),
                 searchResultClass,
-              )
-              extensionThis.storage.results = results
+              );
+              extensionThis.storage.results = results;
               if (extensionThis.storage.currentIndex > results.length - 1) {
-                extensionThis.storage.currentIndex = 0
+                extensionThis.storage.currentIndex = 0;
               }
-              window.dispatchEvent(customEventSearch)
+              window.dispatchEvent(customEventSearch);
               if (ctx.getMeta('directDecoration')) {
-                const { fromPos, toPos, attrs } = ctx.getMeta('directDecoration')
-                decorationsToReturn.push(Decoration.inline(fromPos, toPos, attrs))
-              }
-              else {
-                if (results.length) {
+                const { fromPos, toPos, attrs } = ctx.getMeta('directDecoration');
+                decorationsToReturn.push(Decoration.inline(fromPos, toPos, attrs));
+              } else {
+                if (results.length > 0) {
                   decorationsToReturn[0] = Decoration.inline(results[0].from, results[0].to, {
                     class: searchResultCurrentClass,
-                  })
+                  });
                 }
               }
 
-              return DecorationSet.create(doc, decorationsToReturn)
+              return DecorationSet.create(doc, decorationsToReturn);
             }
-            return DecorationSet.empty
+            return DecorationSet.empty;
           },
         },
         props: {
           decorations(state) {
-            return this.getState(state)
+            return this.getState(state);
           },
         },
       }),
-    ]
+    ];
   },
-})
+});

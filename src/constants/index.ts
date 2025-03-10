@@ -1,30 +1,30 @@
 /** Default lang */
-export const DEFAULT_LANG_VALUE = 'en' as const
+export const DEFAULT_LANG_VALUE = 'en' as const;
 
 /** Throttle time for editor input (milliseconds) */
-export const EDITOR_UPDATE_THROTTLE_WAIT_TIME = 200 as const
+export const EDITOR_UPDATE_THROTTLE_WAIT_TIME = 200 as const;
 
 /**
  * watch throttling time must be less than the update time
  * otherwise the cursor position will reach the end
  */
-export const EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME = EDITOR_UPDATE_THROTTLE_WAIT_TIME - 80
+export const EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME = EDITOR_UPDATE_THROTTLE_WAIT_TIME - 80;
 
 /** Minimum size for image adjustments */
-export const IMAGE_MIN_SIZE = 20 as const
+export const IMAGE_MIN_SIZE = 20 as const;
 /** Maximum size for image adjustments */
-export const IMAGE_MAX_SIZE = 100_000 as const
+export const IMAGE_MAX_SIZE = 100_000 as const;
 /** Throttle time during adjustments for images (milliseconds) */
-export const IMAGE_THROTTLE_WAIT_TIME = 16 as const
+export const IMAGE_THROTTLE_WAIT_TIME = 16 as const;
 
 /** Default number of rows and columns for grids when creating a table */
-export const TABLE_INIT_GRID_SIZE = 10 as const
+export const TABLE_INIT_GRID_SIZE = 10 as const;
 /** Maximum number of rows and columns for grids when creating a table */
-export const TABLE_MAX_GRID_SIZE = 10 as const
+export const TABLE_MAX_GRID_SIZE = 10 as const;
 /** Minimum number of rows and columns for grids when creating a table */
-export const TABLE_DEFAULT_SELECTED_GRID_SIZE = 2 as const
+export const TABLE_DEFAULT_SELECTED_GRID_SIZE = 2 as const;
 
-export const DEFAULT_COLOR = '#262626'
+export const DEFAULT_COLOR = '#262626';
 /** Default color list for text color and text highlight */
 export const COLORS_LIST = [
   '#000000',
@@ -97,7 +97,7 @@ export const COLORS_LIST = [
   '#061178',
   '#22075E',
   '#780650',
-] as const
+] as const;
 
 /** Default font family list */
 export const DEFAULT_FONT_FAMILY_LIST = [
@@ -116,7 +116,7 @@ export const DEFAULT_FONT_FAMILY_LIST = [
   'Lucida Console',
   'Monaco',
   'monospace',
-]
+];
 
 export const DEFAULT_LANGUAGE_CODE_BLOCK = [
   'html',
@@ -124,7 +124,7 @@ export const DEFAULT_LANGUAGE_CODE_BLOCK = [
   'js',
   'ts',
   'bash',
-]
+];
 
 export const MAP_LANGUAGE_CODE_LABELS = {
   html: 'HTML',
@@ -132,7 +132,7 @@ export const MAP_LANGUAGE_CODE_LABELS = {
   js: 'JavaScript',
   ts: 'TypeScript',
   bash: 'Bash',
-} as any
+} as any;
 
 /** Default font size list */
 export const DEFAULT_FONT_SIZE_LIST = [
@@ -150,10 +150,10 @@ export const DEFAULT_FONT_SIZE_LIST = [
   '36px',
   '48px',
   '72px',
-] as const
+] as const;
 
 /** Default font size value */
-export const DEFAULT_FONT_SIZE_VALUE = 'default'
+export const DEFAULT_FONT_SIZE_VALUE = 'default';
 
 /** Options for setting image size in the bubble menu */
 export enum IMAGE_SIZE {
@@ -170,9 +170,9 @@ export enum VIDEO_SIZE {
 }
 
 /** Line Height List */
-export const DEFAULT_LINE_HEIGHT_LIST = ['100%', '115%', '150%', '200%', '250%', '300%']
-export const LINE_HEIGHT_100 = 1.7
-export const DEFAULT_LINE_HEIGHT = '1'
+export const DEFAULT_LINE_HEIGHT_LIST = ['100%', '115%', '150%', '200%', '250%', '300%'];
+export const LINE_HEIGHT_100 = 1.7;
+export const DEFAULT_LINE_HEIGHT = '1';
 
 /** display in menus */
 export const NODE_TYPE_MENU: any = {
@@ -206,7 +206,7 @@ export const NODE_TYPE_MENU: any = {
   ],
   video: ['video-size-small', 'video-size-medium', 'video-size-large', 'divider', 'remove'],
   table: ['removeTable'],
-}
+};
 
 /** display in bubble text menu */
 export const BUBBLE_TEXT_LIST = [
@@ -220,4 +220,4 @@ export const BUBBLE_TEXT_LIST = [
   'color',
   'highlight',
   'textAlign',
-]
+];

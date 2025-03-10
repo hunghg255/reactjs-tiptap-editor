@@ -15,12 +15,12 @@ export const VideoServices: ServiceType[] = [
     value: 'qqvideo',
     icon: 'QQVideo',
   },
-]
+];
 
 export const MapServices: ServiceType[] = [
   { label: '高德地图', value: 'amap', icon: 'Gaode' },
   { label: '百度地图', value: 'baidu_map', icon: 'Baidu' },
-]
+];
 
 export const DesignServices: ServiceType[] = [
   { label: '墨刀', value: 'modao', icon: 'Modao' },
@@ -28,17 +28,17 @@ export const DesignServices: ServiceType[] = [
   { label: 'Figma', value: 'figma', icon: 'Figma' },
   { label: 'Canva', value: 'canva', icon: 'Canva' },
   { label: 'ProcessOn', value: 'processon', icon: 'Processon' },
-]
+];
 
 export const DevelopServices: ServiceType[] = [
   { label: 'CodePen', value: 'codepen', icon: 'Codepen' },
-]
+];
 
 export const DataServices: ServiceType[] = [
   { label: '金数据', value: 'jinshuju', icon: 'Jinshuju' },
-]
+];
 
-export const OtherServices = []
+export const OtherServices = [];
 
 export const AllEmbedServices = [
   ...VideoServices,
@@ -47,16 +47,16 @@ export const AllEmbedServices = [
   ...DevelopServices,
   ...DataServices,
   ...OtherServices,
-]
+];
 
 export function getEmbedService(value: any) {
   for (const item of AllEmbedServices) {
     if (item.value === value) {
-      return item
+      return item;
     }
   }
 
-  return {}
+  return {};
 }
 
 /**
@@ -163,258 +163,257 @@ export const EmbedServiceLink: any = {
     srcPrefix: '',
     linkRule: ['https:\\/\\/goo.gl\\/maps\\/\\w+'],
   },
-}
+};
 
 function getYoutubeSrc(result: any) {
-  const link = EmbedServiceLink.youtube
-  const url = result.matchedUrl
-  result.validLink = true
+  const link = EmbedServiceLink.youtube;
+  const url = result.matchedUrl;
+  result.validLink = true;
 
-  const splits = url.split('=')
-  const len = splits.length
+  const splits = url.split('=');
+  const len = splits.length;
   if (len > 0) {
-    const id = splits[len - 1]
-    result.src = `${link.srcPrefix}/${id}`
-    result.validId = true
+    const id = splits[len - 1];
+    result.src = `${link.srcPrefix}/${id}`;
+    result.validId = true;
   }
 
-  return result
+  return result;
 }
 
 function getYoukuSrc(result: any) {
-  const link = EmbedServiceLink.youku as any
-  const url = result.matchedUrl
+  const link = EmbedServiceLink.youku as any;
+  const url = result.matchedUrl;
 
-  const idRule = link.idRule
-  const regex = new RegExp(idRule)
-  const match = url.match(regex)
+  const idRule = link.idRule;
+  const regex = new RegExp(idRule);
+  const match = url.match(regex);
   if (match && match.length > 0) {
-    const id = match[0].slice(3)
+    const id = match[0].slice(3);
 
-    result.validId = true
-    result.src = `${link.srcPrefix}/${id}`
-  }
-  else {
-    result.validId = false
+    result.validId = true;
+    result.src = `${link.srcPrefix}/${id}`;
+  } else {
+    result.validId = false;
   }
 
-  return result
+  return result;
 }
 
 function getBilibiliSrc(result: any) {
-  const link = EmbedServiceLink.bilibili
-  const url = result.matchedUrl
+  const link = EmbedServiceLink.bilibili;
+  const url = result.matchedUrl;
 
-  const splits = url.split('/')
-  const len = splits.length
+  const splits = url.split('/');
+  const len = splits.length;
   if (len > 0) {
-    const id = splits[len - 1]
-    result.src = `${link.srcPrefix}=${id}`
-    result.validId = true
+    const id = splits[len - 1];
+    result.src = `${link.srcPrefix}=${id}`;
+    result.validId = true;
   }
 
-  return result
+  return result;
 }
 
 function getQQVideoSrc(result: any) {
-  const link = EmbedServiceLink.qqvideo
-  const url = result.matchedUrl
+  const link = EmbedServiceLink.qqvideo;
+  const url = result.matchedUrl;
 
-  const splits = url.split('/')
-  const len = splits.length
+  const splits = url.split('/');
+  const len = splits.length;
   if (len > 0) {
-    const id = splits[len - 1]
-    result.src = `${link.srcPrefix}=${id}`
-    result.validId = true
+    const id = splits[len - 1];
+    result.src = `${link.srcPrefix}=${id}`;
+    result.validId = true;
   }
 
-  return result
+  return result;
 }
 
 function getAMapSrc(originalLink: any, result: any) {
-  result.src = originalLink
-  result.validId = true
+  result.src = originalLink;
+  result.validId = true;
 
-  return result
+  return result;
 }
 
 function getBaiduMapSrc(originalLink: any, result: any) {
-  result.src = originalLink
-  result.validId = true
+  result.src = originalLink;
+  result.validId = true;
 
-  return result
+  return result;
 }
 
 function getGoogleMapSrc(originalLink: any, result: any) {
-  result.src = originalLink
-  result.validId = true
-  result.originalLink = originalLink
+  result.src = originalLink;
+  result.validId = true;
+  result.originalLink = originalLink;
 
-  return result
+  return result;
 }
 
 function getModaoSrc(result: any) {
-  result.src = result.matchedUrl
-  result.validId = true
-  result.originalLink = result.src
+  result.src = result.matchedUrl;
+  result.validId = true;
+  result.originalLink = result.src;
 
-  return result
+  return result;
 }
 
 function getLanhuSrc(result: any) {
-  result.src = result.matchedUrl
-  result.validId = true
-  result.originalLink = result.src
+  result.src = result.matchedUrl;
+  result.validId = true;
+  result.originalLink = result.src;
 
-  return result
+  return result;
 }
 
 function getFigmaSrc(result: any) {
-  const link = EmbedServiceLink.figma
-  result.src = `${link.srcPrefix}=${encodeURIComponent(result.matchedUrl)}`
-  result.validId = true
-  result.originalLink = result.matchedUrl
+  const link = EmbedServiceLink.figma;
+  result.src = `${link.srcPrefix}=${encodeURIComponent(result.matchedUrl)}`;
+  result.validId = true;
+  result.originalLink = result.matchedUrl;
 
-  return result
+  return result;
 }
 
 function getCanvaSrc(originalLink: any, result: any) {
-  result.src = `${result.matchedUrl}?embed`
-  result.validId = true
-  result.originalLink = originalLink
+  result.src = `${result.matchedUrl}?embed`;
+  result.validId = true;
+  result.originalLink = originalLink;
 
-  return result
+  return result;
 }
 
 function getProcessonSrc(originalLink: any, result: any) {
-  result.src = `${result.matchedUrl}`
-  result.validId = true
-  result.originalLink = originalLink
+  result.src = `${result.matchedUrl}`;
+  result.validId = true;
+  result.originalLink = originalLink;
 
-  return result
+  return result;
 }
 
 function getCodepenSrc(result: any) {
-  result.src = `${result.matchedUrl}`
-  result.validId = true
-  result.originalLink = result.src
+  result.src = `${result.matchedUrl}`;
+  result.validId = true;
+  result.originalLink = result.src;
 
-  return result
+  return result;
 }
 
 function getJinshujuSrc(originalLink: any, result: any) {
-  result.src = `${result.matchedUrl}?background=white&banner=show&embedded=true`
-  result.validId = true
-  result.originalLink = originalLink
+  result.src = `${result.matchedUrl}?background=white&banner=show&embedded=true`;
+  result.validId = true;
+  result.originalLink = originalLink;
 
-  return result
+  return result;
 }
 
 function getCommonSrc(originalLink: any, result: any) {
-  result.src = `${result.matchedUrl}`
-  result.validId = true
-  result.originalLink = originalLink
+  result.src = `${result.matchedUrl}`;
+  result.validId = true;
+  result.originalLink = originalLink;
 
-  return result
+  return result;
 }
 
 function getMatchedUrl(service: any, originalLink: any, result: any) {
   if (service === 'googlemaps') {
-    result.validLink = true
-    result.matchedUrl = originalLink
-    return result
+    result.validLink = true;
+    result.matchedUrl = originalLink;
+    return result;
   }
 
-  const link = EmbedServiceLink[service]
-  const linkRule = link.linkRule
+  const link = EmbedServiceLink[service];
+  const linkRule = link.linkRule;
 
   for (const rule of linkRule) {
-    const regex = new RegExp(rule)
-    const match = originalLink.match(regex)
+    const regex = new RegExp(rule);
+    const match = originalLink.match(regex);
     if (match && match.length > 0) {
-      result.validLink = true
-      result.matchedUrl = service === 'youtube' ? match[1] : match[0]
+      result.validLink = true;
+      result.matchedUrl = service === 'youtube' ? match[1] : match[0];
 
-      return result
+      return result;
     }
   }
 
-  return result
+  return result;
 }
 
 export function getExampleUrl(service: string) {
-  let exampleUrl = ''
-  const link = EmbedServiceLink[service]
+  let exampleUrl = '';
+  const link = EmbedServiceLink[service];
   if (link) {
-    exampleUrl = link.example
+    exampleUrl = link.example;
   }
-  return exampleUrl
+  return exampleUrl;
 }
 
 function formatUrl(url: string) {
-  let service = 'iframe'
+  let service = 'iframe';
 
   if (url.includes?.('youtube') || url.includes?.('youtu.be')) {
-    service = 'youtube'
+    service = 'youtube';
   }
 
   if (url.includes('youku')) {
-    service = 'youku'
+    service = 'youku';
   }
 
   if (url.includes('bilibili')) {
-    service = 'bilibili'
+    service = 'bilibili';
   }
 
   if (url.includes('qq')) {
-    service = 'qqvideo'
+    service = 'qqvideo';
   }
 
   if (url.includes('amap')) {
-    service = 'amap'
+    service = 'amap';
   }
 
   if (url.includes('map.baidu')) {
-    service = 'baidu_map'
+    service = 'baidu_map';
   }
 
   if (url.includes('google.com/maps') || url.includes('maps.app.goo.gl')) {
-    service = 'googlemaps'
+    service = 'googlemaps';
   }
 
   if (url.includes('modao')) {
-    service = 'modao'
+    service = 'modao';
   }
 
   if (url.includes('lanhuapp')) {
-    service = 'lanhu'
+    service = 'lanhu';
   }
 
   if (url.includes('figma')) {
-    service = 'figma'
+    service = 'figma';
   }
 
   if (url.includes('canva')) {
-    service = 'canva'
+    service = 'canva';
   }
 
   if (url.includes('processon')) {
-    service = 'processon'
+    service = 'processon';
   }
 
   if (url.includes('codepen')) {
-    service = 'codepen'
+    service = 'codepen';
   }
 
   if (url.includes('jinshuju')) {
-    service = 'jinshuju'
+    service = 'jinshuju';
   }
 
   if (url.includes('iframe')) {
-    service = 'iframe'
+    service = 'iframe';
   }
 
-  return service
+  return service;
 }
 
 export function getServiceSrc(originalLink: any) {
@@ -424,65 +423,65 @@ export function getServiceSrc(originalLink: any) {
     matchedUrl: '',
     originalLink,
     src: '',
-  }
+  };
 
-  const service = formatUrl(originalLink)
+  const service = formatUrl(originalLink);
 
   // matched url
-  result = getMatchedUrl(service, originalLink, result)
+  result = getMatchedUrl(service, originalLink, result);
 
   if (!result.validLink) {
-    return result
+    return result;
   }
 
   // src
   switch (service) {
     case 'youtube': {
-      return getYoutubeSrc(result)
+      return getYoutubeSrc(result);
     }
     case 'youku': {
-      return getYoukuSrc(result)
+      return getYoukuSrc(result);
     }
     case 'bilibili': {
-      return getBilibiliSrc(result)
+      return getBilibiliSrc(result);
     }
     case 'qqvideo': {
-      return getQQVideoSrc(result)
+      return getQQVideoSrc(result);
     }
     case 'amap': {
-      return getAMapSrc(originalLink, result)
+      return getAMapSrc(originalLink, result);
     }
     case 'baidu_map': {
-      return getBaiduMapSrc(originalLink, result)
+      return getBaiduMapSrc(originalLink, result);
     }
     case 'googlemaps': {
-      return getGoogleMapSrc(originalLink, result)
+      return getGoogleMapSrc(originalLink, result);
     }
     case 'modao': {
-      return getModaoSrc(result)
+      return getModaoSrc(result);
     }
     case 'lanhu': {
-      return getLanhuSrc(result)
+      return getLanhuSrc(result);
     }
     case 'figma': {
-      return getFigmaSrc(result)
+      return getFigmaSrc(result);
     }
     case 'canva': {
-      return getCanvaSrc(originalLink, result)
+      return getCanvaSrc(originalLink, result);
     }
     case 'processon': {
-      return getProcessonSrc(originalLink, result)
+      return getProcessonSrc(originalLink, result);
     }
     case 'codepen': {
-      return getCodepenSrc(result)
+      return getCodepenSrc(result);
     }
     case 'jinshuju': {
-      return getJinshujuSrc(originalLink, result)
+      return getJinshujuSrc(originalLink, result);
     }
     case 'iframe': {
-      return getCommonSrc(originalLink, result)
+      return getCommonSrc(originalLink, result);
     }
   }
 
-  return result
+  return result;
 }

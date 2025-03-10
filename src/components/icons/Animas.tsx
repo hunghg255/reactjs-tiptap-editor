@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Animal() {
   return (
@@ -18,7 +18,7 @@ function Animal() {
       />
     </svg>
 
-  )
+  );
 }
 
-export default Animal
+export default Animal;

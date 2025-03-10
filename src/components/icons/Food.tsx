@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Food() {
   return (
@@ -14,7 +14,7 @@ function Food() {
       />
     </svg>
 
-  )
+  );
 }
 
-export default Food
+export default Food;

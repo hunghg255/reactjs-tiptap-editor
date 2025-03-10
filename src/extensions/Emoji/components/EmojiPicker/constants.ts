@@ -213,7 +213,7 @@ export const EXPRESSIONES = [
   '🗯',
   '💭',
   '💤',
-]
+];
 
 export const SYMBOLS = [
   '🏧',
@@ -517,7 +517,7 @@ export const SYMBOLS = [
   '🔘',
   '🔳',
   '🔲',
-]
+];
 
 export const OBJECTS = [
   '👓',
@@ -819,7 +819,7 @@ export const OBJECTS = [
   '⚱',
   '🗿',
   '🪧',
-]
+];
 
 export const ACTIVITIES = [
   '🎃',
@@ -917,7 +917,7 @@ export const ACTIVITIES = [
   '🪡',
   '🧶',
   '🪢',
-]
+];
 
 export const TRAVELS = [
   '🌍',
@@ -1184,7 +1184,7 @@ export const TRAVELS = [
   '🔥',
   '💧',
   '🌊',
-]
+];
 
 export const FLAGS = [
   '🏁',
@@ -1462,7 +1462,7 @@ export const FLAGS = [
   '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
   '🏴󠁧󠁢󠁳󠁣󠁴󠁿',
   '🏴󠁧󠁢󠁷󠁬󠁳󠁿',
-]
+];
 
 export const ANIMALS = [
   '🐵',
@@ -1612,7 +1612,7 @@ export const ANIMALS = [
   '🍁',
   '🍂',
   '🍃',
-]
+];
 
 export const FOODS = [
   '🍇',
@@ -1746,4 +1746,4 @@ export const FOODS = [
   '🥄',
   '🔪',
   '🏺',
-]
+];

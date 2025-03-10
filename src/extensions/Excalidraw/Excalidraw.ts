@@ -1,11 +1,12 @@
-/* eslint-disable eqeqeq */
-import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core'
-import { ReactNodeViewRenderer } from '@tiptap/react'
-import NodeViewExcalidraw from '@/extensions/Excalidraw/components/NodeViewExcalidraw/NodeViewExcalidraw'
-import { getDatasetAttribute, nodeAttrsToDataset } from '@/utils/dom-dataset'
-import { ExcalidrawActiveButton } from '@/extensions/Excalidraw/components/ExcalidrawActiveButton'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core';
+import { ReactNodeViewRenderer } from '@tiptap/react';
 
-const DEFAULT_MIND_DATA = { elements: [] }
+import { ExcalidrawActiveButton } from '@/extensions/Excalidraw/components/ExcalidrawActiveButton';
+import NodeViewExcalidraw from '@/extensions/Excalidraw/components/NodeViewExcalidraw/NodeViewExcalidraw';
+import { getDatasetAttribute, nodeAttrsToDataset } from '@/utils/dom-dataset';
+
+const DEFAULT_MIND_DATA = { elements: [] };
 
 export interface IExcalidrawAttrs {
   defaultShowPicker?: boolean
@@ -51,7 +52,7 @@ export const Excalidraw = Node.create({
         default: DEFAULT_MIND_DATA,
         parseHTML: getDatasetAttribute('data', true),
       },
-    }
+    };
   },
 
   addOptions() {
@@ -66,7 +67,7 @@ export const Excalidraw = Node.create({
           editor,
         },
       }),
-    }
+    };
   },
 
   parseHTML() {
@@ -74,11 +75,11 @@ export const Excalidraw = Node.create({
       {
         tag: 'div[class=excalidraw]',
       },
-    ]
+    ];
   },
 
   renderHTML({ HTMLAttributes, node }: any) {
-    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, nodeAttrsToDataset(node))]
+    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, nodeAttrsToDataset(node))];
   },
 
   addCommands() {
@@ -86,12 +87,12 @@ export const Excalidraw = Node.create({
       setExcalidraw:
         options =>
           ({ tr, commands, chain }) => {
-            options = options || {}
-            options.data = options.data || DEFAULT_MIND_DATA
+            options = options || {};
+            options.data = options.data || DEFAULT_MIND_DATA;
 
             // @ts-ignore
             if (tr.selection?.node?.type?.name == this.name) {
-              return commands.updateAttributes(this.name, options)
+              return commands.updateAttributes(this.name, options);
             }
 
             return chain()
@@ -99,13 +100,13 @@ export const Excalidraw = Node.create({
                 type: this.name,
                 attrs: options,
               })
-              .run()
+              .run();
           },
-    }
+    };
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(NodeViewExcalidraw)
+    return ReactNodeViewRenderer(NodeViewExcalidraw);
   },
 
   addInputRules() {
@@ -114,9 +115,9 @@ export const Excalidraw = Node.create({
         find: /^\$excalidraw\$$/,
         type: this.type,
         getAttributes: () => {
-          return { width: '100%' }
+          return { width: '100%' };
         },
       }),
-    ]
+    ];
   },
-})
+});

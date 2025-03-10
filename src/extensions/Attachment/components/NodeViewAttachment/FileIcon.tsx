@@ -1,27 +1,28 @@
-import { LucideAudioLines, LucideFile, LucideImage, LucideSheet, LucideTableProperties, LucideVideo } from 'lucide-react'
-import ReactDOMServer from 'react-dom/server'
-import { normalizeFileType } from '@/utils/file'
-import { ExportPdf } from '@/components/icons/ExportPdf'
-import ExportWord from '@/components/icons/ExportWord'
+import { LucideAudioLines, LucideFile, LucideImage, LucideSheet, LucideTableProperties, LucideVideo } from 'lucide-react';
+import ReactDOMServer from 'react-dom/server';
 
-function iconToProseMirror(icon: JSX.Element) {
+import { ExportPdf } from '@/components/icons/ExportPdf';
+import ExportWord from '@/components/icons/ExportWord';
+import { normalizeFileType } from '@/utils/file';
+
+function iconToProseMirror(icon: any) {
   // Render SVG as a static string
-  const svgString = ReactDOMServer.renderToStaticMarkup(icon)
+  const svgString = ReactDOMServer.renderToStaticMarkup(icon);
 
   // Parse the string into ProseMirror-compatible structure
-  const parser = new DOMParser()
-  const svgDocument = parser.parseFromString(svgString, 'image/svg+xml')
-  const svgElement = svgDocument.documentElement
+  const parser = new DOMParser();
+  const svgDocument = parser.parseFromString(svgString, 'image/svg+xml');
+  const svgElement = svgDocument.documentElement;
 
   const iconToReturn = [
     'svg',
     {
       ...Array.from(svgElement.attributes).reduce((acc: any, attr: any) => {
-        acc[attr.name] = attr.value
-        return acc
+        acc[attr.name] = attr.value;
+        return acc;
       }, {}),
     },
-  ]
+  ];
 
   Array.from(svgElement.childNodes).forEach((child: any) => {
     if (child.nodeType === 1) {
@@ -29,20 +30,20 @@ function iconToProseMirror(icon: JSX.Element) {
       const childElement = [
         child.tagName.toLowerCase(),
         Array.from(child.attributes).reduce((acc: any, attr: any) => {
-          acc[attr.name] = attr.value
-          return acc
+          acc[attr.name] = attr.value;
+          return acc;
         }, {}),
-      ]
+      ];
 
       if (child.textContent) {
-        childElement.push(child.textContent)
+        childElement.push(child.textContent);
       }
 
-      iconToReturn.push(childElement)
+      iconToReturn.push(childElement);
     }
-  })
+  });
 
-  return iconToReturn
+  return iconToReturn;
 }
 
 // React components for rendering directly in JSX
@@ -55,13 +56,13 @@ const icons = {
   word: <ExportWord />,
   excel: <LucideSheet />,
   ppt: <LucideTableProperties />,
-}
+};
 
 export function getFileTypeIcon(fileType: string, forProseMirror = false) {
-  const type = normalizeFileType(fileType)
+  const type = normalizeFileType(fileType);
 
-  const icon = icons[type] || <></>
+  const icon = icons[type] || <></>;
 
   // Return ProseMirror-compatible structure or React component
-  return forProseMirror ? iconToProseMirror(icon) : icon
+  return forProseMirror ? iconToProseMirror(icon) : icon;
 }

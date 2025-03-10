@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react'
-import type { Editor } from '@tiptap/core'
-import type { ToolbarItemProps, ToolbarProps } from '@/types'
+import React, { useMemo } from 'react';
+import type { Editor } from '@tiptap/core';
+import type { ToolbarItemProps, ToolbarProps } from '@/types';
 
-import { Separator } from '@/components'
-import { useLocale } from '@/locales'
-import { isFunction } from '@/utils/utils'
+import { Separator } from '@/components';
+import { useLocale } from '@/locales';
+import { isFunction } from '@/utils/utils';
 
 export interface ToolbarComponentProps {
   editor: Editor
@@ -13,17 +13,17 @@ export interface ToolbarComponentProps {
 }
 
 function Toolbar({ editor, disabled, toolbar }: ToolbarComponentProps) {
-  const { t, lang } = useLocale()
+  const { t, lang } = useLocale();
 
   const toolbarItems = useMemo(() => {
-    const extensions = [...editor.extensionManager.extensions]
+    const extensions = [...editor.extensionManager.extensions];
     const sortExtensions = extensions.sort((arr, acc) => {
-      const a = (arr.options).sort ?? -1
-      const b = (acc.options).sort ?? -1
-      return a - b
-    })
+      const a = (arr.options).sort ?? -1;
+      const b = (acc.options).sort ?? -1;
+      return a - b;
+    });
 
-    let menus: ToolbarItemProps[] = []
+    let menus: ToolbarItemProps[] = [];
 
     for (const extension of sortExtensions) {
       const {
@@ -31,16 +31,16 @@ function Toolbar({ editor, disabled, toolbar }: ToolbarComponentProps) {
         divider = false,
         spacer = false,
         toolbar = true,
-      } = extension.options
+      } = extension.options;
       if (!button || !isFunction(button) || !toolbar) {
-        continue
+        continue;
       }
 
       const _button: ToolbarItemProps['button'] | ToolbarItemProps['button'][] = button({
         editor,
         extension,
         t,
-      })
+      });
 
       if (Array.isArray(_button)) {
         const menu: ToolbarItemProps[] = _button.map((k, i) => ({
@@ -49,9 +49,9 @@ function Toolbar({ editor, disabled, toolbar }: ToolbarComponentProps) {
           spacer: i === 0 ? spacer : false,
           type: extension.type,
           name: extension.name,
-        }))
-        menus = [...menus, ...menu]
-        continue
+        }));
+        menus = [...menus, ...menu];
+        continue;
       }
 
       menus.push({
@@ -60,10 +60,10 @@ function Toolbar({ editor, disabled, toolbar }: ToolbarComponentProps) {
         spacer,
         type: extension.type,
         name: extension.name,
-      })
+      });
     }
-    return menus
-  }, [editor, t, lang])
+    return menus;
+  }, [editor, t, lang]);
 
   const containerDom = (innerContent: React.ReactNode) => {
     return (
@@ -78,11 +78,11 @@ function Toolbar({ editor, disabled, toolbar }: ToolbarComponentProps) {
           {innerContent}
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const dom = toolbarItems.map((item: ToolbarItemProps, key) => {
-    const ButtonComponent = item.button.component
+    const ButtonComponent = item.button.component;
 
     return (
       <div className="richtext-flex richtext-items-center" key={`toolbar-item-${key}`}>
@@ -95,14 +95,14 @@ function Toolbar({ editor, disabled, toolbar }: ToolbarComponentProps) {
 
         {item?.divider && <Separator orientation="vertical" className="!richtext-h-auto !richtext-mx-2" />}
       </div>
-    )
-  })
+    );
+  });
 
   if (toolbar && toolbar?.render) {
-    return toolbar.render({ editor, disabled: disabled || false }, toolbarItems, dom, containerDom)
+    return toolbar.render({ editor, disabled: disabled || false }, toolbarItems, dom, containerDom);
   }
 
-  return containerDom(dom)
+  return containerDom(dom);
 }
 
-export { Toolbar }
+export { Toolbar };

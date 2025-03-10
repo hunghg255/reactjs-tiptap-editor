@@ -1,1 +1,1 @@
-export * from './ImageGif'
+export * from './ImageGif';

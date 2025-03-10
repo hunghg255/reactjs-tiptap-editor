@@ -1,6 +1,6 @@
-import { ActionButton, IconComponent, Popover, PopoverContent, PopoverTrigger } from '@/components'
-import FormEditLinkTwitter from '@/extensions/Twitter/components/FormEditLinkTwitter'
-import type { ButtonViewReturnComponentProps } from '@/types'
+import { ActionButton, IconComponent, Popover, PopoverContent, PopoverTrigger } from '@/components';
+import FormEditLinkTwitter from '@/extensions/Twitter/components/FormEditLinkTwitter';
+import type { ButtonViewReturnComponentProps } from '@/types';
 
 interface IPropsTwitterActiveButton {
   editor: any
@@ -16,7 +16,7 @@ interface IPropsTwitterActiveButton {
 function TwitterActiveButton(props: IPropsTwitterActiveButton) {
   function onSetLink(src: string) {
     if (props.action) {
-      props.action(src)
+      props.action(src);
     }
   }
 
@@ -35,7 +35,7 @@ function TwitterActiveButton(props: IPropsTwitterActiveButton) {
         <FormEditLinkTwitter editor={props.editor} onSetLink={onSetLink} />
       </PopoverContent>
     </Popover>
-  )
+  );
 }
 
-export default TwitterActiveButton
+export default TwitterActiveButton;

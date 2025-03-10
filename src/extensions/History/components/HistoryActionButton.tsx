@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import type { TooltipContentProps } from '@radix-ui/react-tooltip'
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
-import { Toggle, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components'
-import type { ButtonViewReturnComponentProps } from '@/types'
-import { getShortcutKeys } from '@/utils/plateform'
+import { Toggle, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components';
+import type { ButtonViewReturnComponentProps } from '@/types';
+import { getShortcutKeys } from '@/utils/plateform';
 
 interface IPropsHistoryActionButton {
   icon?: string
@@ -35,9 +35,9 @@ function HistoryActionButton(props?: Partial<IPropsHistoryActionButton>) {
     action = undefined,
     isActive = undefined,
     children,
-  } = props as any
+  } = props as any;
 
-  const Icon = icons[icon as string]
+  const Icon = icons[icon as string];
 
   return (
     <Tooltip>
@@ -50,19 +50,25 @@ function HistoryActionButton(props?: Partial<IPropsHistoryActionButton>) {
           // data-state={isActive?.() ? 'on' : 'off'}
         >
           {Icon && <Icon className="richtext-w-4 richtext-h-4" />}
-          {children && <>{children}</>}
+          {children && <>
+            {children}
+          </>}
         </Toggle>
       </TooltipTrigger>
       {tooltip && (
         <TooltipContent {...tooltipOptions}>
           <div className="richtext-flex richtext-flex-col richtext-items-center richtext-text-center richtext-max-w-24">
-            <div>{tooltip}</div>
-            {!!props?.shortcutKeys?.length && <span>{getShortcutKeys(props?.shortcutKeys)}</span>}
+            <div>
+              {tooltip}
+            </div>
+            {!!props?.shortcutKeys?.length && <span>
+              {getShortcutKeys(props?.shortcutKeys)}
+            </span>}
           </div>
         </TooltipContent>
       )}
     </Tooltip>
-  )
+  );
 }
 
-export default HistoryActionButton
+export default HistoryActionButton;

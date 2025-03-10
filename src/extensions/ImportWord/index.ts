@@ -1,1 +1,1 @@
-export * from './ImportWord'
+export * from './ImportWord';

@@ -1,10 +1,10 @@
-import { mergeAttributes } from '@tiptap/core'
-import type { ImageOptions } from '@tiptap/extension-image'
-import TiptapImage from '@tiptap/extension-image'
-import { ReactNodeViewRenderer } from '@tiptap/react'
+import { mergeAttributes } from '@tiptap/core';
+import type { ImageOptions } from '@tiptap/extension-image';
+import TiptapImage from '@tiptap/extension-image';
+import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import ImageGifView from '@/extensions/ImageGif/components/ImageGifView'
-import ImageGifActionButton from '@/extensions/ImageGif/components/ImageGifActionButton'
+import ImageGifActionButton from '@/extensions/ImageGif/components/ImageGifActionButton';
+import ImageGifView from '@/extensions/ImageGif/components/ImageGifView';
 
 export interface SetImageAttrsOptions {
   src?: string
@@ -58,22 +58,24 @@ export const ImageGif = TiptapImage.extend<ImageGifOptions>({
       selectable: true,
       atom: true,
       button: ({ editor, extension, t }: any) => {
-        const giphyApiKey = extension?.options?.GIPHY_API_KEY || ''
+        const giphyApiKey = extension?.options?.GIPHY_API_KEY || '';
 
         return {
           component: ImageGifActionButton,
           componentProps: {
             editor,
-            action: () => {},
+            action: () => {
+              return;
+            },
             isActive: () => false,
             disabled: false,
             icon: 'GifIcon',
             tooltip: t('editor.imageGif.tooltip'),
             giphyApiKey,
           },
-        }
+        };
       },
-    }
+    };
   },
   addAttributes() {
     return {
@@ -81,13 +83,13 @@ export const ImageGif = TiptapImage.extend<ImageGifOptions>({
       width: {
         default: null,
         parseHTML: (element) => {
-          const width = element.style.width || element.getAttribute('width') || '10'
-          return width === undefined ? null : Number.parseInt(`${width}`, 10)
+          const width = element.style.width || element.getAttribute('width') || '10';
+          return width === undefined ? null : Number.parseInt(`${width}`, 10);
         },
         renderHTML: (attributes) => {
           return {
             width: attributes.width,
-          }
+          };
         },
       },
       align: {
@@ -96,14 +98,14 @@ export const ImageGif = TiptapImage.extend<ImageGifOptions>({
         renderHTML: (attributes) => {
           return {
             align: attributes.align,
-          }
+          };
         },
       },
-    }
+    };
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(ImageGifView)
+    return ReactNodeViewRenderer(ImageGifView);
   },
   addCommands() {
     return {
@@ -112,24 +114,24 @@ export const ImageGif = TiptapImage.extend<ImageGifOptions>({
         return commands.insertContent({
           type: this.name,
           attrs: options,
-        })
+        });
       },
       updateImageGif:
         (options: any) =>
           ({ commands }: any) => {
-            return commands.updateAttributes(this.name, options)
+            return commands.updateAttributes(this.name, options);
           },
       setAlignImageGif:
           (align: any) =>
             ({ commands }: any) => {
-              return commands.updateAttributes(this.name, { align })
+              return commands.updateAttributes(this.name, { align });
             },
-    }
+    };
   },
   renderHTML({ HTMLAttributes }) {
-    const { align } = HTMLAttributes
+    const { align } = HTMLAttributes;
 
-    const style = align ? `text-align: ${align};` : ''
+    const style = align ? `text-align: ${align};` : '';
     return [
       'div', // Parent element
       {
@@ -147,28 +149,28 @@ export const ImageGif = TiptapImage.extend<ImageGifOptions>({
           HTMLAttributes,
         ),
       ],
-    ]
+    ];
   },
   parseHTML() {
     return [
       {
         tag: 'div[class=imageGIf]',
         getAttrs: (element) => {
-          const img = element.querySelector('img')
+          const img = element.querySelector('img');
 
-          const width = img?.getAttribute('width')
+          const width = img?.getAttribute('width');
 
           return {
             src: img?.getAttribute('src'),
             alt: img?.getAttribute('alt'),
             title: img?.getAttribute('title'),
-            width: width ? Number.parseInt(width as string, 10) : null,
+            width: width ? Number.parseInt(width, 10) : null,
             align: img?.getAttribute('align') || element.style.textAlign || null,
-          }
+          };
         },
       },
-    ]
+    ];
   },
-})
+});
 
-export default ImageGif
+export default ImageGif;

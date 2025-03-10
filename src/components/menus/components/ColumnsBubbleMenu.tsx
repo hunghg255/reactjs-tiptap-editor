@@ -1,19 +1,19 @@
-import { useCallback } from 'react'
+import { useCallback } from 'react';
 
-import { BubbleMenu } from '@tiptap/react'
-import { ActionButton } from '@/components/ActionButton'
-import { deleteNode } from '@/utils/delete-node'
-import { MultiColumn } from '@/extensions'
-import { useLocale } from '@/locales'
+import { BubbleMenu } from '@tiptap/react';
+import { ActionButton } from '@/components/ActionButton';
+import { deleteNode } from '@/utils/delete-node';
+import { MultiColumn } from '@/extensions';
+import { useLocale } from '@/locales';
 
 export function ColumnsBubbleMenu({ editor }: any) {
-  const { t } = useLocale()
+  const { t } = useLocale();
 
-  const shouldShow = useCallback(() => editor.isActive(MultiColumn.name), [editor])
-  const deleteMe = useCallback(() => deleteNode(MultiColumn.name, editor), [editor])
-  const addColBefore = useCallback(() => editor.chain().focus().addColBefore().run(), [editor])
-  const addColAfter = useCallback(() => editor.chain().focus().addColAfter().run(), [editor])
-  const deleteCol = useCallback(() => editor.chain().focus().deleteCol().run(), [editor])
+  const shouldShow = useCallback(() => editor.isActive(MultiColumn.name), [editor]);
+  const deleteMe = useCallback(() => deleteNode(MultiColumn.name, editor), [editor]);
+  const addColBefore = useCallback(() => editor.chain().focus().addColBefore().run(), [editor]);
+  const addColAfter = useCallback(() => editor.chain().focus().addColAfter().run(), [editor]);
+  const deleteCol = useCallback(() => editor.chain().focus().deleteCol().run(), [editor]);
 
   return (
     <BubbleMenu
@@ -55,5 +55,5 @@ export function ColumnsBubbleMenu({ editor }: any) {
         />
       </div>
     </BubbleMenu>
-  )
+  );
 }

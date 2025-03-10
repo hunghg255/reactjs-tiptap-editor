@@ -1,1 +1,1 @@
-export * from './Highlight'
+export * from './Highlight';

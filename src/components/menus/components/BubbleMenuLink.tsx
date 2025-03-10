@@ -1,10 +1,10 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react';
 
-import type { Editor } from '@tiptap/react'
-import { BubbleMenu } from '@tiptap/react'
+import type { Editor } from '@tiptap/react';
+import { BubbleMenu } from '@tiptap/react';
 
-import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock'
-import LinkViewBlock from '@/extensions/Link/components/LinkViewBlock'
+import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock';
+import LinkViewBlock from '@/extensions/Link/components/LinkViewBlock';
 
 export interface BubbleMenuLinkProps {
   editor: Editor
@@ -12,17 +12,17 @@ export interface BubbleMenuLinkProps {
 }
 
 function BubbleMenuLink({ editor, disabled }: BubbleMenuLinkProps) {
-  const [showEdit, setShowEdit] = useState(false)
+  const [showEdit, setShowEdit] = useState(false);
 
   const link = useMemo(() => {
-    const { href: link } = editor.getAttributes('link')
-    return link as string
-  }, [editor])
+    const { href: link } = editor.getAttributes('link');
+    return link as string;
+  }, [editor]);
 
   const shouldShow = useCallback(({ editor }: { editor: Editor }) => {
-    const isActive = editor.isActive('link')
-    return isActive
-  }, [])
+    const isActive = editor.isActive('link');
+    return isActive;
+  }, []);
 
   const onSetLink = (url: string, text?: string, openInNewTab?: boolean) => {
     editor
@@ -43,14 +43,14 @@ function BubbleMenuLink({ editor, disabled }: BubbleMenuLinkProps) {
       })
       .setLink({ href: url })
       .focus()
-      .run()
-    setShowEdit(false)
-  }
+      .run();
+    setShowEdit(false);
+  };
 
   const unSetLink = useCallback(() => {
-    editor.chain().extendMarkRange('link').unsetLink().focus().run()
-    setShowEdit(false)
-  }, [editor])
+    editor.chain().extendMarkRange('link').unsetLink().focus().run();
+    setShowEdit(false);
+  }, [editor]);
 
   return (
     <>
@@ -65,35 +65,35 @@ function BubbleMenuLink({ editor, disabled }: BubbleMenuLinkProps) {
           offset: [-2, 16],
           zIndex: 9999,
           onHidden: () => {
-            setShowEdit(false)
+            setShowEdit(false);
           },
         }}
       >
         {disabled
           ? (
-              <></>
-            )
+            <></>
+          )
           : (
-              <>
-                {showEdit
-                  ? (
-                      <LinkEditBlock onSetLink={onSetLink} editor={editor} />
-                    )
-                  : (
-                      <LinkViewBlock
-                        editor={editor}
-                        onClear={unSetLink}
-                        onEdit={() => {
-                          setShowEdit(true)
-                        }}
-                        link={link}
-                      />
-                    )}
-              </>
-            )}
+            <>
+              {showEdit
+                ? (
+                  <LinkEditBlock onSetLink={onSetLink} editor={editor} />
+                )
+                : (
+                  <LinkViewBlock
+                    editor={editor}
+                    onClear={unSetLink}
+                    onEdit={() => {
+                      setShowEdit(true);
+                    }}
+                    link={link}
+                  />
+                )}
+            </>
+          )}
       </BubbleMenu>
     </>
-  )
+  );
 }
 
-export { BubbleMenuLink }
+export { BubbleMenuLink };

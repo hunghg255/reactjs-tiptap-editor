@@ -1,4 +1,4 @@
-import type { Editor, Range } from '@tiptap/core'
+import type { Editor, Range } from '@tiptap/core';
 
 export interface Group {
   name: string

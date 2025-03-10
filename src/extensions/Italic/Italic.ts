@@ -1,9 +1,9 @@
-import type { Editor } from '@tiptap/core'
-import type { ItalicOptions as TiptapItalicOptions } from '@tiptap/extension-italic'
-import TiptapItalic from '@tiptap/extension-italic'
+import type { Editor } from '@tiptap/core';
+import type { ItalicOptions as TiptapItalicOptions } from '@tiptap/extension-italic';
+import TiptapItalic from '@tiptap/extension-italic';
 
-import { ActionButton } from '@/components'
-import type { GeneralOptions } from '@/types'
+import { ActionButton } from '@/components';
+import type { GeneralOptions } from '@/types';
 
 export interface ItalicOptions extends TiptapItalicOptions, GeneralOptions<ItalicOptions> {}
 
@@ -22,8 +22,8 @@ export const Italic = TiptapItalic.extend<ItalicOptions>({
             icon: 'Italic',
             tooltip: t('editor.italic.tooltip'),
           },
-        }
+        };
       },
-    }
+    };
   },
-})
+});

@@ -1,14 +1,15 @@
-import { Node } from '@tiptap/core'
-import { ReactRenderer } from '@tiptap/react'
-import Suggestion from '@tiptap/suggestion'
+import { Node } from '@tiptap/core';
+import { PluginKey } from '@tiptap/pm/state';
+import { ReactRenderer } from '@tiptap/react';
+import Suggestion from '@tiptap/suggestion';
+import tippy from 'tippy.js';
 
-import tippy from 'tippy.js'
-import { PluginKey } from '@tiptap/pm/state'
-import { emojiSearch, emojisToName } from './components/EmojiList/emojis'
-import { EmojiList } from './components/EmojiList/EmojiList'
-import EmojiPicker from '@/extensions/Emoji/components/EmojiPicker/EmojiPicker'
+import EmojiPicker from '@/extensions/Emoji/components/EmojiPicker/EmojiPicker';
 
-export const EXTENSION_PRIORITY_HIGHEST = 200
+import { EmojiList } from './components/EmojiList/EmojiList';
+import { emojiSearch, emojisToName } from './components/EmojiList/emojis';
+
+export const EXTENSION_PRIORITY_HIGHEST = 200;
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -18,9 +19,9 @@ declare module '@tiptap/core' {
   }
 }
 
-export const EmojiPluginKey = new PluginKey('emoji')
+export const EmojiPluginKey = new PluginKey('emoji');
 
-export { emojisToName }
+export { emojisToName };
 
 export const Emoji = Node.create({
   name: 'emoji',
@@ -40,7 +41,7 @@ export const Emoji = Node.create({
             .chain()
             .focus()
             .insertContentAt(range, `${props.emoji} `)
-            .run()
+            .run();
         },
       },
       button: ({ editor, t }: any) => {
@@ -48,15 +49,17 @@ export const Emoji = Node.create({
           component: EmojiPicker,
           componentProps: {
             editor,
-            action: () => {},
+            action: () => {
+              return;
+            },
             isActive: () => false,
             disabled: false,
             icon: 'EmojiIcon',
             tooltip: t('editor.emoji.tooltip'),
           },
-        }
+        };
       },
-    }
+    };
   },
 
   addCommands() {
@@ -64,9 +67,9 @@ export const Emoji = Node.create({
       setEmoji:
         emojiObject =>
           ({ commands }) => {
-            return commands.insertContent(`${emojiObject.emoji} `)
+            return commands.insertContent(`${emojiObject.emoji} `);
           },
-    }
+    };
   },
 
   addProseMirrorPlugins() {
@@ -75,28 +78,28 @@ export const Emoji = Node.create({
         editor: this.editor,
         ...this.options.suggestion,
       }),
-    ]
+    ];
   },
 }).configure({
   suggestion: {
     items: ({ query }: any) => {
-      return emojiSearch(query)
+      return emojiSearch(query);
     },
     render: () => {
-      let component: any
-      let popup: any
-      let isEditable: any
+      let component: any;
+      let popup: any;
+      let isEditable: any;
 
       return {
         onStart: (props: any) => {
-          isEditable = props.editor.isEditable
+          isEditable = props.editor.isEditable;
           if (!isEditable)
-            return
+            return;
 
           component = new ReactRenderer(EmojiList, {
             props,
             editor: props.editor,
-          })
+          });
 
           popup = tippy('body', {
             getReferenceClientRect: props.clientRect,
@@ -106,38 +109,38 @@ export const Emoji = Node.create({
             interactive: true,
             trigger: 'manual',
             placement: 'bottom-start',
-          })
+          });
         },
 
         onUpdate(props: any) {
           if (!isEditable)
-            return
+            return;
 
-          component.updateProps(props)
+          component.updateProps(props);
           popup[0].setProps({
             getReferenceClientRect: props.clientRect,
-          })
+          });
         },
 
         onKeyDown(props: any) {
           if (!isEditable)
-            return
+            return;
 
           if (props.event.key === 'Escape') {
-            popup[0].hide()
-            return true
+            popup[0].hide();
+            return true;
           }
-          return component.ref?.onKeyDown(props)
+          return component.ref?.onKeyDown(props);
         },
 
         onExit() {
           if (!isEditable)
-            return
+            return;
 
-          popup[0].destroy()
-          component.destroy()
+          popup[0].destroy();
+          component.destroy();
         },
-      }
+      };
     },
   },
-})
+});

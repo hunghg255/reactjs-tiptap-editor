@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Flag() {
   return (
@@ -13,7 +13,7 @@ function Flag() {
         fill="currentColor"
       />
     </svg>
-  )
+  );
 }
 
-export default Flag
+export default Flag;

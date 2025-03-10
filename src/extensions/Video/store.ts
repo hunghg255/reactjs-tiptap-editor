@@ -1,13 +1,13 @@
-import { createSignal, useSignalValue } from 'reactjs-signal'
+import { createSignal, useSignalValue } from 'reactjs-signal';
 
-const dialogVideo = createSignal(false)
+const dialogVideo = createSignal(false);
 
 export function useDialogVideo() {
-  return useSignalValue(dialogVideo)
+  return useSignalValue(dialogVideo);
 }
 
 export const actionDialogVideo = {
   setOpen: (value: boolean) => {
-    dialogVideo(value)
+    dialogVideo(value);
   },
-}
+};

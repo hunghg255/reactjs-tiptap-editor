@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import { truncate } from 'lodash-es'
+import { truncate } from 'lodash-es';
 
-import { ActionButton, Separator } from '@/components'
-import { useLocale } from '@/locales'
+import { ActionButton, Separator } from '@/components';
+import { useLocale } from '@/locales';
 
 interface IPropsLinkViewBlock {
   editor: any
@@ -13,7 +13,7 @@ interface IPropsLinkViewBlock {
 }
 
 function LinkViewBlock(props: IPropsLinkViewBlock) {
-  const { t } = useLocale()
+  const { t } = useLocale();
 
   return (
     <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-p-2 richtext-bg-white !richtext-border richtext-rounded-lg richtext-shadow-sm dark:richtext-bg-black richtext-border-neutral-200 dark:richtext-border-neutral-800">
@@ -34,7 +34,7 @@ function LinkViewBlock(props: IPropsLinkViewBlock) {
           icon="Pencil"
           tooltip={t('editor.link.edit.tooltip')}
           action={() => {
-            props?.onEdit()
+            props?.onEdit();
           }}
           tooltipOptions={{ sideOffset: 15 }}
         />
@@ -42,13 +42,13 @@ function LinkViewBlock(props: IPropsLinkViewBlock) {
           icon="Unlink"
           tooltip={t('editor.link.unlink.tooltip')}
           action={() => {
-            props?.onClear()
+            props?.onClear();
           }}
           tooltipOptions={{ sideOffset: 15 }}
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default LinkViewBlock
+export default LinkViewBlock;

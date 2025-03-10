@@ -1,14 +1,14 @@
-/* eslint-disable react/no-unstable-default-props */
-/* eslint-disable unused-imports/no-unused-vars */
-import React from 'react'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/display-name */
+import React from 'react';
 
-import { Slot } from '@radix-ui/react-slot'
-import type { TooltipContentProps } from '@radix-ui/react-tooltip'
+import { Slot } from '@radix-ui/react-slot';
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
-import { Toggle, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components'
-import type { ButtonViewReturnComponentProps } from '@/types'
-import { getShortcutKeys } from '@/utils/plateform'
-import { cn } from '@/lib/utils'
+import { Toggle, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components';
+import { cn } from '@/lib/utils';
+import type { ButtonViewReturnComponentProps } from '@/types';
+import { getShortcutKeys } from '@/utils/plateform';
 
 export interface ActionButtonProps {
   /* Icon name to display */
@@ -59,41 +59,47 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
       asChild = false,
       upload = false,
       ...rest
-    } = props
+    } = props;
 
-    const Icon = icons[icon as string]
-    const Comp = asChild ? Slot : Toggle
+    const Icon = icons[icon as string];
+    const Comp = asChild ? Slot : Toggle;
 
     return (
       <Tooltip>
         <TooltipTrigger asChild>
           <Comp
+            data-state={isActive?.() ? 'on' : 'off'}
+            onClick={action}
             ref={ref}
             size="sm"
             className={cn('richtext-w-[32px] richtext-h-[32px]', customClass)}
             // pressed={isActive?.() || false}
             disabled={disabled}
-            onClick={action}
-            data-state={isActive?.() ? 'on' : 'off'}
             {...(rest as Omit<typeof rest, 'loading'>)}
           >
-            {Icon && <Icon className="richtext-w-4 richtext-h-4" />}
+            {Icon && <Icon className="richtext-size-4" />}
             {children}
           </Comp>
         </TooltipTrigger>
+
         {tooltip && (
           <TooltipContent {...tooltipOptions}>
-            <div className="richtext-flex richtext-flex-col richtext-items-center richtext-text-center richtext-max-w-24">
-              <div>{tooltip}</div>
-              {!!shortcutKeys?.length && <span>{getShortcutKeys(shortcutKeys)}</span>}
+            <div className="richtext-flex richtext-max-w-24 richtext-flex-col richtext-items-center richtext-text-center">
+              <div>
+                {tooltip}
+              </div>
+
+              {!!shortcutKeys?.length && <span>
+                {getShortcutKeys(shortcutKeys)}
+              </span>}
             </div>
           </TooltipContent>
         )}
       </Tooltip>
-    )
+    );
   },
-)
+);
 
 export {
   ActionButton,
-}
+};

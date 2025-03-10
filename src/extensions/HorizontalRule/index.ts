@@ -1,1 +1,1 @@
-export * from './HorizontalRule'
+export * from './HorizontalRule';

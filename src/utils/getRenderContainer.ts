@@ -1,4 +1,4 @@
-import type { Editor } from '@tiptap/react'
+import type { Editor } from '@tiptap/react';
 
 export function getRenderContainer(editor: Editor, nodeType: string) {
   const {
@@ -6,25 +6,25 @@ export function getRenderContainer(editor: Editor, nodeType: string) {
     state: {
       selection: { from },
     },
-  } = editor
+  } = editor;
 
-  const elements = document.querySelectorAll('.has-focus')
-  const elementCount = elements.length
-  const innermostNode = elements[elementCount - 1]
-  const element = innermostNode as any
+  const elements = document.querySelectorAll('.has-focus');
+  const elementCount = elements.length;
+  const innermostNode = elements[elementCount - 1];
+  const element = innermostNode as any;
 
   if (
     (element && element.dataset.type && element.dataset.type === nodeType)
     || (element && element.classList && element.classList.contains(nodeType))
   ) {
-    return element
+    return element;
   }
 
-  const node = view.domAtPos(from).node as HTMLElement
-  let container: any = node
+  const node = view.domAtPos(from).node as HTMLElement;
+  let container: any = node;
 
   if (!container.tagName) {
-    container = node.parentElement
+    container = node.parentElement;
   }
 
   while (
@@ -32,10 +32,10 @@ export function getRenderContainer(editor: Editor, nodeType: string) {
     && !(container.dataset.type && container.dataset.type === nodeType)
     && !container.classList.contains(nodeType)
   ) {
-    container = container.parentElement
+    container = container.parentElement;
   }
 
-  return container
+  return container;
 }
 
-export default getRenderContainer
+export default getRenderContainer;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Symbol() {
   return (
@@ -13,7 +13,7 @@ function Symbol() {
         fill="currentColor"
       />
     </svg>
-  )
+  );
 }
 
-export default Symbol
+export default Symbol;

@@ -1,5 +1,4 @@
-/* eslint-disable react/no-duplicate-key */
-import React, { Fragment, useMemo } from 'react'
+import React, { Fragment, useMemo } from 'react';
 
 import {
   ActionMenuButton,
@@ -8,9 +7,9 @@ import {
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components'
-import { useLocale } from '@/locales'
-import type { ButtonViewReturnComponentProps } from '@/types'
+} from '@/components';
+import { useLocale } from '@/locales';
+import type { ButtonViewReturnComponentProps } from '@/types';
 
 export interface Item {
   title: string
@@ -36,15 +35,15 @@ interface Props {
 }
 
 function FontFamilyButton(props: Props) {
-  const { t, lang } = useLocale()
+  const { t, lang } = useLocale();
 
   const active = useMemo(() => {
-    const find: any = props?.items?.find((k: any) => k.isActive())
+    const find: any = props?.items?.find((k: any) => k.isActive());
 
     if (find && !find.default) {
       return {
         ...find,
-      }
+      };
     }
     const item: Item = {
       title: props.tooltip as any,
@@ -52,39 +51,47 @@ function FontFamilyButton(props: Props) {
       isActive: () => false,
       disabled: false,
       action: () => props.editor.chain().focus().unsetFontFamily().run(),
-    }
-    return item
-  }, [t, lang, props])
+    };
+    return item;
+  }, [t, lang, props]);
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger disabled={props?.disabled} asChild>
+      <DropdownMenuTrigger asChild
+        disabled={props?.disabled}
+      >
         <ActionMenuButton
-          title={active?.font?.length > 7 ? `${active?.font?.slice(0, 6)}...` : active?.font}
-          tooltip={props?.tooltip}
           disabled={props?.disabled}
           icon="MenuDown"
+          title={active?.font?.length > 7 ? `${active?.font?.slice(0, 6)}...` : active?.font}
+          tooltip={props?.tooltip}
         />
       </DropdownMenuTrigger>
+
       <DropdownMenuContent className="richtext-w-full">
         {props?.items?.map((item: any, index) => {
           const style
-            = item.font === t('editor.fontFamily.default.tooltip') ? {} : { fontFamily: item.font }
+            = item.font === t('editor.fontFamily.default.tooltip') ? {} : { fontFamily: item.font };
 
           return (
             <Fragment key={`font-family-${index}`}>
-              <DropdownMenuCheckboxItem checked={active?.font === item.font} onClick={item.action}>
-                <div className="richtext-h-full richtext-ml-1" style={style}>
+              <DropdownMenuCheckboxItem checked={active?.font === item.font}
+                onClick={item.action}
+              >
+                <div className="richtext-ml-1 richtext-h-full"
+                  style={style}
+                >
                   {item.font}
                 </div>
               </DropdownMenuCheckboxItem>
+
               {item.font === t('editor.fontFamily.default.tooltip') && <DropdownMenuSeparator />}
             </Fragment>
-          )
+          );
         })}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
-export default FontFamilyButton
+export default FontFamilyButton;

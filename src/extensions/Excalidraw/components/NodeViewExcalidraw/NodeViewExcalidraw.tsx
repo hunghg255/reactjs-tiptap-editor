@@ -1,101 +1,99 @@
-/* eslint-disable react-dom/no-dangerously-set-innerhtml */
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import VisibilitySensor from 'react-visibility-sensor'
+import { NodeViewWrapper } from '@tiptap/react';
+import clsx from 'clsx';
+import deepEqual from 'deep-equal';
+import { Resizable } from 're-resizable';
+import VisibilitySensor from 'react-visibility-sensor';
 
-import { Resizable } from 're-resizable'
-import { NodeViewWrapper } from '@tiptap/react'
-
-import deepEqual from 'deep-equal'
-
-import clsx from 'clsx'
-import styles from './index.module.scss'
 // import { clamp, getEditorContainerDOMSize } from '@/utils'
-import { ActionButton } from '@/components/ActionButton'
-import { Excalidraw } from '@/extensions/Excalidraw/Excalidraw'
-import { clamp } from '@/utils/utils'
+import { ActionButton } from '@/components/ActionButton';
+import { Excalidraw } from '@/extensions/Excalidraw/Excalidraw';
+import { clamp } from '@/utils/utils';
 
-const MIN_ZOOM = 10
-const MAX_ZOOM = 200
-const ZOOM_STEP = 15
+import styles from './index.module.scss';
 
-const INHERIT_SIZE_STYLE = { width: '100%', height: '100%', maxWidth: '100%' }
+const MIN_ZOOM = 10;
+const MAX_ZOOM = 200;
+const ZOOM_STEP = 15;
+
+const INHERIT_SIZE_STYLE = { width: '100%', height: '100%', maxWidth: '100%' };
 
 function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
-  const exportToSvgRef: any = useRef(null)
+  const exportToSvgRef: any = useRef(null);
   // const isEditable = editor.isEditable
-  const isActive = editor.isActive(Excalidraw.name)
+  const isActive = editor.isActive(Excalidraw.name);
   // const { width: maxWidth } = getEditorContainerDOMSize(editor)
-  const { data, width, height } = node.attrs
-  const [Svg, setSvg] = useState<SVGElement | null>(null)
-  const [loading, toggleLoading] = useState(true)
-  const [error, setError] = useState<any>(null)
-  const [visible, toggleVisible] = useState(false)
-  const [zoom, setZoomState] = useState(100)
+  const { data, width, height } = node.attrs;
+  const [Svg, setSvg] = useState<SVGElement | null>(null);
+  const [loading, toggleLoading] = useState(true);
+  const [error, setError] = useState<any>(null);
+  const [visible, toggleVisible] = useState(false);
+  const [zoom, setZoomState] = useState(100);
 
   const onViewportChange = useCallback(
     (visible: any) => {
       if (visible) {
-        toggleVisible(true)
+        toggleVisible(true);
       }
     },
     [toggleVisible],
-  )
+  );
 
   const setZoom = useCallback((type: 'minus' | 'plus') => {
     return () => {
       setZoomState(currentZoom =>
         clamp(type === 'minus' ? currentZoom - ZOOM_STEP : currentZoom + ZOOM_STEP, MIN_ZOOM, MAX_ZOOM),
-      )
-    }
-  }, [])
+      );
+    };
+  }, []);
 
   useEffect(() => {
-    let isUnmount = false
+    let isUnmount = false;
 
     import('@excalidraw/excalidraw')
       .then((res) => {
         if (!isUnmount) {
-          exportToSvgRef.current = res.exportToSvg
+          exportToSvgRef.current = res.exportToSvg;
         }
       })
       .catch(err => !isUnmount && setError(err))
-      .finally(() => !isUnmount && toggleLoading(false))
+      .finally(() => !isUnmount && toggleLoading(false));
 
     return () => {
-      isUnmount = true
-    }
-  }, [toggleLoading, data])
+      isUnmount = true;
+    };
+  }, [toggleLoading, data]);
 
   useEffect(() => {
-    let isUnmount = false
+    let isUnmount = false;
 
     const setContent = async () => {
       if (isUnmount || loading || error || !visible || !data)
-        return
+        return;
 
-      const svg: SVGElement = await exportToSvgRef.current(data)
+      const svg: SVGElement = await exportToSvgRef.current(data);
 
       if (isUnmount)
-        return
+        return;
 
-      svg.setAttribute('width', '100%')
-      svg.setAttribute('height', '100%')
-      svg.setAttribute('display', 'block')
+      svg.setAttribute('width', '100%');
+      svg.setAttribute('height', '100%');
+      svg.setAttribute('display', 'block');
 
-      setSvg(svg)
-    }
+      setSvg(svg);
+    };
 
-    setContent()
+    setContent();
 
     return () => {
-      isUnmount = true
-    }
-  }, [data, loading, error, visible])
+      isUnmount = true;
+    };
+  }, [data, loading, error, visible]);
 
   const onResize = (size: any) => {
-    updateAttributes({ width: size.width, height: size.height })
-  }
+    updateAttributes({ width: size.width, height: size.height });
+  };
 
   return (
     <NodeViewWrapper className={clsx(styles.wrap, isActive && styles.isActive)}>
@@ -106,7 +104,7 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
             onResize({
               width: Number.parseInt(width) + d.width,
               height: Number.parseInt(height) + d.height,
-            })
+            });
           }}
         >
           <div
@@ -115,14 +113,19 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
           >
             {error && (
               <div style={INHERIT_SIZE_STYLE}>
-                <p>{error.message || error}</p>
+                <p>
+                  {error.message || error}
+                </p>
               </div>
             )}
 
-            {loading && <p>Loading...</p>}
+            {loading && <p>
+              Loading...
+            </p>}
 
             {!loading && !error && visible && (
               <div
+                dangerouslySetInnerHTML={{ __html: Svg?.outerHTML ?? '' }}
                 style={{
                   height: '100%',
                   maxHeight: '100%',
@@ -132,9 +135,8 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
                   justifyContent: 'center',
                   alignItems: 'center',
                   transform: `scale(${zoom / 100})`,
-                  transition: `all ease-in-out .3s`,
+                  transition: 'all ease-in-out .3s',
                 }}
-                dangerouslySetInnerHTML={{ __html: Svg?.outerHTML ?? '' }}
               />
             )}
 
@@ -149,13 +151,14 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
 
             <div className={styles.handlerWrap}>
               <ActionButton
-                icon="ZoomOut"
                 action={setZoom('minus')}
+                icon="ZoomOut"
                 tooltip="Zoom Out"
               />
+
               <ActionButton
-                icon="ZoomIn"
                 action={setZoom('plus')}
+                icon="ZoomIn"
                 tooltip="Zoom In"
               />
             </div>
@@ -163,13 +166,13 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
         </Resizable>
       </VisibilitySensor>
     </NodeViewWrapper>
-  )
+  );
 }
 
 export default React.memo(NodeViewExcalidraw, (prevProps, nextProps) => {
   if (deepEqual(prevProps.node.attrs, nextProps.node.attrs)) {
-    return true
+    return true;
   }
 
-  return false
-})
+  return false;
+});

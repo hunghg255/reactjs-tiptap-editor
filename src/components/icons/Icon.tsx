@@ -1,5 +1,5 @@
-import React from 'react'
-import { icons } from '@/components'
+import React from 'react';
+import { icons } from '@/components';
 
 export interface IconComponentProps {
   name: string
@@ -8,9 +8,9 @@ export interface IconComponentProps {
 }
 
 function IconComponent(props: IconComponentProps) {
-  const Icon = icons[props.name]
+  const Icon = icons[props.name];
 
-  return Icon ? <Icon onClick={props?.onClick} className={`richtext-w-4 richtext-h-4 ${props?.className || ''}`} /> : null
+  return Icon ? <Icon onClick={props?.onClick} className={`richtext-w-4 richtext-h-4 ${props?.className || ''}`} /> : null;
 }
 
-export { IconComponent }
+export { IconComponent };

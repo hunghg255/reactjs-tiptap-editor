@@ -1,10 +1,10 @@
-import BulitInMention from '@tiptap/extension-mention'
+import BulitInMention from '@tiptap/extension-mention';
 // import { getMentionUser } from 'services/user'
 // import { MentionList } from '@/wrappers/mention-list'
-import { ReactRenderer } from '@tiptap/react'
-import tippy from 'tippy.js'
-import { getDatasetAttribute } from '@/utils/dom-dataset'
-import { NodeViewMentionList } from '@/extensions/Mention/components/NodeViewMentionList/NodeViewMentionList'
+import { ReactRenderer } from '@tiptap/react';
+import tippy from 'tippy.js';
+import { getDatasetAttribute } from '@/utils/dom-dataset';
+import { NodeViewMentionList } from '@/extensions/Mention/components/NodeViewMentionList/NodeViewMentionList';
 
 const MOCK_USERS = [
   {
@@ -23,24 +23,24 @@ const MOCK_USERS = [
     id: '4',
     name: 'Bob',
   },
-]
+];
 
 const suggestion = {
   items: async ({ query }: any) => {
-    const data = MOCK_USERS.map(item => item.name)
-    return data.filter(item => item.toLowerCase().startsWith(query.toLowerCase()))
+    const data = MOCK_USERS.map(item => item.name);
+    return data.filter(item => item.toLowerCase().startsWith(query.toLowerCase()));
   },
 
   render: () => {
-    let component: any
-    let popup: any
+    let component: any;
+    let popup: any;
 
     return {
       onStart: (props: any) => {
         component = new ReactRenderer(NodeViewMentionList, {
           props,
           editor: props.editor,
-        })
+        });
 
         popup = tippy('body', {
           getReferenceClientRect: props.clientRect,
@@ -50,34 +50,34 @@ const suggestion = {
           interactive: true,
           trigger: 'manual',
           placement: 'bottom-start',
-        })
+        });
       },
 
       onUpdate(props: any) {
-        component.updateProps(props)
+        component.updateProps(props);
 
         popup[0].setProps({
           getReferenceClientRect: props.clientRect,
-        })
+        });
       },
 
       onKeyDown(props: any) {
         if (props.event.key === 'Escape') {
-          popup[0].hide()
+          popup[0].hide();
 
-          return true
+          return true;
         }
 
-        return component.ref?.onKeyDown(props)
+        return component.ref?.onKeyDown(props);
       },
 
       onExit() {
-        popup[0].destroy()
-        component.destroy()
+        popup[0].destroy();
+        component.destroy();
       },
-    }
+    };
   },
-} as any
+} as any;
 
 export const Mention = BulitInMention.extend({
   addAttributes() {
@@ -90,11 +90,11 @@ export const Mention = BulitInMention.extend({
         default: '',
         parseHTML: getDatasetAttribute('label'),
       },
-    }
+    };
   },
 }).configure({
   HTMLAttributes: {
     class: 'mention',
   },
   suggestion,
-})
+});

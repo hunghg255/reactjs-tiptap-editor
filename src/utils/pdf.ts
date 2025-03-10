@@ -1,9 +1,9 @@
-import type { Editor } from '@tiptap/core'
+import type { Editor } from '@tiptap/core';
 
 function printHtml(content: string) {
-  const iframe: HTMLIFrameElement = document.createElement('iframe')
-  iframe.setAttribute('style', 'position: absolute; width: 0; height: 0; top: 0; left: 0;')
-  document.body.appendChild(iframe)
+  const iframe: HTMLIFrameElement = document.createElement('iframe');
+  iframe.setAttribute('style', 'position: absolute; width: 0; height: 0; top: 0; left: 0;');
+  document.body.appendChild(iframe);
 
   iframe.textContent = `
     <!DOCTYPE html>
@@ -19,56 +19,54 @@ function printHtml(content: string) {
       </div>
     </body>
     </html>
-  `
+  `;
 
-  const frameWindow = iframe.contentWindow
-  const doc: any = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document)
+  const frameWindow = iframe.contentWindow;
+  const doc: any = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
 
   // load style from CDN to iframe
-  const link = document.createElement('link')
-  link.rel = 'stylesheet'
-  link.href = 'https://cdn.jsdelivr.net/npm/reactjs-tiptap-editor@latest/lib/style.css'
-  doc.head.appendChild(link)
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://cdn.jsdelivr.net/npm/reactjs-tiptap-editor@latest/lib/style.css';
+  doc.head.appendChild(link);
 
   if (doc) {
-    doc.open()
-    doc.write(content)
-    doc.close()
+    doc.open();
+    doc.write(content);
+    doc.close();
   }
 
   if (frameWindow) {
-    iframe.onload = function () {
+    iframe.addEventListener('load', function () {
       try {
         setTimeout(() => {
-          frameWindow.focus()
+          frameWindow.focus();
           try {
             if (!frameWindow.document.execCommand('print', false)) {
-              frameWindow.print()
+              frameWindow.print();
             }
+          } catch {
+            frameWindow.print();
           }
-          catch {
-            frameWindow.print()
-          }
-          frameWindow.close()
-        }, 10)
-      }
-      catch (err) {
-        console.error(err)
+          frameWindow.close();
+        }, 10);
+      } catch (err) {
+        console.error(err);
       }
 
       setTimeout(() => {
-        document.body.removeChild(iframe)
-      }, 100)
-    }
+        document.body.removeChild(iframe);
+      }, 100);
+    });
   }
 }
 
 export function printEditorContent(editor: Editor) {
-  const content = editor.getHTML()
+  const content = editor.getHTML();
 
   if (content) {
-    printHtml(content)
-    return true
+    printHtml(content);
+    return true;
   }
-  return false
+  return false;
 }

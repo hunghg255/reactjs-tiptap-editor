@@ -1,14 +1,14 @@
-import React, { useMemo } from 'react'
+import React, { useMemo } from 'react';
 
-import type { BundledLanguage } from 'shiki'
+import type { BundledLanguage } from 'shiki';
 import {
   ActionButton,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components'
-import { MAP_LANGUAGE_CODE_LABELS } from '@/constants'
+} from '@/components';
+import { MAP_LANGUAGE_CODE_LABELS } from '@/constants';
 
 interface Props {
   editor: any
@@ -24,20 +24,20 @@ interface Props {
 
 function CodeBlockActiveButton({ action, languages, ...props }: Props) {
   const onClick = (language: string) => {
-    action(language)
-  }
+    action(language);
+  };
 
   const langs = useMemo(() => {
     return languages?.map((language) => {
-      const title = MAP_LANGUAGE_CODE_LABELS[language] || language
+      const title = MAP_LANGUAGE_CODE_LABELS[language] || language;
 
       return {
         title,
         // icon: language.icon,
         language,
-      }
-    })
-  }, [languages])
+      };
+    });
+  }, [languages]);
 
   return (
     <DropdownMenu>
@@ -56,11 +56,11 @@ function CodeBlockActiveButton({ action, languages, ...props }: Props) {
                 {item.title}
               </div>
             </DropdownMenuItem>
-          )
+          );
         })}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
-export default CodeBlockActiveButton
+export default CodeBlockActiveButton;

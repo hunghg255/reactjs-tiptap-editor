@@ -1,4 +1,4 @@
-import type { SVGProps } from 'react'
+import type { SVGProps } from 'react';
 
 export function BlockquoteLeft(props: SVGProps<SVGSVGElement>) {
   return (
@@ -13,5 +13,5 @@ export function BlockquoteLeft(props: SVGProps<SVGSVGElement>) {
       >
       </path>
     </svg>
-  )
+  );
 }

@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react'
+/* eslint-disable no-unsafe-optional-chaining */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { useEffect, useState } from 'react';
 
-import { Button, Input, Label } from '@/components'
-import { useLocale } from '@/locales'
-import { Twitter } from '@/extensions/Twitter/Twitter'
+import { Button, Input, Label } from '@/components';
+import { Twitter } from '@/extensions/Twitter/Twitter';
+import { useLocale } from '@/locales';
 
 interface IPropsFormEditLinkTwitter {
   editor: any
@@ -10,52 +13,56 @@ interface IPropsFormEditLinkTwitter {
 }
 
 function FormEditLinkTwitter(props: IPropsFormEditLinkTwitter) {
-  const { t } = useLocale()
+  const { t } = useLocale();
 
-  const [src, setSrc] = useState('')
+  const [src, setSrc] = useState('');
 
   useEffect(() => {
     if (props?.editor) {
-      const { src: srcInit } = props.editor?.getAttributes(Twitter.name)
+      const { src: srcInit } = props.editor?.getAttributes(Twitter.name);
 
       if (srcInit) {
-        setSrc(srcInit)
+        setSrc(srcInit);
       }
     }
-  }, [props?.editor])
+  }, [props?.editor]);
 
   function handleSubmit(event: any) {
-    event.preventDefault()
-    event.stopPropagation()
-    props?.onSetLink(src)
+    event.preventDefault();
+    event.stopPropagation();
+    props?.onSetLink(src);
   }
 
   return (
-    <div className="richtext-p-2 richtext-bg-white !richtext-border richtext-rounded-lg richtext-shadow-sm dark:richtext-bg-black border-neutral-200 dark:richtext-border-neutral-800">
-      <form className="richtext-flex richtext-flex-col richtext-gap-2" onSubmit={handleSubmit}>
+    <div className="border-neutral-200 richtext-rounded-lg !richtext-border richtext-bg-white richtext-p-2 richtext-shadow-sm dark:richtext-border-neutral-800 dark:richtext-bg-black">
+      <form className="richtext-flex richtext-flex-col richtext-gap-2"
+        onSubmit={handleSubmit}
+      >
         <Label className="mb-[6px]">
           {t('editor.link.dialog.text')}
         </Label>
 
-        <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5 richtext-mb-[10px]">
-          <div className="richtext-relative richtext-items-center richtext-w-full richtext-max-w-sm">
+        <div className="richtext-mb-[10px] richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
+          <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
             <Input
+              className="richtext-w-80"
+              onChange={e => setSrc(e.target.value)}
+              placeholder="Text"
+              required
               type="text"
               value={src}
-              required
-              className="richtext-w-80"
-              placeholder="Text"
-              onChange={e => setSrc(e.target.value)}
             />
           </div>
         </div>
 
-        <Button type="submit" className="richtext-self-end richtext-mt-2">
+        <Button className="richtext-mt-2 richtext-self-end"
+          type="submit"
+        >
           {t('editor.link.dialog.button.apply')}
         </Button>
       </form>
     </div>
-  )
+  );
 }
 
-export default FormEditLinkTwitter
+export default FormEditLinkTwitter;

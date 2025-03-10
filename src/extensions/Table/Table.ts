@@ -1,15 +1,15 @@
-import TiptapTable from '@tiptap/extension-table'
-import { TableCell } from '@tiptap/extension-table-cell'
-import type { TableCellOptions } from '@tiptap/extension-table-cell'
-import { TableHeader } from '@tiptap/extension-table-header'
-import type { TableHeaderOptions } from '@tiptap/extension-table-header'
-import { TableRow } from '@tiptap/extension-table-row'
-import type { TableRowOptions } from '@tiptap/extension-table-row'
+import TiptapTable from '@tiptap/extension-table';
+import { TableCell } from '@tiptap/extension-table-cell';
+import type { TableCellOptions } from '@tiptap/extension-table-cell';
+import { TableHeader } from '@tiptap/extension-table-header';
+import type { TableHeaderOptions } from '@tiptap/extension-table-header';
+import { TableRow } from '@tiptap/extension-table-row';
+import type { TableRowOptions } from '@tiptap/extension-table-row';
 
-import type { TableCellBackgroundOptions } from './cell-background'
-import { TableCellBackground } from './cell-background'
-import TableActionButton from '@/extensions/Table/components/TableActionButton'
-import type { GeneralOptions } from '@/types'
+import type { TableCellBackgroundOptions } from './cell-background';
+import { TableCellBackground } from './cell-background';
+import TableActionButton from '@/extensions/Table/components/TableActionButton';
+import type { GeneralOptions } from '@/types';
 
 export interface TableOptions extends GeneralOptions<TableOptions> {
   HTMLAttributes: Record<string, any>
@@ -43,7 +43,7 @@ export const Table = TiptapTable.extend<TableOptions>({
           editor,
         },
       }),
-    }
+    };
   },
 
   addExtensions() {
@@ -52,8 +52,8 @@ export const Table = TiptapTable.extend<TableOptions>({
       TableHeader.configure(this.options.tableHeader),
       TableCell.configure(this.options.tableCell),
       TableCellBackground.configure(this.options.tableCellBackground),
-    ]
+    ];
   },
-})
+});
 
-export default Table
+export default Table;

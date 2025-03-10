@@ -1,42 +1,47 @@
-/* eslint-disable ts/no-unused-expressions */
-import { useCallback, useEffect, useState } from 'react'
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { useCallback, useEffect, useState } from 'react';
 
-import type { Editor } from '@tiptap/core'
-import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { ActionButton } from '@/components/ActionButton'
-import { Button } from '@/components/ui'
-import { OPEN_EXCALIDRAW_SETTING_MODAL, cancelSubject, subject } from '@/utils/_event'
+import type { Editor } from '@tiptap/core';
 
-interface IProps { editor: Editor }
+import { ActionButton } from '@/components/ActionButton';
+import { Button } from '@/components/ui';
+import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { OPEN_EXCALIDRAW_SETTING_MODAL, cancelSubject, subject } from '@/utils/_event';
+
+interface IProps {
+  editor: Editor
+}
 
 export const ExcalidrawActiveButton: React.FC<IProps> = ({ editor }) => {
-  const [Excalidraw, setExcalidraw] = useState<any>(null)
-  const [data, setData] = useState({})
-  const [initialData, setInitialData] = useState({ elements: [], appState: { isLoading: false }, files: null })
-  const [visible, toggleVisible] = useState(false)
-  const [loading, toggleLoading] = useState(true)
-  const [error, setError] = useState<any>(null)
+  const [Excalidraw, setExcalidraw] = useState<any>(null);
+  const [data, setData] = useState({});
+  const [initialData, setInitialData] = useState({ elements: [], appState: { isLoading: false }, files: null });
+  const [visible, toggleVisible] = useState(false);
+  const [loading, toggleLoading] = useState(true);
+  const [error, setError] = useState<any>(null);
 
   const renderEditor = useCallback(
     (div: any) => {
       if (!div)
-        return
+        return;
 
       import('@excalidraw/excalidraw')
         .then((res) => {
-          setExcalidraw(res.Excalidraw)
+          setExcalidraw(res.Excalidraw);
         })
         .catch(setError)
-        .finally(() => toggleLoading(false))
+        .finally(() => toggleLoading(false));
     },
     [toggleLoading],
-  )
+  );
 
   const renderExcalidraw: any = useCallback((app: any) => {
     setTimeout(() => {
-      app.refresh()
-    })
-  }, [])
+      app.refresh();
+    });
+  }, []);
 
   const onChange = useCallback((elements: any, appState: any, files: any) => {
     // appState.collaborators = [];
@@ -44,51 +49,54 @@ export const ExcalidrawActiveButton: React.FC<IProps> = ({ editor }) => {
       elements,
       appState: { isLoading: false },
       files,
-    })
-  }, [])
+    });
+  }, []);
 
   const save = useCallback(() => {
     if (!Excalidraw) {
-      toggleVisible(false)
-      return
+      toggleVisible(false);
+      return;
     }
 
     // const currentScrollTop = document.querySelector('main#js-tocs-container')?.scrollTop
-    editor.chain().focus().setExcalidraw({ data }).run()
+    editor.chain().focus().setExcalidraw({ data }).run();
     // setTimeout(() => {
     //   // @ts-expect-error
     //   document.querySelector('main#js-tocs-container').scrollTop = currentScrollTop
     // })
-    toggleVisible(false)
-  }, [Excalidraw, editor, data, toggleVisible])
+    toggleVisible(false);
+  }, [Excalidraw, editor, data, toggleVisible]);
 
   useEffect(() => {
     const handler = (data: any) => {
-      toggleVisible(true)
-      data && setInitialData(data.data)
-    }
+      toggleVisible(true);
+      data && setInitialData(data.data);
+    };
 
-    subject(OPEN_EXCALIDRAW_SETTING_MODAL, handler)
+    subject(OPEN_EXCALIDRAW_SETTING_MODAL, handler);
 
     return () => {
-      cancelSubject(OPEN_EXCALIDRAW_SETTING_MODAL, handler)
-    }
-  }, [editor, toggleVisible])
+      cancelSubject(OPEN_EXCALIDRAW_SETTING_MODAL, handler);
+    };
+  }, [editor, toggleVisible]);
 
   return (
     <Dialog
-      open={visible}
       onOpenChange={toggleVisible}
+      open={visible}
     >
       <DialogTrigger asChild>
         <ActionButton
+          action={() => toggleVisible(true)}
           icon="Excalidraw"
           tooltip="Excalidraw"
-          action={() => toggleVisible(true)}
         />
       </DialogTrigger>
-      <DialogContent className="!richtext-max-w-[1300px] richtext-z-[99999]">
-        <DialogTitle>Excalidraw</DialogTitle>
+
+      <DialogContent className="richtext-z-[99999] !richtext-max-w-[1300px]">
+        <DialogTitle>
+          Excalidraw
+        </DialogTitle>
 
         <div style={{ height: '100%', borderWidth: 1 }}>
           {loading && (
@@ -97,26 +105,34 @@ export const ExcalidrawActiveButton: React.FC<IProps> = ({ editor }) => {
             </p>
           )}
 
-          {error && <p>{(error && error.message) || 'Error'}</p>}
+          {error && <p>
+            {(error && error.message) || 'Error'}
+          </p>}
 
-          <div style={{ width: '100%', height: 600 }} ref={renderEditor}>
+          <div ref={renderEditor}
+            style={{ width: '100%', height: 600 }}
+          >
             {!loading && !error && Excalidraw
               ? (
-                  <Excalidraw ref={renderExcalidraw} onChange={onChange} langCode="en" initialData={initialData} />
-                )
+                <Excalidraw initialData={initialData}
+                  langCode="en"
+                  onChange={onChange}
+                  ref={renderExcalidraw}
+                />
+              )
               : null}
           </div>
         </div>
 
         <DialogFooter>
           <Button
-            type="button"
             onClick={save}
+            type="button"
           >
             Save changes
           </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};

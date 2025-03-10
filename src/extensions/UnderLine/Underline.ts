@@ -1,8 +1,8 @@
-import type { UnderlineOptions as TiptapUnderlineOptions } from '@tiptap/extension-underline'
-import TiptapUnderline from '@tiptap/extension-underline'
+import type { UnderlineOptions as TiptapUnderlineOptions } from '@tiptap/extension-underline';
+import TiptapUnderline from '@tiptap/extension-underline';
 
-import { ActionButton } from '@/components'
-import type { GeneralOptions } from '@/types'
+import { ActionButton } from '@/components';
+import type { GeneralOptions } from '@/types';
 
 export interface UnderlineOptions
   extends TiptapUnderlineOptions,
@@ -23,8 +23,8 @@ export const Underline = TiptapUnderline.extend<UnderlineOptions>({
             shortcutKeys: ['mod', 'U'],
             tooltip: t('editor.underline.tooltip'),
           },
-        }
+        };
       },
-    }
+    };
   },
-})
+});
