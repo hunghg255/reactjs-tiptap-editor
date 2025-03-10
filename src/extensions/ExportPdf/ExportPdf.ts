@@ -1,7 +1,7 @@
-import { Extension } from '@tiptap/core'
+import { Extension } from '@tiptap/core';
 
-import { ActionButton } from '@/components'
-import { printEditorContent } from '@/utils/pdf'
+import { ActionButton } from '@/components';
+import { printEditorContent } from '@/utils/pdf';
 
 export const ExportPdf = Extension.create<any>({
   name: 'exportPdf',
@@ -12,7 +12,7 @@ export const ExportPdf = Extension.create<any>({
         component: ActionButton,
         componentProps: {
           action: () => {
-            printEditorContent(editor)
+            printEditorContent(editor);
           },
           icon: 'ExportPdf',
           tooltip: t('editor.exportPdf.tooltip'),
@@ -20,6 +20,6 @@ export const ExportPdf = Extension.create<any>({
           disabled: false,
         },
       }),
-    }
+    };
   },
-})
+});

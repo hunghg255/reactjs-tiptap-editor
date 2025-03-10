@@ -1,1 +1,1 @@
-export * from './FormatPainter'
+export * from './FormatPainter';

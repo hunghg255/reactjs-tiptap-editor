@@ -1,1 +1,1 @@
-export * from './FontFamily'
+export * from './FontFamily';

@@ -1,35 +1,35 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react';
 
-import { BubbleMenu } from '@tiptap/react'
-import { useAttributes } from '@/hooks/useAttributes'
-import { ActionButton } from '@/components/ActionButton'
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Button, Input } from '@/components/ui'
-import { SizeSetter } from '@/components/SizeSetter/SizeSetter'
-import { useLocale } from '@/locales'
-import type { IIframeAttrs } from '@/extensions/Iframe'
-import { Iframe } from '@/extensions/Iframe'
-import { deleteNode } from '@/utils/delete-node'
+import { BubbleMenu } from '@tiptap/react';
+import { useAttributes } from '@/hooks/useAttributes';
+import { ActionButton } from '@/components/ActionButton';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Button, Input } from '@/components/ui';
+import { SizeSetter } from '@/components/SizeSetter/SizeSetter';
+import { useLocale } from '@/locales';
+import type { IIframeAttrs } from '@/extensions/Iframe';
+import { Iframe } from '@/extensions/Iframe';
+import { deleteNode } from '@/utils/delete-node';
 
 export function BubbleMenuIframe({ editor }: any) {
-  const { t } = useLocale()
+  const { t } = useLocale();
   const { width, height, url } = useAttributes<IIframeAttrs>(editor, Iframe.name, {
     width: 0,
     height: 0,
     url: '',
     defaultShowPicker: false,
-  })
-  const [visible, toggleVisible] = useState(false)
-  const [formUrl, setFormUrl] = useState('')
+  });
+  const [visible, toggleVisible] = useState(false);
+  const [formUrl, setFormUrl] = useState('');
 
   const handleCancel = useCallback(() => {
-    toggleVisible(false)
-  }, [toggleVisible])
+    toggleVisible(false);
+  }, [toggleVisible]);
 
   useEffect(() => {
     if (visible)
-      setFormUrl(url as any)
-  }, [visible, url])
+      setFormUrl(url as any);
+  }, [visible, url]);
 
   const handleOk = useCallback(() => {
     editor
@@ -39,26 +39,26 @@ export function BubbleMenuIframe({ editor }: any) {
       })
       .setNodeSelection(editor.state.selection.from)
       .focus()
-      .run()
-    toggleVisible(false)
-  }, [editor, formUrl, toggleVisible])
+      .run();
+    toggleVisible(false);
+  }, [editor, formUrl, toggleVisible]);
 
   const visitLink = useCallback(() => {
-    window.open(url, '_blank')
-  }, [url])
+    window.open(url, '_blank');
+  }, [url]);
 
   const openEditLinkModal = useCallback(() => {
-    toggleVisible(true)
-  }, [toggleVisible])
+    toggleVisible(true);
+  }, [toggleVisible]);
 
   const setSize = useCallback(
     (size: any) => {
-      editor.chain().updateAttributes(Iframe.name, size).setNodeSelection(editor.state.selection.from).focus().run()
+      editor.chain().updateAttributes(Iframe.name, size).setNodeSelection(editor.state.selection.from).focus().run();
     },
     [editor],
-  )
-  const shouldShow = useCallback(() => editor.isActive(Iframe.name) && !url, [editor, url])
-  const deleteMe = useCallback(() => deleteNode(Iframe.name, editor), [editor])
+  );
+  const shouldShow = useCallback(() => editor.isActive(Iframe.name) && !url, [editor, url]);
+  const deleteMe = useCallback(() => deleteNode(Iframe.name, editor), [editor]);
 
   return (
     <>
@@ -115,7 +115,9 @@ export function BubbleMenuIframe({ editor }: any) {
 
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Edit Link Iframe</DialogTitle>
+            <DialogTitle>
+              Edit Link Iframe
+            </DialogTitle>
           </DialogHeader>
 
           <Input
@@ -127,11 +129,15 @@ export function BubbleMenuIframe({ editor }: any) {
           />
 
           <DialogFooter>
-            <Button onClick={handleCancel}>Cancel</Button>
-            <Button onClick={handleOk}>OK</Button>
+            <Button onClick={handleCancel}>
+              Cancel
+            </Button>
+            <Button onClick={handleOk}>
+              OK
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
     </>
-  )
+  );
 }

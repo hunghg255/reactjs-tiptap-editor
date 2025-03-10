@@ -20,7 +20,7 @@ function DeleteRow() {
         color="currentColor"
       />
     </svg>
-  )
+  );
 }
 
-export { DeleteRow }
+export { DeleteRow };

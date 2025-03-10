@@ -1,3 +1,3 @@
-export * from './MultiColumn'
-export * from './Column'
-export * from './components/ColumnActionButton'
+export * from './MultiColumn';
+export * from './Column';
+export * from './components/ColumnActionButton';

@@ -1,1 +1,1 @@
-export * from './TextAlign'
+export * from './TextAlign';

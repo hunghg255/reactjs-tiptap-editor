@@ -1,45 +1,44 @@
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react';
 
-import { ActionButton, Button, Input, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components'
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { useLocale } from '@/locales'
-import { actionDialogVideo, useDialogVideo } from '@/extensions/Video/store'
-import { Video } from '@/extensions/Video/Video'
+import { ActionButton, Button, Input, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { useLocale } from '@/locales';
+import { actionDialogVideo, useDialogVideo } from '@/extensions/Video/store';
+import { Video } from '@/extensions/Video/Video';
 
 function checkIsVideo(url: string) {
-  return /\.(?:mp4|webm|ogg|mov)$/i.test(url)
+  return /\.(?:mp4|webm|ogg|mov)$/i.test(url);
 }
 
 function ActionVideoButton(props: any) {
-  const { t } = useLocale()
+  const { t } = useLocale();
 
-  const [link, setLink] = useState<string>('')
-  const fileInput = useRef<HTMLInputElement>(null)
+  const [link, setLink] = useState<string>('');
+  const fileInput = useRef<HTMLInputElement>(null);
 
-  const dialogVideo = useDialogVideo()
-  const [error, setError] = useState<string>('')
+  const dialogVideo = useDialogVideo();
+  const [error, setError] = useState<string>('');
 
   const uploadOptions = useMemo(() => {
     const uploadOptions = props.editor.extensionManager.extensions.find(
       (extension: any) => extension.name === Video.name,
-    )?.options
+    )?.options;
 
-    return uploadOptions
-  }, [props.editor])
+    return uploadOptions;
+  }, [props.editor]);
 
   async function handleFile(event: any) {
-    const files = event?.target?.files
+    const files = event?.target?.files;
     if (!props.editor || props.editor.isDestroyed || files.length === 0) {
-      return
+      return;
     }
-    const file = files[0]
+    const file = files[0];
 
-    let src = ''
+    let src = '';
     if (uploadOptions.upload) {
-      src = await uploadOptions.upload(file)
-    }
-    else {
-      src = URL.createObjectURL(file)
+      src = await uploadOptions.upload(file);
+    } else {
+      src = URL.createObjectURL(file);
     }
 
     props.editor
@@ -49,15 +48,15 @@ function ActionVideoButton(props: any) {
         width: '100%',
       })
       .focus()
-      .run()
-    actionDialogVideo.setOpen(false)
+      .run();
+    actionDialogVideo.setOpen(false);
   }
   function handleLink(e: any) {
-    e.preventDefault()
-    e.stopPropagation()
+    e.preventDefault();
+    e.stopPropagation();
 
     if (!link) {
-      return
+      return;
     }
 
     props.editor
@@ -67,13 +66,13 @@ function ActionVideoButton(props: any) {
         width: '100%',
       })
       .focus()
-      .run()
-    actionDialogVideo.setOpen(false)
+      .run();
+    actionDialogVideo.setOpen(false);
   }
 
   function handleClick(e: any) {
-    e.preventDefault()
-    fileInput.current?.click()
+    e.preventDefault();
+    fileInput.current?.click();
   }
 
   return (
@@ -87,7 +86,9 @@ function ActionVideoButton(props: any) {
       </DialogTrigger>
 
       <DialogContent>
-        <DialogTitle>{t('editor.video.dialog.title')}</DialogTitle>
+        <DialogTitle>
+          {t('editor.video.dialog.title')}
+        </DialogTitle>
 
         <Tabs
           defaultValue={
@@ -133,31 +134,35 @@ function ActionVideoButton(props: any) {
                   autoFocus
                   value={link}
                   onChange={(e) => {
-                    const url = e.target.value
+                    const url = e.target.value;
 
-                    const isVideoUrl = checkIsVideo(url)
+                    const isVideoUrl = checkIsVideo(url);
 
                     if (!isVideoUrl) {
-                      setError('Invalid video URL')
-                      setLink('')
-                      return
+                      setError('Invalid video URL');
+                      setLink('');
+                      return;
                     }
-                    setError('')
-                    setLink(url)
+                    setError('');
+                    setLink(url);
                   }}
                   required
                   placeholder={t('editor.video.dialog.placeholder')}
                 />
 
-                <Button type="submit">{t('editor.video.dialog.button.apply')}</Button>
+                <Button type="submit">
+                  {t('editor.video.dialog.button.apply')}
+                </Button>
               </div>
             </form>
-            {error && <div className="richtext-text-red-500 richtext-my-[5px]">{error}</div>}
+            {error && <div className="richtext-text-red-500 richtext-my-[5px]">
+              {error}
+            </div>}
           </TabsContent>
         </Tabs>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 
-export default ActionVideoButton
+export default ActionVideoButton;

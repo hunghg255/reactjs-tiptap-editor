@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Object() {
   return (
@@ -18,7 +18,7 @@ function Object() {
       />
     </svg>
 
-  )
+  );
 }
 
-export default Object
+export default Object;

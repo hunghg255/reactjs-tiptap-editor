@@ -1,1 +1,1 @@
-export * from './MoreMark'
+export * from './MoreMark';

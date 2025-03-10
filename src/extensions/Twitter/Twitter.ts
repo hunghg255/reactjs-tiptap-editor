@@ -1,13 +1,13 @@
-import { Node, mergeAttributes, nodePasteRule } from '@tiptap/core'
-import { ReactNodeViewRenderer } from '@tiptap/react'
-import NodeViewTweet from '@/extensions/Twitter/components/NodeViewTweet'
-import TwitterActiveButton from '@/extensions/Twitter/components/TwitterActiveButton'
+import { Node, mergeAttributes, nodePasteRule } from '@tiptap/core';
+import { ReactNodeViewRenderer } from '@tiptap/react';
+import NodeViewTweet from '@/extensions/Twitter/components/NodeViewTweet';
+import TwitterActiveButton from '@/extensions/Twitter/components/TwitterActiveButton';
 
-const TWITTER_REGEX_GLOBAL = /(https?:\/\/)?(www\.)?x\.com\/(\w{1,15})(\/status\/(\d+))?(\/\S*)?/g
-const TWITTER_REGEX = /^https?:\/\/(www\.)?x\.com\/(\w{1,15})(\/status\/(\d+))?(\/\S*)?$/
+const TWITTER_REGEX_GLOBAL = /(https?:\/\/)?(www\.)?x\.com\/(\w{1,15})(\/status\/(\d+))?(\/\S*)?/g;
+const TWITTER_REGEX = /^https?:\/\/(www\.)?x\.com\/(\w{1,15})(\/status\/(\d+))?(\/\S*)?$/;
 
 function isValidTwitterUrl(url: string) {
-  return url.match(TWITTER_REGEX)
+  return url.match(TWITTER_REGEX);
 }
 
 interface TwitterOptions {
@@ -39,7 +39,9 @@ interface TwitterOptions {
 /**
  * The options for setting a tweet.
  */
-interface SetTweetOptions { src: string }
+interface SetTweetOptions {
+  src: string 
+}
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -73,7 +75,7 @@ export const Twitter = Node.create<TwitterOptions>({
         component: TwitterActiveButton,
         componentProps: {
           action: (src: string) => {
-            editor.commands.setTweet({ src })
+            editor.commands.setTweet({ src });
           },
           isActive: () => false,
           disabled: false,
@@ -82,19 +84,19 @@ export const Twitter = Node.create<TwitterOptions>({
           editor,
         },
       }),
-    }
+    };
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(NodeViewTweet, { attrs: this.options.HTMLAttributes })
+    return ReactNodeViewRenderer(NodeViewTweet, { attrs: this.options.HTMLAttributes });
   },
 
   inline() {
-    return this.options.inline
+    return this.options.inline;
   },
 
   group() {
-    return this.options.inline ? 'inline' : 'block'
+    return this.options.inline ? 'inline' : 'block';
   },
 
   addAttributes() {
@@ -102,7 +104,7 @@ export const Twitter = Node.create<TwitterOptions>({
       src: {
         default: null,
       },
-    }
+    };
   },
 
   parseHTML() {
@@ -110,7 +112,7 @@ export const Twitter = Node.create<TwitterOptions>({
       {
         tag: 'div[data-twitter]',
       },
-    ]
+    ];
   },
 
   addCommands() {
@@ -119,27 +121,27 @@ export const Twitter = Node.create<TwitterOptions>({
         (options: SetTweetOptions) =>
           ({ commands }) => {
             if (!isValidTwitterUrl(options.src)) {
-              return false
+              return false;
             }
 
             return commands.insertContent({
               type: this.name,
               attrs: options,
-            })
+            });
           },
       updateTweet: (options: SetTweetOptions) => ({ commands }: any) => {
         if (!isValidTwitterUrl(options.src)) {
-          return false
+          return false;
         }
 
-        return commands.updateAttributes(this.name, { src: options.src })
+        return commands.updateAttributes(this.name, { src: options.src });
       },
-    }
+    };
   },
 
   addPasteRules() {
     if (!this.options.addPasteHandler) {
-      return []
+      return [];
     }
 
     return [
@@ -147,13 +149,13 @@ export const Twitter = Node.create<TwitterOptions>({
         find: TWITTER_REGEX_GLOBAL,
         type: this.type,
         getAttributes: (match) => {
-          return { src: match.input }
+          return { src: match.input };
         },
       }),
-    ]
+    ];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['div', mergeAttributes({ 'data-twitter': '' }, HTMLAttributes)]
+    return ['div', mergeAttributes({ 'data-twitter': '' }, HTMLAttributes)];
   },
-})
+});

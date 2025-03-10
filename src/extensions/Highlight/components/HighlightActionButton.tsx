@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react';
 
-import type { TooltipContentProps } from '@radix-ui/react-tooltip'
-import { debounce } from 'lodash-es'
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
+import { debounce } from 'lodash-es';
 
-import { ActionButton, Button, ColorPicker } from '@/components'
-import { IconComponent } from '@/components/icons'
-import type { ButtonViewReturnComponentProps } from '@/types'
+import { ActionButton, Button, ColorPicker } from '@/components';
+import { IconComponent } from '@/components/icons';
+import type { ButtonViewReturnComponentProps } from '@/types';
 
 interface IPropsHighlightActionButton {
   editor: any
@@ -55,27 +55,27 @@ function IconC({ fill }: any) {
         </g>
       </g>
     </svg>
-  )
+  );
 }
 
 function HighlightActionButton(props: IPropsHighlightActionButton) {
   // const { action, isActive, disabled, icon, tooltip } = props as any;
-  const [selectedColor, setSelectedColor] = useState<any>(undefined)
+  const [selectedColor, setSelectedColor] = useState<any>(undefined);
 
   function onChange(color: string | undefined) {
-    props.action?.(color)
+    props.action?.(color);
   }
 
   function toggleColor() {
-    props.action?.(selectedColor)
+    props.action?.(selectedColor);
   }
 
   const setSelectedColorDebounce = useCallback(
     debounce((color: any) => {
-      setSelectedColor(color)
+      setSelectedColor(color);
     }, 350),
     [],
-  )
+  );
 
   return (
     <div className="richtext-flex richtext-items-center richtext-h-[32px]">
@@ -102,7 +102,7 @@ function HighlightActionButton(props: IPropsHighlightActionButton) {
         </Button>
       </ColorPicker>
     </div>
-  )
+  );
 }
 
-export default HighlightActionButton
+export default HighlightActionButton;

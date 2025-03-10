@@ -1,5 +1,4 @@
-/* eslint-disable react/no-duplicate-key */
-'use client'
+'use client';
 
 import {
   Toast,
@@ -8,29 +7,38 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from '@/components/ui/toast'
-import { useToast } from '@/components/ui/use-toast'
+} from '@/components/ui/toast';
+import { useToast } from '@/components/ui/use-toast';
 
 export function Toaster() {
-  const { toasts } = useToast()
+  const { toasts } = useToast();
 
   return (
     <ToastProvider>
       {toasts.map(({ id, title, description, action, ...props }) => {
         return (
-          <Toast key={id} {...props}>
+          <Toast key={id}
+            {...props}
+          >
             <div className="richtext-grid richtext-gap-1">
-              {title && <ToastTitle>{title}</ToastTitle>}
+              {title && <ToastTitle>
+                {title}
+              </ToastTitle>}
+
               {description && (
-                <ToastDescription>{description}</ToastDescription>
+                <ToastDescription>
+                  {description}
+                </ToastDescription>
               )}
             </div>
+
             {action}
             <ToastClose />
           </Toast>
-        )
+        );
       })}
+
       <ToastViewport />
     </ToastProvider>
-  )
+  );
 }

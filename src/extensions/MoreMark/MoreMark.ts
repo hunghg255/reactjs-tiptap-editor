@@ -1,13 +1,13 @@
-import { Extension } from '@tiptap/core'
-import type { Extensions } from '@tiptap/core'
-import type { SubscriptExtensionOptions as TiptapSubscriptOptions } from '@tiptap/extension-subscript'
-import { Subscript as TiptapSubscript } from '@tiptap/extension-subscript'
-import type { SuperscriptExtensionOptions as TiptapSuperscriptOptions } from '@tiptap/extension-superscript'
-import { Superscript as TiptapSuperscript } from '@tiptap/extension-superscript'
+import { Extension } from '@tiptap/core';
+import type { Extensions } from '@tiptap/core';
+import type { SubscriptExtensionOptions as TiptapSubscriptOptions } from '@tiptap/extension-subscript';
+import { Subscript as TiptapSubscript } from '@tiptap/extension-subscript';
+import type { SuperscriptExtensionOptions as TiptapSuperscriptOptions } from '@tiptap/extension-superscript';
+import { Superscript as TiptapSuperscript } from '@tiptap/extension-superscript';
 
-import type { Item } from '@/extensions/MoreMark/components/ActionMoreButton'
-import ActionMoreButton from '@/extensions/MoreMark/components/ActionMoreButton'
-import type { GeneralOptions } from '@/types'
+import type { Item } from '@/extensions/MoreMark/components/ActionMoreButton';
+import ActionMoreButton from '@/extensions/MoreMark/components/ActionMoreButton';
+import type { GeneralOptions } from '@/types';
 
 export interface MoreMarkOptions extends GeneralOptions<MoreMarkOptions> {
   /**
@@ -30,8 +30,8 @@ export const MoreMark = Extension.create<MoreMarkOptions>({
     return {
       ...this.parent?.(),
       button({ editor, extension, t }) {
-        const subscript = extension.options.subscript
-        const superscript = extension.options.superscript
+        const subscript = extension.options.subscript;
+        const superscript = extension.options.superscript;
         const subBtn: Item = {
           action: () => editor.commands.toggleSubscript(),
           isActive: () => editor.isActive('subscript') || false,
@@ -39,7 +39,7 @@ export const MoreMark = Extension.create<MoreMarkOptions>({
           icon: 'Subscript',
           title: t('editor.subscript.tooltip'),
           shortcutKeys: ['mod', '.'],
-        }
+        };
 
         const superBtn: Item = {
           action: () => editor.commands.toggleSuperscript(),
@@ -48,16 +48,16 @@ export const MoreMark = Extension.create<MoreMarkOptions>({
           icon: 'Superscript',
           title: t('editor.superscript.tooltip'),
           shortcutKeys: ['mod', ','],
-        }
+        };
         // const hasCode = hasExtension(editor, 'code');
 
-        const items: Item[] = []
+        const items: Item[] = [];
 
         if (subscript !== false) {
-          items.push(subBtn)
+          items.push(subBtn);
         }
         if (superscript !== false) {
-          items.push(superBtn)
+          items.push(superBtn);
         }
         // if (hasCode) {
         //   const codeBtn: Item = {
@@ -81,22 +81,22 @@ export const MoreMark = Extension.create<MoreMarkOptions>({
             disabled: !editor.isEditable,
             items,
           },
-        }
+        };
       },
-    }
+    };
   },
 
   addExtensions() {
-    const extensions: Extensions = []
+    const extensions: Extensions = [];
 
     if (this.options.subscript !== false) {
-      extensions.push(TiptapSubscript.configure(this.options.subscript))
+      extensions.push(TiptapSubscript.configure(this.options.subscript));
     }
 
     if (this.options.superscript !== false) {
-      extensions.push(TiptapSuperscript.configure(this.options.superscript))
+      extensions.push(TiptapSuperscript.configure(this.options.superscript));
     }
 
-    return extensions
+    return extensions;
   },
-})
+});

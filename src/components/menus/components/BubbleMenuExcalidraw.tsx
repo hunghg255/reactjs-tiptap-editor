@@ -1,26 +1,26 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect } from 'react';
 
-import { BubbleMenu } from '@tiptap/react'
-import { useAttributes } from '@/hooks/useAttributes'
-import { ActionButton } from '@/components/ActionButton'
-import { SizeSetter } from '@/components/SizeSetter/SizeSetter'
-import { useLocale } from '@/locales'
-import type { IExcalidrawAttrs } from '@/extensions/Excalidraw'
-import { Excalidraw } from '@/extensions/Excalidraw'
-import { triggerOpenExcalidrawSettingModal } from '@/utils/_event'
-import { deleteNode } from '@/utils/delete-node'
-import { getEditorContainerDOMSize } from '@/utils/editor-container-size'
+import { BubbleMenu } from '@tiptap/react';
+import { useAttributes } from '@/hooks/useAttributes';
+import { ActionButton } from '@/components/ActionButton';
+import { SizeSetter } from '@/components/SizeSetter/SizeSetter';
+import { useLocale } from '@/locales';
+import type { IExcalidrawAttrs } from '@/extensions/Excalidraw';
+import { Excalidraw } from '@/extensions/Excalidraw';
+import { triggerOpenExcalidrawSettingModal } from '@/utils/_event';
+import { deleteNode } from '@/utils/delete-node';
+import { getEditorContainerDOMSize } from '@/utils/editor-container-size';
 
 export function BubbleMenuExcalidraw({ editor }: any) {
-  const { t } = useLocale()
-  const { width: maxWidth } = getEditorContainerDOMSize(editor)
+  const { t } = useLocale();
+  const { width: maxWidth } = getEditorContainerDOMSize(editor);
   const attrs = useAttributes<IExcalidrawAttrs>(editor, Excalidraw.name, {
     defaultShowPicker: false,
     createUser: '',
     width: 0,
     height: 0,
-  })
-  const { defaultShowPicker, createUser, width, height } = attrs
+  });
+  const { defaultShowPicker, createUser, width, height } = attrs;
 
   const setSize = useCallback(
     (size: any) => {
@@ -29,22 +29,22 @@ export function BubbleMenuExcalidraw({ editor }: any) {
         .updateAttributes(Excalidraw.name, size)
         .setNodeSelection(editor.state.selection.from)
         .focus()
-        .run()
+        .run();
     },
     [editor],
-  )
+  );
   const openEditLinkModal = useCallback(() => {
-    triggerOpenExcalidrawSettingModal(attrs)
-  }, [editor, attrs])
-  const shouldShow = useCallback(() => editor.isActive(Excalidraw.name), [editor])
-  const deleteMe = useCallback(() => deleteNode(Excalidraw.name, editor), [editor])
+    triggerOpenExcalidrawSettingModal(attrs);
+  }, [editor, attrs]);
+  const shouldShow = useCallback(() => editor.isActive(Excalidraw.name), [editor]);
+  const deleteMe = useCallback(() => deleteNode(Excalidraw.name, editor), [editor]);
 
   useEffect(() => {
     if (defaultShowPicker) {
-      openEditLinkModal()
-      editor.chain().updateAttributes(Excalidraw.name, { defaultShowPicker: false }).focus().run()
+      openEditLinkModal();
+      editor.chain().updateAttributes(Excalidraw.name, { defaultShowPicker: false }).focus().run();
     }
-  }, [createUser, defaultShowPicker, editor, openEditLinkModal])
+  }, [createUser, defaultShowPicker, editor, openEditLinkModal]);
 
   return (
     <BubbleMenu
@@ -87,5 +87,5 @@ export function BubbleMenuExcalidraw({ editor }: any) {
 
       </div>
     </BubbleMenu>
-  )
+  );
 }

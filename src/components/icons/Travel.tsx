@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Travel() {
   return (
@@ -18,7 +18,7 @@ function Travel() {
       />
     </svg>
 
-  )
+  );
 }
 
-export default Travel
+export default Travel;

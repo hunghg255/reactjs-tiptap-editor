@@ -1,11 +1,11 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react';
 
-import type { Editor } from '@tiptap/react'
-import { debounce } from 'lodash-es'
+import type { Editor } from '@tiptap/react';
+import { debounce } from 'lodash-es';
 
-import { ActionButton, Button, ColorPicker } from '@/components'
-import { IconComponent } from '@/components/icons'
-import type { ButtonViewReturnComponentProps } from '@/types'
+import { ActionButton, Button, ColorPicker } from '@/components';
+import { IconComponent } from '@/components/icons';
+import type { ButtonViewReturnComponentProps } from '@/types';
 
 interface ColorActionButtonProps {
   editor: Editor
@@ -56,26 +56,26 @@ function IconC({ fill }: IconCProps) {
         </g>
       </g>
     </svg>
-  )
+  );
 }
 
 function ColorActionButton(props: ColorActionButtonProps) {
-  const [selectedColor, setSelectedColor] = useState<string | undefined>(undefined)
+  const [selectedColor, setSelectedColor] = useState<string | undefined>(undefined);
 
   function onChange(color: string | undefined) {
-    props.action?.(color)
+    props.action?.(color);
   }
 
   function toggleColor() {
-    props.action?.(selectedColor)
+    props.action?.(selectedColor);
   }
 
   const setSelectedColorDebounce = useCallback(
     debounce((color: string | undefined) => {
-      setSelectedColor(color)
+      setSelectedColor(color);
     }, 350),
     [],
-  )
+  );
 
   return (
     <div className="richtext-flex richtext-items-center richtext-h-[32px]">
@@ -98,7 +98,7 @@ function ColorActionButton(props: ColorActionButtonProps) {
         </Button>
       </ColorPicker>
     </div>
-  )
+  );
 }
 
-export default ColorActionButton
+export default ColorActionButton;

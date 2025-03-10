@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import { ActionButton, IconComponent, Popover, PopoverContent, PopoverTrigger } from '@/components'
-import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock'
-import type { ButtonViewReturnComponentProps } from '@/types'
+import { ActionButton, IconComponent, Popover, PopoverContent, PopoverTrigger } from '@/components';
+import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock';
+import type { ButtonViewReturnComponentProps } from '@/types';
 
 interface IPropsLinkEditPopover {
   editor: any
@@ -16,12 +16,12 @@ interface IPropsLinkEditPopover {
 }
 
 function LinkEditPopover(props: IPropsLinkEditPopover) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   function onSetLink(link: string, text?: string, openInNewTab?: boolean) {
     if (props.action) {
-      props.action({ link, text, openInNewTab })
-      setOpen(false)
+      props.action({ link, text, openInNewTab });
+      setOpen(false);
     }
   }
 
@@ -40,7 +40,7 @@ function LinkEditPopover(props: IPropsLinkEditPopover) {
         <LinkEditBlock editor={props.editor} onSetLink={onSetLink} />
       </PopoverContent>
     </Popover>
-  )
+  );
 }
 
-export default LinkEditPopover
+export default LinkEditPopover;

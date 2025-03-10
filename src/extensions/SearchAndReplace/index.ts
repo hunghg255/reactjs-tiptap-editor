@@ -1,1 +1,1 @@
-export * from './SearchAndReplace'
+export * from './SearchAndReplace';

@@ -1,7 +1,7 @@
-import type { Editor as CoreEditor, Extension, JSONContent } from '@tiptap/core'
-import type { Editor } from '@tiptap/react'
+import type { Editor as CoreEditor, Extension, JSONContent } from '@tiptap/core';
+import type { Editor } from '@tiptap/react';
 
-export type { Editor, JSONContent } from '@tiptap/core'
+export type { Editor, JSONContent } from '@tiptap/core';
 
 /**
  * Represents the onChange event for EchoEditor.
@@ -38,7 +38,7 @@ export type ExtensionNameKeys =
   | 'code'
   | 'codeBlock'
   | 'clear'
-  | 'history'
+  | 'history';
 
 /**
  * Represents the general options for Tiptap extensions.
@@ -105,9 +105,7 @@ export interface ButtonViewParams<T = any> {
 /**
  * Represents the ButtonView function.
  */
-export interface ButtonView<T = any> {
-  (options: ButtonViewParams<T>): ButtonViewReturn | ButtonViewReturn[]
-}
+export type ButtonView<T = any> = (options: ButtonViewParams<T>) => ButtonViewReturn | ButtonViewReturn[];
 
 /**
  * Represents the BubbleMenuRenderProps.
@@ -235,7 +233,7 @@ export interface ToolbarRenderProps {
   disabled: boolean
 }
 export interface ToolbarProps {
-  render?: (props: ToolbarRenderProps, toolbarItems: ToolbarItemProps[], dom: JSX.Element[], containerDom: (innerContent: React.ReactNode) => React.ReactNode) => React.ReactNode
+  render?: (props: ToolbarRenderProps, toolbarItems: ToolbarItemProps[], dom: any[], containerDom: (innerContent: React.ReactNode) => React.ReactNode) => React.ReactNode
 }
 
 export interface NameValueOption<T = string> {

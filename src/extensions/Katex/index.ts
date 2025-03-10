@@ -1,1 +1,1 @@
-export * from './Katex'
+export * from './Katex';

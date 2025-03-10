@@ -1,1 +1,1 @@
-export * from './Clear'
+export * from './Clear';

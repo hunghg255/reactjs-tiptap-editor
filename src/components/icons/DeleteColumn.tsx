@@ -20,7 +20,7 @@ function DeleteColumn() {
         color="currentColor"
       />
     </svg>
-  )
+  );
 }
 
-export { DeleteColumn }
+export { DeleteColumn };

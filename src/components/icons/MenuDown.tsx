@@ -1,4 +1,4 @@
-import type { SVGProps } from 'react'
+import type { SVGProps } from 'react';
 
 export function MenuDown(props: SVGProps<SVGSVGElement>) {
   return (
@@ -20,5 +20,5 @@ export function MenuDown(props: SVGProps<SVGSVGElement>) {
         d="M36 19L24 31L12 19z"
       />
     </svg>
-  )
+  );
 }

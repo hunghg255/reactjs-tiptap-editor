@@ -2,19 +2,19 @@ import type {
   BundledLanguage,
   BundledTheme,
   Highlighter,
-} from 'shiki'
+} from 'shiki';
 import {
   bundledLanguages,
   bundledThemes,
   createHighlighter,
-} from 'shiki'
-import { findChildren } from '@tiptap/core'
-import type { Node as ProsemirrorNode } from '@tiptap/pm/model'
+} from 'shiki';
+import { findChildren } from '@tiptap/core';
+import type { Node as ProsemirrorNode } from '@tiptap/pm/model';
 
-let highlighter: Highlighter | undefined
-let highlighterPromise: Promise<void> | undefined
-const loadingLanguages = new Set<BundledLanguage>()
-const loadingThemes = new Set<BundledTheme>()
+let highlighter: Highlighter | undefined;
+let highlighterPromise: Promise<void> | undefined;
+const loadingLanguages = new Set<BundledLanguage>();
+const loadingThemes = new Set<BundledTheme>();
 
 interface HighlighterOptions {
   themes: (BundledTheme | null | undefined)[]
@@ -22,14 +22,14 @@ interface HighlighterOptions {
 }
 
 export function resetHighlighter() {
-  highlighter = undefined
-  highlighterPromise = undefined
-  loadingLanguages.clear()
-  loadingThemes.clear()
+  highlighter = undefined;
+  highlighterPromise = undefined;
+  loadingLanguages.clear();
+  loadingThemes.clear();
 }
 
 export function getShiki() {
-  return highlighter
+  return highlighter;
 }
 
 /**
@@ -39,18 +39,18 @@ export function loadHighlighter(opts: HighlighterOptions) {
   if (!highlighter && !highlighterPromise) {
     const themes = opts.themes.filter(
       (theme): theme is BundledTheme => !!theme && theme in bundledThemes,
-    )
+    );
     const langs = opts.languages.filter(
       (lang): lang is BundledLanguage => !!lang && lang in bundledLanguages,
-    )
+    );
     highlighterPromise = createHighlighter({ themes, langs }).then((h) => {
-      highlighter = h
-    })
-    return highlighterPromise
+      highlighter = h;
+    });
+    return highlighterPromise;
   }
 
   if (highlighterPromise) {
-    return highlighterPromise
+    return highlighterPromise;
   }
 }
 
@@ -65,13 +65,13 @@ export async function loadTheme(theme: BundledTheme) {
     && !loadingThemes.has(theme)
     && theme in bundledThemes
   ) {
-    loadingThemes.add(theme)
-    await highlighter.loadTheme(theme)
-    loadingThemes.delete(theme)
-    return true
+    loadingThemes.add(theme);
+    await highlighter.loadTheme(theme);
+    loadingThemes.delete(theme);
+    return true;
   }
 
-  return false
+  return false;
 }
 
 /**
@@ -85,13 +85,13 @@ export async function loadLanguage(language: BundledLanguage) {
     && !loadingLanguages.has(language)
     && language in bundledLanguages
   ) {
-    loadingLanguages.add(language)
-    await highlighter.loadLanguage(language)
-    loadingLanguages.delete(language)
-    return true
+    loadingLanguages.add(language);
+    await highlighter.loadLanguage(language);
+    loadingLanguages.delete(language);
+    return true;
   }
 
-  return false
+  return false;
 }
 
 /**
@@ -109,25 +109,24 @@ export async function initHighlighter({
   defaultLanguage: BundledLanguage | null | undefined
   defaultTheme: BundledTheme
 }) {
-  const codeBlocks = findChildren(doc, node => node.type.name === name)
+  const codeBlocks = findChildren(doc, node => node.type.name === name);
 
   const themes = [
     ...codeBlocks.map(block => block.node.attrs.theme as BundledTheme),
     defaultTheme,
-  ]
+  ];
   const languages = [
     ...codeBlocks.map(block => block.node.attrs.language as BundledLanguage),
     defaultLanguage,
-  ]
+  ];
 
   if (!highlighter) {
-    const loader = loadHighlighter({ languages, themes })
-    await loader
-  }
-  else {
+    const loader = loadHighlighter({ languages, themes });
+    await loader;
+  } else {
     await Promise.all([
       ...themes.flatMap(theme => loadTheme(theme)),
       ...languages.flatMap(language => !!language && loadLanguage(language)),
-    ])
+    ]);
   }
 }

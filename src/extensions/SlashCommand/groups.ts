@@ -1,10 +1,10 @@
-import type { Extensions } from '@tiptap/core'
+import type { Extensions } from '@tiptap/core';
 
-import type { Group } from './types'
-import type { HeadingOptions } from '@/extensions'
-import { localeActions } from '@/locales'
-import { actionDialogImage } from '@/extensions/Image/store'
-import { actionDialogVideo } from '@/extensions/Video/store'
+import type { Group } from './types';
+import type { HeadingOptions } from '@/extensions';
+import { localeActions } from '@/locales';
+import { actionDialogImage } from '@/extensions/Image/store';
+import { actionDialogVideo } from '@/extensions/Video/store';
 
 export function renderGroups(extensions: Extensions) {
   const groups: Group[] = [
@@ -18,7 +18,7 @@ export function renderGroups(extensions: Extensions) {
       title: localeActions.t('editor.slash.insert'),
       commands: [],
     },
-  ]
+  ];
 
   extensions.forEach((extension) => {
     /* Format */
@@ -30,10 +30,10 @@ export function renderGroups(extensions: Extensions) {
           aliases: [`h${level}`, 'bt', `bt${level}`],
           iconName: `Heading${level}`,
           action: ({ editor, range }) => {
-            editor.chain().focus().deleteRange(range).setHeading({ level }).run()
+            editor.chain().focus().deleteRange(range).setHeading({ level }).run();
           },
-        })
-      })
+        });
+      });
     }
 
     if (extension.name.toLowerCase() === 'bulletlist') {
@@ -43,9 +43,9 @@ export function renderGroups(extensions: Extensions) {
         aliases: ['ul', 'yxlb'],
         iconName: 'List',
         action: ({ editor, range }) => {
-          editor.chain().focus().deleteRange(range).toggleBulletList().run()
+          editor.chain().focus().deleteRange(range).toggleBulletList().run();
         },
-      })
+      });
     }
 
     if (extension.name.toLowerCase() === 'orderedlist') {
@@ -55,9 +55,9 @@ export function renderGroups(extensions: Extensions) {
         aliases: ['ol', 'yxlb'],
         iconName: 'ListOrdered',
         action: ({ editor, range }) => {
-          editor.chain().focus().deleteRange(range).toggleOrderedList().run()
+          editor.chain().focus().deleteRange(range).toggleOrderedList().run();
         },
-      })
+      });
     }
 
     if (extension.name.toLowerCase() === 'tasklist') {
@@ -68,9 +68,9 @@ export function renderGroups(extensions: Extensions) {
         description: 'Task list with todo items',
         aliases: ['todo'],
         action: ({ editor, range }) => {
-          editor.chain().focus().deleteRange(range).toggleTaskList().run()
+          editor.chain().focus().deleteRange(range).toggleTaskList().run();
         },
-      })
+      });
     }
 
     if (extension.name.toLowerCase() === 'blockquote') {
@@ -81,9 +81,9 @@ export function renderGroups(extensions: Extensions) {
         aliases: ['yr'],
         iconName: 'TextQuote',
         action: ({ editor, range }) => {
-          editor.chain().focus().deleteRange(range).setBlockquote().run()
+          editor.chain().focus().deleteRange(range).setBlockquote().run();
         },
-      })
+      });
     }
 
     if (extension.name.toLowerCase() === 'codeblock') {
@@ -94,9 +94,9 @@ export function renderGroups(extensions: Extensions) {
         description: 'Code block with syntax highlighting',
         shouldBeHidden: editor => editor.isActive('columns'),
         action: ({ editor, range }) => {
-          editor.chain().focus().deleteRange(range).setCodeBlock().run()
+          editor.chain().focus().deleteRange(range).setCodeBlock().run();
         },
-      })
+      });
     }
 
     /* Insert */
@@ -109,10 +109,10 @@ export function renderGroups(extensions: Extensions) {
         aliases: ['image', 'tp', 'tupian'],
         shouldBeHidden: editor => editor.isActive('columns'),
         action: ({ editor, range }) => {
-          editor.chain().focus().deleteRange(range).run()
-          actionDialogImage.setOpen(true)
+          editor.chain().focus().deleteRange(range).run();
+          actionDialogImage.setOpen(true);
         },
-      })
+      });
     }
 
     if (extension.name.toLowerCase() === 'video') {
@@ -124,10 +124,10 @@ export function renderGroups(extensions: Extensions) {
         aliases: ['video', 'sp', 'shipin'],
         shouldBeHidden: editor => editor.isActive('columns'),
         action: ({ editor, range }) => {
-          editor.chain().focus().deleteRange(range).run()
-          actionDialogVideo.setOpen(true)
+          editor.chain().focus().deleteRange(range).run();
+          actionDialogVideo.setOpen(true);
         },
-      })
+      });
     }
 
     if (extension.name.toLowerCase() === 'table') {
@@ -144,9 +144,9 @@ export function renderGroups(extensions: Extensions) {
             .focus()
             .deleteRange(range)
             .insertTable({ rows: 3, cols: 3, withHeaderRow: false })
-            .run()
+            .run();
         },
-      })
+      });
     }
 
     if (extension.name.toLowerCase() === 'horizontalrule') {
@@ -157,9 +157,9 @@ export function renderGroups(extensions: Extensions) {
         description: 'Insert a horizontal divider',
         aliases: ['hr', 'fgx', 'fg'],
         action: ({ editor, range }) => {
-          editor.chain().focus().deleteRange(range).setHorizontalRule().run()
+          editor.chain().focus().deleteRange(range).setHorizontalRule().run();
         },
-      })
+      });
     }
 
     if (extension.name.toLowerCase() === 'columns') {
@@ -169,11 +169,11 @@ export function renderGroups(extensions: Extensions) {
         iconName: 'Columns2',
         description: 'Add two column content',
         action: ({ editor }) => {
-          editor.chain().focus().insertColumns({ cols: 2 }).run()
+          editor.chain().focus().insertColumns({ cols: 2 }).run();
         },
-      })
+      });
     }
-  })
+  });
 
-  return groups
+  return groups;
 }

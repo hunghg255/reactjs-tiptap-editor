@@ -1837,16 +1837,16 @@ export const namesToEmoji = {
   'england': '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
   'scotland': '🏴󠁧󠁢󠁳󠁣󠁴󠁿',
   'wales': '🏴󠁧󠁢󠁷󠁬󠁳󠁿',
-} as any
+} as any;
 
 export const emojisToName = Object.keys(namesToEmoji).reduce((accu: any, name: any) => {
-  const emoji = namesToEmoji[name]
-  accu[emoji] = name
-  return accu
-}, {})
+  const emoji = namesToEmoji[name];
+  accu[emoji] = name;
+  return accu;
+}, {});
 
-export const names = Object.keys(namesToEmoji).map(key => key)
-export const emojis = Object.keys(namesToEmoji).map(key => namesToEmoji[key])
+export const names = Object.keys(namesToEmoji).map(key => key);
+export const emojis = Object.keys(namesToEmoji).map(key => namesToEmoji[key]);
 
 export function emojiSearch(query: any) {
   return names
@@ -1854,5 +1854,5 @@ export function emojiSearch(query: any) {
     .map(name => ({
       name,
       emoji: namesToEmoji[name],
-    }))
+    }));
 }

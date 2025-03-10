@@ -168,6 +168,6 @@ const locale = {
   'editor.twitter.tooltip': 'Twitter',
   'editor.tooltip.flipX': 'Lật Ngang',
   'editor.tooltip.flipY': 'Lật Dọc',
-}
+};
 
-export default locale
+export default locale;

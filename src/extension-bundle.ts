@@ -1,2 +1,2 @@
 /* eslint-disable import/first */
-export * from '@/extensions'
+export * from '@/extensions';

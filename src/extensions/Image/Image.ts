@@ -1,13 +1,13 @@
-/* eslint-disable prefer-promise-reject-errors */
-import { mergeAttributes } from '@tiptap/core'
-import TiptapImage from '@tiptap/extension-image'
-import { ReactNodeViewRenderer } from '@tiptap/react'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { mergeAttributes } from '@tiptap/core';
+import TiptapImage from '@tiptap/extension-image';
+import { Plugin } from '@tiptap/pm/state';
+import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import { Plugin } from '@tiptap/pm/state'
-import ImageView from '@/extensions/Image/components/ImageView'
-import ActionImageButton from '@/extensions/Image/components/ActionImageButton'
-import type { GeneralOptions } from '@/types'
-import { UploadImagesPlugin, createImageUpload, handleImageDrop, handleImagePaste } from '@/plugins/image-upload'
+import ActionImageButton from '@/extensions/Image/components/ActionImageButton';
+import ImageView from '@/extensions/Image/components/ImageView';
+import { UploadImagesPlugin, createImageUpload, handleImageDrop, handleImagePaste } from '@/plugins/image-upload';
+import type { GeneralOptions } from '@/types';
 
 export interface SetImageAttrsOptions {
   src?: string
@@ -31,7 +31,7 @@ const DEFAULT_OPTIONS: any = {
   acceptMimes: ['image/jpeg', 'image/gif', 'image/png', 'image/jpg'],
   maxSize: 1024 * 1024 * 5, // 5MB
   resourceImage: 'both',
-}
+};
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -88,7 +88,9 @@ export const Image = TiptapImage.extend<IImageOptions>({
       }) => ({
         component: ActionImageButton,
         componentProps: {
-          action: () => {},
+          action: () => {
+            return true;
+          },
           upload: extension.options.upload,
           /* If setImage is not available(when Image Component is not imported), the button is disabled */
           disabled: !editor.can().setImage?.({}),
@@ -97,7 +99,7 @@ export const Image = TiptapImage.extend<IImageOptions>({
           editor,
         },
       }),
-    }
+    };
   },
   addAttributes() {
     return {
@@ -111,13 +113,13 @@ export const Image = TiptapImage.extend<IImageOptions>({
       width: {
         default: null,
         parseHTML: (element) => {
-          const width = element.style.width || element.getAttribute('width') || null
-          return !width ? null : Number.parseInt(width, 10)
+          const width = element.style.width || element.getAttribute('width') || null;
+          return !width ? null : Number.parseInt(width, 10);
         },
         renderHTML: (attributes) => {
           return {
             width: attributes.width,
-          }
+          };
         },
       },
       align: {
@@ -126,7 +128,7 @@ export const Image = TiptapImage.extend<IImageOptions>({
         renderHTML: (attributes) => {
           return {
             align: attributes.align,
-          }
+          };
         },
       },
       inline: {
@@ -135,14 +137,14 @@ export const Image = TiptapImage.extend<IImageOptions>({
         renderHTML: (attributes) => {
           return {
             inline: attributes.inline,
-          }
+          };
         },
       },
-    }
+    };
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(ImageView)
+    return ReactNodeViewRenderer(ImageView);
   },
   addCommands() {
     return {
@@ -151,27 +153,27 @@ export const Image = TiptapImage.extend<IImageOptions>({
         return commands.insertContent({
           type: this.name,
           attrs: options,
-        })
+        });
       },
       updateImage:
         options =>
           ({ commands }) => {
-            return commands.updateAttributes(this.name, options)
+            return commands.updateAttributes(this.name, options);
           },
       setAlignImage:
           align =>
             ({ commands }) => {
-              return commands.updateAttributes(this.name, { align })
+              return commands.updateAttributes(this.name, { align });
             },
-    }
+    };
   },
   renderHTML({ HTMLAttributes }) {
-    const { flipX, flipY, align, inline } = HTMLAttributes
+    const { flipX, flipY, align, inline } = HTMLAttributes;
 
     const transformStyle
-      = flipX || flipY ? `transform: rotateX(${flipX ? '180' : '0'}deg) rotateY(${flipY ? '180' : '0'}deg);` : ''
+      = flipX || flipY ? `transform: rotateX(${flipX ? '180' : '0'}deg) rotateY(${flipY ? '180' : '0'}deg);` : '';
 
-    const textAlignStyle = align ? `text-align: ${align};` : ''
+    const textAlignStyle = align ? `text-align: ${align};` : '';
 
     return [
       inline ? 'span' : 'div',
@@ -190,61 +192,61 @@ export const Image = TiptapImage.extend<IImageOptions>({
           HTMLAttributes,
         ),
       ],
-    ]
+    ];
   },
   parseHTML() {
     return [
       {
         tag: 'span.image img',
         getAttrs: (img) => {
-          const element = img?.parentElement
+          const element = img?.parentElement;
 
-          const width = img?.getAttribute('width')
+          const width = img?.getAttribute('width');
 
-          const flipX = img?.getAttribute('flipx') || false
-          const flipY = img?.getAttribute('flipy') || false
+          const flipX = img?.getAttribute('flipx') || false;
+          const flipY = img?.getAttribute('flipy') || false;
 
           return {
             src: img?.getAttribute('src'),
             alt: img?.getAttribute('alt'),
             caption: img?.getAttribute('caption'),
-            width: width ? Number.parseInt(width as string, 10) : null,
+            width: width ? Number.parseInt(width, 10) : null,
             align: img?.getAttribute('align') || element?.style?.textAlign || null,
             inline: img?.getAttribute('inline') || false,
             flipX: flipX === 'true',
             flipY: flipY === 'true',
-          }
+          };
         },
       },
       {
         tag: 'div[class=image]',
         getAttrs: (element) => {
-          const img = element.querySelector('img')
+          const img = element.querySelector('img');
 
-          const width = img?.getAttribute('width')
-          const flipX = img?.getAttribute('flipx') || false
-          const flipY = img?.getAttribute('flipy') || false
+          const width = img?.getAttribute('width');
+          const flipX = img?.getAttribute('flipx') || false;
+          const flipY = img?.getAttribute('flipy') || false;
 
           return {
             src: img?.getAttribute('src'),
             alt: img?.getAttribute('alt'),
             caption: img?.getAttribute('caption'),
-            width: width ? Number.parseInt(width as string, 10) : null,
+            width: width ? Number.parseInt(width, 10) : null,
             align: img?.getAttribute('align') || element.style.textAlign || null,
             inline: img?.getAttribute('inline') || false,
             flipX: flipX === 'true',
             flipY: flipY === 'true',
-          }
+          };
         },
       },
-    ]
+    ];
   },
   addProseMirrorPlugins() {
     const validateFile = (file: File): boolean => {
       // @ts-expect-error
       if (!this.options.acceptMimes.includes(file.type)) {
         // toast({ description: t.value('editor.imageUpload.fileTypeNotSupported'), duration: 2000 });
-        return false
+        return false;
       }
       // @ts-expect-error
       if (file.size > this.options.maxSize) {
@@ -254,42 +256,42 @@ export const Image = TiptapImage.extend<IImageOptions>({
         //   )}.`,
         //   duration: 2000,
         // });
-        return false
+        return false;
       }
-      return true
-    }
+      return true;
+    };
 
     const uploadFn = createImageUpload({
       validateFn: validateFile,
       onUpload: this.options.upload as any,
       // postUpload: this.options.postUpload,
-    })
+    });
 
     return [
       new Plugin({
         props: {
           handlePaste: (view, event) => {
             if (!event.clipboardData) {
-              return false
+              return false;
             }
-            const items = [...(event.clipboardData.files || [])]
+            const items = [...(event.clipboardData.files || [])];
             if (items.some(x => x.type === 'text/html')) {
-              return false
+              return false;
             }
-            return handleImagePaste(view, event, uploadFn)
+            return handleImagePaste(view, event, uploadFn);
           },
           handleDrop: (view, event, _, moved) => {
             if (!(event instanceof DragEvent) || !event.dataTransfer) {
-              return false
+              return false;
             }
-            handleImageDrop(view, event, moved, uploadFn)
-            return false
+            handleImageDrop(view, event, moved, uploadFn);
+            return false;
           },
         },
       }),
       UploadImagesPlugin(),
-    ]
+    ];
   },
-})
+});
 
-export default Image
+export default Image;

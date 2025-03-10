@@ -1,1 +1,1 @@
-export * from './Italic'
+export * from './Italic';

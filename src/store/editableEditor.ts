@@ -1,13 +1,13 @@
-import { createSignal, useSignalValue } from 'reactjs-signal'
+import { createSignal, useSignalValue } from 'reactjs-signal';
 
-const editableEditorProxy = createSignal(false)
+const editableEditorProxy = createSignal(false);
 
 export function useEditableEditor() {
-  return useSignalValue(editableEditorProxy)
+  return useSignalValue(editableEditorProxy);
 }
 
 export const editableEditorActions = {
   setDisable: (disable: boolean) => {
-    editableEditorProxy(disable)
+    editableEditorProxy(disable);
   },
-}
+};

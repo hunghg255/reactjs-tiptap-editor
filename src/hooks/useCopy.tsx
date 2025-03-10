@@ -1,21 +1,20 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 function useCopy() {
-  const [isCopied, setIsCopied] = useState(false)
+  const [isCopied, setIsCopied] = useState(false);
 
   const copyToClipboard = async (text: string) => {
     try {
-      await navigator.clipboard.writeText(text)
-      setIsCopied(true)
-      setTimeout(() => setIsCopied(false), 2000) // Reset the copy status after 2 seconds
+      await navigator.clipboard.writeText(text);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000); // Reset the copy status after 2 seconds
+    } catch (error) {
+      console.error('Failed to copy text: ', error);
+      setIsCopied(false);
     }
-    catch (error) {
-      console.error('Failed to copy text: ', error)
-      setIsCopied(false)
-    }
-  }
+  };
 
-  return { isCopied, copyToClipboard }
+  return { isCopied, copyToClipboard };
 }
 
-export default useCopy
+export default useCopy;

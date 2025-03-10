@@ -1,12 +1,13 @@
-import { Node, mergeAttributes } from '@tiptap/core'
-import { ReactNodeViewRenderer } from '@tiptap/react'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Node, mergeAttributes } from '@tiptap/core';
+import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import { getDatasetAttribute } from '@/utils/dom-dataset'
-import { NodeViewAttachment } from '@/extensions/Attachment/components/NodeViewAttachment/NodeViewAttachment'
-import { ActionButton } from '@/components'
-import type { GeneralOptions } from '@/types'
-import { getFileTypeIcon } from '@/extensions/Attachment/components/NodeViewAttachment/FileIcon'
-import { normalizeFileSize } from '@/utils/file'
+import { ActionButton } from '@/components';
+import { getFileTypeIcon } from '@/extensions/Attachment/components/NodeViewAttachment/FileIcon';
+import { NodeViewAttachment } from '@/extensions/Attachment/components/NodeViewAttachment/NodeViewAttachment';
+import type { GeneralOptions } from '@/types';
+import { getDatasetAttribute } from '@/utils/dom-dataset';
+import { normalizeFileSize } from '@/utils/file';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -46,11 +47,11 @@ export const Attachment = Node.create<AttachmentOptions>({
           tooltip: t('editor.attachment.tooltip'),
         },
       }),
-    }
+    };
   },
 
   parseHTML() {
-    return [{ tag: 'div[class=attachment]' }]
+    return [{ tag: 'div[class=attachment]' }];
   },
 
   renderHTML({ HTMLAttributes }) {
@@ -61,14 +62,14 @@ export const Attachment = Node.create<AttachmentOptions>({
       fileSize = '',
       fileType = '',
       fileExt = '',
-    } = HTMLAttributes || {}
+    } = HTMLAttributes || {};
 
     // Validate attributes and merge safely
     const mergedAttributes = mergeAttributes(
       // @ts-expect-error
       this.options.HTMLAttributes || {},
       HTMLAttributes || {},
-    )
+    );
 
     // Return the structured array
     return [
@@ -76,21 +77,21 @@ export const Attachment = Node.create<AttachmentOptions>({
       mergedAttributes,
       url
         ? [
-            'a',
-            { href: url || '#' },
-            [
-              'span',
-              { class: 'attachment__icon' },
-              getFileTypeIcon(fileType, true),
-            ],
-            [
-              'span',
-              { class: 'attachment__text' },
-              `${fileName}.${fileExt} (${normalizeFileSize(fileSize)})`,
-            ],
-          ]
+          'a',
+          { href: url || '#' },
+          [
+            'span',
+            { class: 'attachment__icon' },
+            getFileTypeIcon(fileType, true),
+          ],
+          [
+            'span',
+            { class: 'attachment__text' },
+            `${fileName}.${fileExt} (${normalizeFileSize(fileSize)})`,
+          ],
+        ]
         : ['div', { class: 'attachment__placeholder' }],
-    ]
+    ];
   },
 
   addAttributes() {
@@ -123,7 +124,7 @@ export const Attachment = Node.create<AttachmentOptions>({
         default: null,
         parseHTML: getDatasetAttribute('error'),
       },
-    }
+    };
   },
 
   addCommands() {
@@ -132,12 +133,12 @@ export const Attachment = Node.create<AttachmentOptions>({
         (attrs = {}) =>
           ({ chain }) => {
             // @ts-expect-error
-            return chain().insertContent({ type: this.name, attrs }).run()
+            return chain().insertContent({ type: this.name, attrs }).run();
           },
-    }
+    };
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(NodeViewAttachment)
+    return ReactNodeViewRenderer(NodeViewAttachment);
   },
-})
+});

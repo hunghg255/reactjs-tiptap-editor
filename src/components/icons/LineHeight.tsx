@@ -1,4 +1,4 @@
-import type { SVGProps } from 'react'
+import type { SVGProps } from 'react';
 
 export function FormatLineHeight(props: SVGProps<SVGSVGElement>) {
   return (
@@ -9,5 +9,5 @@ export function FormatLineHeight(props: SVGProps<SVGSVGElement>) {
       >
       </path>
     </svg>
-  )
+  );
 }

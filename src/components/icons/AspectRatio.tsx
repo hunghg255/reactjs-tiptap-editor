@@ -1,4 +1,4 @@
-import type { SVGProps } from 'react'
+import type { SVGProps } from 'react';
 
 export function AspectRatio(props: SVGProps<SVGSVGElement>) {
   return (
@@ -9,5 +9,5 @@ export function AspectRatio(props: SVGProps<SVGSVGElement>) {
       >
       </path>
     </svg>
-  )
+  );
 }

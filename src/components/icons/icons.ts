@@ -69,14 +69,14 @@ import {
   Video,
   ZoomIn,
   ZoomOut,
-} from 'lucide-react'
+} from 'lucide-react';
 import {
   TextAlignCenterIcon,
   TextAlignJustifyIcon,
   TextAlignLeftIcon,
   TextAlignRightIcon,
-} from '@radix-ui/react-icons'
-import ImportWord from './ImportWord'
+} from '@radix-ui/react-icons';
+import ImportWord from './ImportWord';
 import {
   AspectRatio,
   BlockquoteLeft,
@@ -88,18 +88,18 @@ import {
   SizeL,
   SizeM,
   SizeS,
-} from '@/components/icons'
-import { ExportPdf } from '@/components/icons/ExportPdf'
-import ExportWord from '@/components/icons/ExportWord'
-import { ColumnAddLeft } from '@/components/icons/ColumnAddLeft'
-import { ColumnAddRight } from '@/components/icons/ColumnAddRight'
-import { Excalidraw } from '@/components/icons/Excalidraw'
-import { Direction } from '@/components/icons/Direction'
-import { LeftToRight } from '@/components/icons/LeftToRight'
-import { RightToLeft } from '@/components/icons/RightToLeft'
-import { GifIcon } from '@/components/icons/GIfIcon'
-import { Mermaid } from '@/components/icons/Mermaid'
-import { Twitter } from '@/components/icons/Twitter'
+} from '@/components/icons';
+import { ExportPdf } from '@/components/icons/ExportPdf';
+import ExportWord from '@/components/icons/ExportWord';
+import { ColumnAddLeft } from '@/components/icons/ColumnAddLeft';
+import { ColumnAddRight } from '@/components/icons/ColumnAddRight';
+import { Excalidraw } from '@/components/icons/Excalidraw';
+import { Direction } from '@/components/icons/Direction';
+import { LeftToRight } from '@/components/icons/LeftToRight';
+import { RightToLeft } from '@/components/icons/RightToLeft';
+import { GifIcon } from '@/components/icons/GIfIcon';
+import { Mermaid } from '@/components/icons/Mermaid';
+import { Twitter } from '@/components/icons/Twitter';
 
 export const icons = {
   Bold,
@@ -205,4 +205,4 @@ export const icons = {
   Twitter,
   FlipX: FlipVertical,
   FlipY: FlipHorizontal,
-} as any
+} as any;

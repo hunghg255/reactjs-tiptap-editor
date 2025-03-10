@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function ImportWord() {
   return (
@@ -17,7 +17,7 @@ function ImportWord() {
       />
     </svg>
 
-  )
+  );
 }
 
-export default ImportWord
+export default ImportWord;

@@ -1,45 +1,47 @@
-import { findParentNode } from '@tiptap/core'
-import { type EditorState, TextSelection } from '@tiptap/pm/state'
-import { Node } from '@tiptap/pm/model'
-import { Column, MultiColumn } from '@/extensions/MultiColumn'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { findParentNode } from '@tiptap/core';
+import { Node } from '@tiptap/pm/model';
+import { type EditorState, TextSelection } from '@tiptap/pm/state';
+
+import { Column, MultiColumn } from '@/extensions/MultiColumn';
 
 export function createColumn(colType: any, index: any, colContent = null) {
   if (colContent) {
-    return colType.createChecked({ index }, colContent)
+    return colType.createChecked({ index }, colContent);
   }
 
-  return colType.createAndFill({ index })
+  return colType.createAndFill({ index });
 }
 
 export function getColumnsNodeTypes(schema: any) {
   if (schema.cached.columnsNodeTypes) {
-    return schema.cached.columnsNodeTypes
+    return schema.cached.columnsNodeTypes;
   }
 
   const roles = {
     columns: schema.nodes.columns,
     column: schema.nodes.column,
-  }
+  };
 
-  schema.cached.columnsNodeTypes = roles
+  schema.cached.columnsNodeTypes = roles;
 
-  return roles
+  return roles;
 }
 
 export function createColumns(schema: any, colsCount: any, colContent = null) {
-  const types = getColumnsNodeTypes(schema)
-  const cols = []
+  const types = getColumnsNodeTypes(schema);
+  const cols = [];
 
   for (let index = 0; index < colsCount; index += 1) {
-    const col = createColumn(types.column, index, colContent)
+    const col = createColumn(types.column, index, colContent);
 
     if (col) {
       // @ts-ignore
-      cols.push(col)
+      cols.push(col);
     }
   }
 
-  return types.columns.createChecked({ cols: colsCount }, cols)
+  return types.columns.createChecked({ cols: colsCount }, cols);
 }
 
 export function addOrDeleteCol({
@@ -51,22 +53,21 @@ export function addOrDeleteCol({
   dispatch: any
   type: 'addBefore' | 'addAfter' | 'delete'
 }) {
-  const maybeColumns = findParentNode((node: Node) => node.type.name === MultiColumn.name)(state.selection)
-  const maybeColumn = findParentNode((node: Node) => node.type.name === Column.name)(state.selection)
+  const maybeColumns = findParentNode((node: Node) => node.type.name === MultiColumn.name)(state.selection);
+  const maybeColumn = findParentNode((node: Node) => node.type.name === Column.name)(state.selection);
 
   if (dispatch && maybeColumns && maybeColumn) {
-    const cols = maybeColumns.node
-    const colIndex = maybeColumn.node.attrs.index
-    const colsJSON = cols.toJSON()
+    const cols = maybeColumns.node;
+    const colIndex = maybeColumn.node.attrs.index;
+    const colsJSON = cols.toJSON();
 
-    let nextIndex = colIndex
+    let nextIndex = colIndex;
 
     if (type === 'delete') {
-      nextIndex = colIndex - 1
-      colsJSON.content.splice(colIndex, 1)
-    }
-    else {
-      nextIndex = type === 'addBefore' ? colIndex : colIndex + 1
+      nextIndex = colIndex - 1;
+      colsJSON.content.splice(colIndex, 1);
+    } else {
+      nextIndex = type === 'addBefore' ? colIndex : colIndex + 1;
       colsJSON.content.splice(nextIndex, 0, {
         type: 'column',
         attrs: {
@@ -77,66 +78,65 @@ export function addOrDeleteCol({
             type: 'paragraph',
           },
         ],
-      })
+      });
     }
 
-    colsJSON.attrs.cols = colsJSON.content.length
+    colsJSON.attrs.cols = colsJSON.content.length;
 
     colsJSON.content.forEach((colJSON: any, index: any) => {
-      colJSON.attrs.index = index
-    })
+      colJSON.attrs.index = index;
+    });
 
-    const nextCols = Node.fromJSON(state.schema, colsJSON)
+    const nextCols = Node.fromJSON(state.schema, colsJSON);
 
-    let nextSelectPos = maybeColumns.pos
+    let nextSelectPos = maybeColumns.pos;
     nextCols.content.forEach((col, pos, index) => {
       if (index < nextIndex) {
-        nextSelectPos += col.nodeSize
+        nextSelectPos += col.nodeSize;
       }
-    })
+    });
 
-    const tr = state.tr.setTime(Date.now())
+    const tr = state.tr.setTime(Date.now());
 
     tr.replaceWith(maybeColumns.pos, maybeColumns.pos + maybeColumns.node.nodeSize, nextCols).setSelection(
       TextSelection.near(tr.doc.resolve(nextSelectPos)),
-    )
+    );
 
-    dispatch(tr)
+    dispatch(tr);
   }
 
-  return true
+  return true;
 }
 
 export function gotoCol({ state, dispatch, type }: { state: EditorState, dispatch: any, type: 'before' | 'after' }) {
-  const maybeColumns = findParentNode((node: Node) => node.type.name === MultiColumn.name)(state.selection)
-  const maybeColumn = findParentNode((node: Node) => node.type.name === Column.name)(state.selection)
+  const maybeColumns = findParentNode((node: Node) => node.type.name === MultiColumn.name)(state.selection);
+  const maybeColumn = findParentNode((node: Node) => node.type.name === Column.name)(state.selection);
 
   if (dispatch && maybeColumns && maybeColumn) {
-    const cols = maybeColumns.node
-    const colIndex = maybeColumn.node.attrs.index
+    const cols = maybeColumns.node;
+    const colIndex = maybeColumn.node.attrs.index;
 
-    let nextIndex = 0
+    let nextIndex = 0;
 
     if (type === 'before') {
-      nextIndex = (colIndex - 1 + cols.attrs.cols) % cols.attrs.cols
-    }
-    else {
-      nextIndex = (colIndex + 1) % cols.attrs.cols
+      nextIndex = (colIndex - 1 + cols.attrs.cols) % cols.attrs.cols;
+    } else {
+      nextIndex = (colIndex + 1) % cols.attrs.cols;
     }
 
-    let nextSelectPos = maybeColumns.pos
+    let nextSelectPos = maybeColumns.pos;
     cols.content.forEach((col, pos, index) => {
       if (index < nextIndex) {
-        nextSelectPos += col.nodeSize
+        nextSelectPos += col.nodeSize;
       }
-    })
+    });
 
-    const tr = state.tr.setTime(Date.now())
+    const tr = state.tr.setTime(Date.now());
 
-    tr.setSelection(TextSelection.near(tr.doc.resolve(nextSelectPos)))
-    dispatch(tr)
-    return true
+    tr.setSelection(TextSelection.near(tr.doc.resolve(nextSelectPos)));
+    dispatch(tr);
+    return true;
   }
 
-  return false
+  return false;
 }

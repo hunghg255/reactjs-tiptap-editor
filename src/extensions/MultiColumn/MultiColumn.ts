@@ -1,9 +1,9 @@
-import { Node, mergeAttributes } from '@tiptap/core'
+import { Node, mergeAttributes } from '@tiptap/core';
 
-import { TextSelection } from '@tiptap/pm/state'
-import { addOrDeleteCol, createColumns, gotoCol } from '@/utils/columns'
+import { TextSelection } from '@tiptap/pm/state';
+import { addOrDeleteCol, createColumns, gotoCol } from '@/utils/columns';
 
-export const EXTENSION_PRIORITY_HIGHEST = 200
+export const EXTENSION_PRIORITY_HIGHEST = 200;
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -30,7 +30,7 @@ export const MultiColumn = Node.create({
       HTMLAttributes: {
         class: 'columns',
       },
-    }
+    };
   },
 
   addAttributes() {
@@ -39,7 +39,7 @@ export const MultiColumn = Node.create({
         default: 2,
         parseHTML: element => element.getAttribute('cols'),
       },
-    }
+    };
   },
 
   parseHTML() {
@@ -47,11 +47,11 @@ export const MultiColumn = Node.create({
       {
         tag: 'div[class=grid]',
       },
-    ]
+    ];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
+    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
   },
 
   addCommands() {
@@ -59,34 +59,34 @@ export const MultiColumn = Node.create({
       insertColumns:
         attrs =>
           ({ tr, dispatch, editor }) => {
-            const node = createColumns(editor.schema, (attrs && attrs.cols) || 3)
+            const node = createColumns(editor.schema, (attrs && attrs.cols) || 3);
 
             if (dispatch) {
-              const offset = tr.selection.anchor + 1
+              const offset = tr.selection.anchor + 1;
 
               tr.replaceSelectionWith(node)
                 .scrollIntoView()
-                .setSelection(TextSelection.near(tr.doc.resolve(offset)))
+                .setSelection(TextSelection.near(tr.doc.resolve(offset)));
             }
 
-            return true
+            return true;
           },
       addColBefore:
         () =>
           ({ dispatch, state }) => {
-            return addOrDeleteCol({ dispatch, state, type: 'addBefore' })
+            return addOrDeleteCol({ dispatch, state, type: 'addBefore' });
           },
       addColAfter:
         () =>
           ({ dispatch, state }) => {
-            return addOrDeleteCol({ dispatch, state, type: 'addAfter' })
+            return addOrDeleteCol({ dispatch, state, type: 'addAfter' });
           },
       deleteCol:
         () =>
           ({ dispatch, state }) => {
-            return addOrDeleteCol({ dispatch, state, type: 'delete' })
+            return addOrDeleteCol({ dispatch, state, type: 'delete' });
           },
-    }
+    };
   },
 
   addKeyboardShortcuts() {
@@ -97,15 +97,15 @@ export const MultiColumn = Node.create({
           state: this.editor.state,
           dispatch: this.editor.view.dispatch,
           type: 'after',
-        })
+        });
       },
       'Shift-Tab': () => {
         return gotoCol({
           state: this.editor.state,
           dispatch: this.editor.view.dispatch,
           type: 'before',
-        })
+        });
       },
-    }
+    };
   },
-})
+});

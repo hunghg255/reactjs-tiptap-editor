@@ -1,5 +1,7 @@
-import { Extension } from '@tiptap/core'
-import TextDirectionButton from '@/extensions/TextDirection/components/TextDirectionButton'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Extension } from '@tiptap/core';
+
+import TextDirectionButton from '@/extensions/TextDirection/components/TextDirectionButton';
 
 const TextDirection = Extension.create({
   name: 'text-direction',
@@ -18,13 +20,13 @@ const TextDirection = Extension.create({
         extension: Extension
         t: (...args: any[]) => string
       }) {
-        const directions = (extension.options?.directions as any[]) || []
+        const directions = (extension.options?.directions as any[]) || [];
 
         const iconMap = {
           auto: 'TextDirection',
           ltr: 'LeftToRight',
           rtl: 'RightToLeft',
-        } as any
+        } as any;
 
         const items = directions.map(k => ({
           title: t(`editor.textDirection.${k}.tooltip`),
@@ -32,15 +34,15 @@ const TextDirection = Extension.create({
           isActive: () => false,
           action: () => {
             if (k === 'auto') {
-              editor.commands?.unsetTextDirection?.()
-              return
+              editor.commands?.unsetTextDirection?.();
+              return;
             }
 
-            editor.commands?.setTextDirection?.(k)
+            editor.commands?.setTextDirection?.(k);
           },
           disabled: false,
-        }))
-        const disabled = items.filter(k => k.disabled).length === items.length
+        }));
+        const disabled = items.filter(k => k.disabled).length === items.length;
 
         return {
           component: TextDirectionButton,
@@ -50,9 +52,9 @@ const TextDirection = Extension.create({
             disabled,
             items,
           },
-        }
+        };
       },
-    }
+    };
   },
   addGlobalAttributes() {
     return [
@@ -63,34 +65,33 @@ const TextDirection = Extension.create({
             default: this.options.defaultDirection,
             parseHTML: (element: any) => {
               if (element.attributes.dir && this.options.directions.includes(element.attributes.dir)) {
-                return element.attributes.dir.value
-              }
-              else {
-                return this.options.defaultDirection
+                return element.attributes.dir.value;
+              } else {
+                return this.options.defaultDirection;
               }
             },
             renderHTML: (attributes) => {
-              return { dir: attributes.dir }
+              return { dir: attributes.dir };
             },
           },
         },
       },
-    ]
+    ];
   },
   // @ts-expect-error
   addCommands() {
     return {
       setTextDirection: (direction: any) => ({ commands }: any) => {
         if (!this.options.directions.includes(direction)) {
-          return false
+          return false;
         }
-        return this.options.types.every((type: any) => commands.updateAttributes(type, { dir: direction }))
+        return this.options.types.every((type: any) => commands.updateAttributes(type, { dir: direction }));
       },
       unsetTextDirection: () => ({ commands }: any) => {
-        return this.options.types.every((type: any) => commands.resetAttributes(type, 'dir'))
+        return this.options.types.every((type: any) => commands.resetAttributes(type, 'dir'));
       },
-    }
+    };
   },
-})
+});
 
-export { TextDirection }
+export { TextDirection };

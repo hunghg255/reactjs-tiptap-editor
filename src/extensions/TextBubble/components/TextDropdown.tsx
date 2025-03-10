@@ -1,10 +1,9 @@
-/* eslint-disable react/no-duplicate-key */
-import React, { useMemo } from 'react'
+import React, { useMemo } from 'react';
 
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react';
 
-import { Button, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger, icons } from '@/components'
-import { useLocale } from '@/locales'
+import { Button, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger, icons } from '@/components';
+import { useLocale } from '@/locales';
 
 interface IPropsTextDropdown {
   editor: any
@@ -16,7 +15,7 @@ interface IPropsTextDropdown {
 }
 
 function TextDropdown(props: IPropsTextDropdown) {
-  const { t } = useLocale()
+  const { t } = useLocale();
 
   const menus = useMemo(() => {
     return [
@@ -87,52 +86,61 @@ function TextDropdown(props: IPropsTextDropdown) {
         iconName: 'Code2',
         action: () => props.editor.chain().focus().clearNodes().toggleCodeBlock().run(),
       },
-    ]
-  }, [props.editor, t])
+    ];
+  }, [props.editor, t]);
 
   const activeItem = useMemo(() => {
     return (
-      menus.filter(item => item.isActive()).pop() ?? {
+      menus.findLast(item => item.isActive()) ?? {
         label: 'Empty',
       }
-    )
-  }, [menus])
+    );
+  }, [menus]);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="richtext-h-[32px] richtext-flex richtext-gap-1 richtext-px-1.5">
-          <span className="richtext-text-sm richtext-font-normal richtext-whitespace-nowrap">
+        <Button className="richtext-flex richtext-h-[32px] richtext-gap-1 richtext-px-1.5"
+          variant="ghost"
+        >
+          <span className="richtext-whitespace-nowrap richtext-text-sm richtext-font-normal">
             {' '}
             {activeItem?.label}
           </span>
-          <ChevronDown className="richtext-w-4 richtext-h-4" />
+
+          <ChevronDown className="richtext-size-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent hideWhenDetached className="richtext-w-full richtext-p-1" align="start" sideOffset={5}>
+
+      <DropdownMenuContent align="start"
+        className="richtext-w-full richtext-p-1"
+        hideWhenDetached
+        sideOffset={5}
+      >
         {menus.map((item, index) => {
-          const Icon = icons[item.iconName as any]
+          const Icon = icons[item.iconName as any];
 
           return (
             <DropdownMenuCheckboxItem
-              key={`text-bubble-${index}`}
               checked={item.isActive?.() || false}
-              onClick={() => item.action()}
               className="richtext-cursor-pointer"
+              key={`text-bubble-${index}`}
+              onClick={() => item.action()}
             >
               <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-px-2">
-                <Icon className="richtext-w-3 richtext-h3" />
+                <Icon className="richtext-h3 richtext-w-3" />
+
                 <span>
                   {' '}
                   {item.label}
                 </span>
               </div>
             </DropdownMenuCheckboxItem>
-          )
+          );
         })}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
-export default TextDropdown
+export default TextDropdown;

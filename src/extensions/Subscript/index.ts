@@ -1,1 +1,1 @@
-export * from './Subscript'
+export * from './Subscript';

@@ -1,7 +1,8 @@
-import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core'
-import { ReactNodeViewRenderer } from '@tiptap/react'
-import KatexActiveButton from '@/extensions/Katex/components/KatexActiveButton'
-import { KatexWrapper } from '@/extensions/Katex/components/KatexWrapper'
+import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core';
+import { ReactNodeViewRenderer } from '@tiptap/react';
+
+import KatexActiveButton from '@/extensions/Katex/components/KatexActiveButton';
+import { KatexWrapper } from '@/extensions/Katex/components/KatexWrapper';
 
 export interface IKatexAttrs {
   text?: string
@@ -14,8 +15,8 @@ interface IKatexOptions {
 
 function getDatasetAttribute(attribute: string) {
   return (element: any) => {
-    return element.getAttribute(attribute)
-  }
+    return element.getAttribute(attribute);
+  };
 }
 
 declare module '@tiptap/core' {
@@ -44,15 +45,17 @@ export const Katex = Node.create<IKatexOptions>({
           component: KatexActiveButton,
           componentProps: {
             editor,
-            action: () => {},
+            action: () => {
+              return true;
+            },
             isActive: () => false,
             disabled: false,
             icon: 'KatexIcon',
             tooltip: t('editor.katex.tooltip'),
           },
-        }
+        };
       },
-    }
+    };
   },
 
   addAttributes() {
@@ -64,15 +67,15 @@ export const Katex = Node.create<IKatexOptions>({
       defaultShowPicker: {
         default: false,
       },
-    }
+    };
   },
 
   parseHTML() {
-    return [{ tag: 'span.katex' }]
+    return [{ tag: 'span.katex' }];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['span', mergeAttributes((this.options && this.options.HTMLAttributes) || {}, HTMLAttributes)]
+    return ['span', mergeAttributes((this.options && this.options.HTMLAttributes) || {}, HTMLAttributes)];
   },
 
   addCommands() {
@@ -83,9 +86,9 @@ export const Katex = Node.create<IKatexOptions>({
             return commands.insertContent({
               type: this.name,
               attrs: options,
-            })
+            });
           },
-    }
+    };
   },
 
   addInputRules() {
@@ -94,13 +97,13 @@ export const Katex = Node.create<IKatexOptions>({
         find: /^\$katex\$$/,
         type: this.type,
         getAttributes: () => {
-          return { defaultShowPicker: true }
+          return { defaultShowPicker: true };
         },
       }),
-    ]
+    ];
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(KatexWrapper)
+    return ReactNodeViewRenderer(KatexWrapper);
   },
-})
+});

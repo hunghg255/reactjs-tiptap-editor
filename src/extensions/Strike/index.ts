@@ -1,1 +1,1 @@
-export * from './Strike'
+export * from './Strike';

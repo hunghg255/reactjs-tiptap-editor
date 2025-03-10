@@ -1,1 +1,1 @@
-export * from './TextDirection'
+export * from './TextDirection';

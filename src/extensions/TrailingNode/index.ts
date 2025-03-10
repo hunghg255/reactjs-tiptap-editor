@@ -1,1 +1,1 @@
-export * from './TrailingNode'
+export * from './TrailingNode';

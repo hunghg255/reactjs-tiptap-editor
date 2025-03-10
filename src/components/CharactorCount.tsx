@@ -1,6 +1,6 @@
-import type { Editor } from '@tiptap/core'
-import React, { useMemo } from 'react'
-import { useLocale } from '@/locales'
+import type { Editor } from '@tiptap/core';
+import React, { useMemo } from 'react';
+import { useLocale } from '@/locales';
 
 interface IPropsCharactorCount {
   editor: Editor
@@ -8,11 +8,11 @@ interface IPropsCharactorCount {
 }
 
 function CharactorCount({ editor, extensions }: IPropsCharactorCount) {
-  const { t } = useLocale()
+  const { t } = useLocale();
 
   const limit = useMemo(() => {
-    return extensions?.find((extension: any) => extension.name === 'base-kit')?.options?.characterCount?.limit
-  }, [extensions])
+    return extensions?.find((extension: any) => extension.name === 'base-kit')?.options?.characterCount?.limit;
+  }, [extensions]);
 
   if (!limit) {
     return (
@@ -27,7 +27,7 @@ function CharactorCount({ editor, extensions }: IPropsCharactorCount) {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -44,7 +44,7 @@ function CharactorCount({ editor, extensions }: IPropsCharactorCount) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default CharactorCount
+export default CharactorCount;

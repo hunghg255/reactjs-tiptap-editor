@@ -1,27 +1,27 @@
-/* eslint-disable react-dom/no-missing-iframe-sandbox */
-import { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react';
 
-import { NodeViewWrapper } from '@tiptap/react'
+import { NodeViewWrapper } from '@tiptap/react';
+import clsx from 'clsx';
+import { Resizable } from 're-resizable';
 
-import { Resizable } from 're-resizable'
-import clsx from 'clsx'
-import styles from './index.module.scss'
 // import { getEditorContainerDOMSize } from '@/utils'
-import { Button, Input } from '@/components/ui'
-import { Iframe } from '@/extensions/Iframe/Iframe'
-import { useEditableEditor } from '@/store/editableEditor'
+import { Button, Input } from '@/components/ui';
+import { Iframe } from '@/extensions/Iframe/Iframe';
+import { useEditableEditor } from '@/store/editableEditor';
+
+import styles from './index.module.scss';
 
 function IframeNodeView({ editor, node, updateAttributes }: any) {
-  const isEditable = useEditableEditor()
+  const isEditable = useEditableEditor();
 
-  const { url, width, height } = node.attrs
+  const { url, width, height } = node.attrs;
   // const { width: maxWidth } = getEditorContainerDOMSize(editor)
 
-  const [originalLink, setOriginalLink] = useState<string>('')
+  const [originalLink, setOriginalLink] = useState<string>('');
 
   function handleConfirm() {
     if (!originalLink) {
-      return
+      return;
     }
 
     editor
@@ -31,29 +31,32 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
       })
       .setNodeSelection(editor.state.selection.from)
       .focus()
-      .run()
+      .run();
   }
 
   const onResize = useCallback(
     (size: any) => {
-      updateAttributes({ width: size.width, height: size.height })
+      updateAttributes({ width: size.width, height: size.height });
     },
     [updateAttributes],
-  )
+  );
 
   return (
     <NodeViewWrapper>
       {!url && (
-        <div className="richtext-max-w-[600px] richtext-mx-[auto] richtext-my-[12px] richtext-flex richtext-items-center richtext-justify-center richtext-gap-[10px] richtext-p-[10px] richtext-border-[1px] richtext-border-solid richtext-border-[#ccc] richtext-rounded-[12px]">
+        <div className="richtext-mx-auto richtext-my-[12px] richtext-flex richtext-max-w-[600px] richtext-items-center richtext-justify-center richtext-gap-[10px] richtext-rounded-[12px] richtext-border richtext-border-solid richtext-border-[#ccc] richtext-p-[10px]">
           <Input
-            value={originalLink}
-            onInput={(e: any) => setOriginalLink(e.target.value)}
-            type="url"
-            className="richtext-flex-1"
             autoFocus
+            className="richtext-flex-1"
+            onInput={(e: any) => setOriginalLink(e.target.value)}
             placeholder="Enter link"
+            type="url"
+            value={originalLink}
           />
-          <Button className="richtext-w-[60px]" onClick={handleConfirm}>
+
+          <Button className="richtext-w-[60px]"
+            onClick={handleConfirm}
+          >
             OK
           </Button>
         </div>
@@ -66,14 +69,16 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
             onResize({
               width: Number.parseInt(width) + d.width,
               height: Number.parseInt(height) + d.height,
-            })
+            });
           }}
         >
           <div className={clsx(styles.wrap, 'render-wrapper')}>
-            <div className={styles.innerWrap} style={{ pointerEvents: !isEditable ? 'auto' : 'none' }}>
+            <div className={styles.innerWrap}
+              style={{ pointerEvents: !isEditable ? 'auto' : 'none' }}
+            >
               <iframe
-                src={url}
                 className="richtext-my-[12px] "
+                src={url}
               >
               </iframe>
             </div>
@@ -81,7 +86,7 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
         </Resizable>
       )}
     </NodeViewWrapper>
-  )
+  );
 }
 
-export default IframeNodeView
+export default IframeNodeView;

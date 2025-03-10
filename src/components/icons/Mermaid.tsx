@@ -9,5 +9,5 @@ export function Mermaid() {
         <path strokeLinecap="round" strokeLinejoin="round" d="M34 38H22V10h12M14 24h20"></path>
       </g>
     </svg>
-  )
+  );
 }

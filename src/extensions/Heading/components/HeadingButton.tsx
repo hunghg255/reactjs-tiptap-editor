@@ -1,5 +1,4 @@
-/* eslint-disable react/no-duplicate-key */
-import React, { Fragment, useMemo } from 'react'
+import React, { Fragment, useMemo } from 'react';
 
 import {
   ActionMenuButton,
@@ -9,9 +8,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from '@/components'
-import type { ButtonViewReturnComponentProps } from '@/types'
-import { getShortcutKey } from '@/utils/plateform'
+} from '@/components';
+import type { ButtonViewReturnComponentProps } from '@/types';
+import { getShortcutKey } from '@/utils/plateform';
 
 export interface Item {
   title: string
@@ -38,31 +37,34 @@ interface Props {
 
 function HeadingButton(props: Props) {
   const active = useMemo(() => {
-    const find: any = props?.items?.find((k: any) => k.isActive())
+    const find: any = props?.items?.find((k: any) => k.isActive());
 
     if (find && !find.default) {
       return {
         ...find,
-      }
+      };
     }
     const item: Item = {
       title: props.tooltip as any,
       level: 0,
       isActive: () => false,
-    }
-    return item
-  }, [props])
+    };
+    return item;
+  }, [props]);
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger disabled={props?.disabled} asChild>
+      <DropdownMenuTrigger asChild
+        disabled={props?.disabled}
+      >
         <ActionMenuButton
-          title={active?.title}
-          tooltip={props?.tooltip}
           disabled={props?.disabled}
           icon="MenuDown"
+          title={active?.title}
+          tooltip={props?.tooltip}
         />
       </DropdownMenuTrigger>
+
       <DropdownMenuContent className="richtext-w-full">
         {props?.items?.map((item: any, index) => {
           return (
@@ -71,20 +73,24 @@ function HeadingButton(props: Props) {
                 checked={active?.title === item.title}
                 onClick={item.action}
               >
-                <div className={`richtext-ml-1 richtext-h-full heading-${item.level}`}>{item.title}</div>
+                <div className={`heading- richtext-ml-1 richtext-h-full${item.level}`}>
+                  {item.title}
+                </div>
+
                 {!!item?.shortcutKeys?.length && (
                   <DropdownMenuShortcut className="richtext-pl-4">
                     {item?.shortcutKeys?.map((item: any) => getShortcutKey(item)).join(' ')}
                   </DropdownMenuShortcut>
                 )}
               </DropdownMenuCheckboxItem>
+
               {item.level === 0 && <DropdownMenuSeparator />}
             </Fragment>
-          )
+          );
         })}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
-export default HeadingButton
+export default HeadingButton;

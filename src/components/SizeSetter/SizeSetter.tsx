@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
-import { Button, Input, Label, Popover, PopoverContent, PopoverTrigger } from '@/components/ui'
-import { useLocale } from '@/locales'
+import { useEffect, useState } from 'react';
+import { Button, Input, Label, Popover, PopoverContent, PopoverTrigger } from '@/components/ui';
+import { useLocale } from '@/locales';
 
-interface ISize { width: number | string, height: number | string }
+interface ISize {
+  width: number | string, height: number | string 
+}
 
 interface IProps {
   width: number | string
@@ -12,29 +14,29 @@ interface IProps {
   children: React.ReactNode
 }
 
-const containerStyle = { padding: '0 12px 12px' }
+const containerStyle = { padding: '0 12px 12px' };
 
 export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, children }: any) => {
-  const { t } = useLocale()
+  const { t } = useLocale();
 
   const [form, setForm] = useState({
     width: '',
     height: '',
     maxWidth: '',
-  })
+  });
 
   useEffect(() => {
     setForm({
       width,
       height,
       maxWidth,
-    })
-  }, [height, maxWidth, width])
+    });
+  }, [height, maxWidth, width]);
 
   function handleSubmit(event: any) {
-    event.preventDefault()
-    event.stopPropagation()
-    onOk(form)
+    event.preventDefault();
+    event.stopPropagation();
+    onOk(form);
   }
 
   return (
@@ -61,7 +63,9 @@ export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, ch
               </div>
             </div>
 
-            <Label className="mb-[6px]">Max Width</Label>
+            <Label className="mb-[6px]">
+              Max Width
+            </Label>
 
             <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
               <div className="richtext-relative richtext-items-center richtext-w-full richtext-max-w-sm">
@@ -73,7 +77,9 @@ export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, ch
                 />
               </div>
             </div>
-            <Label className="mb-[6px]">Height</Label>
+            <Label className="mb-[6px]">
+              Height
+            </Label>
             <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
               <div className="richtext-relative richtext-items-center richtext-w-full richtext-max-w-sm">
                 <Input
@@ -92,5 +98,5 @@ export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, ch
         </div>
       </PopoverContent>
     </Popover>
-  )
-}
+  );
+};

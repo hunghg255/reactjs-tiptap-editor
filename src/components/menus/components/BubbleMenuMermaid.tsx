@@ -1,15 +1,14 @@
-/* eslint-disable react/no-useless-fragment */
-import { Fragment, useMemo } from 'react'
+import { Fragment, useMemo } from 'react';
 
-import type { Editor } from '@tiptap/react'
-import { BubbleMenu as BubbleMenuReact } from '@tiptap/react'
+import type { Editor } from '@tiptap/react';
+import { BubbleMenu as BubbleMenuReact } from '@tiptap/react';
 
-import { Separator, getBubbleMermaid } from '@/components'
-import { useLocale } from '@/locales'
-import { EditMermaidBlock } from '@/extensions/Mermaid/components/EditMermaidBlock'
-import { useAttributes } from '@/hooks/useAttributes'
-import { Mermaid } from '@/extensions'
-import { useExtension } from '@/hooks/useExtension'
+import { Separator, getBubbleMermaid } from '@/components';
+import { Mermaid } from '@/extensions';
+import { EditMermaidBlock } from '@/extensions/Mermaid/components/EditMermaidBlock';
+import { useAttributes } from '@/hooks/useAttributes';
+import { useExtension } from '@/hooks/useExtension';
+import { useLocale } from '@/locales';
 
 interface IPropsBubbleMenu {
   editor: Editor
@@ -21,107 +20,109 @@ const tippyOptions = {
   zIndex: 20,
   appendTo: 'parent',
   moveTransition: 'transform 0.1s ease-out',
-}
+};
 
 function ItemA({ item, disabled, editor }: any) {
-  const Comp = item.component
+  const Comp = item.component;
 
   if (!Comp) {
-    return <></>
+    return <></>;
   }
 
   return (
     <Fragment>
       {item.type === 'divider'
         ? (
-            <Separator orientation="vertical" className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" />
-          )
+          <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]"
+            orientation="vertical"
+          />
+        )
         : (
-            <Comp
-              {...item.componentProps}
-              editor={editor}
-              disabled={disabled || item?.componentProps?.disabled}
-            />
-          )}
+          <Comp
+            {...item.componentProps}
+            disabled={disabled || item?.componentProps?.disabled}
+            editor={editor}
+          />
+        )}
     </Fragment>
-  )
+  );
 }
 
 function isMermaidNode(node: any) {
-  return node.type.name === 'mermaid'
+  return node.type.name === 'mermaid';
 }
 
 function BubbleMenuMermaid(props: IPropsBubbleMenu) {
-  const { lang } = useLocale()
+  const { lang } = useLocale();
 
-  const attrs = useAttributes<any>(props.editor, Mermaid.name)
+  const attrs = useAttributes<any>(props.editor, Mermaid.name);
 
-  const extension = useExtension(props.editor, Mermaid.name)
+  const extension = useExtension(props.editor, Mermaid.name);
 
   const shouldShow = ({ editor }: any) => {
-    const { selection } = editor.view.state
-    const { $from, to } = selection
-    let isMermaid = false
+    const { selection } = editor.view.state;
+    const { $from, to } = selection;
+    let isMermaid = false;
 
     editor.view.state.doc.nodesBetween($from.pos, to, (node: any) => {
       if (isMermaidNode(node)) {
-        isMermaid = true
-        return false // Stop iteration if an mermaid is found
+        isMermaid = true;
+        return false; // Stop iteration if an mermaid is found
       }
-    })
+    });
 
-    return isMermaid
-  }
+    return isMermaid;
+  };
 
   const items = useMemo(() => {
     if (props.disabled) {
-      return []
+      return [];
     }
-    return getBubbleMermaid(props.editor)
+    return getBubbleMermaid(props.editor);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.disabled, props.editor, lang])
+  }, [props.disabled, props.editor, lang]);
 
   return (
     <>
       <BubbleMenuReact
-        shouldShow={shouldShow}
         editor={props?.editor}
+        shouldShow={shouldShow}
         tippyOptions={tippyOptions as any}
       >
         {items?.length
           ? (
-              <div className="richtext-w-auto richtext-px-3 richtext-py-2 richtext-transition-all !richtext-border richtext-rounded-sm richtext-shadow-sm richtext-pointer-events-auto richtext-select-none richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-bg-background">
-                <div className="richtext-flex richtext-items-center richtext-flex-nowrap richtext-whitespace-nowrap richtext-h-[26px] richtext-justify-start richtext-relative">
-                  {items?.map((item: any, key: any) => {
-                    if (item.type === 'edit' && attrs?.src) {
-                      return (
-                        <EditMermaidBlock
-                          key={`bubbleMenu-mermaid-${key}`}
-                          editor={props.editor}
-                          attrs={attrs}
-                          extension={extension}
-                        />
-                      )
-                    }
-
+            <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">
+              <div className="richtext-relative richtext-flex richtext-h-[26px] richtext-flex-nowrap richtext-items-center richtext-justify-start richtext-whitespace-nowrap">
+                {items?.map((item: any, key: any) => {
+                  if (item.type === 'edit' && attrs?.src) {
                     return (
-                      <ItemA
-                        key={`bubbleMenu-mermaid-${key}`}
-                        item={item}
-                        disabled={props.disabled}
+                      <EditMermaidBlock
+                        attrs={attrs}
                         editor={props.editor}
+                        extension={extension}
+                        key={`bubbleMenu-mermaid-${key}`}
                       />
-                    )
-                  })}
-                </div>
+                    );
+                  }
+
+                  return (
+                    <ItemA
+                      disabled={props.disabled}
+                      editor={props.editor}
+                      item={item}
+                      key={`bubbleMenu-mermaid-${key}`}
+                    />
+                  );
+                })}
               </div>
-            )
+            </div>
+          )
           : (
-              <></>
-            )}
+            <></>
+          )}
       </BubbleMenuReact>
     </>
-  )
+  );
 }
 
-export { BubbleMenuMermaid }
+export { BubbleMenuMermaid };

@@ -1,36 +1,36 @@
-import type { Editor } from '@tiptap/core'
+import type { Editor } from '@tiptap/core';
 
-import type { NameValueOption } from '@/types'
+import type { NameValueOption } from '@/types';
 
 export function clamp(val: number, min: number, max: number) {
   if (val < min) {
-    return min
+    return min;
   }
   if (val > max) {
-    return max
+    return max;
   }
-  return val
+  return val;
 }
 
-export const isNumber = (value: unknown): value is number => typeof value === 'number'
+export const isNumber = (value: unknown): value is number => typeof value === 'number';
 
-export const isString = (value: unknown): value is string => typeof value === 'string'
+export const isString = (value: unknown): value is string => typeof value === 'string';
 
-export const isBoolean = (value: unknown): value is boolean => typeof value === 'boolean'
+export const isBoolean = (value: unknown): value is boolean => typeof value === 'boolean';
 
-export const isFunction = (value: unknown): boolean => typeof value === 'function'
+export const isFunction = (value: unknown): boolean => typeof value === 'function';
 
-export function getCssUnitWithDefault(value?: string | number, defaultUnit: string = 'px') {
+export function getCssUnitWithDefault(value?: string | number, defaultUnit = 'px') {
   if (!value)
-    return value
+    return value;
 
-  const stringValue = isNumber(value) ? String(value) : value
+  const stringValue = isNumber(value) ? String(value) : value;
 
-  const num = Number.parseFloat(stringValue)
-  const unitMatch = stringValue.match(/[a-z%]+$/i)
-  const unit = unitMatch ? unitMatch[0] : defaultUnit
+  const num = Number.parseFloat(stringValue);
+  const unitMatch = stringValue.match(/[%a-z]+$/i);
+  const unit = unitMatch ? unitMatch[0] : defaultUnit;
 
-  return Number.isNaN(num) ? value : num + unit
+  return Number.isNaN(num) ? value : num + unit;
 }
 
 /**
@@ -42,20 +42,20 @@ export function getCssUnitWithDefault(value?: string | number, defaultUnit: stri
  */
 export function hasExtension(editor: Editor, name: string): boolean {
   if (!editor) {
-    return false
+    return false;
   }
 
   // Retrieve the extension manager of the editor, defaulting to an empty array if it doesn't exist
-  const { extensions = [] } = editor?.extensionManager ?? {}
+  const { extensions = [] } = editor?.extensionManager ?? {};
 
   // Check if the extension method with the specified name is present in the extension manager
-  const find = extensions.find(i => i.name === name)
+  const find = extensions.find(i => i.name === name);
 
   // Return false if the extension method with the specified name is not found, otherwise return true
   if (!find) {
-    return false
+    return false;
   }
-  return true
+  return true;
 }
 
 /**
@@ -64,8 +64,8 @@ export function hasExtension(editor: Editor, name: string): boolean {
 export function ensureNameValueOptions(arr: (string | NameValueOption)[]) {
   return arr.map((item) => {
     if (isString(item)) {
-      return { value: item, name: item }
+      return { value: item, name: item };
     }
-    return item
-  })
+    return item;
+  });
 }

@@ -1,1 +1,1 @@
-export * from './Bold'
+export * from './Bold';

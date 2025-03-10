@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Activity() {
   return (
@@ -13,7 +13,7 @@ function Activity() {
         fill="currentColor"
       />
     </svg>
-  )
+  );
 }
 
-export default Activity
+export default Activity;
