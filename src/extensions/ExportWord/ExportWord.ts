@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Extension } from '@tiptap/core';
-import { Packer } from 'docx';
+import { Packer, WidthType } from 'docx';
 import { DocxSerializer, defaultMarks, defaultNodes } from 'prosemirror-docx';
 
 import { ActionButton } from '@/components';
@@ -29,6 +29,16 @@ const nodeSerializer = {
     // No image
     state.renderInline(node);
     state.closeBlock(node);
+  },
+  table(state: any, node: any) {
+    state.table(node, {
+      tableOptions: {
+        width: {
+          size: 100,
+          type: WidthType.PERCENTAGE,
+        },
+      },
+    });
   },
 };
 const docxSerializer = new DocxSerializer(nodeSerializer, defaultMarks);
