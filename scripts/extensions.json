@@ -21,17 +21,17 @@
     ]
   },
   {
-    "name": "Bold.ts",
-    "package": "Bold",
-    "alias": [
-      "Bold"
-    ]
-  },
-  {
     "name": "BulletList.ts",
     "package": "BulletList",
     "alias": [
       "BulletList"
+    ]
+  },
+  {
+    "name": "Bold.ts",
+    "package": "Bold",
+    "alias": [
+      "Bold"
     ]
   },
   {
@@ -84,10 +84,10 @@
     ]
   },
   {
-    "name": "Excalidraw.ts",
-    "package": "Excalidraw",
+    "name": "Drawer.ts",
+    "package": "Drawer",
     "alias": [
-      "Excalidraw"
+      "Drawer"
     ]
   },
   {
@@ -95,6 +95,13 @@
     "package": "Emoji",
     "alias": [
       "Emoji"
+    ]
+  },
+  {
+    "name": "Excalidraw.ts",
+    "package": "Excalidraw",
+    "alias": [
+      "Excalidraw"
     ]
   },
   {
@@ -119,17 +126,17 @@
     ]
   },
   {
-    "name": "FontSize.ts",
-    "package": "FontSize",
-    "alias": [
-      "FontSize"
-    ]
-  },
-  {
     "name": "FormatPainter.ts",
     "package": "FormatPainter",
     "alias": [
       "FormatPainter"
+    ]
+  },
+  {
+    "name": "FontSize.ts",
+    "package": "FontSize",
+    "alias": [
+      "FontSize"
     ]
   },
   {
@@ -189,17 +196,17 @@
     ]
   },
   {
-    "name": "ImportWord.ts",
-    "package": "ImportWord",
-    "alias": [
-      "ImportWord"
-    ]
-  },
-  {
     "name": "ImageGif.ts",
     "package": "ImageGif",
     "alias": [
       "ImageGif"
+    ]
+  },
+  {
+    "name": "ImportWord.ts",
+    "package": "ImportWord",
+    "alias": [
+      "ImportWord"
     ]
   },
   {
@@ -259,20 +266,6 @@
     ]
   },
   {
-    "name": "MultiColumn.ts",
-    "package": "MultiColumn",
-    "alias": [
-      "Column"
-    ]
-  },
-  {
-    "name": "MultiColumn.ts",
-    "package": "MultiColumn",
-    "alias": [
-      "MultiColumn"
-    ]
-  },
-  {
     "name": "MoreMark.ts",
     "package": "MoreMark",
     "alias": [
@@ -287,17 +280,24 @@
     ]
   },
   {
+    "name": "MultiColumn.ts",
+    "package": "MultiColumn",
+    "alias": [
+      "Column"
+    ]
+  },
+  {
+    "name": "MultiColumn.ts",
+    "package": "MultiColumn",
+    "alias": [
+      "MultiColumn"
+    ]
+  },
+  {
     "name": "SearchAndReplace.ts",
     "package": "SearchAndReplace",
     "alias": [
       "SearchAndReplace"
-    ]
-  },
-  {
-    "name": "Selection.ts",
-    "package": "Selection",
-    "alias": [
-      "Selection"
     ]
   },
   {
@@ -329,6 +329,20 @@
     ]
   },
   {
+    "name": "Selection.ts",
+    "package": "Selection",
+    "alias": [
+      "Selection"
+    ]
+  },
+  {
+    "name": "Subscript.ts",
+    "package": "Subscript",
+    "alias": [
+      "Subscript"
+    ]
+  },
+  {
     "name": "Table.ts",
     "package": "Table",
     "alias": [
@@ -343,10 +357,10 @@
     ]
   },
   {
-    "name": "Subscript.ts",
-    "package": "Subscript",
+    "name": "TableOfContent.ts",
+    "package": "TableOfContent",
     "alias": [
-      "Subscript"
+      "TableOfContent"
     ]
   },
   {
@@ -354,13 +368,6 @@
     "package": "TaskList",
     "alias": [
       "TaskList"
-    ]
-  },
-  {
-    "name": "TableOfContent.ts",
-    "package": "TableOfContent",
-    "alias": [
-      "TableOfContent"
     ]
   },
   {
@@ -378,17 +385,17 @@
     ]
   },
   {
-    "name": "TrailingNode.ts",
-    "package": "TrailingNode",
-    "alias": [
-      "TrailingNode"
-    ]
-  },
-  {
     "name": "TextDirection.ts",
     "package": "TextDirection",
     "alias": [
       "TextDirection"
+    ]
+  },
+  {
+    "name": "TrailingNode.ts",
+    "package": "TrailingNode",
+    "alias": [
+      "TrailingNode"
     ]
   },
   {
@@ -427,8 +434,8 @@
     ]
   },
   {
-    "name": "Emoji.ts",
-    "package": "Emoji",
+    "name": "Attachment.ts",
+    "package": "Attachment",
     "alias": [
       "components"
     ]

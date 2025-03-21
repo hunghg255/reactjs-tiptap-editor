@@ -1,9 +1,116 @@
 [
   {
+    "hash": "a870e5e09f9623db3f5a88aa6fee0832edd932ca",
+    "date": "Fri Mar 21 19:45:28 2025 +0700",
+    "message": "chore: release v0.2.6",
+    "refs": "HEAD -> main, tag: v0.2.6, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.2.6"
+  },
+  {
+    "hash": "a402527272390c27e6877764df6805aa19e2fb87",
+    "date": "Fri Mar 21 19:44:05 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "b491442310f4e7a835a2b5fbc75249e477922362",
+    "date": "Fri Mar 21 19:40:51 2025 +0700",
+    "message": "feat: extention draw",
+    "refs": "origin/extention-drawer, extention-drawer",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md",
+      "Drawer",
+      "DrawerActiveButton",
+      "EditDrawerBlock",
+      "NodeViewDrawer",
+      "index",
+      "ActionImageButton",
+      "Mermaid",
+      "NodeViewMermaid"
+    ]
+  },
+  {
+    "hash": "d2a74aba573f3e58dd19d0ec091c1cc4d61e3c18",
+    "date": "Mon Mar 17 22:10:39 2025 -0400",
+    "message": "fix(docx-export): set table width to 100% to prevent shrinking",
+    "refs": "",
+    "author_name": "deepanshut041",
+    "author_email": "deepanshut041@gmail.com",
+    "functions": [
+      "ExportWord"
+    ]
+  },
+  {
+    "hash": "9f16a7cef10227dd01d600da5043b68b464e4f81",
+    "date": "Mon Mar 10 20:21:27 2025 +0700",
+    "message": "chore: release v0.2.5",
+    "refs": "tag: v0.2.5",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.2.5"
+  },
+  {
+    "hash": "7507afd8539d66f380effab682efa5483270b41a",
+    "date": "Mon Mar 10 20:20:34 2025 +0700",
+    "message": "fix: next 15",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "FileIcon",
+      "FileIconString",
+      "ImageView",
+      "ImageGifView",
+      "NodeViewMermaid"
+    ]
+  },
+  {
+    "hash": "968d3e05d2217892f35667a7772cb01b3eede982",
+    "date": "Mon Mar 10 13:07:09 2025 +0700",
+    "message": "chore: release v0.2.2",
+    "refs": "tag: v0.2.2",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.2.2"
+  },
+  {
+    "hash": "779ff2bddd4531f0647c3ad392791f7851a59c5b",
+    "date": "Mon Mar 10 12:31:03 2025 +0700",
+    "message": "chore: release v0.2.1",
+    "refs": "tag: v0.2.1",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.2.1"
+  },
+  {
+    "hash": "6f357450e48c4b88d7be8ddd05bf9f441500f8b5",
+    "date": "Mon Mar 10 12:22:44 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "fb6074907bf871bbc79377e8574cd22818aa01b1",
     "date": "Mon Mar 10 12:00:14 2025 +0700",
     "message": "chore: release v0.2.0",
-    "refs": "HEAD -> main, tag: v0.2.0, origin/main",
+    "refs": "tag: v0.2.0",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1480,92 +1587,5 @@
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
     "version": "v0.0.8"
-  },
-  {
-    "hash": "5caab13dba1ca35693fb37d36e66c349a063b2fc",
-    "date": "Fri Aug 16 22:30:49 2024 +0700",
-    "message": "docs: update",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "TableExtension",
-      "index",
-      "table"
-    ]
-  },
-  {
-    "hash": "594076098c3a94d1a98269933709353e2a636f4f",
-    "date": "Fri Aug 16 22:28:17 2024 +0700",
-    "message": "docs: update",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "TableExtension",
-      "table"
-    ]
-  },
-  {
-    "hash": "9abff4c459aa690d68d0cb6bce68f2181d85e4b2",
-    "date": "Fri Aug 16 22:22:21 2024 +0700",
-    "message": "docs: update",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "text-align.md",
-      "clear-format.md",
-      "format-painter.md",
-      "code-block.md",
-      "code.md",
-      "background-color.md",
-      "text-color.md",
-      "multiple-column.md",
-      "bullet-list.md",
-      "ordered-list.md",
-      "task-list.md",
-      "image.md",
-      "video.md",
-      "font-bold.md",
-      "font-family.md",
-      "font-italic.md",
-      "font-size.md",
-      "font-strike.md",
-      "font-underline.md",
-      "heading.md",
-      "subscript.md",
-      "extensions.json",
-      "BaseKit",
-      "Columns",
-      "MultiColumn",
-      "index",
-      "ColumnsMenu"
-    ]
-  },
-  {
-    "hash": "4aec3a84a7008a466c4c6423f55d11bb1e1807d1",
-    "date": "Thu Aug 15 16:23:39 2024 +0700",
-    "message": "chore: release v0.0.7",
-    "refs": "tag: v0.0.7",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.7"
-  },
-  {
-    "hash": "765cd766625da4d97e002aeff22a4bee41fbab85",
-    "date": "Thu Aug 15 16:19:39 2024 +0700",
-    "message": "fix: pass props to button",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "BulletList",
-      "OrderedList",
-      "TaskList",
-      "TextAlignMenuButton"
-    ]
   }
 ]
