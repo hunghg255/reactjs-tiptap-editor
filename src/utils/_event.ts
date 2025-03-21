@@ -17,6 +17,7 @@ export const OPEN_LINK_SETTING_MODAL = 'OPEN_LINK_SETTING_MODAL';
 export const OPEN_FLOW_SETTING_MODAL = 'OPEN_FLOW_SETTING_MODAL';
 export const OPEN_MIND_SETTING_MODAL = 'OPEN_MIND_SETTING_MODAL';
 export const OPEN_EXCALIDRAW_SETTING_MODAL = 'OPEN_EXCALIDRAW_SETTING_MODAL';
+export const OPEN_DRAWER_SETTING_MODAL = 'OPEN_DRAWER_SETTING_MODAL';
 
 export function subject(eventName: any, handler: any) {
   const event = getEventEmitter();

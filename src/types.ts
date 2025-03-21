@@ -211,6 +211,13 @@ export interface BubbleMenuProps {
      */
     hidden?: boolean
   }
+  drawerConfig?: {
+    /**
+     * @description twitter menu hidden
+     * @default false
+     */
+    hidden?: boolean
+  }
   render?: (props: BubbleMenuRenderProps, dom: React.ReactNode) => React.ReactNode
 }
 

@@ -21,7 +21,7 @@ const ResizeDirection = {
   BOTTOM_RIGHT: 'br',
 };
 
-export function NodeViewMermaid({ editor, node, updateAttributes, getPos, selected }: any) {
+export function NodeViewDrawer({ editor, node, updateAttributes, getPos, selected }: any) {
   const [maxSize, setMaxSize] = useState<Size>({
     width: IMAGE_MAX_SIZE,
     height: IMAGE_MAX_SIZE,
@@ -147,7 +147,7 @@ export function NodeViewMermaid({ editor, node, updateAttributes, getPos, select
       const { x, w, dir } = resizerState;
 
       const dx = (e.clientX - x) * (/l/.test(dir) ? -1 : 1);
-      // const dy = (e.clientY - y) * (/t/.test(dir) ? -1 : 1)
+
       const { width: wI, height: hI } = node?.attrs;
       const ratio = wI / hI;
 

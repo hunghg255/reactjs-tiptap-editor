@@ -170,6 +170,26 @@ function imageMermaidAlignMenus(editor: Editor): BubbleMenuItem[] {
   }));
 }
 
+function imageDrawerAlignMenus(editor: Editor): BubbleMenuItem[] {
+  const types: ImageAlignments[] = ['left', 'center', 'right'];
+  const iconMap: any = {
+    left: 'AlignLeft',
+    center: 'AlignCenter',
+    right: 'AlignRight',
+  };
+  return types.map(k => ({
+    type: `image-${k}`,
+    component: ActionButton,
+    componentProps: {
+      tooltip: localeActions.t(`editor.textalign.${k}.tooltip`),
+      icon: iconMap[k],
+      action: () => editor.commands?.setAlignImageDrawer?.(k),
+      isActive: () => editor.isActive({ align: k }) || false,
+      disabled: false,
+    },
+  }));
+}
+
 function videoSizeMenus(editor: Editor): BubbleMenuItem[] {
   const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large'];
   const icons: NonNullable<ButtonViewReturn['componentProps']['icon']>[] = [
@@ -280,6 +300,39 @@ export function getBubbleMermaid(editor: Editor): BubbleMenuItem[] {
         tooltip: localeActions.t('editor.edit'),
         icon: 'Pencil',
         action: () => {
+          return true;
+        },
+      },
+    },
+    {
+      type: 'remove',
+      component: ActionButton,
+      componentProps: {
+        editor,
+        tooltip: localeActions.t('editor.remove'),
+        icon: 'Trash2',
+        action: () => {
+          const { state, dispatch } = editor.view;
+          deleteSelection(state, dispatch);
+        },
+      },
+    },
+  ];
+}
+
+export function getBubbleDrawer(editor: Editor): BubbleMenuItem[] {
+  return [
+    ...imageDrawerAlignMenus(editor),
+    {
+      type: 'edit',
+      component: ActionButton,
+      componentProps: {
+        editor,
+        tooltip: localeActions.t('editor.edit'),
+        icon: 'Pencil',
+        action: () => {
+          console.log('AAA');
+
           return true;
         },
       },
