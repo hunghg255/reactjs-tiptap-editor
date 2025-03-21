@@ -1,4 +1,10 @@
 import {
+  TextAlignCenterIcon,
+  TextAlignJustifyIcon,
+  TextAlignLeftIcon,
+  TextAlignRightIcon,
+} from '@radix-ui/react-icons';
+import {
   BetweenHorizonalEnd,
   BetweenHorizonalStart,
   BetweenVerticalEnd,
@@ -69,14 +75,9 @@ import {
   Video,
   ZoomIn,
   ZoomOut,
+  PencilRuler
 } from 'lucide-react';
-import {
-  TextAlignCenterIcon,
-  TextAlignJustifyIcon,
-  TextAlignLeftIcon,
-  TextAlignRightIcon,
-} from '@radix-ui/react-icons';
-import ImportWord from './ImportWord';
+
 import {
   AspectRatio,
   BlockquoteLeft,
@@ -89,17 +90,19 @@ import {
   SizeM,
   SizeS,
 } from '@/components/icons';
-import { ExportPdf } from '@/components/icons/ExportPdf';
-import ExportWord from '@/components/icons/ExportWord';
 import { ColumnAddLeft } from '@/components/icons/ColumnAddLeft';
 import { ColumnAddRight } from '@/components/icons/ColumnAddRight';
-import { Excalidraw } from '@/components/icons/Excalidraw';
 import { Direction } from '@/components/icons/Direction';
-import { LeftToRight } from '@/components/icons/LeftToRight';
-import { RightToLeft } from '@/components/icons/RightToLeft';
+import { Excalidraw } from '@/components/icons/Excalidraw';
+import { ExportPdf } from '@/components/icons/ExportPdf';
+import ExportWord from '@/components/icons/ExportWord';
 import { GifIcon } from '@/components/icons/GIfIcon';
+import { LeftToRight } from '@/components/icons/LeftToRight';
 import { Mermaid } from '@/components/icons/Mermaid';
+import { RightToLeft } from '@/components/icons/RightToLeft';
 import { Twitter } from '@/components/icons/Twitter';
+
+import ImportWord from './ImportWord';
 
 export const icons = {
   Bold,
@@ -205,4 +208,5 @@ export const icons = {
   Twitter,
   FlipX: FlipVertical,
   FlipY: FlipHorizontal,
+  PencilRuler
 } as any;

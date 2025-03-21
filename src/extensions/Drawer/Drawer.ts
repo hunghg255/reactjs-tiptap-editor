@@ -4,26 +4,26 @@ import { mergeAttributes } from '@tiptap/core';
 import TiptapImage from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import { MermaidActiveButton } from '@/extensions/Mermaid/components/MermaidActiveButton';
-import { NodeViewMermaid } from '@/extensions/Mermaid/components/NodeViewMermaid/NodeViewMermaid';
+import { DrawerActiveButton } from '@/extensions/Drawer/components/DrawerActiveButton';
+import { NodeViewDrawer } from '@/extensions/Drawer/components/NodeViewDrawer/NodeViewDrawer';
 import type { GeneralOptions } from '@/types';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
-    mermaid: {
-      setMermaid: (options: any, replace?: any) => ReturnType
-      setAlignImageMermaid: (align: 'left' | 'center' | 'right') => ReturnType
+    drawer: {
+      setDrawer: (options: any, replace?: any) => ReturnType
+      setAlignImageDrawer: (align: 'left' | 'center' | 'right') => ReturnType
     }
   }
 }
 
-export interface MermaidOptions extends GeneralOptions<MermaidOptions> {
+export interface DrawerOptions extends GeneralOptions<DrawerOptions> {
   /** Function for uploading files */
   upload?: (file: File) => Promise<string>
 }
 
-export const Mermaid = TiptapImage.extend<MermaidOptions>({
-  name: 'mermaid',
+export const Drawer = TiptapImage.extend<DrawerOptions>({
+  name: 'drawer',
 
   addOptions() {
     return {
@@ -36,10 +36,10 @@ export const Mermaid = TiptapImage.extend<MermaidOptions>({
       selectable: true,
       atom: true,
       HTMLAttributes: {
-        class: 'mermaid',
+        class: 'drawer',
       },
       button: ({ editor, t, extension }: any) => ({
-        component: MermaidActiveButton,
+        component: DrawerActiveButton,
         componentProps: {
           action: () => {
             return true;
@@ -47,8 +47,8 @@ export const Mermaid = TiptapImage.extend<MermaidOptions>({
           isActive: () => false,
           disabled: false,
           editor,
-          icon: 'Mermaid',
-          tooltip: t('editor.mermaid.tooltip'),
+          icon: 'PencilRuler',
+          tooltip: t('editor.drawer.tooltip'),
           upload: extension?.options?.upload,
         },
       }),
@@ -101,13 +101,13 @@ export const Mermaid = TiptapImage.extend<MermaidOptions>({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(NodeViewMermaid);
+    return ReactNodeViewRenderer(NodeViewDrawer);
   },
 
   // @ts-ignore
   addCommands() {
     return {
-      setMermaid:
+      setDrawer:
           (
             options: { src: string, alt?: string },
             replace?: boolean,
@@ -125,7 +125,7 @@ export const Mermaid = TiptapImage.extend<MermaidOptions>({
               });
             },
 
-      setAlignImageMermaid:
+      setAlignImageDrawer:
             (align: any) =>
               ({ commands }: any) => {
                 return commands.updateAttributes(this.name, { align });
@@ -135,13 +135,13 @@ export const Mermaid = TiptapImage.extend<MermaidOptions>({
 
   renderHTML({ HTMLAttributes }) {
     const { align } = HTMLAttributes;
-
     const style = align ? `text-align: ${align};` : '';
+
     return [
       'div', // Parent element
       {
         style,
-        class: 'imageMermaid',
+        class: 'imageDrawer',
       },
       [
         'img',
@@ -156,7 +156,7 @@ export const Mermaid = TiptapImage.extend<MermaidOptions>({
   parseHTML() {
     return [
       {
-        tag: 'div[class=imageMermaid]',
+        tag: 'div[class=imageDrawer]',
         getAttrs: (element) => {
           const img = element.querySelector('img');
 

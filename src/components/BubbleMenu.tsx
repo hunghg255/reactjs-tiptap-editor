@@ -1,13 +1,14 @@
 import type { Editor } from '@tiptap/core';
 
 import { BubbleMenuImage, BubbleMenuImageGif, BubbleMenuLink, BubbleMenuText, BubbleMenuVideo, ColumnsBubbleMenu, ContentMenu, TableBubbleMenu } from '@/components';
-import type { BubbleMenuProps as BubbleMenuPropsType } from '@/types';
-import BubbleMenuKatex from '@/components/menus/components/BubbleMenuKatex';
+import { BubbleMenuDrawer } from '@/components/menus/components/BubbleMenuDrawer';
 import { BubbleMenuExcalidraw } from '@/components/menus/components/BubbleMenuExcalidraw';
 import { BubbleMenuIframe } from '@/components/menus/components/BubbleMenuIframe';
-import { ImageGif } from '@/extensions';
+import BubbleMenuKatex from '@/components/menus/components/BubbleMenuKatex';
 import { BubbleMenuMermaid } from '@/components/menus/components/BubbleMenuMermaid';
 import { BubbleMenuTwitter } from '@/components/menus/components/BubbleMenuTwitter';
+import { ImageGif } from '@/extensions';
+import type { BubbleMenuProps as BubbleMenuPropsType } from '@/types';
 
 export interface BubbleMenuComponentProps {
   editor: Editor
@@ -27,19 +28,60 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
   const extensionsNames = editor.extensionManager.extensions.map(ext => ext.name);
 
   const renderMenuItems = () => [
-    extensionsNames.includes('columns') && !bubbleMenu?.columnConfig?.hidden ? <ColumnsBubbleMenu key="columns" editor={editor} /> : null,
-    extensionsNames.includes('table') && !bubbleMenu?.tableConfig?.hidden ? <TableBubbleMenu key="table" editor={editor} /> : null,
-    extensionsNames.includes('link') && !bubbleMenu?.linkConfig?.hidden ? <BubbleMenuLink key="link" editor={editor} disabled={disabled} /> : null,
-    extensionsNames.includes('image') && !bubbleMenu?.imageConfig?.hidden ? <BubbleMenuImage key="image" editor={editor} disabled={disabled} /> : null,
-    extensionsNames.includes(ImageGif.name) && !bubbleMenu?.imageGifConfig?.hidden ? <BubbleMenuImageGif key="imageGif" editor={editor} disabled={disabled} /> : null,
-    extensionsNames.includes('video') && !bubbleMenu?.videoConfig?.hidden ? <BubbleMenuVideo key="video" editor={editor} disabled={disabled} /> : null,
-    extensionsNames.includes('katex') && !bubbleMenu?.katexConfig?.hidden ? <BubbleMenuKatex key="katex" editor={editor} disabled={disabled} /> : null,
-    extensionsNames.includes('excalidraw') && !bubbleMenu?.excalidrawConfig?.hidden ? <BubbleMenuExcalidraw key="excalidraw" editor={editor} disabled={disabled} /> : null,
-    extensionsNames.includes('mermaid') && !bubbleMenu?.mermaidConfig?.hidden ? <BubbleMenuMermaid key="mermaid" editor={editor} disabled={disabled} /> : null,
-    extensionsNames.includes('iframe') && !bubbleMenu?.iframeConfig?.hidden ? <BubbleMenuIframe key="iframe" editor={editor} disabled={disabled} /> : null,
-    extensionsNames.includes('twitter') && !bubbleMenu?.twitterConfig?.hidden ? <BubbleMenuTwitter key="twitter" editor={editor} disabled={disabled} /> : null,
-    !bubbleMenu?.floatingMenuConfig?.hidden ? <ContentMenu key="content" editor={editor} disabled={disabled} /> : null,
-    !bubbleMenu?.textConfig?.hidden ? <BubbleMenuText key="text" editor={editor} disabled={disabled} /> : null,
+    extensionsNames.includes('columns') && !bubbleMenu?.columnConfig?.hidden ? <ColumnsBubbleMenu editor={editor}
+      key="columns"
+    /> : null,
+    extensionsNames.includes('table') && !bubbleMenu?.tableConfig?.hidden ? <TableBubbleMenu editor={editor}
+      key="table"
+    /> : null,
+    extensionsNames.includes('link') && !bubbleMenu?.linkConfig?.hidden ? <BubbleMenuLink disabled={disabled}
+      editor={editor}
+      key="link"
+    /> : null,
+    extensionsNames.includes('image') && !bubbleMenu?.imageConfig?.hidden ? <BubbleMenuImage disabled={disabled}
+      editor={editor}
+      key="image"
+    /> : null,
+    extensionsNames.includes(ImageGif.name) && !bubbleMenu?.imageGifConfig?.hidden ? <BubbleMenuImageGif disabled={disabled}
+      editor={editor}
+      key="imageGif"
+    /> : null,
+    extensionsNames.includes('video') && !bubbleMenu?.videoConfig?.hidden ? <BubbleMenuVideo disabled={disabled}
+      editor={editor}
+      key="video"
+    /> : null,
+    extensionsNames.includes('katex') && !bubbleMenu?.katexConfig?.hidden ? <BubbleMenuKatex disabled={disabled}
+      editor={editor}
+      key="katex"
+    /> : null,
+    extensionsNames.includes('excalidraw') && !bubbleMenu?.excalidrawConfig?.hidden ? <BubbleMenuExcalidraw disabled={disabled}
+      editor={editor}
+      key="excalidraw"
+    /> : null,
+    extensionsNames.includes('mermaid') && !bubbleMenu?.mermaidConfig?.hidden ? <BubbleMenuMermaid disabled={disabled}
+      editor={editor}
+      key="mermaid"
+    /> : null,
+    extensionsNames.includes('iframe') && !bubbleMenu?.iframeConfig?.hidden ? <BubbleMenuIframe disabled={disabled}
+      editor={editor}
+      key="iframe"
+    /> : null,
+    extensionsNames.includes('twitter') && !bubbleMenu?.twitterConfig?.hidden ? <BubbleMenuTwitter disabled={disabled}
+      editor={editor}
+      key="twitter"
+    /> : null,
+    !bubbleMenu?.floatingMenuConfig?.hidden ? <ContentMenu disabled={disabled}
+      editor={editor}
+      key="content"
+    /> : null,
+    !bubbleMenu?.textConfig?.hidden ? <BubbleMenuText disabled={disabled}
+      editor={editor}
+      key="text"
+    /> : null,
+    extensionsNames.includes('drawer') && !bubbleMenu?.drawerConfig?.hidden ? <BubbleMenuDrawer disabled={disabled}
+      editor={editor}
+      key="drawer"
+    /> : null,
   ];
 
   if (bubbleMenu?.render) {
