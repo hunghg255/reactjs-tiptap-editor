@@ -12,6 +12,7 @@ Drawer is a node extension that allows you to add an Drawer to your editor.
 
 ```tsx
 import { Drawer } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import 'easydrawer/styles.css'; // [!code ++]
 
 const extensions = [
   ...,
