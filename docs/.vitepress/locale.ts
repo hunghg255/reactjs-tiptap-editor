@@ -1,25 +1,26 @@
-import type { DefaultTheme, HeadConfig, LocaleConfig } from 'vitepress'
-import { version } from '../../package.json'
-import { createTranslate } from './i18n/utils'
+import type { DefaultTheme, HeadConfig, LocaleConfig } from 'vitepress';
 
-const docsLink = 'https://reactjs-tiptap-editor.vercel.app'
-const githubRepo = 'hunghg255/reactjs-tiptap-editor'
-const githubLink: 'https://github.com/hunghg255/reactjs-tiptap-editor' = `https://github.com/${githubRepo}`
+import { createTranslate } from './i18n/utils';
+import { version } from '../../package.json';
+
+const docsLink = 'https://reactjs-tiptap-editor.vercel.app';
+const githubRepo = 'hunghg255/reactjs-tiptap-editor';
+const githubLink: 'https://github.com/hunghg255/reactjs-tiptap-editor' = `https://github.com/${githubRepo}`;
 
 const VERSIONS: (DefaultTheme.NavItemWithLink | DefaultTheme.NavItemChildren)[] = [
   { text: `v${version} (current)`, link: '/' },
-  { text: `Release Notes`, link: 'https://github.com/hunghg255/reactjs-tiptap-editor/releases' },
-  { text: `Contributing`, link: 'https://github.com/hunghg255/reactjs-tiptap-editor/blob/main/CONTRIBUTING.md' },
-]
+  { text: 'Release Notes', link: 'https://github.com/hunghg255/reactjs-tiptap-editor/releases' },
+  { text: 'Contributing', link: 'https://github.com/hunghg255/reactjs-tiptap-editor/blob/main/CONTRIBUTING.md' },
+];
 
 export function getLocaleConfig(lang: string) {
-  const t = createTranslate(lang)
+  const t = createTranslate(lang);
 
-  const urlPrefix = lang && lang !== 'en' ? `/${lang}` : ''
-  const title = t('React Tiptap Editor')
+  const urlPrefix = lang && lang !== 'en' ? `/${lang}` : '';
+  const title = t('React Tiptap Editor');
   const description = t(
     'A modern WYSIWYG rich text editor based on tiptap and shadcn ui for React',
-  )
+  );
 
   const head: HeadConfig[] = [
     ['meta', { property: 'og:title', content: title }],
@@ -30,7 +31,7 @@ export function getLocaleConfig(lang: string) {
     ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }],
     ['meta', { name: 'theme-color', content: '#914796' }],
     ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' }],
-  ]
+  ];
 
   const nav: DefaultTheme.NavItem[] = [
     {
@@ -45,13 +46,13 @@ export function getLocaleConfig(lang: string) {
     },
     {
       text: t('Playground'),
-      link: `https://reactjs-tiptap-editor-playground.vercel.app/`,
+      link: 'https://reactjs-tiptap-editor-playground.vercel.app/',
     },
     {
       text: `v${version}`,
       items: VERSIONS,
     },
-  ]
+  ];
 
   const sidebar: DefaultTheme.SidebarItem[] = [
     {
@@ -287,9 +288,13 @@ export function getLocaleConfig(lang: string) {
           text: 'Twitter',
           link: '/extensions/Twitter/index.md',
         },
+        {
+          text: 'Drawer',
+          link: '/extensions/Drawer/index.md',
+        },
       ],
     },
-  ]
+  ];
 
   const themeConfig: DefaultTheme.Config = {
     logo: '/logo.png',
@@ -307,7 +312,7 @@ export function getLocaleConfig(lang: string) {
       pattern: `${githubLink}/edit/main/docs/:path`,
       text: t('Edit this page on GitHub'),
     },
-  }
+  };
 
   const localeConfig: LocaleConfig<DefaultTheme.Config>[string] = {
     label: t('English'),
@@ -316,7 +321,7 @@ export function getLocaleConfig(lang: string) {
     description,
     head,
     themeConfig,
-  }
+  };
 
-  return localeConfig
+  return localeConfig;
 }
