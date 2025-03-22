@@ -195,8 +195,8 @@ importers:
         specifier: ^8.6.0
         version: 8.6.0
       easydrawer:
-        specifier: ^0.0.7
-        version: 0.0.7
+        specifier: ^0.0.12
+        version: 0.0.12
       frimousse:
         specifier: ^0.1.0
         version: 0.1.0(react@19.0.0)
@@ -6680,8 +6680,8 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
 
-  /easydrawer@0.0.7:
-    resolution: {integrity: sha512-YZLyMh7GPYy2yaQhrZl2lWTwPh8gWDtou1wxvq0/N1Wyz23E6EmFkZA42JT7X0H4UmnlJMeeGRz1vYfB8mPvSA==}
+  /easydrawer@0.0.12:
+    resolution: {integrity: sha512-u3/QJDDYj6E7YXIFq3XH//hDu61G8NXg0vswJUV6uapAS1wxkzDrYmPG01G3ud9O/N6C8KOsuau3EjOQC7yNtQ==}
     dependencies:
       bezier-js: 6.1.4
     dev: false
