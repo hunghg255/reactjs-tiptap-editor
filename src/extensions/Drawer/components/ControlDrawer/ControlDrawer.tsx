@@ -37,6 +37,7 @@ const COLOR = [
   Color4.fromHex('#FF5358'),
   Color4.fromHex('#F6821C'),
   Color4.fromHex('#FFC600'),
+
   Color4.fromHex('#62BA46'),
   Color4.fromHex('#E6BFE8'),
   Color4.fromHex('#FEA3D2'),
@@ -75,24 +76,44 @@ function ColorPicker ({ onChange }: any) {
   const [selected, setSelected] = useState(Color4.black);
 
   return (
-    <div className={styles.colorWrap}>
-      {
-        COLOR.map((color, index) => (
-          <button
-            key={index}
-            style={{ backgroundColor: color.toHexString() }}
-            className={cn(styles.color, {
-              [styles.colorActive]: selected.toHexString() === color.toHexString(),
-            })}
-            onClick={() => {
-              setSelected(color);
-              onChange(color);
-            }}
-          >
-          </button>
-        ))
-      }
-    </div>
+    <>
+      <div className={styles.colorWrap}>
+        {
+          COLOR.slice(0, 7).map((color, index) => (
+            <button
+              key={index}
+              style={{ backgroundColor: color.toHexString() }}
+              className={cn(styles.color, {
+                [styles.colorActive]: selected.toHexString() === color.toHexString(),
+              })}
+              onClick={() => {
+                setSelected(color);
+                onChange(color);
+              }}
+            >
+            </button>
+          ))
+        }
+      </div>
+      <div className={styles.colorWrap}>
+        {
+          COLOR.slice(7).map((color, index) => (
+            <button
+              key={index}
+              style={{ backgroundColor: color.toHexString() }}
+              className={cn(styles.color, {
+                [styles.colorActive]: selected.toHexString() === color.toHexString(),
+              })}
+              onClick={() => {
+                setSelected(color);
+                onChange(color);
+              }}
+            >
+            </button>
+          ))
+        }
+      </div>
+    </>
   );
 }
 

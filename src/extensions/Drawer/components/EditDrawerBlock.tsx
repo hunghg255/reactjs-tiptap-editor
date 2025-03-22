@@ -30,7 +30,10 @@ export function EditDrawerBlock ({ editor, attrs, extension }: any) {
 
       if (!parentElement) return;
 
-      refEditor.current = new Editor4(parentElement as any);
+      refEditor.current = new Editor4(parentElement as any, {
+        wheelEventsEnabled: false,
+        disableZoom: true,
+      });
 
       refWidget.current = makeDropdownToolbar(refEditor.current);
       refWidget.current.addDefaultToolWidgets();

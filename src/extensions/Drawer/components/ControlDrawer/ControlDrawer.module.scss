@@ -22,7 +22,7 @@
   padding: 5px;
   cursor: pointer;
   transition: all 0.3s;
-  color: rgb(89, 83, 83);
+  color: rgb(89, 83, 83) !important;
 }
 
 
@@ -66,16 +66,17 @@
 
 .colorWrap {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   align-items: center;
+  margin: 4px 0;
 }
 .color {
   outline: none !important;
   border: none !important;
   border-radius: 4px;
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border: 1px solid #eeeeee;
 }
 
