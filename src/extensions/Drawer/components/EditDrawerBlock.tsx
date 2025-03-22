@@ -11,8 +11,11 @@ import svg64 from 'svg64';
 import { ActionButton } from '@/components/ActionButton';
 import { Button } from '@/components/ui';
 import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import ControlDrawer from '@/extensions/Drawer/components/ControlDrawer/ControlDrawer';
 import { dataURLtoFile } from '@/utils/file';
 import { shortId } from '@/utils/shortId';
+
+let clear = false;
 
 export function EditDrawerBlock ({ editor, attrs, extension }: any) {
   const [visible, toggleVisible] = useState(false);
@@ -78,6 +81,106 @@ export function EditDrawerBlock ({ editor, attrs, extension }: any) {
     toggleVisible(false);
   };
 
+  const setColorPen = (color: string) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[2] as any;
+    const shapeWidget = refWidget.current.getWidgetById('pen-1');
+
+    if (penTool && shapeWidget) {
+      penTool.setColor(color);
+      shapeWidget.serializeState();
+    }
+  };
+
+  const setThicknessPen = (thickness: number) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[2] as any;
+    const shapeWidget = refWidget.current.getWidgetById('pen-1');
+
+    if (penTool && shapeWidget) {
+      penTool.setThickness(thickness);
+      shapeWidget.serializeState();
+    }
+  };
+
+  const setColorHighlight = (color: string) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[3] as any;
+
+    const shapeWidget = refWidget.current.getWidgetById('pen-2');
+
+    if (penTool && shapeWidget) {
+      penTool.setColor(color);
+      shapeWidget.serializeState();
+    }
+  };
+
+  const changeShape = (type: any) => {
+    const shapeWidget = refWidget.current.getWidgetById('shape');
+
+    if (shapeWidget) {
+      shapeWidget.setShapeType(type);
+    }
+  };
+
+  const changeColorShape = (color: string) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as any;
+    const shapeWidget = refWidget.current.getWidgetById('shape');
+
+    if (penTool && shapeWidget) {
+      penTool.setColor(color);
+      shapeWidget.serializeState();
+    }
+  };
+
+  const onThicknessChange = (v: any) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as any;
+    const shapeWidget = refWidget.current.getWidgetById('shape');
+
+    if (penTool && shapeWidget) {
+      penTool.setThickness(v);
+      shapeWidget.serializeState();
+    }
+  };
+
+  const changeBorderColorShape = (color: string) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as any;
+    const shapeWidget = refWidget.current.getWidgetById('shape');
+
+    if (penTool && shapeWidget) {
+      penTool.setBorderColor(color);
+      shapeWidget.serializeState();
+    }
+  };
+
+  const onUndo =() => {
+    if (clear) {
+      while (refEditor.current!.history.redoStackSize > 0) {
+        refEditor.current!.history.redo();
+      }
+      clear = false;
+      return;
+    }
+
+    refEditor.current!.history.undo();
+  };
+
+  const onRedo =() => {
+    if (clear) {
+      return;
+    }
+
+    refEditor.current!.history.redo();
+  };
+
+  const onClear =() => {
+    if (clear) {
+      return;
+    }
+
+    while (refEditor.current!.history.undoStackSize > 0) {
+      onUndo();
+    }
+    clear = true;
+  };
+
   return (
     <Dialog
       onOpenChange={toggleVisible}
@@ -102,6 +205,20 @@ export function EditDrawerBlock ({ editor, attrs, extension }: any) {
             id='easydrawer'
           >
           </div>
+
+          <ControlDrawer
+            changeBorderColorShape={changeBorderColorShape}
+            changeColorShape={changeColorShape}
+            changeShape={changeShape}
+            onClear={onClear}
+            onRedo={onRedo}
+            onThicknessChange={onThicknessChange}
+            onUndo={onUndo}
+            refEditor={refEditor}
+            setColorHighlight={setColorHighlight}
+            setColorPen={setColorPen}
+            setThicknessPen={setThicknessPen}
+          />
         </div>
 
         <DialogFooter>
