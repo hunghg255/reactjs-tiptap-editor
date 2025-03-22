@@ -50,10 +50,12 @@ import {
   Twitter,
   Underline,
   Video,
+  Drawer
 } from 'reactjs-tiptap-editor/extension-bundle'
 
 import 'reactjs-tiptap-editor/style.css'
 import 'katex/dist/katex.min.css'
+import 'easydrawer/styles.css'
 
 function convertBase64ToBlob(base64: string) {
   const arr = base64.split(',')
@@ -178,10 +180,24 @@ const extensions = [
       })
     },
   }),
+  Drawer.configure({
+    upload: (file: any) => {
+      // fake upload return base 64
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const blob = convertBase64ToBlob(reader.result as string)
+          resolve(URL.createObjectURL(blob))
+        }, 300)
+      })
+    },
+  }),
   Twitter,
 ]
 
-const DEFAULT = `<p dir="auto"></p><p dir="auto"></p><p dir="auto"></p><p dir="auto"><div style="text-align: center;" class="image"><img height="auto" style="transform: rotateX(0deg) rotateY(180deg);" src="https://cdn.hashnode.com/res/hashnode/image/upload/v1729198819038/684c0adb-b189-4af8-b9d8-d26e4097ce27.png?auto=compress,format&amp;format=webp" flipx="false" flipy="true" align="center" inline="false"></div></p><p dir="auto"></p><p dir="auto"></p><p dir="auto"></p>`
+const DEFAULT = ``
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout

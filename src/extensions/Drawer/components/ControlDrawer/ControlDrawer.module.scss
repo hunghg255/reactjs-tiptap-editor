@@ -1,0 +1,84 @@
+.wrapper {
+  background-color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 10px;
+  gap: 10px;
+  z-index: 100;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.tool {
+  outline: none;
+  border: none;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: rgb(89, 83, 83);
+}
+
+
+.tool svg {
+  width: 20px;
+  height: 20px;
+}
+
+.tool:hover {
+  background-color: #f5f5f5;
+}
+
+.active {
+  background-color: #eeeeee !important;
+}
+
+.pen {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.line {
+  height: 20px;
+  width: 1px;
+  background-color: rgb(188, 185, 185);
+  margin: 0 6px;
+  transform: rotate(18deg);
+}
+
+.options {
+  margin-top: 10px;
+  padding: 10px 0 0;
+  border-top: 1px dashed #eeeeee;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.colorWrap {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.color {
+  outline: none !important;
+  border: none !important;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #eeeeee;
+}
+
+.colorActive {
+  outline: 2px solid #2576B9 !important;
+}
