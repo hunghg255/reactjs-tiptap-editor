@@ -15,7 +15,9 @@ function ActionImageButton(props: any) {
   const [link, setLink] = useState<string>('');
   const fileInput = useRef<HTMLInputElement>(null);
 
-  const [imageInline, setImageInline] = useState(false);
+  const [imageInline, setImageInline] = useState(props.editor.extensionManager.extensions.find(
+    (extension: any) => extension.name === Image.name,
+  )?.options.defaultInline || false);
 
   const uploadOptions = useMemo(() => {
     const uploadOptions = props.editor.extensionManager.extensions.find(

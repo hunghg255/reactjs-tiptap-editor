@@ -31,6 +31,7 @@ const DEFAULT_OPTIONS: any = {
   acceptMimes: ['image/jpeg', 'image/gif', 'image/png', 'image/jpg'],
   maxSize: 1024 * 1024 * 5, // 5MB
   resourceImage: 'both',
+  defaultInline: false,
 };
 
 declare module '@tiptap/core' {
@@ -63,6 +64,7 @@ export interface IImageOptions extends GeneralOptions<IImageOptions> {
 
   /** The source URL of the image */
   resourceImage: 'upload' | 'link' | 'both'
+  defaultInline?: boolean
 }
 
 export const Image = TiptapImage.extend<IImageOptions>({
@@ -152,7 +154,10 @@ export const Image = TiptapImage.extend<IImageOptions>({
       setImageInline: (options: any) => ({ commands }: any) => {
         return commands.insertContent({
           type: this.name,
-          attrs: options,
+          attrs: {
+            ...options,
+            inline: options.inline ?? this.options.defaultInline,
+          },
         });
       },
       updateImage:
