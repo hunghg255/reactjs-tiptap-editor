@@ -359,3 +359,72 @@ export function AkarIconsDotGridFill(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function MageImageUpload(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg height="1em"
+      viewBox="0 0 24 24"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <g fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeWidth="1.5"
+      >
+        <path d="M21.25 13V8.5a5 5 0 0 0-5-5h-8.5a5 5 0 0 0-5 5v7a5 5 0 0 0 5 5h6.26"
+          strokeLinejoin="round"
+        >
+        </path>
+
+        <path d="m3.01 17l2.74-3.2a2.2 2.2 0 0 1 2.77-.27a2.2 2.2 0 0 0 2.77-.27l2.33-2.33a4 4 0 0 1 5.16-.43l2.47 1.91M8.01 10.17a1.66 1.66 0 1 0-.02-3.32a1.66 1.66 0 0 0 .02 3.32"
+          strokeLinejoin="round"
+        >
+        </path>
+
+        <path d="M18.707 15v5"
+          strokeMiterlimit="10"
+        >
+        </path>
+
+        <path d="m21 17.105l-1.967-1.967a.46.46 0 0 0-.652 0l-1.967 1.967"
+          strokeLinejoin="round"
+        >
+        </path>
+      </g>
+    </svg>
+  );
+}
+
+export function FluentColorBackground24Filled(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg height="1em"
+      viewBox="0 0 24 24"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M2 12.414V17.5A2.5 2.5 0 0 0 4.5 20h15a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 19.5 4h-8.944l2.422 2.422a3 3 0 0 1 .719 3.09c.38.042.75.21 1.04.501l.003.002l.003.004l.01.009l.02.02a8 8 0 0 1 .311.338c.192.216.45.525.712.89c.26.36.545.808.77 1.3c.22.478.434 1.106.434 1.799C17 16.23 15.606 18 13.5 18S10 16.23 10 14.375c0-.29.037-.569.097-.83l-1.362 1.362a3 3 0 0 1-4.243 0zm9.342.58c-.188.409-.342.888-.342 1.381C11 15.765 12.029 17 13.5 17c1.47 0 2.5-1.235 2.5-2.625c0-.493-.154-.972-.342-1.381a7 7 0 0 0-.674-1.134a10 10 0 0 0-.649-.812l-.305-.328a.75.75 0 0 0-1.06 0l-.006.005c-.058.062-.214.226-.3.323c-.175.199-.411.48-.649.812a7 7 0 0 0-.673 1.134m2.158-.61q.13.162.265.35c.202.281.392.586.53.886c.14.305.205.56.205.755c0 .691-.481 1.125-1 1.125c-.52 0-1-.434-1-1.125c0-.194.064-.45.205-.755c.137-.3.327-.605.529-.886q.136-.188.266-.35M6.75 1a.75.75 0 0 0-.75.75v1.756l-.093.087l-4.243 4.243a2 2 0 0 0 0 2.828L5.199 14.2a2 2 0 0 0 2.829 0l4.243-4.243a2 2 0 0 0 0-2.828L8.735 3.593A2 2 0 0 0 7.5 3.015V1.75A.75.75 0 0 0 6.75 1M6 5.621v.629a.75.75 0 1 0 1.5 0V4.54a.5.5 0 0 1 .174.114l3.536 3.535c.09.09.138.205.145.322H3.11zm.26 7.518l-3.128-3.128h6.964l-3.129 3.128a.5.5 0 0 1-.707 0"
+        fill="currentColor"
+      >
+      </path>
+    </svg>
+  );
+}
+
+export function PhLineSegmentFill(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg height="1em"
+      viewBox="0 0 256 256"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M211.81 83.79a28 28 0 0 1-33.12 4.83l-90.07 90.07a28 28 0 1 1-44.43-6.48a28 28 0 0 1 33.12-4.83l90.07-90.07a28 28 0 1 1 44.43 6.48"
+        fill="currentColor"
+      >
+      </path>
+    </svg>
+  );
+}

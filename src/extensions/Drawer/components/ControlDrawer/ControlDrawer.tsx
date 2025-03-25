@@ -7,7 +7,7 @@ import {
 import { cn } from '@/lib/utils';
 
 import styles from './ControlDrawer.module.scss';
-import { MingcuteDiamondSquareLine, HugeiconsCursorRectangleSelection01, IcSharpArrowRightAlt, MaterialSymbolsCircleOutline, MaterialSymbolsDelete, MaterialSymbolsEdit, MaterialSymbolsHexagonOutline, MaterialSymbolsRectangleOutline, MdiFormatLetterCase, MdiSquareOutline, OuiEraser, PhHighlighter, SolarUndoLeftRoundBold, SolarUndoRightRoundBold, TablerTriangle } from './icon';
+import { MingcuteDiamondSquareLine, HugeiconsCursorRectangleSelection01, IcSharpArrowRightAlt, MaterialSymbolsCircleOutline, MaterialSymbolsDelete, MaterialSymbolsEdit, MaterialSymbolsHexagonOutline, MaterialSymbolsRectangleOutline, MdiFormatLetterCase, MdiSquareOutline, OuiEraser, PhHighlighter, SolarUndoLeftRoundBold, SolarUndoRightRoundBold, TablerTriangle, PhLineSegmentFill } from './icon';
 
 const enum ShapeType {
   square = 0,
@@ -17,6 +17,7 @@ const enum ShapeType {
   hexagonal = 4,
   diamond = 5,
   arrow = 6,
+  line = 7
 }
 
 const highlightC = [
@@ -95,6 +96,7 @@ function ColorPicker ({ onChange }: any) {
           ))
         }
       </div>
+
       <div className={styles.colorWrap}>
         {
           COLOR.slice(7).map((color, index) => (
@@ -211,10 +213,6 @@ function ControlDrawer(props: any) {
   const [tool, setTool] = useState<'select' | 'text' | 'pencil' | 'highlighter' | 'eraser' | 'shapes' | null>(null);
 
   const [type, setType] = useState(ShapeType.square);
-  console.log({
-    type,
-    tool
-  });
 
   return (
     <>
@@ -452,6 +450,24 @@ function ControlDrawer(props: any) {
             }}
           >
             <IcSharpArrowRightAlt />
+          </button>
+
+          <button
+            className={cn(styles.tool, {
+              [styles.active]: tool === 'shapes' && type === ShapeType.line,
+            })}
+            onClick={() => {
+              const penTool = refEditor.current!.toolController.getPrimaryTools();
+
+              refEditor.current!.toolController.setToolEnabled(penTool[5]);
+              setTool('shapes');
+              penTool[5].setEnabled(true);
+
+              changeShape(ShapeType.line);
+              setType(ShapeType.line);
+            }}
+          >
+            <PhLineSegmentFill />
           </button>
 
           <div className={styles.line}></div>
