@@ -7,7 +7,7 @@ import {
 import { cn } from '@/lib/utils';
 
 import styles from './ControlDrawer.module.scss';
-import { MingcuteDiamondSquareLine, HugeiconsCursorRectangleSelection01, IcSharpArrowRightAlt, MaterialSymbolsCircleOutline, MaterialSymbolsDelete, MaterialSymbolsEdit, MaterialSymbolsHexagonOutline, MaterialSymbolsRectangleOutline, MdiFormatLetterCase, MdiSquareOutline, OuiEraser, PhHighlighter, SolarUndoLeftRoundBold, SolarUndoRightRoundBold, TablerTriangle, PhLineSegmentFill } from './icon';
+import { MingcuteDiamondSquareLine, HugeiconsCursorRectangleSelection01, IcSharpArrowRightAlt, MaterialSymbolsCircleOutline, MaterialSymbolsEdit, MaterialSymbolsHexagonOutline, MaterialSymbolsRectangleOutline, MdiFormatLetterCase, MdiSquareOutline, OuiEraser, PhHighlighter, TablerTriangle, PhLineSegmentFill, IcSharpFavorite, MaterialSymbolsKidStar, MaterialSymbolsCloud, AkarIconsParallelogram, SolarUndoLeftRoundBold, SolarUndoRightRoundBold, MaterialSymbolsDelete } from './icon';
 
 const enum ShapeType {
   square = 0,
@@ -17,7 +17,11 @@ const enum ShapeType {
   hexagonal = 4,
   diamond = 5,
   arrow = 6,
-  line = 7
+  line = 7,
+  heart = 8,
+  star = 9,
+  cloud = 10,
+  parallelogram = 11
 }
 
 const highlightC = [
@@ -468,6 +472,78 @@ function ControlDrawer(props: any) {
             }}
           >
             <PhLineSegmentFill />
+          </button>
+
+          <button
+            className={cn(styles.tool, {
+              [styles.active]: tool === 'shapes' && type === ShapeType.heart,
+            })}
+            onClick={() => {
+              const penTool = refEditor.current!.toolController.getPrimaryTools();
+
+              refEditor.current!.toolController.setToolEnabled(penTool[5]);
+              setTool('shapes');
+              penTool[5].setEnabled(true);
+
+              changeShape(ShapeType.heart);
+              setType(ShapeType.heart);
+            }}
+          >
+            <IcSharpFavorite />
+          </button>
+
+          <button
+            className={cn(styles.tool, {
+              [styles.active]: tool === 'shapes' && type === ShapeType.star,
+            })}
+            onClick={() => {
+              const penTool = refEditor.current!.toolController.getPrimaryTools();
+
+              refEditor.current!.toolController.setToolEnabled(penTool[5]);
+              setTool('shapes');
+              penTool[5].setEnabled(true);
+
+              changeShape(ShapeType.star);
+              setType(ShapeType.star);
+            }}
+          >
+            <MaterialSymbolsKidStar />
+          </button>
+
+          <button
+            className={cn(styles.tool, {
+              [styles.active]: tool === 'shapes' && type === ShapeType.cloud,
+            })}
+            onClick={() => {
+              const penTool = refEditor.current!.toolController.getPrimaryTools();
+
+              refEditor.current!.toolController.setToolEnabled(penTool[5]);
+              setTool('shapes');
+              penTool[5].setEnabled(true);
+
+              changeShape(ShapeType.cloud);
+              setType(ShapeType.cloud);
+            }}
+          >
+            <MaterialSymbolsCloud />
+          </button>
+
+          <button
+            className={cn(styles.tool, {
+              [styles.active]: tool === 'shapes' && type === ShapeType.parallelogram,
+            })}
+            onClick={() => {
+              const penTool = refEditor.current!.toolController.getPrimaryTools();
+
+              refEditor.current!.toolController.setToolEnabled(penTool[5]);
+              setTool('shapes');
+              penTool[5].setEnabled(true);
+
+              changeShape(ShapeType.parallelogram);
+              setType(ShapeType.parallelogram);
+            }}
+          >
+            <AkarIconsParallelogram />
           </button>
 
           <div className={styles.line}></div>

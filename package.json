@@ -176,7 +176,7 @@
     "clsx": "^2.1.1",
     "deep-equal": "^2.2.3",
     "docx": "^8.6.0",
-    "easydrawer": "^0.0.12",
+    "easydrawer": "^0.0.15",
     "frimousse": "^0.1.0",
     "katex": "^0.16.21",
     "lodash-es": "^4.17.21",
