@@ -66,11 +66,12 @@ export interface ImageUploadOptions {
   validateFn?: (file: File) => boolean
   onUpload: (file: File) => Promise<string | object>
   postUpload?: (src: string) => Promise<string>
+  defaultInline?: boolean
 }
 
 export type UploadFn = (files: File[], view: EditorView, pos: number) => void;
 
-export function createImageUpload({ validateFn, onUpload, postUpload }: ImageUploadOptions): UploadFn {
+export function createImageUpload({ validateFn, onUpload, postUpload, defaultInline = false }: ImageUploadOptions): UploadFn {
   return (files, view, pos) => {
     for (const file of files) {
       if (validateFn && !validateFn(file)) {
@@ -102,7 +103,10 @@ export function createImageUpload({ validateFn, onUpload, postUpload }: ImageUpl
           }
 
           const imageSrc = typeof src === 'object' ? result : src;
-          const node = schema.nodes.image?.create({ src: imageSrc });
+          const node = schema.nodes.image?.create({
+            src: imageSrc,
+            inline: defaultInline
+          });
           if (!node) {
             return;
           }
