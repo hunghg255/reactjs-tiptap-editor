@@ -270,6 +270,7 @@ export const Image = TiptapImage.extend<IImageOptions>({
       validateFn: validateFile,
       onUpload: this.options.upload as any,
       // postUpload: this.options.postUpload,
+      defaultInline: this.options.defaultInline,
     });
 
     return [
