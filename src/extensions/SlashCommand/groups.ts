@@ -1,10 +1,11 @@
 import type { Extensions } from '@tiptap/core';
 
-import type { Group } from './types';
-import type { HeadingOptions } from '@/extensions';
-import { localeActions } from '@/locales';
+import { Image, Video, type HeadingOptions } from '@/extensions';
 import { actionDialogImage } from '@/extensions/Image/store';
 import { actionDialogVideo } from '@/extensions/Video/store';
+import { localeActions } from '@/locales';
+
+import type { Group } from './types';
 
 export function renderGroups(extensions: Extensions) {
   const groups: Group[] = [
@@ -100,7 +101,7 @@ export function renderGroups(extensions: Extensions) {
     }
 
     /* Insert */
-    if (extension.name.toLowerCase() === 'image') {
+    if (extension.name.toLowerCase() === Image.name) {
       groups[1].commands.push({
         name: 'image',
         label: localeActions.t('editor.image.tooltip'),
@@ -115,7 +116,7 @@ export function renderGroups(extensions: Extensions) {
       });
     }
 
-    if (extension.name.toLowerCase() === 'video') {
+    if (extension.name.toLowerCase() === Video.name) {
       groups[1].commands.push({
         name: 'video',
         label: localeActions.t('editor.video.tooltip'),

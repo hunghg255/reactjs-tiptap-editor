@@ -1,16 +1,22 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 
 import { ActionButton, Button, Checkbox, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ImageCropper } from '@/extensions/Image/components/ImageCropper';
 import Image from '@/extensions/Image/Image';
-import { actionDialogImage, useDialogImage } from '@/extensions/Image/store';
+import { actionDialogImage } from '@/extensions/Image/store';
 import { useLocale } from '@/locales';
+import { listenEvent } from '@/utils/customEvents/customEvents';
+import { eventName } from '@/utils/customEvents/events.constant';
 
 function ActionImageButton(props: any) {
   const { t } = useLocale();
+  const id = useId();
+  const [open, setOpen] = useState(false);
 
-  const dialogImage = useDialogImage();
+  const handleUploadImage = (evt: any) => {
+    setOpen(evt.detail);
+  };
 
   const [link, setLink] = useState<string>('');
   const fileInput = useRef<HTMLInputElement>(null);
@@ -26,6 +32,16 @@ function ActionImageButton(props: any) {
 
     return uploadOptions;
   }, [props.editor]);
+
+  useEffect(() => {
+    eventName.setEventNameUploadImage(id);
+
+    const rm1 = listenEvent(eventName.getEventNameUploadImage(), handleUploadImage);
+
+    return () => {
+      rm1();
+    };
+  }, []);
 
   async function handleFile(event: any) {
     const files = event?.target?.files;
@@ -43,7 +59,7 @@ function ActionImageButton(props: any) {
     }
 
     props.editor.chain().focus().setImageInline({ src, inline: imageInline }).run();
-    actionDialogImage.setOpen(false);
+    setOpen(false);
     setImageInline(false);
   }
   function handleLink(e: any) {
@@ -51,7 +67,7 @@ function ActionImageButton(props: any) {
     e.stopPropagation();
 
     props.editor.chain().focus().setImageInline({ src: link, inline: imageInline }).run();
-    actionDialogImage.setOpen(false);
+    setOpen(false);
     setImageInline(false);
     setLink('');
   }
@@ -62,12 +78,13 @@ function ActionImageButton(props: any) {
   }
 
   return (
-    <Dialog onOpenChange={actionDialogImage.setOpen}
-      open={dialogImage}
+    <Dialog
+      onOpenChange={setOpen}
+      open={open}
     >
       <DialogTrigger asChild>
         <ActionButton
-          action={() => actionDialogImage.setOpen(true)}
+          action={() => setOpen(true)}
           icon={props.icon}
           tooltip={props.tooltip}
         />

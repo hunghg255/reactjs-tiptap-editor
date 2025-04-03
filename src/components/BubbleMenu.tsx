@@ -7,7 +7,7 @@ import { BubbleMenuIframe } from '@/components/menus/components/BubbleMenuIframe
 import BubbleMenuKatex from '@/components/menus/components/BubbleMenuKatex';
 import { BubbleMenuMermaid } from '@/components/menus/components/BubbleMenuMermaid';
 import { BubbleMenuTwitter } from '@/components/menus/components/BubbleMenuTwitter';
-import { ImageGif } from '@/extensions';
+import { Image, ImageGif } from '@/extensions';
 import type { BubbleMenuProps as BubbleMenuPropsType } from '@/types';
 
 export interface BubbleMenuComponentProps {
@@ -38,7 +38,7 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
       editor={editor}
       key="link"
     /> : null,
-    extensionsNames.includes('image') && !bubbleMenu?.imageConfig?.hidden ? <BubbleMenuImage disabled={disabled}
+    extensionsNames.includes(Image.name) && !bubbleMenu?.imageConfig?.hidden ? <BubbleMenuImage disabled={disabled}
       editor={editor}
       key="image"
     /> : null,

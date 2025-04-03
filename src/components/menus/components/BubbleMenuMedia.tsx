@@ -4,7 +4,7 @@ import type { Editor } from '@tiptap/react';
 import { BubbleMenu as BubbleMenuReact } from '@tiptap/react';
 
 import { Separator, getBubbleImage, getBubbleImageGif, getBubbleVideo } from '@/components';
-import { ImageGif } from '@/extensions';
+import { Image, ImageGif, Video } from '@/extensions';
 import { useLocale } from '@/locales';
 
 interface IPropsBubbleMenu {
@@ -46,7 +46,7 @@ function ItemA({ item, disabled, editor }: any) {
 }
 
 function isImageNode(node: any) {
-  return node.type.name === 'image';
+  return node.type.name === Image.name;
 }
 
 function isImageGifNode(node: any) {
@@ -54,7 +54,7 @@ function isImageGifNode(node: any) {
 }
 
 function isVideoNode(node: any) {
-  return node.type.name === 'video';
+  return node.type.name === Video.name;
 }
 
 function BubbleMenuImage(props: IPropsBubbleMenu) {

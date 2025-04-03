@@ -1,10 +1,11 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 
 import { ActionButton, Button, Input, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { useLocale } from '@/locales';
-import { actionDialogVideo, useDialogVideo } from '@/extensions/Video/store';
 import { Video } from '@/extensions/Video/Video';
+import { useLocale } from '@/locales';
+import { listenEvent } from '@/utils/customEvents/customEvents';
+import { eventName } from '@/utils/customEvents/events.constant';
 
 function checkIsVideo(url: string) {
   return /\.(?:mp4|webm|ogg|mov)$/i.test(url);
@@ -16,8 +17,23 @@ function ActionVideoButton(props: any) {
   const [link, setLink] = useState<string>('');
   const fileInput = useRef<HTMLInputElement>(null);
 
-  const dialogVideo = useDialogVideo();
   const [error, setError] = useState<string>('');
+  const id = useId();
+  const [open, setOpen] = useState(false);
+
+  const handleUploadVideo = (evt: any) => {
+    setOpen(evt.detail);
+  };
+
+  useEffect(() => {
+    eventName.setEventNameUploadVideo(id);
+
+    const rm1 = listenEvent(eventName.getEventNameUploadVideo(), handleUploadVideo);
+
+    return () => {
+      rm1();
+    };
+  }, []);
 
   const uploadOptions = useMemo(() => {
     const uploadOptions = props.editor.extensionManager.extensions.find(
@@ -43,13 +59,13 @@ function ActionVideoButton(props: any) {
 
     props.editor
       .chain()
+      .focus()
       .setVideo({
         src,
         width: '100%',
       })
-      .focus()
       .run();
-    actionDialogVideo.setOpen(false);
+    setOpen(false);
   }
   function handleLink(e: any) {
     e.preventDefault();
@@ -61,13 +77,13 @@ function ActionVideoButton(props: any) {
 
     props.editor
       .chain()
+      .focus()
       .setVideo({
         src: link,
         width: '100%',
       })
-      .focus()
       .run();
-    actionDialogVideo.setOpen(false);
+    setOpen(false);
   }
 
   function handleClick(e: any) {
@@ -76,11 +92,13 @@ function ActionVideoButton(props: any) {
   }
 
   return (
-    <Dialog open={dialogVideo} onOpenChange={actionDialogVideo.setOpen}>
+    <Dialog onOpenChange={setOpen}
+      open={open}
+    >
       <DialogTrigger asChild>
         <ActionButton
+          action={() => setOpen(true)}
           icon={props.icon}
-          action={() => actionDialogVideo.setOpen(true)}
           tooltip={props.tooltip}
         />
       </DialogTrigger>
@@ -91,10 +109,10 @@ function ActionVideoButton(props: any) {
         </DialogTitle>
 
         <Tabs
+          activationMode="manual"
           defaultValue={
             (uploadOptions?.resourceVideo === 'both' || uploadOptions?.resourceVideo === 'upload') ? 'upload' : 'link'
           }
-          activationMode="manual"
         >
           <TabsList className="richtext-grid richtext-w-full richtext-grid-cols-2">
             {(uploadOptions?.resourceVideo === 'both' || uploadOptions?.resourceVideo === 'upload') && (
@@ -102,6 +120,7 @@ function ActionVideoButton(props: any) {
                 {t('editor.video.dialog.tab.upload')}
               </TabsTrigger>
             )}
+
             {(uploadOptions?.resourceVideo === 'both' || uploadOptions?.resourceVideo === 'link') && (
               <TabsTrigger value="link">
                 {t('editor.video.dialog.link')}
@@ -111,27 +130,34 @@ function ActionVideoButton(props: any) {
 
           <TabsContent value="upload">
             <div className="richtext-flex richtext-items-center richtext-gap-[10px]">
-              <Button className="richtext-w-full richtext-mt-1" size="sm" onClick={handleClick}>
+              <Button className="richtext-mt-1 richtext-w-full"
+                onClick={handleClick}
+                size="sm"
+              >
                 {t('editor.video.dialog.tab.upload')}
               </Button>
             </div>
+
             <input
-              type="file"
               accept="video/*"
-              ref={fileInput}
               multiple
+              onChange={handleFile}
+              ref={fileInput}
+              type="file"
               style={{
                 display: 'none',
               }}
-              onChange={handleFile}
             />
           </TabsContent>
+
           <TabsContent value="link">
             <form onSubmit={handleLink}>
               <div className="richtext-flex richtext-items-center richtext-gap-2">
                 <Input
-                  type="url"
                   autoFocus
+                  placeholder={t('editor.video.dialog.placeholder')}
+                  required
+                  type="url"
                   value={link}
                   onChange={(e) => {
                     const url = e.target.value;
@@ -146,8 +172,6 @@ function ActionVideoButton(props: any) {
                     setError('');
                     setLink(url);
                   }}
-                  required
-                  placeholder={t('editor.video.dialog.placeholder')}
                 />
 
                 <Button type="submit">
@@ -155,7 +179,8 @@ function ActionVideoButton(props: any) {
                 </Button>
               </div>
             </form>
-            {error && <div className="richtext-text-red-500 richtext-my-[5px]">
+
+            {error && <div className="richtext-my-[5px] richtext-text-red-500">
               {error}
             </div>}
           </TabsContent>

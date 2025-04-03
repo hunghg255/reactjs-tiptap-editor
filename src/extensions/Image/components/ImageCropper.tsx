@@ -5,6 +5,7 @@ import ReactCrop, {
   type PixelCrop,
 } from 'react-image-crop';
 
+import { IconComponent } from '@/components';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -13,11 +14,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { Image as ExtensionImage } from '@/extensions';
 import { useLocale } from '@/locales';
 import { dataURLtoFile, readImageAsBase64 } from '@/utils/file';
-
-import 'react-image-crop/dist/ReactCrop.css';
-import { IconComponent } from '@/components';
 
 export function ImageCropper({ editor, imageInline, onClose }: any) {
   const { t } = useLocale();
@@ -75,7 +74,7 @@ export function ImageCropper({ editor, imageInline, onClose }: any) {
       const fileCrop = dataURLtoFile(croppedImageUrl, urlUpload?.file?.name || 'image.png');
 
       const uploadOptions = editor.extensionManager.extensions.find(
-        (extension: any) => extension.name === 'image',
+        (extension: any) => extension.name === ExtensionImage.name,
       )?.options;
 
       let src = '';
