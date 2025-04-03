@@ -192,7 +192,7 @@ function ContentMenu(props: ContentMenuProps) {
     >
       <div className="richtext-flex richtext-items-center richtext-gap-0.5 richtext-duration-200 richtext-ease-in-out [transition-property:top,_left]">
         <Button
-          className="richtext-size-7 richtext-cursor-grab"
+          className="!richtext-size-7 richtext-cursor-grab"
           disabled={props?.disabled}
           onClick={handleAdd}
           size="icon"
@@ -213,7 +213,7 @@ function ContentMenu(props: ContentMenuProps) {
                 disabled={props?.disabled}
               >
                 <Button
-                  className="richtext-relative richtext-z-[1] richtext-size-7 richtext-cursor-grab"
+                  className="richtext-relative richtext-z-[1] !richtext-size-7 richtext-cursor-grab"
                   disabled={props?.disabled}
                   size="icon"
                   type="button"

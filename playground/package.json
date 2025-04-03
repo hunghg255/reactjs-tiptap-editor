@@ -14,21 +14,21 @@
     "release": "bumpp -r"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "reactjs-tiptap-editor": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "^22.3.0",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.1",
-    "bumpp": "^9.5.1",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "bumpp": "^9.11.1",
     "git-scm-hooks": "^0.0.11",
     "prettier": "^2.8.8",
-    "sass": "^1.77.8",
+    "sass": "^1.86.2",
     "source-map-explorer": "^2.5.3",
-    "typescript": "^5.7.3",
-    "vite": "^6.2.0"
+    "typescript": "^5.8.2",
+    "vite": "^6.2.4"
   }
 }
