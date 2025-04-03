@@ -1,15 +1,17 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useId } from 'react';
 
 import { ProviderEditableEditor, ProviderTheme, ProviderUploadImage, ProviderUploadVideo, useStoreUploadImage, useStoreUploadVideo, useStoreEditableEditor, useStoreTheme } from '@/store/store';
 import { listenEvent } from '@/utils/customEvents/customEvents';
+import { eventName } from '@/utils/customEvents/events.constant';
 
 const EventInitial = memo(({ children }: any) => {
   const [, setUploadImage] = useStoreUploadImage(store => store.value);
   const [, setUploadVideo] = useStoreUploadVideo(store => store.value);
   const [, setEditable] = useStoreEditableEditor(store => store.value);
   const [, setTheme] = useStoreTheme(store => store.value);
+  const id = useId();
 
   const handleUploadImage = (evt: any) => {
     setUploadImage({
@@ -36,10 +38,15 @@ const EventInitial = memo(({ children }: any) => {
   };
 
   useEffect(() => {
-    const rm1 = listenEvent('UPLOAD_IMAGE', handleUploadImage);
-    const rm2 = listenEvent('UPLOAD_VIDEO', handleUploadVideo);
-    const rm3 = listenEvent('EDIT', handleEditable);
-    const rm4 = listenEvent('UPDATE_THEME', handleTheme);
+    eventName.setEventNameUploadImage(id);
+    eventName.setEventNameUploadVideo(id);
+    eventName.setEventNameEdit(id);
+    eventName.setEventNameUpdateTheme(id);
+
+    const rm1 = listenEvent(eventName.getEventNameUploadImage(), handleUploadImage);
+    const rm2 = listenEvent(eventName.getEventNameUploadVideo(), handleUploadVideo);
+    const rm3 = listenEvent(eventName.getEventNameEdit(), handleEditable);
+    const rm4 = listenEvent(eventName.getEventNameUpdateTheme(), handleTheme);
 
     return () => {
       rm1();

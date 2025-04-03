@@ -1,5 +1,6 @@
 import { useStoreEditableEditor } from '@/store/store';
 import { dispatchEvent } from '@/utils/customEvents/customEvents';
+import { eventName } from '@/utils/customEvents/events.constant';
 
 export function useEditableEditor() {
   const [v] = useStoreEditableEditor(store => store.value);
@@ -9,6 +10,6 @@ export function useEditableEditor() {
 
 export const editableEditorActions = {
   setDisable: (disable: boolean) => {
-    dispatchEvent('EDIT', disable);
+    dispatchEvent(eventName.getEventNameEdit(), disable);
   },
 };

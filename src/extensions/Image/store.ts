@@ -1,5 +1,6 @@
 import { useStoreUploadImage } from '@/store/store';
 import { dispatchEvent } from '@/utils/customEvents/customEvents';
+import { eventName } from '@/utils/customEvents/events.constant';
 
 export function useDialogImage() {
   const [v] = useStoreUploadImage(store => store.value);
@@ -9,6 +10,6 @@ export function useDialogImage() {
 
 export const actionDialogImage = {
   setOpen: (value: boolean) => {
-    dispatchEvent('UPLOAD_IMAGE', value);
+    dispatchEvent(eventName.getEventNameUploadImage(), value);
   },
 };

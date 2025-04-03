@@ -8,6 +8,8 @@ import scrollIntoView from 'scroll-into-view-if-needed';
 
 import SearchAndReplaceButton from '@/extensions/SearchAndReplace/components/SearchAndReplaceButton';
 import type { GeneralOptions } from '@/types';
+import { dispatchEvent } from '@/utils/customEvents/customEvents';
+import { eventName } from '@/utils/customEvents/events.constant';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -183,11 +185,6 @@ function gotoSearchResult({ view, tr, searchResults, searchResultCurrentClass, g
   return false;
 }
 
-export const ON_SEARCH_RESULTS = 'ON_SEARCH_RESULTS';
-
-// Create a custom event
-export const customEventSearch = new CustomEvent(ON_SEARCH_RESULTS);
-
 interface SearchOptions extends GeneralOptions<SearchOptions> {
   searchTerm: string
   replaceTerm: string
@@ -251,7 +248,7 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
             this.options.searchTerm = searchTerm;
             this.storage.results = [];
             this.storage.currentIndex = 0;
-            window.dispatchEvent(customEventSearch);
+            dispatchEvent(eventName.getEventNameSearchReplace());
             updateView(state, dispatch);
             return false;
           },
@@ -284,7 +281,7 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
               this.storage.results.shift();
             }
 
-            window.dispatchEvent(customEventSearch);
+            dispatchEvent(eventName.getEventNameSearchReplace());
 
             updateView(state, dispatch);
 
@@ -300,7 +297,7 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
 
             this.storage.currentIndex = -1;
             this.storage.results = [];
-            window.dispatchEvent(customEventSearch);
+            dispatchEvent(eventName.getEventNameSearchReplace());
 
             updateView(state, dispatch);
 
@@ -313,7 +310,7 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
             const { currentIndex, results } = this.storage;
             const nextIndex = (currentIndex + results.length - 1) % results.length;
             this.storage.currentIndex = nextIndex;
-            window.dispatchEvent(customEventSearch);
+            dispatchEvent(eventName.getEventNameSearchReplace());
 
             return gotoSearchResult({
               view,
@@ -331,7 +328,7 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
             const nextIndex = (currentIndex + 1) % results.length;
             this.storage.currentIndex = nextIndex;
             this.options.onChange && this.options.onChange();
-            window.dispatchEvent(customEventSearch);
+            dispatchEvent(eventName.getEventNameSearchReplace());
 
             return gotoSearchResult({
               view,
@@ -370,7 +367,7 @@ export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
               if (extensionThis.storage.currentIndex > results.length - 1) {
                 extensionThis.storage.currentIndex = 0;
               }
-              window.dispatchEvent(customEventSearch);
+              dispatchEvent(eventName.getEventNameSearchReplace());
               if (ctx.getMeta('directDecoration')) {
                 const { fromPos, toPos, attrs } = ctx.getMeta('directDecoration');
                 decorationsToReturn.push(Decoration.inline(fromPos, toPos, attrs));

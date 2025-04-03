@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
+
 import deepEqual from 'deep-equal';
+
 import { ActionButton, Button, IconComponent, Input, Label, Popover, PopoverContent, PopoverTrigger, Switch } from '@/components';
+import {  SearchAndReplace } from '@/extensions/SearchAndReplace/SearchAndReplace';
 import { useLocale } from '@/locales';
-import { ON_SEARCH_RESULTS, SearchAndReplace } from '@/extensions/SearchAndReplace/SearchAndReplace';
+import { listenEvent } from '@/utils/customEvents/customEvents';
+import { eventName } from '@/utils/customEvents/events.constant';
 
 function SearchAndReplaceButton({ editor, ...props }: any) {
   const { t } = useLocale();
@@ -13,6 +17,7 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
   const [replaceValue, setReplaceValue] = useState('');
   const [visible, setVisible] = useState(false);
   const [caseSensitive, setCaseSensitive] = useState(false);
+  const id = useId();
 
   useEffect(() => {
     if (!visible) {
@@ -61,36 +66,39 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
       setResults(prevResults => (deepEqual(prevResults, results) ? prevResults : results));
     };
 
-    window.addEventListener(ON_SEARCH_RESULTS, listener);
+    eventName.setEventNameSearchReplace(id);
+
+    listenEvent(eventName.getEventNameSearchReplace(), listener);
 
     return () => {
       if (!searchExtension)
         return;
-      window.removeEventListener(ON_SEARCH_RESULTS, listener);
+      listenEvent(eventName.getEventNameSearchReplace(), listener);
     };
   }, [visible, editor]);
 
   return (
     <Popover
-      open={visible}
       onOpenChange={setVisible}
+      open={visible}
     >
       <PopoverTrigger
-        disabled={props?.disabled}
         asChild
+        disabled={props?.disabled}
       >
         <ActionButton
-          tooltip={props?.tooltip}
-          isActive={props?.isActive}
           disabled={props?.disabled}
+          isActive={props?.isActive}
+          tooltip={props?.tooltip}
         >
           <IconComponent name={props?.icon} />
         </ActionButton>
       </PopoverTrigger>
+
       <PopoverContent
-        hideWhenDetached
-        className="richtext-w-full"
         align="start"
+        className="richtext-w-full"
+        hideWhenDetached
         side="bottom"
       >
 
@@ -98,47 +106,57 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
           <Label>
             {t('editor.search.dialog.text')}
           </Label>
+
           <span className="richtext-font-semibold">
             {results.length > 0 ? `${currentIndex + 1}/${results.length}` : '0/0'}
           </span>
         </div>
-        <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5 richtext-mb-[10px]">
+
+        <div className="richtext-mb-[10px] richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
           <Input
-            type="text"
-            required
-            className="richtext-w-full"
-            placeholder="Text"
             autoFocus
-            value={searchValue}
+            className="richtext-w-full"
             onChange={e => setSearchValue(e.target.value)}
+            placeholder="Text"
+            required
+            type="text"
+            value={searchValue}
           />
 
-          <Button disabled={results.length === 0} className="richtext-flex-1" onClick={editor.commands.goToPrevSearchResult}>
+          <Button className="richtext-flex-1"
+            disabled={results.length === 0}
+            onClick={editor.commands.goToPrevSearchResult}
+          >
             <IconComponent name="ChevronUp" />
           </Button>
 
-          <Button disabled={results.length === 0} className="richtext-flex-1" onClick={editor.commands.goToNextSearchResult}>
+          <Button className="richtext-flex-1"
+            disabled={results.length === 0}
+            onClick={editor.commands.goToNextSearchResult}
+          >
             <IconComponent name="ChevronDown" />
           </Button>
 
         </div>
+
         <Label className="richtext-mb-[6px]">
           {t('editor.replace.dialog.text')}
         </Label>
-        <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5 richtext-mb-[5px]">
-          <div className="richtext-relative richtext-items-center richtext-w-full richtext-max-w-sm">
+
+        <div className="richtext-mb-[5px] richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
+          <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
             <Input
-              type="text"
-              required
               className="richtext-w-80"
-              placeholder="Text"
-              value={replaceValue}
               onChange={e => setReplaceValue(e.target.value)}
+              placeholder="Text"
+              required
+              type="text"
+              value={replaceValue}
             />
           </div>
         </div>
 
-        <div className="richtext-flex richtext-items-center richtext-space-x-2 richtext-mb-[10px]">
+        <div className="richtext-mb-[10px] richtext-flex richtext-items-center richtext-space-x-2">
           <Switch
             checked={caseSensitive}
             onCheckedChange={(e: any) => {
@@ -146,17 +164,24 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
               editor.commands.setCaseSensitive(e);
             }}
           />
+
           <Label>
             {t('editor.replace.caseSensitive')}
           </Label>
         </div>
 
         <div className="richtext-flex richtext-items-center richtext-gap-[10px]">
-          <Button disabled={results.length === 0} className="richtext-flex-1" onClick={editor.commands.replace}>
+          <Button className="richtext-flex-1"
+            disabled={results.length === 0}
+            onClick={editor.commands.replace}
+          >
             {t('editor.replace.dialog.text')}
           </Button>
 
-          <Button disabled={results.length === 0} className="richtext-flex-1" onClick={editor.commands.replaceAll}>
+          <Button className="richtext-flex-1"
+            disabled={results.length === 0}
+            onClick={editor.commands.replaceAll}
+          >
             {t('editor.replaceAll.dialog.text')}
           </Button>
         </div>
