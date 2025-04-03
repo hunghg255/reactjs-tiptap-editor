@@ -156,7 +156,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
   }
 
   useLayoutEffect(() => {
-    editor!.id = id;
+    if (editor) editor!.id = id;
   }, [id, editor]);
 
   useEffect(() => {
