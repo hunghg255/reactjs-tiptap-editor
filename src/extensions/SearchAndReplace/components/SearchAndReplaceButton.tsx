@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import deepEqual from 'deep-equal';
 
@@ -6,7 +6,7 @@ import { ActionButton, Button, IconComponent, Input, Label, Popover, PopoverCont
 import {  SearchAndReplace } from '@/extensions/SearchAndReplace/SearchAndReplace';
 import { useLocale } from '@/locales';
 import { listenEvent } from '@/utils/customEvents/customEvents';
-import { eventName } from '@/utils/customEvents/events.constant';
+import { EVENTS } from '@/utils/customEvents/events.constant';
 
 function SearchAndReplaceButton({ editor, ...props }: any) {
   const { t } = useLocale();
@@ -17,7 +17,6 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
   const [replaceValue, setReplaceValue] = useState('');
   const [visible, setVisible] = useState(false);
   const [caseSensitive, setCaseSensitive] = useState(false);
-  const id = useId();
 
   useEffect(() => {
     if (!visible) {
@@ -66,14 +65,12 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
       setResults(prevResults => (deepEqual(prevResults, results) ? prevResults : results));
     };
 
-    eventName.setEventNameSearchReplace(id);
-
-    listenEvent(eventName.getEventNameSearchReplace(), listener);
+    listenEvent(EVENTS.SEARCH_REPLCE, listener);
 
     return () => {
       if (!searchExtension)
         return;
-      listenEvent(eventName.getEventNameSearchReplace(), listener);
+      listenEvent(EVENTS.SEARCH_REPLCE, listener);
     };
   }, [visible, editor]);
 

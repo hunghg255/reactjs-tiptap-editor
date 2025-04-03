@@ -1,15 +1,14 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo, useEffect, useId } from 'react';
+import React, { memo, useEffect } from 'react';
 
 import { ProviderEditableEditor, ProviderTheme, useStoreEditableEditor, useStoreTheme } from '@/store/store';
 import { listenEvent } from '@/utils/customEvents/customEvents';
-import { eventName } from '@/utils/customEvents/events.constant';
+import { EVENTS } from '@/utils/customEvents/events.constant';
 
-const EventInitial = memo(({ children }: any) => {
+const EventInitial = memo(({ children, id }: any) => {
   const [, setEditable] = useStoreEditableEditor(store => store.value);
   const [, setTheme] = useStoreTheme(store => store.value);
-  const id = useId();
 
   const handleEditable = (evt: any) => {
     setEditable({
@@ -24,11 +23,8 @@ const EventInitial = memo(({ children }: any) => {
   };
 
   useEffect(() => {
-    eventName.setEventNameEdit(id);
-    eventName.setEventNameUpdateTheme(id);
-
-    const rm3 = listenEvent(eventName.getEventNameEdit(), handleEditable);
-    const rm4 = listenEvent(eventName.getEventNameUpdateTheme(), handleTheme);
+    const rm3 = listenEvent(EVENTS.EDIT(id), handleEditable);
+    const rm4 = listenEvent(EVENTS.UPDATE_THEME(id), handleTheme);
 
     return () => {
       rm3();
@@ -43,12 +39,12 @@ const EventInitial = memo(({ children }: any) => {
   );
 });
 
-export function ProviderRichText ({ children }: { children: React.ReactNode }) {
+export function ProviderRichText ({ children, id }: { children: React.ReactNode; id: any }) {
 
   return (
     <ProviderEditableEditor>
       <ProviderTheme>
-        <EventInitial>
+        <EventInitial id={id}>
           {children}
         </EventInitial>
       </ProviderTheme>

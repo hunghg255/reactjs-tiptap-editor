@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useImperativeHandle, useMemo } from 'react';
+import { forwardRef, useEffect, useId, useImperativeHandle, useMemo } from 'react';
 
 import type { AnyExtension, Editor as CoreEditor } from '@tiptap/core';
 import type { UseEditorOptions } from '@tiptap/react';
@@ -73,6 +73,8 @@ export interface RichTextEditorProps {
 function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ editor: CoreEditor | null }>) {
   const { content, extensions, useEditorOptions = {} } = props;
 
+  const id = useId();
+
   const sortExtensions = useMemo(() => {
     const diff = differenceBy(extensions, extensions, 'name');
     const exts = extensions.map((k: any) => {
@@ -99,7 +101,9 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
         onValueChange(editor);
     },
     ...useEditorOptions,
-  });
+  }) as any;
+
+  editor!.id = id;
 
   useImperativeHandle(ref, () => {
     return {
@@ -109,12 +113,12 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', props.dark);
-    themeActions.setTheme(props.dark ? 'dark' : 'light');
+    themeActions.setTheme(id, props.dark ? 'dark' : 'light');
   }, [props.dark]);
 
   useEffect(() => {
     editor?.setEditable(!props?.disabled);
-    editableEditorActions.setDisable(!props?.disabled);
+    editableEditorActions.setDisable(editor.id, !props?.disabled);
   }, [editor, props?.disabled]);
 
   useEffect(() => {
@@ -159,7 +163,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
     };
   }, []);
 
-  const hasExtensionValue = hasExtension(editor as any, 'characterCount');
+  const hasExtensionValue = hasExtension(editor, 'characterCount');
 
   if (!editor) {
     return <></>;
@@ -167,7 +171,9 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
 
   return (
     <div className="reactjs-tiptap-editor">
-      <ProviderRichText>
+      <ProviderRichText
+        id={id}
+      >
         <TooltipProvider delayDuration={0}
           disableHoverableContent
         >
@@ -180,6 +186,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
 
               <EditorContent className={`richtext-relative ${props?.contentClass || ''}`}
                 editor={editor}
+
               />
 
               {hasExtensionValue && <CharactorCount editor={editor}

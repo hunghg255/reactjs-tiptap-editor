@@ -109,9 +109,10 @@ export function renderGroups(extensions: Extensions) {
         description: 'Insert a image',
         aliases: ['image', 'tp', 'tupian'],
         shouldBeHidden: editor => editor.isActive('columns'),
-        action: ({ editor, range }) => {
+        action: ({ editor, range }: any) => {
           editor.chain().focus().deleteRange(range).run();
-          actionDialogImage.setOpen(true);
+
+          actionDialogImage.setOpen(editor.id, true);
         },
       });
     }
@@ -124,9 +125,9 @@ export function renderGroups(extensions: Extensions) {
         description: 'Insert a video',
         aliases: ['video', 'sp', 'shipin'],
         shouldBeHidden: editor => editor.isActive('columns'),
-        action: ({ editor, range }) => {
+        action: ({ editor, range }: any) => {
           editor.chain().focus().deleteRange(range).run();
-          actionDialogVideo.setOpen(true);
+          actionDialogVideo.setOpen(editor.id, true);
         },
       });
     }

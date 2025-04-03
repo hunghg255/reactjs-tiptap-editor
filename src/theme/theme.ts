@@ -1,6 +1,6 @@
 import { useStoreTheme } from '@/store/store';
 import { dispatchEvent } from '@/utils/customEvents/customEvents';
-import { eventName } from '@/utils/customEvents/events.constant';
+import { EVENTS } from '@/utils/customEvents/events.constant';
 
 export function useTheme() {
   const [v] = useStoreTheme(store => store.value);
@@ -9,7 +9,7 @@ export function useTheme() {
 }
 
 export const themeActions = {
-  setTheme: (theme: string) => {
-    dispatchEvent(eventName.getEventNameUpdateTheme(), theme);
+  setTheme: (id: any, theme: string) => {
+    dispatchEvent(EVENTS.UPDATE_THEME(id), theme);
   },
 };

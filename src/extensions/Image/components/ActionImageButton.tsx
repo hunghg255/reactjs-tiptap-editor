@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ActionButton, Button, Checkbox, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -7,11 +7,10 @@ import Image from '@/extensions/Image/Image';
 import { actionDialogImage } from '@/extensions/Image/store';
 import { useLocale } from '@/locales';
 import { listenEvent } from '@/utils/customEvents/customEvents';
-import { eventName } from '@/utils/customEvents/events.constant';
+import { EVENTS } from '@/utils/customEvents/events.constant';
 
 function ActionImageButton(props: any) {
   const { t } = useLocale();
-  const id = useId();
   const [open, setOpen] = useState(false);
 
   const handleUploadImage = (evt: any) => {
@@ -34,9 +33,7 @@ function ActionImageButton(props: any) {
   }, [props.editor]);
 
   useEffect(() => {
-    eventName.setEventNameUploadImage(id);
-
-    const rm1 = listenEvent(eventName.getEventNameUploadImage(), handleUploadImage);
+    const rm1 = listenEvent(EVENTS.UPLOAD_IMAGE(props.editor.id), handleUploadImage);
 
     return () => {
       rm1();
@@ -146,7 +143,7 @@ function ActionImageButton(props: any) {
               <ImageCropper
                 editor={props.editor}
                 imageInline={imageInline}
-                onClose={() => actionDialogImage.setOpen(false)}
+                onClose={() => actionDialogImage.setOpen(props.editor.id, false)}
               />
             </div>
 

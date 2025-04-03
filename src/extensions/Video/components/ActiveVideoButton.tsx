@@ -1,11 +1,11 @@
-import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ActionButton, Button, Input, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Video } from '@/extensions/Video/Video';
 import { useLocale } from '@/locales';
 import { listenEvent } from '@/utils/customEvents/customEvents';
-import { eventName } from '@/utils/customEvents/events.constant';
+import { EVENTS } from '@/utils/customEvents/events.constant';
 
 function checkIsVideo(url: string) {
   return /\.(?:mp4|webm|ogg|mov)$/i.test(url);
@@ -18,7 +18,7 @@ function ActionVideoButton(props: any) {
   const fileInput = useRef<HTMLInputElement>(null);
 
   const [error, setError] = useState<string>('');
-  const id = useId();
+
   const [open, setOpen] = useState(false);
 
   const handleUploadVideo = (evt: any) => {
@@ -26,9 +26,7 @@ function ActionVideoButton(props: any) {
   };
 
   useEffect(() => {
-    eventName.setEventNameUploadVideo(id);
-
-    const rm1 = listenEvent(eventName.getEventNameUploadVideo(), handleUploadVideo);
+    const rm1 = listenEvent(EVENTS.UPLOAD_VIDEO(props.editor.id), handleUploadVideo);
 
     return () => {
       rm1();
