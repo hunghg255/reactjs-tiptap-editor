@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useId, useImperativeHandle, useMemo } from 'react';
+import { forwardRef, useEffect, useId, useImperativeHandle, useLayoutEffect, useMemo } from 'react';
 
 import type { AnyExtension, Editor as CoreEditor } from '@tiptap/core';
 import type { UseEditorOptions } from '@tiptap/react';
@@ -103,8 +103,6 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
     ...useEditorOptions,
   }) as any;
 
-  editor!.id = id;
-
   useImperativeHandle(ref, () => {
     return {
       editor,
@@ -118,7 +116,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
 
   useEffect(() => {
     editor?.setEditable(!props?.disabled);
-    editableEditorActions.setDisable(editor.id, !props?.disabled);
+    editableEditorActions.setDisable(id, !props?.disabled);
   }, [editor, props?.disabled]);
 
   useEffect(() => {
@@ -156,6 +154,10 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
     }
     return '';
   }
+
+  useLayoutEffect(() => {
+    editor!.id = id;
+  }, [id, editor]);
 
   useEffect(() => {
     return () => {
