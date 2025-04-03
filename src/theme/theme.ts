@@ -1,13 +1,14 @@
-import { createSignal, useSignalValue } from 'reactjs-signal';
-
-const themeProxy = createSignal('light');
+import { useStoreTheme } from '@/store/store';
+import { dispatchEvent } from '@/utils/customEvents/customEvents';
 
 export function useTheme() {
-  return useSignalValue(themeProxy);
+  const [v] = useStoreTheme(store => store.value);
+
+  return v;
 }
 
 export const themeActions = {
   setTheme: (theme: string) => {
-    themeProxy(theme);
+    dispatchEvent('UPDATE_THEME', theme);
   },
 };

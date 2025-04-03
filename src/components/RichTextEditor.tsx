@@ -11,6 +11,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME } from '@/constants';
 import { RESET_CSS } from '@/constants/resetCSS';
 import { editableEditorActions } from '@/store/editableEditor';
+import { ProviderRichText } from '@/store/ProviderRichText';
 import { themeActions } from '@/theme/theme';
 import type { BubbleMenuProps, ToolbarProps } from '@/types';
 import { removeCSS, updateCSS } from '@/utils/dynamicCSS';
@@ -166,32 +167,33 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
 
   return (
     <div className="reactjs-tiptap-editor">
-      <TooltipProvider delayDuration={0}
-        disableHoverableContent
-      >
-        <div className="richtext-overflow-hidden richtext-rounded-[0.5rem] richtext-bg-background richtext-shadow richtext-outline richtext-outline-1">
+      <ProviderRichText>
+        <TooltipProvider delayDuration={0}
+          disableHoverableContent
+        >
+          <div className="richtext-overflow-hidden richtext-rounded-[0.5rem] richtext-bg-background richtext-shadow richtext-outline richtext-outline-1">
+            <div className="richtext-flex richtext-max-h-full richtext-w-full richtext-flex-col">
+              {!props?.hideToolbar && <Toolbar disabled={!!props?.disabled}
+                editor={editor}
+                toolbar={props.toolbar}
+              />}
 
-          <div className="richtext-flex richtext-max-h-full richtext-w-full richtext-flex-col">
-            {!props?.hideToolbar && <Toolbar disabled={!!props?.disabled}
-              editor={editor}
-              toolbar={props.toolbar}
-            />}
+              <EditorContent className={`richtext-relative ${props?.contentClass || ''}`}
+                editor={editor}
+              />
 
-            <EditorContent className={`richtext-relative ${props?.contentClass || ''}`}
-              editor={editor}
-            />
+              {hasExtensionValue && <CharactorCount editor={editor}
+                extensions={extensions}
+              />}
 
-            {hasExtensionValue && <CharactorCount editor={editor}
-              extensions={extensions}
-            />}
-
-            {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu}
-              disabled={props?.disabled}
-              editor={editor}
-            />}
+              {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu}
+                disabled={props?.disabled}
+                editor={editor}
+              />}
+            </div>
           </div>
-        </div>
-      </TooltipProvider>
+        </TooltipProvider>
+      </ProviderRichText>
 
       <Toaster />
     </div>
