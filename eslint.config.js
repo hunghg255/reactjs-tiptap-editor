@@ -19,6 +19,7 @@ export default [
       'contributorkit.config.ts',
       'tailwind.config.js',
       'postcss.config.js',
+      'animate.js',
       'playground/**'
     ],
   },
