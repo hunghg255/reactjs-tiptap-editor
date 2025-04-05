@@ -21,13 +21,6 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
-    ]
-  },
-  {
     "name": "Bold.ts",
     "package": "Bold",
     "alias": [
@@ -35,10 +28,10 @@
     ]
   },
   {
-    "name": "Clear.ts",
-    "package": "Clear",
+    "name": "BulletList.ts",
+    "package": "BulletList",
     "alias": [
-      "Clear"
+      "BulletList"
     ]
   },
   {
@@ -46,6 +39,13 @@
     "package": "Code",
     "alias": [
       "Code"
+    ]
+  },
+  {
+    "name": "Clear.ts",
+    "package": "Clear",
+    "alias": [
+      "Clear"
     ]
   },
   {
@@ -84,17 +84,17 @@
     ]
   },
   {
-    "name": "Drawer.ts",
-    "package": "Drawer",
-    "alias": [
-      "Drawer"
-    ]
-  },
-  {
     "name": "Emoji.ts",
     "package": "Emoji",
     "alias": [
       "Emoji"
+    ]
+  },
+  {
+    "name": "Drawer.ts",
+    "package": "Drawer",
+    "alias": [
+      "Drawer"
     ]
   },
   {
@@ -126,13 +126,6 @@
     ]
   },
   {
-    "name": "FormatPainter.ts",
-    "package": "FormatPainter",
-    "alias": [
-      "FormatPainter"
-    ]
-  },
-  {
     "name": "FontSize.ts",
     "package": "FontSize",
     "alias": [
@@ -144,6 +137,13 @@
     "package": "Heading",
     "alias": [
       "Heading"
+    ]
+  },
+  {
+    "name": "FormatPainter.ts",
+    "package": "FormatPainter",
+    "alias": [
+      "FormatPainter"
     ]
   },
   {
@@ -210,17 +210,17 @@
     ]
   },
   {
-    "name": "Italic.ts",
-    "package": "Italic",
-    "alias": [
-      "Italic"
-    ]
-  },
-  {
     "name": "Indent.ts",
     "package": "Indent",
     "alias": [
       "Indent"
+    ]
+  },
+  {
+    "name": "Italic.ts",
+    "package": "Italic",
+    "alias": [
+      "Italic"
     ]
   },
   {
@@ -231,13 +231,6 @@
     ]
   },
   {
-    "name": "LineHeight.ts",
-    "package": "LineHeight",
-    "alias": [
-      "LineHeight"
-    ]
-  },
-  {
     "name": "Link.ts",
     "package": "Link",
     "alias": [
@@ -245,10 +238,10 @@
     ]
   },
   {
-    "name": "ListItem.ts",
-    "package": "ListItem",
+    "name": "LineHeight.ts",
+    "package": "LineHeight",
     "alias": [
-      "ListItem"
+      "LineHeight"
     ]
   },
   {
@@ -259,24 +252,17 @@
     ]
   },
   {
+    "name": "ListItem.ts",
+    "package": "ListItem",
+    "alias": [
+      "ListItem"
+    ]
+  },
+  {
     "name": "Mermaid.ts",
     "package": "Mermaid",
     "alias": [
       "Mermaid"
-    ]
-  },
-  {
-    "name": "MoreMark.ts",
-    "package": "MoreMark",
-    "alias": [
-      "MoreMark"
-    ]
-  },
-  {
-    "name": "OrderedList.ts",
-    "package": "OrderedList",
-    "alias": [
-      "OrderedList"
     ]
   },
   {
@@ -291,6 +277,27 @@
     "package": "MultiColumn",
     "alias": [
       "MultiColumn"
+    ]
+  },
+  {
+    "name": "OrderedList.ts",
+    "package": "OrderedList",
+    "alias": [
+      "OrderedList"
+    ]
+  },
+  {
+    "name": "MoreMark.ts",
+    "package": "MoreMark",
+    "alias": [
+      "MoreMark"
+    ]
+  },
+  {
+    "name": "Selection.ts",
+    "package": "Selection",
+    "alias": [
+      "Selection"
     ]
   },
   {
@@ -322,24 +329,17 @@
     ]
   },
   {
-    "name": "Strike.ts",
-    "package": "Strike",
-    "alias": [
-      "Strike"
-    ]
-  },
-  {
-    "name": "Selection.ts",
-    "package": "Selection",
-    "alias": [
-      "Selection"
-    ]
-  },
-  {
     "name": "Subscript.ts",
     "package": "Subscript",
     "alias": [
       "Subscript"
+    ]
+  },
+  {
+    "name": "Strike.ts",
+    "package": "Strike",
+    "alias": [
+      "Strike"
     ]
   },
   {
@@ -357,17 +357,17 @@
     ]
   },
   {
-    "name": "TableOfContent.ts",
-    "package": "TableOfContent",
-    "alias": [
-      "TableOfContent"
-    ]
-  },
-  {
     "name": "TaskList.ts",
     "package": "TaskList",
     "alias": [
       "TaskList"
+    ]
+  },
+  {
+    "name": "TableOfContent.ts",
+    "package": "TableOfContent",
+    "alias": [
+      "TableOfContent"
     ]
   },
   {
