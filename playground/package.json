@@ -2,7 +2,7 @@
   "name": "playground",
   "private": true,
   "type": "module",
-  "version": "0.2.19",
+  "version": "0.2.20",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
