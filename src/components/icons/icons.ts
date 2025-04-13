@@ -75,7 +75,8 @@ import {
   Video,
   ZoomIn,
   ZoomOut,
-  PencilRuler
+  PencilRuler,
+  WrapText
 } from 'lucide-react';
 
 import {
@@ -208,5 +209,6 @@ export const icons = {
   Twitter,
   FlipX: FlipVertical,
   FlipY: FlipHorizontal,
-  PencilRuler
+  PencilRuler,
+  WrapText
 } as any;
