@@ -5,9 +5,10 @@ import { actionDialogImage } from '@/extensions/Image/store';
 import { actionDialogVideo } from '@/extensions/Video/store';
 import { localeActions } from '@/locales';
 
+import type { SlashCommandOptions } from './SlashCommand';
 import type { Group } from './types';
 
-export function renderGroups(extensions: Extensions) {
+export function renderGroups(extensions: Extensions, renderGroupItem?: SlashCommandOptions['renderGroupItem']) {
   const groups: Group[] = [
     {
       name: 'format',
@@ -175,6 +176,7 @@ export function renderGroups(extensions: Extensions) {
         },
       });
     }
+    renderGroupItem?.(extension, groups);
   });
 
   return groups;

@@ -1,4 +1,4 @@
-import type { Editor, Range } from '@tiptap/core';
+import type { Editor, Extensions, Range } from '@tiptap/core';
 import { Extension } from '@tiptap/core';
 import { PluginKey } from '@tiptap/pm/state';
 import { ReactRenderer } from '@tiptap/react';
@@ -6,12 +6,18 @@ import type { SuggestionKeyDownProps, SuggestionProps } from '@tiptap/suggestion
 import Suggestion from '@tiptap/suggestion';
 import tippy from 'tippy.js';
 
-import { renderGroups } from './groups';
 import CommandsList from '@/extensions/SlashCommand/components/CommandsList';
+
+import { renderGroups } from './groups';
+import { type Group } from './types';
+
+export interface SlashCommandOptions {
+  renderGroupItem?: (extension: Extensions[number], groups:Group[]) => void
+}
 
 const extensionName = 'slashCommand';
 let popup: any;
-export const SlashCommand = Extension.create({
+export const SlashCommand = Extension.create<SlashCommandOptions>({
   name: extensionName,
   priority: 200,
   onCreate() {
@@ -68,7 +74,7 @@ export const SlashCommand = Extension.create({
         items: ({ query, editor }: { query: string, editor: Editor }) => {
           // get options
           // Filter commands
-          const groups = renderGroups(editor.extensionManager.extensions);
+          const groups = renderGroups(editor.extensionManager.extensions, this.options.renderGroupItem);
           const withFilteredCommands = groups.map(group => ({
             ...group,
             commands: group.commands
