@@ -1,6 +1,8 @@
 import type { Editor as CoreEditor, Extension, JSONContent } from '@tiptap/core';
 import type { Editor } from '@tiptap/react';
 
+import { type ActionButtonProps } from './components';
+
 export type { Editor, JSONContent } from '@tiptap/core';
 
 /**
@@ -116,6 +118,19 @@ export interface BubbleMenuRenderProps {
   bubbleMenu: BubbleMenuProps
 }
 
+export interface BubbleMenuConfig {
+  /**
+     * @description Column menu hidden
+     * @default false
+     */
+  hidden?: boolean
+  /**
+   * custom menu actions
+   */
+  actions?: ActionButtonProps[]
+  
+}
+
 /**
  * Represents the BubbleMenuProps.
  */
@@ -127,13 +142,7 @@ export interface BubbleMenuProps {
      */
     hidden?: boolean
   }
-  tableConfig?: {
-    /**
-     * @description Table menu hidden
-     * @default false
-     */
-    hidden?: boolean
-  }
+  tableConfig?: BubbleMenuConfig
   floatingMenuConfig?: {
     /**
      * @description Floating menu hidden
