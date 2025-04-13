@@ -84,17 +84,17 @@
     ]
   },
   {
-    "name": "Emoji.ts",
-    "package": "Emoji",
-    "alias": [
-      "Emoji"
-    ]
-  },
-  {
     "name": "Drawer.ts",
     "package": "Drawer",
     "alias": [
       "Drawer"
+    ]
+  },
+  {
+    "name": "Emoji.ts",
+    "package": "Emoji",
+    "alias": [
+      "Emoji"
     ]
   },
   {
@@ -133,17 +133,17 @@
     ]
   },
   {
-    "name": "Heading.ts",
-    "package": "Heading",
-    "alias": [
-      "Heading"
-    ]
-  },
-  {
     "name": "FormatPainter.ts",
     "package": "FormatPainter",
     "alias": [
       "FormatPainter"
+    ]
+  },
+  {
+    "name": "Heading.ts",
+    "package": "Heading",
+    "alias": [
+      "Heading"
     ]
   },
   {
@@ -182,6 +182,13 @@
     ]
   },
   {
+    "name": "ImageGif.ts",
+    "package": "ImageGif",
+    "alias": [
+      "ImageGif"
+    ]
+  },
+  {
     "name": "Image.ts",
     "package": "Image",
     "alias": [
@@ -196,24 +203,10 @@
     ]
   },
   {
-    "name": "ImageGif.ts",
-    "package": "ImageGif",
-    "alias": [
-      "ImageGif"
-    ]
-  },
-  {
     "name": "ImportWord.ts",
     "package": "ImportWord",
     "alias": [
       "ImportWord"
-    ]
-  },
-  {
-    "name": "Indent.ts",
-    "package": "Indent",
-    "alias": [
-      "Indent"
     ]
   },
   {
@@ -231,10 +224,10 @@
     ]
   },
   {
-    "name": "Link.ts",
-    "package": "Link",
+    "name": "Indent.ts",
+    "package": "Indent",
     "alias": [
-      "Link"
+      "Indent"
     ]
   },
   {
@@ -245,10 +238,10 @@
     ]
   },
   {
-    "name": "Mention.ts",
-    "package": "Mention",
+    "name": "Link.ts",
+    "package": "Link",
     "alias": [
-      "Mention"
+      "Link"
     ]
   },
   {
@@ -259,10 +252,31 @@
     ]
   },
   {
+    "name": "Mention.ts",
+    "package": "Mention",
+    "alias": [
+      "Mention"
+    ]
+  },
+  {
     "name": "Mermaid.ts",
     "package": "Mermaid",
     "alias": [
       "Mermaid"
+    ]
+  },
+  {
+    "name": "MoreMark.ts",
+    "package": "MoreMark",
+    "alias": [
+      "MoreMark"
+    ]
+  },
+  {
+    "name": "OrderedList.ts",
+    "package": "OrderedList",
+    "alias": [
+      "OrderedList"
     ]
   },
   {
@@ -280,17 +294,10 @@
     ]
   },
   {
-    "name": "OrderedList.ts",
-    "package": "OrderedList",
+    "name": "SearchAndReplace.ts",
+    "package": "SearchAndReplace",
     "alias": [
-      "OrderedList"
-    ]
-  },
-  {
-    "name": "MoreMark.ts",
-    "package": "MoreMark",
-    "alias": [
-      "MoreMark"
+      "SearchAndReplace"
     ]
   },
   {
@@ -298,13 +305,6 @@
     "package": "Selection",
     "alias": [
       "Selection"
-    ]
-  },
-  {
-    "name": "SearchAndReplace.ts",
-    "package": "SearchAndReplace",
-    "alias": [
-      "SearchAndReplace"
     ]
   },
   {
@@ -329,17 +329,17 @@
     ]
   },
   {
-    "name": "Subscript.ts",
-    "package": "Subscript",
-    "alias": [
-      "Subscript"
-    ]
-  },
-  {
     "name": "Strike.ts",
     "package": "Strike",
     "alias": [
       "Strike"
+    ]
+  },
+  {
+    "name": "Subscript.ts",
+    "package": "Subscript",
+    "alias": [
+      "Subscript"
     ]
   },
   {
