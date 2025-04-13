@@ -190,7 +190,7 @@ export function NodeViewCodeBlock(props: any) {
   return (
     <NodeViewWrapper className={clsx(styles.wrap, 'render-wrapper')}>
       <div ref={containerRef}
-        className={clsx('richtext-node-container richtext-hover-shadow richtext-select-outline richtext-node-code-block', {
+        className={clsx('richtext-node-container richtext-hover-shadow richtext-select-outline richtext-node-code-block !richtext-my-[10px]', {
           [styles.blockInfoEditable]: !isEditable,
         })}
       >
