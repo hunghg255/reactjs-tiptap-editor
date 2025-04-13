@@ -31,7 +31,7 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
     extensionsNames.includes('columns') && !bubbleMenu?.columnConfig?.hidden ? <ColumnsBubbleMenu editor={editor}
       key="columns"
     /> : null,
-    extensionsNames.includes('table') && !bubbleMenu?.tableConfig?.hidden ? <TableBubbleMenu editor={editor}
+    extensionsNames.includes('table') && !bubbleMenu?.tableConfig?.hidden ? <TableBubbleMenu editor={editor} actions={bubbleMenu?.tableConfig?.actions}
       key="table"
     /> : null,
     extensionsNames.includes('link') && !bubbleMenu?.linkConfig?.hidden ? <BubbleMenuLink disabled={disabled}
