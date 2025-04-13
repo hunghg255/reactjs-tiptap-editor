@@ -1,8 +1,8 @@
 /** Default lang */
-export const DEFAULT_LANG_VALUE = 'en' as const;
+export const DEFAULT_LANG_VALUE = 'en';
 
 /** Throttle time for editor input (milliseconds) */
-export const EDITOR_UPDATE_THROTTLE_WAIT_TIME = 200 as const;
+export const EDITOR_UPDATE_THROTTLE_WAIT_TIME = 200;
 
 /**
  * watch throttling time must be less than the update time
@@ -11,18 +11,18 @@ export const EDITOR_UPDATE_THROTTLE_WAIT_TIME = 200 as const;
 export const EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME = EDITOR_UPDATE_THROTTLE_WAIT_TIME - 80;
 
 /** Minimum size for image adjustments */
-export const IMAGE_MIN_SIZE = 20 as const;
+export const IMAGE_MIN_SIZE = 20;
 /** Maximum size for image adjustments */
-export const IMAGE_MAX_SIZE = 100_000 as const;
+export const IMAGE_MAX_SIZE = 100_000;
 /** Throttle time during adjustments for images (milliseconds) */
-export const IMAGE_THROTTLE_WAIT_TIME = 16 as const;
+export const IMAGE_THROTTLE_WAIT_TIME = 16;
 
 /** Default number of rows and columns for grids when creating a table */
-export const TABLE_INIT_GRID_SIZE = 10 as const;
+export const TABLE_INIT_GRID_SIZE = 10;
 /** Maximum number of rows and columns for grids when creating a table */
-export const TABLE_MAX_GRID_SIZE = 10 as const;
+export const TABLE_MAX_GRID_SIZE = 10;
 /** Minimum number of rows and columns for grids when creating a table */
-export const TABLE_DEFAULT_SELECTED_GRID_SIZE = 2 as const;
+export const TABLE_DEFAULT_SELECTED_GRID_SIZE = 2;
 
 export const DEFAULT_COLOR = '#262626';
 /** Default color list for text color and text highlight */
@@ -117,22 +117,6 @@ export const DEFAULT_FONT_FAMILY_LIST = [
   'Monaco',
   'monospace',
 ];
-
-export const DEFAULT_LANGUAGE_CODE_BLOCK = [
-  'html',
-  'css',
-  'js',
-  'ts',
-  'bash',
-];
-
-export const MAP_LANGUAGE_CODE_LABELS = {
-  html: 'HTML',
-  css: 'CSS',
-  js: 'JavaScript',
-  ts: 'TypeScript',
-  bash: 'Bash',
-} as any;
 
 /** Default font size list */
 export const DEFAULT_FONT_SIZE_LIST = [
