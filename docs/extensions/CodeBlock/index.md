@@ -8,8 +8,6 @@ next:
 
 # CodeBlock
 
-- Based on TipTap's CodeBlock extension. [@tiptap/extension-code-block](https://tiptap.dev/docs/editor/extensions/nodes/code-block)
-
 - The `CodeBlock` extension allows you to add code blocks to your editor. It uses [prism-code-editor](https://prism-code-editor.netlify.app/) for syntax highlighting.
 
 ## Usage
