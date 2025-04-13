@@ -209,9 +209,9 @@ importers:
       mermaid:
         specifier: ^11.6.0
         version: 11.6.0
-      prism-code-editor:
-        specifier: ^3.4.0
-        version: 3.4.0
+      prism-code-editor-lightweight:
+        specifier: ^0.0.2
+        version: 0.0.2
       prosemirror-docx:
         specifier: ^0.2.1
         version: 0.2.1(docx@8.6.0)
@@ -9545,8 +9545,8 @@ packages:
       parse-ms: 4.0.0
     dev: true
 
-  /prism-code-editor@3.4.0:
-    resolution: {integrity: sha512-64247B2jxa3RD5zdIOdG/QgiFBX+OIsITBz1BaFPU3gYmCPrxef9wbmFUeh8j7HVAB0IuVU6ildZH+qKla66sg==}
+  /prism-code-editor-lightweight@0.0.2:
+    resolution: {integrity: sha512-6M1geYomXYCaGTWuO2oPB+tRUSBgU72H4LZiVBzA01oLjWdxpTfnYL0fkEXJuP49+MowDCezzimOb9nWi5moJg==}
     dev: false
 
   /process-nextick-args@2.0.1:

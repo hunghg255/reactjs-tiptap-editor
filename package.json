@@ -181,7 +181,7 @@
     "lodash-es": "^4.17.21",
     "lucide-react": "^0.427.0",
     "mermaid": "^11.6.0",
-    "prism-code-editor": "^3.4.0",
+    "prism-code-editor-lightweight": "^0.0.2",
     "prosemirror-docx": "^0.2.1",
     "re-resizable": "^6.11.2",
     "react-colorful": "^5.6.1",
