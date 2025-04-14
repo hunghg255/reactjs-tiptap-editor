@@ -210,8 +210,8 @@ importers:
         specifier: ^11.6.0
         version: 11.6.0
       prism-code-editor-lightweight:
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.3
+        version: 0.0.3
       prosemirror-docx:
         specifier: ^0.2.1
         version: 0.2.1(docx@8.6.0)
@@ -9545,8 +9545,8 @@ packages:
       parse-ms: 4.0.0
     dev: true
 
-  /prism-code-editor-lightweight@0.0.2:
-    resolution: {integrity: sha512-6M1geYomXYCaGTWuO2oPB+tRUSBgU72H4LZiVBzA01oLjWdxpTfnYL0fkEXJuP49+MowDCezzimOb9nWi5moJg==}
+  /prism-code-editor-lightweight@0.0.3:
+    resolution: {integrity: sha512-J1DO4ru/hAmHh5FUPMvh2GWcEKjb9XsvvKA59YtrVeB4fccDXXXZAHNMlJKg2SevgyGDSB/pCJ3H7t09aLNbvw==}
     dev: false
 
   /process-nextick-args@2.0.1:
