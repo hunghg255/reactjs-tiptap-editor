@@ -170,15 +170,6 @@ export function NodeViewCodeBlock(props: any) {
 
   useEffect(() => {
     if (codeEditor.current?.setOptions) {
-      codeEditor.current?.setOptions({
-        readOnly: props.editor.isEditable,
-      });
-    }
-
-  }, [codeEditor, props.editor.isEditable]);
-
-  useEffect(() => {
-    if (codeEditor.current?.setOptions) {
       const attrs = validateAndUpdateLanguage(props.node.attrs);
 
       codeEditor.current?.setOptions(attrs);
