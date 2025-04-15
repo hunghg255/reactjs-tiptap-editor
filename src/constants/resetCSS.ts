@@ -1,5 +1,5 @@
 export const RESET_CSS = `
-.reactjs-tiptap-editor, 
+.reactjs-tiptap-editor,
 .richtext-dialog-content {
   button,
   input:where([type=button]),
@@ -12,8 +12,7 @@ export const RESET_CSS = `
 
   input,
   optgroup,
-  select,
-  textarea {
+  select {
     font-family: inherit;
     font-feature-settings: inherit;
     font-variation-settings: inherit;
@@ -79,21 +78,17 @@ export const RESET_CSS = `
     border-collapse: collapse;
   }
 
-  input, textarea {
+  input {
     border-width: 1px;
   }
 
-  textarea {
-    resize: vertical;
-  }
 
-  input::placeholder,
-  textarea::placeholder {
+  input::placeholder {
     opacity: 1;
     color: #9ca3af;
   }
 
-  button, input, textarea {
+  button, input {
     cursor: pointer;
     color: inherit;
   }
@@ -131,7 +126,7 @@ div[data-tippy-root] {
   background-color: hsl(var(--richtext-background));
   color: hsl(var(--richtext-foreground));
 
-  button, input, textarea {
+  button, input {
     cursor: pointer;
     color: inherit;
   }

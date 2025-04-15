@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useCallback, useEffect, useRef } from 'react';
 
 import { NodeViewWrapper } from '@tiptap/react';
@@ -46,7 +45,6 @@ import 'prism-code-editor-lightweight/prism/languages/typescript';
 import 'prism-code-editor-lightweight/prism/languages/tsx';
 import 'prism-code-editor-lightweight/prism/languages/yaml';
 import 'prism-code-editor-lightweight/prism/languages/regex';
-import 'prism-code-editor-lightweight/layout.css';
 
 import { createEditor, type PrismEditor } from 'prism-code-editor-lightweight';
 import { defaultCommands, editHistory } from 'prism-code-editor-lightweight/commands';
@@ -88,7 +86,7 @@ export function NodeViewCodeBlock(props: any) {
 
   const containerRef: any = useRef<HTMLPreElement>(null);
 
-  const deleteMe = useCallback(() => deleteNode(CodeBlock.name, props?.editor), [props?.edito]);
+  const deleteMe = useCallback(() => deleteNode(CodeBlock.name, props?.editor), [props?.editor]);
 
   const codeEditor = useRef<PrismEditor | null>(null);
   const code = props.node.attrs.code || props.node.textContent || '';
@@ -120,6 +118,7 @@ export function NodeViewCodeBlock(props: any) {
 
   const validateAndUpdateLanguage = (attrs: any) => {
     const validatedAttrs = { ...attrs };
+
     if (validatedAttrs.language && !languages.some(lang => lang.value === validatedAttrs.language)) {
       validatedAttrs.language = 'plaintext';
       props.updateAttributes({
@@ -170,8 +169,7 @@ export function NodeViewCodeBlock(props: any) {
   }, [containerRef]);
 
   useEffect(() => {
-    //@ts-expect-error
-    if (codeEditor.current?.setOption) {
+    if (codeEditor.current?.setOptions) {
       codeEditor.current?.setOptions({
         readOnly: props.editor.isEditable,
       });
@@ -180,12 +178,12 @@ export function NodeViewCodeBlock(props: any) {
   }, [codeEditor, props.editor.isEditable]);
 
   useEffect(() => {
-    //@ts-expect-error
-    if (codeEditor.current?.setOption) {
+    if (codeEditor.current?.setOptions) {
       const attrs = validateAndUpdateLanguage(props.node.attrs);
+
       codeEditor.current?.setOptions(attrs);
     }
-  }, [codeEditor, props.node.attrs.language, props.node.attrs.lineNumbers, props.node.attrs.wordWrap, props.node.attrs.tabSize, props.node.attrs]);
+  }, [codeEditor, props.node.attrs]);
 
   return (
     <NodeViewWrapper className={clsx(styles.wrap, 'render-wrapper')}>
@@ -218,7 +216,6 @@ export function NodeViewCodeBlock(props: any) {
                   languages?.map((lang) => {
                     return (
                       <SelectItem
-                        className="focus:richtext-bg-[#5a5d5e4f] focus:richtext-text-white"
                         key={lang.value}
                         value={lang.value}
                       >
@@ -298,7 +295,6 @@ export function NodeViewCodeBlock(props: any) {
                   tabSizes?.map((size) => {
                     return (
                       <SelectItem
-                        className="focus:richtext-bg-[#5a5d5e4f] focus:richtext-text-white"
                         key={size}
                         value={size as any}
                       >

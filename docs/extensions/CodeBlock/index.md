@@ -8,12 +8,15 @@ next:
 
 # CodeBlock
 
-- The `CodeBlock` extension allows you to add code blocks to your editor. It uses [prism-code-editor](https://prism-code-editor.netlify.app/) for syntax highlighting.
+- The `CodeBlock` extension allows you to add code blocks to your editor. It uses [prism-code-editor-lightweight](https://github.com/hunghg255/prism-code-editor-lightweight) for syntax highlighting.
 
 ## Usage
 
 ```tsx
 import { CodeBlock } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+
+import 'prism-code-editor-lightweight/layout.css'; // [!code ++]
+import 'prism-code-editor-lightweight/themes/github-dark.css'; // [!code ++]
 
 const extensions = [
   ...,
