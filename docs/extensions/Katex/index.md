@@ -37,8 +37,10 @@ const App = () => {
 
   return  <RichTextEditor
     bubbleMenu={{
-      render({ extensionsNames, editor, disabled }) {
+      render({ extensionsNames, editor, disabled }, bubbleDefaultDom) {
         return <>
+          {bubbleDefaultDom}
+
           {extensionsNames.includes('katex')  ? <BubbleMenuKatex disabled={disabled}
             editor={editor}
             key="katex"

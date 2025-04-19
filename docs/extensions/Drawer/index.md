@@ -34,8 +34,10 @@ const App = () => {
 
   return  <RichTextEditor
     bubbleMenu={{
-      render({ extensionsNames, editor, disabled }) {
+      render({ extensionsNames, editor, disabled }, bubbleDefaultDom) {
         return <>
+          {bubbleDefaultDom}
+
           {extensionsNames.includes('drawer')  ? <BubbleMenuDrawer disabled={disabled}
             editor={editor}
             key="drawer"

@@ -264,8 +264,10 @@ function App() {
         dark={theme === 'dark'}
         disabled={disable}
         bubbleMenu={{
-          render({ extensionsNames, editor, disabled }) {
+          render({ extensionsNames, editor, disabled }, bubbleDefaultDom) {
             return <>
+              {bubbleDefaultDom}
+
               {extensionsNames.includes('twitter') ? <BubbleMenuTwitter disabled={disabled}
                 editor={editor}
                 key="twitter"
