@@ -13,7 +13,7 @@ The Line Height extension allows you to change the line height of your text.
 ## Usage
 
 ```tsx
-import { LineHeight } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { LineHeight } from 'reactjs-tiptap-editor/lineheight'; // [!code ++]
 
 const extensions = [
   ...,
@@ -30,7 +30,7 @@ Type: `string[]`\
 Default: `['100%', '115%', '150%', '200%', '250%', '300%']`
 
 ```js
-import { DEFAULT_LINE_HEIGHT_LIST, LineHeight } from 'reactjs-tiptap-editor'
+import { DEFAULT_LINE_HEIGHT_LIST, LineHeight } from 'reactjs-tiptap-editor/lineheight'
 
 FontSize.configure({
   LineHeight: [

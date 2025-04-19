@@ -2,13 +2,14 @@ import type { Extension } from '@tiptap/core';
 import type { HeadingOptions as TiptapHeadingOptions } from '@tiptap/extension-heading';
 import { Heading as TiptapHeading } from '@tiptap/extension-heading';
 
-import type { BaseKitOptions } from '../BaseKit';
 import HeadingButton from '@/extensions/Heading/components/HeadingButton';
 import type { GeneralOptions } from '@/types';
 
+import type { BaseKitOptions } from '../BaseKit';
+
 export interface HeadingOptions extends TiptapHeadingOptions, GeneralOptions<HeadingOptions> {}
 
-export const Heading = TiptapHeading.extend<HeadingOptions>({
+export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

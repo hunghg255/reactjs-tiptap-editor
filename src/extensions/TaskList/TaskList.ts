@@ -14,7 +14,7 @@ export interface TaskListOptions extends TiptapTaskListOptions, GeneralOptions<T
   taskItem: Partial<TaskItemOptions>
 }
 
-export const TaskList = TiptapTaskList.extend<TaskListOptions>({
+export const TaskList = /* @__PURE__ */ TiptapTaskList.extend<TaskListOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

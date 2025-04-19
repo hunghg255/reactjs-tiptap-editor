@@ -15,7 +15,7 @@ next:
 ## Usage
 
 ```tsx
-import { BaseKit } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { BaseKit } from 'reactjs-tiptap-editor'; // [!code ++]
 
 const extensions = [
   ...,

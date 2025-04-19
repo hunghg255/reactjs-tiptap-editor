@@ -5,7 +5,7 @@
   "version": "0.2.29",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "start": "npm run build && vite preview",
     "lint": "eslint --ext .ts,.tsx src --color",

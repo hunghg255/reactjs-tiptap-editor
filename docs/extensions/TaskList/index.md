@@ -15,7 +15,7 @@ next:
 ## Usage
 
 ```tsx
-import { TaskList } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { TaskList } from 'reactjs-tiptap-editor/tasklist'; // [!code ++]
 
 const extensions = [
   ...,

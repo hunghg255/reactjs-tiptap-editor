@@ -22,7 +22,7 @@ export interface MermaidOptions extends GeneralOptions<MermaidOptions> {
   upload?: (file: File) => Promise<string>
 }
 
-export const Mermaid = TiptapImage.extend<MermaidOptions>({
+export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
   name: 'mermaid',
 
   addOptions() {

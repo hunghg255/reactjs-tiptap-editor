@@ -1,14 +1,16 @@
-import { BubbleMenu } from '@tiptap/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { HelpCircle, Pencil, Trash2 } from 'lucide-react';
+
+import { BubbleMenu } from '@tiptap/react';
 import katex from 'katex';
-import { Katex } from '@/extensions';
-import { deleteNode } from '@/utils/delete-node';
-import { useAttributes } from '@/hooks/useAttributes';
-import type { IKatexAttrs } from '@/extensions/Katex';
-import { Textarea } from '@/components/ui/textarea';
+import { HelpCircle, Pencil, Trash2 } from 'lucide-react';
+
 import { ActionButton } from '@/components/ActionButton';
 import { Button } from '@/components/ui';
+import { Textarea } from '@/components/ui/textarea';
+import { Katex } from '@/extensions/Katex';
+import type { IKatexAttrs } from '@/extensions/Katex';
+import { useAttributes } from '@/hooks/useAttributes';
+import { deleteNode } from '@/utils/delete-node';
 
 function BubbleMenuKatex({ editor, ...props }: any) {
   const attrs = useAttributes<IKatexAttrs>(editor, Katex.name, {
@@ -53,7 +55,10 @@ function BubbleMenuKatex({ editor, ...props }: any) {
     () => {
       if (`${currentValue}`.trim()) {
         return (
-          <span contentEditable={false} dangerouslySetInnerHTML={{ __html: formatText || '' }}></span>
+          <span contentEditable={false}
+            dangerouslySetInnerHTML={{ __html: formatText || '' }}
+          >
+          </span>
         );
       }
 
@@ -84,32 +89,37 @@ function BubbleMenuKatex({ editor, ...props }: any) {
           <></>
         )
         : (
-          <div className="richtext-p-2 richtext-bg-white !richtext-border richtext-rounded-lg richtext-shadow-sm dark:richtext-bg-black richtext-border-neutral-200 dark:richtext-border-neutral-800">
+          <div className="richtext-rounded-lg !richtext-border richtext-border-neutral-200 richtext-bg-white richtext-p-2 richtext-shadow-sm dark:richtext-border-neutral-800 dark:richtext-bg-black">
             {visible
               ? (
                 <>
                   <Textarea
-                    value={currentValue}
-                    onChange={e => setCurrentValue(e.target.value)}
                     autoFocus
+                    defaultValue={text}
+                    onChange={e => setCurrentValue(e.target.value)}
                     placeholder="Formula text"
                     rows={3}
-                    defaultValue={text}
                     style={{ marginBottom: 8 }}
+                    value={currentValue}
                   />
 
                   {previewContent && (
-                    <div className="richtext-my-[10px] richtext-p-[10px] richtext-rounded-[6px] !richtext-border-[1px] richtext-whitespace-nowrap richtext-overflow-auto">
+                    <div className="richtext-my-[10px] richtext-overflow-auto richtext-whitespace-nowrap richtext-rounded-[6px] !richtext-border richtext-p-[10px]">
                       {previewContent}
                     </div>
                   )}
 
                   <div className="richtext-flex richtext-items-center richtext-justify-between richtext-gap-[6px]">
-                    <Button onClick={submit} className="richtext-flex-1">
+                    <Button className="richtext-flex-1"
+                      onClick={submit}
+                    >
                       Submit
                     </Button>
 
-                    <a href="https://katex.org/docs/supported" target="_blank" rel="noreferrer noopener">
+                    <a href="https://katex.org/docs/supported"
+                      rel="noreferrer noopener"
+                      target="_blank"
+                    >
                       <HelpCircle size={16} />
                     </a>
                   </div>
@@ -117,11 +127,15 @@ function BubbleMenuKatex({ editor, ...props }: any) {
               )
               : (
                 <div className="richtext-flex richtext-items-center richtext-justify-center richtext-gap-[6px]">
-                  <ActionButton tooltip="Edit" action={() => toggleVisible(!visible)}>
+                  <ActionButton action={() => toggleVisible(!visible)}
+                    tooltip="Edit"
+                  >
                     <Pencil size={16} />
                   </ActionButton>
 
-                  <ActionButton tooltip="Delete" action={deleteMe}>
+                  <ActionButton action={deleteMe}
+                    tooltip="Delete"
+                  >
                     <Trash2 size={16} />
                   </ActionButton>
                 </div>
@@ -133,4 +147,6 @@ function BubbleMenuKatex({ editor, ...props }: any) {
   );
 }
 
-export default BubbleMenuKatex;
+export {
+  BubbleMenuKatex
+};

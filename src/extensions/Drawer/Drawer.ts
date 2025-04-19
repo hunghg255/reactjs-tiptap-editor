@@ -22,7 +22,7 @@ export interface DrawerOptions extends GeneralOptions<DrawerOptions> {
   upload?: (file: File) => Promise<string>
 }
 
-export const Drawer = TiptapImage.extend<DrawerOptions>({
+export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
   name: 'drawer',
 
   addOptions() {

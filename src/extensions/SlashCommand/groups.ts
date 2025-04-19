@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { Extensions } from '@tiptap/core';
 
-import { Image, Video, type HeadingOptions } from '@/extensions';
+import { Image } from '@/extensions/Image';
 import { actionDialogImage } from '@/extensions/Image/store';
+import { Video } from '@/extensions/Video';
 import { actionDialogVideo } from '@/extensions/Video/store';
 import { localeActions } from '@/locales';
 
@@ -25,9 +27,10 @@ export function renderGroups(extensions: Extensions, renderGroupItem?: SlashComm
   extensions.forEach((extension) => {
     /* Format */
     if (extension.name.toLowerCase() === 'heading') {
-      extension.options.levels.forEach((level: HeadingOptions['levels'][number]) => {
+      extension.options.levels.forEach((level: any) => {
         groups[0].commands.push({
           name: `heading${level}`,
+          //@ts-expect-error
           label: localeActions.t(`editor.heading.h${level}.tooltip`),
           aliases: [`h${level}`, 'bt', `bt${level}`],
           iconName: `Heading${level}`,

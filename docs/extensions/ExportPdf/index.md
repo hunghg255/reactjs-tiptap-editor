@@ -13,7 +13,7 @@ next:
 ## Usage
 
 ```tsx
-import { ExportPdf } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { ExportPdf } from 'reactjs-tiptap-editor/exportpdf'; // [!code ++]
 
 const extensions = [
   ...,

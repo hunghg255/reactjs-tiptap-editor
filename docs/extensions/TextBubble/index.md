@@ -13,7 +13,7 @@ next:
 ## Usage
 
 ```tsx
-import { TextBubble } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { TextBubble } from 'reactjs-tiptap-editor/textbubble'; // [!code ++]
 
 const extensions = [
   ...,

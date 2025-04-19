@@ -17,7 +17,7 @@ export interface TextAlignOptions extends TiptapTextAlignOptions, GeneralOptions
    */
   alignments: Alignments[]
 }
-export const TextAlign = TiptapTextAlign.extend<TextAlignOptions>({
+export const TextAlign = /* @__PURE__ */ TiptapTextAlign.extend<TextAlignOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

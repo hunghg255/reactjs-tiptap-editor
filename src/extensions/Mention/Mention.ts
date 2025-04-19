@@ -3,8 +3,9 @@ import BulitInMention from '@tiptap/extension-mention';
 // import { MentionList } from '@/wrappers/mention-list'
 import { ReactRenderer } from '@tiptap/react';
 import tippy from 'tippy.js';
-import { getDatasetAttribute } from '@/utils/dom-dataset';
+
 import { NodeViewMentionList } from '@/extensions/Mention/components/NodeViewMentionList/NodeViewMentionList';
+import { getDatasetAttribute } from '@/utils/dom-dataset';
 
 const MOCK_USERS = [
   {
@@ -25,7 +26,7 @@ const MOCK_USERS = [
   },
 ];
 
-const suggestion = {
+const suggestion = /* @__PURE__ */ {
   items: async ({ query }: any) => {
     const data = MOCK_USERS.map(item => item.name);
     return data.filter(item => item.toLowerCase().startsWith(query.toLowerCase()));
@@ -79,7 +80,7 @@ const suggestion = {
   },
 } as any;
 
-export const Mention = BulitInMention.extend({
+export const Mention = /* @__PURE__ */ BulitInMention.extend({
   addAttributes() {
     return {
       id: {

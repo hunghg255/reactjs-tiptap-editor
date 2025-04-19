@@ -1,10 +1,11 @@
 import { useCallback } from 'react';
 
 import { BubbleMenu } from '@tiptap/react';
+
 import { ActionButton } from '@/components/ActionButton';
-import { deleteNode } from '@/utils/delete-node';
-import { MultiColumn } from '@/extensions';
+import { MultiColumn } from '@/extensions/MultiColumn';
 import { useLocale } from '@/locales';
+import { deleteNode } from '@/utils/delete-node';
 
 export function ColumnsBubbleMenu({ editor }: any) {
   const { t } = useLocale();
@@ -17,8 +18,8 @@ export function ColumnsBubbleMenu({ editor }: any) {
 
   return (
     <BubbleMenu
-      pluginKey="columns-bubble-menu"
       editor={editor}
+      pluginKey="columns-bubble-menu"
       shouldShow={shouldShow}
       tippyOptions={{
         popperOptions: {
@@ -32,22 +33,25 @@ export function ColumnsBubbleMenu({ editor }: any) {
         // },
       }}
     >
-      <div className="richtext-w-auto richtext-px-3 richtext-py-2 richtext-transition-all !richtext-border richtext-rounded-sm richtext-shadow-sm richtext-pointer-events-auto richtext-select-none richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-bg-background">
+      <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">
         <ActionButton
           action={addColBefore}
           icon="ColumnAddLeft"
           tooltip={t('editor.table.menu.insertColumnBefore')}
         />
+
         <ActionButton
           action={addColAfter}
           icon="ColumnAddRight"
           tooltip={t('editor.table.menu.insertColumnAfter')}
         />
+
         <ActionButton
           action={deleteCol}
           icon="DeleteColumn"
           tooltip={t('editor.table.menu.deleteColumn')}
         />
+
         <ActionButton
           action={deleteMe}
           icon="Trash2"

@@ -15,7 +15,7 @@ The BulletList extension allows you to add bullet lists to your editor.
 ## Usage
 
 ```tsx
-import { BulletList } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { BulletList } from 'reactjs-tiptap-editor/bulletlist'; // [!code ++]
 
 const extensions = [
   ...,

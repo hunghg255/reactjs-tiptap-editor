@@ -6,10 +6,11 @@ import type { TableHeaderOptions } from '@tiptap/extension-table-header';
 import { TableRow } from '@tiptap/extension-table-row';
 import type { TableRowOptions } from '@tiptap/extension-table-row';
 
-import type { TableCellBackgroundOptions } from './cell-background';
-import { TableCellBackground } from './cell-background';
 import TableActionButton from '@/extensions/Table/components/TableActionButton';
 import type { GeneralOptions } from '@/types';
+
+import type { TableCellBackgroundOptions } from './cell-background';
+import { TableCellBackground } from './cell-background';
 
 export interface TableOptions extends GeneralOptions<TableOptions> {
   HTMLAttributes: Record<string, any>
@@ -27,7 +28,7 @@ export interface TableOptions extends GeneralOptions<TableOptions> {
   /** options for table cell background */
   tableCellBackground: Partial<TableCellBackgroundOptions>
 }
-export const Table = TiptapTable.extend<TableOptions>({
+export const Table = /* @__PURE__ */ TiptapTable.extend<TableOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

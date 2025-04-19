@@ -14,7 +14,7 @@ The Slash Command extension allows you to add slash commands to your editor.
 ## Usage
 
 ```tsx
-import { SlashCommand } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { SlashCommand } from 'reactjs-tiptap-editor/slashcommand'; // [!code ++]
 
 const extensions = [
   ...,

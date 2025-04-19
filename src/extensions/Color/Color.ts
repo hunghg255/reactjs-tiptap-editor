@@ -16,7 +16,7 @@ export interface ColorOptions extends TiptapColorOptions, GeneralOptions<ColorOp
   defaultColor?: string
 }
 
-export const Color = TiptapColor.extend<ColorOptions>({
+export const Color = /* @__PURE__ */ TiptapColor.extend<ColorOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
@@ -42,7 +42,7 @@ export const Color = TiptapColor.extend<ColorOptions>({
               return editor.isActive({ color }) || false;
             },
             editor,
-            disabled: !editor.can().setColor(''),
+            disabled: false,
             tooltip: t('editor.color.tooltip'),
           },
         };

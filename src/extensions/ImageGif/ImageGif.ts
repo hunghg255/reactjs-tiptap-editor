@@ -44,7 +44,7 @@ declare module '@tiptap/core' {
   }
 }
 
-export const ImageGif = TiptapImage.extend<ImageGifOptions>({
+export const ImageGif = /* @__PURE__ */ TiptapImage.extend<ImageGifOptions>({
   name: 'imageGif',
   addOptions() {
     return {

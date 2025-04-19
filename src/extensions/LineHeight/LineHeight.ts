@@ -6,6 +6,10 @@ import LineHeightDropdown from '@/extensions/LineHeight/components/LineHeightDro
 import type { GeneralOptions } from '@/types';
 import { createLineHeightCommand } from '@/utils/line-height';
 
+export {
+  DEFAULT_LINE_HEIGHT_LIST
+};
+
 export interface LineHeightOptions extends GeneralOptions<LineHeightOptions> {
   types: string[]
   lineHeights: string[]
@@ -21,7 +25,7 @@ declare module '@tiptap/core' {
   }
 }
 
-export const LineHeight = Extension.create<LineHeightOptions>({
+export const LineHeight = /* @__PURE__ */ Extension.create<LineHeightOptions>({
   name: 'lineHeight',
   addOptions() {
     return {

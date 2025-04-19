@@ -15,11 +15,11 @@ next:
 ## Usage
 
 ```tsx
-import { UnderLine } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { TextUnderline } from 'reactjs-tiptap-editor/textunderline'; // [!code ++]
 
 const extensions = [
   ...,
   // Import Extensions Here
-  UnderLine // [!code ++]
+  TextUnderline // [!code ++]
 ];
 ```

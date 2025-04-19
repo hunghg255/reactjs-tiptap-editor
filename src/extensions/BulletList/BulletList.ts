@@ -8,7 +8,7 @@ export interface BulletListOptions
   extends TiptapBulletListOptions,
   GeneralOptions<BulletListOptions> {}
 
-export const BulletList = TiptapBulletList.extend<BulletListOptions>({
+export const BulletList = /* @__PURE__ */ TiptapBulletList.extend<BulletListOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

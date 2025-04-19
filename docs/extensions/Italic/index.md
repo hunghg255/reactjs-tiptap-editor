@@ -13,7 +13,7 @@ next:
 ## Usage
 
 ```tsx
-import { Italic } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { Italic } from 'reactjs-tiptap-editor/italic'; // [!code ++]
 
 const extensions = [
   ...,

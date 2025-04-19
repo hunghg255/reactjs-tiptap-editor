@@ -4,7 +4,7 @@ import type { Editor } from '@tiptap/react';
 import { BubbleMenu as BubbleMenuReact } from '@tiptap/react';
 
 import { Separator, getBubbleDrawer } from '@/components';
-import { Drawer } from '@/extensions';
+import { Drawer } from '@/extensions/Drawer';
 import { EditDrawerBlock } from '@/extensions/Drawer/components/EditDrawerBlock';
 import { useAttributes } from '@/hooks/useAttributes';
 import { useExtension } from '@/hooks/useExtension';

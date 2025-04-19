@@ -148,7 +148,7 @@ export interface BaseKitOptions {
   selection: any | false
 }
 
-export const BaseKit = Extension.create<BaseKitOptions>({
+export const BaseKit = /* @__PURE__ */ Extension.create<BaseKitOptions>({
   name: 'base-kit',
 
   addExtensions() {

@@ -3,7 +3,7 @@ import { Extension } from '@tiptap/core';
 
 import TextDirectionButton from '@/extensions/TextDirection/components/TextDirectionButton';
 
-const TextDirection = Extension.create({
+const TextDirection = /* @__PURE__ */ Extension.create({
   name: 'text-direction',
   addOptions() {
     return {

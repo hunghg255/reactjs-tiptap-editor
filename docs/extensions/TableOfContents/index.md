@@ -13,7 +13,7 @@ next:
 ## Usage
 
 ```tsx
-import { TableOfContents } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { TableOfContents } from 'reactjs-tiptap-editor/tableofcontent'; // [!code ++]
 
 const extensions = [
   ...,

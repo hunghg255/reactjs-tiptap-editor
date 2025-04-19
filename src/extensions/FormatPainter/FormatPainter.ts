@@ -27,7 +27,7 @@ export interface PainterAction {
 /**
  * 格式刷
  */
-export const FormatPainter = Extension.create<FormatPainterOptions>({
+export const FormatPainter = /* @__PURE__ */ Extension.create<FormatPainterOptions>({
   name: 'painter',
   addOptions() {
     return {

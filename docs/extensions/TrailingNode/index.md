@@ -2,8 +2,8 @@
 description: TrailingNode
 
 next:
-  text: UnderLine
-  link: /extensions/UnderLine/index.md
+  text: TextUnderLine
+  link: /extensions/TextUnderLine/index.md
 ---
 
 # Trailing Node
@@ -13,7 +13,7 @@ next:
 ## Usage
 
 ```tsx
-import { TrailingNode } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { TrailingNode } from 'reactjs-tiptap-editor/trailingnode'; // [!code ++]
 
 const extensions = [
   ...,

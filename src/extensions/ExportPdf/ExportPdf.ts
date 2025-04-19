@@ -3,7 +3,7 @@ import { Extension } from '@tiptap/core';
 import { ActionButton } from '@/components';
 import { printEditorContent } from '@/utils/pdf';
 
-export const ExportPdf = Extension.create<any>({
+export const ExportPdf = /* @__PURE__ */ Extension.create<any>({
   name: 'exportPdf',
   addOptions() {
     return {

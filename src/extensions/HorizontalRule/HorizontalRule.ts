@@ -9,7 +9,7 @@ export interface HorizontalRuleOptions
   extends TiptapHorizontalRuleOptions,
   GeneralOptions<HorizontalRuleOptions> {}
 
-export const HorizontalRule = TiptapHorizontalRule.extend<HorizontalRuleOptions>({
+export const HorizontalRule = /* @__PURE__ */ TiptapHorizontalRule.extend<HorizontalRuleOptions>({
   renderHTML() {
     return [
       'div',

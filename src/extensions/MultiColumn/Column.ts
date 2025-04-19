@@ -1,6 +1,6 @@
 import { Node, mergeAttributes } from '@tiptap/core';
 
-export const Column = Node.create({
+export const Column = /* @__PURE__ */ Node.create({
   name: 'column',
   content: 'block+',
   isolating: true,

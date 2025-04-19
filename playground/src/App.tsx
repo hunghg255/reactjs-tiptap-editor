@@ -1,64 +1,68 @@
 import { useCallback, useState } from 'react'
 
-import RichTextEditor from 'reactjs-tiptap-editor'
+import RichTextEditor, { BaseKit } from 'reactjs-tiptap-editor'
 
 import { locale } from 'reactjs-tiptap-editor/locale-bundle'
-
 import {
-  Attachment,
-  BaseKit,
-  Blockquote,
-  Bold,
-  BulletList,
-  Clear,
-  Code,
-  CodeBlock,
-  Color,
-  ColumnActionButton,
-  Emoji,
-  Excalidraw,
-  ExportPdf,
-  ExportWord,
-  FontFamily,
-  FontSize,
-  FormatPainter,
-  Heading,
-  Highlight,
-  History,
-  HorizontalRule,
-  Iframe,
-  Image,
-  ImageGif,
-  ImportWord,
-  Indent,
-  Italic,
-  Katex,
-  LineHeight,
-  Link,
-  Mention,
-  Mermaid,
-  MoreMark,
-  OrderedList,
-  SearchAndReplace,
-  SlashCommand,
-  Strike,
-  Table,
-  TableOfContents,
-  TaskList,
-  TextAlign,
-  TextDirection,
-  Twitter,
-  Underline,
-  Video,
-  Drawer
-} from 'reactjs-tiptap-editor/extension-bundle'
+  BubbleMenuTwitter,
+  BubbleMenuKatex,
+  BubbleMenuExcalidraw,
+  BubbleMenuMermaid,
+  BubbleMenuDrawer
+} from 'reactjs-tiptap-editor/bubble-extra';
+
+import { Attachment } from 'reactjs-tiptap-editor/attachment';
+import { Blockquote } from 'reactjs-tiptap-editor/blockquote';
+import { Bold } from 'reactjs-tiptap-editor/bold';
+import { BulletList } from 'reactjs-tiptap-editor/bulletlist';
+import { Clear } from 'reactjs-tiptap-editor/clear';
+import { Code } from 'reactjs-tiptap-editor/code';
+import { CodeBlock } from 'reactjs-tiptap-editor/codeblock';
+import { Color } from 'reactjs-tiptap-editor/color';
+import { ColumnActionButton } from 'reactjs-tiptap-editor/multicolumn';
+import { Emoji } from 'reactjs-tiptap-editor/emoji';
+import { ExportPdf } from 'reactjs-tiptap-editor/exportpdf';
+import { ExportWord } from 'reactjs-tiptap-editor/exportword';
+import { FontFamily } from 'reactjs-tiptap-editor/fontfamily';
+import { FontSize } from 'reactjs-tiptap-editor/fontsize';
+import { FormatPainter } from 'reactjs-tiptap-editor/formatpainter';
+import { Heading } from 'reactjs-tiptap-editor/heading';
+import { Highlight } from 'reactjs-tiptap-editor/highlight';
+import { History } from 'reactjs-tiptap-editor/history';
+import { HorizontalRule } from 'reactjs-tiptap-editor/horizontalrule';
+import { Iframe } from 'reactjs-tiptap-editor/iframe';
+import { Image } from 'reactjs-tiptap-editor/image';
+import { ImageGif } from 'reactjs-tiptap-editor/imagegif';
+import { ImportWord } from 'reactjs-tiptap-editor/importword';
+import { Indent } from 'reactjs-tiptap-editor/indent';
+import { Italic } from 'reactjs-tiptap-editor/italic';
+import { LineHeight } from 'reactjs-tiptap-editor/lineheight';
+import { Link } from 'reactjs-tiptap-editor/link';
+import { Mention } from 'reactjs-tiptap-editor/mention';
+import { MoreMark } from 'reactjs-tiptap-editor/moremark';
+import { OrderedList } from 'reactjs-tiptap-editor/orderedlist';
+import { SearchAndReplace } from 'reactjs-tiptap-editor/searchandreplace';
+import { SlashCommand } from 'reactjs-tiptap-editor/slashcommand';
+import { Strike } from 'reactjs-tiptap-editor/strike';
+import { Table } from 'reactjs-tiptap-editor/table';
+import { TableOfContents } from 'reactjs-tiptap-editor/tableofcontent';
+import { TaskList } from 'reactjs-tiptap-editor/tasklist';
+import { TextAlign } from 'reactjs-tiptap-editor/textalign';
+import { TextUnderline } from 'reactjs-tiptap-editor/textunderline';
+import { Video } from 'reactjs-tiptap-editor/video';
+import { TextDirection } from 'reactjs-tiptap-editor/textdirection';
+import { Katex } from 'reactjs-tiptap-editor/katex';
+import { Drawer } from 'reactjs-tiptap-editor/drawer';
+import { Excalidraw } from 'reactjs-tiptap-editor/excalidraw';
+import { Twitter } from 'reactjs-tiptap-editor/twitter';
+import { Mermaid } from 'reactjs-tiptap-editor/mermaid';
 
 import 'reactjs-tiptap-editor/style.css'
-import 'katex/dist/katex.min.css'
-import 'easydrawer/styles.css'
-
 import 'prism-code-editor-lightweight/layout.css';
 import "prism-code-editor-lightweight/themes/github-dark.css"
+
+import 'katex/dist/katex.min.css'
+import 'easydrawer/styles.css'
 
 
 function convertBase64ToBlob(base64: string) {
@@ -92,10 +96,9 @@ const extensions = [
   FontSize,
   Bold,
   Italic,
-  Underline,
+  TextUnderline,
   Strike,
   MoreMark,
-  Katex,
   Emoji,
   Color.configure({ spacer: true }),
   Highlight,
@@ -153,7 +156,6 @@ const extensions = [
     },
   }),
   ExportWord,
-  Excalidraw,
   TextDirection,
   Mention,
   Attachment.configure({
@@ -170,6 +172,9 @@ const extensions = [
       })
     },
   }),
+
+  Katex,
+  Excalidraw,
   Mermaid.configure({
     upload: (file: any) => {
       // fake upload return base 64
@@ -201,31 +206,7 @@ const extensions = [
   Twitter,
 ]
 
-const DEFAULT = `<pre code="const options = {
-  language: 'html',
-  insertSpaces: true,
-  tabSize: 2,
-  lineNumbers: true,
-  readOnly: false,
-  wordWrap: false,
-  value: code,
-  rtl: false,
-  onUpdate(code) {},
-  onSelectionChange([start, end, direction], code) {},
-  onTokenize(tokens, language, code) {}
-}" language="typescript" linenumbers="true" wordwrap="false" tabsize="2" shouldfocus="false"><code>const options = {
-  language: 'html',
-  insertSpaces: true,
-  tabSize: 2,
-  lineNumbers: true,
-  readOnly: false,
-  wordWrap: false,
-  value: code,
-  rtl: false,
-  onUpdate(code) {},
-  onSelectionChange([start, end, direction], code) {},
-  onTokenize(tokens, language, code) {}
-}</code></pre>`
+const DEFAULT = `<h1 dir="auto" style="text-align: center">Rich Text Editor</h1><p dir="auto">A modern WYSIWYG rich text editor based on <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://github.com/scrumpy/tiptap">tiptap</a> and <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://ui.shadcn.com/">shadcn ui</a> for Reactjs</p><p dir="auto"></p><p dir="auto" style="text-align: center"></p><p dir="auto"><div style="text-align: center;" class="image"><img height="auto" style="" src="https://picsum.photos/1920/1080.webp?t=1" flipx="false" flipy="false" width="500" align="center" inline="false"></div></p><p dir="auto"></p><div data-type="horizontalRule"><hr></div><h2 dir="auto">Demo</h2><p dir="auto">👉<a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://reactjs-tiptap-editor.vercel.app/">Demo</a></p><h2 dir="auto">Features</h2><ul><li><p dir="auto">Use <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://ui.shadcn.com/">shadcn ui</a> components</p></li><li><p dir="auto">Markdown support</p></li><li><p dir="auto">TypeScript support</p></li><li><p dir="auto">I18n support (vi, en, zh, pt)</p></li><li><p dir="auto">React support</p></li><li><p dir="auto">Slash Commands</p></li><li><p dir="auto">Multi Column</p></li><li><p dir="auto">TailwindCss</p></li><li><p dir="auto">Support emoji</p></li><li><p dir="auto">Support iframe</p></li><li><p dir="auto">Support mermaid</p></li></ul><h2 dir="auto">Installation</h2><pre code="pnpm install reactjs-tiptap-editor" language="bash" linenumbers="true" wordwrap="false" tabsize="2" shouldfocus="false"><code>pnpm install reactjs-tiptap-editor</code></pre><p dir="auto"></p>`
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout
@@ -247,6 +228,7 @@ function App() {
     }, 300),
     [],
   )
+
   return (
     <div
       className="p-[24px] flex flex-col w-full max-w-screen-lg gap-[24px] mx-[auto] my-0"
@@ -281,6 +263,32 @@ function App() {
         extensions={extensions}
         dark={theme === 'dark'}
         disabled={disable}
+        bubbleMenu={{
+          render({ extensionsNames, editor, disabled }) {
+            return <>
+              {extensionsNames.includes('twitter') ? <BubbleMenuTwitter disabled={disabled}
+                editor={editor}
+                key="twitter"
+              /> : null}
+              {extensionsNames.includes('katex')  ? <BubbleMenuKatex disabled={disabled}
+                editor={editor}
+                key="katex"
+              /> : null}
+              {extensionsNames.includes('excalidraw')  ? <BubbleMenuExcalidraw disabled={disabled}
+                editor={editor}
+                key="excalidraw"
+              /> : null}
+              {extensionsNames.includes('mermaid')  ? <BubbleMenuMermaid disabled={disabled}
+                editor={editor}
+                key="mermaid"
+              /> : null}
+              {extensionsNames.includes('drawer')  ? <BubbleMenuDrawer disabled={disabled}
+                editor={editor}
+                key="drawer"
+              /> : null}
+            </>
+          },
+        }}
       />
 
       {typeof content === 'string' && (
