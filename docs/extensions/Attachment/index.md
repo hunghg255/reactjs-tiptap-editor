@@ -13,7 +13,7 @@ Attachment is a node extension that allows you to add an Attachment to your edit
 ## Usage
 
 ```tsx
-import { Attachment } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { Attachment } from 'reactjs-tiptap-editor/attachment'; // [!code ++]
 
 const extensions = [
   ...,

@@ -25,7 +25,7 @@ const extensions = [
 ## Configuration
 
 ```tsx
-import { TextDirection } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { TextDirection } from 'reactjs-tiptap-editor/textdirection'; // [!code ++]
 
 const extensions = [
   ...,

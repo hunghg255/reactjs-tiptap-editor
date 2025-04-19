@@ -29,7 +29,7 @@ yarn add mammoth
 :::
 
 ```tsx
-import { ImportWord } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { ImportWord } from 'reactjs-tiptap-editor/importword'; // [!code ++]
 
 const extensions = [
   ...,

@@ -67,7 +67,7 @@ export interface IImageOptions extends GeneralOptions<IImageOptions> {
   defaultInline?: boolean
 }
 
-export const Image = TiptapImage.extend<IImageOptions>({
+export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
   group: 'inline',
   inline: true,
   defining: true,

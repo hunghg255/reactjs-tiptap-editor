@@ -40,7 +40,12 @@ export type ExtensionNameKeys =
   | 'code'
   | 'codeBlock'
   | 'clear'
-  | 'history';
+  | 'history'
+  | 'twitter'
+  | 'katex'
+  | 'excalidraw'
+  | 'mermaid'
+  | 'drawer';
 
 /**
  * Represents the general options for Tiptap extensions.
@@ -116,6 +121,7 @@ export interface BubbleMenuRenderProps {
   editor: Editor
   disabled: boolean
   bubbleMenu: BubbleMenuProps
+  extensionsNames: string[]
 }
 
 export interface BubbleMenuConfig {
@@ -128,7 +134,7 @@ export interface BubbleMenuConfig {
    * custom menu actions
    */
   actions?: ActionButtonProps[]
-  
+
 }
 
 /**

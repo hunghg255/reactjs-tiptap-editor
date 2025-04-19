@@ -27,7 +27,7 @@ declare module '@tiptap/core' {
   }
 }
 
-export const Katex = Node.create<IKatexOptions>({
+export const Katex = /* @__PURE__ */ Node.create<IKatexOptions>({
   name: 'katex',
   group: 'inline',
   inline: true,

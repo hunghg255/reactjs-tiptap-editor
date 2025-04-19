@@ -24,7 +24,7 @@ declare module '@tiptap/core' {
   }
 }
 
-export const Excalidraw = Node.create({
+export const Excalidraw = /* @__PURE__ */ Node.create({
   name: 'excalidraw',
   group: 'block',
   selectable: true,

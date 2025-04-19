@@ -23,7 +23,7 @@ export const EmojiPluginKey = new PluginKey('emoji');
 
 export { emojisToName };
 
-export const Emoji = Node.create({
+export const Emoji = /* @__PURE__ */ Node.create({
   name: 'emoji',
   content: 'text*',
 

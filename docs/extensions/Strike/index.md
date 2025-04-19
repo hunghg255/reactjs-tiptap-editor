@@ -2,8 +2,8 @@
 description: Strike
 
 next:
-  text: Subscript
-  link: /extensions/Subscript/index.md
+  text: SubAndSuperScript
+  link: /extensions/SubAndSuperScript/index.md
 ---
 
 # Strike
@@ -15,7 +15,7 @@ The Strike extension allows you to strike through text in your editor.
 ## Usage
 
 ```tsx
-import { Strike } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { Strike } from 'reactjs-tiptap-editor/strike'; // [!code ++]
 
 const extensions = [
   ...,

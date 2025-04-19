@@ -17,12 +17,35 @@ next:
 
 ```tsx
 
+import { Katex } from 'reactjs-tiptap-editor/katex'; // [!code ++]
+
 import 'katex/dist/katex.min.css'; // [!code ++]
-import { Katex } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
 
 const extensions = [
   ...,
   // Import Extensions Here
    Katex, // [!code ++]
 ];
+```
+
+## Configuration bubble menu
+
+```tsx
+import { BubbleMenuKatex } from 'reactjs-tiptap-editor/bubble-extra'; // [!code ++]
+
+const App = () => {
+
+  return  <RichTextEditor
+    bubbleMenu={{
+      render({ extensionsNames, editor, disabled }) {
+        return <>
+          {extensionsNames.includes('katex')  ? <BubbleMenuKatex disabled={disabled}
+            editor={editor}
+            key="katex"
+          /> : null}
+        </>
+      },
+    }}
+  />
+}
 ```

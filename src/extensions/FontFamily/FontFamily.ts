@@ -2,11 +2,16 @@ import type { Extension } from '@tiptap/core';
 import type { FontFamilyOptions as TiptapFontFamilyOptions } from '@tiptap/extension-font-family';
 import FontFamilyTiptap from '@tiptap/extension-font-family';
 
-import type { BaseKitOptions } from '../BaseKit';
-import { ensureNameValueOptions } from '@/utils/utils';
 import { DEFAULT_FONT_FAMILY_LIST } from '@/constants';
 import FontFamilyButton from '@/extensions/FontFamily/components/FontFamilyButton';
 import type { GeneralOptions, NameValueOption } from '@/types';
+import { ensureNameValueOptions } from '@/utils/utils';
+
+import type { BaseKitOptions } from '../BaseKit';
+
+export {
+  DEFAULT_FONT_FAMILY_LIST
+};
 
 export interface FontFamilyOptions extends TiptapFontFamilyOptions, GeneralOptions<FontFamilyOptions> {
   /**
@@ -15,7 +20,7 @@ export interface FontFamilyOptions extends TiptapFontFamilyOptions, GeneralOptio
   fontFamilyList: (string | NameValueOption)[]
 }
 
-export const FontFamily = FontFamilyTiptap.extend<FontFamilyOptions>({
+export const FontFamily = /* @__PURE__ */ FontFamilyTiptap.extend<FontFamilyOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

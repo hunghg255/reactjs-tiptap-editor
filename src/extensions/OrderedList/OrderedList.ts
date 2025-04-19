@@ -8,7 +8,7 @@ export interface OrderedListOptions
   extends TiptapOrderedListOptions,
   GeneralOptions<OrderedListOptions> {}
 
-export const OrderedList = TiptapOrderedList.extend<OrderedListOptions>({
+export const OrderedList = /* @__PURE__ */ TiptapOrderedList.extend<OrderedListOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

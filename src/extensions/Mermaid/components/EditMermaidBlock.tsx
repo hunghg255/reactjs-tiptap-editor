@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { Editor } from '@tiptap/core';
-import mermaid from 'mermaid';
+
 // @ts-ignore
 import svg64 from 'svg64';
 
@@ -25,12 +25,26 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
   const [svgCode, setSvgCode] = useState('');
   const [visible, toggleVisible] = useState(false);
   const mermaidRef = useRef<HTMLElement | null>(null);
+  const [mermaidInstance, setMermaidInstance] = useState<any>(null);
 
   const upload = extension?.options.upload;
 
+  const loadMermaid = useCallback(
+    (div: any) => {
+      if (!div)
+        return;
+
+      import('mermaid')
+        .then((res) => {
+          setMermaidInstance(res.default);
+        });
+    },
+    [],
+  );
+
   const renderMermaid = async (value: any) => {
     try {
-      const { svg } = await mermaid.render('mermaid-svg', value);
+      const { svg } = await mermaidInstance.render('mermaid-svg', value);
       setSvgCode(svg);
     } catch {
       setSvgCode('');
@@ -38,7 +52,7 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
   };
 
   const mermaidInit = () => {
-    mermaid.initialize({
+    mermaidInstance.initialize({
       darkMode: false,
       startOnLoad: false,
       // fontFamily:'',
@@ -49,16 +63,16 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
   };
 
   useEffect(() => {
-    if (visible) {
+    if (mermaidInstance && visible) {
       mermaidInit();
     }
-  }, [visible]);
+  }, [mermaidInstance, visible]);
 
   useEffect(() => {
-    if (visible) {
+    if (mermaidInstance && visible) {
       renderMermaid(mermaidCode);
     }
-  }, [mermaidCode]);
+  }, [mermaidInstance, mermaidCode]);
 
   const setMermaid = async () => {
     if (mermaidCode === '') {
@@ -116,7 +130,9 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
           Edit Mermaid
         </DialogTitle>
 
-        <div style={{ height: '100%', border: '1px solid hsl(var(--border))' }}>
+        <div ref={loadMermaid}
+          style={{ height: '100%', border: '1px solid hsl(var(--border))' }}
+        >
           <div className="richtext-flex richtext-gap-[10px] richtext-rounded-[10px] richtext-p-[10px]">
             <Textarea
               autoFocus

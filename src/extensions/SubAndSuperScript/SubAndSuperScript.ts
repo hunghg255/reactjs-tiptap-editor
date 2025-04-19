@@ -26,7 +26,7 @@ export interface SubAndSuperScriptOptions extends GeneralOptions<SubAndSuperScri
   superscript: Partial<TiptapSuperscriptOptions> | false
 }
 
-export const SubAndSuperScript = Extension.create<SubAndSuperScriptOptions>({
+export const SubAndSuperScript = /* @__PURE__ */ Extension.create<SubAndSuperScriptOptions>({
   name: 'subAndSuperScript',
 
   addOptions() {

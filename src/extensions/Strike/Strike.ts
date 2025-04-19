@@ -6,7 +6,7 @@ import type { GeneralOptions } from '@/types';
 
 export interface StrikeOptions extends TiptapStrikeOptions, GeneralOptions<StrikeOptions> {}
 
-export const Strike = TiptapStrike.extend<StrikeOptions>({
+export const Strike = /* @__PURE__ */ TiptapStrike.extend<StrikeOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
@@ -15,7 +15,7 @@ export const Strike = TiptapStrike.extend<StrikeOptions>({
         componentProps: {
           action: () => editor.commands.toggleStrike(),
           isActive: () => editor.isActive('strike') || false,
-          disabled: !editor.can().toggleStrike(),
+          disabled: false,
           icon: 'Strikethrough',
           shortcutKeys: ['shift', 'mod', 'S'],
           tooltip: t('editor.strike.tooltip'),

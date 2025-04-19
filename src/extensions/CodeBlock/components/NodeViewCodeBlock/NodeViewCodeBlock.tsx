@@ -54,11 +54,11 @@ import { highlightBracketPairs } from 'prism-code-editor-lightweight/highlight-b
 import { matchBrackets } from 'prism-code-editor-lightweight/match-brackets';
 import { matchTags } from 'prism-code-editor-lightweight/match-tags';
 
-import { CodeBlock } from '@/extension-bundle';
 import { useEditableEditor } from '@/store/editableEditor';
 import { deleteNode } from '@/utils/delete-node';
 
 import styles from './index.module.scss';
+import { CodeBlock } from '../../CodeBlock';
 
 const languages = [
   { value: 'plaintext', label: 'plaintext' },

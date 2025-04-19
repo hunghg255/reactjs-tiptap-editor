@@ -4,7 +4,9 @@ import type { Editor } from '@tiptap/react';
 import { BubbleMenu as BubbleMenuReact } from '@tiptap/react';
 
 import { Separator, getBubbleImage, getBubbleImageGif, getBubbleVideo } from '@/components';
-import { Image, ImageGif, Video } from '@/extensions';
+import { Image } from '@/extensions/Image';
+import {  ImageGif } from '@/extensions/ImageGif';
+import { Video } from '@/extensions/Video';
 import { useLocale } from '@/locales';
 
 interface IPropsBubbleMenu {

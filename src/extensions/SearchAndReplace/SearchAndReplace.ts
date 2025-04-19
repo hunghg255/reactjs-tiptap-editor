@@ -200,7 +200,7 @@ interface SearchStorage {
   currentIndex: number
 }
 
-export const SearchAndReplace = Extension.create<SearchOptions, SearchStorage>({
+export const SearchAndReplace = /* @__PURE__ */ Extension.create<SearchOptions, SearchStorage>({
   name: 'search',
 
   addOptions() {

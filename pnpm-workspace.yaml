@@ -1,4 +1,5 @@
 ignore-workspace-root-check: true
 packages:
   - playground
+  - playgroundnext
   - docs

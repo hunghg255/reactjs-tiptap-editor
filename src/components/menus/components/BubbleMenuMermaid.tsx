@@ -4,7 +4,7 @@ import type { Editor } from '@tiptap/react';
 import { BubbleMenu as BubbleMenuReact } from '@tiptap/react';
 
 import { Separator, getBubbleMermaid } from '@/components';
-import { Mermaid } from '@/extensions';
+import { Mermaid } from '@/extensions/Mermaid';
 import { EditMermaidBlock } from '@/extensions/Mermaid/components/EditMermaidBlock';
 import { useAttributes } from '@/hooks/useAttributes';
 import { useExtension } from '@/hooks/useExtension';

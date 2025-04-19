@@ -9,7 +9,7 @@ import type { GeneralOptions } from '@/types';
 
 export interface LinkOptions extends TiptapLinkOptions, GeneralOptions<LinkOptions> {}
 
-export const Link = TiptapLink.extend<LinkOptions>({
+export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
   inclusive: false,
   parseHTML() {
     return [
@@ -38,7 +38,7 @@ export const Link = TiptapLink.extend<LinkOptions>({
           componentProps: {
             editor,
             action: (value) => {
-              const { link, text, openInNewTab } = value as any;
+              const { link, text, openInNewTab } = value;
               editor
                 .chain()
                 .extendMarkRange('link')

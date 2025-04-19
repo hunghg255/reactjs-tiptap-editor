@@ -17,7 +17,7 @@ export interface SlashCommandOptions {
 
 const extensionName = 'slashCommand';
 let popup: any;
-export const SlashCommand = Extension.create<SlashCommandOptions>({
+export const SlashCommand = /* @__PURE__ */ Extension.create<SlashCommandOptions>({
   name: extensionName,
   priority: 200,
   onCreate() {

@@ -6,7 +6,7 @@ import type { GeneralOptions } from '@/types';
 
 export interface CodeOptions extends TiptapCodeOptions, GeneralOptions<CodeOptions> {}
 
-export const Code = TiptapCode.extend<CodeOptions>({
+export const Code = /* @__PURE__ */ TiptapCode.extend<CodeOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

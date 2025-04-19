@@ -7,10 +7,62 @@ import dts from 'vite-plugin-dts'
 import tailwind from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 import postcssReplace from 'postcss-replace'
+import { globbySync } from 'globby'
+
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  const isDev = mode !== 'production'
+export default defineConfig(async ({ mode }) => {
+  const isDev = mode !== 'production';
+
+  const entry = [
+    path.resolve(__dirname, 'src/index.ts'),
+    path.resolve(__dirname, 'src/locale-bundle.ts'),
+    path.resolve(__dirname, 'src/components/menus/bubble-extra.ts'),
+  ]
+
+  const files = await globbySync('src/extensions/**/*.ts', {
+    ignore: ['src/**/*/index.ts', 'src/**/*.spec.ts'], // Exclude .spec.ts files
+  });
+
+  const exports = {};
+  const typeVersions = {};
+
+  files.forEach((v: any) => {
+    const vv = v.replace('src/', '')
+    const [, _name, i] = vv.split('/')
+    if (!_name?.includes('BaseKit')) {
+
+
+      entry.push(path.resolve(__dirname, `src/extensions/${_name}/${_name}.ts`))
+
+      exports[`./${_name.toLowerCase()}`] = {
+        require: {
+          types: `./lib/${_name}.d.cts`,
+          default: `./lib/${_name}.cjs`,
+        },
+        import: {
+          types: `./lib/${_name}.d.ts`,
+          default: `./lib/${_name}.js`,
+        },
+      }
+      typeVersions[`./${_name.toLowerCase()}`] = [
+        `./lib/${_name}.d.ts`,
+      ]
+    }
+  });
+
+  // const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
+  // packageJson.exports = {
+  //   ...packageJson.exports,
+  //   ...exports,
+  // }
+  // packageJson.typesVersions = {
+  //   "*": {
+  //     ...packageJson.typesVersions["*"],
+  //     ...typeVersions,
+  //   }
+  // }
+  // fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2))
 
   return {
     plugins: [
@@ -57,11 +109,7 @@ export default defineConfig(({ mode }) => {
       outDir: 'lib',
       sourcemap: isDev,
       lib: {
-        entry: [
-          path.resolve(__dirname, 'src/index.ts'),
-          path.resolve(__dirname, 'src/extension-bundle.ts'),
-          path.resolve(__dirname, 'src/locale-bundle.ts')
-        ],
+        entry,
         formats: ['es', 'cjs'],
         fileName: (format, entryName) => {
           if (format === 'es') return `${entryName}.js`;
@@ -75,16 +123,8 @@ export default defineConfig(({ mode }) => {
             if (assetInfo.name == "reactjs-tiptap-editor.css") return "style.css";
             return assetInfo.name;
           },
-          manualChunks(id) {
-            if (id.includes('@tiptap')) {
-              return 'tiptap'
-            }
-            if (id.includes('node_modules')) {
-              return 'vendor'
-            }
-          },
         },
-        external: ['react', 'react-dom', 'react/jsx-runtime', 'katex', 'shiki', 'docx', '@radix-ui/react-dropdown-menu', '@radix-ui/react-icons', '@radix-ui/react-label', '@radix-ui/react-popover', '@radix-ui/react-separator', '@radix-ui/react-slot', '@radix-ui/react-switch', '@radix-ui/react-tabs', '@radix-ui/react-toast', '@radix-ui/react-toggle', '@radix-ui/react-tooltip', '@radix-ui/react-select', '@radix-ui/react-checkbox', 'react-colorful', 'scroll-into-view-if-needed', 'tippy.js', 'lucide-react', 'prosemirror-docx', 're-resizable', '@excalidraw/excalidraw', '@radix-ui/react-dialog', 'react-image-crop', 'mermaid', 'easydrawer', 'frimousse'],
+        external: ['react', 'react-dom', 'react/jsx-runtime', 'katex', 'docx', '@radix-ui/react-dropdown-menu', '@radix-ui/react-icons', '@radix-ui/react-label', '@radix-ui/react-popover', '@radix-ui/react-separator', '@radix-ui/react-slot', '@radix-ui/react-switch', '@radix-ui/react-tabs', '@radix-ui/react-toast', '@radix-ui/react-toggle', '@radix-ui/react-tooltip', '@radix-ui/react-select', '@radix-ui/react-checkbox', 'react-colorful', 'scroll-into-view-if-needed', 'tippy.js', 'lucide-react', 'prosemirror-docx', 're-resizable', '@excalidraw/excalidraw', '@radix-ui/react-dialog', 'react-image-crop', 'mermaid', 'easydrawer', 'frimousse'],
       },
     },
   }

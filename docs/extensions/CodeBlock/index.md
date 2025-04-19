@@ -13,7 +13,7 @@ next:
 ## Usage
 
 ```tsx
-import { CodeBlock } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { CodeBlock } from 'reactjs-tiptap-editor/codeblock'; // [!code ++]
 
 import 'prism-code-editor-lightweight/layout.css'; // [!code ++]
 import 'prism-code-editor-lightweight/themes/github-dark.css'; // [!code ++]

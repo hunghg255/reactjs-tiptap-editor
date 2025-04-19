@@ -14,7 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Image as ExtensionImage } from '@/extensions';
+import { Image as ExtensionImage } from '@/extensions/Image';
 import { useLocale } from '@/locales';
 import { dataURLtoFile, readImageAsBase64 } from '@/utils/file';
 

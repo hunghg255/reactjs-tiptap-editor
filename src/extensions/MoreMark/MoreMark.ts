@@ -24,7 +24,7 @@ export interface MoreMarkOptions extends GeneralOptions<MoreMarkOptions> {
   superscript: Partial<TiptapSuperscriptOptions> | false
 }
 
-export const MoreMark = Extension.create<MoreMarkOptions>({
+export const MoreMark = /* @__PURE__ */ Extension.create<MoreMarkOptions>({
   name: 'moreMark',
   addOptions() {
     return {

@@ -1,5 +1,6 @@
 import { Node, mergeAttributes, nodePasteRule } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
+
 import NodeViewTweet from '@/extensions/Twitter/components/NodeViewTweet';
 import TwitterActiveButton from '@/extensions/Twitter/components/TwitterActiveButton';
 
@@ -40,7 +41,7 @@ interface TwitterOptions {
  * The options for setting a tweet.
  */
 interface SetTweetOptions {
-  src: string 
+  src: string
 }
 
 declare module '@tiptap/core' {
@@ -60,7 +61,7 @@ declare module '@tiptap/core' {
 /**
  * This extension adds support for tweets.
  */
-export const Twitter = Node.create<TwitterOptions>({
+export const Twitter = /* @__PURE__ */ Node.create<TwitterOptions>({
   name: 'twitter',
   draggable: true,
   selectable: true,

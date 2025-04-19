@@ -1,9 +1,12 @@
 import { Node, mergeAttributes } from '@tiptap/core';
-
 import { TextSelection } from '@tiptap/pm/state';
+
 import { addOrDeleteCol, createColumns, gotoCol } from '@/utils/columns';
 
 export const EXTENSION_PRIORITY_HIGHEST = 200;
+
+export * from './Column';
+export * from './components/ColumnActionButton';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -16,7 +19,7 @@ declare module '@tiptap/core' {
   }
 }
 
-export const MultiColumn = Node.create({
+export const MultiColumn = /* @__PURE__ */ Node.create({
   name: 'columns',
   group: 'block',
   defining: true,

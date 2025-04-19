@@ -4,7 +4,7 @@ import type { Editor } from '@tiptap/react';
 import { BubbleMenu } from '@tiptap/react';
 
 import { ActionButton } from '@/components/ActionButton';
-import { Twitter } from '@/extensions';
+import { Twitter } from '@/extensions/Twitter';
 import FormEditLinkTwitter from '@/extensions/Twitter/components/FormEditLinkTwitter';
 import { useLocale } from '@/locales';
 import { deleteNode } from '@/utils/delete-node';

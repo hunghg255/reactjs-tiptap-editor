@@ -88,7 +88,7 @@ function linkConvert(src: string) {
   return src;
 }
 
-export const Video = Node.create<VideoOptions>({
+export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
   name: 'video',
   group: 'block',
   atom: true,

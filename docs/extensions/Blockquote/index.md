@@ -15,7 +15,7 @@ The Blockquote extension allows you to add blockquotes to your editor.
 ## Usage
 
 ```tsx
-import { Blockquote } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { Blockquote } from 'reactjs-tiptap-editor/blockquote'; // [!code ++]
 
 const extensions = [
   ...,

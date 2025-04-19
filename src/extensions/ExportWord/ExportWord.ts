@@ -41,9 +41,9 @@ const nodeSerializer = {
     });
   },
 };
-const docxSerializer = new DocxSerializer(nodeSerializer, defaultMarks);
+const docxSerializer = /* @__PURE__ */ new DocxSerializer(nodeSerializer, defaultMarks);
 
-export const ExportWord = Extension.create<ExportWordOptions>({
+export const ExportWord = /* @__PURE__ */ Extension.create<ExportWordOptions>({
   name: 'exportWord',
   addOptions() {
     return {

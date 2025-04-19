@@ -13,7 +13,7 @@ The Document extension allows you to add a emoji to your editor.
 ## Usage
 
 ```tsx
-import { Emoji } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { Emoji } from 'reactjs-tiptap-editor/emoji'; // [!code ++]
 
 const extensions = [
   ...,

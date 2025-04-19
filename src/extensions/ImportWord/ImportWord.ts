@@ -1,10 +1,8 @@
-// eslint-disable-next-line import/no-named-default
+import { Extension } from '@tiptap/core';
 import type { default as Mammoth } from 'mammoth';
 
-import { Extension } from '@tiptap/core';
-import type { GeneralOptions } from '@/types';
-
 import ImportWordButton from '@/extensions/ImportWord/components/ImportWordButton';
+import type { GeneralOptions } from '@/types';
 
 export interface ImportWordOptions extends GeneralOptions<ImportWordOptions> {
   /** Function for converting Word files to HTML */
@@ -22,7 +20,7 @@ export interface ImportWordOptions extends GeneralOptions<ImportWordOptions> {
   mammothOptions?: Parameters<typeof Mammoth['convertToHtml']>[1]
 }
 
-export const ImportWord = Extension.create<ImportWordOptions>({
+export const ImportWord = /* @__PURE__ */ Extension.create<ImportWordOptions>({
   name: 'importWord',
   addOptions() {
     return {

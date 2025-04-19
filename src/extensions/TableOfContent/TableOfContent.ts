@@ -19,7 +19,7 @@ interface Options {
   onHasOneBeforeInsert?: () => void
 }
 
-export const TableOfContents = Node.create<Options>({
+export const TableOfContents = /* @__PURE__ */ Node.create<Options>({
   name: 'tableOfContents',
   group: 'block',
   atom: true,

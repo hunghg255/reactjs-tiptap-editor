@@ -13,7 +13,7 @@ ImageGif is a node extension that allows you to add an ImageGif to your editor.
 ## Usage
 
 ```tsx
-import { ImageGif } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { ImageGif } from 'reactjs-tiptap-editor/imagegif'; // [!code ++]
 
 const extensions = [
   ...,

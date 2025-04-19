@@ -15,11 +15,33 @@ The Excalidraw extension allows you to add an Excalidraw to your editor.
 ## Usage
 
 ```tsx
-import { Excalidraw } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { Excalidraw } from 'reactjs-tiptap-editor/excalidraw'; // [!code ++]
 
 const extensions = [
   ...,
   // Import Extensions Here
   Excalidraw // [!code ++]
 ];
+```
+
+## Configuration bubble menu
+
+```tsx
+import { BubbleMenuExcalidraw } from 'reactjs-tiptap-editor/bubble-extra'; // [!code ++]
+
+const App = () => {
+
+  return  <RichTextEditor
+    bubbleMenu={{
+      render({ extensionsNames, editor, disabled }) {
+        return <>
+          {extensionsNames.includes('excalidraw')  ? <BubbleMenuExcalidraw disabled={disabled}
+            editor={editor}
+            key="excalidraw"
+          /> : null}
+        </>
+      },
+    }}
+  />
+}
 ```

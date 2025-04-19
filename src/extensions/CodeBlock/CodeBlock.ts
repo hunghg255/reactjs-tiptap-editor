@@ -26,7 +26,7 @@ export const backtickInputRegex = /^`{3}([a-z]+)?\s$/;
  */
 export const tildeInputRegex = /^~{3}([a-z]+)?\s$/;
 
-export const CodeBlock = Node.create({
+export const CodeBlock = /* @__PURE__ */ Node.create({
   name: 'codeBlock',
   group: 'block',
   atom: true,

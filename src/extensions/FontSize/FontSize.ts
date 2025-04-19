@@ -1,9 +1,14 @@
 import { Extension } from '@tiptap/core';
 
-import FontSizeMenuButton from './components/FontSizeMenuButton';
-import { ensureNameValueOptions } from '@/utils/utils';
 import { DEFAULT_FONT_SIZE_LIST, DEFAULT_FONT_SIZE_VALUE } from '@/constants';
 import type { GeneralOptions, NameValueOption } from '@/types';
+import { ensureNameValueOptions } from '@/utils/utils';
+
+import FontSizeMenuButton from './components/FontSizeMenuButton';
+
+export {
+  DEFAULT_FONT_SIZE_LIST
+};
 
 /**
  * Represents the interface for font size options, extending GeneralOptions.
@@ -35,7 +40,7 @@ declare module '@tiptap/core' {
   }
 }
 
-export const FontSize = Extension.create<FontSizeOptions>({
+export const FontSize = /* @__PURE__ */ Extension.create<FontSizeOptions>({
   name: 'fontSize',
   addOptions() {
     return {
@@ -67,13 +72,13 @@ export const FontSize = Extension.create<FontSizeOptions>({
           divider: k.value === defaultFontSize.value || false,
           default: k.value === defaultFontSize.value || false,
         }));
-        const disabled = items.filter(k => k.disabled).length === items.length;
+        // const disabled = items.filter(k => k.disabled).length === items.length;
         return {
           component: FontSizeMenuButton,
           componentProps: {
             editor,
             tooltip: t('editor.fontSize.tooltip'),
-            disabled,
+            disabled: false,
             items,
             maxHeight: 280,
           },

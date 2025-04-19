@@ -13,7 +13,7 @@ next:
 ## Usage
 
 ```tsx
-import { Indent } from 'reactjs-tiptap-editor/extension-bundle'; // [!code ++]
+import { Indent } from 'reactjs-tiptap-editor/indent'; // [!code ++]
 
 const extensions = [
   ...,

@@ -1,13 +1,11 @@
+import React from 'react';
+
 import type { Editor } from '@tiptap/core';
 
-import { BubbleMenuImage, BubbleMenuImageGif, BubbleMenuLink, BubbleMenuText, BubbleMenuVideo, ColumnsBubbleMenu, ContentMenu, TableBubbleMenu } from '@/components';
-import { BubbleMenuDrawer } from '@/components/menus/components/BubbleMenuDrawer';
-import { BubbleMenuExcalidraw } from '@/components/menus/components/BubbleMenuExcalidraw';
+import { BubbleMenuImage, BubbleMenuImageGif, BubbleMenuLink, BubbleMenuText, BubbleMenuVideo, ColumnsBubbleMenu, ContentMenu, TableBubbleMenu } from '@/components/menus';
 import { BubbleMenuIframe } from '@/components/menus/components/BubbleMenuIframe';
-import BubbleMenuKatex from '@/components/menus/components/BubbleMenuKatex';
-import { BubbleMenuMermaid } from '@/components/menus/components/BubbleMenuMermaid';
-import { BubbleMenuTwitter } from '@/components/menus/components/BubbleMenuTwitter';
-import { Image, ImageGif } from '@/extensions';
+import { Image, } from '@/extensions/Image';
+import { ImageGif } from '@/extensions/ImageGif';
 import type { BubbleMenuProps as BubbleMenuPropsType } from '@/types';
 
 export interface BubbleMenuComponentProps {
@@ -31,7 +29,8 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
     extensionsNames.includes('columns') && !bubbleMenu?.columnConfig?.hidden ? <ColumnsBubbleMenu editor={editor}
       key="columns"
     /> : null,
-    extensionsNames.includes('table') && !bubbleMenu?.tableConfig?.hidden ? <TableBubbleMenu editor={editor} actions={bubbleMenu?.tableConfig?.actions}
+    extensionsNames.includes('table') && !bubbleMenu?.tableConfig?.hidden ? <TableBubbleMenu actions={bubbleMenu?.tableConfig?.actions}
+      editor={editor}
       key="table"
     /> : null,
     extensionsNames.includes('link') && !bubbleMenu?.linkConfig?.hidden ? <BubbleMenuLink disabled={disabled}
@@ -50,26 +49,12 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
       editor={editor}
       key="video"
     /> : null,
-    extensionsNames.includes('katex') && !bubbleMenu?.katexConfig?.hidden ? <BubbleMenuKatex disabled={disabled}
-      editor={editor}
-      key="katex"
-    /> : null,
-    extensionsNames.includes('excalidraw') && !bubbleMenu?.excalidrawConfig?.hidden ? <BubbleMenuExcalidraw disabled={disabled}
-      editor={editor}
-      key="excalidraw"
-    /> : null,
-    extensionsNames.includes('mermaid') && !bubbleMenu?.mermaidConfig?.hidden ? <BubbleMenuMermaid disabled={disabled}
-      editor={editor}
-      key="mermaid"
-    /> : null,
+
     extensionsNames.includes('iframe') && !bubbleMenu?.iframeConfig?.hidden ? <BubbleMenuIframe disabled={disabled}
       editor={editor}
       key="iframe"
     /> : null,
-    extensionsNames.includes('twitter') && !bubbleMenu?.twitterConfig?.hidden ? <BubbleMenuTwitter disabled={disabled}
-      editor={editor}
-      key="twitter"
-    /> : null,
+
     !bubbleMenu?.floatingMenuConfig?.hidden ? <ContentMenu disabled={disabled}
       editor={editor}
       key="content"
@@ -78,14 +63,10 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
       editor={editor}
       key="text"
     /> : null,
-    extensionsNames.includes('drawer') && !bubbleMenu?.drawerConfig?.hidden ? <BubbleMenuDrawer disabled={disabled}
-      editor={editor}
-      key="drawer"
-    /> : null,
   ];
 
   if (bubbleMenu?.render) {
-    return bubbleMenu.render({ editor, disabled: disabled || false, bubbleMenu }, renderMenuItems());
+    return bubbleMenu.render({ editor, disabled: disabled || false, extensionsNames, bubbleMenu }, renderMenuItems());
   }
 
   return renderMenuItems().filter(Boolean);
