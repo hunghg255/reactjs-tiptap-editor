@@ -201,8 +201,8 @@ export function getLocaleConfig(lang: string) {
           link: '/extensions/Strike/index.md',
         },
         {
-          text: 'Subscript',
-          link: '/extensions/Subscript/index.md',
+          text: 'SubAndSuperScript',
+          link: '/extensions/SubAndSuperScript/index.md',
         },
         {
           text: 'Table',
@@ -225,8 +225,8 @@ export function getLocaleConfig(lang: string) {
           link: '/extensions/TrailingNode/index.md',
         },
         {
-          text: 'UnderLine',
-          link: '/extensions/UnderLine/index.md',
+          text: 'TextUnderLine',
+          link: '/extensions/TextUnderLine/index.md',
         },
         {
           text: 'Video',
