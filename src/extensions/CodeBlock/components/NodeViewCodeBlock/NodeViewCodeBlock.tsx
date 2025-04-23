@@ -45,6 +45,8 @@ import 'prism-code-editor-lightweight/prism/languages/typescript';
 import 'prism-code-editor-lightweight/prism/languages/tsx';
 import 'prism-code-editor-lightweight/prism/languages/yaml';
 import 'prism-code-editor-lightweight/prism/languages/regex';
+import 'prism-code-editor-lightweight/prism/languages/php';
+import 'prism-code-editor-lightweight/prism/languages/markdown';
 
 import { createEditor, type PrismEditor } from 'prism-code-editor-lightweight';
 import { defaultCommands, editHistory } from 'prism-code-editor-lightweight/commands';
