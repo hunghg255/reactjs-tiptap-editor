@@ -6,6 +6,7 @@ import { Resizable } from 're-resizable';
 
 // import { getEditorContainerDOMSize } from '@/utils'
 import { Button, Input } from '@/components/ui';
+import { getServiceSrc } from '@/extensions/Iframe/embed';
 import { Iframe } from '@/extensions/Iframe/Iframe';
 import { useEditableEditor } from '@/store/editableEditor';
 
@@ -24,10 +25,12 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
       return;
     }
 
+    const urlFormat = getServiceSrc(originalLink);
+
     editor
       .chain()
       .updateAttributes(Iframe.name, {
-        url: originalLink,
+        url: urlFormat?.src || originalLink,
       })
       .setNodeSelection(editor.state.selection.from)
       .focus()

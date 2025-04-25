@@ -1,14 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { BubbleMenu } from '@tiptap/react';
-import { useAttributes } from '@/hooks/useAttributes';
+
 import { ActionButton } from '@/components/ActionButton';
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Button, Input } from '@/components/ui';
 import { SizeSetter } from '@/components/SizeSetter/SizeSetter';
-import { useLocale } from '@/locales';
+import { Button, Input } from '@/components/ui';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import type { IIframeAttrs } from '@/extensions/Iframe';
 import { Iframe } from '@/extensions/Iframe';
+import { getServiceSrc } from '@/extensions/Iframe/embed';
+import { useAttributes } from '@/hooks/useAttributes';
+import { useLocale } from '@/locales';
 import { deleteNode } from '@/utils/delete-node';
 
 export function BubbleMenuIframe({ editor }: any) {
@@ -32,10 +34,12 @@ export function BubbleMenuIframe({ editor }: any) {
   }, [visible, url]);
 
   const handleOk = useCallback(() => {
+    const urlFormat = getServiceSrc(formUrl);
+
     editor
       .chain()
       .updateAttributes(Iframe.name, {
-        url: formUrl,
+        url: urlFormat?.src || formUrl,
       })
       .setNodeSelection(editor.state.selection.from)
       .focus()
@@ -80,19 +84,23 @@ export function BubbleMenuIframe({ editor }: any) {
         }}
       >
 
-        <div className="richtext-w-auto richtext-px-3 richtext-py-2 richtext-transition-all !richtext-border richtext-rounded-sm richtext-shadow-sm richtext-pointer-events-auto richtext-select-none richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-bg-background">
+        <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">
           <ActionButton
             action={visitLink}
             icon="Eye"
             tooltip="Visit Link"
           />
+
           <ActionButton
             action={openEditLinkModal}
             icon="Pencil"
             tooltip="Open Edit Link"
           />
 
-          <SizeSetter width={width as any} height={height as any} onOk={setSize}>
+          <SizeSetter height={height as any}
+            onOk={setSize}
+            width={width as any}
+          >
             <ActionButton
               icon="Settings"
               tooltip={t('editor.settings')}
@@ -108,8 +116,8 @@ export function BubbleMenuIframe({ editor }: any) {
       </BubbleMenu>
 
       <Dialog
-        open={visible}
         onOpenChange={toggleVisible}
+        open={visible}
       >
         <DialogTrigger />
 
@@ -121,17 +129,18 @@ export function BubbleMenuIframe({ editor }: any) {
           </DialogHeader>
 
           <Input
-            value={formUrl}
-            onInput={(e: any) => setFormUrl(e.target.value)}
-            type="url"
             autoFocus
+            onInput={(e: any) => setFormUrl(e.target.value)}
             placeholder="Enter link"
+            type="url"
+            value={formUrl}
           />
 
           <DialogFooter>
             <Button onClick={handleCancel}>
               Cancel
             </Button>
+
             <Button onClick={handleOk}>
               OK
             </Button>

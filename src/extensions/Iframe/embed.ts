@@ -79,77 +79,77 @@ export const EmbedServiceLink: any = {
       'https://v.youku.com/v_show/id_XNDM0NDM4MTcy.html?spm=a2h0c.8166622.PhoneSokuUgc_4.dtitle',
     src: 'https://player.youku.com/embed/XNDM0NDM4MTcy',
     srcPrefix: 'https://player.youku.com/embed',
-    linkRule: ['v.youku.com\\/v_show\\/id_\\w+\\=*'],
-    idRule: 'id_\\w+\\=*',
+    linkRule: [String.raw`v.youku.com\/v_show\/id_\w+\=*`],
+    idRule: String.raw`id_\w+\=*`,
   },
   bilibili: {
     example: 'https://www.bilibili.com/video/BV1EJ411u7DN',
     src: 'https://player.bilibili.com/player.html?bvid=BV1EJ411u7DN',
     srcPrefix: 'https://player.bilibili.com/player.html?bvid',
-    linkRule: ['www.bilibili.com\\/video\\/\\w+'],
+    linkRule: [String.raw`www.bilibili.com\/video\/\w+`],
   },
   qqvideo: {
     example: 'https://v.qq.com/x/cover/mzc0020006aw1mn/u0033nvzb5v.html',
     src: 'https://v.qq.com/txp/iframe/player.html?vid=u0033nvzb5v',
     srcPrefix: 'https://v.qq.com/txp/iframe/player.html?vid',
-    linkRule: ['v.qq.com\\/x\\/cover\\/\\w+\\/\\w+'],
+    linkRule: [String.raw`v.qq.com\/x\/cover\/\w+\/\w+`],
   },
   amap: {
     example: 'https://ditu.amap.com/',
     src: 'https://www.amap.com/place/B000A45467',
     srcPrefix: '',
-    linkRule: ['\\.amap\\.com'],
+    linkRule: [String.raw`\.amap\.com`],
   },
   baidu_map: {
     example: 'https://j.map.baidu.com/15/fo',
     src: 'https://j.map.baidu.com/15/fo',
     srcPrefix: '',
-    linkRule: ['map\\.baidu\\.com'],
+    linkRule: [String.raw`map\.baidu\.com`],
   },
   modao: {
     example:
       'https://free.modao.cc/app/2cd26580a6717a147454df7470e7ec464093cba3/embed/v2#screen=sk71k6d1dfxulzx',
     src: 'https://free.modao.cc/app/6UkpAxcGE3nPz52GLqhnOZgC7MATBSy/embed/v2',
     srcPrefix: '',
-    linkRule: ['https:\\/\\/\\w+.modao.cc\\/app\\/\\w+\\/embed\\/v2'],
+    linkRule: [String.raw`https:\/\/\w+.modao.cc\/app\/\w+\/embed\/v2`],
     tips: 'Modao > More > Share > Embed > COPY',
   },
   lanhu: {
     example: 'https://lanhuapp.com/link/#/invite?sid=evP7L',
     src: 'https://lanhuapp.com/url/evP7L',
     srcPrefix: '',
-    linkRule: ['https:\\/\\/lanhuapp.com\\/url\\/\\w+'],
+    linkRule: [String.raw`https:\/\/lanhuapp.com\/url\/\w+`],
     tips: 'Lanhu > Project > Share > Copy Link',
   },
   figma: {
     example: 'https://www.figma.com/file/aS9uSgPXoNpaPkzbjNcK8v/Demo?node-id=0%3A1',
     src: 'https://www.figma.com/file/aS9uSgPXoNpaPkzbjNcK8v/Demo?node-id=0%3A1',
     srcPrefix: 'https://www.figma.com/embed?embed_host=share&url',
-    linkRule: ['https:\\/\\/www.figma.com\\/file\\/\\w+'],
+    linkRule: [String.raw`https:\/\/www.figma.com\/file\/\w+`],
   },
   canva: {
     example: 'https://www.canva.cn/design/DAD61-t29UI/view',
     src: 'https://www.canva.cn/design/DAD61-t29UI/view',
     srcPrefix: '',
-    linkRule: ['https:\\/\\/www.canva.cn\\/design\\/.+\\/view'],
+    linkRule: [String.raw`https:\/\/www.canva.cn\/design\/.+\/view`],
   },
   processon: {
     example: 'https://www.processon.com/embed/5ea99d8607912948b0e6fe78',
     src: 'https://www.processon.com/embed/5ea99d8607912948b0e6fe78',
     srcPrefix: '',
-    linkRule: ['https:\\/\\/www.processon.com\\/embed\\/\\w+'],
+    linkRule: [String.raw`https:\/\/www.processon.com\/embed\/\w+`],
   },
   codepen: {
     example: 'https://codepen.io/mekery/embed/YzyrKOJ',
     src: 'https://codepen.io/mekery/embed/YzyrKOJ',
     srcPrefix: '',
-    linkRule: ['https:\\/\\/codepen.io\\/.+\\/embed\\/\\w+'],
+    linkRule: [String.raw`https:\/\/codepen.io\/.+\/embed\/\w+`],
   },
   jinshuju: {
     example: 'https://jinshuju.net/f/q9YvVf',
     src: 'https://jinshuju.net/f/q9YvVf',
     srcPrefix: '',
-    linkRule: ['https:\\/\\/jinshuju.net\\/f\\/\\w+'],
+    linkRule: [String.raw`https:\/\/jinshuju.net\/f\/\w+`],
   },
   iframe: {
     example: 'https://v.youku.com/v_show/id_XNDM0NDM4MTcy.html',
@@ -161,7 +161,7 @@ export const EmbedServiceLink: any = {
     example: 'https://goo.gl/maps/8Ys8b4K1ZJY2',
     src: 'https://www.google.com/maps/embed?pb=https://goo.gl/maps/8Ys8b4K1ZJY2',
     srcPrefix: '',
-    linkRule: ['https:\\/\\/goo.gl\\/maps\\/\\w+'],
+    linkRule: [String.raw`https:\/\/goo.gl\/maps\/\w+`],
   },
 };
 
@@ -182,7 +182,7 @@ function getYoutubeSrc(result: any) {
 }
 
 function getYoukuSrc(result: any) {
-  const link = EmbedServiceLink.youku as any;
+  const link = EmbedServiceLink.youku;
   const url = result.matchedUrl;
 
   const idRule = link.idRule;
@@ -436,52 +436,53 @@ export function getServiceSrc(originalLink: any) {
 
   // src
   switch (service) {
-    case 'youtube': {
-      return getYoutubeSrc(result);
-    }
-    case 'youku': {
-      return getYoukuSrc(result);
-    }
-    case 'bilibili': {
-      return getBilibiliSrc(result);
-    }
-    case 'qqvideo': {
-      return getQQVideoSrc(result);
-    }
-    case 'amap': {
-      return getAMapSrc(originalLink, result);
-    }
-    case 'baidu_map': {
-      return getBaiduMapSrc(originalLink, result);
-    }
-    case 'googlemaps': {
-      return getGoogleMapSrc(originalLink, result);
-    }
-    case 'modao': {
-      return getModaoSrc(result);
-    }
-    case 'lanhu': {
-      return getLanhuSrc(result);
-    }
-    case 'figma': {
-      return getFigmaSrc(result);
-    }
-    case 'canva': {
-      return getCanvaSrc(originalLink, result);
-    }
-    case 'processon': {
-      return getProcessonSrc(originalLink, result);
-    }
-    case 'codepen': {
-      return getCodepenSrc(result);
-    }
-    case 'jinshuju': {
-      return getJinshujuSrc(originalLink, result);
-    }
-    case 'iframe': {
-      return getCommonSrc(originalLink, result);
-    }
+  case 'youtube': {
+    return getYoutubeSrc(result);
   }
-
-  return result;
+  case 'youku': {
+    return getYoukuSrc(result);
+  }
+  case 'bilibili': {
+    return getBilibiliSrc(result);
+  }
+  case 'qqvideo': {
+    return getQQVideoSrc(result);
+  }
+  case 'amap': {
+    return getAMapSrc(originalLink, result);
+  }
+  case 'baidu_map': {
+    return getBaiduMapSrc(originalLink, result);
+  }
+  case 'googlemaps': {
+    return getGoogleMapSrc(originalLink, result);
+  }
+  case 'modao': {
+    return getModaoSrc(result);
+  }
+  case 'lanhu': {
+    return getLanhuSrc(result);
+  }
+  case 'figma': {
+    return getFigmaSrc(result);
+  }
+  case 'canva': {
+    return getCanvaSrc(originalLink, result);
+  }
+  case 'processon': {
+    return getProcessonSrc(originalLink, result);
+  }
+  case 'codepen': {
+    return getCodepenSrc(result);
+  }
+  case 'jinshuju': {
+    return getJinshujuSrc(originalLink, result);
+  }
+  case 'iframe': {
+    return getCommonSrc(originalLink, result);
+  }
+  default: {
+    return originalLink;
+  }
+  }
 }
