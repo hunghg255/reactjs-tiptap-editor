@@ -27,6 +27,10 @@
 
 [Documentation](https://reactjs-tiptap-editor.vercel.app/)
 
+## Deep wiki
+
+[Deep Wiki](https://deepwiki.com/hunghg255/reactjs-tiptap-editor)
+
 ## Run Locally
 
 Clone the project
