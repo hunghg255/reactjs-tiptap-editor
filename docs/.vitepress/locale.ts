@@ -225,8 +225,8 @@ export function getLocaleConfig(lang: string) {
           link: '/extensions/TrailingNode/index.md',
         },
         {
-          text: 'TextUnderLine',
-          link: '/extensions/TextUnderLine/index.md',
+          text: 'TextUnderline',
+          link: '/extensions/TextUnderline/index.md',
         },
         {
           text: 'Video',
