@@ -15,10 +15,10 @@ import { deleteNode } from '@/utils/delete-node';
 
 export function BubbleMenuIframe({ editor }: any) {
   const { t } = useLocale();
-  const { width, height, url } = useAttributes<IIframeAttrs>(editor, Iframe.name, {
+  const { width, height, src } = useAttributes<IIframeAttrs>(editor, Iframe.name, {
     width: 0,
     height: 0,
-    url: '',
+    src: '',
     defaultShowPicker: false,
   });
   const [visible, toggleVisible] = useState(false);
@@ -30,8 +30,8 @@ export function BubbleMenuIframe({ editor }: any) {
 
   useEffect(() => {
     if (visible)
-      setFormUrl(url as any);
-  }, [visible, url]);
+      setFormUrl(src as any);
+  }, [visible, src]);
 
   const handleOk = useCallback(() => {
     const urlFormat = getServiceSrc(formUrl);
@@ -39,7 +39,7 @@ export function BubbleMenuIframe({ editor }: any) {
     editor
       .chain()
       .updateAttributes(Iframe.name, {
-        url: urlFormat?.src || formUrl,
+        src: urlFormat?.src || formUrl,
       })
       .setNodeSelection(editor.state.selection.from)
       .focus()
@@ -48,8 +48,8 @@ export function BubbleMenuIframe({ editor }: any) {
   }, [editor, formUrl, toggleVisible]);
 
   const visitLink = useCallback(() => {
-    window.open(url, '_blank');
-  }, [url]);
+    window.open(src, '_blank');
+  }, [src]);
 
   const openEditLinkModal = useCallback(() => {
     toggleVisible(true);
@@ -61,7 +61,7 @@ export function BubbleMenuIframe({ editor }: any) {
     },
     [editor],
   );
-  const shouldShow = useCallback(() => editor.isActive(Iframe.name) && !url, [editor, url]);
+  const shouldShow = useCallback(() => editor.isActive(Iframe.name) && !src, [editor, src]);
   const deleteMe = useCallback(() => deleteNode(Iframe.name, editor), [editor]);
 
   return (
