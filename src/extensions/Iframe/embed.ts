@@ -436,53 +436,53 @@ export function getServiceSrc(originalLink: any) {
 
   // src
   switch (service) {
-  case 'youtube': {
-    return getYoutubeSrc(result);
-  }
-  case 'youku': {
-    return getYoukuSrc(result);
-  }
-  case 'bilibili': {
-    return getBilibiliSrc(result);
-  }
-  case 'qqvideo': {
-    return getQQVideoSrc(result);
-  }
-  case 'amap': {
-    return getAMapSrc(originalLink, result);
-  }
-  case 'baidu_map': {
-    return getBaiduMapSrc(originalLink, result);
-  }
-  case 'googlemaps': {
-    return getGoogleMapSrc(originalLink, result);
-  }
-  case 'modao': {
-    return getModaoSrc(result);
-  }
-  case 'lanhu': {
-    return getLanhuSrc(result);
-  }
-  case 'figma': {
-    return getFigmaSrc(result);
-  }
-  case 'canva': {
-    return getCanvaSrc(originalLink, result);
-  }
-  case 'processon': {
-    return getProcessonSrc(originalLink, result);
-  }
-  case 'codepen': {
-    return getCodepenSrc(result);
-  }
-  case 'jinshuju': {
-    return getJinshujuSrc(originalLink, result);
-  }
-  case 'iframe': {
-    return getCommonSrc(originalLink, result);
-  }
-  default: {
-    return originalLink;
-  }
+    case 'youtube': {
+      return getYoutubeSrc(result);
+    }
+    case 'youku': {
+      return getYoukuSrc(result);
+    }
+    case 'bilibili': {
+      return getBilibiliSrc(result);
+    }
+    case 'qqvideo': {
+      return getQQVideoSrc(result);
+    }
+    case 'amap': {
+      return getAMapSrc(originalLink, result);
+    }
+    case 'baidu_map': {
+      return getBaiduMapSrc(originalLink, result);
+    }
+    case 'googlemaps': {
+      return getGoogleMapSrc(originalLink, result);
+    }
+    case 'modao': {
+      return getModaoSrc(result);
+    }
+    case 'lanhu': {
+      return getLanhuSrc(result);
+    }
+    case 'figma': {
+      return getFigmaSrc(result);
+    }
+    case 'canva': {
+      return getCanvaSrc(originalLink, result);
+    }
+    case 'processon': {
+      return getProcessonSrc(originalLink, result);
+    }
+    case 'codepen': {
+      return getCodepenSrc(result);
+    }
+    case 'jinshuju': {
+      return getJinshujuSrc(originalLink, result);
+    }
+    case 'iframe': {
+      return getCommonSrc(originalLink, result);
+    }
+    default: {
+      return originalLink;
+    }
   }
 }

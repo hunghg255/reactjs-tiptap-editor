@@ -15,7 +15,7 @@ import styles from './index.module.scss';
 function IframeNodeView({ editor, node, updateAttributes }: any) {
   const isEditable = useEditableEditor();
 
-  const { url, width, height } = node.attrs;
+  const { src, width, height } = node.attrs;
   // const { width: maxWidth } = getEditorContainerDOMSize(editor)
 
   const [originalLink, setOriginalLink] = useState<string>('');
@@ -30,7 +30,7 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
     editor
       .chain()
       .updateAttributes(Iframe.name, {
-        url: urlFormat?.src || originalLink,
+        src: urlFormat?.src || originalLink,
       })
       .setNodeSelection(editor.state.selection.from)
       .focus()
@@ -46,7 +46,7 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
 
   return (
     <NodeViewWrapper>
-      {!url && (
+      {!src && (
         <div className="richtext-mx-auto richtext-my-[12px] richtext-flex richtext-max-w-[600px] richtext-items-center richtext-justify-center richtext-gap-[10px] richtext-rounded-[12px] richtext-border richtext-border-solid richtext-border-[#ccc] richtext-p-[10px]">
           <Input
             autoFocus
@@ -65,7 +65,7 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
         </div>
       )}
 
-      {url && (
+      {src && (
         <Resizable
           size={{ width: Number.parseInt(width), height: Number.parseInt(height) }}
           onResizeStop={(e, direction, ref, d) => {
@@ -81,7 +81,7 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
             >
               <iframe
                 className="richtext-my-[12px] "
-                src={url}
+                src={src}
               >
               </iframe>
             </div>

@@ -9,7 +9,7 @@ import { getDatasetAttribute } from '@/utils/dom-dataset';
 export interface IIframeAttrs {
   width?: number | string
   height?: number
-  url?: string
+  src?: string
   defaultShowPicker?: boolean
 }
 
@@ -70,9 +70,9 @@ export const Iframe = /* @__PURE__ */ Node.create({
         default: 300,
         parseHTML: getDatasetAttribute('height'),
       },
-      url: {
+      src: {
         default: null,
-        parseHTML: getDatasetAttribute('url'),
+        parseHTML: getDatasetAttribute('src'),
       },
       defaultShowPicker: {
         default: false,
