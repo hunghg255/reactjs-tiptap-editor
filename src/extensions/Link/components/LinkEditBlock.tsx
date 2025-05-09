@@ -27,7 +27,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
       const { from, to } = props.editor.state.selection;
       const text = props.editor.state.doc.textBetween(from, to, ' ');
       setForm({
-        link,
+        link: link || "",
         text,
       });
       setOpenInNewTab(target === '_blank');
