@@ -158,17 +158,7 @@ function ActionVideoButton(props: any) {
                   type="url"
                   value={link}
                   onChange={(e) => {
-                    const url = e.target.value;
-
-                    const isVideoUrl = checkIsVideo(url);
-
-                    if (!isVideoUrl) {
-                      setError('Invalid video URL');
-                      setLink('');
-                      return;
-                    }
-                    setError('');
-                    setLink(url);
+                    setLink(e.target.value);
                   }}
                 />
 
