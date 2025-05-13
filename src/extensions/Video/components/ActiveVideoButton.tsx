@@ -7,8 +7,29 @@ import { useLocale } from '@/locales';
 import { listenEvent } from '@/utils/customEvents/customEvents';
 import { EVENTS } from '@/utils/customEvents/events.constant';
 
-function checkIsVideo(url: string) {
-  return /\.(?:mp4|webm|ogg|mov)$/i.test(url);
+function checkIsVideoUrl(url: string, allowedProviders?: string[]): boolean {
+  let urlObj: URL;
+  try {
+    urlObj = new URL(url);
+  } catch {
+    return false;
+  }
+
+  // If no providers specified or wildcard ['.'] is used, allow any valid URL
+  if (!allowedProviders?.length || (allowedProviders.length === 1 && allowedProviders[0] === '.')) {
+    return true;
+  }
+
+  return allowedProviders.some(provider => {
+    if (provider.includes('*')) {
+      const pattern = provider
+          .replace(/\./g, '\\.')
+          .replace(/\*/g, '.*');
+      return new RegExp(`^${pattern}$`).test(urlObj.hostname);
+    }
+
+    return urlObj.hostname.includes(provider);
+  });
 }
 
 function ActionVideoButton(props: any) {
@@ -158,17 +179,17 @@ function ActionVideoButton(props: any) {
                   type="url"
                   value={link}
                   onChange={(e) => {
+                    setLink(e.target.value);
+                  }}
+                  onBlur={(e) => {
                     const url = e.target.value;
+                    const videoProviders = uploadOptions.videoProviders || ['.'];
 
-                    const isVideoUrl = checkIsVideo(url);
-
-                    if (!isVideoUrl) {
+                    if (url && !checkIsVideoUrl(url, videoProviders)) {
                       setError('Invalid video URL');
-                      setLink('');
-                      return;
+                    } else {
+                      setError('');
                     }
-                    setError('');
-                    setLink(url);
                   }}
                 />
 
