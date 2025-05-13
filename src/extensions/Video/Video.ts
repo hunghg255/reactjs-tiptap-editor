@@ -35,7 +35,15 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
   upload?: (file: File) => Promise<string>
 
   /** The source URL of the video */
-  resourceVideo: 'upload' | 'link' | 'both'
+  resourceVideo: 'upload' | 'link' | 'both',
+
+  /**
+   * List of allowed video hosting providers
+   * Use ['.'] to allow any URL, or specify providers like ['youtube', 'vimeo']
+   *
+   * @default ['.']
+   */
+  videoProviders?: string[]
 }
 
 /**
@@ -119,6 +127,7 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
             disabled: !editor.can().setVideo?.({}),
             icon: 'Video',
             tooltip: t('editor.video.tooltip'),
+            videoProviders: ['.'],
             editor,
           },
         };
