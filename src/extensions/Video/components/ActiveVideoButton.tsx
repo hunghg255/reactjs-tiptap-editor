@@ -23,8 +23,8 @@ function checkIsVideoUrl(url: string, allowedProviders?: string[]): boolean {
   return allowedProviders.some(provider => {
     if (provider.includes('*')) {
       const pattern = provider
-          .replace(/\./g, '\\.')
-          .replace(/\*/g, '.*');
+        .replace(/\./g, '\\.')
+        .replace(/\*/g, '.*');
       return new RegExp(`^${pattern}$`).test(urlObj.hostname);
     }
 

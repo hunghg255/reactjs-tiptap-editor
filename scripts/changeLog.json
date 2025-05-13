@@ -1,9 +1,74 @@
 [
   {
+    "hash": "a54225ebd6729e0c973a6ec92db30b06dc9aa788",
+    "date": "Tue May 13 18:51:57 2025 +0700",
+    "message": "chore: release v0.3.3",
+    "refs": "HEAD -> main, tag: v0.3.3, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.3"
+  },
+  {
+    "hash": "2cc0bb3ba072b285bb115c952de5aacb42ec6d02",
+    "date": "Tue May 13 13:04:31 2025 +0300",
+    "message": "fix(active video button): added videoProviders prop + validation",
+    "refs": "",
+    "author_name": "vk",
+    "author_email": "vladimir@voma.ai",
+    "functions": [
+      "Video",
+      "ActiveVideoButton"
+    ]
+  },
+  {
+    "hash": "8ce0a507b4fe3dde77df6f7e3ea879e34beb3622",
+    "date": "Mon May 12 16:52:06 2025 +0300",
+    "message": "fix(active video button): removed redundant validation for video url",
+    "refs": "",
+    "author_name": "vk",
+    "author_email": "vladimir@voma.ai",
+    "functions": [
+      "ActiveVideoButton"
+    ]
+  },
+  {
+    "hash": "f9c9898c1aa6be2dc976ecca5795ab0298f25699",
+    "date": "Thu May 1 18:42:56 2025 +0700",
+    "message": "chore: release v0.3.2",
+    "refs": "tag: v0.3.2",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.2"
+  },
+  {
+    "hash": "a9c13ac156261e97d8850516340814426ed60adc",
+    "date": "Fri Apr 25 08:00:08 2025 +0700",
+    "message": "chore: release v0.3.1",
+    "refs": "tag: v0.3.1",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.1"
+  },
+  {
+    "hash": "c0199a75c4b5b5f0282e2c78aebc7fb12d996f8f",
+    "date": "Fri Apr 25 07:57:12 2025 +0700",
+    "message": "fix: format url iframe",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "IframeNodeView",
+      "embed"
+    ]
+  },
+  {
     "hash": "6c0d9e7190a5fc83359909e9e6348f6d05b809b8",
     "date": "Sat Apr 19 17:02:49 2025 +0700",
     "message": "chore: release v0.3.0",
-    "refs": "HEAD -> main, tag: v0.3.0, origin/main",
+    "refs": "tag: v0.3.0",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1310,153 +1375,5 @@
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
     "version": "v0.0.31"
-  },
-  {
-    "hash": "0a2a646a162b667c0f7455e904f7543407068935",
-    "date": "Sun Sep 1 23:16:54 2024 +0700",
-    "message": "feat: add excalidraw",
-    "refs": "origin/feat/excalidraw, feat/excalidraw",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "Excalidraw",
-      "ExcalidrawActiveButton",
-      "NodeViewExcalidraw",
-      "index.module.scss",
-      "index"
-    ]
-  },
-  {
-    "hash": "5d5ee6ad23463aab601421826bb82800c549c701",
-    "date": "Thu Aug 29 09:38:29 2024 +0700",
-    "message": "chore: release v0.0.30",
-    "refs": "tag: v0.0.30",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.30"
-  },
-  {
-    "hash": "1af897a81c2047a87cbf351ca214e78a686ef211",
-    "date": "Thu Aug 29 09:35:02 2024 +0700",
-    "message": "chore: release v0.0.29",
-    "refs": "tag: v0.0.29",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.29"
-  },
-  {
-    "hash": "3f27b2768ec1e29080b9d1eb4c152f84766e6733",
-    "date": "Tue Aug 27 16:45:22 2024 +0700",
-    "message": "chore: release v0.0.28",
-    "refs": "tag: v0.0.28",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.28"
-  },
-  {
-    "hash": "71b3efd4ca5e7204e7171746fb8641f68c5ec720",
-    "date": "Tue Aug 27 16:24:46 2024 +0700",
-    "message": "chore: release v0.0.27",
-    "refs": "tag: v0.0.27",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.27"
-  },
-  {
-    "hash": "8b37e2a12db4f77039695ed7bc0c03425506d13f",
-    "date": "Tue Aug 27 16:23:41 2024 +0700",
-    "message": "fix: lint",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "CodeBlockActiveButton",
-      "EmojiList",
-      "EmojiPicker",
-      "FontFamilyButton",
-      "FontSizeMenuButton",
-      "HeadingButton",
-      "ImageView",
-      "LineHeightDropdown",
-      "ActionMoreButton",
-      "CommandsList",
-      "CreateTablePopover",
-      "NodeViewTableOfContent",
-      "TextAlignMenuButton",
-      "TextDropdown"
-    ]
-  },
-  {
-    "hash": "7aff366ed84a3a681fa21cce3756f7997c21d8e5",
-    "date": "Tue Aug 27 11:45:29 2024 +0700",
-    "message": "chore: release v0.0.26",
-    "refs": "tag: v0.0.26",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.26"
-  },
-  {
-    "hash": "2651303c7f3b0637939b3c226a3be549fa6ce82f",
-    "date": "Tue Aug 27 11:43:17 2024 +0700",
-    "message": "feat: add table of content",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "TableOfContent",
-      "NodeViewTableOfContent",
-      "TableOfContentActionButton",
-      "index.module.scss",
-      "index"
-    ]
-  },
-  {
-    "hash": "16dafc4e1bb3a54c0c550a8bee8470976d47cc12",
-    "date": "Tue Aug 27 11:14:35 2024 +0700",
-    "message": "fix: parse katex content",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "Katex"
-    ]
-  },
-  {
-    "hash": "dd3de16eda9075cb6609dcc9333842aeef561b2d",
-    "date": "Mon Aug 26 21:56:13 2024 +0700",
-    "message": "chore: release v0.0.25",
-    "refs": "tag: v0.0.25",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.25"
-  },
-  {
-    "hash": "9b3771ea8aee4c590930e155efa039a1a9eddddc",
-    "date": "Mon Aug 26 21:46:18 2024 +0700",
-    "message": "docs: update changelog",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
-  },
-  {
-    "hash": "7db4cc92e26f817388b96ce36de5360cf1bb0154",
-    "date": "Mon Aug 26 21:45:23 2024 +0700",
-    "message": "chore: release v0.0.24",
-    "refs": "tag: v0.0.24",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.24"
   }
 ]

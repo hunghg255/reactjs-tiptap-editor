@@ -21,6 +21,13 @@
     ]
   },
   {
+    "name": "BulletList.ts",
+    "package": "BulletList",
+    "alias": [
+      "BulletList"
+    ]
+  },
+  {
     "name": "Bold.ts",
     "package": "Bold",
     "alias": [
@@ -28,17 +35,10 @@
     ]
   },
   {
-    "name": "Clear.ts",
-    "package": "Clear",
+    "name": "Code.ts",
+    "package": "Code",
     "alias": [
-      "Clear"
-    ]
-  },
-  {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
+      "Code"
     ]
   },
   {
@@ -49,10 +49,10 @@
     ]
   },
   {
-    "name": "Code.ts",
-    "package": "Code",
+    "name": "Clear.ts",
+    "package": "Clear",
     "alias": [
-      "Code"
+      "Clear"
     ]
   },
   {
@@ -70,17 +70,17 @@
     ]
   },
   {
-    "name": "Emoji.ts",
-    "package": "Emoji",
-    "alias": [
-      "Emoji"
-    ]
-  },
-  {
     "name": "Drawer.ts",
     "package": "Drawer",
     "alias": [
       "Drawer"
+    ]
+  },
+  {
+    "name": "Emoji.ts",
+    "package": "Emoji",
+    "alias": [
+      "Emoji"
     ]
   },
   {
@@ -126,17 +126,17 @@
     ]
   },
   {
-    "name": "Heading.ts",
-    "package": "Heading",
-    "alias": [
-      "Heading"
-    ]
-  },
-  {
     "name": "Highlight.ts",
     "package": "Highlight",
     "alias": [
       "Highlight"
+    ]
+  },
+  {
+    "name": "Heading.ts",
+    "package": "Heading",
+    "alias": [
+      "Heading"
     ]
   },
   {
@@ -154,20 +154,6 @@
     ]
   },
   {
-    "name": "Iframe.ts",
-    "package": "Iframe",
-    "alias": [
-      "Iframe"
-    ]
-  },
-  {
-    "name": "Iframe.ts",
-    "package": "Iframe",
-    "alias": [
-      "embed"
-    ]
-  },
-  {
     "name": "Image.ts",
     "package": "Image",
     "alias": [
@@ -179,6 +165,20 @@
     "package": "Image",
     "alias": [
       "store"
+    ]
+  },
+  {
+    "name": "Iframe.ts",
+    "package": "Iframe",
+    "alias": [
+      "Iframe"
+    ]
+  },
+  {
+    "name": "Iframe.ts",
+    "package": "Iframe",
+    "alias": [
+      "embed"
     ]
   },
   {
@@ -224,31 +224,10 @@
     ]
   },
   {
-    "name": "ListItem.ts",
-    "package": "ListItem",
-    "alias": [
-      "ListItem"
-    ]
-  },
-  {
     "name": "Link.ts",
     "package": "Link",
     "alias": [
       "Link"
-    ]
-  },
-  {
-    "name": "Mention.ts",
-    "package": "Mention",
-    "alias": [
-      "Mention"
-    ]
-  },
-  {
-    "name": "MoreMark.ts",
-    "package": "MoreMark",
-    "alias": [
-      "MoreMark"
     ]
   },
   {
@@ -259,10 +238,24 @@
     ]
   },
   {
-    "name": "OrderedList.ts",
-    "package": "OrderedList",
+    "name": "MoreMark.ts",
+    "package": "MoreMark",
     "alias": [
-      "OrderedList"
+      "MoreMark"
+    ]
+  },
+  {
+    "name": "ListItem.ts",
+    "package": "ListItem",
+    "alias": [
+      "ListItem"
+    ]
+  },
+  {
+    "name": "Mention.ts",
+    "package": "Mention",
+    "alias": [
+      "Mention"
     ]
   },
   {
@@ -277,6 +270,13 @@
     "package": "MultiColumn",
     "alias": [
       "MultiColumn"
+    ]
+  },
+  {
+    "name": "OrderedList.ts",
+    "package": "OrderedList",
+    "alias": [
+      "OrderedList"
     ]
   },
   {
@@ -357,24 +357,10 @@
     ]
   },
   {
-    "name": "TextAlign.ts",
-    "package": "TextAlign",
-    "alias": [
-      "TextAlign"
-    ]
-  },
-  {
     "name": "TextBubble.ts",
     "package": "TextBubble",
     "alias": [
       "TextBubble"
-    ]
-  },
-  {
-    "name": "TextDirection.ts",
-    "package": "TextDirection",
-    "alias": [
-      "TextDirection"
     ]
   },
   {
@@ -385,6 +371,13 @@
     ]
   },
   {
+    "name": "Twitter.ts",
+    "package": "Twitter",
+    "alias": [
+      "Twitter"
+    ]
+  },
+  {
     "name": "TrailingNode.ts",
     "package": "TrailingNode",
     "alias": [
@@ -392,10 +385,17 @@
     ]
   },
   {
-    "name": "Twitter.ts",
-    "package": "Twitter",
+    "name": "TextAlign.ts",
+    "package": "TextAlign",
     "alias": [
-      "Twitter"
+      "TextAlign"
+    ]
+  },
+  {
+    "name": "TextDirection.ts",
+    "package": "TextDirection",
+    "alias": [
+      "TextDirection"
     ]
   },
   {
