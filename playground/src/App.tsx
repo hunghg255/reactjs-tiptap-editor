@@ -295,7 +295,7 @@ function App() {
         }}
       />
 
-      {/*{typeof content === 'string' && (
+      {typeof content === 'string' && (
         <textarea
           style={{
             marginTop: 20,
@@ -304,7 +304,7 @@ function App() {
           readOnly
           value={content}
         />
-      )}*/}
+      )}
     </div>
   )
 }
