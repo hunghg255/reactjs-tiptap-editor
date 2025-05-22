@@ -49,6 +49,13 @@
     ]
   },
   {
+    "name": "CodeView.ts",
+    "package": "CodeView",
+    "alias": [
+      "CodeView"
+    ]
+  },
+  {
     "name": "Clear.ts",
     "package": "Clear",
     "alias": [

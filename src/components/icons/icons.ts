@@ -102,6 +102,7 @@ import { LeftToRight } from '@/components/icons/LeftToRight';
 import { Mermaid } from '@/components/icons/Mermaid';
 import { RightToLeft } from '@/components/icons/RightToLeft';
 import { Twitter } from '@/components/icons/Twitter';
+import { CodeView } from '@/components/icons/CodeView';
 
 import ImportWord from './ImportWord';
 
@@ -207,6 +208,7 @@ export const icons = {
   Crop: CropIcon,
   Mermaid,
   Twitter,
+  CodeView,
   FlipX: FlipVertical,
   FlipY: FlipHorizontal,
   PencilRuler,

@@ -166,6 +166,7 @@ const locale = {
   'editor.replace.caseSensitive': 'Sensível a maiúsculas e minúsculas',
   'editor.mermaid.tooltip': 'Mermaid',
   'editor.twitter.tooltip': 'Twitter',
+  'editor.codeView.tooltip': 'Visualização de código',
   'editor.tooltip.flipX': 'Inverter Horizontal',
   'editor.tooltip.flipY': 'Inverter Vertical',
 };

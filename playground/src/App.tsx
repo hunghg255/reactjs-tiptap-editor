@@ -56,6 +56,7 @@ import { Drawer } from 'reactjs-tiptap-editor/drawer';
 import { Excalidraw } from 'reactjs-tiptap-editor/excalidraw';
 import { Twitter } from 'reactjs-tiptap-editor/twitter';
 import { Mermaid } from 'reactjs-tiptap-editor/mermaid';
+import { CodeView } from "reactjs-tiptap-editor/codeview";
 
 import 'reactjs-tiptap-editor/style.css'
 import 'prism-code-editor-lightweight/layout.css';
@@ -107,6 +108,7 @@ const extensions = [
   TextAlign.configure({ types: ['heading', 'paragraph'], spacer: true }),
   Indent,
   LineHeight,
+  CodeView,
   TaskList.configure({
     spacer: true,
     taskItem: {
@@ -293,7 +295,7 @@ function App() {
         }}
       />
 
-      {typeof content === 'string' && (
+      {/*{typeof content === 'string' && (
         <textarea
           style={{
             marginTop: 20,
@@ -302,7 +304,7 @@ function App() {
           readOnly
           value={content}
         />
-      )}
+      )}*/}
     </div>
   )
 }
