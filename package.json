@@ -129,6 +129,16 @@
         "default": "./lib/Code.js"
       }
     },
+    "./codeview": {
+      "require": {
+        "types": "./lib/CodeView.d.cts",
+        "default": "./lib/CodeView.cjs"
+      },
+      "import": {
+        "types": "./lib/CodeView.d.ts",
+        "default": "./lib/CodeView.js"
+      }
+    },
     "./codeblock": {
       "require": {
         "types": "./lib/CodeBlock.d.cts",
@@ -612,6 +622,9 @@
       ],
       "./codeblock": [
         "./lib/CodeBlock.d.ts"
+      ],
+      "./codeview": [
+        "./lib/CodeView.d.ts"
       ],
       "./color": [
         "./lib/Color.d.ts"

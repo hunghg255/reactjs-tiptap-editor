@@ -166,6 +166,7 @@ const locale = {
   'editor.replace.caseSensitive': 'Kisbetű-nagybetű érzékenység',
   'editor.mermaid.tooltip': 'Mermaid',
   'editor.twitter.tooltip': 'Twitter',
+  'editor.codeView.tooltip': 'Kódnézet',
   'editor.tooltip.flipX': 'Vízszintes tükrözés',
   'editor.tooltip.flipY': 'Függőleges tükrözés',
 };
