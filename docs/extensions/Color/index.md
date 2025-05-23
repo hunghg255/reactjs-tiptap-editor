@@ -45,3 +45,10 @@ Default: `undefined`
 ```js
 import { DEFAULT_COLOR } from 'reactjs-tiptap-editor'
 ```
+
+### initialDisplayedColor
+
+Type: `string`\
+Default: `undefined`
+
+The initial color to be displayed in the action button. If not provided, a default color will be used.

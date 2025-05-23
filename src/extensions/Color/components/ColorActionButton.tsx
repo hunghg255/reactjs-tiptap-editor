@@ -16,6 +16,7 @@ interface ColorActionButtonProps {
   disabled?: boolean
   action?: ButtonViewReturnComponentProps['action']
   isActive?: ButtonViewReturnComponentProps['isActive']
+  initialDisplayedColor?: string
 }
 
 interface IconCProps {
@@ -81,7 +82,7 @@ function ColorActionButton(props: ColorActionButtonProps) {
     <div className="richtext-flex richtext-items-center richtext-h-[32px]">
       <ActionButton tooltip={props?.tooltip} disabled={props?.disabled} action={toggleColor}>
         <span className="richtext-flex richtext-items-center richtext-justify-center richtext-text-sm">
-          <IconC fill={selectedColor} />
+          <IconC fill={selectedColor || props.initialDisplayedColor} />
         </span>
       </ActionButton>
 
