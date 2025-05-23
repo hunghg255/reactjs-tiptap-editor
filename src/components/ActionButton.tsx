@@ -39,6 +39,8 @@ export interface ActionButtonProps {
   asChild?: boolean
   /* Whether it's an upload button */
   upload?: boolean
+  /* Initial displayed color */
+  initialDisplayedColor?: string
 }
 
 const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonProps>>(
@@ -58,6 +60,7 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
       children,
       asChild = false,
       upload = false,
+      initialDisplayedColor = undefined,
       ...rest
     } = props;
 
