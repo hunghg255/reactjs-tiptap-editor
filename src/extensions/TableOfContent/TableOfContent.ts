@@ -9,14 +9,14 @@ import { findNode, isTitleNode } from '@/utils/node';
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     tableOfContents: {
-      setTableOfContents: () => ReturnType
-      removeTableOfContents: () => ReturnType
-    }
+      setTableOfContents: () => ReturnType;
+      removeTableOfContents: () => ReturnType;
+    };
   }
 }
 
 interface Options {
-  onHasOneBeforeInsert?: () => void
+  onHasOneBeforeInsert?: () => void;
 }
 
 export const TableOfContents = /* @__PURE__ */ Node.create<Options>({
@@ -38,7 +38,7 @@ export const TableOfContents = /* @__PURE__ */ Node.create<Options>({
         componentProps: {
           disabled: false,
           icon: 'BookMarked',
-          tooltip: t('editor.table.tooltip'),
+          tooltip: t('editor.table_of_content'),
           editor,
         },
       }),
@@ -70,7 +70,7 @@ export const TableOfContents = /* @__PURE__ */ Node.create<Options>({
             const nodes = findNode(editor, this.name);
 
             if (nodes.length > 0) {
-              // @ts-expect-error
+            // @ts-expect-error
               this.options.onHasOneBeforeInsert();
               return;
             }
@@ -78,7 +78,9 @@ export const TableOfContents = /* @__PURE__ */ Node.create<Options>({
             const titleNode = view.props.state.doc.content.firstChild as any;
 
             if (isTitleNode(titleNode)) {
-              const pos = ((titleNode.firstChild && titleNode.firstChild.nodeSize) || 0) + 1;
+              const pos =
+              ((titleNode.firstChild && titleNode.firstChild.nodeSize) || 0) +
+              1;
               return commands.insertContentAt(pos, { type: this.name });
             }
 
@@ -86,26 +88,27 @@ export const TableOfContents = /* @__PURE__ */ Node.create<Options>({
               type: this.name,
             });
           },
-      removeTableOfContents: () =>
-        ({ state, dispatch }: any) => {
-          const { tr } = state;
-          const nodeType = state.schema.nodes.tableOfContents;
+      removeTableOfContents:
+        () =>
+          ({ state, dispatch }: any) => {
+            const { tr } = state;
+            const nodeType = state.schema.nodes.tableOfContents;
 
-          state.doc.descendants((node: any, pos: any) => {
-            if (node.type === nodeType) {
-              const from = pos;
-              const to = pos + node.nodeSize;
-              tr.delete(from, to);
+            state.doc.descendants((node: any, pos: any) => {
+              if (node.type === nodeType) {
+                const from = pos;
+                const to = pos + node.nodeSize;
+                tr.delete(from, to);
+              }
+            });
+
+            if (tr.docChanged) {
+              dispatch(tr);
+              return true;
             }
-          });
 
-          if (tr.docChanged) {
-            dispatch(tr);
-            return true;
-          }
-
-          return false;
-        },
+            return false;
+          },
     };
   },
 
