@@ -21,13 +21,6 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
-    ]
-  },
-  {
     "name": "Bold.ts",
     "package": "Bold",
     "alias": [
@@ -35,10 +28,17 @@
     ]
   },
   {
-    "name": "Code.ts",
-    "package": "Code",
+    "name": "BulletList.ts",
+    "package": "BulletList",
     "alias": [
-      "Code"
+      "BulletList"
+    ]
+  },
+  {
+    "name": "Clear.ts",
+    "package": "Clear",
+    "alias": [
+      "Clear"
     ]
   },
   {
@@ -49,17 +49,17 @@
     ]
   },
   {
+    "name": "Code.ts",
+    "package": "Code",
+    "alias": [
+      "Code"
+    ]
+  },
+  {
     "name": "CodeView.ts",
     "package": "CodeView",
     "alias": [
       "CodeView"
-    ]
-  },
-  {
-    "name": "Clear.ts",
-    "package": "Clear",
-    "alias": [
-      "Clear"
     ]
   },
   {
@@ -133,17 +133,17 @@
     ]
   },
   {
-    "name": "Highlight.ts",
-    "package": "Highlight",
-    "alias": [
-      "Highlight"
-    ]
-  },
-  {
     "name": "Heading.ts",
     "package": "Heading",
     "alias": [
       "Heading"
+    ]
+  },
+  {
+    "name": "Highlight.ts",
+    "package": "Highlight",
+    "alias": [
+      "Highlight"
     ]
   },
   {
@@ -161,20 +161,6 @@
     ]
   },
   {
-    "name": "Image.ts",
-    "package": "Image",
-    "alias": [
-      "Image"
-    ]
-  },
-  {
-    "name": "Image.ts",
-    "package": "Image",
-    "alias": [
-      "store"
-    ]
-  },
-  {
     "name": "Iframe.ts",
     "package": "Iframe",
     "alias": [
@@ -189,6 +175,20 @@
     ]
   },
   {
+    "name": "Image.ts",
+    "package": "Image",
+    "alias": [
+      "Image"
+    ]
+  },
+  {
+    "name": "Image.ts",
+    "package": "Image",
+    "alias": [
+      "store"
+    ]
+  },
+  {
     "name": "ImageGif.ts",
     "package": "ImageGif",
     "alias": [
@@ -196,17 +196,17 @@
     ]
   },
   {
-    "name": "ImportWord.ts",
-    "package": "ImportWord",
-    "alias": [
-      "ImportWord"
-    ]
-  },
-  {
     "name": "Indent.ts",
     "package": "Indent",
     "alias": [
       "Indent"
+    ]
+  },
+  {
+    "name": "ImportWord.ts",
+    "package": "ImportWord",
+    "alias": [
+      "ImportWord"
     ]
   },
   {
@@ -238,6 +238,20 @@
     ]
   },
   {
+    "name": "Mention.ts",
+    "package": "Mention",
+    "alias": [
+      "Mention"
+    ]
+  },
+  {
+    "name": "ListItem.ts",
+    "package": "ListItem",
+    "alias": [
+      "ListItem"
+    ]
+  },
+  {
     "name": "Mermaid.ts",
     "package": "Mermaid",
     "alias": [
@@ -249,20 +263,6 @@
     "package": "MoreMark",
     "alias": [
       "MoreMark"
-    ]
-  },
-  {
-    "name": "ListItem.ts",
-    "package": "ListItem",
-    "alias": [
-      "ListItem"
-    ]
-  },
-  {
-    "name": "Mention.ts",
-    "package": "Mention",
-    "alias": [
-      "Mention"
     ]
   },
   {
@@ -280,13 +280,6 @@
     ]
   },
   {
-    "name": "OrderedList.ts",
-    "package": "OrderedList",
-    "alias": [
-      "OrderedList"
-    ]
-  },
-  {
     "name": "SearchAndReplace.ts",
     "package": "SearchAndReplace",
     "alias": [
@@ -298,6 +291,20 @@
     "package": "Selection",
     "alias": [
       "Selection"
+    ]
+  },
+  {
+    "name": "OrderedList.ts",
+    "package": "OrderedList",
+    "alias": [
+      "OrderedList"
+    ]
+  },
+  {
+    "name": "Strike.ts",
+    "package": "Strike",
+    "alias": [
+      "Strike"
     ]
   },
   {
@@ -319,13 +326,6 @@
     "package": "SlashCommand",
     "alias": [
       "types"
-    ]
-  },
-  {
-    "name": "Strike.ts",
-    "package": "Strike",
-    "alias": [
-      "Strike"
     ]
   },
   {
@@ -371,27 +371,6 @@
     ]
   },
   {
-    "name": "TextUnderline.ts",
-    "package": "TextUnderline",
-    "alias": [
-      "TextUnderline"
-    ]
-  },
-  {
-    "name": "Twitter.ts",
-    "package": "Twitter",
-    "alias": [
-      "Twitter"
-    ]
-  },
-  {
-    "name": "TrailingNode.ts",
-    "package": "TrailingNode",
-    "alias": [
-      "TrailingNode"
-    ]
-  },
-  {
     "name": "TextAlign.ts",
     "package": "TextAlign",
     "alias": [
@@ -403,6 +382,27 @@
     "package": "TextDirection",
     "alias": [
       "TextDirection"
+    ]
+  },
+  {
+    "name": "TextUnderline.ts",
+    "package": "TextUnderline",
+    "alias": [
+      "TextUnderline"
+    ]
+  },
+  {
+    "name": "TrailingNode.ts",
+    "package": "TrailingNode",
+    "alias": [
+      "TrailingNode"
+    ]
+  },
+  {
+    "name": "Twitter.ts",
+    "package": "Twitter",
+    "alias": [
+      "Twitter"
     ]
   },
   {

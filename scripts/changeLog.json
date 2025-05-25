@@ -1,9 +1,56 @@
 [
   {
+    "hash": "930988280ec3051b9bde2c1bba1730a9c1e54b7a",
+    "date": "Sun May 25 11:18:34 2025 +0700",
+    "message": "chore: release v0.3.4",
+    "refs": "HEAD -> main, tag: v0.3.4, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.4"
+  },
+  {
+    "hash": "f972ed44919086e790deb41497dfab5e15beed2a",
+    "date": "Sun May 25 10:23:34 2025 +0800",
+    "message": "fix: the tooltip of TableOfContent",
+    "refs": "",
+    "author_name": "ludejun",
+    "author_email": "ludejun@live.cn",
+    "functions": [
+      "TableOfContent"
+    ]
+  },
+  {
+    "hash": "70aa7eb355c6353199d6682a4ba52eb2e9731d7c",
+    "date": "Thu May 22 11:54:37 2025 +0300",
+    "message": "feature: code view extension",
+    "refs": "",
+    "author_name": "vk",
+    "author_email": "vladimir@voma.ai",
+    "functions": [
+      "extensions.json",
+      "CodeView",
+      "index"
+    ]
+  },
+  {
+    "hash": "f57ef3188e17024cbe13f70a8390d5ee8a5b7ddd",
+    "date": "Tue May 13 18:56:38 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json",
+      "LinkEditBlock",
+      "ActiveVideoButton"
+    ]
+  },
+  {
     "hash": "a54225ebd6729e0c973a6ec92db30b06dc9aa788",
     "date": "Tue May 13 18:51:57 2025 +0700",
     "message": "chore: release v0.3.3",
-    "refs": "HEAD -> main, tag: v0.3.3, origin/main",
+    "refs": "tag: v0.3.3",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1333,47 +1380,5 @@
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
     "version": "v0.0.34"
-  },
-  {
-    "hash": "1fafca3a5a22a9da982270b057fadda048710235",
-    "date": "Sat Sep 7 08:54:42 2024 +0700",
-    "message": "fix(image): display image block",
-    "refs": "origin/fix-image-extension, fix-image-extension",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "Image",
-      "ImageView"
-    ]
-  },
-  {
-    "hash": "3ce619c4cce08e1d5624e755b999473d43ed4bdc",
-    "date": "Mon Sep 2 15:56:12 2024 +0700",
-    "message": "chore: release v0.0.33",
-    "refs": "tag: v0.0.33",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.33"
-  },
-  {
-    "hash": "11cd2ae65ef1cd5714da472117d924714ae1f01d",
-    "date": "Mon Sep 2 14:57:23 2024 +0700",
-    "message": "chore: release v0.0.32",
-    "refs": "tag: v0.0.32",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.32"
-  },
-  {
-    "hash": "5c2243053758d872d7382aee6012af7f1c2a23e9",
-    "date": "Sun Sep 1 23:20:56 2024 +0700",
-    "message": "chore: release v0.0.31",
-    "refs": "tag: v0.0.31",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.31"
   }
 ]
