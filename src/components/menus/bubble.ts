@@ -4,7 +4,7 @@ import type { Editor } from '@tiptap/react';
 import { ActionButton } from '@/components';
 import { BUBBLE_TEXT_LIST, IMAGE_SIZE, VIDEO_SIZE } from '@/constants';
 import { localeActions } from '@/locales';
-import type { ButtonViewParams, ButtonViewReturn, ExtensionNameKeys } from '@/types';
+import type { ButtonViewParams, ButtonViewReturn, ExtensionNameKeys,VideoAlignment } from '@/types';
 
 /** Represents the size types for bubble images or videos */
 type BubbleImageOrVideoSizeType = 'size-small' | 'size-medium' | 'size-large';
@@ -189,6 +189,28 @@ function imageDrawerAlignMenus(editor: Editor): BubbleMenuItem[] {
     },
   }));
 }
+function videoAlignMenus(editor: Editor): BubbleMenuItem[] {
+  const alignments: {
+    type: VideoAlignment;
+    icon: string;
+    tooltip: string;
+  }[] = [
+    { type: 'flex-start', icon: 'AlignLeft', tooltip: 'Align left' },
+    { type: 'center', icon: 'AlignCenter', tooltip: 'Align center' },
+    { type: 'flex-end', icon: 'AlignRight', tooltip: 'Align right' },
+  ];
+
+  return alignments.map((align) => ({
+    type: `video-align-${align.type}`,
+    component: ActionButton,
+    componentProps: {
+      tooltip: align.tooltip,
+      icon: align.icon,
+      action: () => editor.commands.updateVideo({ align: align.type }),
+      isActive: () => editor.getAttributes('video').align === align.type,
+    },
+  }));
+}
 
 function videoSizeMenus(editor: Editor): BubbleMenuItem[] {
   const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large'];
@@ -356,6 +378,7 @@ export function getBubbleDrawer(editor: Editor): BubbleMenuItem[] {
 export function getBubbleVideo(editor: Editor): BubbleMenuItem[] {
   return [
     ...videoSizeMenus(editor),
+    ...videoAlignMenus(editor),
     {
       type: 'remove',
       component: ActionButton,
