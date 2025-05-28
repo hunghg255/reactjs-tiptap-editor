@@ -8,7 +8,7 @@ import type { GeneralOptions } from '@/types';
 import type { TableCellBackgroundOptions } from './cell-background';
 import { TableCellBackground } from './cell-background';
 import { TableRow } from './components/TableRow';
-import {TableCell} from "./components/TableCell"
+import { TableCell } from './components/TableCell';
 
 export interface TableOptions extends GeneralOptions<TableOptions> {
   HTMLAttributes: Record<string, any>
