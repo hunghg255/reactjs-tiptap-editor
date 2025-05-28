@@ -262,3 +262,5 @@ export interface NameValueOption<T = string> {
   name: string
   value: T
 }
+
+export type VideoAlignment = 'flex-start' | 'center' | 'flex-end';

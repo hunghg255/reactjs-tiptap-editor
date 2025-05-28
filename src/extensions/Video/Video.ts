@@ -2,7 +2,8 @@ import { Node } from '@tiptap/core';
 
 import { VIDEO_SIZE } from '@/constants';
 import ActionVideoButton from '@/extensions/Video/components/ActiveVideoButton';
-import type { GeneralOptions } from '@/types';
+import type { GeneralOptions,VideoAlignment } from '@/types';
+
 import { getCssUnitWithDefault } from '@/utils/utils';
 
 /**
@@ -54,6 +55,8 @@ interface SetVideoOptions {
   src: string
   /** The width of the video */
   width: string | number
+  
+  align: VideoAlignment;
 }
 
 declare module '@tiptap/core' {
@@ -113,7 +116,7 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
       width: VIDEO_SIZE['size-medium'],
       HTMLAttributes: {
         class: 'iframe-wrapper',
-        style: 'display: flex;justify-content: center;',
+        // style: 'display: flex;justify-content: center;',
       },
       button: ({ editor, t }: any) => {
         return {
@@ -157,6 +160,12 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
         default: this.options.allowFullscreen,
         parseHTML: () => this.options.allowFullscreen,
       },
+      align: {
+        default: 'center', // Default alignment
+        renderHTML: ({ align }) => ({
+          align: align, 
+        }),
+      },
     };
   },
 
@@ -169,9 +178,9 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
-    const { width = '100%' } = HTMLAttributes ?? {};
+    const { width = '100%' ,align = 'center' } = HTMLAttributes ?? {};
 
-    const iframeHTMLAttributes = {
+    const iframeHTMLAttributes = { 
       ...HTMLAttributes,
       width: '100%',
       height: '100%',
@@ -179,17 +188,25 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
 
     const responsiveStyle = `position: relative;overflow: hidden;display: flex;flex: 1;max-width: ${width};`;
     const responsiveSizesStyle = `flex: 1;padding-bottom: ${(9 / 16) * 100}%;`;
+    const positionStyle = `display: flex; justify-content: ${align};`;
 
     const iframeDOM = ['iframe', iframeHTMLAttributes];
     const sizesDOM = ['div', { style: responsiveSizesStyle }];
-    const responsiveDOM = ['div', { style: responsiveStyle }, sizesDOM, iframeDOM];
+    const responsiveDOM = [
+      'div',
+      { style: responsiveStyle },
+      sizesDOM,
+      iframeDOM,
+    ];
+    const positionDiv = ['div', { style: positionStyle }, responsiveDOM];
 
     const divAttrs = {
       ...this.options.HTMLAttributes,
+      class: 'iframe-wrapper',
       'data-video': '',
     };
 
-    return ['div', divAttrs, responsiveDOM];
+    return ['div', divAttrs, positionDiv];
   },
 
   addCommands() {
