@@ -1,16 +1,14 @@
 import TiptapTable from '@tiptap/extension-table';
-import { TableCell } from '@tiptap/extension-table-cell';
 import type { TableCellOptions } from '@tiptap/extension-table-cell';
 import { TableHeader } from '@tiptap/extension-table-header';
 import type { TableHeaderOptions } from '@tiptap/extension-table-header';
-import { TableRow } from '@tiptap/extension-table-row';
 import type { TableRowOptions } from '@tiptap/extension-table-row';
-
 import TableActionButton from '@/extensions/Table/components/TableActionButton';
 import type { GeneralOptions } from '@/types';
-
 import type { TableCellBackgroundOptions } from './cell-background';
 import { TableCellBackground } from './cell-background';
+import { TableRow } from './components/TableRow';
+import {TableCell} from "./components/TableCell"
 
 export interface TableOptions extends GeneralOptions<TableOptions> {
   HTMLAttributes: Record<string, any>
@@ -32,9 +30,17 @@ export const Table = /* @__PURE__ */ TiptapTable.extend<TableOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
+      HTMLAttributes: {
+        style: `
+          border: 1px solid #000;         
+          border-collapse: collapse;     
+          width: 100%;
+        `,
+      },
       resizable: true,
       lastColumnResizable: true,
       allowTableNodeSelection: false,
+      
       button: ({ editor, t }: any) => ({
         component: TableActionButton,
         componentProps: {
