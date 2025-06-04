@@ -28,17 +28,17 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
-    ]
-  },
-  {
     "name": "Clear.ts",
     "package": "Clear",
     "alias": [
       "Clear"
+    ]
+  },
+  {
+    "name": "BulletList.ts",
+    "package": "BulletList",
+    "alias": [
+      "BulletList"
     ]
   },
   {
@@ -126,17 +126,17 @@
     ]
   },
   {
-    "name": "FormatPainter.ts",
-    "package": "FormatPainter",
-    "alias": [
-      "FormatPainter"
-    ]
-  },
-  {
     "name": "Heading.ts",
     "package": "Heading",
     "alias": [
       "Heading"
+    ]
+  },
+  {
+    "name": "FormatPainter.ts",
+    "package": "FormatPainter",
+    "alias": [
+      "FormatPainter"
     ]
   },
   {
@@ -154,13 +154,6 @@
     ]
   },
   {
-    "name": "HorizontalRule.ts",
-    "package": "HorizontalRule",
-    "alias": [
-      "HorizontalRule"
-    ]
-  },
-  {
     "name": "Iframe.ts",
     "package": "Iframe",
     "alias": [
@@ -172,6 +165,13 @@
     "package": "Iframe",
     "alias": [
       "embed"
+    ]
+  },
+  {
+    "name": "HorizontalRule.ts",
+    "package": "HorizontalRule",
+    "alias": [
+      "HorizontalRule"
     ]
   },
   {
@@ -189,10 +189,10 @@
     ]
   },
   {
-    "name": "ImageGif.ts",
-    "package": "ImageGif",
+    "name": "ImportWord.ts",
+    "package": "ImportWord",
     "alias": [
-      "ImageGif"
+      "ImportWord"
     ]
   },
   {
@@ -200,13 +200,6 @@
     "package": "Indent",
     "alias": [
       "Indent"
-    ]
-  },
-  {
-    "name": "ImportWord.ts",
-    "package": "ImportWord",
-    "alias": [
-      "ImportWord"
     ]
   },
   {
@@ -238,13 +231,6 @@
     ]
   },
   {
-    "name": "Mention.ts",
-    "package": "Mention",
-    "alias": [
-      "Mention"
-    ]
-  },
-  {
     "name": "ListItem.ts",
     "package": "ListItem",
     "alias": [
@@ -252,17 +238,17 @@
     ]
   },
   {
+    "name": "Mention.ts",
+    "package": "Mention",
+    "alias": [
+      "Mention"
+    ]
+  },
+  {
     "name": "Mermaid.ts",
     "package": "Mermaid",
     "alias": [
       "Mermaid"
-    ]
-  },
-  {
-    "name": "MoreMark.ts",
-    "package": "MoreMark",
-    "alias": [
-      "MoreMark"
     ]
   },
   {
@@ -280,17 +266,10 @@
     ]
   },
   {
-    "name": "SearchAndReplace.ts",
-    "package": "SearchAndReplace",
+    "name": "MoreMark.ts",
+    "package": "MoreMark",
     "alias": [
-      "SearchAndReplace"
-    ]
-  },
-  {
-    "name": "Selection.ts",
-    "package": "Selection",
-    "alias": [
-      "Selection"
+      "MoreMark"
     ]
   },
   {
@@ -301,10 +280,10 @@
     ]
   },
   {
-    "name": "Strike.ts",
-    "package": "Strike",
+    "name": "SearchAndReplace.ts",
+    "package": "SearchAndReplace",
     "alias": [
-      "Strike"
+      "SearchAndReplace"
     ]
   },
   {
@@ -326,6 +305,20 @@
     "package": "SlashCommand",
     "alias": [
       "types"
+    ]
+  },
+  {
+    "name": "Selection.ts",
+    "package": "Selection",
+    "alias": [
+      "Selection"
+    ]
+  },
+  {
+    "name": "Strike.ts",
+    "package": "Strike",
+    "alias": [
+      "Strike"
     ]
   },
   {
@@ -364,6 +357,13 @@
     ]
   },
   {
+    "name": "TextAlign.ts",
+    "package": "TextAlign",
+    "alias": [
+      "TextAlign"
+    ]
+  },
+  {
     "name": "TextBubble.ts",
     "package": "TextBubble",
     "alias": [
@@ -371,10 +371,10 @@
     ]
   },
   {
-    "name": "TextAlign.ts",
-    "package": "TextAlign",
+    "name": "ImageGif.ts",
+    "package": "ImageGif",
     "alias": [
-      "TextAlign"
+      "ImageGif"
     ]
   },
   {
@@ -422,6 +422,20 @@
   {
     "name": "MultiColumn.ts",
     "package": "MultiColumn",
+    "alias": [
+      "components"
+    ]
+  },
+  {
+    "name": "Table.ts",
+    "package": "Table",
+    "alias": [
+      "components"
+    ]
+  },
+  {
+    "name": "Table.ts",
+    "package": "Table",
     "alias": [
       "components"
     ]

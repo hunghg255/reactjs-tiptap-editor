@@ -1,9 +1,57 @@
 [
   {
+    "hash": "1ba77bd6302cda318dc63141bd27668ea0bd5153",
+    "date": "Wed May 28 22:33:34 2025 +0530",
+    "message": "fix: linting errors",
+    "refs": "",
+    "author_name": "Zeeshan Ahmad",
+    "author_email": "zeeshan",
+    "functions": [
+      "Table",
+      "TableCell",
+      "TableRow"
+    ]
+  },
+  {
+    "hash": "3ad2718adeb3542fb973909b961cae5ba1d66203",
+    "date": "Wed May 28 22:20:13 2025 +0530",
+    "message": "feat: add table, row, and cell borders for improved layout clarit",
+    "refs": "",
+    "author_name": "Zeeshan Ahmad",
+    "author_email": "zeeshan",
+    "functions": [
+      "Table",
+      "TableCell",
+      "TableRow"
+    ]
+  },
+  {
+    "hash": "a7323a4144841d6569a6eebb5ec04c62d592d63e",
+    "date": "Wed May 28 10:00:59 2025 +0530",
+    "message": "feat(video): add alignment options for video elements",
+    "refs": "",
+    "author_name": "Zeeshan Ahmad",
+    "author_email": "zeeshan.ahmad@hdworks.in",
+    "functions": [
+      "Video"
+    ]
+  },
+  {
+    "hash": "723c098f3f9dcca648d986be69082402f7fa5623",
+    "date": "Sun May 25 11:23:00 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "930988280ec3051b9bde2c1bba1730a9c1e54b7a",
     "date": "Sun May 25 11:18:34 2025 +0700",
     "message": "chore: release v0.3.4",
-    "refs": "HEAD -> main, tag: v0.3.4, origin/main",
+    "refs": "tag: v0.3.4",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1360,25 +1408,5 @@
     "functions": [
       "extensions.json"
     ]
-  },
-  {
-    "hash": "9915590367d2429973c74024f96df8fb9e5a20d5",
-    "date": "Mon Sep 9 11:11:59 2024 +0700",
-    "message": "chore: release v0.0.35",
-    "refs": "tag: v0.0.35",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.35"
-  },
-  {
-    "hash": "05b271b1dc2440a59ca9e503b917d78d24874e69",
-    "date": "Sat Sep 7 08:57:18 2024 +0700",
-    "message": "chore: release v0.0.34",
-    "refs": "tag: v0.0.34",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.34"
   }
 ]
