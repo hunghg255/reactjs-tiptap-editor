@@ -75,13 +75,30 @@ declare module '@tiptap/core' {
 }
 
 function linkConvert(src: string) {
-  // Convert youtube links
+  // Convert Youtube links
   src = src
     .replace('https://youtu.be/', 'https://www.youtube.com/watch?v=')
     .replace('watch?v=', 'embed/');
 
+  // Convert YouTube Shorts
+  const youtubeShortsMatch = src.match(/^https:\/\/www\.youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/);
+  if (youtubeShortsMatch) {
+    const videoId = youtubeShortsMatch[1];
+    src = `https://www.youtube.com/embed/${videoId}`;
+  }
+
   // Convert vimeo links
-  src = src.replace('https://vimeo.com/', 'https://player.vimeo.com/video/');
+  const vimeoMatch = src.match(/^https:\/\/vimeo\.com\/(\d+)(?:\/([a-zA-Z0-9]+))?/);
+  if (vimeoMatch) {
+    const videoId = vimeoMatch[1];
+    const hash = vimeoMatch[2];
+
+    if (hash) {
+      src = `https://player.vimeo.com/video/${videoId}?h=${hash}`;
+    } else {
+      src = `https://player.vimeo.com/video/${videoId}`;
+    }
+  }
 
   // Convert bilibili links
   const isBilibiliLink = /^https?:\/\/www.bilibili.com\/video\/.*/i.test(src);
