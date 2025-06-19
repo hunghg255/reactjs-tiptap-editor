@@ -1,5 +1,37 @@
 [
   {
+    "hash": "9b2c85b714b600c2df1a4db7a18e152e26b32cb4",
+    "date": "Thu Jun 19 07:11:28 2025 +0700",
+    "message": "chore: release v0.3.5",
+    "refs": "tag: v0.3.5, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.5"
+  },
+  {
+    "hash": "108811f5f738995d40fa2dcdb147e2f961f6fa5d",
+    "date": "Thu Jun 19 00:53:22 2025 +0300",
+    "message": "fixed vimeo video links embedding + youtube shorts",
+    "refs": "",
+    "author_name": "vk",
+    "author_email": "morcano91@gmail.com",
+    "functions": [
+      "Video"
+    ]
+  },
+  {
+    "hash": "57d8fdd6e64326d8d0082183c1803bda4904f405",
+    "date": "Wed Jun 4 17:12:59 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "1ba77bd6302cda318dc63141bd27668ea0bd5153",
     "date": "Wed May 28 22:33:34 2025 +0530",
     "message": "fix: linting errors",
@@ -1365,48 +1397,6 @@
       "TextDirection",
       "TextDirectionButton",
       "index"
-    ]
-  },
-  {
-    "hash": "0d425a66300a7a3bd6fdb4eb452ce64fceb059d4",
-    "date": "Fri Sep 20 10:24:52 2024 +0700",
-    "message": "chore: release v0.0.37",
-    "refs": "tag: v0.0.37",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.37"
-  },
-  {
-    "hash": "8770e62d579b5cff3f6ab645f63eea661160910d",
-    "date": "Fri Sep 20 10:24:25 2024 +0700",
-    "message": "fix: paste image from clipboard",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "ImageUpload"
-    ]
-  },
-  {
-    "hash": "d9b0c54b5ffc51ff47577bfc049b8f67a6965e70",
-    "date": "Tue Sep 17 16:37:03 2024 +0700",
-    "message": "chore: release v0.0.36",
-    "refs": "tag: v0.0.36",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.36"
-  },
-  {
-    "hash": "49f629327882d8a4614e29fead3d89da6d04eb89",
-    "date": "Mon Sep 9 14:32:39 2024 +0700",
-    "message": "docs: update changelog",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
     ]
   }
 ]

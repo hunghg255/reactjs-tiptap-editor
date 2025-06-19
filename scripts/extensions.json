@@ -28,13 +28,6 @@
     ]
   },
   {
-    "name": "Clear.ts",
-    "package": "Clear",
-    "alias": [
-      "Clear"
-    ]
-  },
-  {
     "name": "BulletList.ts",
     "package": "BulletList",
     "alias": [
@@ -42,10 +35,10 @@
     ]
   },
   {
-    "name": "CodeBlock.ts",
-    "package": "CodeBlock",
+    "name": "Clear.ts",
+    "package": "Clear",
     "alias": [
-      "CodeBlock"
+      "Clear"
     ]
   },
   {
@@ -53,6 +46,13 @@
     "package": "Code",
     "alias": [
       "Code"
+    ]
+  },
+  {
+    "name": "CodeBlock.ts",
+    "package": "CodeBlock",
+    "alias": [
+      "CodeBlock"
     ]
   },
   {
@@ -126,17 +126,17 @@
     ]
   },
   {
-    "name": "Heading.ts",
-    "package": "Heading",
-    "alias": [
-      "Heading"
-    ]
-  },
-  {
     "name": "FormatPainter.ts",
     "package": "FormatPainter",
     "alias": [
       "FormatPainter"
+    ]
+  },
+  {
+    "name": "Heading.ts",
+    "package": "Heading",
+    "alias": [
+      "Heading"
     ]
   },
   {
@@ -154,6 +154,13 @@
     ]
   },
   {
+    "name": "HorizontalRule.ts",
+    "package": "HorizontalRule",
+    "alias": [
+      "HorizontalRule"
+    ]
+  },
+  {
     "name": "Iframe.ts",
     "package": "Iframe",
     "alias": [
@@ -165,13 +172,6 @@
     "package": "Iframe",
     "alias": [
       "embed"
-    ]
-  },
-  {
-    "name": "HorizontalRule.ts",
-    "package": "HorizontalRule",
-    "alias": [
-      "HorizontalRule"
     ]
   },
   {
@@ -189,6 +189,13 @@
     ]
   },
   {
+    "name": "ImageGif.ts",
+    "package": "ImageGif",
+    "alias": [
+      "ImageGif"
+    ]
+  },
+  {
     "name": "ImportWord.ts",
     "package": "ImportWord",
     "alias": [
@@ -203,17 +210,17 @@
     ]
   },
   {
-    "name": "Italic.ts",
-    "package": "Italic",
-    "alias": [
-      "Italic"
-    ]
-  },
-  {
     "name": "Katex.ts",
     "package": "Katex",
     "alias": [
       "Katex"
+    ]
+  },
+  {
+    "name": "Italic.ts",
+    "package": "Italic",
+    "alias": [
+      "Italic"
     ]
   },
   {
@@ -238,6 +245,13 @@
     ]
   },
   {
+    "name": "Mermaid.ts",
+    "package": "Mermaid",
+    "alias": [
+      "Mermaid"
+    ]
+  },
+  {
     "name": "Mention.ts",
     "package": "Mention",
     "alias": [
@@ -245,10 +259,10 @@
     ]
   },
   {
-    "name": "Mermaid.ts",
-    "package": "Mermaid",
+    "name": "MoreMark.ts",
+    "package": "MoreMark",
     "alias": [
-      "Mermaid"
+      "MoreMark"
     ]
   },
   {
@@ -266,13 +280,6 @@
     ]
   },
   {
-    "name": "MoreMark.ts",
-    "package": "MoreMark",
-    "alias": [
-      "MoreMark"
-    ]
-  },
-  {
     "name": "OrderedList.ts",
     "package": "OrderedList",
     "alias": [
@@ -284,6 +291,13 @@
     "package": "SearchAndReplace",
     "alias": [
       "SearchAndReplace"
+    ]
+  },
+  {
+    "name": "Selection.ts",
+    "package": "Selection",
+    "alias": [
+      "Selection"
     ]
   },
   {
@@ -305,13 +319,6 @@
     "package": "SlashCommand",
     "alias": [
       "types"
-    ]
-  },
-  {
-    "name": "Selection.ts",
-    "package": "Selection",
-    "alias": [
-      "Selection"
     ]
   },
   {
@@ -368,13 +375,6 @@
     "package": "TextBubble",
     "alias": [
       "TextBubble"
-    ]
-  },
-  {
-    "name": "ImageGif.ts",
-    "package": "ImageGif",
-    "alias": [
-      "ImageGif"
     ]
   },
   {
