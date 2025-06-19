@@ -3,7 +3,6 @@ import { Node } from '@tiptap/core';
 import { VIDEO_SIZE } from '@/constants';
 import ActionVideoButton from '@/extensions/Video/components/ActiveVideoButton';
 import type { GeneralOptions,VideoAlignment } from '@/types';
-
 import { getCssUnitWithDefault } from '@/utils/utils';
 
 /**
@@ -55,7 +54,7 @@ interface SetVideoOptions {
   src: string
   /** The width of the video */
   width: string | number
-  
+
   align: VideoAlignment;
 }
 
@@ -81,6 +80,7 @@ function linkConvert(src: string) {
     .replace('watch?v=', 'embed/');
 
   // Convert YouTube Shorts
+  // eslint-disable-next-line unicorn/better-regex
   const youtubeShortsMatch = src.match(/^https:\/\/www\.youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/);
   if (youtubeShortsMatch) {
     const videoId = youtubeShortsMatch[1];
@@ -88,6 +88,7 @@ function linkConvert(src: string) {
   }
 
   // Convert vimeo links
+  // eslint-disable-next-line unicorn/better-regex
   const vimeoMatch = src.match(/^https:\/\/vimeo\.com\/(\d+)(?:\/([a-zA-Z0-9]+))?/);
   if (vimeoMatch) {
     const videoId = vimeoMatch[1];
@@ -180,7 +181,7 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
       align: {
         default: 'center', // Default alignment
         renderHTML: ({ align }) => ({
-          align: align, 
+          align: align,
         }),
       },
     };
@@ -197,7 +198,7 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
   renderHTML({ HTMLAttributes }) {
     const { width = '100%' ,align = 'center' } = HTMLAttributes ?? {};
 
-    const iframeHTMLAttributes = { 
+    const iframeHTMLAttributes = {
       ...HTMLAttributes,
       width: '100%',
       height: '100%',
