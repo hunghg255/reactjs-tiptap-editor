@@ -16,6 +16,7 @@ The Excalidraw extension allows you to add an Excalidraw to your editor.
 
 ```tsx
 import { Excalidraw } from 'reactjs-tiptap-editor/excalidraw'; // [!code ++]
+import "@excalidraw/excalidraw/index.css"; // [!code ++]
 
 const extensions = [
   ...,
