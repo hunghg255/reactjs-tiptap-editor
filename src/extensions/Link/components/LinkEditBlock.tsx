@@ -94,6 +94,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
         <Button
           className="richtext-mt-2 richtext-self-end"
           onClick={handleSubmit}
+          type="button"
         >
           {t("editor.link.dialog.button.apply")}
         </Button>
