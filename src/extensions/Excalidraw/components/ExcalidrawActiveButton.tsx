@@ -69,6 +69,8 @@ export const ExcalidrawActiveButton: React.FC<IProps> = ({ editor }) => {
 
   useEffect(() => {
     const handler = (data: any) => {
+      if (data?.editor !== editor) return; // only respond to events from the matching editor
+
       toggleVisible(true);
       data && setInitialData(data.data);
     };

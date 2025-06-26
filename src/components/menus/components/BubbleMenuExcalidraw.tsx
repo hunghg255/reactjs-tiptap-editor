@@ -34,7 +34,7 @@ export function BubbleMenuExcalidraw({ editor }: any) {
     [editor],
   );
   const openEditLinkModal = useCallback(() => {
-    triggerOpenExcalidrawSettingModal(attrs);
+    triggerOpenExcalidrawSettingModal({ ...attrs, editor });
   }, [editor, attrs]);
   const shouldShow = useCallback(() => editor.isActive(Excalidraw.name), [editor]);
   const deleteMe = useCallback(() => deleteNode(Excalidraw.name, editor), [editor]);
