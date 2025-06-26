@@ -7,8 +7,8 @@ import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock';
 import LinkViewBlock from '@/extensions/Link/components/LinkViewBlock';
 
 export interface BubbleMenuLinkProps {
-  editor: Editor
-  disabled?: boolean
+  editor: Editor;
+  disabled?: boolean;
 }
 
 function BubbleMenuLink({ editor, disabled }: BubbleMenuLinkProps) {
@@ -42,8 +42,9 @@ function BubbleMenuLink({ editor, disabled }: BubbleMenuLinkProps) {
         ],
       })
       .setLink({ href: url })
-      .focus()
+      .selectNodeForward()
       .run();
+
     setShowEdit(false);
   };
 
@@ -69,28 +70,24 @@ function BubbleMenuLink({ editor, disabled }: BubbleMenuLinkProps) {
           },
         }}
       >
-        {disabled
-          ? (
-            <></>
-          )
-          : (
-            <>
-              {showEdit
-                ? (
-                  <LinkEditBlock onSetLink={onSetLink} editor={editor} />
-                )
-                : (
-                  <LinkViewBlock
-                    editor={editor}
-                    onClear={unSetLink}
-                    onEdit={() => {
-                      setShowEdit(true);
-                    }}
-                    link={link}
-                  />
-                )}
-            </>
-          )}
+        {disabled ? (
+          <></>
+        ) : (
+          <>
+            {showEdit ? (
+              <LinkEditBlock onSetLink={onSetLink} editor={editor} />
+            ) : (
+              <LinkViewBlock
+                editor={editor}
+                onClear={unSetLink}
+                onEdit={() => {
+                  setShowEdit(true);
+                }}
+                link={link}
+              />
+            )}
+          </>
+        )}
       </BubbleMenu>
     </>
   );
