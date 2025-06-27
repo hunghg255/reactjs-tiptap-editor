@@ -82,6 +82,15 @@ export const ExcalidrawActiveButton: React.FC<IProps> = ({ editor }) => {
     };
   }, [editor, toggleVisible]);
 
+  useEffect(() => {
+    if (!loading && Excalidraw && visible) {
+      // delay to let animations & DOM settle
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 400);
+    }
+  }, [loading, Excalidraw, visible]);
+
   return (
     <Dialog
       onOpenChange={toggleVisible}
