@@ -196,13 +196,6 @@
     ]
   },
   {
-    "name": "ImportWord.ts",
-    "package": "ImportWord",
-    "alias": [
-      "ImportWord"
-    ]
-  },
-  {
     "name": "Indent.ts",
     "package": "Indent",
     "alias": [
@@ -210,10 +203,10 @@
     ]
   },
   {
-    "name": "Katex.ts",
-    "package": "Katex",
+    "name": "ImportWord.ts",
+    "package": "ImportWord",
     "alias": [
-      "Katex"
+      "ImportWord"
     ]
   },
   {
@@ -221,6 +214,13 @@
     "package": "Italic",
     "alias": [
       "Italic"
+    ]
+  },
+  {
+    "name": "Katex.ts",
+    "package": "Katex",
+    "alias": [
+      "Katex"
     ]
   },
   {
@@ -245,17 +245,17 @@
     ]
   },
   {
-    "name": "Mermaid.ts",
-    "package": "Mermaid",
-    "alias": [
-      "Mermaid"
-    ]
-  },
-  {
     "name": "Mention.ts",
     "package": "Mention",
     "alias": [
       "Mention"
+    ]
+  },
+  {
+    "name": "Mermaid.ts",
+    "package": "Mermaid",
+    "alias": [
+      "Mermaid"
     ]
   },
   {
