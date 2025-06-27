@@ -25,6 +25,12 @@ function BubbleMenuLink({ editor, disabled }: BubbleMenuLinkProps) {
   }, []);
 
   const onSetLink = (url: string, text?: string, openInNewTab?: boolean) => {
+    const selection = editor.state.selection;
+    const { from } = selection;
+
+    const insertedLength = text?.length ?? 0;
+    const newTo = from + insertedLength;
+
     editor
       .chain()
       .extendMarkRange('link')
@@ -42,7 +48,8 @@ function BubbleMenuLink({ editor, disabled }: BubbleMenuLinkProps) {
         ],
       })
       .setLink({ href: url })
-      .selectNodeForward()
+      .setTextSelection({ from, to: newTo }) // 👈 Select inserted text
+      .focus()
       .run();
 
     setShowEdit(false);
