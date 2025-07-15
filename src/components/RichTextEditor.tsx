@@ -68,6 +68,11 @@ export interface RichTextEditorProps {
 
   /** Use editor options */
   resetCSS?: boolean
+
+   /**
+     * This option gives us the control to enable the default behavior of rendering the editor immediately.
+     */
+  immediatelyRender?: boolean
 }
 
 function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ editor: CoreEditor | null }>) {
@@ -96,6 +101,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
   const editor = useEditor({
     extensions: sortExtensions,
     content,
+    immediatelyRender: props?.immediatelyRender || false,
     onUpdate: ({ editor }) => {
       if (onValueChange)
         onValueChange(editor);
