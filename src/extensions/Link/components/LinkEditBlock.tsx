@@ -1,9 +1,9 @@
-/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useEffect, useState } from 'react';
 
 import { Button, IconComponent, Input, Label, Switch } from '@/components';
+import Link from '@/extensions/Link/Link';
 import { useLocale } from '@/locales';
 
 interface IPropsLinkEditBlock {
@@ -21,18 +21,32 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
   const [openInNewTab, setOpenInNewTab] = useState<boolean>(false);
 
   useEffect(() => {
-    if (props?.editor) {
-      const { href: link, target } = props.editor?.getAttributes('link');
+    const updateForm = () => {
+      if (props.editor?.isActive('link')) {
+        const { href: link, target } = props.editor.getAttributes('link');
+        const { from, to } = props.editor.state.selection;
+        const text = props.editor.state.doc.textBetween(from, to, ' ');
+        setForm({ link: link || '', text });
+        setOpenInNewTab(target === '_blank');
+      } else {
+        const LinkOptions = props.editor.extensionManager.extensions.find(
+          (ext: any) => ext.name === Link.name,
+        )?.options;
+        setOpenInNewTab(LinkOptions?.HTMLAttributes?.target === '_blank');
+      }
+    };
 
-      const { from, to } = props.editor.state.selection;
-      const text = props.editor.state.doc.textBetween(from, to, ' ');
-      setForm({
-        link: link || '',
-        text,
-      });
-      setOpenInNewTab(target === '_blank');
-    }
-  }, [props?.editor]);
+    // 初始更新
+    updateForm();
+
+    // 添加选中变化监听
+    props.editor.on('selectionUpdate', updateForm);
+
+    // 清理监听
+    return () => {
+      props.editor.off('selectionUpdate', updateForm);
+    };
+  }, [props.editor]);
 
   function handleSubmit(event: any) {
     event.preventDefault();
