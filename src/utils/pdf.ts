@@ -1,6 +1,7 @@
 import type { Editor } from '@tiptap/core';
+import { ExportPdfOptions } from '@/extensions/ExportPdf';
 
-function printHtml(content: string) {
+function printHtml(content: string, exportPdfOptions: ExportPdfOptions) {
   const iframe: HTMLIFrameElement = document.createElement('iframe');
   iframe.setAttribute(
     'style',
@@ -9,7 +10,18 @@ function printHtml(content: string) {
   document.body.appendChild(iframe);
 
   const doc = iframe.contentDocument || iframe.contentWindow?.document;
+
   if (!doc) return;
+
+  const {
+    paperSize,
+    margins: {
+      top: marginTop,
+      right: marginRight,
+      bottom: marginBottom,
+      left: marginLeft,
+    },
+  } = exportPdfOptions;
 
   const html = `
     <!DOCTYPE html>
@@ -21,8 +33,8 @@ function printHtml(content: string) {
       <style>
         @media print {
           @page {
-            size: Letter;
-            margin: 0.4in 0.4in 0.4in 0.4in;
+            size: ${paperSize};
+            margin: ${marginTop} ${marginRight} ${marginBottom} ${marginLeft}; /* top, right, bottom, left */
           }
 
           body {
@@ -55,7 +67,7 @@ function printHtml(content: string) {
   doc.write(html);
   doc.close();
 
-  iframe.onload = () => {
+  iframe.addEventListener('load', () => {
     setTimeout(() => {
       try {
         iframe.contentWindow?.focus();
@@ -67,13 +79,16 @@ function printHtml(content: string) {
         document.body.removeChild(iframe);
       }, 100);
     }, 50);
-  };
+  });
 }
 
-export function printEditorContent(editor: Editor) {
+export function printEditorContent(
+  editor: Editor,
+  exportPdfOptions: ExportPdfOptions
+) {
   const content = editor.getHTML();
   if (content) {
-    printHtml(content);
+    printHtml(content, exportPdfOptions);
     return true;
   }
   return false;

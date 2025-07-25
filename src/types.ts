@@ -264,3 +264,47 @@ export interface NameValueOption<T = string> {
 }
 
 export type VideoAlignment = 'flex-start' | 'center' | 'flex-end';
+
+export type PaperSize = 'Legal' | 'Letter' | 'Tabloid' | 'A0' | 'A1' | 'A2' | 'A3' | 'A4' | 'A5';
+
+export type PageMargin =
+  // Inches (in)
+  '0in'
+  | '0.25in'
+  | '0.4in'
+  | '0.5in'
+  | '0.75in'
+  | '1in'
+  | '1.25in'
+  | '1.5in'
+  | '1.75in'
+  | '2in'
+  // Centimeters (cm)
+  | '0cm'
+  | '0.5cm'
+  | '1cm'
+  | '1.5cm'
+  | '2cm'
+  | '2.5cm'
+  | '3cm'
+  | '4cm'
+  | '5cm'
+  // Millimeters (mm)
+  | '0mm'
+  | '5mm'
+  | '10mm'
+  | '15mm'
+  | '20mm'
+  | '25mm'
+  | '30mm'
+  | '40mm'
+  | '50mm'
+  // Points (pt)
+  | '0pt'
+  | '18pt'
+  | '36pt'
+  | '54pt'
+  | '72pt'
+  | '90pt'
+  | '108pt'
+  | '144pt';
