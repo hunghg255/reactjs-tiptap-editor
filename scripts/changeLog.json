@@ -1,9 +1,105 @@
 [
   {
+    "hash": "ca9a99edab858a5606e4c768205b102d2462d8f4",
+    "date": "Fri Jul 25 22:10:20 2025 +0700",
+    "message": "chore: release v0.3.14",
+    "refs": "HEAD -> main, tag: v0.3.14, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.14"
+  },
+  {
+    "hash": "ea9863a8a6e99dd8d3034c5ea5641f29593eb877",
+    "date": "Fri Jul 25 17:40:15 2025 +0300",
+    "message": "docs(export-pdf): add usage instructions for ExportPdfOptions",
+    "refs": "",
+    "author_name": "HamzaA598",
+    "author_email": "hamzaemad598@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "53b799cf13a768c44b7b3abae1a1f01c8ebdec8f",
+    "date": "Fri Jul 25 17:28:22 2025 +0300",
+    "message": "feat(export-pdf): allow customization via ExportPdfOptions",
+    "refs": "",
+    "author_name": "HamzaA598",
+    "author_email": "hamzaemad598@gmail.com",
+    "functions": [
+      "ExportPdf"
+    ]
+  },
+  {
+    "hash": "d19cf27952468696504dc58251a0de02c272eefb",
+    "date": "Fri Jul 25 17:15:15 2025 +0700",
+    "message": "chore: release v0.3.13",
+    "refs": "tag: v0.3.13",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.13"
+  },
+  {
+    "hash": "b6f7e9ed128a04dbdadf7656d60d8e83ca9e3202",
+    "date": "Fri Jul 25 17:55:11 2025 +0800",
+    "message": "fix(link): resolve issues with HTMLAttributes and bubble popup update - Fixed the problem that the HTMLAttributes configuration of the link component does not take effect. - Fixed the problem that when changing the link bubble pop-up window display, switching to other links, the bubble pop-up window data is not updated.",
+    "refs": "",
+    "author_name": "Found",
+    "author_email": "lin752612@sina.com",
+    "functions": [
+      "Link",
+      "LinkEditBlock"
+    ]
+  },
+  {
+    "hash": "4e0cbe33d52314c9b9d873fdb77be977e649be39",
+    "date": "Mon Jul 14 22:40:08 2025 +0700",
+    "message": "chore: release v0.3.12",
+    "refs": "tag: v0.3.12",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.12"
+  },
+  {
+    "hash": "38298dbb32c2c9b70941ddeb7451cf5de0fe9120",
+    "date": "Fri Jun 27 23:25:38 2025 +0700",
+    "message": "chore: release v0.3.11",
+    "refs": "tag: v0.3.11",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.11"
+  },
+  {
+    "hash": "0f1cc4f567f232206f854783176811111c6a2e30",
+    "date": "Fri Jun 27 16:52:15 2025 +0700",
+    "message": "fix: fix bug not fill the text link when edit link",
+    "refs": "",
+    "author_name": "Loan Nguyen",
+    "author_email": "loancv12@gmail.com",
+    "functions": [
+      "Link"
+    ]
+  },
+  {
+    "hash": "f29718fff6fdfc308558b599042dc3a6124fb553",
+    "date": "Fri Jun 27 15:17:15 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "5c545d8618a26eb4f0601ad87418f29ea37eb6f0",
     "date": "Fri Jun 27 15:14:39 2025 +0700",
     "message": "chore: release v0.3.10",
-    "refs": "HEAD -> main, tag: v0.3.10, origin/main",
+    "refs": "tag: v0.3.10",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1309,93 +1405,5 @@
       "ExportWord",
       "ImageGifActionButton"
     ]
-  },
-  {
-    "hash": "d5a74edbb9dbaaeb512fb4b28a60b9be45fc29b8",
-    "date": "Wed Oct 9 09:51:55 2024 +0700",
-    "message": "chore: release v0.0.45",
-    "refs": "tag: v0.0.45",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.45"
-  },
-  {
-    "hash": "0ec19427a271051b519c72a81c41028e4820a786",
-    "date": "Wed Oct 9 09:48:46 2024 +0700",
-    "message": "feat: add extension image gif",
-    "refs": "origin/feat-extension-gif, feat-extension-gif",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "ImageGif",
-      "ImageGifActionButton",
-      "ImageGifView",
-      "index"
-    ]
-  },
-  {
-    "hash": "5b0b4aa21ab5539c4c3eb464d7c825f01da05180",
-    "date": "Tue Oct 8 08:39:49 2024 +0700",
-    "message": "chore: release v0.0.44",
-    "refs": "tag: v0.0.44",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.44"
-  },
-  {
-    "hash": "6ba701a908919c4bc80e1e7b7c3615c19c3d4a27",
-    "date": "Tue Oct 8 08:38:13 2024 +0700",
-    "message": "docs: update ImageUpload",
-    "refs": "origin/update-post-upload, update-post-upload",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md"
-    ]
-  },
-  {
-    "hash": "ab1caa914c44cb8309ef91649204042a8fbad97a",
-    "date": "Tue Oct 8 08:36:08 2024 +0700",
-    "message": "feat: add props post upload image",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "ImageUpload",
-      "ImageUploader"
-    ]
-  },
-  {
-    "hash": "5fb6dc38a575f5839bfa9313d47bb3dd7cf8966a",
-    "date": "Sat Oct 5 13:33:52 2024 +0700",
-    "message": "chore: release v0.0.43",
-    "refs": "tag: v0.0.43",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.43"
-  },
-  {
-    "hash": "282ead4bb8ec94c2a343ae507671df3c555d5b2b",
-    "date": "Sat Sep 28 17:32:59 2024 +0700",
-    "message": "chore: release v0.0.42",
-    "refs": "tag: v0.0.42",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.42"
-  },
-  {
-    "hash": "cbb52dd0f4c2de6dee01e3c14f52ccf3602824bf",
-    "date": "Fri Sep 27 00:23:09 2024 +0700",
-    "message": "chore: release v0.0.41",
-    "refs": "tag: v0.0.41",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.41"
   }
 ]

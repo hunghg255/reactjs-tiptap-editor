@@ -21,13 +21,6 @@
     ]
   },
   {
-    "name": "Bold.ts",
-    "package": "Bold",
-    "alias": [
-      "Bold"
-    ]
-  },
-  {
     "name": "BulletList.ts",
     "package": "BulletList",
     "alias": [
@@ -35,10 +28,10 @@
     ]
   },
   {
-    "name": "Clear.ts",
-    "package": "Clear",
+    "name": "Bold.ts",
+    "package": "Bold",
     "alias": [
-      "Clear"
+      "Bold"
     ]
   },
   {
@@ -46,6 +39,13 @@
     "package": "Code",
     "alias": [
       "Code"
+    ]
+  },
+  {
+    "name": "Clear.ts",
+    "package": "Clear",
+    "alias": [
+      "Clear"
     ]
   },
   {
@@ -154,13 +154,6 @@
     ]
   },
   {
-    "name": "HorizontalRule.ts",
-    "package": "HorizontalRule",
-    "alias": [
-      "HorizontalRule"
-    ]
-  },
-  {
     "name": "Iframe.ts",
     "package": "Iframe",
     "alias": [
@@ -172,6 +165,13 @@
     "package": "Iframe",
     "alias": [
       "embed"
+    ]
+  },
+  {
+    "name": "HorizontalRule.ts",
+    "package": "HorizontalRule",
+    "alias": [
+      "HorizontalRule"
     ]
   },
   {
@@ -196,13 +196,6 @@
     ]
   },
   {
-    "name": "Indent.ts",
-    "package": "Indent",
-    "alias": [
-      "Indent"
-    ]
-  },
-  {
     "name": "ImportWord.ts",
     "package": "ImportWord",
     "alias": [
@@ -214,6 +207,13 @@
     "package": "Italic",
     "alias": [
       "Italic"
+    ]
+  },
+  {
+    "name": "Indent.ts",
+    "package": "Indent",
+    "alias": [
+      "Indent"
     ]
   },
   {
@@ -266,6 +266,13 @@
     ]
   },
   {
+    "name": "OrderedList.ts",
+    "package": "OrderedList",
+    "alias": [
+      "OrderedList"
+    ]
+  },
+  {
     "name": "MultiColumn.ts",
     "package": "MultiColumn",
     "alias": [
@@ -277,13 +284,6 @@
     "package": "MultiColumn",
     "alias": [
       "MultiColumn"
-    ]
-  },
-  {
-    "name": "OrderedList.ts",
-    "package": "OrderedList",
-    "alias": [
-      "OrderedList"
     ]
   },
   {
