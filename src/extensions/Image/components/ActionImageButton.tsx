@@ -20,9 +20,10 @@ function ActionImageButton(props: any) {
   const [link, setLink] = useState<string>('');
   const fileInput = useRef<HTMLInputElement>(null);
 
-  const [imageInline, setImageInline] = useState(props.editor.extensionManager.extensions.find(
+  const defaultInline = props.editor.extensionManager.extensions.find(
     (extension: any) => extension.name === Image.name,
-  )?.options.defaultInline || false);
+  )?.options.defaultInline || false;
+  const [imageInline, setImageInline] = useState(defaultInline);
 
   const uploadOptions = useMemo(() => {
     const uploadOptions = props.editor.extensionManager.extensions.find(
@@ -57,7 +58,7 @@ function ActionImageButton(props: any) {
 
     props.editor.chain().focus().setImageInline({ src, inline: imageInline }).run();
     setOpen(false);
-    setImageInline(false);
+    setImageInline(defaultInline);
   }
   function handleLink(e: any) {
     e.preventDefault();
@@ -65,7 +66,7 @@ function ActionImageButton(props: any) {
 
     props.editor.chain().focus().setImageInline({ src: link, inline: imageInline }).run();
     setOpen(false);
-    setImageInline(false);
+    setImageInline(defaultInline);
     setLink('');
   }
 
