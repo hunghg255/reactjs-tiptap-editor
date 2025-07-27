@@ -174,11 +174,19 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
   },
   renderHTML({ HTMLAttributes }) {
     const { flipX, flipY, align, inline } = HTMLAttributes;
+    const inlineFloat = inline && (align === 'left' || align === 'right');
 
     const transformStyle
       = flipX || flipY ? `transform: rotateX(${flipX ? '180' : '0'}deg) rotateY(${flipY ? '180' : '0'}deg);` : '';
 
-    const textAlignStyle = align ? `text-align: ${align};` : '';
+    const textAlignStyle = inlineFloat ? '' : `text-align: ${align};`;
+
+    const floatStyle = inlineFloat ? `float: ${align};` : '';
+
+    const marginStyle 
+      = inlineFloat ? (align === 'left' ? 'margin: 1em 1em 1em 0;' : 'margin: 1em 0 1em 1em;') : '';
+
+    const style = `${floatStyle}${marginStyle}${transformStyle}`;
 
     return [
       inline ? 'span' : 'div',
@@ -191,7 +199,7 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
         mergeAttributes(
           {
             height: 'auto',
-            style: transformStyle,
+            style,
           },
           this.options.HTMLAttributes,
           HTMLAttributes,
