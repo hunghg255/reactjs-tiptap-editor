@@ -116,6 +116,7 @@ const locale = {
   'editor.fullscreen.tooltip.exit': 'Sair da tela cheia',
   'editor.imageUpload.cancel': 'Cancelar',
   'editor.imageUpload.crop': 'Cortar',
+  'editor.imageUpload.uploading': 'Enviando...',
   'editor.imageUpload.fileTypeNotSupported': 'Tipo de arquivo não suportado',
   'editor.imageUpload.fileSizeTooBig': 'Tamanho do arquivo muito grande, tamanho máximo é',
   'editor.table.menu.insertColumnBefore': 'Inserir coluna antes',
@@ -169,6 +170,9 @@ const locale = {
   'editor.codeView.tooltip': 'Visualização de código',
   'editor.tooltip.flipX': 'Inverter Horizontal',
   'editor.tooltip.flipY': 'Inverter Vertical',
+  'editor.upload.fileTypeNotSupported': '{fileName} tipo de arquivo não suportado',
+  'editor.upload.fileSizeTooBig': '{fileName} tamanho do arquivo muito grande, o tamanho máximo é {size}MB',
+  'editor.upload.error': 'Erro ao enviar arquivo',
 };
 
 export default locale;
