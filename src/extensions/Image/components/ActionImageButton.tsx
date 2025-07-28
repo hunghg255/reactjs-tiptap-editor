@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { ActionButton, Button, Checkbox, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
+import { ActionButton, Button, Checkbox, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger, useToast, IconComponent } from '@/components';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ImageCropper } from '@/extensions/Image/components/ImageCropper';
 import Image from '@/extensions/Image/Image';
@@ -8,10 +8,14 @@ import { actionDialogImage } from '@/extensions/Image/store';
 import { useLocale } from '@/locales';
 import { listenEvent } from '@/utils/customEvents/customEvents';
 import { EVENTS } from '@/utils/customEvents/events.constant';
+import { validateFiles } from '@/utils/validateFile';
 
 function ActionImageButton(props: any) {
   const { t } = useLocale();
+  const { toast } = useToast();
   const [open, setOpen] = useState(false);
+
+  const [isUploading, setIsUploading] = useState(false);
 
   const handleUploadImage = (evt: any) => {
     setOpen(evt.detail);
@@ -42,23 +46,76 @@ function ActionImageButton(props: any) {
 
   async function handleFile(event: any) {
     const files = event?.target?.files;
-    if (!props.editor || props.editor.isDestroyed || files.length === 0) {
+    if (!props.editor || props.editor.isDestroyed || files.length === 0 || isUploading) {
+      event.target.value = '';
       return;
     }
 
-    const file = files[0];
+    const validFiles = validateFiles(files, {
+      acceptMimes: uploadOptions?.acceptMimes,
+      maxSize: uploadOptions?.maxSize,
+      t,
+      toast,
+      onError: uploadOptions.onError,
+    });
 
-    let src = '';
-    if (uploadOptions.upload) {
-      src = await uploadOptions.upload(file);
-    } else {
-      src = URL.createObjectURL(file);
+    if (validFiles.length <= 0) {
+      event.target.value = '';
+      return;
     }
 
-    props.editor.chain().focus().setImageInline({ src, inline: imageInline }).run();
-    setOpen(false);
-    setImageInline(false);
+    setIsUploading(true);
+    try {
+      if (uploadOptions?.multiple) {
+        // Handle multiple files upload
+        const uploadPromises = validFiles.map(async (file) => {
+          let src = '';
+          if (uploadOptions.upload) {
+            src = await uploadOptions.upload(file);
+          } else {
+            src = URL.createObjectURL(file);
+          }
+          return src;
+        });
+
+        const srcs = await Promise.all(uploadPromises);
+        // Insert all images (you might want to adjust this based on your editor's capabilities)
+        srcs.forEach(src => {
+          props.editor.chain().focus().setImageInline({ src, inline: imageInline }).run();
+        });
+      } else {
+        // Single file upload (take the first valid file)
+        const file = validFiles[0];
+        let src = '';
+        if (uploadOptions.upload) {
+          src = await uploadOptions.upload(file);
+        } else {
+          src = URL.createObjectURL(file);
+        }
+        props.editor.chain().focus().setImageInline({ src, inline: imageInline }).run();
+      }
+
+      setOpen(false);
+      setImageInline(false);
+    } catch (error) {
+      console.error('Error uploading image', error);
+      if (uploadOptions.onError) {
+        uploadOptions.onError({
+          type: 'upload',
+          message: t('editor.upload.error'),
+        });
+      } else {
+        toast({
+          variant: 'destructive',
+          title: t('editor.upload.error'),
+        });
+      }
+    } finally {
+      setIsUploading(false);
+      event.target.value = '';
+    }
   }
+
   function handleLink(e: any) {
     e.preventDefault();
     e.stopPropagation();
@@ -134,13 +191,26 @@ function ActionImageButton(props: any) {
           <TabsContent value="upload">
             <div className="richtext-flex richtext-items-center richtext-gap-[10px]">
               <Button className="richtext-mt-1 richtext-w-full"
+                disabled={isUploading}
                 onClick={handleClick}
                 size="sm"
               >
-                {t('editor.image.dialog.tab.upload')}
+                {isUploading ? (
+                  <>
+                    {t('editor.imageUpload.uploading')}
+
+                    <IconComponent
+                      className="richtext-ml-1 richtext-animate-spin"
+                      name="Loader"
+                    />
+                  </>
+                ) : (
+                  t('editor.image.dialog.tab.upload')
+                )}
               </Button>
 
               <ImageCropper
+                disabled={isUploading}
                 editor={props.editor}
                 imageInline={imageInline}
                 onClose={() => actionDialogImage.setOpen(props.editor.id, false)}
@@ -148,14 +218,13 @@ function ActionImageButton(props: any) {
             </div>
 
             <input
-              accept="image/*"
-              multiple
+              // accept="image/*"
+              accept={uploadOptions.acceptMimes.join(',') || 'image/*'}
+              multiple={uploadOptions.multiple}
               onChange={handleFile}
               ref={fileInput}
+              style={{ display: 'none' }}
               type="file"
-              style={{
-                display: 'none',
-              }}
             />
           </TabsContent>
 

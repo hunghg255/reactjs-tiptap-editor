@@ -116,6 +116,7 @@ const locale = {
   'editor.fullscreen.tooltip.exit': 'Thoát toàn màn hình',
   'editor.imageUpload.cancel': 'Hủy',
   'editor.imageUpload.crop': 'Cắt',
+  'editor.imageUpload.uploading': 'Đang tải lên...',
   'editor.imageUpload.fileTypeNotSupported': 'Loại tệp không được hỗ trợ',
   'editor.imageUpload.fileSizeTooBig': 'Kích thước tệp quá lớn, Kích thước tối đa là',
   'editor.table.menu.insertColumnBefore': 'Chèn cột trước',
@@ -169,6 +170,9 @@ const locale = {
   'editor.codeView.tooltip': 'Xem mã',
   'editor.tooltip.flipX': 'Lật Ngang',
   'editor.tooltip.flipY': 'Lật Dọc',
+  'editor.upload.fileTypeNotSupported': '{fileName} loại tệp không được hỗ trợ',
+  'editor.upload.fileSizeTooBig': '{fileName} kích thước tệp quá lớn, kích thước tối đa là {size}MB',
+  'editor.upload.error': 'Lỗi khi tải lên tệp',
 };
 
 export default locale;

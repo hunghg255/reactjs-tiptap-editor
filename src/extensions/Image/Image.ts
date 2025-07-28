@@ -30,6 +30,7 @@ export interface SetImageAttrsOptions {
 const DEFAULT_OPTIONS: any = {
   acceptMimes: ['image/jpeg', 'image/gif', 'image/png', 'image/jpg'],
   maxSize: 1024 * 1024 * 5, // 5MB
+  multiple: true,
   resourceImage: 'both',
   defaultInline: false,
 };
@@ -59,12 +60,20 @@ export interface IImageOptions extends GeneralOptions<IImageOptions> {
 
   HTMLAttributes?: any
 
+  multiple?: boolean
   acceptMimes?: string[]
   maxSize?: number
 
   /** The source URL of the image */
   resourceImage: 'upload' | 'link' | 'both'
-  defaultInline?: boolean
+  defaultInline?: boolean,
+
+  /** Function to handle errors during file validation */
+  onError?: (error: {
+    type: 'size' | 'type' | 'upload';
+    message: string;
+    file?: File;
+  }) => void;
 }
 
 export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
