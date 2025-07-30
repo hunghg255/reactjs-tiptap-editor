@@ -15,6 +15,42 @@ interface ValidateFileOptions {
   }) => void;
 }
 
+function isAcceptedMime(file: File, acceptMimes: string[]): boolean {
+  const fileType = file.type;
+  const fileName = file.name.toLowerCase();
+  const ext = fileName.split('.').pop();
+  if (!ext) return false;
+
+  const mimeByExt: Record<string, string> = {
+    heif: 'image/heif',
+    heic: 'image/heic',
+    dng: 'image/x-adobe-dng',
+    cr2: 'image/x-canon-cr2',
+    nef: 'image/x-nikon-nef',
+    arw: 'image/x-sony-arw',
+    raf: 'image/x-fuji-raf',
+    orf: 'image/x-olympus-orf',
+  };
+
+  const guessedMime = fileType || mimeByExt[ext];
+
+  return acceptMimes.some((accept) => {
+    // File extension matching
+    if (accept.startsWith('.')) {
+      return fileName.endsWith(accept);
+    }
+
+    // Wildcard type matching
+    if (accept.endsWith('/*')) {
+      const base = accept.split('/')[0];
+      return guessedMime?.startsWith(base + '/');
+    }
+
+    // Exact type matching
+    return guessedMime === accept;
+  });
+}
+
 export function validateFiles(
   files: File[] | { [key: string]: File },
   options: ValidateFileOptions
@@ -27,10 +63,8 @@ export function validateFiles(
     : Object.values(files);
 
   filesArray.forEach((file) => {
-    let isValid = true;
-
     // Validate file type
-    if (!acceptMimes.includes(file.type)) {
+    if (!isAcceptedMime(file, acceptMimes)) {
       if (options.onError) {
         options.onError({
           type: 'type',
@@ -43,7 +77,7 @@ export function validateFiles(
           title: t('editor.upload.fileTypeNotSupported', { fileName: file.name }),
         });
       }
-      isValid = false;
+      return;
     }
 
     // Validate file size
@@ -61,12 +95,10 @@ export function validateFiles(
           title: t('editor.upload.fileSizeTooBig', { fileName: file.name, size: maxSizeInMB }),
         });
       }
-      isValid = false;
+      return;
     }
 
-    if (isValid) {
-      validFiles.push(file);
-    }
+    validFiles.push(file);
   });
 
   return validFiles;
