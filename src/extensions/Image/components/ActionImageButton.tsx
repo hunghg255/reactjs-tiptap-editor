@@ -131,8 +131,6 @@ function ActionImageButton(props: any) {
     fileInput.current?.click();
   }
 
-  console.log('ActionImageButton render', uploadOptions.acceptMimes.join(',') );
-
   return (
     <Dialog
       onOpenChange={setOpen}

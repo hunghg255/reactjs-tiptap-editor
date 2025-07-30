@@ -62,8 +62,6 @@ export function validateFiles(
     ? files
     : Object.values(files);
 
-  console.log('validateFiles', filesArray, acceptMimes, maxSize);
-
   filesArray.forEach((file) => {
     // Validate file type
     if (!isAcceptedMime(file, acceptMimes)) {
