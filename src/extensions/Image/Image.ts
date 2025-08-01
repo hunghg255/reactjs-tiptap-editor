@@ -151,6 +151,15 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
           };
         },
       },
+      alt: {
+        default: '',
+        parseHTML: element => element.getAttribute('alt'),
+        renderHTML: (attributes) => {
+          return {
+            alt: attributes.alt,
+          };
+        },
+      }
     };
   },
 
@@ -192,7 +201,7 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
 
     const floatStyle = inlineFloat ? `float: ${align};` : '';
 
-    const marginStyle 
+    const marginStyle
       = inlineFloat ? (align === 'left' ? 'margin: 1em 1em 1em 0;' : 'margin: 1em 0 1em 1em;') : '';
 
     const style = `${floatStyle}${marginStyle}${transformStyle}`;

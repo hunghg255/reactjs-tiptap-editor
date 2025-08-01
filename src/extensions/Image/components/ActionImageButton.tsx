@@ -22,6 +22,7 @@ function ActionImageButton(props: any) {
   };
 
   const [link, setLink] = useState<string>('');
+  const [alt, setAlt] = useState<string>('');
   const fileInput = useRef<HTMLInputElement>(null);
 
   const [imageInline, setImageInline] = useState(props.editor.extensionManager.extensions.find(
@@ -81,7 +82,7 @@ function ActionImageButton(props: any) {
         const srcs = await Promise.all(uploadPromises);
         // Insert all images (you might want to adjust this based on your editor's capabilities)
         srcs.forEach(src => {
-          props.editor.chain().focus().setImageInline({ src, inline: imageInline }).run();
+          props.editor.chain().focus().setImageInline({ src, inline: imageInline, alt }).run();
         });
       } else {
         // Single file upload (take the first valid file)
@@ -92,7 +93,7 @@ function ActionImageButton(props: any) {
         } else {
           src = URL.createObjectURL(file);
         }
-        props.editor.chain().focus().setImageInline({ src, inline: imageInline }).run();
+        props.editor.chain().focus().setImageInline({ src, inline: imageInline, alt }).run();
       }
 
       setOpen(false);
@@ -120,7 +121,7 @@ function ActionImageButton(props: any) {
     e.preventDefault();
     e.stopPropagation();
 
-    props.editor.chain().focus().setImageInline({ src: link, inline: imageInline }).run();
+    props.editor.chain().focus().setImageInline({ src: link, inline: imageInline, alt }).run();
     setOpen(false);
     setImageInline(false);
     setLink('');
@@ -186,6 +187,19 @@ function ActionImageButton(props: any) {
             <Label>
               {t('editor.link.dialog.inline')}
             </Label>
+          </div>
+
+          <div className="richtext-my-[10px] ">
+            <Label className="mb-[6px]">
+              Alt
+            </Label>
+
+            <Input
+              onChange={(e) => setAlt(e.target.value)}
+              required
+              type="text"
+              value={alt}
+            />
           </div>
 
           <TabsContent value="upload">
