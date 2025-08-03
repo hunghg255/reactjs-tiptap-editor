@@ -76,7 +76,8 @@ import {
   ZoomIn,
   ZoomOut,
   PencilRuler,
-  WrapText
+  WrapText,
+  Loader2 as Loader,
 } from 'lucide-react';
 
 import {
@@ -91,6 +92,7 @@ import {
   SizeM,
   SizeS,
 } from '@/components/icons';
+import { CodeView } from '@/components/icons/CodeView';
 import { ColumnAddLeft } from '@/components/icons/ColumnAddLeft';
 import { ColumnAddRight } from '@/components/icons/ColumnAddRight';
 import { Direction } from '@/components/icons/Direction';
@@ -102,7 +104,6 @@ import { LeftToRight } from '@/components/icons/LeftToRight';
 import { Mermaid } from '@/components/icons/Mermaid';
 import { RightToLeft } from '@/components/icons/RightToLeft';
 import { Twitter } from '@/components/icons/Twitter';
-import { CodeView } from '@/components/icons/CodeView';
 
 import ImportWord from './ImportWord';
 
@@ -212,5 +213,6 @@ export const icons = {
   FlipX: FlipVertical,
   FlipY: FlipHorizontal,
   PencilRuler,
-  WrapText
+  WrapText,
+  Loader,
 } as any;

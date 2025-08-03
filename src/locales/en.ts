@@ -116,6 +116,7 @@ const locale = {
   'editor.fullscreen.tooltip.exit': 'Fullscreen Exit',
   'editor.imageUpload.cancel': 'Cancel',
   'editor.imageUpload.crop': 'Crop',
+  'editor.imageUpload.uploading': 'Uploading...',
   'editor.imageUpload.fileTypeNotSupported': 'File type not supported',
   'editor.imageUpload.fileSizeTooBig': 'File size too big, Maximum size is',
   'editor.table.menu.insertColumnBefore': 'Insert Column Before',
@@ -169,6 +170,9 @@ const locale = {
   'editor.codeView.tooltip': 'Code View',
   'editor.tooltip.flipX': 'Flip Horizontal',
   'editor.tooltip.flipY': 'Flip Vertical',
+  'editor.upload.fileTypeNotSupported': '{fileName} file type not supported',
+  'editor.upload.fileSizeTooBig': '{fileName} file size too big, maximum size is {size}MB',
+  'editor.upload.error': 'Error uploading file',
 };
 
 export default locale;
