@@ -1,9 +1,135 @@
 [
   {
+    "hash": "1e6ef23297b2c57db8231961faa59c23e1aef3d3",
+    "date": "Mon Aug 4 06:23:53 2025 +0700",
+    "message": "chore: release v0.3.18",
+    "refs": "HEAD -> main, tag: v0.3.18, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.18"
+  },
+  {
+    "hash": "e8f4abd877b38535237a50835ea7116dc200eac8",
+    "date": "Fri Aug 1 20:50:02 2025 +0700",
+    "message": "chore: release v0.3.17",
+    "refs": "tag: v0.3.17",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.17"
+  },
+  {
+    "hash": "f2a7adbeaa060f6867f7d154ccb1ffbd4f1f92d5",
+    "date": "Wed Jul 30 19:49:24 2025 +0300",
+    "message": "docs(export-pdf): fix some documentation issues",
+    "refs": "",
+    "author_name": "HamzaA598",
+    "author_email": "hamzaemad598@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "c28fa9998cf59868afc3a11e03e87b8d1fedff19",
+    "date": "Wed Jul 30 14:55:08 2025 +0800",
+    "message": "fix: remove debug code",
+    "refs": "",
+    "author_name": "Found",
+    "author_email": "lin752612@sina.com",
+    "functions": [
+      "ActionImageButton"
+    ]
+  },
+  {
+    "hash": "1ed17e93fb7ac2d6fbe4ab027b785dfcac51eeff",
+    "date": "Wed Jul 30 14:46:06 2025 +0800",
+    "message": "feat(image): support more flexible MIME type validation and config",
+    "refs": "",
+    "functions": [
+      "index.md",
+      "ActionImageButton"
+    ]
+  },
+  {
+    "hash": "9f68600ee07e90ef61b5b8e110cdd3f8930d1ce5",
+    "date": "Tue Jul 29 14:28:29 2025 +0700",
+    "message": "chore: release v0.3.16",
+    "refs": "tag: v0.3.16",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.16"
+  },
+  {
+    "hash": "58b406df0156511dcaf963d25a7e5c8746b625d3",
+    "date": "Tue Jul 29 14:25:23 2025 +0800",
+    "message": "fix(codeBlock): improve clipboard handling and focus behavior",
+    "refs": "",
+    "functions": [
+      "NodeViewCodeBlock"
+    ]
+  },
+  {
+    "hash": "cbe0c20d9e8fd7a427f9826da0234cb1861d8ff0",
+    "date": "Mon Jul 28 18:47:00 2025 +0800",
+    "message": "fix(image): improve crop modal and upload handling",
+    "refs": "",
+    "functions": [
+      "Image",
+      "ActionImageButton",
+      "ImageCropper"
+    ]
+  },
+  {
+    "hash": "583a1d309d5e0cb39a7428f72829ec7c7881d1bd",
+    "date": "Sun Jul 27 19:41:15 2025 +0300",
+    "message": "fix(image): reset imageInline to defaultInline after inserting an image",
+    "refs": "",
+    "author_name": "HamzaA598",
+    "author_email": "hamzaemad598@gmail.com",
+    "functions": [
+      "ActionImageButton"
+    ]
+  },
+  {
+    "hash": "a9a51c92dbcc2197a8461df7c28324c6f76d9808",
+    "date": "Sun Jul 27 21:25:51 2025 +0700",
+    "message": "chore: release v0.3.15",
+    "refs": "tag: v0.3.15",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.15"
+  },
+  {
+    "hash": "6eaaba94140129193d3932690caf7f51e95cca47",
+    "date": "Sun Jul 27 16:14:45 2025 +0300",
+    "message": "fix(image): enable text wrapping for inline images aligned left or right",
+    "refs": "",
+    "author_name": "HamzaA598",
+    "author_email": "hamzaemad598@gmail.com",
+    "functions": [
+      "Image",
+      "ImageView"
+    ]
+  },
+  {
+    "hash": "d33c1464ffd4d021833c52c4c2ffb3602d3ef282",
+    "date": "Sat Jul 26 11:53:11 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "ca9a99edab858a5606e4c768205b102d2462d8f4",
     "date": "Fri Jul 25 22:10:20 2025 +0700",
     "message": "chore: release v0.3.14",
-    "refs": "HEAD -> main, tag: v0.3.14, origin/main",
+    "refs": "tag: v0.3.14",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1284,126 +1410,5 @@
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
     "version": "v0.0.51"
-  },
-  {
-    "hash": "48ed570ba95698e257b5045a95c74c6c495a84b7",
-    "date": "Sun Oct 20 12:58:25 2024 +0700",
-    "message": "feat: add extension mermaid",
-    "refs": "origin/feat-mermaid",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "Image",
-      "ImageGif",
-      "Mermaid",
-      "EditMermaidBlock",
-      "MermaidActiveButton",
-      "NodeViewMermaid",
-      "index"
-    ]
-  },
-  {
-    "hash": "5ed1ac5fd5ae3d9c68c4587af89d3a63e0cb7f6b",
-    "date": "Thu Oct 17 00:33:06 2024 +0700",
-    "message": "chore: release v0.0.50",
-    "refs": "tag: v0.0.50",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.50"
-  },
-  {
-    "hash": "96ebd68db62253e0ef1e3e5a289b614eaf2b290d",
-    "date": "Thu Oct 17 00:09:29 2024 +0700",
-    "message": "chore: release v0.0.49",
-    "refs": "tag: v0.0.49",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.49"
-  },
-  {
-    "hash": "6809a966472f73a5dbf526d510c80ae8c7aef85f",
-    "date": "Thu Oct 17 00:06:45 2024 +0700",
-    "message": "feat: add crop image upload",
-    "refs": "origin/update-extension-image, update-extension-image",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "EmojiPicker",
-      "ImageGifActionButton",
-      "ImageCropper",
-      "ImageUploader",
-      "KatexActiveButton",
-      "LinkEditPopover",
-      "CreateTablePopover",
-      "TextAlignMenuButton",
-      "TextDirectionButton"
-    ]
-  },
-  {
-    "hash": "03c8cbca20869595018acb678e46a745e4f3b18a",
-    "date": "Sat Oct 12 01:19:04 2024 +0700",
-    "message": "chore: release v0.0.48",
-    "refs": "tag: v0.0.48",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.48"
-  },
-  {
-    "hash": "f44069b073a3c2521442d216fc1468b13931f3d3",
-    "date": "Wed Oct 9 17:02:38 2024 +0700",
-    "message": "chore: release v0.0.47",
-    "refs": "tag: v0.0.47",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.47"
-  },
-  {
-    "hash": "bfe055671e5b584b8fc283ec55092d8dc0778048",
-    "date": "Wed Oct 9 16:59:34 2024 +0700",
-    "message": "feat: show limit charactor",
-    "refs": "origin/show-limit, show-limit",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "BaseKit"
-    ]
-  },
-  {
-    "hash": "5829bf32d28fe4502291646fddf5445bbcc6e91f",
-    "date": "Wed Oct 9 14:14:26 2024 +0700",
-    "message": "docs: update changelog",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
-  },
-  {
-    "hash": "0fa5b53f75dd21a9f1b5130dc3bf2e6022925715",
-    "date": "Wed Oct 9 13:55:57 2024 +0700",
-    "message": "chore: release v0.0.46",
-    "refs": "tag: v0.0.46",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.46"
-  },
-  {
-    "hash": "14c8f1cd46f6ee4713ec48f74d7c290e73cea053",
-    "date": "Wed Oct 9 13:54:20 2024 +0700",
-    "message": "fix: fix export word, style gifs list",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "ExportWord",
-      "ImageGifActionButton"
-    ]
   }
 ]

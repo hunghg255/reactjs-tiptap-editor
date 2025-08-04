@@ -21,13 +21,6 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
-    ]
-  },
-  {
     "name": "Bold.ts",
     "package": "Bold",
     "alias": [
@@ -35,10 +28,10 @@
     ]
   },
   {
-    "name": "Code.ts",
-    "package": "Code",
+    "name": "BulletList.ts",
+    "package": "BulletList",
     "alias": [
-      "Code"
+      "BulletList"
     ]
   },
   {
@@ -49,10 +42,10 @@
     ]
   },
   {
-    "name": "CodeBlock.ts",
-    "package": "CodeBlock",
+    "name": "Code.ts",
+    "package": "Code",
     "alias": [
-      "CodeBlock"
+      "Code"
     ]
   },
   {
@@ -63,6 +56,13 @@
     ]
   },
   {
+    "name": "CodeBlock.ts",
+    "package": "CodeBlock",
+    "alias": [
+      "CodeBlock"
+    ]
+  },
+  {
     "name": "Color.ts",
     "package": "Color",
     "alias": [
@@ -70,17 +70,17 @@
     ]
   },
   {
-    "name": "Document.ts",
-    "package": "Document",
-    "alias": [
-      "Document"
-    ]
-  },
-  {
     "name": "Drawer.ts",
     "package": "Drawer",
     "alias": [
       "Drawer"
+    ]
+  },
+  {
+    "name": "Document.ts",
+    "package": "Document",
+    "alias": [
+      "Document"
     ]
   },
   {
@@ -154,6 +154,13 @@
     ]
   },
   {
+    "name": "HorizontalRule.ts",
+    "package": "HorizontalRule",
+    "alias": [
+      "HorizontalRule"
+    ]
+  },
+  {
     "name": "Iframe.ts",
     "package": "Iframe",
     "alias": [
@@ -165,13 +172,6 @@
     "package": "Iframe",
     "alias": [
       "embed"
-    ]
-  },
-  {
-    "name": "HorizontalRule.ts",
-    "package": "HorizontalRule",
-    "alias": [
-      "HorizontalRule"
     ]
   },
   {
@@ -203,17 +203,17 @@
     ]
   },
   {
-    "name": "Italic.ts",
-    "package": "Italic",
-    "alias": [
-      "Italic"
-    ]
-  },
-  {
     "name": "Indent.ts",
     "package": "Indent",
     "alias": [
       "Indent"
+    ]
+  },
+  {
+    "name": "Italic.ts",
+    "package": "Italic",
+    "alias": [
+      "Italic"
     ]
   },
   {
@@ -245,13 +245,6 @@
     ]
   },
   {
-    "name": "Mention.ts",
-    "package": "Mention",
-    "alias": [
-      "Mention"
-    ]
-  },
-  {
     "name": "Mermaid.ts",
     "package": "Mermaid",
     "alias": [
@@ -259,17 +252,17 @@
     ]
   },
   {
+    "name": "Mention.ts",
+    "package": "Mention",
+    "alias": [
+      "Mention"
+    ]
+  },
+  {
     "name": "MoreMark.ts",
     "package": "MoreMark",
     "alias": [
       "MoreMark"
-    ]
-  },
-  {
-    "name": "OrderedList.ts",
-    "package": "OrderedList",
-    "alias": [
-      "OrderedList"
     ]
   },
   {
@@ -284,6 +277,13 @@
     "package": "MultiColumn",
     "alias": [
       "MultiColumn"
+    ]
+  },
+  {
+    "name": "OrderedList.ts",
+    "package": "OrderedList",
+    "alias": [
+      "OrderedList"
     ]
   },
   {
@@ -392,17 +392,17 @@
     ]
   },
   {
-    "name": "TrailingNode.ts",
-    "package": "TrailingNode",
-    "alias": [
-      "TrailingNode"
-    ]
-  },
-  {
     "name": "Twitter.ts",
     "package": "Twitter",
     "alias": [
       "Twitter"
+    ]
+  },
+  {
+    "name": "TrailingNode.ts",
+    "package": "TrailingNode",
+    "alias": [
+      "TrailingNode"
     ]
   },
   {
