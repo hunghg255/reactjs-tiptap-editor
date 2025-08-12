@@ -2,11 +2,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { NodeViewWrapper } from '@tiptap/react';
 import clsx from 'clsx';
-import deepEqual from 'deep-equal';
 import { Resizable } from 're-resizable';
-import VisibilitySensor from 'react-visibility-sensor';
 
-// import { clamp, getEditorContainerDOMSize } from '@/utils'
 import { ActionButton } from '@/components/ActionButton';
 import { Excalidraw } from '@/extensions/Excalidraw/Excalidraw';
 import { clamp } from '@/utils/utils';
@@ -28,17 +25,7 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
   const [Svg, setSvg] = useState<SVGElement | null>(null);
   const [loading, toggleLoading] = useState(true);
   const [error, setError] = useState<any>(null);
-  const [visible, toggleVisible] = useState(false);
   const [zoom, setZoomState] = useState(100);
-
-  const onViewportChange = useCallback(
-    (visible: any) => {
-      if (visible) {
-        toggleVisible(true);
-      }
-    },
-    [toggleVisible],
-  );
 
   const setZoom = useCallback((type: 'minus' | 'plus') => {
     return () => {
@@ -63,13 +50,13 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
     return () => {
       isUnmount = true;
     };
-  }, [toggleLoading, data]);
+  }, [data]);
 
   useEffect(() => {
     let isUnmount = false;
 
     const setContent = async () => {
-      if (isUnmount || loading || error || !visible || !data)
+      if (!exportToSvgRef.current || isUnmount || loading || error || !data)
         return;
 
       const svg: SVGElement = await exportToSvgRef.current(data);
@@ -89,7 +76,7 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
     return () => {
       isUnmount = true;
     };
-  }, [data, loading, error, visible]);
+  }, [data, loading, error]);
 
   const onResize = (size: any) => {
     updateAttributes({ width: size.width, height: size.height });
@@ -97,82 +84,65 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
 
   return (
     <NodeViewWrapper className={clsx(styles.wrap, isActive && styles.isActive)}>
-      <VisibilitySensor onChange={onViewportChange}>
-        <Resizable
-          size={{ width: Number.parseInt(width), height: Number.parseInt(height) }}
-          onResizeStop={(e, direction, ref, d) => {
-            onResize({
-              width: Number.parseInt(width) + d.width,
-              height: Number.parseInt(height) + d.height,
-            });
-          }}
+      <Resizable
+        size={{ width: Number.parseInt(width), height: Number.parseInt(height) }}
+        onResizeStop={(e, direction, ref, d) => {
+          onResize({
+            width: Number.parseInt(width) + d.width,
+            height: Number.parseInt(height) + d.height,
+          });
+        }}
+      >
+        <div
+          className={clsx(styles.renderWrap, 'render-wrapper')}
+          style={{ ...INHERIT_SIZE_STYLE, overflow: 'hidden' }}
         >
-          <div
-            className={clsx(styles.renderWrap, 'render-wrapper')}
-            style={{ ...INHERIT_SIZE_STYLE, overflow: 'hidden' }}
-          >
-            {error && (
-              <div style={INHERIT_SIZE_STYLE}>
-                <p>
-                  {error.message || error}
-                </p>
-              </div>
-            )}
-
-            {loading && <p>
-              Loading...
-            </p>}
-
-            {!loading && !error && visible && (
-              <div
-                dangerouslySetInnerHTML={{ __html: Svg?.outerHTML ?? '' }}
-                style={{
-                  height: '100%',
-                  maxHeight: '100%',
-                  padding: 24,
-                  overflow: 'hidden',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  transform: `scale(${zoom / 100})`,
-                  transition: 'all ease-in-out .3s',
-                }}
-              />
-            )}
-
-            <div className={styles.title}>
-              {/* <Space>
-                <span className={styles.icon}>
-                  <IconMind />
-                </span>
-                绘图
-              </Space> */}
+          {error && (
+            <div style={INHERIT_SIZE_STYLE}>
+              <p>
+                {error.message || error}
+              </p>
             </div>
+          )}
 
-            <div className={styles.handlerWrap}>
-              <ActionButton
-                action={setZoom('minus')}
-                icon="ZoomOut"
-                tooltip="Zoom Out"
-              />
+          {loading && <p>
+            Loading...
+          </p>}
 
-              <ActionButton
-                action={setZoom('plus')}
-                icon="ZoomIn"
-                tooltip="Zoom In"
-              />
-            </div>
+          {!loading && !error && Svg && (
+            <div
+              dangerouslySetInnerHTML={{ __html: Svg?.outerHTML ?? '' }}
+              style={{
+                height: '100%',
+                maxHeight: '100%',
+                padding: 24,
+                overflow: 'hidden',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                transform: `scale(${zoom / 100})`,
+                transition: 'all ease-in-out .3s',
+              }}
+            />
+          )}
+
+          <div className={styles.handlerWrap}>
+            <ActionButton
+              action={setZoom('minus')}
+              icon="ZoomOut"
+              tooltip="Zoom Out"
+            />
+
+            <ActionButton
+              action={setZoom('plus')}
+              icon="ZoomIn"
+              tooltip="Zoom In"
+            />
           </div>
-        </Resizable>
-      </VisibilitySensor>
+        </div>
+      </Resizable>
     </NodeViewWrapper>
   );
 }
 
-export default React.memo(NodeViewExcalidraw, (prevProps, nextProps) => {
-  if (deepEqual(prevProps.node.attrs, nextProps.node.attrs)) {
-    return true;
-  }
-
-  return false;
-});
+export default NodeViewExcalidraw;

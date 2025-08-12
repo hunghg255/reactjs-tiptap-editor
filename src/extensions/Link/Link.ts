@@ -7,7 +7,9 @@ import type { EditorView } from '@tiptap/pm/view';
 import LinkEditPopover from '@/extensions/Link/components/LinkEditPopover';
 import type { GeneralOptions } from '@/types';
 
-export interface LinkOptions extends TiptapLinkOptions, GeneralOptions<LinkOptions> {}
+export interface LinkOptions
+  extends TiptapLinkOptions,
+  GeneralOptions<LinkOptions> {}
 
 export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
   inclusive: false,
@@ -39,6 +41,12 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
             editor,
             action: (value) => {
               const { link, text, openInNewTab } = value;
+
+              const { state } = editor;
+              const { from } = state.selection;
+              const insertedLength = text.length;
+              const to = from + insertedLength;
+
               editor
                 .chain()
                 .extendMarkRange('link')
@@ -56,6 +64,7 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
                   ],
                 })
                 .setLink({ href: link })
+                .setTextSelection({ from, to }) // 👈 Select inserted text
                 .focus()
                 .run();
             },
@@ -82,7 +91,9 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
             }
             const $start = doc.resolve(range.from);
             const $end = doc.resolve(range.to);
-            const transaction = tr.setSelection(new TextSelection($start, $end));
+            const transaction = tr.setSelection(
+              new TextSelection($start, $end)
+            );
             view.dispatch(transaction);
           },
         },
@@ -90,3 +101,5 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
     ];
   },
 });
+
+export default Link;

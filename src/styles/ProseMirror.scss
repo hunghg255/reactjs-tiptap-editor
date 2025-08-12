@@ -74,7 +74,7 @@
   }
   iframe {
     @apply richtext-border !important;
-    @apply richtext-w-full richtext-border-border richtext-mt-2 richtext-rounded-sm richtext-h-[400px];
+    @apply richtext-w-full richtext-border-border richtext-mt-2 richtext-rounded-sm richtext-h-full;
   }
 
   [data-type='horizontalRule'] {

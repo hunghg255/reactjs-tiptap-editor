@@ -49,17 +49,17 @@
     ]
   },
   {
-    "name": "CodeBlock.ts",
-    "package": "CodeBlock",
-    "alias": [
-      "CodeBlock"
-    ]
-  },
-  {
     "name": "CodeView.ts",
     "package": "CodeView",
     "alias": [
       "CodeView"
+    ]
+  },
+  {
+    "name": "CodeBlock.ts",
+    "package": "CodeBlock",
+    "alias": [
+      "CodeBlock"
     ]
   },
   {
@@ -70,17 +70,17 @@
     ]
   },
   {
-    "name": "Document.ts",
-    "package": "Document",
-    "alias": [
-      "Document"
-    ]
-  },
-  {
     "name": "Drawer.ts",
     "package": "Drawer",
     "alias": [
       "Drawer"
+    ]
+  },
+  {
+    "name": "Document.ts",
+    "package": "Document",
+    "alias": [
+      "Document"
     ]
   },
   {
@@ -210,17 +210,17 @@
     ]
   },
   {
-    "name": "Katex.ts",
-    "package": "Katex",
-    "alias": [
-      "Katex"
-    ]
-  },
-  {
     "name": "Italic.ts",
     "package": "Italic",
     "alias": [
       "Italic"
+    ]
+  },
+  {
+    "name": "Katex.ts",
+    "package": "Katex",
+    "alias": [
+      "Katex"
     ]
   },
   {
@@ -392,17 +392,17 @@
     ]
   },
   {
-    "name": "TrailingNode.ts",
-    "package": "TrailingNode",
-    "alias": [
-      "TrailingNode"
-    ]
-  },
-  {
     "name": "Twitter.ts",
     "package": "Twitter",
     "alias": [
       "Twitter"
+    ]
+  },
+  {
+    "name": "TrailingNode.ts",
+    "package": "TrailingNode",
+    "alias": [
+      "TrailingNode"
     ]
   },
   {

@@ -30,6 +30,7 @@ export interface SetImageAttrsOptions {
 const DEFAULT_OPTIONS: any = {
   acceptMimes: ['image/jpeg', 'image/gif', 'image/png', 'image/jpg'],
   maxSize: 1024 * 1024 * 5, // 5MB
+  multiple: true,
   resourceImage: 'both',
   defaultInline: false,
 };
@@ -59,12 +60,20 @@ export interface IImageOptions extends GeneralOptions<IImageOptions> {
 
   HTMLAttributes?: any
 
+  multiple?: boolean
   acceptMimes?: string[]
   maxSize?: number
 
   /** The source URL of the image */
   resourceImage: 'upload' | 'link' | 'both'
-  defaultInline?: boolean
+  defaultInline?: boolean,
+
+  /** Function to handle errors during file validation */
+  onError?: (error: {
+    type: 'size' | 'type' | 'upload';
+    message: string;
+    file?: File;
+  }) => void;
 }
 
 export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
@@ -142,6 +151,15 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
           };
         },
       },
+      alt: {
+        default: '',
+        parseHTML: element => element.getAttribute('alt'),
+        renderHTML: (attributes) => {
+          return {
+            alt: attributes.alt,
+          };
+        },
+      }
     };
   },
 
@@ -174,11 +192,19 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
   },
   renderHTML({ HTMLAttributes }) {
     const { flipX, flipY, align, inline } = HTMLAttributes;
+    const inlineFloat = inline && (align === 'left' || align === 'right');
 
     const transformStyle
       = flipX || flipY ? `transform: rotateX(${flipX ? '180' : '0'}deg) rotateY(${flipY ? '180' : '0'}deg);` : '';
 
-    const textAlignStyle = align ? `text-align: ${align};` : '';
+    const textAlignStyle = inlineFloat ? '' : `text-align: ${align};`;
+
+    const floatStyle = inlineFloat ? `float: ${align};` : '';
+
+    const marginStyle
+      = inlineFloat ? (align === 'left' ? 'margin: 1em 1em 1em 0;' : 'margin: 1em 0 1em 1em;') : '';
+
+    const style = `${floatStyle}${marginStyle}${transformStyle}`;
 
     return [
       inline ? 'span' : 'div',
@@ -191,7 +217,7 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
         mergeAttributes(
           {
             height: 'auto',
-            style: transformStyle,
+            style,
           },
           this.options.HTMLAttributes,
           HTMLAttributes,

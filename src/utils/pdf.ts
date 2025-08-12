@@ -1,71 +1,94 @@
 import type { Editor } from '@tiptap/core';
+import { ExportPdfOptions } from '@/extensions/ExportPdf';
 
-function printHtml(content: string) {
+function printHtml(content: string, exportPdfOptions: ExportPdfOptions) {
   const iframe: HTMLIFrameElement = document.createElement('iframe');
-  iframe.setAttribute('style', 'position: absolute; width: 0; height: 0; top: 0; left: 0;');
+  iframe.setAttribute(
+    'style',
+    'position: absolute; width: 0; height: 0; top: 0; left: 0;'
+  );
   document.body.appendChild(iframe);
 
-  iframe.textContent = `
+  const doc = iframe.contentDocument || iframe.contentWindow?.document;
+
+  if (!doc) return;
+
+  const {
+    paperSize,
+    margins: {
+      top: marginTop,
+      right: marginRight,
+      bottom: marginBottom,
+      left: marginLeft,
+    },
+  } = exportPdfOptions;
+
+  const html = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
       <title>Echo Editor</title>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+        @media print {
+          @page {
+            size: ${paperSize};
+            margin: ${marginTop} ${marginRight} ${marginBottom} ${marginLeft}; /* top, right, bottom, left */
+          }
+
+          body {
+            background: none;
+            margin: 0;
+            padding: 0;
+          }
+
+          .print-container {
+            width: 100%;
+            box-sizing: border-box;
+          }
+
+          .no-print {
+            display: none;
+          }
+        }
+      </style>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reactjs-tiptap-editor@latest/lib/style.css">
     </head>
-    <body class="is-print">
-      <div class="tiptap ProseMirror" translate="no" aria-expanded="false">
-          ${content}
+    <body>
+      <div class="print-container">
+        ${content}
       </div>
     </body>
     </html>
   `;
 
-  const frameWindow = iframe.contentWindow;
-  const doc: any = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
+  doc.open();
+  doc.write(html);
+  doc.close();
 
-  // load style from CDN to iframe
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = 'https://cdn.jsdelivr.net/npm/reactjs-tiptap-editor@latest/lib/style.css';
-  doc.head.appendChild(link);
-
-  if (doc) {
-    doc.open();
-    doc.write(content);
-    doc.close();
-  }
-
-  if (frameWindow) {
-    iframe.addEventListener('load', function () {
+  iframe.addEventListener('load', () => {
+    setTimeout(() => {
       try {
-        setTimeout(() => {
-          frameWindow.focus();
-          try {
-            if (!frameWindow.document.execCommand('print', false)) {
-              frameWindow.print();
-            }
-          } catch {
-            frameWindow.print();
-          }
-          frameWindow.close();
-        }, 10);
+        iframe.contentWindow?.focus();
+        iframe.contentWindow?.print();
       } catch (err) {
-        console.error(err);
+        console.error('Print failed', err);
       }
-
       setTimeout(() => {
         document.body.removeChild(iframe);
       }, 100);
-    });
-  }
+    }, 50);
+  });
 }
 
-export function printEditorContent(editor: Editor) {
+export function printEditorContent(
+  editor: Editor,
+  exportPdfOptions: ExportPdfOptions
+) {
   const content = editor.getHTML();
-
   if (content) {
-    printHtml(content);
+    printHtml(content, exportPdfOptions);
     return true;
   }
   return false;

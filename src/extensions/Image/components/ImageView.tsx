@@ -48,6 +48,7 @@ function ImageView(props: any) {
   });
 
   const { align, inline } = props?.node?.attrs;
+  const inlineFloat = inline && (align === 'left' || align === 'right');
 
   const imgAttrs = useMemo(() => {
     const { src, alt, width: w, height: h, flipX, flipY } = props?.node?.attrs;
@@ -62,6 +63,8 @@ function ImageView(props: any) {
       transformStyles.push('rotateY(180deg)');
     const transform = transformStyles.join(' ');
 
+    const floatStyle = inlineFloat ? { float: align }: {};
+
     return {
       src: src || undefined,
       alt: alt || undefined,
@@ -69,6 +72,7 @@ function ImageView(props: any) {
         width: width || undefined,
         height: height || undefined,
         transform: transform || 'none',
+        ...floatStyle,
       },
     };
   }, [props?.node?.attrs]);
@@ -229,7 +233,14 @@ function ImageView(props: any) {
     <NodeViewWrapper
       as={inline ? 'span' : 'div'}
       className="image-view"
-      style={{ ...imageMaxStyle, textAlign: align, display: inline ? 'inline' : 'block' }}
+      style={{
+        float: inlineFloat ? align : undefined,
+        margin: inlineFloat ? align === 'left' ? '1em 1em 1em 0' : '1em 0 1em 1em' : undefined,
+        display: inline ? 'inline' : 'block',
+        textAlign: inlineFloat ? undefined : align,
+        width: imgAttrs.style?.width ?? 'auto',
+        ...(inlineFloat ? {} : imageMaxStyle),
+      }}
     >
       <div
         data-drag-handle

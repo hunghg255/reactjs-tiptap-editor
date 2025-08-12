@@ -1,9 +1,358 @@
 [
   {
+    "hash": "1e6ef23297b2c57db8231961faa59c23e1aef3d3",
+    "date": "Mon Aug 4 06:23:53 2025 +0700",
+    "message": "chore: release v0.3.18",
+    "refs": "HEAD -> main, tag: v0.3.18, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.18"
+  },
+  {
+    "hash": "e8f4abd877b38535237a50835ea7116dc200eac8",
+    "date": "Fri Aug 1 20:50:02 2025 +0700",
+    "message": "chore: release v0.3.17",
+    "refs": "tag: v0.3.17",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.17"
+  },
+  {
+    "hash": "f2a7adbeaa060f6867f7d154ccb1ffbd4f1f92d5",
+    "date": "Wed Jul 30 19:49:24 2025 +0300",
+    "message": "docs(export-pdf): fix some documentation issues",
+    "refs": "",
+    "author_name": "HamzaA598",
+    "author_email": "hamzaemad598@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "c28fa9998cf59868afc3a11e03e87b8d1fedff19",
+    "date": "Wed Jul 30 14:55:08 2025 +0800",
+    "message": "fix: remove debug code",
+    "refs": "",
+    "author_name": "Found",
+    "author_email": "lin752612@sina.com",
+    "functions": [
+      "ActionImageButton"
+    ]
+  },
+  {
+    "hash": "1ed17e93fb7ac2d6fbe4ab027b785dfcac51eeff",
+    "date": "Wed Jul 30 14:46:06 2025 +0800",
+    "message": "feat(image): support more flexible MIME type validation and config",
+    "refs": "",
+    "functions": [
+      "index.md",
+      "ActionImageButton"
+    ]
+  },
+  {
+    "hash": "9f68600ee07e90ef61b5b8e110cdd3f8930d1ce5",
+    "date": "Tue Jul 29 14:28:29 2025 +0700",
+    "message": "chore: release v0.3.16",
+    "refs": "tag: v0.3.16",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.16"
+  },
+  {
+    "hash": "58b406df0156511dcaf963d25a7e5c8746b625d3",
+    "date": "Tue Jul 29 14:25:23 2025 +0800",
+    "message": "fix(codeBlock): improve clipboard handling and focus behavior",
+    "refs": "",
+    "functions": [
+      "NodeViewCodeBlock"
+    ]
+  },
+  {
+    "hash": "cbe0c20d9e8fd7a427f9826da0234cb1861d8ff0",
+    "date": "Mon Jul 28 18:47:00 2025 +0800",
+    "message": "fix(image): improve crop modal and upload handling",
+    "refs": "",
+    "functions": [
+      "Image",
+      "ActionImageButton",
+      "ImageCropper"
+    ]
+  },
+  {
+    "hash": "583a1d309d5e0cb39a7428f72829ec7c7881d1bd",
+    "date": "Sun Jul 27 19:41:15 2025 +0300",
+    "message": "fix(image): reset imageInline to defaultInline after inserting an image",
+    "refs": "",
+    "author_name": "HamzaA598",
+    "author_email": "hamzaemad598@gmail.com",
+    "functions": [
+      "ActionImageButton"
+    ]
+  },
+  {
+    "hash": "a9a51c92dbcc2197a8461df7c28324c6f76d9808",
+    "date": "Sun Jul 27 21:25:51 2025 +0700",
+    "message": "chore: release v0.3.15",
+    "refs": "tag: v0.3.15",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.15"
+  },
+  {
+    "hash": "6eaaba94140129193d3932690caf7f51e95cca47",
+    "date": "Sun Jul 27 16:14:45 2025 +0300",
+    "message": "fix(image): enable text wrapping for inline images aligned left or right",
+    "refs": "",
+    "author_name": "HamzaA598",
+    "author_email": "hamzaemad598@gmail.com",
+    "functions": [
+      "Image",
+      "ImageView"
+    ]
+  },
+  {
+    "hash": "d33c1464ffd4d021833c52c4c2ffb3602d3ef282",
+    "date": "Sat Jul 26 11:53:11 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
+    "hash": "ca9a99edab858a5606e4c768205b102d2462d8f4",
+    "date": "Fri Jul 25 22:10:20 2025 +0700",
+    "message": "chore: release v0.3.14",
+    "refs": "tag: v0.3.14",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.14"
+  },
+  {
+    "hash": "ea9863a8a6e99dd8d3034c5ea5641f29593eb877",
+    "date": "Fri Jul 25 17:40:15 2025 +0300",
+    "message": "docs(export-pdf): add usage instructions for ExportPdfOptions",
+    "refs": "",
+    "author_name": "HamzaA598",
+    "author_email": "hamzaemad598@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "53b799cf13a768c44b7b3abae1a1f01c8ebdec8f",
+    "date": "Fri Jul 25 17:28:22 2025 +0300",
+    "message": "feat(export-pdf): allow customization via ExportPdfOptions",
+    "refs": "",
+    "author_name": "HamzaA598",
+    "author_email": "hamzaemad598@gmail.com",
+    "functions": [
+      "ExportPdf"
+    ]
+  },
+  {
+    "hash": "d19cf27952468696504dc58251a0de02c272eefb",
+    "date": "Fri Jul 25 17:15:15 2025 +0700",
+    "message": "chore: release v0.3.13",
+    "refs": "tag: v0.3.13",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.13"
+  },
+  {
+    "hash": "b6f7e9ed128a04dbdadf7656d60d8e83ca9e3202",
+    "date": "Fri Jul 25 17:55:11 2025 +0800",
+    "message": "fix(link): resolve issues with HTMLAttributes and bubble popup update - Fixed the problem that the HTMLAttributes configuration of the link component does not take effect. - Fixed the problem that when changing the link bubble pop-up window display, switching to other links, the bubble pop-up window data is not updated.",
+    "refs": "",
+    "author_name": "Found",
+    "author_email": "lin752612@sina.com",
+    "functions": [
+      "Link",
+      "LinkEditBlock"
+    ]
+  },
+  {
+    "hash": "4e0cbe33d52314c9b9d873fdb77be977e649be39",
+    "date": "Mon Jul 14 22:40:08 2025 +0700",
+    "message": "chore: release v0.3.12",
+    "refs": "tag: v0.3.12",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.12"
+  },
+  {
+    "hash": "38298dbb32c2c9b70941ddeb7451cf5de0fe9120",
+    "date": "Fri Jun 27 23:25:38 2025 +0700",
+    "message": "chore: release v0.3.11",
+    "refs": "tag: v0.3.11",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.11"
+  },
+  {
+    "hash": "0f1cc4f567f232206f854783176811111c6a2e30",
+    "date": "Fri Jun 27 16:52:15 2025 +0700",
+    "message": "fix: fix bug not fill the text link when edit link",
+    "refs": "",
+    "author_name": "Loan Nguyen",
+    "author_email": "loancv12@gmail.com",
+    "functions": [
+      "Link"
+    ]
+  },
+  {
+    "hash": "f29718fff6fdfc308558b599042dc3a6124fb553",
+    "date": "Fri Jun 27 15:17:15 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
+    "hash": "5c545d8618a26eb4f0601ad87418f29ea37eb6f0",
+    "date": "Fri Jun 27 15:14:39 2025 +0700",
+    "message": "chore: release v0.3.10",
+    "refs": "tag: v0.3.10",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.10"
+  },
+  {
+    "hash": "28a03f8d3fa2657077d37dcb55a8c18a0c85ca38",
+    "date": "Fri Jun 27 15:13:15 2025 +0700",
+    "message": "chore: release v0.3.9",
+    "refs": "tag: v0.3.9",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.9"
+  },
+  {
+    "hash": "f7cdef4228c33a98c1def40eab2ce28f5e39f660",
+    "date": "Fri Jun 27 15:11:26 2025 +0700",
+    "message": "fix: excalidraw",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "NodeViewExcalidraw"
+    ]
+  },
+  {
+    "hash": "9aaacfcc918850074473de1e9f1836bd247e6c73",
+    "date": "Fri Jun 27 10:50:04 2025 +0300",
+    "message": "fix: Excalidraw has a wrong mouse cursor offset, fix emitting 'resize' with a bit of delay",
+    "refs": "",
+    "author_name": "markok",
+    "author_email": "marko.kanala@meliora.fi",
+    "functions": [
+      "ExcalidrawActiveButton"
+    ]
+  },
+  {
+    "hash": "f40f9d15e92422162a79fa55a34a5168966c956a",
+    "date": "Fri Jun 27 06:53:56 2025 +0700",
+    "message": "chore: release v0.3.8",
+    "refs": "tag: v0.3.8",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.8"
+  },
+  {
+    "hash": "2b3083c8463c33d65ab86b064a089811b5c0165d",
+    "date": "Thu Jun 26 17:29:01 2025 +0300",
+    "message": "fix: In ExcalidrawActiveButton, only respond to the OPEN_EXCALIDRAW_SETTING_MODAL event from the correct editor",
+    "refs": "",
+    "author_name": "markok",
+    "author_email": "marko.kanala@meliora.fi",
+    "functions": [
+      "ExcalidrawActiveButton"
+    ]
+  },
+  {
+    "hash": "85d00b7b2b1ae4da80fbee896370dbcd3d71db51",
+    "date": "Thu Jun 26 18:21:56 2025 +0700",
+    "message": "chore: release v0.3.7",
+    "refs": "tag: v0.3.7",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.7"
+  },
+  {
+    "hash": "d0f9def0d45c439eec6f7e65b1879b2dc74f71e4",
+    "date": "Wed Jun 25 22:54:10 2025 +0700",
+    "message": "chore: release v0.3.6",
+    "refs": "tag: v0.3.6",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.6"
+  },
+  {
+    "hash": "682843d3d8a6e4eb550c027f7ae6db6bf3720eb8",
+    "date": "Wed Jun 25 15:52:16 2025 +0700",
+    "message": "fix: run lint",
+    "refs": "",
+    "author_name": "Loan Nguyen",
+    "author_email": "loancv12@gmail.com",
+    "functions": [
+      "LinkEditBlock"
+    ]
+  },
+  {
+    "hash": "c1ff0b377f00a117b002fd1b5bec9964cbf94a05",
+    "date": "Wed Jun 25 15:44:18 2025 +0700",
+    "message": "fix: add the type is button",
+    "refs": "",
+    "author_name": "Loan Nguyen",
+    "author_email": "loancv12@gmail.com",
+    "functions": [
+      "LinkEditBlock"
+    ]
+  },
+  {
+    "hash": "ae751c2b2925d9e4e2028e92dddc7964617f3338",
+    "date": "Wed Jun 25 15:39:02 2025 +0700",
+    "message": "fix: fix bug reload the page when click the apply button in Link ext",
+    "refs": "",
+    "author_name": "Loan Nguyen",
+    "author_email": "loancv12@gmail.com",
+    "functions": [
+      "LinkEditBlock"
+    ]
+  },
+  {
+    "hash": "119aa7a7b464cd1ac8f6043fa3aa2febc8d45397",
+    "date": "Thu Jun 19 09:03:27 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "9b2c85b714b600c2df1a4db7a18e152e26b32cb4",
     "date": "Thu Jun 19 07:11:28 2025 +0700",
     "message": "chore: release v0.3.5",
-    "refs": "tag: v0.3.5, origin/main",
+    "refs": "tag: v0.3.5",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1061,342 +1410,5 @@
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
     "version": "v0.0.51"
-  },
-  {
-    "hash": "48ed570ba95698e257b5045a95c74c6c495a84b7",
-    "date": "Sun Oct 20 12:58:25 2024 +0700",
-    "message": "feat: add extension mermaid",
-    "refs": "origin/feat-mermaid",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "Image",
-      "ImageGif",
-      "Mermaid",
-      "EditMermaidBlock",
-      "MermaidActiveButton",
-      "NodeViewMermaid",
-      "index"
-    ]
-  },
-  {
-    "hash": "5ed1ac5fd5ae3d9c68c4587af89d3a63e0cb7f6b",
-    "date": "Thu Oct 17 00:33:06 2024 +0700",
-    "message": "chore: release v0.0.50",
-    "refs": "tag: v0.0.50",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.50"
-  },
-  {
-    "hash": "96ebd68db62253e0ef1e3e5a289b614eaf2b290d",
-    "date": "Thu Oct 17 00:09:29 2024 +0700",
-    "message": "chore: release v0.0.49",
-    "refs": "tag: v0.0.49",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.49"
-  },
-  {
-    "hash": "6809a966472f73a5dbf526d510c80ae8c7aef85f",
-    "date": "Thu Oct 17 00:06:45 2024 +0700",
-    "message": "feat: add crop image upload",
-    "refs": "origin/update-extension-image, update-extension-image",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "EmojiPicker",
-      "ImageGifActionButton",
-      "ImageCropper",
-      "ImageUploader",
-      "KatexActiveButton",
-      "LinkEditPopover",
-      "CreateTablePopover",
-      "TextAlignMenuButton",
-      "TextDirectionButton"
-    ]
-  },
-  {
-    "hash": "03c8cbca20869595018acb678e46a745e4f3b18a",
-    "date": "Sat Oct 12 01:19:04 2024 +0700",
-    "message": "chore: release v0.0.48",
-    "refs": "tag: v0.0.48",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.48"
-  },
-  {
-    "hash": "f44069b073a3c2521442d216fc1468b13931f3d3",
-    "date": "Wed Oct 9 17:02:38 2024 +0700",
-    "message": "chore: release v0.0.47",
-    "refs": "tag: v0.0.47",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.47"
-  },
-  {
-    "hash": "bfe055671e5b584b8fc283ec55092d8dc0778048",
-    "date": "Wed Oct 9 16:59:34 2024 +0700",
-    "message": "feat: show limit charactor",
-    "refs": "origin/show-limit, show-limit",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "BaseKit"
-    ]
-  },
-  {
-    "hash": "5829bf32d28fe4502291646fddf5445bbcc6e91f",
-    "date": "Wed Oct 9 14:14:26 2024 +0700",
-    "message": "docs: update changelog",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
-  },
-  {
-    "hash": "0fa5b53f75dd21a9f1b5130dc3bf2e6022925715",
-    "date": "Wed Oct 9 13:55:57 2024 +0700",
-    "message": "chore: release v0.0.46",
-    "refs": "tag: v0.0.46",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.46"
-  },
-  {
-    "hash": "14c8f1cd46f6ee4713ec48f74d7c290e73cea053",
-    "date": "Wed Oct 9 13:54:20 2024 +0700",
-    "message": "fix: fix export word, style gifs list",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "ExportWord",
-      "ImageGifActionButton"
-    ]
-  },
-  {
-    "hash": "d5a74edbb9dbaaeb512fb4b28a60b9be45fc29b8",
-    "date": "Wed Oct 9 09:51:55 2024 +0700",
-    "message": "chore: release v0.0.45",
-    "refs": "tag: v0.0.45",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.45"
-  },
-  {
-    "hash": "0ec19427a271051b519c72a81c41028e4820a786",
-    "date": "Wed Oct 9 09:48:46 2024 +0700",
-    "message": "feat: add extension image gif",
-    "refs": "origin/feat-extension-gif, feat-extension-gif",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "ImageGif",
-      "ImageGifActionButton",
-      "ImageGifView",
-      "index"
-    ]
-  },
-  {
-    "hash": "5b0b4aa21ab5539c4c3eb464d7c825f01da05180",
-    "date": "Tue Oct 8 08:39:49 2024 +0700",
-    "message": "chore: release v0.0.44",
-    "refs": "tag: v0.0.44",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.44"
-  },
-  {
-    "hash": "6ba701a908919c4bc80e1e7b7c3615c19c3d4a27",
-    "date": "Tue Oct 8 08:38:13 2024 +0700",
-    "message": "docs: update ImageUpload",
-    "refs": "origin/update-post-upload, update-post-upload",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md"
-    ]
-  },
-  {
-    "hash": "ab1caa914c44cb8309ef91649204042a8fbad97a",
-    "date": "Tue Oct 8 08:36:08 2024 +0700",
-    "message": "feat: add props post upload image",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "ImageUpload",
-      "ImageUploader"
-    ]
-  },
-  {
-    "hash": "5fb6dc38a575f5839bfa9313d47bb3dd7cf8966a",
-    "date": "Sat Oct 5 13:33:52 2024 +0700",
-    "message": "chore: release v0.0.43",
-    "refs": "tag: v0.0.43",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.43"
-  },
-  {
-    "hash": "282ead4bb8ec94c2a343ae507671df3c555d5b2b",
-    "date": "Sat Sep 28 17:32:59 2024 +0700",
-    "message": "chore: release v0.0.42",
-    "refs": "tag: v0.0.42",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.42"
-  },
-  {
-    "hash": "cbb52dd0f4c2de6dee01e3c14f52ccf3602824bf",
-    "date": "Fri Sep 27 00:23:09 2024 +0700",
-    "message": "chore: release v0.0.41",
-    "refs": "tag: v0.0.41",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.41"
-  },
-  {
-    "hash": "b38b9d770fbe54deed7ed7dd2a602490caa54a9d",
-    "date": "Fri Sep 27 00:20:20 2024 +0700",
-    "message": "feat: add attachment",
-    "refs": "origin/feat-attachment, feat-attachment",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "Attachment",
-      "FileIcon",
-      "NodeViewAttachment",
-      "index.module.scss",
-      "index"
-    ]
-  },
-  {
-    "hash": "6a82649c6afdc62048b0fa41010619a101f2c4f3",
-    "date": "Thu Sep 26 22:07:42 2024 +0700",
-    "message": "docs: update",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md"
-    ]
-  },
-  {
-    "hash": "a4acaa734a79ebdf4bbf433bbb5e417a2cc49ec6",
-    "date": "Thu Sep 26 21:52:44 2024 +0700",
-    "message": "chore: release v0.0.40",
-    "refs": "tag: v0.0.40",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.40"
-  },
-  {
-    "hash": "da1a747c5a5a317c27d5fec961e2699312d14eca",
-    "date": "Thu Sep 26 20:26:56 2024 +0700",
-    "message": "docs: update changelog",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
-  },
-  {
-    "hash": "f8be7b3cbfccfed661011c2da40eb67f94e58555",
-    "date": "Thu Sep 26 20:26:00 2024 +0700",
-    "message": "chore: release v0.0.39",
-    "refs": "tag: v0.0.39",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.39"
-  },
-  {
-    "hash": "1c325f51506bccb892668ef71fb8e4f16e2d43fb",
-    "date": "Thu Sep 26 20:25:16 2024 +0700",
-    "message": "docs: update doc",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md"
-    ]
-  },
-  {
-    "hash": "1a1789f16eadea20c0191e54b683e4e111cbc6a1",
-    "date": "Thu Sep 26 19:57:32 2024 +0700",
-    "message": "feat: add mention",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "Mention",
-      "NodeViewMentionList",
-      "index.module.scss",
-      "index"
-    ]
-  },
-  {
-    "hash": "19384910eba9f58d44c2845fac21e69ebba79c5f",
-    "date": "Wed Sep 25 13:54:52 2024 +0700",
-    "message": "chore: release v0.0.38",
-    "refs": "tag: v0.0.38",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.38"
-  },
-  {
-    "hash": "f7ace9d7bc5e6bf4f3eed3b5616d22ad41058eb4",
-    "date": "Wed Sep 25 13:48:06 2024 +0700",
-    "message": "chore: release v0.0.39",
-    "refs": "",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.39"
-  },
-  {
-    "hash": "c85825b21a8ea90e144e39bec67ebcadefe076b3",
-    "date": "Wed Sep 25 13:33:50 2024 +0700",
-    "message": "chore: release v0.0.38",
-    "refs": "",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.0.38"
-  },
-  {
-    "hash": "c12670448f40b8a0609a6d2fdbb5f432e7c0f677",
-    "date": "Wed Sep 25 13:25:05 2024 +0700",
-    "message": "feat: add text direction",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "TextDirection",
-      "TextDirectionButton",
-      "index"
-    ]
   }
 ]

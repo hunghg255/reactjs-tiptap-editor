@@ -93,16 +93,34 @@ export function NodeViewCodeBlock(props: any) {
   const codeEditor = useRef<PrismEditor | null>(null);
   const code = props.node.attrs.code || props.node.textContent || '';
 
-  const copyCode = () => {
-    if (code) {
-      navigator.clipboard
-        .writeText(code)
-        .then(() => {
-          console.log('Copy Success');
-        })
-        .catch(err => {
-          console.error('Error:', err);
-        });
+  const focusEditor = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setTimeout(() => {
+      codeEditor.current?.textarea?.focus?.();
+    }, 0);
+  }, []);
+
+  const copyCode = async () => {
+    if (!code) return;
+
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(code);
+        console.log('Copy Success');
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = code;
+        document.body.appendChild(textarea);
+        textarea.select();
+        // TODO execCommand is deprecated. Clipboard-polyfill can be used to solve compatibility issues
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        console.log('Copy Success (fallback)');
+      }
+    } catch (err) {
+      console.error('Error:', err);
+    } finally {
+      focusEditor();
     }
   };
 
@@ -110,12 +128,14 @@ export function NodeViewCodeBlock(props: any) {
     props.updateAttributes({
       lineNumbers: !props.node.attrs.lineNumbers,
     });
+    focusEditor();
   };
 
   const toggleWordWrap = () => {
     props.updateAttributes({
       wordWrap: !props.node.attrs.wordWrap,
     });
+    focusEditor();
   };
 
   const validateAndUpdateLanguage = (attrs: any) => {
@@ -130,6 +150,10 @@ export function NodeViewCodeBlock(props: any) {
     return validatedAttrs;
   };
 
+  const handleContainerClick = useCallback((e: React.MouseEvent) => {
+    focusEditor(e);
+  }, [focusEditor]);
+
   useEffect(() => {
     if (containerRef.current) {
       const attrs = validateAndUpdateLanguage(props.node.attrs);
@@ -142,7 +166,9 @@ export function NodeViewCodeBlock(props: any) {
         value: code,
         rtl: false,
         onUpdate(value) {
-          props.updateAttributes({ code: value });
+          queueMicrotask(() => {
+            props.updateAttributes({ code: value });
+          });
         },
       });
       codeEditor.current.addExtensions(
@@ -157,7 +183,7 @@ export function NodeViewCodeBlock(props: any) {
 
       if (props.node.attrs.shouldFocus) {
         setTimeout(() => {
-          codeEditor.current?.textarea.focus();
+          focusEditor();
           props.updateAttributes({
             shouldFocus: false,
           });
@@ -180,7 +206,9 @@ export function NodeViewCodeBlock(props: any) {
 
   return (
     <NodeViewWrapper className={clsx(styles.wrap, 'render-wrapper')}>
-      <div ref={containerRef}
+      <div
+        onClick={handleContainerClick}
+        ref={containerRef}
         className={clsx('richtext-node-container richtext-hover-shadow richtext-select-outline richtext-node-code-block !richtext-my-[10px]', {
           [styles.blockInfoEditable]: !isEditable,
         })}
@@ -195,6 +223,7 @@ export function NodeViewCodeBlock(props: any) {
                 props.updateAttributes({
                   language: value,
                 });
+                focusEditor();
               }}
             >
               <SelectTrigger className="richtext-h-7 richtext-w-[160px] richtext-border-none richtext-text-sm richtext-outline-none hover:richtext-bg-[#5a5d5e4f]">
@@ -272,6 +301,7 @@ export function NodeViewCodeBlock(props: any) {
                 props.updateAttributes({
                   tabSize: value,
                 });
+                focusEditor();
               }}
             >
               <SelectTrigger className="richtext-h-7 richtext-w-[60px] richtext-border-none richtext-text-sm richtext-outline-none hover:richtext-bg-[#5a5d5e4f]">
