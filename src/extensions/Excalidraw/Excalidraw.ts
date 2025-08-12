@@ -61,6 +61,7 @@ export const Excalidraw = /* @__PURE__ */ Node.create({
       HTMLAttributes: {
         class: 'excalidraw',
       },
+      excalidrawProps: {},
       button: ({ editor }: any) => ({
         component: ExcalidrawActiveButton,
         componentProps: {

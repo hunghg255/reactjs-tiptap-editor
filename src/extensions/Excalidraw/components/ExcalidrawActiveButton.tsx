@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 
 import type { Editor } from '@tiptap/core';
 
@@ -15,6 +15,12 @@ interface IProps {
 }
 
 export const ExcalidrawActiveButton: React.FC<IProps> = ({ editor }) => {
+  const excalidrawOptions = useMemo(() => {
+    return editor.extensionManager.extensions.find(
+      (ext: any) => ext.name === 'excalidraw'
+    )?.options || {};
+  }, [editor]);
+
   const [Excalidraw, setExcalidraw] = useState<any>(null);
   const [data, setData] = useState({});
   const [initialData, setInitialData] = useState({ elements: [], appState: { isLoading: false }, files: null });
@@ -129,6 +135,7 @@ export const ExcalidrawActiveButton: React.FC<IProps> = ({ editor }) => {
                   langCode="en"
                   onChange={onChange}
                   ref={renderExcalidraw}
+                  {...excalidrawOptions.excalidrawProps}
                 />
               )
               : null}
