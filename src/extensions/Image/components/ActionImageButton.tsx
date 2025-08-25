@@ -194,7 +194,7 @@ function ActionImageButton(props: any) {
 
           <div className="richtext-my-[10px] ">
             <Label className="mb-[6px]">
-              Alt
+              {t('editor.imageUpload.alt')}
             </Label>
 
             <Input

@@ -117,6 +117,7 @@ const locale = {
   'editor.imageUpload.cancel': 'Mégsem',
   'editor.imageUpload.crop': 'Körbevágás',
   'editor.imageUpload.uploading': 'Feltöltés...',
+  'editor.imageUpload.alt': 'Alternatív szöveg',
   'editor.imageUpload.fileTypeNotSupported': 'Fájltípus nem támogatott',
   'editor.imageUpload.fileSizeTooBig': 'A fájlméret túl nagy, a maximum méret',
   'editor.table.menu.insertColumnBefore': 'Oszlop beszúrása balra',

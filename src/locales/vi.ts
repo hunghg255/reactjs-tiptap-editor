@@ -117,6 +117,7 @@ const locale = {
   'editor.imageUpload.cancel': 'Hủy',
   'editor.imageUpload.crop': 'Cắt',
   'editor.imageUpload.uploading': 'Đang tải lên...',
+  'editor.imageUpload.alt': 'Văn bản thay thế',
   'editor.imageUpload.fileTypeNotSupported': 'Loại tệp không được hỗ trợ',
   'editor.imageUpload.fileSizeTooBig': 'Kích thước tệp quá lớn, Kích thước tối đa là',
   'editor.table.menu.insertColumnBefore': 'Chèn cột trước',

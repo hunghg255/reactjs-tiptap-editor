@@ -117,6 +117,7 @@ const locale = {
   'editor.imageUpload.cancel': '取消',
   'editor.imageUpload.crop': '裁剪',
   'editor.imageUpload.uploading': '上传中...',
+  'editor.imageUpload.alt': '替代文本',
   'editor.imageUpload.fileTypeNotSupported': '不支持的文件类型',
   'editor.imageUpload.fileSizeTooBig': '文件大小超出限制，最大大小为',
   'editor.table.menu.insertColumnBefore': '在前面插入列',
