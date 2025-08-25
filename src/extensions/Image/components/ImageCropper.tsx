@@ -19,7 +19,7 @@ import { useLocale } from '@/locales';
 import { dataURLtoFile, readImageAsBase64 } from '@/utils/file';
 import { validateFiles } from '@/utils/validateFile';
 
-export function ImageCropper({ editor, imageInline, onClose, disabled }: any) {
+export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: any) {
   const { t } = useLocale();
   const { toast } = useToast();
 
@@ -92,7 +92,7 @@ export function ImageCropper({ editor, imageInline, onClose, disabled }: any) {
         src = URL.createObjectURL(fileCrop);
       }
 
-      editor.chain().focus().setImageInline({ src, inline: imageInline }).run();
+      editor.chain().focus().setImageInline({ src, inline: imageInline, alt }).run();
 
       setDialogOpen(false);
 

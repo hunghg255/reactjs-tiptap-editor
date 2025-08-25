@@ -98,6 +98,7 @@ function ActionImageButton(props: any) {
       }
 
       setOpen(false);
+      setAlt('');
       setImageInline(defaultInline);
     } catch (error) {
       console.error('Error uploading image', error);
@@ -126,6 +127,7 @@ function ActionImageButton(props: any) {
     setOpen(false);
     setImageInline(defaultInline);
     setLink('');
+    setAlt('');
   }
 
   function handleClick(e: any) {
@@ -225,10 +227,14 @@ function ActionImageButton(props: any) {
               </Button>
 
               <ImageCropper
+                alt={alt}
                 disabled={isUploading}
                 editor={props.editor}
                 imageInline={imageInline}
-                onClose={() => actionDialogImage.setOpen(props.editor.id, false)}
+                onClose={() => {
+                  actionDialogImage.setOpen(props.editor.id, false);
+                  setAlt('');
+                }}
               />
             </div>
 
