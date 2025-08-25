@@ -192,18 +192,22 @@ function ActionImageButton(props: any) {
             </Label>
           </div>
 
-          <div className="richtext-my-[10px] ">
-            <Label className="mb-[6px]">
-              {t('editor.imageUpload.alt')}
-            </Label>
+          {
+            uploadOptions.enableAlt && (
+              <div className="richtext-my-[10px] ">
+                <Label className="mb-[6px]">
+                  {t('editor.imageUpload.alt')}
+                </Label>
 
-            <Input
-              onChange={(e) => setAlt(e.target.value)}
-              required
-              type="text"
-              value={alt}
-            />
-          </div>
+                <Input
+                  onChange={(e) => setAlt(e.target.value)}
+                  required
+                  type="text"
+                  value={alt}
+                />
+              </div>
+            )
+          }
 
           <TabsContent value="upload">
             <div className="richtext-flex richtext-items-center richtext-gap-[10px]">

@@ -53,6 +53,8 @@ interface IImageOptions extends GeneralOptions<IImageOptions> {
   resourceImage: 'upload' | 'link' | 'both'
   defaultInline?: boolean,
 
+  enableAlt?: boolean,
+
   onError?: (error: {
     type: 'size' | 'type' | 'upload';
     message: string;
@@ -70,6 +72,7 @@ interface IImageOptions extends GeneralOptions<IImageOptions> {
 | `maxSize`        | `number`                                                                                | Maximum size limit for a single image (in bytes), triggers `onError` when exceeded.                                  | No       | `5MB`   |
 | `resourceImage`  | `'upload' \| 'link' \| 'both'`                                                          | Image source method: - `'upload'`: Upload only - `'link'`: Link only - `'both'`: Both supported                     | Yes      | `both`  |
 | `defaultInline`  | `boolean`                                                                               | Whether to insert images as inline elements by default.                                                               | No       | `false` |
+| `enableAlt`      | `boolean`                                                                               | Whether to enable alt text editing for images.                                                               | No       | `true` |
 | `onError`        | `(error: { type: 'size' \| 'type' \| 'upload'; message: string; file?: File }) => void` | Callback function for upload or validation failures. Contains error type (size, type, upload), error message, and corresponding file. | No       | None    |
 
 ### resourceImage Type Description
