@@ -1,7 +1,7 @@
 {
   "name": "reactjs-tiptap-editor",
   "type": "module",
-  "version": "0.3.19",
+  "version": "0.3.20",
   "packageManager": "pnpm@8.15.9",
   "description": "A modern WYSIWYG rich text editor based on tiptap and shadcn ui for React",
   "license": "MIT",
@@ -873,7 +873,7 @@
     "react-dom": ">=17.0.2"
   },
   "devDependencies": {
-    "@hunghg255/eslint-config": "^0.1.1",
+    "@hunghg255/eslint-config": "^1.0.1",
     "@types/deep-equal": "^1.0.4",
     "@types/katex": "^0.16.7",
     "@types/lodash-es": "^4.17.12",
