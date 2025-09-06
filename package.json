@@ -852,7 +852,7 @@
     "deep-equal": "^2.2.3",
     "docx": "^8.6.0",
     "easydrawer": "^0.0.15",
-    "frimousse": "^0.1.1",
+    "frimousse": "^0.3.0",
     "katex": "^0.16.22",
     "lodash-es": "^4.17.21",
     "lucide-react": "^0.427.0",
