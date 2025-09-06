@@ -882,7 +882,7 @@
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.21",
-    "bumpp": "^9.11.1",
+    "bumpp": "^10.2.3",
     "contributorkit": "^0.0.4",
     "eslint": "^9.35.0",
     "eslint-plugin-tailwindcss": "^3.18.2",
