@@ -43,7 +43,6 @@ export const RESET_CSS = `
     border-color: hsl(var(--richtext-border));
   }
 
-  background-color: hsl(var(--richtext-background));
   color: hsl(var(--richtext-foreground));
 
   hr {
@@ -112,7 +111,7 @@ export const RESET_CSS = `
   }
 }
 
-div[data-radix-popper-content-wrapper],
+.reactjs-tiptap-editor div[data-radix-popper-content-wrapper],
 div[data-tippy-root] {
   *,
   ::before,
@@ -122,9 +121,6 @@ div[data-tippy-root] {
     border-style: solid;
     border-color: hsl(var(--richtext-border));
   }
-
-  background-color: hsl(var(--richtext-background));
-  color: hsl(var(--richtext-foreground));
 
   button, input {
     cursor: pointer;
