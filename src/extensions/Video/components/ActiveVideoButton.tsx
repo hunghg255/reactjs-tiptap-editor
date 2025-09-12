@@ -103,6 +103,7 @@ function ActionVideoButton(props: any) {
       })
       .run();
     setOpen(false);
+    setLink('');
   }
 
   function handleClick(e: any) {
@@ -170,7 +171,7 @@ function ActionVideoButton(props: any) {
           </TabsContent>
 
           <TabsContent value="link">
-            <form onSubmit={handleLink}>
+            <div >
               <div className="richtext-flex richtext-items-center richtext-gap-2">
                 <Input
                   autoFocus
@@ -193,11 +194,11 @@ function ActionVideoButton(props: any) {
                   }}
                 />
 
-                <Button type="submit">
+                <Button type="button" onClick={handleLink}>
                   {t('editor.video.dialog.button.apply')}
                 </Button>
               </div>
-            </form>
+            </div>
 
             {error && <div className="richtext-my-[5px] richtext-text-red-500">
               {error}
