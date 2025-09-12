@@ -28,17 +28,17 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
-    ]
-  },
-  {
     "name": "Clear.ts",
     "package": "Clear",
     "alias": [
       "Clear"
+    ]
+  },
+  {
+    "name": "BulletList.ts",
+    "package": "BulletList",
+    "alias": [
+      "BulletList"
     ]
   },
   {
@@ -49,17 +49,17 @@
     ]
   },
   {
-    "name": "CodeView.ts",
-    "package": "CodeView",
-    "alias": [
-      "CodeView"
-    ]
-  },
-  {
     "name": "CodeBlock.ts",
     "package": "CodeBlock",
     "alias": [
       "CodeBlock"
+    ]
+  },
+  {
+    "name": "CodeView.ts",
+    "package": "CodeView",
+    "alias": [
+      "CodeView"
     ]
   },
   {
@@ -70,17 +70,17 @@
     ]
   },
   {
-    "name": "Drawer.ts",
-    "package": "Drawer",
-    "alias": [
-      "Drawer"
-    ]
-  },
-  {
     "name": "Document.ts",
     "package": "Document",
     "alias": [
       "Document"
+    ]
+  },
+  {
+    "name": "Drawer.ts",
+    "package": "Drawer",
+    "alias": [
+      "Drawer"
     ]
   },
   {
@@ -91,31 +91,10 @@
     ]
   },
   {
-    "name": "Excalidraw.ts",
-    "package": "Excalidraw",
-    "alias": [
-      "Excalidraw"
-    ]
-  },
-  {
     "name": "ExportPdf.ts",
     "package": "ExportPdf",
     "alias": [
       "ExportPdf"
-    ]
-  },
-  {
-    "name": "ExportWord.ts",
-    "package": "ExportWord",
-    "alias": [
-      "ExportWord"
-    ]
-  },
-  {
-    "name": "FontFamily.ts",
-    "package": "FontFamily",
-    "alias": [
-      "FontFamily"
     ]
   },
   {
@@ -147,10 +126,17 @@
     ]
   },
   {
-    "name": "History.ts",
-    "package": "History",
+    "name": "FontFamily.ts",
+    "package": "FontFamily",
     "alias": [
-      "History"
+      "FontFamily"
+    ]
+  },
+  {
+    "name": "Excalidraw.ts",
+    "package": "Excalidraw",
+    "alias": [
+      "Excalidraw"
     ]
   },
   {
@@ -158,20 +144,6 @@
     "package": "HorizontalRule",
     "alias": [
       "HorizontalRule"
-    ]
-  },
-  {
-    "name": "Iframe.ts",
-    "package": "Iframe",
-    "alias": [
-      "Iframe"
-    ]
-  },
-  {
-    "name": "Iframe.ts",
-    "package": "Iframe",
-    "alias": [
-      "embed"
     ]
   },
   {
@@ -189,6 +161,20 @@
     ]
   },
   {
+    "name": "Iframe.ts",
+    "package": "Iframe",
+    "alias": [
+      "Iframe"
+    ]
+  },
+  {
+    "name": "Iframe.ts",
+    "package": "Iframe",
+    "alias": [
+      "embed"
+    ]
+  },
+  {
     "name": "ImageGif.ts",
     "package": "ImageGif",
     "alias": [
@@ -203,13 +189,6 @@
     ]
   },
   {
-    "name": "Indent.ts",
-    "package": "Indent",
-    "alias": [
-      "Indent"
-    ]
-  },
-  {
     "name": "Italic.ts",
     "package": "Italic",
     "alias": [
@@ -217,10 +196,31 @@
     ]
   },
   {
+    "name": "Indent.ts",
+    "package": "Indent",
+    "alias": [
+      "Indent"
+    ]
+  },
+  {
+    "name": "ExportWord.ts",
+    "package": "ExportWord",
+    "alias": [
+      "ExportWord"
+    ]
+  },
+  {
     "name": "Katex.ts",
     "package": "Katex",
     "alias": [
       "Katex"
+    ]
+  },
+  {
+    "name": "History.ts",
+    "package": "History",
+    "alias": [
+      "History"
     ]
   },
   {
@@ -245,17 +245,17 @@
     ]
   },
   {
-    "name": "Mermaid.ts",
-    "package": "Mermaid",
-    "alias": [
-      "Mermaid"
-    ]
-  },
-  {
     "name": "Mention.ts",
     "package": "Mention",
     "alias": [
       "Mention"
+    ]
+  },
+  {
+    "name": "Mermaid.ts",
+    "package": "Mermaid",
+    "alias": [
+      "Mermaid"
     ]
   },
   {
@@ -378,13 +378,6 @@
     ]
   },
   {
-    "name": "TextDirection.ts",
-    "package": "TextDirection",
-    "alias": [
-      "TextDirection"
-    ]
-  },
-  {
     "name": "TextUnderline.ts",
     "package": "TextUnderline",
     "alias": [
@@ -392,17 +385,17 @@
     ]
   },
   {
-    "name": "Twitter.ts",
-    "package": "Twitter",
-    "alias": [
-      "Twitter"
-    ]
-  },
-  {
     "name": "TrailingNode.ts",
     "package": "TrailingNode",
     "alias": [
       "TrailingNode"
+    ]
+  },
+  {
+    "name": "Twitter.ts",
+    "package": "Twitter",
+    "alias": [
+      "Twitter"
     ]
   },
   {
@@ -417,6 +410,13 @@
     "package": "Video",
     "alias": [
       "store"
+    ]
+  },
+  {
+    "name": "TextDirection.ts",
+    "package": "TextDirection",
+    "alias": [
+      "TextDirection"
     ]
   },
   {
