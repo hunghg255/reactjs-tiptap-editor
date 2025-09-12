@@ -103,7 +103,7 @@ function ActionVideoButton(props: any) {
       })
       .run();
     setOpen(false);
-    setLink('')
+    setLink('');
   }
 
   function handleClick(e: any) {
