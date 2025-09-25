@@ -11,9 +11,10 @@ import hu_HU from './hu';
 import pt_BR from './pt-br';
 import vi from './vi';
 import zh_CN from './zh-cn';
+import fi from './fi';
 
 // Define supported language types
-type LanguageType = 'en' | 'hu_HU' | 'vi' | 'zh_CN' | 'pt_BR' | (string & {});
+type LanguageType = 'en' | 'hu_HU' | 'vi' | 'zh_CN' | 'pt_BR' | 'fi' | (string & {});
 
 // Define message key types based on the 'en' locale
 type MessageKeysType = keyof typeof en;
@@ -43,6 +44,7 @@ export const DEFAULT_LOCALE: LocaleInterface = {
     vi,
     zh_CN,
     pt_BR,
+    fi,
   },
 };
 
@@ -178,3 +180,4 @@ export { default as pt_BR } from './pt-br';
 export { default as vi } from './vi';
 export { default as zh_CN } from './zh-cn';
 export { default as hu_HU } from './hu';
+export { default as fi } from './fi';
