@@ -117,6 +117,7 @@ const locale = {
   'editor.imageUpload.cancel': 'Cancel',
   'editor.imageUpload.crop': 'Crop',
   'editor.imageUpload.uploading': 'Uploading...',
+  'editor.imageUpload.alt': 'Alt Text',
   'editor.imageUpload.fileTypeNotSupported': 'File type not supported',
   'editor.imageUpload.fileSizeTooBig': 'File size too big, Maximum size is',
   'editor.table.menu.insertColumnBefore': 'Insert Column Before',

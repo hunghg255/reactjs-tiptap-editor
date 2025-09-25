@@ -7,7 +7,7 @@ export default [
   ...tailwind.configs['flat/recommended'],
   {
     rules: {
-      indent: 'warn',
+      indent: 'off',
       "@typescript-eslint/unbound-method": "off",
       quotes: ["error", "single"]
     },

@@ -98,6 +98,7 @@ function ActionImageButton(props: any) {
       }
 
       setOpen(false);
+      setAlt('');
       setImageInline(defaultInline);
     } catch (error) {
       console.error('Error uploading image', error);
@@ -126,6 +127,7 @@ function ActionImageButton(props: any) {
     setOpen(false);
     setImageInline(defaultInline);
     setLink('');
+    setAlt('');
   }
 
   function handleClick(e: any) {
@@ -190,18 +192,22 @@ function ActionImageButton(props: any) {
             </Label>
           </div>
 
-          <div className="richtext-my-[10px] ">
-            <Label className="mb-[6px]">
-              Alt
-            </Label>
+          {
+            uploadOptions.enableAlt && (
+              <div className="richtext-my-[10px] ">
+                <Label className="mb-[6px]">
+                  {t('editor.imageUpload.alt')}
+                </Label>
 
-            <Input
-              onChange={(e) => setAlt(e.target.value)}
-              required
-              type="text"
-              value={alt}
-            />
-          </div>
+                <Input
+                  onChange={(e) => setAlt(e.target.value)}
+                  required
+                  type="text"
+                  value={alt}
+                />
+              </div>
+            )
+          }
 
           <TabsContent value="upload">
             <div className="richtext-flex richtext-items-center richtext-gap-[10px]">
@@ -225,10 +231,14 @@ function ActionImageButton(props: any) {
               </Button>
 
               <ImageCropper
+                alt={alt}
                 disabled={isUploading}
                 editor={props.editor}
                 imageInline={imageInline}
-                onClose={() => actionDialogImage.setOpen(props.editor.id, false)}
+                onClose={() => {
+                  actionDialogImage.setOpen(props.editor.id, false);
+                  setAlt('');
+                }}
               />
             </div>
 

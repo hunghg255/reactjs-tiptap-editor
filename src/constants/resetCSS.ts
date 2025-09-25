@@ -1,6 +1,8 @@
 export const RESET_CSS = `
 .reactjs-tiptap-editor,
 .richtext-dialog-content {
+  color: hsl(var(--richtext-foreground));
+
   button,
   input:where([type=button]),
   input:where([type=reset]),
@@ -43,8 +45,6 @@ export const RESET_CSS = `
     border-color: hsl(var(--richtext-border));
   }
 
-  background-color: hsl(var(--richtext-background));
-  color: hsl(var(--richtext-foreground));
 
   hr {
     height: 0;
@@ -114,6 +114,8 @@ export const RESET_CSS = `
 
 div[data-radix-popper-content-wrapper],
 div[data-tippy-root] {
+  color: hsl(var(--richtext-foreground));
+
   *,
   ::before,
   ::after {
@@ -122,9 +124,6 @@ div[data-tippy-root] {
     border-style: solid;
     border-color: hsl(var(--richtext-border));
   }
-
-  background-color: hsl(var(--richtext-background));
-  color: hsl(var(--richtext-foreground));
 
   button, input {
     cursor: pointer;

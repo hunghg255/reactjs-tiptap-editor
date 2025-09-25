@@ -33,6 +33,7 @@ const DEFAULT_OPTIONS: any = {
   multiple: true,
   resourceImage: 'both',
   defaultInline: false,
+  enableAlt: true,
 };
 
 declare module '@tiptap/core' {
@@ -67,6 +68,9 @@ export interface IImageOptions extends GeneralOptions<IImageOptions> {
   /** The source URL of the image */
   resourceImage: 'upload' | 'link' | 'both'
   defaultInline?: boolean,
+
+  // Enable alternative text input
+  enableAlt?: boolean
 
   /** Function to handle errors during file validation */
   onError?: (error: {
