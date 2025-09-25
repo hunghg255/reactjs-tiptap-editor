@@ -25,12 +25,13 @@ locale.setLang('en');
 Currently, the editor supports the following languages:
 
 | Language             | Config | Version                                                                          |
-| -------------------- | ------ | -------------------------------------------------------------------------------- |
+|----------------------|--------| -------------------------------------------------------------------------------- |
 | English              | en     | [v0.0.5](https://github.com/hunghg255/reactjs-tiptap-editor/releases/tag/v0.0.5) |
 | Vietnamese           | vi     |                                                                                  |
 | Simplified Chinese   | zh_CN  |                                                                                  |
 | Brazilian Portuguese | pt_BR  |                                                                                  |
 | Hungarian            | hu_HU  |                                                                                  |
+| Finnish              | fi     |                                                                                  |
 
 ## Adding a New Language
 
