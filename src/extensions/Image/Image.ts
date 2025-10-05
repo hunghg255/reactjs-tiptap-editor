@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { mergeAttributes } from '@tiptap/core';
 import TiptapImage from '@tiptap/extension-image';
-import { Plugin } from '@tiptap/pm/state';
+import { Plugin, PluginKey } from '@tiptap/pm/state';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import ActionImageButton from '@/extensions/Image/components/ActionImageButton';
@@ -274,6 +274,9 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
           };
         },
       },
+      {
+        tag: 'img[src]:not([src^="data:"])',
+      },
     ];
   },
   addProseMirrorPlugins() {
@@ -304,28 +307,72 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
     });
 
     return [
+      UploadImagesPlugin(),
+
       new Plugin({
+        key: new PluginKey('image'),
         props: {
           handlePaste: (view, event) => {
-            if (!event.clipboardData) {
-              return false;
+            const hasFiles =
+                event.clipboardData &&
+                event.clipboardData.files &&
+                event.clipboardData.files?.length;
+
+            if (!hasFiles) {
+              return;
             }
+
             const items = [...(event.clipboardData.files || [])];
+
             if (items.some(x => x.type === 'text/html')) {
               return false;
             }
+
+            if( event.clipboardData.items.length == 2) {
+              event.clipboardData.items[0].getAsString( ( html: string) => {
+                let url = '';
+                html.replace( /src\s*=\s*"(.*)"/, (match, p0) => (url = p0) );
+
+                if (url && typeof url === 'string') {
+                  const node = view.state.schema.nodes.image.create({
+                    src: url
+                  });
+                  const transaction = view.state.tr.replaceSelectionWith(node);
+                  view.dispatch(transaction);
+                }
+              });
+
+              return;
+            }
+
             return handleImagePaste(view, event, uploadFn);
           },
           handleDrop: (view, event, _, moved) => {
             if (!(event instanceof DragEvent) || !event.dataTransfer) {
               return false;
             }
+
+            if(event.dataTransfer.items.length == 2) {
+              event.dataTransfer.items[0].getAsString( ( html: string) => {
+                let url = '';
+                html.replace( /src\s*=\s*"(.*)"/, (match, p0) => (url = p0) );
+
+                if (url && typeof url === 'string') {
+                  const node = view.state.schema.nodes.image.create({
+                    src: url
+                  });
+                  const transaction = view.state.tr.replaceSelectionWith(node);
+                  view.dispatch(transaction);
+                }
+              });
+
+              return;
+            }
             handleImageDrop(view, event, moved, uploadFn);
             return false;
           },
         },
       }),
-      UploadImagesPlugin(),
     ];
   },
 });
