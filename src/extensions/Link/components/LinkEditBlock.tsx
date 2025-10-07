@@ -32,6 +32,9 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
         const LinkOptions = props.editor.extensionManager.extensions.find(
           (ext: any) => ext.name === Link.name,
         )?.options;
+        const { from, to } = props.editor.state.selection;
+        const text = props.editor.state.doc.textBetween(from, to, " ");
+        setForm({ link: "", text });
         setOpenInNewTab(LinkOptions?.HTMLAttributes?.target === '_blank');
       }
     };
