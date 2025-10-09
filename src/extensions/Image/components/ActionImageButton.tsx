@@ -161,23 +161,17 @@ function ActionImageButton(props: any) {
               : 'link'
           }
         >
-          <TabsList className="richtext-grid richtext-w-full richtext-grid-cols-2">
-            {uploadOptions.resourceImage === 'both' || uploadOptions.resourceImage === 'upload'
-              ? (
-                <TabsTrigger value="upload">
-                  {t('editor.image.dialog.tab.upload')}
-                </TabsTrigger>
-              )
-              : <></>}
 
-            {uploadOptions.resourceImage === 'both' || uploadOptions.resourceImage === 'link'
-              ? (
-                <TabsTrigger value="link">
-                  {t('editor.image.dialog.tab.url')}
-                </TabsTrigger>
-              )
-              : <></>}
-          </TabsList>
+          {(uploadOptions.resourceImage === 'both') && (
+            <TabsList className="richtext-grid richtext-w-full richtext-grid-cols-2">
+              <TabsTrigger value="upload">
+                {t('editor.image.dialog.tab.upload')}
+              </TabsTrigger>
+              <TabsTrigger value="link">
+                {t('editor.image.dialog.tab.url')}
+              </TabsTrigger>
+            </TabsList>
+          )}
 
           <div className="richtext-my-[10px] richtext-flex richtext-items-center richtext-gap-[4px]">
             <Checkbox

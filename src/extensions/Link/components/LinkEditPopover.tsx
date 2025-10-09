@@ -13,6 +13,7 @@ interface IPropsLinkEditPopover {
   shortcutKeys?: string[]
   isActive?: ButtonViewReturnComponentProps['isActive']
   action?: ButtonViewReturnComponentProps['action']
+  target?: string
 }
 
 function LinkEditPopover(props: IPropsLinkEditPopover) {
@@ -37,7 +38,7 @@ function LinkEditPopover(props: IPropsLinkEditPopover) {
         </ActionButton>
       </PopoverTrigger>
       <PopoverContent hideWhenDetached className="richtext-w-full" align="start" side="bottom">
-        <LinkEditBlock editor={props.editor} onSetLink={onSetLink} />
+        <LinkEditBlock editor={props.editor} onSetLink={onSetLink} open={open} target={props.target} />
       </PopoverContent>
     </Popover>
   );

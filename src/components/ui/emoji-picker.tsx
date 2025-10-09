@@ -51,8 +51,8 @@ function EmojiPickerSearch({
 function EmojiPickerRow({ children, ...props }: EmojiPickerListRowProps) {
   return (
     <div {...props}
-className="!richtext-scroll-my-1 !richtext-px-1"
-data-slot="emoji-picker-row"
+      className="!richtext-scroll-my-1 !richtext-px-1"
+      data-slot="emoji-picker-row"
     >
       {children}
     </div>

@@ -14,7 +14,7 @@ function EmojiPickerWrap({ onSelectEmoji, children }: IProps) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Popover onOpenChange={setIsOpen}
-open={isOpen}
+      open={isOpen}
     >
       <PopoverTrigger asChild>
         {children}
