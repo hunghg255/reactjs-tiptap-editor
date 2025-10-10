@@ -22,13 +22,13 @@ export const HorizontalRule = /* @__PURE__ */ TiptapHorizontalRule.extend<Horizo
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({ editor, t }) => ({
+      button: ({ editor, t, extension }) => ({
         component: ActionButton,
         componentProps: {
           action: () => editor.commands.setHorizontalRule(),
           disabled: !editor.can().setHorizontalRule(),
           icon: 'Minus',
-          shortcutKeys: ['mod', 'alt', 'S'],
+          shortcutKeys: extension.options.shortcutKeys ?? ['mod', 'alt', 'S'],
           tooltip: t('editor.horizontalrule.tooltip'),
         },
       }),

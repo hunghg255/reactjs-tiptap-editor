@@ -33,10 +33,10 @@ export const TextAlign = /* @__PURE__ */ TiptapTextAlign.extend<TextAlignOptions
       }) {
         const alignments = (extension.options?.alignments as Alignments[]) || [];
         const shortcutKeysMap = {
-          left: ['mod', 'Shift', 'L'],
-          center: ['mod', 'Shift', 'E'],
-          right: ['mod', 'Shift', 'R'],
-          justify: ['mod', 'Shift', 'J'],
+          left: extension.options.shortcutKeys?.[0] ?? ['mod', 'Shift', 'L'],
+          center: extension.options.shortcutKeys?.[1] ?? ['mod', 'Shift', 'E'],
+          right: extension.options.shortcutKeys?.[2] ?? ['mod', 'Shift', 'R'],
+          justify: extension.options.shortcutKeys?.[3] ?? ['mod', 'Shift', 'J'],
         };
         const iconMap = {
           left: 'AlignLeft',

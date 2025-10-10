@@ -12,13 +12,13 @@ export const BulletList = /* @__PURE__ */ TiptapBulletList.extend<BulletListOpti
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({ editor, t }) => ({
+      button: ({ editor, t, extension }) => ({
         component: ActionButton,
         componentProps: {
           action: () => editor.commands.toggleBulletList(),
           isActive: () => editor.isActive('bulletList') || false,
           disabled: false,
-          shortcutKeys: ['shift', 'mod', '8'],
+          shortcutKeys: extension.options.shortcutKeys ?? ['shift', 'mod', '8'],
           icon: 'List',
           tooltip: t('editor.bulletlist.tooltip'),
         },

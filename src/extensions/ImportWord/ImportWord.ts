@@ -40,7 +40,7 @@ export const ImportWord = /* @__PURE__ */ Extension.create<ImportWordOptions>({
             action: () => editor.commands.setHorizontalRule(),
             disabled: !editor.can().setHorizontalRule(),
             icon: 'Word',
-            shortcutKeys: ['alt', 'mod', 'S'],
+            shortcutKeys: extension.options.shortcutKeys ?? ['alt', 'mod', 'S'],
             tooltip: t('editor.importWord.tooltip'),
           },
         };

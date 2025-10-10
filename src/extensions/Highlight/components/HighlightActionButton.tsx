@@ -15,6 +15,7 @@ interface IPropsHighlightActionButton {
   isActive?: ButtonViewReturnComponentProps['isActive']
   tooltipOptions?: TooltipContentProps
   shortcutKeys?: string[]
+  defaultColor?: string
 }
 
 function IconC({ fill }: any) {
@@ -50,7 +51,7 @@ function IconC({ fill }: any) {
           <path
             d="M51,218 L205,218 C211.075132,218 216,222.924868 216,229 C216,235.075132 211.075132,240 205,240 L51,240 C44.9248678,240 40,235.075132 40,229 C40,222.924868 44.9248678,218 51,218 Z"
             id="矩形"
-            fill={fill || '#FBDE28'}
+            fill={fill || 'none'}
           />
         </g>
       </g>
@@ -60,7 +61,7 @@ function IconC({ fill }: any) {
 
 function HighlightActionButton(props: IPropsHighlightActionButton) {
   // const { action, isActive, disabled, icon, tooltip } = props as any;
-  const [selectedColor, setSelectedColor] = useState<any>(undefined);
+  const [selectedColor, setSelectedColor] = useState<any>(props?.defaultColor);
 
   function onChange(color: string | undefined) {
     props.action?.(color);
