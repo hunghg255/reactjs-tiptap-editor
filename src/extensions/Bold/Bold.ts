@@ -10,14 +10,14 @@ export const Bold = /* @__PURE__ */ TiptapBold.extend<BoldOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({ editor, t }: any) => ({
+      button: ({ editor, t, extension }: any) => ({
         component: ActionButton,
         componentProps: {
           action: () => editor.commands.toggleBold(),
           isActive: () => editor.isActive('bold') || false,
           disabled: false,
           icon: 'Bold',
-          shortcutKeys: ['mod', 'B'],
+          shortcutKeys: extension.options.shortcutKeys ?? ['mod', 'B'],
           tooltip: t('editor.bold.tooltip'),
         },
       }),

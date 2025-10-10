@@ -12,7 +12,7 @@ export const TextUnderline = /* @__PURE__ */ TiptapUnderline.extend<UnderlineOpt
   addOptions() {
     return {
       ...this.parent?.(),
-      button({ editor, t }: any) {
+      button({ editor, t, extension }: any) {
         return {
           component: ActionButton,
           componentProps: {
@@ -20,7 +20,7 @@ export const TextUnderline = /* @__PURE__ */ TiptapUnderline.extend<UnderlineOpt
             isActive: () => editor.isActive('underline') || false,
             disabled: false,
             icon: 'Underline',
-            shortcutKeys: ['mod', 'U'],
+            shortcutKeys: extension.options.shortcutKeys ?? ['mod', 'U'],
             tooltip: t('editor.underline.tooltip'),
           },
         };

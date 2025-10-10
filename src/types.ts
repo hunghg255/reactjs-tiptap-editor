@@ -59,6 +59,8 @@ export interface GeneralOptions<T> {
   button: ButtonView<T>
   /** Show on Toolbar */
   toolbar?: boolean
+  /** Shortcut keys override */
+  shortcutKeys?: string[] | string[][]
 }
 
 /**

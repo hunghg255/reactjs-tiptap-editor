@@ -11,14 +11,15 @@ export const Italic = /* @__PURE__ */ TiptapItalic.extend<ItalicOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      button({ editor, t }: { editor: Editor, t: (...args: any[]) => string }) {
+//       button({ editor, t, extension }: { editor: Editor, t: (...args: any[]) => string }) {
+      button({ editor, t, extension }) {
         return {
           component: ActionButton,
           componentProps: {
             action: () => editor.commands.toggleItalic(),
             isActive: () => editor.isActive('italic') || false,
             disabled: false,
-            shortcutKeys: ['mod', 'I'],
+            shortcutKeys: extension.options.shortcutKeys ?? ['mod', 'I'],
             icon: 'Italic',
             tooltip: t('editor.italic.tooltip'),
           },

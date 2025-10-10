@@ -31,7 +31,7 @@ export const Highlight = /* @__PURE__ */ TiptapHighlight.extend<HighlightOptions
           editor,
           isActive: () => editor.isActive('highlight') || false,
           disabled: false,
-          shortcutKeys: ['⇧', 'mod', 'H'],
+          shortcutKeys: extension.options.shortcutKeys ?? ['⇧', 'mod', 'H'],
           tooltip: t('editor.highlight.tooltip'),
           defaultColor: extension.options.defaultColor
         },
