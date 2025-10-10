@@ -32,6 +32,7 @@ export function BubbleMenu({ editor, disabled, bubbleMenu }: BubbleMenuComponent
     extensionsNames.includes('table') && !bubbleMenu?.tableConfig?.hidden ? <TableBubbleMenu actions={bubbleMenu?.tableConfig?.actions}
       editor={editor}
       key="table"
+      hiddenActions={bubbleMenu?.tableConfig?.hiddenActions}
     /> : null,
     extensionsNames.includes('link') && !bubbleMenu?.linkConfig?.hidden ? <BubbleMenuLink disabled={disabled}
       editor={editor}

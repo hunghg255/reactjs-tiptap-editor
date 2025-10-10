@@ -124,17 +124,22 @@ export interface BubbleMenuRenderProps {
   extensionsNames: string[]
 }
 
-export interface BubbleMenuConfig {
+export interface TableMenuConfig {
   /**
      * @description Column menu hidden
      * @default false
      */
   hidden?: boolean
+
   /**
    * custom menu actions
    */
   actions?: ActionButtonProps[]
 
+  /**
+   * hidden default actions, if any
+   */
+  hiddenActions?: string[]
 }
 
 /**
@@ -148,7 +153,7 @@ export interface BubbleMenuProps {
      */
     hidden?: boolean
   }
-  tableConfig?: BubbleMenuConfig
+  tableConfig?: TableMenuConfig
   floatingMenuConfig?: {
     /**
      * @description Floating menu hidden
