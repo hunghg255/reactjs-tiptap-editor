@@ -23,3 +23,12 @@ const extensions = [
   Blockquote // [!code ++]
 ];
 ```
+
+## Options
+
+### shortcutKeys
+
+Type: `string[]`\
+Default: `['shift', 'mod', 'B']`
+
+Keyboard shortcuts for the extension.

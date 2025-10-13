@@ -23,3 +23,12 @@ const extensions = [
   Code // [!code ++]
 ];
 ```
+
+## Options
+
+### shortcutKeys
+
+Type: `string[]`\
+Default: `['mod', 'E']`
+
+Keyboard shortcuts for the extension.

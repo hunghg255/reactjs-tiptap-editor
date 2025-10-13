@@ -10,14 +10,14 @@ export const Strike = /* @__PURE__ */ TiptapStrike.extend<StrikeOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({ editor, t }: any) => ({
+      button: ({ editor, t, extension }: any) => ({
         component: ActionButton,
         componentProps: {
           action: () => editor.commands.toggleStrike(),
           isActive: () => editor.isActive('strike') || false,
           disabled: false,
           icon: 'Strikethrough',
-          shortcutKeys: ['shift', 'mod', 'S'],
+          shortcutKeys: extension.options.shortcutKeys ?? ['shift', 'mod', 'S'],
           tooltip: t('editor.strike.tooltip'),
         },
       }),

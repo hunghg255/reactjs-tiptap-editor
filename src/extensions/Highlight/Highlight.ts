@@ -5,16 +5,19 @@ import type { GeneralOptions } from '@/types';
 
 import HighlightActionButton from './components/HighlightActionButton';
 
-export interface HighlightOptions
-  extends TiptapHighlightOptions,
-  GeneralOptions<HighlightOptions> {}
+export interface HighlightOptions extends TiptapHighlightOptions, GeneralOptions<HighlightOptions> {
+  /**
+   * The default color to use initially
+   */
+  defaultColor?: string
+}
 
 export const Highlight = /* @__PURE__ */ TiptapHighlight.extend<HighlightOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
       multicolor: true,
-      button: ({ editor, t }) => ({
+      button: ({ editor, t, extension }) => ({
         component: HighlightActionButton,
         componentProps: {
           action: (color?: unknown) => {
@@ -28,8 +31,9 @@ export const Highlight = /* @__PURE__ */ TiptapHighlight.extend<HighlightOptions
           editor,
           isActive: () => editor.isActive('highlight') || false,
           disabled: false,
-          shortcutKeys: ['⇧', 'mod', 'H'],
+          shortcutKeys: extension.options.shortcutKeys ?? ['⇧', 'mod', 'H'],
           tooltip: t('editor.highlight.tooltip'),
+          defaultColor: extension.options.defaultColor
         },
       }),
     };

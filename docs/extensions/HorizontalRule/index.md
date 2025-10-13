@@ -23,3 +23,12 @@ const extensions = [
   HorizontalRule // [!code ++]
 ];
 ```
+
+## Options
+
+### shortcutKeys
+
+Type: `string[]`\
+Default: `['mod', 'alt', 'S']`
+
+Keyboard shortcuts for the extension.
