@@ -23,3 +23,12 @@ const extensions = [
   History // [!code ++]
 ];
 ```
+
+## Options
+
+### shortcutKeys
+
+Type: `string[][]`\
+Default: `[['mod', 'Z'], ['shift', 'mod', 'Z']]`
+
+Keyboard shortcuts for the extension.

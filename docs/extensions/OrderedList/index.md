@@ -23,3 +23,12 @@ const extensions = [
   OrderedList // [!code ++]
 ];
 ```
+
+## Options
+
+### shortcutKeys
+
+Type: `string[]`\
+Default: `['mod', 'shift', '7']`
+
+Keyboard shortcuts for the extension.

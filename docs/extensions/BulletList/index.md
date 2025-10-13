@@ -23,3 +23,12 @@ const extensions = [
   BulletList // [!code ++]
 ];
 ```
+
+## Options
+
+### shortcutKeys
+
+Type: `string[]`\
+Default: `['shift', 'mod', '8']`
+
+Keyboard shortcuts for the extension.
