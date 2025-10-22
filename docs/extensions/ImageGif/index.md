@@ -19,9 +19,10 @@ const extensions = [
   ...,
   // Import Extensions Here
   ImageGif.configure({// [!code ++]
-    GIPHY_API_KEY: 'GIPHY_API_KEY', // [!code ++]
+    API_KEY: '', // [!code ++]
+    provider: 'tenor' // [!code ++] (tenor or giphy)
   }),// [!code ++]
 ];
 ```
 
-- `GIPHY_API_KEY` - Giphy API Key. You can get it from [Giphy Developers](https://developers.giphy.com/).
+- `API_KEY` -  You can get it from [Giphy Developers](https://developers.giphy.com/) or  [Tenor Developers](https://tenor.com/)
