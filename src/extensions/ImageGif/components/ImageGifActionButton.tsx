@@ -130,6 +130,7 @@ export function ImageGifActionButton({ editor, icon, giphyApiKey, ...props }: an
       <ActionButton
         icon={icon}
         tooltip={props?.tooltip}
+        tooltipOptions={props?.tooltipOptions}
       />
     </ImageGifWrap>
   );

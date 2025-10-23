@@ -15,14 +15,15 @@ import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from 
 import ControlDrawer from '@/extensions/Drawer/components/ControlDrawer/ControlDrawer';
 import { dataURLtoFile } from '@/utils/file';
 import { shortId } from '@/utils/shortId';
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 interface IProps {
-  editor: Editor, upload?: any
+  editor: Editor, upload?: any, tooltipOptions?: TooltipContentProps
 }
 
 let clear = false;
 
-export const DrawerActiveButton: React.FC<IProps> = ({ editor, upload }) => {
+export const DrawerActiveButton: React.FC<IProps> = ({ editor, upload, tooltipOptions }) => {
   const [visible, toggleVisible] = useState(false);
   const refEditor = useRef<Editor4 | null>(null);
   const refWidget = useRef<any>(null);
@@ -195,6 +196,7 @@ export const DrawerActiveButton: React.FC<IProps> = ({ editor, upload }) => {
           action={() => toggleVisible(true)}
           icon="PencilRuler"
           tooltip="Drawer"
+          tooltipOptions={tooltipOptions}
         />
       </DialogTrigger>
 

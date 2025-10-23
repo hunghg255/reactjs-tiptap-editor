@@ -6,6 +6,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { Button, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components';
 import type { ButtonViewReturnComponentProps } from '@/types';
 import { getShortcutKeys } from '@/utils/plateform';
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 export interface ActionMenuButtonProps {
   /** Icon name to display */
@@ -14,6 +15,8 @@ export interface ActionMenuButtonProps {
   title?: string
   /** Tooltip text */
   tooltip?: string
+  /** Tooltip options */
+  tooltipOptions?: TooltipContentProps    
   /** Whether the button is disabled */
   disabled?: boolean
   /** Keyboard shortcut keys */
@@ -55,7 +58,7 @@ const ActionMenuButton = React.forwardRef<HTMLButtonElement, ActionMenuButtonPro
           </Comp>
         </TooltipTrigger>
 
-        <TooltipContent>
+        <TooltipContent {...props.tooltipOptions}>
           <div className="richtext-flex richtext-max-w-24 richtext-flex-col richtext-items-center richtext-text-center">
             {props?.tooltip && <div>
               {props?.tooltip}

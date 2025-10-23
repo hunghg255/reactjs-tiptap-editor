@@ -9,6 +9,7 @@ import {
 } from '@/components';
 import { useLocale } from '@/locales';
 import type { ButtonViewReturnComponentProps } from '@/types';
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 export interface Item {
   title: string
@@ -27,6 +28,7 @@ interface IPropsFontSizeMenuButton {
   shortcutKeys?: string[]
   maxHeight?: string | number
   tooltip?: string
+  tooltipOptions?: TooltipContentProps
   items?: Item[]
 }
 
@@ -55,6 +57,7 @@ function FontSizeMenuButton(props: IPropsFontSizeMenuButton) {
           icon="MenuDown"
           title={active?.title}
           tooltip={`${props?.tooltip}`}
+          tooltipOptions={props?.tooltipOptions}
         />
       </DropdownMenuTrigger>
 

@@ -62,6 +62,7 @@ function KatexActiveButton({ editor, ...props }: any) {
         <ActionButton
           icon={props?.icon}
           tooltip={props?.tooltip}
+          tooltipOptions={props?.tooltipOptions}
         />
       </PopoverTrigger>
 

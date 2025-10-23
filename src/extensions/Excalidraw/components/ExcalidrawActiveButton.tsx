@@ -9,12 +9,13 @@ import { ActionButton } from '@/components/ActionButton';
 import { Button } from '@/components/ui';
 import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { OPEN_EXCALIDRAW_SETTING_MODAL, cancelSubject, subject } from '@/utils/_event';
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 interface IProps {
-  editor: Editor
+  editor: Editor, tooltipOptions?: TooltipContentProps
 }
 
-export const ExcalidrawActiveButton: React.FC<IProps> = ({ editor }) => {
+export const ExcalidrawActiveButton: React.FC<IProps> = ({ editor, tooltipOptions }) => {
   const excalidrawOptions = useMemo(() => {
     return editor.extensionManager.extensions.find(
       (ext: any) => ext.name === 'excalidraw'
@@ -107,6 +108,7 @@ export const ExcalidrawActiveButton: React.FC<IProps> = ({ editor }) => {
           action={() => toggleVisible(true)}
           icon="Excalidraw"
           tooltip="Excalidraw"
+          tooltipOptions={tooltipOptions}
         />
       </DialogTrigger>
 

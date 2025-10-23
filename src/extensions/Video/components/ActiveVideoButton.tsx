@@ -120,6 +120,7 @@ function ActionVideoButton(props: any) {
           action={() => setOpen(true)}
           icon={props.icon}
           tooltip={props.tooltip}
+          tooltipOptions={props.tooltipOptions}
         />
       </DialogTrigger>
 

@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { ActionButton, IconComponent, Popover, PopoverContent, PopoverTrigger } from '@/components';
 import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock';
 import type { ButtonViewReturnComponentProps } from '@/types';
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 interface IPropsLinkEditPopover {
   editor: any
   icon?: any
   title?: string
   tooltip?: string
+  tooltipOptions?: TooltipContentProps
   disabled?: boolean
   shortcutKeys?: string[]
   isActive?: ButtonViewReturnComponentProps['isActive']
@@ -31,6 +33,7 @@ function LinkEditPopover(props: IPropsLinkEditPopover) {
       <PopoverTrigger disabled={props?.disabled} asChild>
         <ActionButton
           tooltip={props?.tooltip}
+          tooltipOptions={props?.tooltipOptions}
           isActive={props?.isActive}
           disabled={props?.disabled}
         >

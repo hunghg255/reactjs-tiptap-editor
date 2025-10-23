@@ -11,14 +11,15 @@ import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from 
 import { Textarea } from '@/components/ui/textarea';
 import { dataURLtoFile } from '@/utils/file';
 import { shortId } from '@/utils/shortId';
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 interface IProps {
-  editor: Editor, upload?: any
+  editor: Editor, upload?: any, tooltipOptions?: TooltipContentProps
 }
 
 const defaultCode = 'graph TB\na-->b';
 
-export const MermaidActiveButton: React.FC<IProps> = ({ editor, upload }) => {
+export const MermaidActiveButton: React.FC<IProps> = ({ editor, upload, tooltipOptions }) => {
   const [mermaidCode, setMermaidCode] = useState(defaultCode);
   const [svgCode, setSvgCode] = useState('');
   const [visible, toggleVisible] = useState(false);
@@ -120,6 +121,7 @@ export const MermaidActiveButton: React.FC<IProps> = ({ editor, upload }) => {
           action={() => toggleVisible(true)}
           icon="Mermaid"
           tooltip="Mermaid"
+          tooltipOptions={tooltipOptions}
         />
       </DialogTrigger>
 

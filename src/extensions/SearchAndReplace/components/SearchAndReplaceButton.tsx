@@ -87,6 +87,7 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
           disabled={props?.disabled}
           isActive={props?.isActive}
           tooltip={props?.tooltip}
+          tooltipOptions={props?.tooltipOptions}
         >
           <IconComponent name={props?.icon} />
         </ActionButton>
