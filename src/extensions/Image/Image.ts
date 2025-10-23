@@ -328,22 +328,22 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
               return false;
             }
 
-            if( event.clipboardData.items.length == 2) {
-              event.clipboardData.items[0].getAsString( ( html: string) => {
-                let url = '';
-                html.replace( /src\s*=\s*"(.*)"/, (match, p0) => (url = p0) );
-
-                if (url && typeof url === 'string') {
-                  const node = view.state.schema.nodes.image.create({
-                    src: url
-                  });
-                  const transaction = view.state.tr.replaceSelectionWith(node);
-                  view.dispatch(transaction);
-                }
-              });
-
-              return;
-            }
+//             if(event.clipboardData.items.length == 2) {
+//               event.clipboardData.items[0].getAsString( ( html: string) => {
+//                 let url = '';
+//                 html.replace( /src\s*=\s*"(.*)"/, (match, p0) => (url = p0) );
+//
+//                 if (url && typeof url === 'string') {
+//                   const node = view.state.schema.nodes.image.create({
+//                     src: url
+//                   });
+//                   const transaction = view.state.tr.replaceSelectionWith(node);
+//                   view.dispatch(transaction);
+//                 }
+//               });
+//
+//               return;
+//             }
 
             return handleImagePaste(view, event, uploadFn);
           },
@@ -352,22 +352,23 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
               return false;
             }
 
-            if(event.dataTransfer.items.length == 2) {
-              event.dataTransfer.items[0].getAsString( ( html: string) => {
-                let url = '';
-                html.replace( /src\s*=\s*"(.*)"/, (match, p0) => (url = p0) );
+//             if(event.dataTransfer.items.length == 2) {
+//               event.dataTransfer.items[0].getAsString( ( html: string) => {
+//                 let url = '';
+//                 html.replace( /src\s*=\s*"(.*)"/, (match, p0) => (url = p0) );
+//
+//                 if (url && typeof url === 'string') {
+//                   const node = view.state.schema.nodes.image.create({
+//                     src: url
+//                   });
+//                   const transaction = view.state.tr.replaceSelectionWith(node);
+//                   view.dispatch(transaction);
+//                 }
+//               });
+//
+//               return;
+//             }
 
-                if (url && typeof url === 'string') {
-                  const node = view.state.schema.nodes.image.create({
-                    src: url
-                  });
-                  const transaction = view.state.tr.replaceSelectionWith(node);
-                  view.dispatch(transaction);
-                }
-              });
-
-              return;
-            }
             handleImageDrop(view, event, moved, uploadFn);
             return false;
           },
