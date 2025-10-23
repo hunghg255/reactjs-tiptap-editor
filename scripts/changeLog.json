@@ -1,9 +1,92 @@
 [
   {
+    "hash": "761233f621ddafd171764ca15267692ec2acfbb3",
+    "date": "Mon Oct 13 21:31:54 2025 +0700",
+    "message": "chore: release v0.3.28",
+    "refs": "HEAD -> main, tag: v0.3.28, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v0.3.28"
+  },
+  {
+    "hash": "bc45221f1efe1d99a7526f85b5d293b3f90d78e8",
+    "date": "Mon Oct 13 12:59:48 2025 +0300",
+    "message": "docs: documented shortcutKeys, tableConfig.hiddenActions, Highlight.defaultColor",
+    "refs": "",
+    "author_name": "markok",
+    "author_email": "marko.kanala@meliora.fi",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "5d60adbd329946e5e6e430a4afcf13118437fbd4",
+    "date": "Fri Oct 10 12:39:07 2025 +0300",
+    "message": "feat: add shortcutKeys override(s) to extensions",
+    "refs": "",
+    "author_name": "markok",
+    "author_email": "marko.kanala@meliora.fi",
+    "functions": [
+      "Indent",
+      "Italic"
+    ]
+  },
+  {
+    "hash": "2012590bb2898347965543715eabd7e9f160d0c2",
+    "date": "Fri Oct 10 12:37:13 2025 +0300",
+    "message": "feat: add shortcutKeys override(s) to extensions",
+    "refs": "",
+    "author_name": "markok",
+    "author_email": "marko.kanala@meliora.fi",
+    "functions": [
+      "Blockquote",
+      "Bold",
+      "BulletList",
+      "Code",
+      "Heading",
+      "Highlight",
+      "History",
+      "HorizontalRule",
+      "ImportWord",
+      "Indent",
+      "Italic",
+      "MoreMark",
+      "OrderedList",
+      "Strike",
+      "TaskList",
+      "TextAlign",
+      "TextUnderline"
+    ]
+  },
+  {
+    "hash": "48e49426ed9be1e1f047f5422f0d30841f968379",
+    "date": "Fri Oct 10 08:10:03 2025 +0300",
+    "message": "feat(highlight): impl .defaultColor and render 'no fill' as none instead of yellow",
+    "refs": "",
+    "author_name": "markok",
+    "author_email": "marko.kanala@meliora.fi",
+    "functions": [
+      "Highlight",
+      "HighlightActionButton"
+    ]
+  },
+  {
+    "hash": "fdaf78543b65532bf3b49c1943a1dd43d4aaf221",
+    "date": "Thu Oct 9 21:14:14 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "dbe9065b708a0e80ec09d8333268ca582c66a3e3",
     "date": "Thu Oct 9 20:56:33 2025 +0700",
     "message": "chore: release v0.3.27",
-    "refs": "HEAD -> main, tag: v0.3.27, origin/main",
+    "refs": "tag: v0.3.27",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1350,46 +1433,5 @@
       "Image",
       "ImageView"
     ]
-  },
-  {
-    "hash": "2794c3065eb364efc4adf1a29f3c7d7edf4cc33a",
-    "date": "Wed Nov 6 22:44:39 2024 +0700",
-    "message": "chore: release v0.1.6",
-    "refs": "tag: v0.1.6",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.1.6"
-  },
-  {
-    "hash": "639a1fc3794c8d116e8ed7e8f94c8a8af965a13d",
-    "date": "Wed Nov 6 18:20:24 2024 +0700",
-    "message": "chore: release v0.1.5",
-    "refs": "tag: v0.1.5",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.1.5"
-  },
-  {
-    "hash": "b5ca97b7ea4cc140c88149d9101f08f4736b9d66",
-    "date": "Wed Nov 6 18:19:58 2024 +0700",
-    "message": "fix: twitter bubble",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "FormEditLinkTwitter"
-    ]
-  },
-  {
-    "hash": "dfd76778760ad10a627cddaa4918dec78a998af6",
-    "date": "Wed Nov 6 18:05:16 2024 +0700",
-    "message": "chore: release v0.1.4",
-    "refs": "tag: v0.1.4",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.1.4"
   }
 ]

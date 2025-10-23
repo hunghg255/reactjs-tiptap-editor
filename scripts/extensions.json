@@ -14,13 +14,6 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
-    ]
-  },
-  {
     "name": "Bold.ts",
     "package": "Bold",
     "alias": [
@@ -28,10 +21,10 @@
     ]
   },
   {
-    "name": "Blockquote.ts",
-    "package": "Blockquote",
+    "name": "BulletList.ts",
+    "package": "BulletList",
     "alias": [
-      "Blockquote"
+      "BulletList"
     ]
   },
   {
@@ -42,10 +35,10 @@
     ]
   },
   {
-    "name": "Code.ts",
-    "package": "Code",
+    "name": "Blockquote.ts",
+    "package": "Blockquote",
     "alias": [
-      "Code"
+      "Blockquote"
     ]
   },
   {
@@ -56,17 +49,17 @@
     ]
   },
   {
+    "name": "Code.ts",
+    "package": "Code",
+    "alias": [
+      "Code"
+    ]
+  },
+  {
     "name": "CodeView.ts",
     "package": "CodeView",
     "alias": [
       "CodeView"
-    ]
-  },
-  {
-    "name": "Document.ts",
-    "package": "Document",
-    "alias": [
-      "Document"
     ]
   },
   {
@@ -84,6 +77,13 @@
     ]
   },
   {
+    "name": "Document.ts",
+    "package": "Document",
+    "alias": [
+      "Document"
+    ]
+  },
+  {
     "name": "Emoji.ts",
     "package": "Emoji",
     "alias": [
@@ -98,10 +98,10 @@
     ]
   },
   {
-    "name": "FontFamily.ts",
-    "package": "FontFamily",
+    "name": "ExportPdf.ts",
+    "package": "ExportPdf",
     "alias": [
-      "FontFamily"
+      "ExportPdf"
     ]
   },
   {
@@ -112,17 +112,10 @@
     ]
   },
   {
-    "name": "ExportPdf.ts",
-    "package": "ExportPdf",
+    "name": "FontFamily.ts",
+    "package": "FontFamily",
     "alias": [
-      "ExportPdf"
-    ]
-  },
-  {
-    "name": "FormatPainter.ts",
-    "package": "FormatPainter",
-    "alias": [
-      "FormatPainter"
+      "FontFamily"
     ]
   },
   {
@@ -130,6 +123,13 @@
     "package": "FontSize",
     "alias": [
       "FontSize"
+    ]
+  },
+  {
+    "name": "FormatPainter.ts",
+    "package": "FormatPainter",
+    "alias": [
+      "FormatPainter"
     ]
   },
   {
@@ -154,13 +154,6 @@
     ]
   },
   {
-    "name": "HorizontalRule.ts",
-    "package": "HorizontalRule",
-    "alias": [
-      "HorizontalRule"
-    ]
-  },
-  {
     "name": "Iframe.ts",
     "package": "Iframe",
     "alias": [
@@ -172,6 +165,13 @@
     "package": "Iframe",
     "alias": [
       "embed"
+    ]
+  },
+  {
+    "name": "HorizontalRule.ts",
+    "package": "HorizontalRule",
+    "alias": [
+      "HorizontalRule"
     ]
   },
   {
@@ -210,17 +210,17 @@
     ]
   },
   {
-    "name": "Katex.ts",
-    "package": "Katex",
-    "alias": [
-      "Katex"
-    ]
-  },
-  {
     "name": "Italic.ts",
     "package": "Italic",
     "alias": [
       "Italic"
+    ]
+  },
+  {
+    "name": "Katex.ts",
+    "package": "Katex",
+    "alias": [
+      "Katex"
     ]
   },
   {
@@ -280,6 +280,13 @@
     ]
   },
   {
+    "name": "OrderedList.ts",
+    "package": "OrderedList",
+    "alias": [
+      "OrderedList"
+    ]
+  },
+  {
     "name": "SearchAndReplace.ts",
     "package": "SearchAndReplace",
     "alias": [
@@ -287,10 +294,10 @@
     ]
   },
   {
-    "name": "OrderedList.ts",
-    "package": "OrderedList",
+    "name": "Selection.ts",
+    "package": "Selection",
     "alias": [
-      "OrderedList"
+      "Selection"
     ]
   },
   {
@@ -315,17 +322,17 @@
     ]
   },
   {
-    "name": "Selection.ts",
-    "package": "Selection",
-    "alias": [
-      "Selection"
-    ]
-  },
-  {
     "name": "Strike.ts",
     "package": "Strike",
     "alias": [
       "Strike"
+    ]
+  },
+  {
+    "name": "SubAndSuperScript.ts",
+    "package": "SubAndSuperScript",
+    "alias": [
+      "SubAndSuperScript"
     ]
   },
   {
@@ -343,6 +350,13 @@
     ]
   },
   {
+    "name": "TableOfContent.ts",
+    "package": "TableOfContent",
+    "alias": [
+      "TableOfContent"
+    ]
+  },
+  {
     "name": "TaskList.ts",
     "package": "TaskList",
     "alias": [
@@ -354,20 +368,6 @@
     "package": "TextAlign",
     "alias": [
       "TextAlign"
-    ]
-  },
-  {
-    "name": "TextBubble.ts",
-    "package": "TextBubble",
-    "alias": [
-      "TextBubble"
-    ]
-  },
-  {
-    "name": "TableOfContent.ts",
-    "package": "TableOfContent",
-    "alias": [
-      "TableOfContent"
     ]
   },
   {
@@ -385,6 +385,13 @@
     ]
   },
   {
+    "name": "TextBubble.ts",
+    "package": "TextBubble",
+    "alias": [
+      "TextBubble"
+    ]
+  },
+  {
     "name": "TrailingNode.ts",
     "package": "TrailingNode",
     "alias": [
@@ -396,13 +403,6 @@
     "package": "Twitter",
     "alias": [
       "Twitter"
-    ]
-  },
-  {
-    "name": "SubAndSuperScript.ts",
-    "package": "SubAndSuperScript",
-    "alias": [
-      "SubAndSuperScript"
     ]
   },
   {

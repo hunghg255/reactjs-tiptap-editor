@@ -4,53 +4,76 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { debounce } from 'lodash-es';
 
 import { ActionButton, Input, Popover, PopoverContent, PopoverTrigger } from '@/components';
+import { type GifItem, serviceGetTrendingGiphy, serviceGetTrendingTenor, serviceSearchGiphy, serviceSearchTenor } from '@/extensions/ImageGif/components/services';
 
 interface IProps {
   showClear?: boolean
   selectImage: (arg: string) => void
   children: React.ReactNode
-  giphyApiKey: string
+  apiKey: string
+  provider: string;
 }
 
-function ImageGifWrap({ selectImage, giphyApiKey, children }: IProps) {
-  const [gifs, setGifs] = useState([]);
-  const [limit] = useState(15);
+function useServiceGif (provider: string, apiKey: string) {
+
+  const searchTrending = async (): Promise<GifItem[]> => {
+    if (!apiKey) return [];
+
+    if (provider === 'giphy') {
+      return serviceGetTrendingGiphy(apiKey);
+    }
+
+    if (provider === 'tenor') {
+      return serviceGetTrendingTenor(apiKey);
+    }
+
+    return [];
+  };
+
+  const searchWord = async (word: string): Promise<GifItem[]> => {
+    if (!apiKey) return [];
+
+    if (provider === 'giphy') {
+      return serviceSearchGiphy(word, apiKey);
+    }
+
+    if (provider === 'tenor') {
+      return serviceSearchTenor(word, apiKey);
+    }
+
+    return [];
+  };
+
+return {
+  searchTrending,
+  searchWord
+};
+}
+
+function ImageGifWrap({ selectImage, apiKey, provider, children }: IProps) {
+  const [gifs, setGifs] = useState<GifItem[]>([]);
 
   const inputRef = useRef(null);
 
-  const search = (term: any, kind: any = 'search') => {
-    if (!giphyApiKey) {
-      return;
-    }
-
-    const url
-      = kind === 'search'
-        ? `https://api.giphy.com/v1/gifs/search?q=${term}`
-        : `https://api.giphy.com/v1/gifs/trending?q=${term}`;
-    const link = `${url}&limit=${limit}&api_key=${giphyApiKey}`;
-
-    fetch(link).then(r => r.json()).then((response) => {
-      // handle success
-      setGifs(response.data);
-    })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-      });
-  };
+  const { searchTrending, searchWord } = useServiceGif(provider, apiKey);
 
   useEffect(() => {
-    search('', 'trend');
+    (async () => {
+      const r = await searchTrending();
+      setGifs(r);
+    })();
   }, []);
 
   const handleInputChange = useCallback(
-    debounce((event: React.ChangeEvent<HTMLInputElement>) => {
+    debounce(async (event: React.ChangeEvent<HTMLInputElement>) => {
       if (!event.target.value) {
-        search('', 'trend');
+        const r = await searchTrending();
+        setGifs(r);
         return;
       }
       // Add your logic here
-      search(event.target.value);
+      const r = await  searchWord(event.target.value);
+      setGifs(r);
     }, 350), // Adjust the debounce delay as needed
     [],
   );
@@ -68,7 +91,7 @@ function ImageGifWrap({ selectImage, giphyApiKey, children }: IProps) {
       >
 
         {
-          giphyApiKey
+          apiKey
             ? (
               <>
                 <div className="richtext-mb-[10px] richtext-w-full">
@@ -84,15 +107,15 @@ function ImageGifWrap({ selectImage, giphyApiKey, children }: IProps) {
                   <div className="richtext-grid richtext-grid-cols-2 richtext-gap-1 ">
 
                     {gifs?.length
-                      ? gifs?.map((o: any) => (
+                      ? gifs?.map((item) => (
                         <img
-                          alt="giphy"
+                          alt=''
                           className="richtext-cursor-pointer richtext-text-center"
-                          height={o.images.fixed_width_downsampled.height}
-                          key={`giphy-${o.id}`}
-                          onClick={() => selectImage(o)}
-                          src={o.images.fixed_width_downsampled.url}
-                          width={o.images.fixed_width_downsampled.width}
+                          height={item.height}
+                          key={item.id}
+                          onClick={() => selectImage(item.src)}
+                          src={item.src}
+                          width={item.width}
                         />
                       ))
                       : <p>
@@ -115,16 +138,15 @@ function ImageGifWrap({ selectImage, giphyApiKey, children }: IProps) {
   );
 }
 
-export function ImageGifActionButton({ editor, icon, giphyApiKey, ...props }: any) {
-  const selectImage = (giphyblock: any) => {
-    const { url } = giphyblock.images.original;
-
-    editor.chain().focus().setImageGif({ src: url }).run();
+export function ImageGifActionButton({ editor, icon, provider, apiKey, ...props }: any) {
+  const selectImage = (src: string) => {
+    editor.chain().focus().setImageGif({ src }).run();
   };
 
   return (
     <ImageGifWrap
-      giphyApiKey={giphyApiKey}
+      apiKey={apiKey}
+      provider={provider}
       selectImage={selectImage}
     >
       <ActionButton
