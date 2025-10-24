@@ -52,6 +52,7 @@ export function EmojiPickerComponent({ editor, icon, ...props }: any) {
       <ActionButton
         icon={icon}
         tooltip={props?.tooltip}
+        tooltipOptions={props?.tooltipOptions}
       />
     </EmojiPickerWrap>
   );

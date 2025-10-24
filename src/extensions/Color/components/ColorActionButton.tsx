@@ -6,6 +6,7 @@ import { debounce } from 'lodash-es';
 import { ActionButton, Button, ColorPicker } from '@/components';
 import { IconComponent } from '@/components/icons';
 import type { ButtonViewReturnComponentProps } from '@/types';
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 interface ColorActionButtonProps {
   editor: Editor
@@ -13,6 +14,7 @@ interface ColorActionButtonProps {
   defaultColor?: string
   icon?: React.ReactNode
   tooltip?: string
+  tooltipOptions?: TooltipContentProps
   disabled?: boolean
   action?: ButtonViewReturnComponentProps['action']
   isActive?: ButtonViewReturnComponentProps['isActive']
@@ -80,7 +82,7 @@ function ColorActionButton(props: ColorActionButtonProps) {
 
   return (
     <div className="richtext-flex richtext-items-center richtext-h-[32px]">
-      <ActionButton tooltip={props?.tooltip} disabled={props?.disabled} action={toggleColor}>
+      <ActionButton tooltip={props?.tooltip} disabled={props?.disabled} action={toggleColor} tooltipOptions={props?.tooltipOptions}>
         <span className="richtext-flex richtext-items-center richtext-justify-center richtext-text-sm">
           <IconC fill={selectedColor || props.initialDisplayedColor} />
         </span>

@@ -10,6 +10,7 @@ import {
 } from '@/components';
 import { useLocale } from '@/locales';
 import type { ButtonViewReturnComponentProps } from '@/types';
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 export interface Item {
   title: string
@@ -31,6 +32,7 @@ interface Props {
   shortcutKeys?: string[]
   maxHeight?: string | number
   tooltip?: string
+  tooltipOptions?: TooltipContentProps
   items?: Item[]
 }
 
@@ -65,6 +67,7 @@ function FontFamilyButton(props: Props) {
           icon="MenuDown"
           title={active?.font?.length > 7 ? `${active?.font?.slice(0, 6)}...` : active?.font}
           tooltip={props?.tooltip}
+          tooltipOptions={props?.tooltipOptions}
         />
       </DropdownMenuTrigger>
 

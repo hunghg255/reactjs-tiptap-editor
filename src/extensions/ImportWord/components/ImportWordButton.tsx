@@ -7,6 +7,8 @@ import { ActionButton, useToast } from '@/components';
 import { useLocale } from '@/locales';
 import { hasExtension } from '@/utils/utils';
 
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
+
 function base64ToBlob(base64: any, mimeType: any) {
   const byteCharacters = atob(base64.split(',')[1]);
   const byteNumbers = Array.from({ length: byteCharacters.length });
@@ -26,6 +28,7 @@ interface ImportWordButtonProps {
   disabled?: boolean
   icon?: string
   tooltip?: string
+  tooltipOptions?: TooltipContentProps
   shortcutKeys?: string[]
   action?: () => boolean
   convert?: (file: File) => Promise<string>
@@ -133,6 +136,7 @@ function ImportWordButton(props: ImportWordButtonProps) {
         icon={props?.icon}
         loading={loading}
         tooltip={props?.tooltip}
+        tooltipOptions={props?.tooltipOptions}
       />
 
       <input

@@ -91,6 +91,10 @@ function Toolbar({ editor, disabled, toolbar }: ToolbarComponentProps) {
         <ButtonComponent
           {...item.button.componentProps}
           disabled={disabled || item?.button?.componentProps?.disabled}
+          tooltipOptions={{
+            ...item?.button?.componentProps?.tooltipOptions,
+            side: toolbar?.tooltipSide ?? 'top',
+          }}
         />
 
         {item?.divider && <Separator orientation="vertical" className="!richtext-h-auto !richtext-mx-2" />}
