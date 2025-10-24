@@ -103,19 +103,17 @@ function ImageGifWrap({ selectImage, apiKey, provider, children }: IProps) {
                   />
                 </div>
 
-                <div className="richtext-max-h-[280px] richtext-overflow-y-auto">
+                <div className="richtext-max-h-[280px] !richtext-max-w-[400px] richtext-overflow-y-auto">
                   <div className="richtext-grid richtext-grid-cols-2 richtext-gap-1 ">
 
                     {gifs?.length
                       ? gifs?.map((item) => (
                         <img
                           alt=''
-                          className="richtext-cursor-pointer richtext-text-center"
-                          height={item.height}
+                          className="richtext-cursor-pointer richtext-object-contain richtext-text-center"
                           key={item.id}
                           onClick={() => selectImage(item.src)}
                           src={item.src}
-                          width={item.width}
                         />
                       ))
                       : <p>
