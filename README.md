@@ -76,8 +76,6 @@ Here are some related projects
 
 [Shadcn](https://ui.shadcn.com/)
 
-[echo-editor](https://github.com/Seedsa/echo-editor)
-
 ## License
 
 [MIT](./LICENSE)
