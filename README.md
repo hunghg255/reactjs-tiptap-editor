@@ -79,3 +79,11 @@ Here are some related projects
 ## License
 
 [MIT](./LICENSE)
+
+## Sponsors
+
+<p align="center">
+  <a href="https://cdn.jsdelivr.net/gh/hunghg255/sponsors/sponsors.svg">
+    <img src='https://cdn.jsdelivr.net/gh/hunghg255/sponsors/sponsors.svg'/>
+  </a>
+</p>
