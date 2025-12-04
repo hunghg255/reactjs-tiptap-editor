@@ -7,6 +7,8 @@ import type { GeneralOptions } from '@/types';
 export interface StrikeOptions extends TiptapStrikeOptions, GeneralOptions<StrikeOptions> {}
 
 export const Strike = /* @__PURE__ */ TiptapStrike.extend<StrikeOptions>({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

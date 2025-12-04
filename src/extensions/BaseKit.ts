@@ -1,32 +1,25 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { AnyExtension } from '@tiptap/core';
 import { Extension } from '@tiptap/core';
-import type { CharacterCountOptions } from '@tiptap/extension-character-count';
-import CharacterCount from '@tiptap/extension-character-count';
-import type { DropcursorOptions } from '@tiptap/extension-dropcursor';
-import { Dropcursor } from '@tiptap/extension-dropcursor';
-import type { FocusOptions } from '@tiptap/extension-focus';
-import Focus from '@tiptap/extension-focus';
-import { Gapcursor } from '@tiptap/extension-gapcursor';
+import { Document } from '@tiptap/extension-document';
 import type { HardBreakOptions } from '@tiptap/extension-hard-break';
 import { HardBreak } from '@tiptap/extension-hard-break';
-import type { ListItemOptions } from '@tiptap/extension-list-item';
-import { ListItem } from '@tiptap/extension-list-item';
+import type { HorizontalRuleOptions } from '@tiptap/extension-horizontal-rule';
+import { HorizontalRule } from '@tiptap/extension-horizontal-rule';
+import type { ListItemOptions, ListKeymapOptions, OrderedListOptions } from '@tiptap/extension-list';
+import { ListItem, ListKeymap } from '@tiptap/extension-list';
 import type { ParagraphOptions } from '@tiptap/extension-paragraph';
 import { Paragraph } from '@tiptap/extension-paragraph';
-import type { PlaceholderOptions } from '@tiptap/extension-placeholder';
-import { Placeholder } from '@tiptap/extension-placeholder';
+import type { StrikeOptions } from '@tiptap/extension-strike';
 import { Text } from '@tiptap/extension-text';
 import type { TextStyleOptions } from '@tiptap/extension-text-style';
 import { TextStyle } from '@tiptap/extension-text-style';
+import type { DropcursorOptions, TrailingNodeOptions } from '@tiptap/extensions';
+import { CharacterCount, type CharacterCountOptions, Dropcursor, Focus, type FocusOptions, Gapcursor, Placeholder, type PlaceholderOptions, Selection, TrailingNode } from '@tiptap/extensions';
 
-import { Document } from '@/extensions/Document';
 import { Column, MultiColumn } from '@/extensions/MultiColumn';
-import { Selection } from '@/extensions/Selection';
 import type { TextBubbleOptions } from '@/extensions/TextBubble';
 import { TextBubble } from '@/extensions/TextBubble';
-import type { TrailingNodeOptions } from '@/extensions/TrailingNode';
-import { TrailingNode } from '@/extensions/TrailingNode';
 import { localeActions } from '@/locales';
 
 /**
@@ -36,35 +29,9 @@ export interface BaseKitOptions {
   /**
    * Whether to enable the document option
    *
-   * @default true
-   */
-  document: false
-  /**
-   * Whether to enable the document option
-   *
    * @default false
    */
   multiColumn?: boolean
-  /**
-   * Whether to enable the text option
-   *
-   * @default true
-   */
-  text: false
-
-  /**
-   * Whether to enable the Gapcursor
-   *
-   * @default true
-   */
-  gapcursor: false
-
-  /**
-   * Dropcursor options or false, indicating whether to enable the drop cursor
-   *
-   * @default true
-   */
-  dropcursor: Partial<DropcursorOptions> | false
 
   /**
    * character count options or false, indicating whether to enable character count
@@ -74,78 +41,108 @@ export interface BaseKitOptions {
   characterCount: Partial<CharacterCountOptions> | false
 
   /**
-   * HardBreak options or false, indicating whether to enable hard breaks
-   *
-   * @default true
-   */
-  hardBreak: Partial<HardBreakOptions> | false
-
-  /**
-   * Placeholder options or false, indicating whether to enable placeholders
-   *
-   * @default true
-   */
-  placeholder: Partial<PlaceholderOptions> | false
-
-  /**
-   * Paragraph options or false, indicating whether to enable paragraph functionality
-   *
-   * @default true
-   */
-  paragraph: Partial<ParagraphOptions> | false
-
-  /**
-   * Focus options or false, indicating whether to enable focus functionality
-   *
-   * @default true
-   */
-  focus: Partial<FocusOptions> | false
-
-  /**
-   * ListItem options or false, indicating whether to enable list item functionality
-   *
-   * @default true
-   */
-  listItem: Partial<ListItemOptions> | false
-
-  /**
-   * Text Style options or false, indicating whether to enable text style functionality
-   *
-   * @default true
-   */
-  textStyle: Partial<TextStyleOptions> | false
-
-  /**
-   * Bubble options, taking `BubbleOptions<BaseKitOptions>` as parameters, indicating whether to enable the bubble functionality
-   */
-  // bubble: Partial<BubbleOptions<BaseKitOptions>>;
-  bubble: any
-
-  /**
-   * Iframe options or false, indicating whether to enable the iframe
-   *
-   * @default true
-   */
-  // iframe: Partial<IframeOptions> | false;
-
-  /**
-   * Trailing node options or false, indicating whether to enable the trailing node
-   *
-   * @default true
-   */
-  trailingNode: Partial<TrailingNodeOptions> | false
-  /**
-   * textBubble options or false, indicating whether to enable the textBubble
-   *
-   * @default true
-   */
-  textBubble: Partial<TextBubbleOptions> | false
-  /**
    * selection options or false, indicating whether to enable the selection
    *
    * @default true
    */
   selection: any | false
+
+ /**
+   * Focus options or false, indicating whether to enable focus functionality
+   *
+   * @default true
+   */
+  focus: Partial<FocusOptions> | false
+   /**
+   * Placeholder options or false, indicating whether to enable placeholders
+   *
+   * @default true
+   */
+  placeholder: Partial<PlaceholderOptions> | false
+    /**
+   * textBubble options or false, indicating whether to enable the textBubble
+   *
+   * @default true
+   */
+  textBubble: Partial<TextBubbleOptions> | false
+    /**
+   * Text Style options or false, indicating whether to enable text style functionality
+   *
+   * @default true
+   */
+  textStyle: Partial<TextStyleOptions> | false;
+
+  /**
+   * If set to false, the document extension will not be registered
+   * @example document: false
+   */
+  document: false
+
+  /**
+   * If set to false, the dropcursor extension will not be registered
+   * @example dropcursor: false
+   */
+  dropcursor: Partial<DropcursorOptions> | false
+
+  /**
+   * If set to false, the gapcursor extension will not be registered
+   * @example gapcursor: false
+   */
+  gapcursor: false
+
+  /**
+   * If set to false, the hardBreak extension will not be registered
+   * @example hardBreak: false
+   */
+  hardBreak: Partial<HardBreakOptions> | false
+
+  /**
+   * If set to false, the horizontalRule extension will not be registered
+   * @example horizontalRule: false
+   */
+  horizontalRule: Partial<HorizontalRuleOptions> | false
+
+  /**
+   * If set to false, the listItem extension will not be registered
+   * @example listItem: false
+   */
+  listItem: Partial<ListItemOptions> | false
+
+  /**
+   * If set to false, the listItemKeymap extension will not be registered
+   * @example listKeymap: false
+   */
+  listKeymap: Partial<ListKeymapOptions> | false
+
+  /**
+   * If set to false, the orderedList extension will not be registered
+   * @example orderedList: false
+   */
+  orderedList: Partial<OrderedListOptions> | false
+
+  /**
+   * If set to false, the paragraph extension will not be registered
+   * @example paragraph: false
+   */
+  paragraph: Partial<ParagraphOptions> | false
+
+  /**
+   * If set to false, the strike extension will not be registered
+   * @example strike: false
+   */
+  strike: Partial<StrikeOptions> | false
+
+  /**
+   * If set to false, the text extension will not be registered
+   * @example text: false
+   */
+  text: false
+
+  /**
+   * If set to false, the trailingNode extension will not be registered
+   * @example trailingNode: false
+   */
+  trailingNode: Partial<TrailingNodeOptions> | false
 }
 
 export const BaseKit = /* @__PURE__ */ Extension.create<BaseKitOptions>({
@@ -153,10 +150,6 @@ export const BaseKit = /* @__PURE__ */ Extension.create<BaseKitOptions>({
 
   addExtensions() {
     const extensions: AnyExtension[] = [];
-
-    if (this.options.document !== false) {
-      extensions.push(Document.configure());
-    }
 
     if (this.options.placeholder !== false) {
       extensions.push(
@@ -195,49 +188,16 @@ export const BaseKit = /* @__PURE__ */ Extension.create<BaseKitOptions>({
       );
     }
 
-    if (this.options.text !== false) {
-      extensions.push(Text.configure());
-    }
     if (this.options.textBubble !== false) {
       extensions.push(TextBubble.configure());
-    }
-
-    if (this.options.gapcursor !== false) {
-      extensions.push(Gapcursor.configure());
-    }
-
-    if (this.options.dropcursor !== false) {
-      extensions.push(
-        Dropcursor.configure({
-          ...this.options.dropcursor,
-          width: 2,
-          class: 'ProseMirror-dropcursor border-black',
-        }),
-      );
     }
 
     if (this.options.characterCount !== false) {
       extensions.push(CharacterCount.configure(this.options.characterCount));
     }
 
-    if (this.options.paragraph !== false) {
-      extensions.push(Paragraph.configure(this.options.paragraph));
-    }
-
-    if (this.options.hardBreak !== false) {
-      extensions.push(HardBreak.configure(this.options.hardBreak));
-    }
-
-    if (this.options.listItem !== false) {
-      extensions.push(ListItem.configure(this.options.listItem));
-    }
-
     if (this.options.textStyle !== false) {
       extensions.push(TextStyle.configure(this.options.textStyle));
-    }
-
-    if (this.options.trailingNode !== false) {
-      extensions.push(TrailingNode.configure(this.options.trailingNode));
     }
 
     if (this.options.selection !== false) {
@@ -246,6 +206,46 @@ export const BaseKit = /* @__PURE__ */ Extension.create<BaseKitOptions>({
 
     if (this.options.multiColumn !== false) {
       extensions.push(Column, MultiColumn);
+    }
+
+    if (this.options.document !== false) {
+      extensions.push(Document.configure(this.options.document));
+    }
+
+    if (this.options.dropcursor !== false) {
+      extensions.push(Dropcursor.configure(this.options.dropcursor));
+    }
+
+    if (this.options.gapcursor !== false) {
+      extensions.push(Gapcursor.configure(this.options.gapcursor));
+    }
+
+    if (this.options.hardBreak !== false) {
+      extensions.push(HardBreak.configure(this.options.hardBreak));
+    }
+
+    if (this.options.horizontalRule !== false) {
+      extensions.push(HorizontalRule.configure(this.options.horizontalRule));
+    }
+
+    if (this.options.listItem !== false) {
+      extensions.push(ListItem.configure(this.options.listItem));
+    }
+
+    if (this.options.listKeymap !== false) {
+      extensions.push(ListKeymap.configure(this.options?.listKeymap));
+    }
+
+    if (this.options.paragraph !== false) {
+      extensions.push(Paragraph.configure(this.options.paragraph));
+    }
+
+    if (this.options.text !== false) {
+      extensions.push(Text.configure(this.options.text));
+    }
+
+    if (this.options.trailingNode !== false) {
+      extensions.push(TrailingNode.configure(this.options?.trailingNode));
     }
 
     return extensions;

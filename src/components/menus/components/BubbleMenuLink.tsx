@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 
 import type { Editor } from '@tiptap/react';
-import { BubbleMenu } from '@tiptap/react';
+import { BubbleMenu } from '@tiptap/react/menus';
 
 import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock';
 import LinkViewBlock from '@/extensions/Link/components/LinkViewBlock';
@@ -65,15 +65,20 @@ function BubbleMenuLink({ editor, disabled }: BubbleMenuLinkProps) {
       <BubbleMenu
         editor={editor}
         shouldShow={shouldShow}
-        tippyOptions={{
-          popperOptions: {
-            modifiers: [{ name: 'flip', enabled: false }],
-          },
-          placement: 'bottom-start',
-          offset: [-2, 16],
-          zIndex: 9999,
-          onHidden: () => {
-            setShowEdit(false);
+        options={{
+          // popperOptions: {
+          //   modifiers: [{ name: 'flip', enabled: false }],
+          // },
+          // placement: 'bottom-start',
+          // offset: [-2, 16],
+          // zIndex: 9999,
+          // onHidden: () => {
+          //   setShowEdit(false);
+          // },
+           placement: 'bottom-start',
+          offset: {
+            alignmentAxis: 6,
+            crossAxis: 6,
           },
         }}
       >
@@ -82,15 +87,17 @@ function BubbleMenuLink({ editor, disabled }: BubbleMenuLinkProps) {
         ) : (
           <>
             {showEdit ? (
-              <LinkEditBlock onSetLink={onSetLink} editor={editor} />
+              <LinkEditBlock editor={editor}
+onSetLink={onSetLink}
+              />
             ) : (
               <LinkViewBlock
                 editor={editor}
+                link={link}
                 onClear={unSetLink}
                 onEdit={() => {
                   setShowEdit(true);
                 }}
-                link={link}
               />
             )}
           </>

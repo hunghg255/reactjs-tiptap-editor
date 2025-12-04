@@ -1,8 +1,8 @@
-import { Node } from '@tiptap/core';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { computePosition } from '@floating-ui/dom';
+import TiptapEmoji from '@tiptap/extension-emoji';
 import { PluginKey } from '@tiptap/pm/state';
 import { ReactRenderer } from '@tiptap/react';
-import Suggestion from '@tiptap/suggestion';
-import tippy from 'tippy.js';
 
 import EmojiPicker from '@/extensions/Emoji/components/EmojiPicker/EmojiPicker';
 
@@ -11,39 +11,20 @@ import { emojiSearch, emojisToName } from './components/EmojiList/emojis';
 
 export const EXTENSION_PRIORITY_HIGHEST = 200;
 
-declare module '@tiptap/core' {
-  interface Commands<ReturnType> {
-    emoji: {
-      setEmoji: (emoji: { name: string, emoji: string }) => ReturnType
-    }
-  }
-}
-
 export const EmojiPluginKey = new PluginKey('emoji');
 
 export { emojisToName };
 
-export const Emoji = /* @__PURE__ */ Node.create({
-  name: 'emoji',
-  content: 'text*',
-
+export const Emoji = /* @__PURE__ */ TiptapEmoji.extend({
   priority: EXTENSION_PRIORITY_HIGHEST,
-
+  // emojis: gitHubEmojis,
+  enableEmoticons: true,
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),
       HTMLAttributes: {},
-      suggestion: {
-        char: ':',
-        pluginKey: EmojiPluginKey,
-        command: ({ editor, range, props }: any) => {
-          editor
-            .chain()
-            .focus()
-            .insertContentAt(range, `${props.emoji} `)
-            .run();
-        },
-      },
+
       button: ({ editor, t }: any) => {
         return {
           component: EmojiPicker,
@@ -62,85 +43,86 @@ export const Emoji = /* @__PURE__ */ Node.create({
     };
   },
 
-  addCommands() {
-    return {
-      setEmoji:
-        emojiObject =>
-          ({ commands }) => {
-            return commands.insertContent(`${emojiObject.emoji} `);
-          },
-    };
-  },
-
-  addProseMirrorPlugins() {
-    return [
-      Suggestion({
-        editor: this.editor,
-        ...this.options.suggestion,
-      }),
-    ];
-  },
 }).configure({
   suggestion: {
     items: ({ query }: any) => {
       return emojiSearch(query);
     },
+
+    allowSpaces: false,
+
     render: () => {
       let component: any;
-      let popup: any;
-      let isEditable: any;
+
+      function repositionComponent(clientRect: any) {
+        if (!component || !component.element) {
+          return;
+        }
+
+        const virtualElement = {
+          getBoundingClientRect() {
+            return clientRect;
+          },
+        };
+
+        computePosition(virtualElement, component.element, {
+          placement: 'bottom-start',
+        }).then(pos => {
+          Object.assign(component.element.style, {
+            left: `${pos.x}px`,
+            top: `${pos.y}px`,
+            position: pos.strategy === 'fixed' ? 'fixed' : 'absolute',
+          });
+        });
+      }
+
+      const onClose = () => {
+        if (!component) return;
+        if (document.body.contains(component.element)) {
+          document.body.removeChild(component.element);
+        }
+        component.destroy();
+      };
 
       return {
         onStart: (props: any) => {
-          isEditable = props.editor.isEditable;
-          if (!isEditable)
-            return;
+              onClose();
 
           component = new ReactRenderer(EmojiList, {
-            props,
+            props: {
+              ...props,
+              onClose
+            },
             editor: props.editor,
           });
 
-          popup = tippy('body', {
-            getReferenceClientRect: props.clientRect,
-            appendTo: () => document.body,
-            content: component.element,
-            showOnCreate: true,
-            interactive: true,
-            trigger: 'manual',
-            placement: 'bottom-start',
-          });
+          document.body.appendChild(component.element);
+          repositionComponent(props.clientRect());
         },
 
         onUpdate(props: any) {
-          if (!isEditable)
-            return;
-
           component.updateProps(props);
-          popup[0].setProps({
-            getReferenceClientRect: props.clientRect,
-          });
+          repositionComponent(props.clientRect());
         },
 
-        onKeyDown(props: any) {
-          if (!isEditable)
-            return;
-
+        onKeyDown(props) {
           if (props.event.key === 'Escape') {
-            popup[0].hide();
+            document.body.removeChild(component.element);
+            component.destroy();
+
             return true;
           }
+
           return component.ref?.onKeyDown(props);
         },
 
-        onExit() {
-          if (!isEditable)
-            return;
-
-          popup[0].destroy();
-          component.destroy();
-        },
+        // onExit() {
+        //   if (document.body.contains(component.element)) {
+        //     document.body.removeChild(component.element);
+        //   }
+        //   component.destroy();
+        // },
       };
     },
-  },
+  }
 });

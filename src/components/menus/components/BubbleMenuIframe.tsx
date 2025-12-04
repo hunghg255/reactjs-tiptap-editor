@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { BubbleMenu } from '@tiptap/react';
+import { BubbleMenu } from '@tiptap/react/menus';
 
 import { ActionButton } from '@/components/ActionButton';
 import { SizeSetter } from '@/components/SizeSetter/SizeSetter';
@@ -71,16 +71,18 @@ export function BubbleMenuIframe({ editor }: any) {
         editor={editor}
         pluginKey="iframe-bubble-menu"
         shouldShow={shouldShow}
-        tippyOptions={{
-          popperOptions: {
-            modifiers: [{ name: 'flip', enabled: false }],
-          },
+        options={{
+          // popperOptions: {
+          //   modifiers: [{ name: 'flip', enabled: false }],
+          // },
+          // placement: 'bottom-start',
+          // offset: [-2, 16],
+          // zIndex: 9999,
           placement: 'bottom-start',
-          offset: [-2, 16],
-          zIndex: 9999,
-        // onHidden: () => {
-        //   toggleVisible(false)
-        // },
+          offset: {
+            alignmentAxis: 6,
+            crossAxis: 6,
+          },
         }}
       >
 

@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { Editor } from '@tiptap/core';
-import type { Node } from '@tiptap/pm/model';
-import type { NodeSelection } from '@tiptap/pm/state';
+import DragHandle from '@tiptap/extension-drag-handle-react';
+import { type NodeSelection } from '@tiptap/pm/state';
 
 import {
   Button,
@@ -21,46 +21,23 @@ import {
   TooltipTrigger,
 } from '@/components';
 import { useLocale } from '@/locales';
-import { DragHandlePlugin, dragHandlePluginDefaultKey } from '@/plugins/DragHandle';
 import { IndentProps, setNodeIndentMarkup } from '@/utils/indent';
 
 export interface ContentMenuProps {
   editor: Editor
   disabled?: boolean
   className?: string
-  pluginKey?: string
 }
 
 function ContentMenu(props: ContentMenuProps) {
-  const { pluginKey = dragHandlePluginDefaultKey } = props;
   const { t } = useLocale();
-  const [currentNode, setCurrentNode] = useState<Node | null>(null);
+  const [currentNode, setCurrentNode] = useState<any>(null);
   const [currentNodePos, setCurrentNodePos] = useState(-1);
-  const dragElement = useRef(null);
-  const pluginRef = useRef<any | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const hasTextAlignExtension = props.editor.extensionManager.extensions.some(ext => ext.name === 'textAlign');
   const hasIndentExtension = props.editor.extensionManager.extensions.some(ext => ext.name === 'indent');
   const hasClearExtension = props.editor.extensionManager.extensions.some(ext => ext.name === 'clear');
-
-  useEffect(() => {
-    if (dragElement.current && !props.editor.isDestroyed) {
-      pluginRef.current = DragHandlePlugin({
-        editor: props.editor,
-        element: dragElement.current,
-        pluginKey: 'ContentItemMenu',
-        tippyOptions: {
-          offset: [-2, 16],
-          zIndex: 99,
-          moveTransition: 'transform 0.15s ease-out',
-        },
-        onNodeChange: handleNodeChange,
-      });
-
-      props.editor.registerPlugin(pluginRef.current);
-    }
-  }, [props.editor, dragElement]);
 
   function resetTextFormatting() {
     const chain = props.editor.chain();
@@ -108,11 +85,11 @@ function ContentMenu(props: ContentMenuProps) {
       .run();
   }
 
-  function handleNodeChange(e: any) {
-    if (e.node) {
-      setCurrentNode(e.node);
+  function handleNodeChange({ node, pos }: { node: Node | null; pos: number }) {
+    if (node) {
+      setCurrentNode(node);
     }
-    setCurrentNodePos(e.pos);
+    setCurrentNodePos(pos);
   }
 
   function handleAdd() {
@@ -157,22 +134,6 @@ function ContentMenu(props: ContentMenuProps) {
     };
   }, [menuOpen]);
 
-  useEffect(() => {
-    return () => {
-      if (pluginRef.current) {
-        props.editor.unregisterPlugin(pluginKey);
-        pluginRef.current = null;
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (props.editor?.isDestroyed && pluginRef.current) {
-      props.editor.unregisterPlugin(pluginKey);
-      pluginRef.current = null;
-    }
-  }, [props.editor?.isDestroyed]);
-
   const handleMenuOpenChange = (open: any) => {
     if (props?.disabled) {
       return;
@@ -181,14 +142,9 @@ function ContentMenu(props: ContentMenuProps) {
   };
 
   return (
-    <div
-      ref={dragElement}
-      className={
-        `drag-handle richtext-duration-200 richtext-ease-in-out [transition-property:top,_left] ${props?.className}`
-      }
-      style={{
-        opacity: props?.disabled ? 0 : 1,
-      }}
+    <DragHandle
+    editor={props?.editor}
+    onNodeChange={handleNodeChange as any}
     >
       <div className="richtext-flex richtext-items-center richtext-gap-0.5 richtext-duration-200 richtext-ease-in-out [transition-property:top,_left]">
         <Button
@@ -389,8 +345,8 @@ function ContentMenu(props: ContentMenuProps) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-    </div>
-  );
+    </DragHandle>
+);
 }
 
 export { ContentMenu };

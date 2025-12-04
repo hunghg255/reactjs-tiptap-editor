@@ -1,8 +1,7 @@
 import { forwardRef, useEffect, useId, useImperativeHandle, useLayoutEffect, useMemo } from 'react';
 
 import type { AnyExtension, Editor as CoreEditor } from '@tiptap/core';
-import type { UseEditorOptions } from '@tiptap/react';
-import { EditorContent, useEditor } from '@tiptap/react';
+import { EditorContent, EditorContext, useEditor, type UseEditorOptions } from '@tiptap/react';
 import { differenceBy, throttle } from 'lodash-es';
 
 import { BubbleMenu, Toolbar, TooltipProvider } from '@/components';
@@ -71,6 +70,8 @@ export interface RichTextEditorProps {
 
   /** This option gives us the control to enable the default behavior of rendering the editor immediately.*/
   immediatelyRender?: boolean
+
+  shouldRerenderOnTransaction?: boolean;
 }
 
 function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ editor: CoreEditor | null }>) {
@@ -97,6 +98,7 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
   }, EDITOR_UPDATE_WATCH_THROTTLE_WAIT_TIME);
 
   const editor = useEditor({
+    shouldRerenderOnTransaction:  props?.shouldRerenderOnTransaction || false,
     extensions: sortExtensions,
     content,
     immediatelyRender: props?.immediatelyRender || false,
@@ -183,28 +185,33 @@ function RichTextEditor(props: RichTextEditorProps, ref: React.ForwardedRef<{ ed
         <TooltipProvider delayDuration={0}
           disableHoverableContent
         >
-          <div className="richtext-overflow-hidden richtext-rounded-[0.5rem] richtext-bg-background richtext-shadow richtext-outline richtext-outline-1">
-            <div className="richtext-flex richtext-max-h-full richtext-w-full richtext-flex-col">
-              {!props?.hideToolbar && <Toolbar disabled={!!props?.disabled}
-                editor={editor}
-                toolbar={props.toolbar}
-              />}
+          <EditorContext.Provider value={{ editor }}>
 
-              <EditorContent className={`richtext-relative ${props?.contentClass || ''}`}
-                editor={editor}
+            <div className="richtext-overflow-hidden richtext-rounded-[0.5rem] richtext-bg-background richtext-shadow richtext-outline richtext-outline-1">
+              <div className="richtext-flex richtext-max-h-full richtext-w-full richtext-flex-col">
+                 {!props?.hideToolbar && <Toolbar disabled={!!props?.disabled}
+                  editor={editor}
+                  toolbar={props.toolbar}
+                                         />}
 
-              />
+                <EditorContent className={`richtext-relative ${props?.contentClass || ''}`}
+                  editor={editor}
+                  role="presentation"
 
-              {hasExtensionValue && <CharactorCount editor={editor}
-                extensions={extensions}
-              />}
+                />
 
-              {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu}
-                disabled={props?.disabled}
-                editor={editor}
-              />}
+               {hasExtensionValue && <CharactorCount editor={editor}
+                  extensions={extensions}
+                                     />}
+
+                {!props?.hideBubble && <BubbleMenu bubbleMenu={props?.bubbleMenu}
+                  disabled={props?.disabled}
+                  editor={editor}
+                                       />}
+              </div>
             </div>
-          </div>
+
+          </EditorContext.Provider>
         </TooltipProvider>
       </ProviderRichText>
 

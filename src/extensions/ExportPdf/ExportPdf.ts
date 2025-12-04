@@ -26,6 +26,8 @@ export interface ExportPdfOptions extends GeneralOptions<ExportPdfOptions> {
 
 export const ExportPdf = /* @__PURE__ */ Extension.create<ExportPdfOptions>({
   name: 'exportPdf',
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

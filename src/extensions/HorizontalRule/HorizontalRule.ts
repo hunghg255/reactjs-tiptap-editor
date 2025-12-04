@@ -19,6 +19,8 @@ export const HorizontalRule = /* @__PURE__ */ TiptapHorizontalRule.extend<Horizo
       ['hr'],
     ];
   },
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

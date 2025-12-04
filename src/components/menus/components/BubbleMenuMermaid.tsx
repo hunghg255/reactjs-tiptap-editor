@@ -1,7 +1,7 @@
 import { Fragment, useMemo } from 'react';
 
 import type { Editor } from '@tiptap/react';
-import { BubbleMenu as BubbleMenuReact } from '@tiptap/react';
+import { BubbleMenu as BubbleMenuReact } from '@tiptap/react/menus';
 
 import { Separator, getBubbleMermaid } from '@/components';
 import { Mermaid } from '@/extensions/Mermaid';
@@ -14,13 +14,6 @@ interface IPropsBubbleMenu {
   editor: Editor
   disabled?: boolean
 }
-
-const tippyOptions = {
-  maxWidth: 'auto',
-  zIndex: 20,
-  appendTo: 'parent',
-  moveTransition: 'transform 0.1s ease-out',
-};
 
 function ItemA({ item, disabled, editor }: any) {
   const Comp = item.component;
@@ -87,7 +80,7 @@ function BubbleMenuMermaid(props: IPropsBubbleMenu) {
       <BubbleMenuReact
         editor={props?.editor}
         shouldShow={shouldShow}
-        tippyOptions={tippyOptions as any}
+        // tippyOptions={tippyOptions as any}
       >
         {items?.length
           ? (

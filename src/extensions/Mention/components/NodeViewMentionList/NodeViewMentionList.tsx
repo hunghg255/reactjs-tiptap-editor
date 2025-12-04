@@ -13,6 +13,7 @@ interface IProps {
   editor: Editor
   items: Array<string>
   command: any
+  onClose?: () => void
 }
 
 export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => {
@@ -24,6 +25,7 @@ export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => 
     if (!userName)
       return;
     props.command({ id: userName, label: userName });
+    if (props?.onClose) props?.onClose();
   };
 
   const upHandler = () => {

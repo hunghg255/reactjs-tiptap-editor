@@ -29,6 +29,8 @@ export interface PainterAction {
  */
 export const FormatPainter = /* @__PURE__ */ Extension.create<FormatPainterOptions>({
   name: 'painter',
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

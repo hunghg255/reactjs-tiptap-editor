@@ -1,5 +1,6 @@
-import type { BulletListOptions as TiptapBulletListOptions } from '@tiptap/extension-bullet-list';
-import { BulletList as TiptapBulletList } from '@tiptap/extension-bullet-list';
+// import type { BulletListOptions as TiptapBulletListOptions } from '@tiptap/extension-bullet-list';
+// import { BulletList as TiptapBulletList } from '@tiptap/extension-bullet-list';
+import { BulletList as TiptapBulletList, type BulletListOptions as  TiptapBulletListOptions } from '@tiptap/extension-list';
 
 import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
@@ -9,6 +10,8 @@ export interface BulletListOptions
   GeneralOptions<BulletListOptions> {}
 
 export const BulletList = /* @__PURE__ */ TiptapBulletList.extend<BulletListOptions>({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

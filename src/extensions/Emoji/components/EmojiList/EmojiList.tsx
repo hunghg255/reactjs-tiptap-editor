@@ -9,7 +9,8 @@ import { useLocale } from '@/locales';
 
 interface IProps {
   items: Array<{ name: string, emoji: string, fallbackImage?: string }>
-  command: any
+  command: any;
+  onClose?: () => void;
 }
 
 export const EmojiList: React.FC<IProps> = forwardRef((props, ref) => {
@@ -22,6 +23,7 @@ export const EmojiList: React.FC<IProps> = forwardRef((props, ref) => {
 
     if (item) {
       props.command(item);
+        if (props?.onClose) props?.onClose();
     }
   };
 
@@ -80,7 +82,7 @@ export const EmojiList: React.FC<IProps> = forwardRef((props, ref) => {
               >
                 {item.fallbackImage ? <img className="richtext-size-[1em]"
                   src={item.fallbackImage}
-                /> : item.emoji}
+                                      /> : item.emoji}
                 :
 
                 {item.name}

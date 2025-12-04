@@ -32,7 +32,6 @@ export const Iframe = /* @__PURE__ */ Node.create({
   selectable: true,
   atom: true,
   draggable: true,
-
   addOptions() {
     return {
       ...this.parent?.(),

@@ -9,6 +9,8 @@ export interface UnderlineOptions
   GeneralOptions<UnderlineOptions> {}
 
 export const TextUnderline = /* @__PURE__ */ TiptapUnderline.extend<UnderlineOptions>({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

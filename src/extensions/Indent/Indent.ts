@@ -27,6 +27,8 @@ declare module '@tiptap/core' {
 
 export const Indent = /* @__PURE__ */ Extension.create<IndentOptions>({
   name: 'indent',
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

@@ -1,13 +1,13 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useRef, useState } from 'react';
 
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 import type { Editor } from '@tiptap/core';
 import mammoth from 'mammoth';
 
 import { ActionButton, useToast } from '@/components';
 import { useLocale } from '@/locales';
 import { hasExtension } from '@/utils/utils';
-
-import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 function base64ToBlob(base64: any, mimeType: any) {
   const byteCharacters = atob(base64.split(',')[1]);
@@ -126,6 +126,7 @@ function ImportWordButton(props: ImportWordButtonProps) {
   }
   async function handleResult(htmlResult: string) {
     const html = await filerImage(htmlResult);
+    //@ts-expect-error
     props.editor.chain().setContent(html, true).run();
   }
 
