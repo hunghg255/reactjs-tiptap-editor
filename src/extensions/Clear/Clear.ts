@@ -7,6 +7,8 @@ export interface ClearOptions extends GeneralOptions<ClearOptions> {}
 
 export const Clear = /* @__PURE__ */ Node.create<ClearOptions>({
   name: 'clear',
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

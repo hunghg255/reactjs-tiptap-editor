@@ -22,6 +22,8 @@ export interface ImportWordOptions extends GeneralOptions<ImportWordOptions> {
 
 export const ImportWord = /* @__PURE__ */ Extension.create<ImportWordOptions>({
   name: 'importWord',
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

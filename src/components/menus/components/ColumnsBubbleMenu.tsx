@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { BubbleMenu } from '@tiptap/react';
+import { BubbleMenu } from '@tiptap/react/menus';
 
 import { ActionButton } from '@/components/ActionButton';
 import { MultiColumn } from '@/extensions/MultiColumn';
@@ -21,16 +21,21 @@ export function ColumnsBubbleMenu({ editor }: any) {
       editor={editor}
       pluginKey="columns-bubble-menu"
       shouldShow={shouldShow}
-      tippyOptions={{
-        popperOptions: {
-          modifiers: [{ name: 'flip', enabled: false }],
-        },
-        placement: 'bottom-start',
-        offset: [-2, 16],
-        zIndex: 9999,
+      options={{
+        // popperOptions: {
+        //   modifiers: [{ name: 'flip', enabled: false }],
+        // },
+        // placement: 'bottom-start',
+        // offset: [-2, 16],
+        // zIndex: 9999,
         // onHidden: () => {
         //   toggleVisible(false)
         // },
+         placement: 'bottom-start',
+          offset: {
+            alignmentAxis: 6,
+            crossAxis: 6,
+          },
       }}
     >
       <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">

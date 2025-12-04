@@ -1,7 +1,7 @@
 import { Fragment, useMemo } from 'react';
 
 import type { Editor } from '@tiptap/react';
-import { BubbleMenu as BubbleMenuReact } from '@tiptap/react';
+import { BubbleMenu as BubbleMenuReact } from '@tiptap/react/menus';
 
 import { Separator, getBubbleImage, getBubbleImageGif, getBubbleVideo } from '@/components';
 import { Image } from '@/extensions/Image';
@@ -13,13 +13,6 @@ interface IPropsBubbleMenu {
   editor: Editor
   disabled?: boolean
 }
-
-const tippyOptions = {
-  maxWidth: 'auto',
-  zIndex: 20,
-  appendTo: 'parent',
-  moveTransition: 'transform 0.1s ease-out',
-};
 
 function ItemA({ item, disabled, editor }: any) {
   const Comp = item.component;
@@ -90,7 +83,7 @@ function BubbleMenuImage(props: IPropsBubbleMenu) {
       <BubbleMenuReact
         editor={props?.editor}
         shouldShow={shouldShow}
-        tippyOptions={tippyOptions as any}
+        // tippyOptions={tippyOptions as any}
       >
         {items?.length
           ? (
@@ -148,7 +141,7 @@ function BubbleMenuImageGif(props: IPropsBubbleMenu) {
       <BubbleMenuReact
         editor={props?.editor}
         shouldShow={shouldShow}
-        tippyOptions={tippyOptions as any}
+        // tippyOptions={tippyOptions as any}
       >
         {items?.length
           ? (
@@ -207,7 +200,7 @@ function BubbleMenuVideo(props: IPropsBubbleMenu) {
       <BubbleMenuReact
         editor={props?.editor}
         shouldShow={shouldShow}
-        tippyOptions={tippyOptions as any}
+        // tippyOptions={tippyOptions as any}
       >
         {items?.length
           ? (

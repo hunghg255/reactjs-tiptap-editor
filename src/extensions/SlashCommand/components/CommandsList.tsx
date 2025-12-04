@@ -12,10 +12,8 @@ import { cn } from '@/lib/utils';
 import { useLocale } from '@/locales';
 
 function CommandsList(props: any, ref: any) {
-  // 选中的索引
   const [selectedCommandIndex, setSelectedCommandIndex] = useState(0);
   const [selectedGroupIndex, setSelectedGroupIndex] = useState(0);
-  // 滚动ref
   const scrollContainer = useRef<HTMLDivElement | null>(null);
 
   const { t } = useLocale();
@@ -112,6 +110,7 @@ function CommandsList(props: any, ref: any) {
   function selectItem(groupIndex: number, commandIndex: number) {
     const command = props.items[groupIndex].commands[commandIndex];
     props.command(command);
+    if (props?.onClose) props?.onClose();
   }
 
   function createCommandClickHandler(groupIndex: number, commandIndex: number) {
@@ -149,7 +148,7 @@ function CommandsList(props: any, ref: any) {
                         {command.iconUrl && <img alt=""
                           className="richtext-size-6"
                           src={command.iconUrl}
-                        />}
+                                            />}
 
                         {command.iconName && (
                           <IconComponent className="!richtext-mr-1 !richtext-text-lg"

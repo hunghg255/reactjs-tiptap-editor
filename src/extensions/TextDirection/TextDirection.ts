@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Extension } from '@tiptap/core';
 
 import TextDirectionButton from '@/extensions/TextDirection/components/TextDirectionButton';
@@ -78,7 +77,6 @@ const TextDirection = /* @__PURE__ */ Extension.create({
       },
     ];
   },
-  // @ts-expect-error
   addCommands() {
     return {
       setTextDirection: (direction: any) => ({ commands }: any) => {

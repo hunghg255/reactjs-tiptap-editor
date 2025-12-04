@@ -410,6 +410,10 @@ export function getBubbleText(editor: Editor, t: any) {
 
     const ext = editor.extensionManager.extensions.find(ext => ext.name === type);
     if (ext) {
+      if (!ext.configure().options.button) {
+        return acc;
+      }
+
       return [...acc, ext.configure().options.button({ editor, t, extension: ext })];
     }
 

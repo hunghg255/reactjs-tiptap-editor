@@ -10,6 +10,8 @@ import type { BaseKitOptions } from '../BaseKit';
 export interface HeadingOptions extends TiptapHeadingOptions, GeneralOptions<HeadingOptions> {}
 
 export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

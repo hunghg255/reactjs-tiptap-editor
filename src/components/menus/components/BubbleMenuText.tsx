@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import type { Editor } from '@tiptap/core';
 import { TextSelection } from '@tiptap/pm/state';
-import { BubbleMenu } from '@tiptap/react';
+import { BubbleMenu } from '@tiptap/react/menus';
 
 import { Separator, getBubbleText } from '@/components';
 import { useLocale } from '@/locales';
@@ -11,13 +11,6 @@ export interface BubbleMenuTextProps {
   editor: Editor
   disabled?: boolean
 }
-
-const tippyOptions = {
-  maxWidth: 'auto',
-  zIndex: 20,
-  appendTo: 'parent',
-  moveTransition: 'transform 0.1s ease-out',
-};
 
 function ItemA({ item, disabled, editor }: any) {
   const Comp = item.component;
@@ -62,7 +55,7 @@ function BubbleMenuText(props: BubbleMenuTextProps) {
   return (
     <BubbleMenu editor={props?.editor}
       shouldShow={shouldShow}
-      tippyOptions={tippyOptions as any}
+      // tippyOptions={tippyOptions as any}
     >
       {items?.length
         ? (

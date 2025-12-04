@@ -1,8 +1,6 @@
 import type { Editor } from '@tiptap/core';
 import { isActive } from '@tiptap/core';
-import { BubbleMenu } from '@tiptap/react';
-import type { GetReferenceClientRect } from 'tippy.js';
-import { sticky } from 'tippy.js';
+import { BubbleMenu } from '@tiptap/react/menus';
 
 import { ActionButton, type ActionButtonProps, Separator } from '@/components';
 import HighlightActionButton from '@/extensions/Highlight/components/HighlightActionButton';
@@ -59,28 +57,28 @@ function TableBubbleMenu({ editor, disabled, actions, hiddenActions = [] }: Tabl
   function onSetCellBackground(color: string) {
     editor.chain().focus().setTableCellBackground(color).run();
   }
-  const getReferenceClientRect: GetReferenceClientRect = () => {
-    const {
-      view,
-      state: {
-        selection: { from },
-      },
-    } = editor;
+  // const getReferenceClientRect: GetReferenceClientRect = () => {
+  //   const {
+  //     view,
+  //     state: {
+  //       selection: { from },
+  //     },
+  //   } = editor;
 
-    const node = view.domAtPos(from).node as HTMLElement;
-    if (!node) {
-      return new DOMRect(-1000, -1000, 0, 0);
-    }
+  //   const node = view.domAtPos(from).node as HTMLElement;
+  //   if (!node) {
+  //     return new DOMRect(-1000, -1000, 0, 0);
+  //   }
 
-    const tableWrapper = node?.closest?.('.tableWrapper');
-    if (!tableWrapper) {
-      return new DOMRect(-1000, -1000, 0, 0);
-    }
+  //   const tableWrapper = node?.closest?.('.tableWrapper');
+  //   if (!tableWrapper) {
+  //     return new DOMRect(-1000, -1000, 0, 0);
+  //   }
 
-    const rect = tableWrapper.getBoundingClientRect();
+  //   const rect = tableWrapper.getBoundingClientRect();
 
-    return rect;
-  };
+  //   return rect;
+  // };
 
   return (
     <BubbleMenu
@@ -88,15 +86,21 @@ function TableBubbleMenu({ editor, disabled, actions, hiddenActions = [] }: Tabl
       pluginKey="table"
       shouldShow={shouldShow}
       updateDelay={0}
-      tippyOptions={{
-        offset: [0, 8],
-        popperOptions: {
-          modifiers: [{ name: 'flip', enabled: false }],
-        },
-        maxWidth: 'auto',
-        getReferenceClientRect,
-        plugins: [sticky],
-        sticky: 'popper',
+      options={{
+        // offset: [0, 8],
+        // popperOptions: {
+        //   modifiers: [{ name: 'flip', enabled: false }],
+        // },
+        // maxWidth: 'auto',
+        // getReferenceClientRect,
+        // plugins: [sticky],
+        // sticky: 'popper',
+        // placement: 'top',
+        autoPlacement: true
+        // offset: {
+        //   alignmentAxis: 0,
+        //   crossAxis: 0,
+        // },
       }}
     >
       {
@@ -135,7 +139,9 @@ function TableBubbleMenu({ editor, disabled, actions, hiddenActions = [] }: Tabl
                 />
               )}
 
-              <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" orientation="vertical" />
+              <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]"
+                orientation="vertical"
+              />
 
               {!isHidden('addRowAbove') && (
                 <ActionButton
@@ -167,7 +173,9 @@ function TableBubbleMenu({ editor, disabled, actions, hiddenActions = [] }: Tabl
                 />
               )}
 
-              <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" orientation="vertical" />
+              <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]"
+                orientation="vertical"
+              />
 
               {!isHidden('mergeCells') && (
                 <ActionButton
@@ -189,7 +197,9 @@ function TableBubbleMenu({ editor, disabled, actions, hiddenActions = [] }: Tabl
                 />
               )}
 
-              <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]" orientation="vertical" />
+              <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]"
+                orientation="vertical"
+              />
 
               {!isHidden('setCellBackground') && (
                 <HighlightActionButton

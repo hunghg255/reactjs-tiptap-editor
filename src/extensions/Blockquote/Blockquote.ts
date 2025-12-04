@@ -9,6 +9,8 @@ export interface BlockquoteOptions
   GeneralOptions<BlockquoteOptions> {}
 
 export const Blockquote = /* @__PURE__ */ TiptapBlockquote.extend<BlockquoteOptions>({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

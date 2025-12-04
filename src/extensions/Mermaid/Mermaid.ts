@@ -25,6 +25,8 @@ export interface MermaidOptions extends GeneralOptions<MermaidOptions> {
 export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
   name: 'mermaid',
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

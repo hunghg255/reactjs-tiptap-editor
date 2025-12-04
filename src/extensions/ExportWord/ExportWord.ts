@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Extension } from '@tiptap/core';
-import { Packer, WidthType } from 'docx';
+// import { Packer, WidthType } from 'docx';
 import { DocxSerializer, defaultMarks, defaultNodes } from 'prosemirror-docx';
 
 import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
-import { downloadFromBlob } from '@/utils/download';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -35,16 +34,19 @@ const nodeSerializer = {
       tableOptions: {
         width: {
           size: 100,
-          type: WidthType.PERCENTAGE,
+          // type: WidthType.PERCENTAGE,
         },
       },
     });
   },
 };
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const docxSerializer = /* @__PURE__ */ new DocxSerializer(nodeSerializer, defaultMarks);
 
 export const ExportWord = /* @__PURE__ */ Extension.create<ExportWordOptions>({
   name: 'exportWord',
+
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),
@@ -67,18 +69,18 @@ export const ExportWord = /* @__PURE__ */ Extension.create<ExportWordOptions>({
     return {
       exportToWord:
         () =>
-          async ({ editor }) => {
-            const opts: any = {
-              getImageBuffer: async (src: string) => {
-                const response = await fetch(src);
-                const arrayBuffer = await response.arrayBuffer();
-                return new Uint8Array(arrayBuffer);
-              },
-            };
+          async () => {
+            // const opts: any = {
+            //   getImageBuffer: async (src: string) => {
+            //     const response = await fetch(src);
+            //     const arrayBuffer = await response.arrayBuffer();
+            //     return new Uint8Array(arrayBuffer);
+            //   },
+            // };
 
-            const wordDocument = docxSerializer.serialize(editor.state.doc as any, opts);
+            // const wordDocument = docxSerializer.serialize(editor.state.doc as any, opts);
 
-            Packer.toBlob(wordDocument).then(blob => downloadFromBlob(new Blob([blob]), 'export-document.docx'));
+            // Packer.toBlob(wordDocument).then(blob => downloadFromBlob(new Blob([blob]), 'export-document.docx'));
 
             return true;
           },

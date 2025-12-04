@@ -26,6 +26,8 @@ export interface MoreMarkOptions extends GeneralOptions<MoreMarkOptions> {
 
 export const MoreMark = /* @__PURE__ */ Extension.create<MoreMarkOptions>({
   name: 'moreMark',
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

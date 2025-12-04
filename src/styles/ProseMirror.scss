@@ -194,13 +194,11 @@
   }
 }
 
-.ProseMirror {
-  .search-result {
-    background: #c4eed0;
-  }
 
-  .search-result-current {
-    background: #6cd58b;
-  }
+.reactjs-tiptap-editor .ProseMirror .search-result {
+    background-color: #ffd90080
 }
 
+.reactjs-tiptap-editor .ProseMirror .search-result-current {
+    background-color: #0dff0080
+}

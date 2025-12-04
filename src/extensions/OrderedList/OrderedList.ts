@@ -1,5 +1,6 @@
-import type { OrderedListOptions as TiptapOrderedListOptions } from '@tiptap/extension-ordered-list';
-import { OrderedList as TiptapOrderedList } from '@tiptap/extension-ordered-list';
+// import type { OrderedListOptions as TiptapOrderedListOptions } from '@tiptap/extension-ordered-list';
+// import { OrderedList as TiptapOrderedList } from '@tiptap/extension-ordered-list';
+import { OrderedList as TiptapOrderedList, type OrderedListOptions as  TiptapOrderedListOptions } from '@tiptap/extension-list';
 
 import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
@@ -9,6 +10,8 @@ export interface OrderedListOptions
   GeneralOptions<OrderedListOptions> {}
 
 export const OrderedList = /* @__PURE__ */ TiptapOrderedList.extend<OrderedListOptions>({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

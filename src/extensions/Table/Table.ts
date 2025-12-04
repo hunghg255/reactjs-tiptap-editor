@@ -1,14 +1,10 @@
-import TiptapTable from '@tiptap/extension-table';
-import type { TableCellOptions } from '@tiptap/extension-table-cell';
-import { TableHeader } from '@tiptap/extension-table-header';
-import type { TableHeaderOptions } from '@tiptap/extension-table-header';
-import type { TableRowOptions } from '@tiptap/extension-table-row';
+import { Table as TiptapTable, TableRow, TableCell, TableHeader, type TableCellOptions, type TableRowOptions,type TableHeaderOptions  } from '@tiptap/extension-table';
+
 import TableActionButton from '@/extensions/Table/components/TableActionButton';
 import type { GeneralOptions } from '@/types';
+
 import type { TableCellBackgroundOptions } from './cell-background';
 import { TableCellBackground } from './cell-background';
-import { TableRow } from './components/TableRow';
-import { TableCell } from './components/TableCell';
 
 export interface TableOptions extends GeneralOptions<TableOptions> {
   HTMLAttributes: Record<string, any>
@@ -27,20 +23,22 @@ export interface TableOptions extends GeneralOptions<TableOptions> {
   tableCellBackground: Partial<TableCellBackgroundOptions>
 }
 export const Table = /* @__PURE__ */ TiptapTable.extend<TableOptions>({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),
       HTMLAttributes: {
         style: `
-          border: 1px solid #000;         
-          border-collapse: collapse;     
+          border: 1px solid #000;
+          border-collapse: collapse;
           width: 100%;
         `,
       },
       resizable: true,
       lastColumnResizable: true,
       allowTableNodeSelection: false,
-      
+
       button: ({ editor, t }: any) => ({
         component: TableActionButton,
         componentProps: {
