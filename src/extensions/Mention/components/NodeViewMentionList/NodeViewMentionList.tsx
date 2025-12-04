@@ -69,7 +69,7 @@ export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => 
   }));
 
   return (
-    <div className={' !richtext-max-h-[320px] !richtext-w-[160px] richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-[hsl(var(--richtext-border))] richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'}>
+    <div className={' !richtext-max-h-[320px] !richtext-w-[160px] richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-[hsl(var(--richtext-border))] richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'}>
       <div ref={$container}>
         {props.items.length > 0
           ? (

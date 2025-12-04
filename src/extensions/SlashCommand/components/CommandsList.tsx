@@ -122,7 +122,7 @@ function CommandsList(props: any, ref: any) {
 
   return (
     <div
-      className="richtext-max-h-[min(80vh,24rem)] richtext-flex-wrap richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-[hsl(var(--richtext-border))] richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none"
+      className="richtext-max-h-[min(80vh,24rem)] richtext-flex-wrap richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-[hsl(var(--richtext-border))] richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none"
       ref={scrollContainer}
     >
       {props?.items?.length
