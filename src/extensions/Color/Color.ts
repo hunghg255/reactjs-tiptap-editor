@@ -15,7 +15,24 @@ export interface ColorOptions extends TiptapColorOptions, GeneralOptions<ColorOp
   defaultColor?: string
 }
 
+export interface ColorStorage {
+  currentColor?: string
+}
+
+declare module '@tiptap/core' {
+  interface Storage {
+    color: ColorStorage
+  }
+}
+
 export const Color = /* @__PURE__ */ TiptapColor.extend<ColorOptions>({
+  addStorage() {
+    return {
+      // Stores the currently selected text color; undefined indicates "No Fill" (default color)
+      currentColor: this.options.defaultColor || undefined,
+    };
+  },
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
@@ -28,11 +45,15 @@ export const Color = /* @__PURE__ */ TiptapColor.extend<ColorOptions>({
             colors: extension.options.colors,
             defaultColor: extension.options.defaultColor,
             action: (color?: unknown) => {
-              if (color === undefined) {
-                editor.chain().focus().unsetColor().run();
-              }
               if (typeof color === 'string') {
+                // Update the stored current color
+                editor.storage.color.currentColor = color;
                 editor.chain().focus().setColor(color).run();
+              }
+              if (color === undefined) {
+                // Clear the color and set currentColor to undefined
+                editor.storage.color.currentColor = undefined;
+                editor.chain().focus().unsetColor().run();
               }
             },
             isActive: () => {
@@ -43,10 +64,42 @@ export const Color = /* @__PURE__ */ TiptapColor.extend<ColorOptions>({
               return editor.isActive({ color }) || false;
             },
             editor,
+            extension,
             disabled: false,
+            shortcutKeys: extension.options.shortcutKeys ?? ['⇧', 'alt', 'C'],
             tooltip: t('editor.color.tooltip'),
           },
         };
+      },
+    };
+  },
+
+  addKeyboardShortcuts() {
+    return {
+      ...this.parent?.(),
+      'Alt-Shift-c': () => {
+        // Use the stored current color
+        const colorToUse = this.storage.currentColor || this.options.defaultColor;
+
+        // If colorToUse is undefined, remove any existing color
+        if (!colorToUse) {
+          const { color: currentTextColor } = this.editor.getAttributes('textStyle');
+          if (currentTextColor) {
+            return this.editor.chain().focus().unsetColor().run();
+          }
+          return false;
+        }
+
+        // Check if the ENTIRE selection has the exact same text color
+        const isExactColorActive = this.editor.isActive('textStyle', { color: colorToUse });
+
+        if (isExactColorActive) {
+          // If the entire selection has this exact color, remove it
+          return this.editor.chain().focus().unsetColor().run();
+        }
+
+        // Otherwise (no color, different color, or mixed state), apply the color
+        return this.editor.chain().focus().setColor(colorToUse).run();
       },
     };
   },

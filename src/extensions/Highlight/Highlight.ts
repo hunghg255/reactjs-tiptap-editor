@@ -13,7 +13,24 @@ export interface HighlightOptions extends TiptapHighlightOptions, GeneralOptions
   defaultColor?: string
 }
 
+export interface HighlightStorage {
+  currentColor?: string
+}
+
+declare module '@tiptap/core' {
+  interface Storage {
+    highlight: HighlightStorage
+  }
+}
+
 export const Highlight = /* @__PURE__ */ TiptapHighlight.extend<HighlightOptions>({
+  addStorage() {
+    return {
+      // Stores the currently selected highlight color; undefined indicates "No Fill".
+      currentColor: this.options.defaultColor || undefined,
+    };
+  },
+
   //@ts-expect-error
   addOptions() {
     return {
@@ -24,13 +41,18 @@ export const Highlight = /* @__PURE__ */ TiptapHighlight.extend<HighlightOptions
         componentProps: {
           action: (color?: unknown) => {
             if (typeof color === 'string') {
+              // Update the stored current color
+              editor.storage.highlight.currentColor = color;
               editor.chain().focus().setHighlight({ color }).run();
             }
             if (color === undefined) {
+              // Clear the highlight and set currentColor to undefined
+              editor.storage.highlight.currentColor = undefined;
               editor.chain().focus().unsetHighlight().run();
             }
           },
           editor,
+          extension,
           isActive: () => editor.isActive('highlight') || false,
           disabled: false,
           shortcutKeys: extension.options.shortcutKeys ?? ['⇧', 'mod', 'H'],
@@ -38,6 +60,36 @@ export const Highlight = /* @__PURE__ */ TiptapHighlight.extend<HighlightOptions
           defaultColor: extension.options.defaultColor
         },
       }),
+    };
+  },
+
+  addKeyboardShortcuts() {
+    return {
+      ...this.parent?.(),
+      'Mod-Shift-h': () => {
+        // Use the stored current color
+        const colorToUse = this.storage.currentColor || this.options.defaultColor;
+
+        // If colorToUse is undefined, remove any existing highlight
+        if (!colorToUse) {
+          const { color: currentHighlightColor } = this.editor.getAttributes('highlight');
+          if (currentHighlightColor) {
+            return this.editor.chain().focus().unsetHighlight().run();
+          }
+          return false;
+        }
+
+        // Check if the ENTIRE selection has the exact same highlight color
+        const isExactColorActive = this.editor.isActive('highlight', { color: colorToUse });
+
+        if (isExactColorActive) {
+          // If the entire selection has this exact color, remove it
+          return this.editor.chain().focus().unsetHighlight().run();
+        }
+
+        // Otherwise (no highlight, different color, or mixed state), apply the color
+        return this.editor.chain().focus().setHighlight({ color: colorToUse }).run();
+      },
     };
   },
 });
