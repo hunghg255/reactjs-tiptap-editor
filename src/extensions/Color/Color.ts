@@ -15,6 +15,16 @@ export interface ColorOptions extends TiptapColorOptions, GeneralOptions<ColorOp
   defaultColor?: string
 }
 
+export interface ColorStorage {
+  currentColor?: string
+}
+
+declare module '@tiptap/core' {
+  interface Storage {
+    color: ColorStorage
+  }
+}
+
 export const Color = /* @__PURE__ */ TiptapColor.extend<ColorOptions>({
   addStorage() {
     return {
@@ -37,12 +47,12 @@ export const Color = /* @__PURE__ */ TiptapColor.extend<ColorOptions>({
             action: (color?: unknown) => {
               if (typeof color === 'string') {
                 // Update the stored current color
-                extension.storage.currentColor = color;
+                editor.storage.color.currentColor = color;
                 editor.chain().focus().setColor(color).run();
               }
               if (color === undefined) {
                 // Clear the color and set currentColor to undefined
-                extension.storage.currentColor = undefined;
+                editor.storage.color.currentColor = undefined;
                 editor.chain().focus().unsetColor().run();
               }
             },
@@ -71,25 +81,24 @@ export const Color = /* @__PURE__ */ TiptapColor.extend<ColorOptions>({
         // Use the stored current color
         const colorToUse = this.storage.currentColor || this.options.defaultColor;
 
-        // If currentColor is undefined (indicating No Fill/default), do not perform color operation
+        // If colorToUse is undefined, remove any existing color
         if (!colorToUse) {
+          const { color: currentTextColor } = this.editor.getAttributes('textStyle');
+          if (currentTextColor) {
+            return this.editor.chain().focus().unsetColor().run();
+          }
           return false;
         }
 
-        // Check if there is already a text color
-        const { color: currentTextColor } = this.editor.getAttributes('textStyle');
+        // Check if the ENTIRE selection has the exact same text color
+        const isExactColorActive = this.editor.isActive('textStyle', { color: colorToUse });
 
-        if (currentTextColor) {
-          // If the current text color is the same as colorToUse, remove it
-          if (currentTextColor === colorToUse) {
-            return this.editor.chain().focus().unsetColor().run();
-          }
-
-          // Otherwise, replace with the new color
-          return this.editor.chain().focus().setColor(colorToUse).run();
+        if (isExactColorActive) {
+          // If the entire selection has this exact color, remove it
+          return this.editor.chain().focus().unsetColor().run();
         }
 
-        // If there is no color, add it
+        // Otherwise (no color, different color, or mixed state), apply the color
         return this.editor.chain().focus().setColor(colorToUse).run();
       },
     };

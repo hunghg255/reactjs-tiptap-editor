@@ -70,19 +70,19 @@ function IconC({ fill }: IconCProps) {
 }
 
 function ColorActionButton(props: ColorActionButtonProps) {
-  // Read the shared current color from extension.storage
+  // Read the shared current color from editor.storage
   const getStoredColor = () => {
-    return props.extension?.storage?.currentColor || props?.defaultColor;
+    return props.editor?.storage?.color?.currentColor || props?.defaultColor;
   };
 
   const [selectedColor, setSelectedColor] = useState<string | undefined>(getStoredColor());
 
   // Listen for editor updates and sync the color from storage
   useEffect(() => {
-    if (!props.editor || !props.extension) return;
+    if (!props.editor) return;
 
     const updateColor = () => {
-      const storedColor = props.extension.storage.currentColor;
+      const storedColor = props.editor?.storage?.color?.currentColor;
       if (storedColor !== selectedColor) {
         setSelectedColor(storedColor);
       }
@@ -91,25 +91,25 @@ function ColorActionButton(props: ColorActionButtonProps) {
     props.editor.on('transaction', updateColor);
 
     return () => {
-
       props.editor.off('transaction', updateColor);
     };
-  }, [props.editor, props.extension, selectedColor]);
+  }, [props.editor, selectedColor]);
 
   function onChange(color: string | undefined) {
     // Immediately update the color in storage (including undefined)
-    if (props.extension) {
-      props.extension.storage.currentColor = color;
+    if (props.editor?.storage?.color) {
+      props.editor.storage.color.currentColor = color;
     }
     props.action?.(color);
   }
 
   function toggleColor() {
     // Use the current color from storage
-    const colorToUse = props.extension?.storage?.currentColor || selectedColor;
+    const colorToUse = props.editor?.storage?.color?.currentColor || selectedColor;
 
-    // If the color is undefined (No Fill/default), do not perform any operation
+    // If the color is undefined (No Fill/default), call action with undefined to clear color
     if (!colorToUse) {
+      props.action?.(undefined);
       return;
     }
 
@@ -120,11 +120,11 @@ function ColorActionButton(props: ColorActionButtonProps) {
     (color: string | undefined) => {
       setSelectedColor(color);
       // Update storage (including undefined)
-      if (props.extension) {
-        props.extension.storage.currentColor = color;
+      if (props.editor?.storage?.color) {
+        props.editor.storage.color.currentColor = color;
       }
     },
-    [props.extension],
+    [props.editor],
   );
 
   return (

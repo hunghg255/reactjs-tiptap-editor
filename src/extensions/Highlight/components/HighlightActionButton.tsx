@@ -70,19 +70,19 @@ function IconC({ fill }: any) {
 }
 
 function HighlightActionButton(props: IPropsHighlightActionButton) {
-  // Read the shared current color from extension.storage.
+  // Read the shared current color from editor.storage
   const getStoredColor = () => {
-    return props.extension?.storage?.currentColor || props?.defaultColor;
+    return props.editor?.storage?.highlight?.currentColor || props?.defaultColor;
   };
 
   const [selectedColor, setSelectedColor] = useState<string | undefined>(getStoredColor());
 
   // Listen for editor updates and synchronize the displayed color with the one in storage.
   useEffect(() => {
-    if (!props.editor || !props.extension) return;
+    if (!props.editor) return;
 
     const updateColor = () => {
-      const storedColor = props.extension.storage.currentColor;
+      const storedColor = props.editor?.storage?.highlight?.currentColor;
       if (storedColor !== selectedColor) {
         setSelectedColor(storedColor);
       }
@@ -95,37 +95,36 @@ function HighlightActionButton(props: IPropsHighlightActionButton) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       props.editor.off('transaction', updateColor);
     };
-  }, [props.editor, props.extension, selectedColor]);
+  }, [props.editor, selectedColor]);
 
   function onChange(color: string | undefined) {
     // Immediately update the color in storage (including undefined)
-    if (props.extension) {
-      props.extension.storage.currentColor = color;
+    if (props.editor?.storage?.highlight) {
+      props.editor.storage.highlight.currentColor = color;
     }
     props.action?.(color);
   }
 
   function toggleColor() {
     // Use the stored current color
-    const colorToUse = props.extension?.storage?.currentColor || selectedColor;
-    
-    // If the color is undefined (No Fill), do not perform any action
+    const colorToUse = props.editor?.storage?.highlight?.currentColor || selectedColor;
+
+    // If the color is undefined (No Fill), call action with undefined to clear highlight
     if (!colorToUse) {
+      props.action?.(undefined);
       return;
     }
-    
-    props.action?.(colorToUse);
-  }
 
-  const setSelectedColorDebounce = useCallback(
+    props.action?.(colorToUse);
+  }  const setSelectedColorDebounce = useCallback(
     (color: string | undefined) => {
       setSelectedColor(color);
       // Immediately update the color in storage (including undefined)
-      if (props.extension) {
-        props.extension.storage.currentColor = color;
+      if (props.editor?.storage?.highlight) {
+        props.editor.storage.highlight.currentColor = color;
       }
     },
-    [props.extension],
+    [props.editor],
   );
 
   return (
