@@ -1,6 +1,5 @@
 import type { Extension } from '@tiptap/core';
-import type { FontFamilyOptions as TiptapFontFamilyOptions } from '@tiptap/extension-font-family';
-import FontFamilyTiptap from '@tiptap/extension-font-family';
+import { FontFamily as FontFamilyTiptap, type FontFamilyOptions as TiptapFontFamilyOptions } from '@tiptap/extension-text-style';
 
 import { DEFAULT_FONT_FAMILY_LIST } from '@/constants';
 import FontFamilyButton from '@/extensions/FontFamily/components/FontFamilyButton';
@@ -21,6 +20,8 @@ export interface FontFamilyOptions extends TiptapFontFamilyOptions, GeneralOptio
 }
 
 export const FontFamily = /* @__PURE__ */ FontFamilyTiptap.extend<FontFamilyOptions>({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

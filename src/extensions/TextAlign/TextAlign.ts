@@ -18,6 +18,8 @@ export interface TextAlignOptions extends TiptapTextAlignOptions, GeneralOptions
   alignments: Alignments[]
 }
 export const TextAlign = /* @__PURE__ */ TiptapTextAlign.extend<TextAlignOptions>({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

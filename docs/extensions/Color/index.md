@@ -10,7 +10,7 @@ next:
 
 The Color extension allows you to add text color to your editor with support for custom colors, keyboard shortcuts, and synchronized color selection across toolbar and bubble menu.
 
-- Based on TipTap's Color extension. [@tiptap/extension-color](https://tiptap.dev/docs/editor/extensions/functionality/color)
+- Based on TipTap's Color extension. [@tiptap/extension-text-style](https://tiptap.dev/docs/editor/extensions/functionality/color)
 
 ## Usage
 

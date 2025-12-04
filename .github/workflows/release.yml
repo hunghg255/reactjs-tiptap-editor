@@ -1,7 +1,8 @@
 name: Release
 
 permissions:
-  contents: write
+  id-token: write  # Required for OIDC
+  contents: read
 
 on:
   push:

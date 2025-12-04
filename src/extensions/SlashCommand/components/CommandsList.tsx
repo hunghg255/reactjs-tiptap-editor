@@ -12,10 +12,8 @@ import { cn } from '@/lib/utils';
 import { useLocale } from '@/locales';
 
 function CommandsList(props: any, ref: any) {
-  // 选中的索引
   const [selectedCommandIndex, setSelectedCommandIndex] = useState(0);
   const [selectedGroupIndex, setSelectedGroupIndex] = useState(0);
-  // 滚动ref
   const scrollContainer = useRef<HTMLDivElement | null>(null);
 
   const { t } = useLocale();
@@ -112,6 +110,7 @@ function CommandsList(props: any, ref: any) {
   function selectItem(groupIndex: number, commandIndex: number) {
     const command = props.items[groupIndex].commands[commandIndex];
     props.command(command);
+    if (props?.onClose) props?.onClose();
   }
 
   function createCommandClickHandler(groupIndex: number, commandIndex: number) {
@@ -123,7 +122,7 @@ function CommandsList(props: any, ref: any) {
 
   return (
     <div
-      className="richtext-mb-8 richtext-max-h-[min(80vh,24rem)] richtext-flex-wrap richtext-overflow-auto richtext-rounded-lg !richtext-border !richtext-border-neutral-200 !richtext-bg-white richtext-p-1 !richtext-text-black richtext-shadow-sm dark:!richtext-border-neutral-800 dark:!richtext-bg-black"
+      className="richtext-max-h-[min(80vh,24rem)] richtext-flex-wrap richtext-overflow-auto richtext-rounded-lg !richtext-border !richtext-border-neutral-200 !richtext-bg-white richtext-p-1 !richtext-text-black richtext-shadow-sm dark:!richtext-border-neutral-800 dark:!richtext-bg-black"
       ref={scrollContainer}
     >
       {props?.items?.length
@@ -142,14 +141,14 @@ function CommandsList(props: any, ref: any) {
                         key={`command-${commandIndex}`}
                         onClick={() => createCommandClickHandler(groupIndex, commandIndex)}
                         ref={el => setActiveItemRef(groupIndex, commandIndex, el)}
-                        className={cn('richtext-flex richtext-items-center richtext-gap-3 richtext-px-2 richtext-py-1.5 richtext-text-sm !richtext-text-neutral-800 dark:!richtext-text-neutral-200 richtext-text-left richtext-w-full richtext-rounded-sm richtext-outline-none richtext-transition-colors !richtext-bg-transparent hover:!richtext-bg-accent ', {
+                        className={cn('richtext-flex richtext-items-center richtext-gap-3 richtext-px-2 richtext-py-1.5 richtext-text-sm !richtext-text-neutral-800 dark:!richtext-text-neutral-200 richtext-text-left richtext-w-full richtext-rounded-sm !richtext-outline-none !richtext-border-none richtext-transition-colors !richtext-bg-transparent hover:!richtext-bg-accent ', {
                           'slash-command-active': selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex,
                         })}
                       >
                         {command.iconUrl && <img alt=""
                           className="richtext-size-6"
                           src={command.iconUrl}
-                        />}
+                                            />}
 
                         {command.iconName && (
                           <IconComponent className="!richtext-mr-1 !richtext-text-lg"

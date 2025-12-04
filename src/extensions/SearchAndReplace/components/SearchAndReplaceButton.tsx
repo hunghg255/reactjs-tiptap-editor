@@ -1,78 +1,99 @@
 import React, { useEffect, useState } from 'react';
 
-import deepEqual from 'deep-equal';
-
 import { ActionButton, Button, IconComponent, Input, Label, Popover, PopoverContent, PopoverTrigger, Switch } from '@/components';
-import {  SearchAndReplace } from '@/extensions/SearchAndReplace/SearchAndReplace';
 import { useLocale } from '@/locales';
-import { listenEvent } from '@/utils/customEvents/customEvents';
-import { EVENTS } from '@/utils/customEvents/events.constant';
 
 function SearchAndReplaceButton({ editor, ...props }: any) {
   const { t } = useLocale();
 
-  const [currentIndex, setCurrentIndex] = useState(-1);
-  const [results, setResults] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
-  const [replaceValue, setReplaceValue] = useState('');
   const [visible, setVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [replaceTerm, setReplaceTerm] = useState('');
   const [caseSensitive, setCaseSensitive] = useState(false);
+  const [result, setResult] = useState('');
+
+  const updateResult = () => {
+    setResult(`${editor?.storage?.searchAndReplace?.resultIndex + 1}/${editor?.storage?.searchAndReplace?.results.length}`);
+  };
 
   useEffect(() => {
-    if (!visible) {
-      setSearchValue('');
-      setReplaceValue('');
-      setCurrentIndex(-1);
-      setResults([]);
-
-      editor.commands.setSearchTerm('');
-      editor.commands.setReplaceTerm('');
+    if (editor) {
+      updateResult();
     }
-  }, [editor, visible]);
+  }, [editor]);
+
+  const updateSearchReplace = (clearIndex = false) => {
+    if (!editor) return;
+
+    if (clearIndex) editor.commands.resetIndex();
+
+    editor.commands.setSearchTerm(searchTerm);
+    editor.commands.setReplaceTerm(replaceTerm);
+    editor.commands.setCaseSensitive(caseSensitive);
+
+    updateResult();
+  };
+
+  const goToSelection = () => {
+    if (!editor) return;
+
+    const { results, resultIndex } = editor.storage.searchAndReplace;
+    const position: Range = results[resultIndex];
+
+    if (!position) return;
+
+    editor.commands.setTextSelection(position);
+
+    const { node } = editor.view.domAtPos(
+      editor.state.selection.anchor
+    );
+    if (node instanceof HTMLElement) node.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    updateResult();
+
+  };
 
   useEffect(() => {
-    if (!visible)
-      return;
-    if (editor && editor.commands && editor.commands.setSearchTerm) {
-      editor.commands.setSearchTerm(searchValue);
-    }
-  }, [visible, searchValue, editor]);
+    if (!searchTerm.trim()) clear();
+    if (searchTerm.trim()) updateSearchReplace(true);
+
+  }, [searchTerm]);
 
   useEffect(() => {
-    if (!visible)
-      return;
-    if (editor && editor.commands && editor.commands.setReplaceTerm) {
-      editor.commands.setReplaceTerm(replaceValue);
-    }
-  }, [visible, replaceValue, editor]);
+    if (replaceTerm.trim()) updateSearchReplace();
+  }, [replaceTerm]);
 
   useEffect(() => {
-    if (!editor)
-      return;
+    updateSearchReplace(true);
+  }, [caseSensitive]);
 
-    const searchExtension = editor.extensionManager.extensions.find((ext: any) => ext.name === SearchAndReplace.name);
+  const replace = () => {
+    editor?.commands.replace();
+    goToSelection();
+  };
 
-    if (!searchExtension)
-      return;
+  const next = () => {
+    editor?.commands.nextSearchResult();
+    goToSelection();
+  };
 
-    const listener = () => {
-      if (!visible)
-        return;
+  const previous = () => {
+    editor?.commands.previousSearchResult();
+    goToSelection();
+  };
 
-      const currentIndex = searchExtension ? searchExtension.storage.currentIndex : -1;
-      const results = searchExtension ? searchExtension.storage.results : [];
-      setCurrentIndex(preIndex => (preIndex !== currentIndex ? currentIndex : preIndex));
-      setResults(prevResults => (deepEqual(prevResults, results) ? prevResults : results));
-    };
+  const clear = () => {
+    setSearchTerm('');
+    setReplaceTerm('');
 
-    listenEvent(EVENTS.SEARCH_REPLCE, listener);
+    editor.commands.resetIndex();
+    updateResult();
+  };
 
-    return () => {
-      if (!searchExtension)
-        return;
-      listenEvent(EVENTS.SEARCH_REPLCE, listener);
-    };
-  }, [visible, editor]);
+  const replaceAll = () => {
+    editor?.commands.replaceAll();
+    setResult('0/0');
+  };
 
   return (
     <Popover
@@ -106,7 +127,7 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
           </Label>
 
           <span className="richtext-font-semibold">
-            {results.length > 0 ? `${currentIndex + 1}/${results.length}` : '0/0'}
+            {result}
           </span>
         </div>
 
@@ -114,25 +135,29 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
           <Input
             autoFocus
             className="richtext-w-full"
-            onChange={e => setSearchValue(e.target.value)}
+            onChange={e => setSearchTerm(e.target.value)}
             placeholder="Text"
             required
             type="text"
-            value={searchValue}
+            value={searchTerm}
           />
 
           <Button className="richtext-flex-1"
-            disabled={results.length === 0}
-            onClick={editor.commands.goToPrevSearchResult}
+            onClick={previous}
           >
             <IconComponent name="ChevronUp" />
           </Button>
 
           <Button className="richtext-flex-1"
-            disabled={results.length === 0}
-            onClick={editor.commands.goToNextSearchResult}
+            onClick={next}
           >
             <IconComponent name="ChevronDown" />
+          </Button>
+
+          <Button className="richtext-flex-1"
+            onClick={clear}
+          >
+            Clear
           </Button>
 
         </div>
@@ -145,11 +170,11 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
           <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
             <Input
               className="richtext-w-80"
-              onChange={e => setReplaceValue(e.target.value)}
+              onChange={e => setReplaceTerm(e.target.value)}
               placeholder="Text"
               required
               type="text"
-              value={replaceValue}
+              value={replaceTerm}
             />
           </div>
         </div>
@@ -170,15 +195,13 @@ function SearchAndReplaceButton({ editor, ...props }: any) {
 
         <div className="richtext-flex richtext-items-center richtext-gap-[10px]">
           <Button className="richtext-flex-1"
-            disabled={results.length === 0}
-            onClick={editor.commands.replace}
+            onClick={replace}
           >
             {t('editor.replace.dialog.text')}
           </Button>
 
           <Button className="richtext-flex-1"
-            disabled={results.length === 0}
-            onClick={editor.commands.replaceAll}
+            onClick={replaceAll}
           >
             {t('editor.replaceAll.dialog.text')}
           </Button>

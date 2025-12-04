@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import type { Editor } from '@tiptap/react';
-import { BubbleMenu } from '@tiptap/react';
+import { BubbleMenu } from '@tiptap/react/menus';
 
 import { ActionButton } from '@/components/ActionButton';
 import { Twitter } from '@/extensions/Twitter';
@@ -35,15 +35,20 @@ function BubbleMenuTwitter({ editor, disabled }: BubbleMenuTwitterProps) {
       <BubbleMenu
         editor={editor}
         shouldShow={shouldShow}
-        tippyOptions={{
-          popperOptions: {
-            modifiers: [{ name: 'flip', enabled: false }],
-          },
-          placement: 'bottom-start',
-          offset: [-2, 16],
-          zIndex: 9999,
-          onHidden: () => {
-            setShowEdit(false);
+        options={{
+          // popperOptions: {
+          //   modifiers: [{ name: 'flip', enabled: false }],
+          // },
+          // placement: 'bottom-start',
+          // offset: [-2, 16],
+          // zIndex: 9999,
+          // onHidden: () => {
+          //   setShowEdit(false);
+          // },
+           placement: 'bottom-start',
+          offset: {
+            alignmentAxis: 6,
+            crossAxis: 6,
           },
         }}
       >

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { HighlightOptions as TiptapHighlightOptions } from '@tiptap/extension-highlight';
 import { Highlight as TiptapHighlight } from '@tiptap/extension-highlight';
 
@@ -20,6 +21,7 @@ export const Highlight = /* @__PURE__ */ TiptapHighlight.extend<HighlightOptions
     };
   },
 
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

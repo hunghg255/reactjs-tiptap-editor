@@ -31,9 +31,23 @@ export default defineConfig(async ({ mode }) => {
     const vv = v.replace('src/', '')
     const [, _name, i] = vv.split('/')
     if (!_name?.includes('BaseKit')) {
-
-
       entry.push(path.resolve(__dirname, `src/extensions/${_name}/${_name}.ts`))
+
+      exports[`./${_name.toLowerCase()}`] = {
+        require: {
+          types: `./lib/${_name}.d.cts`,
+          default: `./lib/${_name}.cjs`,
+        },
+        import: {
+          types: `./lib/${_name}.d.ts`,
+          default: `./lib/${_name}.js`,
+        },
+      }
+      typeVersions[`./${_name.toLowerCase()}`] = [
+        `./lib/${_name}.d.ts`,
+      ]
+    } else if (_name?.includes('BaseKit')) {
+      entry.push(path.resolve(__dirname, `src/extensions/${_name}`))
 
       exports[`./${_name.toLowerCase()}`] = {
         require: {
@@ -124,7 +138,7 @@ export default defineConfig(async ({ mode }) => {
             return assetInfo.name;
           },
         },
-        external: ['react', 'react-dom', 'react/jsx-runtime', 'katex', 'docx', '@radix-ui/react-dropdown-menu', '@radix-ui/react-icons', '@radix-ui/react-label', '@radix-ui/react-popover', '@radix-ui/react-separator', '@radix-ui/react-slot', '@radix-ui/react-switch', '@radix-ui/react-tabs', '@radix-ui/react-toast', '@radix-ui/react-toggle', '@radix-ui/react-tooltip', '@radix-ui/react-select', '@radix-ui/react-checkbox', 'react-colorful', 'scroll-into-view-if-needed', 'tippy.js', 'lucide-react', 'prosemirror-docx', 're-resizable', '@excalidraw/excalidraw', '@radix-ui/react-dialog', 'react-image-crop', 'mermaid', 'easydrawer', 'frimousse'],
+        external: ['react', 'react-dom', 'react/jsx-runtime', 'katex', 'docx', '@radix-ui/react-dropdown-menu', '@radix-ui/react-icons', '@radix-ui/react-label', '@radix-ui/react-popover', '@radix-ui/react-separator', '@radix-ui/react-slot', '@radix-ui/react-switch', '@radix-ui/react-tabs', '@radix-ui/react-toast', '@radix-ui/react-toggle', '@radix-ui/react-tooltip', '@radix-ui/react-select', '@radix-ui/react-checkbox', 'react-colorful', 'scroll-into-view-if-needed', 'lucide-react', 'prosemirror-docx', 're-resizable', '@excalidraw/excalidraw', '@radix-ui/react-dialog', 'react-image-crop', 'mermaid', 'easydrawer', 'frimousse'],
       },
     },
   }

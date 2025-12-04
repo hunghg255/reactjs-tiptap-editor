@@ -7,6 +7,8 @@ import type { GeneralOptions } from '@/types';
 export interface BoldOptions extends TiptapImageOptions, GeneralOptions<BoldOptions> {}
 
 export const Bold = /* @__PURE__ */ TiptapBold.extend<BoldOptions>({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

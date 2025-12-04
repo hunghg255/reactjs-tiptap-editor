@@ -1,5 +1,4 @@
-import TiptapColor from '@tiptap/extension-color';
-import type { ColorOptions as TiptapColorOptions } from '@tiptap/extension-color';
+import { Color as TiptapColor, type ColorOptions as TiptapColorOptions } from '@tiptap/extension-text-style';
 
 import ColorActionButton from '@/extensions/Color/components/ColorActionButton';
 import type { GeneralOptions } from '@/types';
@@ -24,6 +23,8 @@ export const Color = /* @__PURE__ */ TiptapColor.extend<ColorOptions>({
     };
   },
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

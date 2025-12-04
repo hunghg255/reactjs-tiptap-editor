@@ -1,14 +1,15 @@
-import type { HistoryOptions as TiptapHistoryOptions } from '@tiptap/extension-history';
-import { History as TiptapHistory } from '@tiptap/extension-history';
+import { UndoRedo, type UndoRedoOptions } from '@tiptap/extensions';
 
 import HistoryActionButton from '@/extensions/History/components/HistoryActionButton';
 import type { GeneralOptions } from '@/types';
 
-export interface HistoryOptions extends TiptapHistoryOptions, GeneralOptions<HistoryOptions> {}
+export interface HistoryOptions extends UndoRedoOptions, GeneralOptions<HistoryOptions> {}
 
 const historys: ['undo', 'redo'] = ['undo', 'redo'];
 
-export const History = /* @__PURE__ */ TiptapHistory.extend<HistoryOptions>({
+export const History = /* @__PURE__ */ UndoRedo.extend<HistoryOptions>({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

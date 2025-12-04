@@ -1,12 +1,15 @@
 import { useCallback, useEffect } from 'react';
 
-import { BubbleMenu } from '@tiptap/react';
-import { useAttributes } from '@/hooks/useAttributes';
+// import { BubbleMenu } from '@tiptap/react/menus';
+
+import { BubbleMenu } from '@tiptap/react/menus';
+
 import { ActionButton } from '@/components/ActionButton';
 import { SizeSetter } from '@/components/SizeSetter/SizeSetter';
-import { useLocale } from '@/locales';
 import type { IExcalidrawAttrs } from '@/extensions/Excalidraw';
 import { Excalidraw } from '@/extensions/Excalidraw';
+import { useAttributes } from '@/hooks/useAttributes';
+import { useLocale } from '@/locales';
 import { triggerOpenExcalidrawSettingModal } from '@/utils/_event';
 import { deleteNode } from '@/utils/delete-node';
 import { getEditorContainerDOMSize } from '@/utils/editor-container-size';
@@ -52,27 +55,35 @@ export function BubbleMenuExcalidraw({ editor }: any) {
       editor={editor}
       pluginKey="excalidraw-bubble-menu"
       shouldShow={shouldShow}
-      tippyOptions={{
-        popperOptions: {
-          modifiers: [{ name: 'flip', enabled: false }],
-        },
+      options={{
+        // popperOptions: {
+        //   modifiers: [{ name: 'flip', enabled: false }],
+        // },
+        // offset: [-2, 16],
         placement: 'bottom-start',
-        offset: [-2, 16],
-        zIndex: 9999,
+        offset: {
+          alignmentAxis: 6,
+          crossAxis: 6,
+        },
+        // zIndex: 9999,
         // onHidden: () => {
         //   toggleVisible(false)
         // },
       }}
     >
-      <div className="richtext-w-auto richtext-px-3 richtext-py-2 richtext-transition-all !richtext-border richtext-rounded-sm richtext-shadow-sm richtext-pointer-events-auto richtext-select-none richtext-border-neutral-200 dark:richtext-border-neutral-800 richtext-bg-background">
+      <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">
 
         <ActionButton
-          icon="Pencil"
           action={openEditLinkModal}
+          icon="Pencil"
           tooltip={t('editor.edit')}
         />
 
-        <SizeSetter width={width as any} maxWidth={maxWidth} height={height as any} onOk={setSize}>
+        <SizeSetter height={height as any}
+maxWidth={maxWidth}
+onOk={setSize}
+width={width as any}
+        >
           <ActionButton
             icon="Settings"
             tooltip={t('editor.settings')}
@@ -80,8 +91,8 @@ export function BubbleMenuExcalidraw({ editor }: any) {
         </SizeSetter>
 
         <ActionButton
-          icon="Trash2"
           action={deleteMe}
+          icon="Trash2"
           tooltip={t('editor.delete')}
         />
 

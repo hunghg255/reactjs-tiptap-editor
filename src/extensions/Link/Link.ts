@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { getMarkRange, mergeAttributes } from '@tiptap/core';
 import type { LinkOptions as TiptapLinkOptions } from '@tiptap/extension-link';
 import { Link as TiptapLink } from '@tiptap/extension-link';
@@ -30,8 +31,10 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
     ];
   },
 
+  //@ts-expect-error
   addOptions() {
     const parentOptions = this.parent?.() || {};
+    //@ts-expect-error
     const presetTarget = parentOptions.HTMLAttributes?.target;
     return {
       ...parentOptions,
@@ -67,7 +70,7 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
                     {
                       type: 'link',
                       attrs: {
-                        href: link.match(/^https?:\/\//i) ? link : `http://${link}`,
+                        href: /^https?:\/\//i.test(link) ? link : `http://${link}`,
                         target: presetTarget ?? (openInNewTab ? '_blank' : ''),
                       },
                     },

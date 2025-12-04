@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { BubbleMenu } from '@tiptap/react';
+import { BubbleMenu } from '@tiptap/react/menus';
 import katex from 'katex';
 import { HelpCircle, Pencil, Trash2 } from 'lucide-react';
 
@@ -72,16 +72,22 @@ function BubbleMenuKatex({ editor, ...props }: any) {
       editor={editor}
       pluginKey="Katex-bubble-menu"
       shouldShow={shouldShow}
-      tippyOptions={{
-        popperOptions: {
-          modifiers: [{ name: 'flip', enabled: false }],
-        },
-        placement: 'bottom-start',
-        offset: [-2, 16],
-        zIndex: 9999,
-        onHidden: () => {
-          toggleVisible(false);
-        },
+      options={{
+        // popperOptions: {
+        //   modifiers: [{ name: 'flip', enabled: false }],
+        // },
+        // placement: 'bottom-start',
+        // offset: [-2, 16],
+        // zIndex: 9999,
+        // onHidden: () => {
+        //   toggleVisible(false);
+        // },
+
+         placement: 'bottom-start',
+          offset: {
+            alignmentAxis: 6,
+            crossAxis: 6,
+          },
       }}
     >
       {props?.disabled

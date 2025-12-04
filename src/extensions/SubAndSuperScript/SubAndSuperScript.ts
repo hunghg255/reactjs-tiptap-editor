@@ -29,6 +29,8 @@ export interface SubAndSuperScriptOptions extends GeneralOptions<SubAndSuperScri
 export const SubAndSuperScript = /* @__PURE__ */ Extension.create<SubAndSuperScriptOptions>({
   name: 'subAndSuperScript',
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

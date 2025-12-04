@@ -31,6 +31,7 @@ export const Attachment = /* @__PURE__ */ Node.create<AttachmentOptions>({
   atom: true,
   draggable: true,
 
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

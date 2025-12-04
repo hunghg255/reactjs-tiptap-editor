@@ -40,7 +40,7 @@ function EmojiPickerSearch({
       <SearchIcon className="!richtext-size-4 !richtext-shrink-0 !richtext-opacity-50" />
 
       <EmojiPickerPrimitive.Search
-        className="!richtext-outline-hidden !richtext-flex !richtext-h-10 !richtext-w-full !richtext-rounded-md !richtext-bg-transparent !richtext-py-3 !richtext-text-sm placeholder:!richtext-text-muted-foreground disabled:!richtext-cursor-not-allowed disabled:!richtext-opacity-50"
+        className="!richtext-flex !richtext-h-10 !richtext-w-full !richtext-rounded-md !richtext-border-none !richtext-bg-transparent !richtext-py-3 !richtext-text-sm !richtext-outline-none placeholder:!richtext-text-muted-foreground disabled:!richtext-cursor-not-allowed disabled:!richtext-opacity-50 "
         data-slot="emoji-picker-search"
         {...props}
       />
@@ -69,7 +69,7 @@ function EmojiPickerEmoji({
       {...props}
       data-slot="emoji-picker-emoji"
       className={cn(
-        'data-[active]:!richtext-bg-accent !richtext-flex !richtext-size-7 !richtext-items-center !richtext-justify-center !richtext-rounded-sm !richtext-text-base',
+        'data-[active]:!richtext-bg-accent richtext-bg-transparent !richtext-flex !richtext-size-7 !richtext-items-center !richtext-justify-center !richtext-rounded-sm !richtext-text-base',
         className
       )}
     >

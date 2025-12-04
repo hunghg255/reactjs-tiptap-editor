@@ -48,7 +48,7 @@ yarn add reactjs-tiptap-editor@0.1.16
 
 ```tsx
 import RichTextEditor from 'reactjs-tiptap-editor';
-import { BaseKit } from 'reactjs-tiptap-editor';
+import { BaseKit } from 'reactjs-tiptap-editor/base-kit';
 // import { BaseKit } from 'reactjs-tiptap-editor/extension-bundle'; // for version 0.1.16 and lower
 
 // Import CSS
@@ -134,8 +134,18 @@ export interface RichTextEditorProps {
   onChangeContent?: (val: any) => void
   /** Bubble menu props */
   bubbleMenu?: BubbleMenuProps
+  /** Toolbar props */
+  toolbar?: ToolbarProps
 
   /** Use editor options */
   useEditorOptions?: UseEditorOptions
+
+  /** Use editor options */
+  resetCSS?: boolean
+
+  /** This option gives us the control to enable the default behavior of rendering the editor immediately.*/
+  immediatelyRender?: boolean
+
+  shouldRerenderOnTransaction?: boolean;
 }
 ```

@@ -25,6 +25,8 @@ export interface DrawerOptions extends GeneralOptions<DrawerOptions> {
 export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
   name: 'drawer',
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),

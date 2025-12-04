@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Extension } from '@tiptap/core';
 import type { Editor } from '@tiptap/core';
 
@@ -21,6 +22,7 @@ declare module '@tiptap/core' {
 
 export const CodeView = /* @__PURE__ */ Extension.create<CodeViewOptions>({
   name: 'codeView',
+  //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),
@@ -32,6 +34,7 @@ export const CodeView = /* @__PURE__ */ Extension.create<CodeViewOptions>({
               editor.commands.toggleCodeView();
             },
             isActive: () => {
+  //@ts-expect-error
               return editor.storage.codeView.isActive || false;
             },
             disabled: false,
@@ -54,10 +57,12 @@ export const CodeView = /* @__PURE__ */ Extension.create<CodeViewOptions>({
   addCommands() {
     return {
       toggleCodeView: () => ({ editor }) => {
+  //@ts-expect-error
         const isActive = editor.storage.codeView.isActive;
 
         if (!isActive) {
           const htmlContent = editor.getHTML();
+  //@ts-expect-error
           editor.storage.codeView.originalContent = htmlContent;
 
           const escapedHtml = htmlContent
@@ -74,6 +79,7 @@ export const CodeView = /* @__PURE__ */ Extension.create<CodeViewOptions>({
           editor.commands.setContent(editor.getText());
         }
 
+  //@ts-expect-error
         editor.storage.codeView.isActive = !isActive;
 
         return true;

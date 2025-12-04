@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { Command } from '@tiptap/core';
 import { Extension } from '@tiptap/core';
 import type { Transaction } from '@tiptap/pm/state';
@@ -69,7 +68,6 @@ export function createCellBackgroundCommand(backgroundColor: string, options: Ta
   };
 }
 
-// @ts-ignore
 export const TableCellBackground = Extension.create<TableCellBackgroundOptions>({
   name: 'tableCellBackground',
   addOptions() {
