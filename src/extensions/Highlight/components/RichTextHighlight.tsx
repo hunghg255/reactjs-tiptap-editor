@@ -37,30 +37,28 @@ export function RichTextHighlight() {
   }
 
   return (
-    <div className="richtext-flex richtext-h-[32px] richtext-items-center">
-      <ColorPicker
-        colors={colors}
+    <ColorPicker
+      colors={colors}
+      disabled={editorDisabled}
+      highlight
+      onChange={onChange}
+      value={selectedColor}
+    >
+      <ActionButton
         disabled={editorDisabled}
-        highlight
-        onChange={onChange}
-        value={selectedColor}
+        tooltip={tooltip}
+        // tooltipOptions={tooltipOptions}
+        shortcutKeys={shortcutKeys}
       >
-        <ActionButton
-          disabled={editorDisabled}
-          tooltip={tooltip}
-          // tooltipOptions={tooltipOptions}
-          shortcutKeys={shortcutKeys}
-        >
-          <span className="richtext-flex richtext-items-center richtext-justify-center richtext-gap-[4px] richtext-text-sm">
-            <IconHighlightFill fill={selectedColor} />
+        <span className="richtext-flex richtext-items-center richtext-justify-center richtext-gap-[4px] richtext-text-sm">
+          <IconHighlightFill fill={selectedColor} />
 
-               <IconComponent className="!richtext-h-3 !richtext-w-3 richtext-text-zinc-500"
-            name="MenuDown"
-               />
-          </span>
+              <IconComponent className="!richtext-h-3 !richtext-w-3 richtext-text-zinc-500"
+          name="MenuDown"
+              />
+        </span>
 
-        </ActionButton>
-      </ColorPicker>
-    </div>
+      </ActionButton>
+    </ColorPicker>
   );
 }

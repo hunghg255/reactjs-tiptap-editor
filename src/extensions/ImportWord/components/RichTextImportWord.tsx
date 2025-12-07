@@ -129,7 +129,7 @@ export function RichTextImportWord() {
   }
 
   return (
-    <div>
+    <>
       <ActionButton action={triggerFileInput}
         disabled={editorDisabled}
         icon={icon}
@@ -147,6 +147,6 @@ export function RichTextImportWord() {
           display: 'none',
         }}
       />
-    </div>
+    </>
   );
 }
