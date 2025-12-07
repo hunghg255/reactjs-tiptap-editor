@@ -5,9 +5,9 @@ import { debounce } from 'lodash-es';
 
 import { ActionButton, Input, Popover, PopoverContent, PopoverTrigger } from '@/components';
 import { type GifItem, serviceGetTrendingGiphy, serviceGetTrendingTenor, serviceSearchGiphy, serviceSearchTenor } from '@/extensions/ImageGif/components/services';
-import { useButtonProps } from '@/hooks/useButtonProps';
-import ImageGif from '@/extensions/ImageGif/ImageGif';
+import { ImageGif } from '@/extensions/ImageGif/ImageGif';
 import { useToggleActive } from '@/hooks/useActive';
+import { useButtonProps } from '@/hooks/useButtonProps';
 
 interface IProps {
   showClear?: boolean
@@ -84,9 +84,10 @@ function ImageGifWrap({ selectImage, apiKey, provider, children }: IProps) {
 
   return (
     <Popover
-      open={open}
+      modal
       onOpenChange={setOpen}
-    modal>
+    open={open}
+    >
       <PopoverTrigger asChild>
         {children}
       </PopoverTrigger>
@@ -119,11 +120,11 @@ function ImageGifWrap({ selectImage, apiKey, provider, children }: IProps) {
                           alt=''
                           className="richtext-cursor-pointer richtext-object-contain richtext-text-center"
                           key={item.id}
+                          src={item.src}
                           onClick={() => {
                             selectImage(item.src);
                             setOpen(false);
                           }}
-                          src={item.src}
                         />
                       ))
                       : <p>

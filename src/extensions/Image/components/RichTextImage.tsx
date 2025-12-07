@@ -3,16 +3,16 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { ActionButton, Button, Checkbox, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger, useToast, IconComponent } from '@/components';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ImageCropper } from '@/extensions/Image/components/ImageCropper';
-import Image from '@/extensions/Image/Image';
+import { Image } from '@/extensions/Image/Image';
 import { actionDialogImage } from '@/extensions/Image/store';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
+import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { listenEvent } from '@/utils/customEvents/customEvents';
 import { EVENTS } from '@/utils/customEvents/events.constant';
 import { validateFiles } from '@/utils/validateFile';
-import { useExtension } from '@/hooks/useExtension';
 
 export function RichTextImage() {
   const { t } = useLocale();
@@ -158,11 +158,12 @@ export function RichTextImage() {
       open={open}
     >
       <DialogTrigger
-      asChild>
+      asChild
+      >
         <ActionButton
+          disabled={editorDisabled}
           icon={icon}
           tooltip={tooltip}
-          disabled={editorDisabled}
           action={() => {
             if (editorDisabled) return;
             setOpen(true);

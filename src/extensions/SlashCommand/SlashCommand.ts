@@ -112,5 +112,3 @@ export const SlashCommand = /* @__PURE__ */ Extension.create<any>({
     };
   },
 });
-
-export default SlashCommand;

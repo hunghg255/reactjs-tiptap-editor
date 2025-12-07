@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { ActionButton, IconComponent, Popover, PopoverContent, PopoverTrigger } from '@/components';
 import LinkEditBlock from '@/extensions/Link/components/LinkEditBlock';
-import Link from '@/extensions/Link/Link';
+import { Link } from '@/extensions/Link/Link';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 import { useEditorInstance } from '@/store/editor';

@@ -340,5 +340,3 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
   //   ];
   // },
 });
-
-export default Image;

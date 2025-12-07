@@ -5,9 +5,9 @@ import { useEffect, useState, useRef } from 'react';
 import type { Mark } from '@tiptap/pm/model';
 
 import { Button, IconComponent, Input, Label, Switch } from '@/components';
-import Link from '@/extensions/Link/Link';
-import { useLocale } from '@/locales';
+import { Link } from '@/extensions/Link/Link';
 import { useExtension } from '@/hooks/useExtension';
+import { useLocale } from '@/locales';
 
 interface IPropsLinkEditBlock {
   editor: any;

@@ -124,5 +124,3 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
   //   ];
   // },
 });
-
-export default Link;

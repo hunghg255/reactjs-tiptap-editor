@@ -86,19 +86,19 @@ import 'katex/dist/katex.min.css'
 import 'easydrawer/styles.css'
 import "@excalidraw/excalidraw/index.css";
 
-import Collaboration from '@tiptap/extension-collaboration'
-import CollaborationCaret from '@tiptap/extension-collaboration-caret'
-import { HocuspocusProvider } from '@hocuspocus/provider'
-import * as Y from 'yjs'
+// import Collaboration from '@tiptap/extension-collaboration'
+// import CollaborationCaret from '@tiptap/extension-collaboration-caret'
+// import { HocuspocusProvider } from '@hocuspocus/provider'
+// import * as Y from 'yjs'
 import { EditorContent, useEditor } from '@tiptap/react';
 
-const ydoc = new Y.Doc()
+// const ydoc = new Y.Doc()
 
-const hocuspocusProvider = new HocuspocusProvider({
-  url: 'ws://0.0.0.0:8080',
-  name: 'github.com/hunghg255',
-  document: ydoc,
-})
+// const hocuspocusProvider = new HocuspocusProvider({
+//   url: 'ws://0.0.0.0:8080',
+//   name: 'github.com/hunghg255',
+//   document: ydoc,
+// })
 
 function getRandomColor() {
   const letters = '0123456789ABCDEF'

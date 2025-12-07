@@ -60,5 +60,3 @@ export const Table = /* @__PURE__ */ TiptapTable.extend<TableOptions>({
     ];
   },
 });
-
-export default Table;

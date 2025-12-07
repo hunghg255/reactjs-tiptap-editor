@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ActionButton } from '@/components';
 import CreateTablePopover from '@/extensions/Table/components/CreateTablePopover';
-import Table from '@/extensions/Table/Table';
+import { Table } from '@/extensions/Table/Table';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 import { useEditorInstance } from '@/store/editor';

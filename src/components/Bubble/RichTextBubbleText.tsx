@@ -1,17 +1,17 @@
 import { TextSelection } from '@tiptap/pm/state';
 import { BubbleMenu } from '@tiptap/react/menus';
 
-import { useEditorInstance } from '@/store/editor';
+import { Separator } from '@/components/ui';
 import { RichTextBold } from '@/extensions/Bold';
-import { RichTextItalic } from '@/extensions/Italic';
-import { RichTextUnderline } from '@/extensions/TextUnderline';
-import { RichTextStrike } from '@/extensions/Strike';
 import { RichTextCode } from '@/extensions/Code';
-import { RichTextLink } from '@/extensions/Link';
 import { RichTextColor } from '@/extensions/Color';
 import { RichTextHighlight } from '@/extensions/Highlight';
+import { RichTextItalic } from '@/extensions/Italic';
+import { RichTextLink } from '@/extensions/Link';
+import { RichTextStrike } from '@/extensions/Strike';
 import { RichTextAlign } from '@/extensions/TextAlign';
-import { Separator } from '@/components/ui';
+import { RichTextUnderline } from '@/extensions/TextUnderline';
+import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 
 interface RichTextBubbleTextProps {
@@ -31,7 +31,8 @@ interface RichTextBubbleTextProps {
 // ];
 
 function DefaultButtonBubble () {
-  return <>
+  return (
+<>
     <RichTextBold />
     <RichTextItalic />
     <RichTextUnderline />
@@ -39,13 +40,16 @@ function DefaultButtonBubble () {
     <RichTextStrike />
     <RichTextCode/>
     <RichTextLink />
+
     <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]"
       orientation="vertical"
     />
+
     <RichTextColor />
     <RichTextHighlight />
     <RichTextAlign />
-  </>;
+</>
+);
 }
 
 export function RichTextBubbleText({ buttonBubble }: RichTextBubbleTextProps) {
@@ -70,14 +74,14 @@ export function RichTextBubbleText({ buttonBubble }: RichTextBubbleTextProps) {
 
   return (
     <BubbleMenu editor={editor}
-      shouldShow={shouldShow}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      shouldShow={shouldShow}
     >
       {buttonBubble
         ? (
           <>
 {buttonBubble}
-</>
+          </>
         )
         : (
           <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">

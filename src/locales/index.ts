@@ -66,10 +66,4 @@ const localeActions = {
 };
 
 export { localeActions, useLocale };
-
-export { default as en } from './en';
-export { default as pt_BR } from './pt-br';
-export { default as vi } from './vi';
-export { default as zh_CN } from './zh-cn';
-export { default as hu_HU } from './hu';
-export { default as fi } from './fi';
+export { en, hu_HU, vi, zh_CN, pt_BR, fi };
