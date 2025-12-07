@@ -1,5 +1,3 @@
-import { createSignal } from 'reactjs-signal';
-
 import createFastContext from '@/store/fast-context';
 
 const { Provider: ProviderUploadImage, useStore: useStoreUploadImage } = createFastContext({
@@ -18,7 +16,11 @@ const { Provider: ProviderTheme, useStore: useStoreTheme } = createFastContext({
   value: 'light'
 });
 
-export const atomID = createSignal('0');
+function useEditableEditor () {
+  const [isEditableEditor] = useStoreEditableEditor(store => store.value);
+
+  return isEditableEditor;
+}
 
 export {
   ProviderUploadImage,
@@ -29,6 +31,7 @@ export {
 
   ProviderEditableEditor,
   useStoreEditableEditor,
+  useEditableEditor,
 
   ProviderTheme,
   useStoreTheme,

@@ -22,6 +22,8 @@ export interface AttachmentOptions extends GeneralOptions<AttachmentOptions> {
   upload?: (file: File) => Promise<string>
 }
 
+export * from './components/RichTextAttachment';
+
 export const Attachment = /* @__PURE__ */ Node.create<AttachmentOptions>({
   name: 'attachment',
   content: '',

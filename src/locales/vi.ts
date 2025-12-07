@@ -161,6 +161,7 @@ const locale = {
   'editor.textDirection.auto.tooltip': 'Tự động',
   'editor.textDirection.ltr.tooltip': 'Trái sang Phải',
   'editor.textDirection.rtl.tooltip': 'Phải sang Trái',
+  'editor.textDirection.unset.tooltip': 'Bỏ đặt',
   'editor.attachment.tooltip': 'Đính kèm',
   'editor.attachment.uploading': 'Đang tải lên',
   'editor.attachment.please_upload': 'Vui lòng tải lên tệp',

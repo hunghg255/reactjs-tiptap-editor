@@ -1,4 +1,7 @@
 .reactjs-tiptap-editor.reactjs-tiptap-editor {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+
   .ProseMirror.ProseMirror.ProseMirror {
     @apply richtext-caret-black dark:richtext-caret-white richtext-outline-0 richtext-pr-8 richtext-pl-20 richtext-py-16 richtext-z-0 lg:richtext-pl-8 lg:richtext-pr-8;
     min-height: 180px;
@@ -275,10 +278,10 @@
   position: relative;
 }
 
-.heading-0 {
-  font-weight: 700;
-  font-size: 16px;
-}
+// .heading-0 {
+//   font-weight: 700;
+//   font-size: 16px;
+// }
 .heading-1 {
   font-weight: 700;
   font-size: 28px;

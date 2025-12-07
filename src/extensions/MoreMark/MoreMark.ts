@@ -5,19 +5,20 @@ import { Subscript as TiptapSubscript } from '@tiptap/extension-subscript';
 import type { SuperscriptExtensionOptions as TiptapSuperscriptOptions } from '@tiptap/extension-superscript';
 import { Superscript as TiptapSuperscript } from '@tiptap/extension-superscript';
 
-import type { Item } from '@/extensions/MoreMark/components/ActionMoreButton';
-import ActionMoreButton from '@/extensions/MoreMark/components/ActionMoreButton';
+import type { Item } from '@/extensions/MoreMark/components/RichTextMoreMark';
 import type { GeneralOptions } from '@/types';
+
+export * from './components/RichTextMoreMark';
 
 export interface MoreMarkOptions extends GeneralOptions<MoreMarkOptions> {
   /**
-   * // 下标
+   * // options for Subscript Extension
    *
    * @default true
    */
   subscript: Partial<TiptapSubscriptOptions> | false
   /**
-   * // 上标
+   * // options for Superscript Extension
    *
    * @default true
    */
@@ -51,7 +52,6 @@ export const MoreMark = /* @__PURE__ */ Extension.create<MoreMarkOptions>({
           title: t('editor.superscript.tooltip'),
           shortcutKeys: (extension.options.shortcutKeys?.[1] ?? ['mod', ',']) as string[],
         };
-        // const hasCode = hasExtension(editor, 'code');
 
         const items: Item[] = [];
 
@@ -61,27 +61,19 @@ export const MoreMark = /* @__PURE__ */ Extension.create<MoreMarkOptions>({
         if (superscript !== false) {
           items.push(superBtn);
         }
-        // if (hasCode) {
-        //   const codeBtn: Item = {
-        //     action: () => editor.commands.toggleCode(),
-        //     isActive: () => editor.isActive('code') || false,
-        //     disabled: !editor.can().toggleCode(),
-        //     icon: 'Code',
-        //     title: t('editor.code.tooltip'),
-        //     shortcutKeys: ['mod', 'E'],
-        //   };
-        //   if (hasCode) {
-        //     items.push(codeBtn);
-        //   }
-        // }
 
         return {
-          component: ActionMoreButton,
+          // component: ActionMoreButton,
           componentProps: {
             icon: 'Type',
             tooltip: t('editor.moremark'),
             disabled: !editor.isEditable,
             items,
+            isActive: () => {
+                const find: any = items?.find((k: any) => k.isActive());
+
+                return find;
+              }
           },
         };
       },

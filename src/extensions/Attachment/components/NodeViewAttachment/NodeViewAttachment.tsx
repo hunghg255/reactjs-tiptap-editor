@@ -1,5 +1,4 @@
 /* eslint-disable no-constant-binary-expression */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -9,7 +8,7 @@ import clsx from 'clsx';
 
 import { ActionButton } from '@/components';
 import { useLocale } from '@/locales';
-import { useEditableEditor } from '@/store/editableEditor';
+import { useEditableEditor } from '@/store/store';
 import { extractFileExtension, extractFilename, normalizeFileSize } from '@/utils/file';
 
 import { getFileTypeIcon } from './FileIcon';
@@ -27,10 +26,10 @@ export function NodeViewAttachment({ editor, node, updateAttributes, deleteNode,
   const upload = extension?.options?.upload;
 
   const selectFile = useCallback(() => {
-    if (!isEditable || url)
-      return;
-    isEditable && $upload.current.click();
-  }, [isEditable, url]);
+    if (!isEditable || url) return;
+
+    $upload.current.click();
+  }, [ url, isEditable]);
 
   const handleFile = useCallback(
     async (e: any) => {

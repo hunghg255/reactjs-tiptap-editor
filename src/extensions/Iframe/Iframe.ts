@@ -2,16 +2,10 @@
 import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import { ActionButton } from '@/components';
 import IframeNodeView from '@/extensions/Iframe/components/IframeNodeView';
 import { getDatasetAttribute } from '@/utils/dom-dataset';
 
-export interface IIframeAttrs {
-  width?: number | string
-  height?: number
-  src?: string
-  defaultShowPicker?: boolean
-}
+export * from './components/RichTextIframe';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -47,11 +41,10 @@ export const Iframe = /* @__PURE__ */ Node.create({
         extension: any
         t: (key: string) => string
       }) => ({
-        component: ActionButton,
         componentProps: {
           action: (options: { src: string, service: string }) => editor.commands.setIframe(options),
           upload: extension.options.upload,
-          disabled: !editor.can().setIframe({}),
+          // isActive: () => editor.can().setIframe({}),
           icon: 'Iframe',
           tooltip: t('editor.iframe.tooltip'),
         },

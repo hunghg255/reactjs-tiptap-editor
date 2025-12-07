@@ -1,10 +1,9 @@
 import { Table as TiptapTable, TableRow, TableCell, TableHeader, type TableCellOptions, type TableRowOptions,type TableHeaderOptions  } from '@tiptap/extension-table';
 
-import TableActionButton from '@/extensions/Table/components/TableActionButton';
 import type { GeneralOptions } from '@/types';
 
-import type { TableCellBackgroundOptions } from './cell-background';
-import { TableCellBackground } from './cell-background';
+import type { TableCellBackgroundOptions } from './TableCellBackground';
+import { TableCellBackground } from './TableCellBackground';
 
 export interface TableOptions extends GeneralOptions<TableOptions> {
   HTMLAttributes: Record<string, any>
@@ -22,6 +21,9 @@ export interface TableOptions extends GeneralOptions<TableOptions> {
   /** options for table cell background */
   tableCellBackground: Partial<TableCellBackgroundOptions>
 }
+
+export * from '@/extensions/Table/components/RichTextTable';
+
 export const Table = /* @__PURE__ */ TiptapTable.extend<TableOptions>({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
@@ -40,12 +42,10 @@ export const Table = /* @__PURE__ */ TiptapTable.extend<TableOptions>({
       allowTableNodeSelection: false,
 
       button: ({ editor, t }: any) => ({
-        component: TableActionButton,
         componentProps: {
-          disabled: editor.isActive('table') || false,
+          isActive: () => editor.isActive('table'),
           icon: 'Table',
           tooltip: t('editor.table.tooltip'),
-          editor,
         },
       }),
     };

@@ -4,6 +4,8 @@ import { Bold as TiptapBold } from '@tiptap/extension-bold';
 import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
 
+export * from './components/RichTextBold';
+
 export interface BoldOptions extends TiptapImageOptions, GeneralOptions<BoldOptions> {}
 
 export const Bold = /* @__PURE__ */ TiptapBold.extend<BoldOptions>({
@@ -16,8 +18,7 @@ export const Bold = /* @__PURE__ */ TiptapBold.extend<BoldOptions>({
         component: ActionButton,
         componentProps: {
           action: () => editor.commands.toggleBold(),
-          isActive: () => editor.isActive('bold') || false,
-          disabled: false,
+          isActive: () => editor.isActive('bold'),
           icon: 'Bold',
           shortcutKeys: extension.options.shortcutKeys ?? ['mod', 'B'],
           tooltip: t('editor.bold.tooltip'),

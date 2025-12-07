@@ -1,14 +1,10 @@
 import { Extension } from '@tiptap/core';
 
-import { DEFAULT_FONT_SIZE_LIST, DEFAULT_FONT_SIZE_VALUE } from '@/constants';
+import { DEFAULT_FONT_SIZE_LIST } from '@/constants';
 import type { GeneralOptions, NameValueOption } from '@/types';
 import { ensureNameValueOptions } from '@/utils/utils';
 
-import FontSizeMenuButton from './components/FontSizeMenuButton';
-
-export {
-  DEFAULT_FONT_SIZE_LIST
-};
+export * from './components/RichTextFontSize';
 
 /**
  * Represents the interface for font size options, extending GeneralOptions.
@@ -42,47 +38,58 @@ declare module '@tiptap/core' {
 
 export const FontSize = /* @__PURE__ */ Extension.create<FontSizeOptions>({
   name: 'fontSize',
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),
       types: ['textStyle'],
-      fontSizes: [...DEFAULT_FONT_SIZE_LIST],
+      fontSizes: DEFAULT_FONT_SIZE_LIST,
       button({ editor, extension, t }) {
-        const fontSizes = ensureNameValueOptions(extension.options?.fontSizes || DEFAULT_FONT_SIZE_VALUE);
-        const defaultFontSize = ensureNameValueOptions([DEFAULT_FONT_SIZE_VALUE])[0];
+        const fontSizes = ensureNameValueOptions(extension.options?.fontSizes);
+
         const items = fontSizes.map(k => ({
-          title: k.value === defaultFontSize.value ? t('editor.fontSize.default.tooltip') : String(k.name),
+          title: k.value === 'Default' ? t('editor.fontSize.default.tooltip') : String(k.name),
           isActive: () => {
             const { fontSize } = editor.getAttributes('textStyle');
-            const isDefault = k.value === defaultFontSize.value;
-            const notFontSize = fontSize === undefined;
+            const isDefault = k.value === 'Default';
+            const notFontSize = fontSize === undefined || fontSize === null || fontSize === '';
             if (isDefault && notFontSize) {
               return true;
             }
             return editor.isActive({ fontSize: String(k.value) }) || false;
           },
           action: () => {
-            if (k.value === defaultFontSize.value) {
+            if (k.value === 'Default') {
               editor.commands.unsetFontSize();
               return;
             }
             editor.commands.setFontSize(String(k.value));
           },
-          disabled: !editor.can().setFontSize(String(k.value)),
-          divider: k.value === defaultFontSize.value || false,
-          default: k.value === defaultFontSize.value || false,
+          // disabled: !editor.can().setFontSize(String(k.value)),
+          default: k.value === 'Default' || false,
         }));
         // const disabled = items.filter(k => k.disabled).length === items.length;
         return {
-          component: FontSizeMenuButton,
+          // component: FontSizeMenuButton,
           componentProps: {
             editor,
             tooltip: t('editor.fontSize.tooltip'),
             disabled: false,
             items,
             maxHeight: 280,
+            icon: 'MenuDown',
+            isActive: () => {
+              const find: any = (items || []).find((k: any) => k.isActive());
+              if (find && !find.default) {
+                return find;
+              }
+              const item = {
+                title: t('editor.fontSize.default.tooltip'),
+                isActive: () => false,
+              };
+              return item;
+            }
           },
         };
       },

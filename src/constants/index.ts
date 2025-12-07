@@ -101,6 +101,7 @@ export const COLORS_LIST = [
 
 /** Default font family list */
 export const DEFAULT_FONT_FAMILY_LIST = [
+  'Default',
   'Inter',
   'Comic Sans MS, Comic Sans',
   'serif',
@@ -120,6 +121,7 @@ export const DEFAULT_FONT_FAMILY_LIST = [
 
 /** Default font size list */
 export const DEFAULT_FONT_SIZE_LIST = [
+  'Default',
   '10px',
   '11px',
   '12px',
@@ -136,9 +138,6 @@ export const DEFAULT_FONT_SIZE_LIST = [
   '72px',
 ] as const;
 
-/** Default font size value */
-export const DEFAULT_FONT_SIZE_VALUE = 'default';
-
 /** Options for setting image size in the bubble menu */
 export enum IMAGE_SIZE {
   'size-small' = 200,
@@ -154,9 +153,7 @@ export enum VIDEO_SIZE {
 }
 
 /** Line Height List */
-export const DEFAULT_LINE_HEIGHT_LIST = ['100%', '115%', '150%', '200%', '250%', '300%'];
-export const LINE_HEIGHT_100 = 1.7;
-export const DEFAULT_LINE_HEIGHT = '1';
+export const DEFAULT_LINE_HEIGHT_LIST = ['Default', '1.5', '2', '2.5', '3', '3.5', '4'];
 
 /** display in menus */
 export const NODE_TYPE_MENU: any = {
@@ -205,3 +202,5 @@ export const BUBBLE_TEXT_LIST = [
   'highlight',
   'textAlign',
 ];
+
+export const HEADINGS = ['Paragraph', 1, 2, 3, 4, 5, 6];

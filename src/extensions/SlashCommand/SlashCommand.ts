@@ -1,23 +1,17 @@
-import { computePosition } from '@floating-ui/dom';
-import type { Editor, Extensions, Range } from '@tiptap/core';
+import type { Editor, Range } from '@tiptap/core';
 import { Extension } from '@tiptap/core';
 import { PluginKey } from '@tiptap/pm/state';
 import { ReactRenderer } from '@tiptap/react';
 import { Suggestion } from '@tiptap/suggestion';
 
-import CommandsList from '@/extensions/SlashCommand/components/CommandsList';
+import SlashCommandNodeView from '@/extensions/SlashCommand/components/SlashCommandNodeView';
+import { updatePosition } from '@/utils/updatePosition';
 
-import { renderGroups } from './groups';
-import { type Group } from './types';
+export * from './components/SlashCommandList';
+export * from './renderCommandListDefault';
 
-export interface SlashCommandOptions {
-  renderGroupItem?: (extension: Extensions[number], groups: Group[]) => void
-}
-
-const extensionName = 'slashCommand';
-
-export const SlashCommand = /* @__PURE__ */ Extension.create<SlashCommandOptions>({
-  name: extensionName,
+export const SlashCommand = /* @__PURE__ */ Extension.create<any>({
+  name: 'richtextSlashCommand',
   priority: 200,
 
   addProseMirrorPlugins() {
@@ -27,13 +21,14 @@ export const SlashCommand = /* @__PURE__ */ Extension.create<SlashCommandOptions
         char: '/',
         allowSpaces: true,
         startOfLine: true,
-        pluginKey: new PluginKey(extensionName),
+        pluginKey: new PluginKey(`richtextCustomPlugin${this.name}`),
+
         allow: ({ state, range }) => {
           const $from = state.doc.resolve(range.from);
           const isRootDepth = $from.depth === 1;
           const isParagraph = $from.parent.type.name === 'paragraph';
           const isStartOfNode = $from.parent.textContent?.charAt(0) === '/';
-          // TODO 行列内
+
           const isInColumn = this.editor.isActive('column');
           const afterContent = $from.parent.textContent?.slice(
             Math.max(0, $from.parent.textContent?.indexOf('/')),
@@ -46,125 +41,58 @@ export const SlashCommand = /* @__PURE__ */ Extension.create<SlashCommandOptions
             && isValidAfterContent
           );
         },
+
         command: ({ editor, range, props }: { editor: Editor, range: Range, props: any }) => {
           const { view } = editor;
           props.action({ editor, range });
           view.focus();
         },
-        items: ({ query, editor }: { query: string, editor: Editor }) => {
-          // get options
-          // Filter commands
-          const groups = renderGroups(editor.extensionManager.extensions, this.options.renderGroupItem);
-          const withFilteredCommands = groups.map(group => ({
-            ...group,
-            commands: group.commands
-              .filter((item) => {
-                const labelNormalized = item.label.toLowerCase().trim();
-                const queryNormalized = query.toLowerCase().trim();
 
-                if (item.aliases) {
-                  const aliases = item.aliases.map(alias => alias.toLowerCase().trim());
-                  const labelMatch = labelNormalized.match(queryNormalized);
-                  const aliasMatch = aliases.some(alias => alias.match(queryNormalized));
-
-                  return labelMatch || aliasMatch;
-                }
-
-                return labelNormalized.match(queryNormalized);
-              })
-              .filter(command =>
-                command.shouldBeHidden ? !command.shouldBeHidden(this.editor) : true,
-              ),
-          }));
-          // Remove empty groups
-          const withoutEmptyGroups = withFilteredCommands.filter((group) => {
-            if (group.commands.length > 0) {
-              return true;
-            }
-
-            return false;
-          });
-          const withEnabledSettings = withoutEmptyGroups.map(group => ({
-            ...group,
-            commands: group.commands.map(command => ({
-              ...command,
-              isEnabled: true,
-            })),
-          }));
-
-          return withEnabledSettings;
-        },
         render: () => {
-          let component: any;
-          function repositionComponent(clientRect: any) {
-            if (!component || !component.element) {
-              return;
-            }
-
-            const virtualElement = {
-              getBoundingClientRect() {
-                return clientRect;
-              },
-            };
-
-            computePosition(virtualElement, component.element, {
-              placement: 'bottom-start',
-            }).then(pos => {
-              Object.assign(component.element.style, {
-                left: `${pos.x}px`,
-                top: `${pos.y}px`,
-                position: pos.strategy === 'fixed' ? 'fixed' : 'absolute',
-              });
-            });
-          }
-
-          const onClose = () => {
-            if (!component) return;
-            if (document.body.contains(component.element)) {
-              document.body.removeChild(component.element);
-            }
-            component.destroy();
-          };
+          let reactRenderer: any;
 
           return {
             onStart: (props: any) => {
-              onClose();
+              if (!props.clientRect) {
+                return;
+              }
 
-              component = new ReactRenderer(CommandsList, {
-                props: {
-                  ...props,
-                  onClose
-                },
+              reactRenderer = new ReactRenderer(SlashCommandNodeView, {
+                props,
                 editor: props.editor,
               });
-            //     view.dom.parentElement?.addEventListener('scroll', scrollHandler);
 
-              document.body.appendChild(component.element);
-              repositionComponent(props.clientRect());
+              reactRenderer.element.style.position = 'absolute';
+
+              document.body.appendChild(reactRenderer.element);
+
+              updatePosition(props.editor, reactRenderer.element);
             },
 
-            onUpdate(props: any) {
-              component.updateProps(props);
-              repositionComponent(props.clientRect());
+            onUpdate(props) {
+              reactRenderer.updateProps(props);
+
+              if (!props.clientRect) {
+                return;
+              }
+              updatePosition(props.editor, reactRenderer.element);
             },
 
             onKeyDown(props) {
               if (props.event.key === 'Escape') {
-                document.body.removeChild(component.element);
-                component.destroy();
+                reactRenderer.destroy();
+                reactRenderer.element.remove();
 
                 return true;
               }
 
-              return component.ref?.onKeyDown(props);
+              return reactRenderer.ref?.onKeyDown(props);
             },
 
-            // onExit() {
-            //   if (document.body.contains(component.element)) {
-            //     document.body.removeChild(component.element);
-            //   }
-            //   component.destroy();
-            // },
+            onExit() {
+              reactRenderer.destroy();
+              reactRenderer.element.remove();
+            },
           };
         },
       }),

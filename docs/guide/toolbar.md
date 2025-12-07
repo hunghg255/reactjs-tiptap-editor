@@ -8,58 +8,75 @@ next:
 
 # Toolbar
 
-The toolbar of the rich text editor.
+Toolbar is a component that is used to display buttons that are used to perform actions on the editor.
 
 ## Usage
 
-Hide a certain toolbar:
+```tsx
+import { RichTextProvider } from 'reactjs-tiptap-editor'
 
-```js
-Bold.configure({
-  toolbar: false,
-})
-```
+// Base Kit
+import { Document } from '@tiptap/extension-document'
+import { Text } from '@tiptap/extension-text'
+import { Paragraph } from '@tiptap/extension-paragraph'
+import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
+import { HardBreak } from '@tiptap/extension-hard-break'
+import { TextStyle } from '@tiptap/extension-text-style';
+import { ListItem } from '@tiptap/extension-list';
 
-## Customizing the Toolbar
+// Extension
+import { History, RichTextUndo, RichTextRedo } from 'reactjs-tiptap-editor/history';
+// ... other extensions
 
-```jsx
-<RichTextEditor
-  toolbar={{
-    render: (props, toolbarItems, dom, containerDom) => {
-      return containerDom(dom)
-    }
-  }}
-/>
-```
 
-## Tooltips
+// Import CSS
+import 'reactjs-tiptap-editor/style.css';
 
-The tooltips of the extension buttons registered to the toolbar can be customized with
+const extensions = [
+  // Base Extensions
+  Document,
+  Text,
+  Dropcursor,
+  Gapcursor,
+  HardBreak,
+  Paragraph,
+  TrailingNode,
+  ListItem,
+  TextStyle,
+  Placeholder.configure({
+    placeholder: 'Press \'/\' for commands',
+  })
 
-### tooltipOptions 
+  ...
+  // Import Extensions Here
+  History
+];
 
-Type: `TooltipContentProps`\
-Default: `{}`
-
-## ToolbarProps
-
-```ts
-export interface ToolbarItemProps {
-  button: {
-    component: React.ComponentType<any>
-    componentProps: Record<string, any>
-  }
-  divider: boolean
-  spacer: boolean
-  type: string
-  name: string
+const RichTextToolbar = () => {
+  return (
+    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
+      <RichTextUndo />
+      <RichTextRedo />
+    </div>
+  )
 }
-export interface ToolbarRenderProps {
-  editor: Editor
-  disabled: boolean
-}
-export interface ToolbarProps {
-  render?: (props: ToolbarRenderProps, toolbarItems: ToolbarItemProps[], dom: JSX.Element[], containerDom: (innerContent: React.ReactNode) => React.ReactNode) => React.ReactNode
-  tooltipSide?: 'top' | 'bottom';
-}
+
+const App = () => {
+   const editor = useEditor({
+    textDirection: 'auto', // global text direction
+    extensions,
+  });
+
+  return (
+    <RichTextProvider
+      editor={editor}
+    >
+      <RichTextToolbar />
+
+      <EditorContent
+        editor={editor}
+      />
+    </RichTextProvider>
+  );
+};
 ```

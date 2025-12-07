@@ -56,7 +56,7 @@ import { highlightBracketPairs } from 'prism-code-editor-lightweight/highlight-b
 import { matchBrackets } from 'prism-code-editor-lightweight/match-brackets';
 import { matchTags } from 'prism-code-editor-lightweight/match-tags';
 
-import { useEditableEditor } from '@/store/editableEditor';
+// import { useEditableEditor } from '@/store/editableEditor';
 import { deleteNode } from '@/utils/delete-node';
 
 import styles from './index.module.scss';
@@ -84,7 +84,8 @@ const languages = [
 const tabSizes = [2, 4, 8];
 
 export function NodeViewCodeBlock(props: any) {
-  const isEditable = useEditableEditor();
+  // const isEditable = useEditableEditor();
+  const isEditable = false;
 
   const containerRef: any = useRef<HTMLPreElement>(null);
 
@@ -106,7 +107,6 @@ export function NodeViewCodeBlock(props: any) {
     try {
       if (navigator.clipboard) {
         await navigator.clipboard.writeText(code);
-        console.log('Copy Success');
       } else {
         const textarea = document.createElement('textarea');
         textarea.value = code;
@@ -115,7 +115,6 @@ export function NodeViewCodeBlock(props: any) {
         // TODO execCommand is deprecated. Clipboard-polyfill can be used to solve compatibility issues
         document.execCommand('copy');
         document.body.removeChild(textarea);
-        console.log('Copy Success (fallback)');
       }
     } catch (err) {
       console.error('Error:', err);

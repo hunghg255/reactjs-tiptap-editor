@@ -112,8 +112,7 @@ export const RESET_CSS = `
   }
 }
 
-div[data-radix-popper-content-wrapper],
-div[data-tippy-root] {
+div[data-radix-popper-content-wrapper] {
   color: hsl(var(--richtext-foreground));
 
   *,

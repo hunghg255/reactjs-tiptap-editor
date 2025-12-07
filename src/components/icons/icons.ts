@@ -78,6 +78,8 @@ import {
   PencilRuler,
   WrapText,
   Loader2 as Loader,
+  X,
+  ExternalLink
 } from 'lucide-react';
 
 import {
@@ -106,6 +108,7 @@ import { RightToLeft } from '@/components/icons/RightToLeft';
 import { Twitter } from '@/components/icons/Twitter';
 
 import ImportWord from './ImportWord';
+import { Html } from '@/components/icons/Html';
 
 export const icons = {
   Bold,
@@ -215,4 +218,7 @@ export const icons = {
   PencilRuler,
   WrapText,
   Loader,
+  X,
+  Html,
+  ExternalLink
 } as any;

@@ -1,13 +1,11 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { mergeAttributes } from '@tiptap/core';
 import TiptapImage from '@tiptap/extension-image';
-import { Plugin, PluginKey } from '@tiptap/pm/state';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import ActionImageButton from '@/extensions/Image/components/ActionImageButton';
 import ImageView from '@/extensions/Image/components/ImageView';
-import { UploadImagesPlugin, createImageUpload, handleImageDrop, handleImagePaste } from '@/plugins/image-upload';
 import type { GeneralOptions } from '@/types';
+
+export * from '@/extensions/Image/components/RichTextImage';
 
 export interface SetImageAttrsOptions {
   src?: string
@@ -101,7 +99,6 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
         extension: any
         t: (key: string) => string
       }) => ({
-        component: ActionImageButton,
         componentProps: {
           action: () => {
             return true;
@@ -111,7 +108,6 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
           disabled: !editor.can().setImage?.({}),
           icon: 'ImageUp',
           tooltip: t('editor.image.tooltip'),
-          editor,
         },
       }),
     };
@@ -279,69 +275,70 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
       },
     ];
   },
-  addProseMirrorPlugins() {
-    const validateFile = (file: File): boolean => {
-      // @ts-expect-error
-      if (!this.options.acceptMimes.includes(file.type)) {
-        // toast({ description: t.value('editor.imageUpload.fileTypeNotSupported'), duration: 2000 });
-        return false;
-      }
-      // @ts-expect-error
-      if (file.size > this.options.maxSize) {
-        // toast({
-        //   description: `${t.value('editor.imageUpload.fileSizeTooBig')} ${formatFileSize(
-        //     this.options.maxSize,
-        //   )}.`,
-        //   duration: 2000,
-        // });
-        return false;
-      }
-      return true;
-    };
 
-    const uploadFn = createImageUpload({
-      validateFn: validateFile,
-      onUpload: this.options.upload as any,
-      // postUpload: this.options.postUpload,
-      defaultInline: this.options.defaultInline,
-    });
+  // addProseMirrorPlugins() {
+  //   const validateFile = (file: File): boolean => {
+  //     // @ts-expect-error
+  //     if (!this.options.acceptMimes.includes(file.type)) {
+  //       // toast({ description: t.value('editor.imageUpload.fileTypeNotSupported'), duration: 2000 });
+  //       return false;
+  //     }
+  //     // @ts-expect-error
+  //     if (file.size > this.options.maxSize) {
+  //       // toast({
+  //       //   description: `${t.value('editor.imageUpload.fileSizeTooBig')} ${formatFileSize(
+  //       //     this.options.maxSize,
+  //       //   )}.`,
+  //       //   duration: 2000,
+  //       // });
+  //       return false;
+  //     }
+  //     return true;
+  //   };
 
-    return [
-      UploadImagesPlugin(),
+  //   const uploadFn = createImageUpload({
+  //     validateFn: validateFile,
+  //     onUpload: this.options.upload as any,
+  //     // postUpload: this.options.postUpload,
+  //     defaultInline: this.options.defaultInline,
+  //   });
 
-      new Plugin({
-        key: new PluginKey('image'),
-        props: {
-          handlePaste: (view, event) => {
-            const hasFiles =
-                event.clipboardData &&
-                event.clipboardData.files &&
-                event.clipboardData.files?.length;
+  //   return [
+  //     UploadImagesPlugin(),
 
-            if (!hasFiles) {
-              return;
-            }
+  //     new Plugin({
+  //       key: new PluginKey(`richtextCustomPlugin${this.name}`),
+  //       props: {
+  //         handlePaste: (view, event) => {
+  //           const hasFiles =
+  //               event.clipboardData &&
+  //               event.clipboardData.files &&
+  //               event.clipboardData.files?.length;
 
-            const items = [...(event.clipboardData.files || [])];
+  //           if (!hasFiles) {
+  //             return;
+  //           }
 
-            if (items.some(x => x.type === 'text/html')) {
-              return false;
-            }
+  //           const items = [...(event.clipboardData.files || [])];
 
-            return handleImagePaste(view, event, uploadFn);
-          },
-          handleDrop: (view, event, _, moved) => {
-            if (!(event instanceof DragEvent) || !event.dataTransfer) {
-              return false;
-            }
+  //           if (items.some(x => x.type === 'text/html')) {
+  //             return false;
+  //           }
 
-            handleImageDrop(view, event, moved, uploadFn);
-            return false;
-          },
-        },
-      }),
-    ];
-  },
+  //           return handleImagePaste(view, event, uploadFn);
+  //         },
+  //         handleDrop: (view, event, _, moved) => {
+  //           if (!(event instanceof DragEvent) || !event.dataTransfer) {
+  //             return false;
+  //           }
+
+  //           handleImageDrop(view, event, moved, uploadFn);
+  //           return false;
+  //         },
+  //       },
+  //     }),
+  //   ];
+  // },
 });
 
 export default Image;

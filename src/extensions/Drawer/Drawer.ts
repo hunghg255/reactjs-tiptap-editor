@@ -4,9 +4,10 @@ import { mergeAttributes } from '@tiptap/core';
 import TiptapImage from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import { DrawerActiveButton } from '@/extensions/Drawer/components/DrawerActiveButton';
 import { NodeViewDrawer } from '@/extensions/Drawer/components/NodeViewDrawer/NodeViewDrawer';
 import type { GeneralOptions } from '@/types';
+
+export * from '@/extensions/Drawer/components/RichTextDrawer';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -23,9 +24,8 @@ export interface DrawerOptions extends GeneralOptions<DrawerOptions> {
 }
 
 export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
-  name: 'drawer',
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  name: 'richTextDrawer',
+     
   //@ts-expect-error
   addOptions() {
     return {
@@ -40,15 +40,13 @@ export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
       HTMLAttributes: {
         class: 'drawer',
       },
-      button: ({ editor, t, extension }: any) => ({
-        component: DrawerActiveButton,
+      button: ({ t, extension }: any) => ({
         componentProps: {
           action: () => {
             return true;
           },
           isActive: () => false,
           disabled: false,
-          editor,
           icon: 'PencilRuler',
           tooltip: t('editor.drawer.tooltip'),
           upload: extension?.options?.upload,

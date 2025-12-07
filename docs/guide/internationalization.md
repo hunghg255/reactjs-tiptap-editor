@@ -2,8 +2,8 @@
 description: Internationalization
 
 next:
-  text: Alignment
-  link: /extensions/BaseKit.md
+  text: Attachment
+  link: /extensions/Attachment.md
 ---
 
 # Internationalization (i18n)
@@ -14,9 +14,9 @@ The editor provides built-in internationalization support, with English as the d
 
 ```javascript
 // Import the locale object
-import { locale } from 'reactjs-tiptap-editor/locale-bundle';
+import { localeActions } from 'reactjs-tiptap-editor/locale-bundle';
 // Set the language to English
-locale.setLang('en');
+localeActions.setLang('en');
 // End
 ```
 

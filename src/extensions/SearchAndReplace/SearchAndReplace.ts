@@ -9,7 +9,7 @@ import {
 } from '@tiptap/pm/state';
 import { Decoration, DecorationSet } from '@tiptap/pm/view';
 
-import SearchAndReplaceButton from '@/extensions/SearchAndReplace/components/SearchAndReplaceButton';
+export * from '@/extensions/SearchAndReplace/components/RichTextSearchAndReplace';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -186,10 +186,6 @@ function replaceAll (replaceTerm: string,
   dispatch(tr);
 }
 
-export const searchAndReplacePluginKey = new PluginKey(
-  'searchAndReplacePlugin',
-);
-
 export interface SearchAndReplaceOptions {
   searchResultClass: string;
   disableRegex: boolean;
@@ -232,15 +228,14 @@ export const SearchAndReplace = Extension.create<
         return;
       },
       button: ({ editor, t }: any) => ({
-        component: SearchAndReplaceButton,
+        // component: RichTextSearchAndReplace,
         componentProps: {
           action: () => {
             return;
           },
           icon: 'SearchAndReplace',
           tooltip: t('editor.searchAndReplace.tooltip'),
-          isActive: () => false,
-          disabled: false,
+          isActive: () => true,
           editor,
         },
       }),
@@ -371,7 +366,7 @@ export const SearchAndReplace = Extension.create<
 
     return [
       new Plugin({
-        key: searchAndReplacePluginKey,
+        key: new PluginKey(`richtextCustomPlugin${this.name}`),
         state: {
           init: () => DecorationSet.empty,
           apply({ doc, docChanged }, oldState) {

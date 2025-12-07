@@ -3,7 +3,7 @@ import { Plugin, PluginKey } from '@tiptap/pm/state';
 import type { EditorView } from '@tiptap/pm/view';
 import { Decoration, DecorationSet } from '@tiptap/pm/view';
 
-const uploadKey = new PluginKey('upload-image');
+const uploadKey = new PluginKey('customPluginImageUpload');
 
 interface UploadAction {
   add?: Array<{ id: string, pos: number, src: string }>

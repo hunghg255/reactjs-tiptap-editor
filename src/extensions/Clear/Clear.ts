@@ -1,9 +1,10 @@
 import { Node } from '@tiptap/core';
 
-import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
 
 export interface ClearOptions extends GeneralOptions<ClearOptions> {}
+
+export * from './components/RichTextClear';
 
 export const Clear = /* @__PURE__ */ Node.create<ClearOptions>({
   name: 'clear',
@@ -13,10 +14,10 @@ export const Clear = /* @__PURE__ */ Node.create<ClearOptions>({
     return {
       ...this.parent?.(),
       button: ({ editor, t }) => ({
-        component: ActionButton,
+        // component: ActionButton,
         componentProps: {
           action: () => editor.chain().focus().clearNodes().unsetAllMarks().run(),
-          disabled: !editor.can().chain().focus().clearNodes().unsetAllMarks().run(),
+          isActive: () => editor.can().chain().focus().clearNodes().unsetAllMarks().run(),
           icon: 'Eraser',
           tooltip: t('editor.clear.tooltip'),
         },

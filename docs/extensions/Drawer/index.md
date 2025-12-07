@@ -10,41 +10,71 @@ Drawer is a node extension that allows you to add an Drawer to your editor.
 
 ## Usage
 
+
 ```tsx
-import { Drawer } from 'reactjs-tiptap-editor/drawer'; // [!code ++]
-import 'easydrawer/styles.css'; // [!code ++]
+import { RichTextProvider } from 'reactjs-tiptap-editor'
+
+// Base Kit
+import { Document } from '@tiptap/extension-document'
+import { Text } from '@tiptap/extension-text'
+import { Paragraph } from '@tiptap/extension-paragraph'
+import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
+import { HardBreak } from '@tiptap/extension-hard-break'
+import { TextStyle } from '@tiptap/extension-text-style';
+import { ListItem } from '@tiptap/extension-list';
+
+// Extension
+import { Drawer, RichTextDrawer } from 'reactjs-tiptap-editor/drawer'; // [!code ++]
+// ... other extensions
+
+
+// Import CSS
+import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [
-  ...,
+  // Base Extensions
+  Document,
+  Text,
+  Dropcursor,
+  Gapcursor,
+  HardBreak,
+  Paragraph,
+  TrailingNode,
+  ListItem,
+  TextStyle,
+  Placeholder.configure({
+    placeholder: 'Press \'/\' for commands',
+  })
+
+  ...
   // Import Extensions Here
-  Drawer.configure({// [!code ++]
-    upload: (file: any) => {// [!code ++]
-      // upload file to server return url
-    },// [!code ++]
-  }),// [!code ++]
+  Drawer// [!code ++]
 ];
-```
 
-## Configuration bubble menu
-
-```tsx
-import { BubbleMenuDrawer } from 'reactjs-tiptap-editor/bubble-extra'; // [!code ++]
+const RichTextToolbar = () => {
+  return (
+    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
+      <RichTextDrawer /> {/* [!code ++] */}
+    </div>
+  )
+}
 
 const App = () => {
+   const editor = useEditor({
+    textDirection: 'auto', // global text direction
+    extensions,
+  });
 
-  return  <RichTextEditor
-    bubbleMenu={{
-      render({ extensionsNames, editor, disabled }, bubbleDefaultDom) {
-        return <>
-          {bubbleDefaultDom}
+  return (
+    <RichTextProvider
+      editor={editor}
+    >
+      <RichTextToolbar />
 
-          {extensionsNames.includes('drawer')  ? <BubbleMenuDrawer disabled={disabled}
-            editor={editor}
-            key="drawer"
-          /> : null}
-        </>
-      },
-    }}
-  />
-}
+      <EditorContent
+        editor={editor}
+      />
+    </RichTextProvider>
+  );
+};
 ```

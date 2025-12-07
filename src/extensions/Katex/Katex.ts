@@ -1,8 +1,9 @@
 import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import KatexActiveButton from '@/extensions/Katex/components/KatexActiveButton';
-import { KatexWrapper } from '@/extensions/Katex/components/KatexWrapper';
+import { KatexNodeView } from '@/extensions/Katex/components/KatexWrapper';
+
+export * from '@/extensions/Katex/components/RichTextKatex';
 
 export interface IKatexAttrs {
   text?: string
@@ -40,11 +41,9 @@ export const Katex = /* @__PURE__ */ Node.create<IKatexOptions>({
       HTMLAttributes: {
         class: 'katex',
       },
-      button: ({ editor, t }: any) => {
+      button: ({ t }: any) => {
         return {
-          component: KatexActiveButton,
           componentProps: {
-            editor,
             action: () => {
               return true;
             },
@@ -104,6 +103,6 @@ export const Katex = /* @__PURE__ */ Node.create<IKatexOptions>({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(KatexWrapper);
+    return ReactNodeViewRenderer(KatexNodeView);
   },
 });

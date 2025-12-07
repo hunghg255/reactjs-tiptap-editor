@@ -31,6 +31,11 @@
   "main": "./lib/index.cjs",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "pnpm": {
+    "overrides": {
+      "prosemirror-view": "1.41.1"
+    }
+  },
   "exports": {
     ".": {
       "require": {
@@ -52,14 +57,14 @@
         "default": "./lib/locale-bundle.js"
       }
     },
-    "./bubble-extra": {
+    "./bubble": {
       "require": {
-        "types": "./lib/bubble-extra.d.cts",
-        "default": "./lib/bubble-extra.cjs"
+        "types": "./lib/bubble.d.cts",
+        "default": "./lib/bubble.cjs"
       },
       "import": {
-        "types": "./lib/bubble-extra.d.ts",
-        "default": "./lib/bubble-extra.js"
+        "types": "./lib/bubble.d.ts",
+        "default": "./lib/bubble.js"
       }
     },
     "./style.css": {
@@ -169,16 +174,6 @@
         "default": "./lib/Color.js"
       }
     },
-    "./document": {
-      "require": {
-        "types": "./lib/Document.d.cts",
-        "default": "./lib/Document.cjs"
-      },
-      "import": {
-        "types": "./lib/Document.d.ts",
-        "default": "./lib/Document.js"
-      }
-    },
     "./drawer": {
       "require": {
         "types": "./lib/Drawer.d.cts",
@@ -247,16 +242,6 @@
       "import": {
         "types": "./lib/FontSize.d.ts",
         "default": "./lib/FontSize.js"
-      }
-    },
-    "./formatpainter": {
-      "require": {
-        "types": "./lib/FormatPainter.d.cts",
-        "default": "./lib/FormatPainter.cjs"
-      },
-      "import": {
-        "types": "./lib/FormatPainter.d.ts",
-        "default": "./lib/FormatPainter.js"
       }
     },
     "./heading": {
@@ -429,14 +414,14 @@
         "default": "./lib/MoreMark.js"
       }
     },
-    "./multicolumn": {
+    "./column": {
       "require": {
-        "types": "./lib/MultiColumn.d.cts",
-        "default": "./lib/MultiColumn.cjs"
+        "types": "./lib/Column.d.cts",
+        "default": "./lib/Column.cjs"
       },
       "import": {
-        "types": "./lib/MultiColumn.d.ts",
-        "default": "./lib/MultiColumn.js"
+        "types": "./lib/Column.d.ts",
+        "default": "./lib/Column.js"
       }
     },
     "./orderedlist": {
@@ -459,16 +444,6 @@
         "default": "./lib/SearchAndReplace.js"
       }
     },
-    "./selection": {
-      "require": {
-        "types": "./lib/Selection.d.cts",
-        "default": "./lib/Selection.cjs"
-      },
-      "import": {
-        "types": "./lib/Selection.d.ts",
-        "default": "./lib/Selection.js"
-      }
-    },
     "./slashcommand": {
       "require": {
         "types": "./lib/SlashCommand.d.cts",
@@ -489,16 +464,6 @@
         "default": "./lib/Strike.js"
       }
     },
-    "./subandsuperscript": {
-      "require": {
-        "types": "./lib/SubAndSuperScript.d.cts",
-        "default": "./lib/SubAndSuperScript.cjs"
-      },
-      "import": {
-        "types": "./lib/SubAndSuperScript.d.ts",
-        "default": "./lib/SubAndSuperScript.js"
-      }
-    },
     "./table": {
       "require": {
         "types": "./lib/Table.d.cts",
@@ -507,16 +472,6 @@
       "import": {
         "types": "./lib/Table.d.ts",
         "default": "./lib/Table.js"
-      }
-    },
-    "./tableofcontent": {
-      "require": {
-        "types": "./lib/TableOfContent.d.cts",
-        "default": "./lib/TableOfContent.cjs"
-      },
-      "import": {
-        "types": "./lib/TableOfContent.d.ts",
-        "default": "./lib/TableOfContent.js"
       }
     },
     "./tasklist": {
@@ -539,16 +494,6 @@
         "default": "./lib/TextAlign.js"
       }
     },
-    "./textbubble": {
-      "require": {
-        "types": "./lib/TextBubble.d.cts",
-        "default": "./lib/TextBubble.cjs"
-      },
-      "import": {
-        "types": "./lib/TextBubble.d.ts",
-        "default": "./lib/TextBubble.js"
-      }
-    },
     "./textdirection": {
       "require": {
         "types": "./lib/TextDirection.d.cts",
@@ -567,16 +512,6 @@
       "import": {
         "types": "./lib/TextUnderline.d.ts",
         "default": "./lib/TextUnderline.js"
-      }
-    },
-    "./trailingnode": {
-      "require": {
-        "types": "./lib/TrailingNode.d.cts",
-        "default": "./lib/TrailingNode.cjs"
-      },
-      "import": {
-        "types": "./lib/TrailingNode.d.ts",
-        "default": "./lib/TrailingNode.js"
       }
     },
     "./twitter": {
@@ -611,9 +546,6 @@
       "*": [
         "./lib/*",
         "./*"
-      ],
-      "./base-kit": [
-        "./lib/BaseKit.d.ts"
       ],
       "./attachment": [
         "./lib/Attachment.d.ts"
@@ -666,9 +598,6 @@
       "./fontsize": [
         "./lib/FontSize.d.ts"
       ],
-      "./formatpainter": [
-        "./lib/FormatPainter.d.ts"
-      ],
       "./heading": [
         "./lib/Heading.d.ts"
       ],
@@ -720,8 +649,8 @@
       "./moremark": [
         "./lib/MoreMark.d.ts"
       ],
-      "./multicolumn": [
-        "./lib/MultiColumn.d.ts"
+      "./column": [
+        "./lib/Column.d.ts"
       ],
       "./orderedlist": [
         "./lib/OrderedList.d.ts"
@@ -729,23 +658,14 @@
       "./searchandreplace": [
         "./lib/SearchAndReplace.d.ts"
       ],
-      "./selection": [
-        "./lib/Selection.d.ts"
-      ],
       "./slashcommand": [
         "./lib/SlashCommand.d.ts"
       ],
       "./strike": [
         "./lib/Strike.d.ts"
       ],
-      "./subandsuperscript": [
-        "./lib/SubAndSuperScript.d.ts"
-      ],
       "./table": [
         "./lib/Table.d.ts"
-      ],
-      "./tableofcontent": [
-        "./lib/TableOfContent.d.ts"
       ],
       "./tasklist": [
         "./lib/TaskList.d.ts"
@@ -753,17 +673,11 @@
       "./textalign": [
         "./lib/TextAlign.d.ts"
       ],
-      "./textbubble": [
-        "./lib/TextBubble.d.ts"
-      ],
       "./textdirection": [
         "./lib/TextDirection.d.ts"
       ],
       "./textunderline": [
         "./lib/TextUnderline.d.ts"
-      ],
-      "./trailingnode": [
-        "./lib/TrailingNode.d.ts"
       ],
       "./twitter": [
         "./lib/Twitter.d.ts"
@@ -805,6 +719,7 @@
   "dependencies": {
     "@excalidraw/excalidraw": "^0.18.0",
     "@floating-ui/dom": "^1.7.4",
+    "@hocuspocus/provider": "^3.4.0",
     "@radix-ui/react-checkbox": "^1.3.3",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
@@ -825,6 +740,7 @@
     "@tiptap/extension-bullet-list": "^3.11.1",
     "@tiptap/extension-code": "^3.11.1",
     "@tiptap/extension-collaboration": "^3.12.0",
+    "@tiptap/extension-collaboration-caret": "^3.12.0",
     "@tiptap/extension-document": "^3.11.1",
     "@tiptap/extension-drag-handle": "^3.12.0",
     "@tiptap/extension-drag-handle-react": "^3.12.0",
@@ -860,6 +776,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "deep-equal": "^2.2.3",
+    "docx": "^9.5.1",
     "easydrawer": "^0.0.15",
     "frimousse": "^0.3.0",
     "katex": "^0.16.25",
@@ -872,7 +789,7 @@
     "react-colorful": "^5.6.1",
     "react-image-crop": "^11.0.10",
     "react-tweet": "^3.2.2",
-    "reactjs-signal": "^1.1.3",
+    "reactjs-signal": "^2.0.1",
     "scroll-into-view-if-needed": "^3.1.0",
     "svg64": "^2.0.0",
     "y-protocols": "^1.0.6",

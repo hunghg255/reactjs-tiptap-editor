@@ -1,6 +1,5 @@
 import { Extension } from '@tiptap/core';
 
-import { ActionButton } from '@/components';
 import { printEditorContent } from '@/utils/pdf';
 
 import type { GeneralOptions, PaperSize, PageMargin } from '@/types';
@@ -24,6 +23,8 @@ export interface ExportPdfOptions extends GeneralOptions<ExportPdfOptions> {
   };
 }
 
+export * from './components/RichTextExportPdf';
+
 export const ExportPdf = /* @__PURE__ */ Extension.create<ExportPdfOptions>({
   name: 'exportPdf',
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -40,7 +41,6 @@ export const ExportPdf = /* @__PURE__ */ Extension.create<ExportPdfOptions>({
         left: '0.4in',
       },
       button: ({ editor, extension, t }) => ({
-        component: ActionButton,
         componentProps: {
           action: () => {
             printEditorContent(editor, extension.options);

@@ -2,7 +2,7 @@ import { Node, mergeAttributes, nodePasteRule } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import NodeViewTweet from '@/extensions/Twitter/components/NodeViewTweet';
-import TwitterActiveButton from '@/extensions/Twitter/components/TwitterActiveButton';
+export * from '@/extensions/Twitter/components/RichTextTwitter';
 
 const TWITTER_REGEX_GLOBAL = /(https?:\/\/)?(www\.)?x\.com\/(\w{1,15})(\/status\/(\d+))?(\/\S*)?/g;
 const TWITTER_REGEX = /^https?:\/\/(www\.)?x\.com\/(\w{1,15})(\/status\/(\d+))?(\/\S*)?$/;
@@ -73,7 +73,6 @@ export const Twitter = /* @__PURE__ */ Node.create<TwitterOptions>({
       inline: false,
       origin: '',
       button: ({ editor, t }: any) => ({
-        component: TwitterActiveButton,
         componentProps: {
           action: (src: string) => {
             editor.commands.setTweet({ src });

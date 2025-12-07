@@ -2,7 +2,7 @@
 import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import { ExcalidrawActiveButton } from '@/extensions/Excalidraw/components/ExcalidrawActiveButton';
+export * from '@/extensions/Excalidraw/components/RichTextExcalidraw';
 import NodeViewExcalidraw from '@/extensions/Excalidraw/components/NodeViewExcalidraw/NodeViewExcalidraw';
 import { getDatasetAttribute, nodeAttrsToDataset } from '@/utils/dom-dataset';
 
@@ -62,10 +62,9 @@ export const Excalidraw = /* @__PURE__ */ Node.create({
         class: 'excalidraw',
       },
       excalidrawProps: {},
-      button: ({ editor }: any) => ({
-        component: ExcalidrawActiveButton,
+      button: () => ({
         componentProps: {
-          editor,
+
         },
       }),
     };

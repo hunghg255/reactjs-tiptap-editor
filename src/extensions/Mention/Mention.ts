@@ -1,9 +1,9 @@
-import { computePosition } from '@floating-ui/dom';
 import BulitInMention from '@tiptap/extension-mention';
 import { ReactRenderer } from '@tiptap/react';
 
-import { NodeViewMentionList } from '@/extensions/Mention/components/NodeViewMentionList/NodeViewMentionList';
+import { NodeViewMentionList } from '@/extensions/Mention/components/NodeViewMentionList';
 import { getDatasetAttribute } from '@/utils/dom-dataset';
+import { updatePosition } from '@/utils/updatePosition';
 
 const MOCK_USERS = [
   {
@@ -48,76 +48,50 @@ export const Mention = /* @__PURE__ */ BulitInMention.extend({
     },
 
     render: () => {
-      let component: any;
-      function repositionComponent(clientRect: any) {
-        if (!component || !component.element) {
-          return;
-        }
-
-        const virtualElement = {
-          getBoundingClientRect() {
-            return clientRect;
-          },
-        };
-
-        computePosition(virtualElement, component.element, {
-          placement: 'bottom-start',
-        }).then(pos => {
-          Object.assign(component.element.style, {
-            left: `${pos.x}px`,
-            top: `${pos.y}px`,
-            position: pos.strategy === 'fixed' ? 'fixed' : 'absolute',
-          });
-        });
-      }
-
-      const onClose = () => {
-        if (!component) return;
-        if (document.body.contains(component.element)) {
-          document.body.removeChild(component.element);
-        }
-        component.destroy();
-      };
+      let reactRenderer: any;
 
       return {
         onStart: (props: any) => {
-              onClose();
+          if (!props.clientRect) {
+            return;
+          }
 
-          component = new ReactRenderer(NodeViewMentionList, {
-            props: {
-              ...props,
-              onClose
-            },
+          reactRenderer = new ReactRenderer(NodeViewMentionList, {
+            props,
             editor: props.editor,
           });
-          //     view.dom.parentElement?.addEventListener('scroll', scrollHandler);
 
-          document.body.appendChild(component.element);
-          repositionComponent(props.clientRect());
+          reactRenderer.element.style.position = 'absolute';
+
+          document.body.appendChild(reactRenderer.element);
+
+          updatePosition(props.editor, reactRenderer.element);
         },
 
-        onUpdate(props: any) {
-          component.updateProps(props);
-          repositionComponent(props.clientRect());
+        onUpdate(props) {
+          reactRenderer.updateProps(props);
+
+          if (!props.clientRect) {
+            return;
+          }
+          updatePosition(props.editor, reactRenderer.element);
         },
 
         onKeyDown(props) {
           if (props.event.key === 'Escape') {
-            document.body.removeChild(component.element);
-            component.destroy();
+            reactRenderer.destroy();
+            reactRenderer.element.remove();
 
             return true;
           }
 
-          return component.ref?.onKeyDown(props);
+          return reactRenderer.ref?.onKeyDown(props);
         },
 
-        // onExit() {
-        //   if (document.body.contains(component.element)) {
-        //     document.body.removeChild(component.element);
-        //   }
-        //   component.destroy();
-        // },
+        onExit() {
+          reactRenderer.destroy();
+          reactRenderer.element.remove();
+        },
       };
     },
 
