@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Node } from '@tiptap/core';
 
 import { VIDEO_SIZE } from '@/constants';
-import ActionVideoButton from '@/extensions/Video/components/ActiveVideoButton';
 import type { GeneralOptions,VideoAlignment } from '@/types';
 import { getCssUnitWithDefault } from '@/utils/utils';
+
+export * from '@/extensions/Video/components/RichTextVideo';
 
 /**
  * Represents the interface for video options, extending GeneralOptions.
@@ -123,6 +125,7 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
   atom: true,
   draggable: true,
 
+  //@ts-expect-error
   addOptions() {
     return {
       divider: false,
@@ -138,7 +141,6 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
       },
       button: ({ editor, t }: any) => {
         return {
-          component: ActionVideoButton,
           componentProps: {
             action: () => {
               return;

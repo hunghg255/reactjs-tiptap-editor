@@ -13,18 +13,17 @@ const createArray = (length: number) => Array.from({ length }).map((_, index) =>
 interface IPropsCreateTablePopover {
   createTable: any
   children: any
+  dataState?: any
 }
 
-export interface GridSize {
+interface GridSize {
   rows: number
   cols: number
 }
 
-export interface CreateTablePayload extends GridSize {
-  withHeaderRow: boolean
-}
-
 function CreateTablePopover(props: IPropsCreateTablePopover) {
+  const [open, setOpen] = useState(false);
+
   const [withHeaderRow, setWithHeaderRow] = useState<boolean>(true);
   const [tableGridSize, setTableGridSize] = useState<GridSize>({
     rows: isMobile() ? TABLE_MAX_GRID_SIZE : TABLE_INIT_GRID_SIZE,
@@ -64,6 +63,7 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
   function onMouseDown(rows: number, cols: number) {
     props?.createTable({ rows, cols, withHeaderRow });
     resetTableGridSize();
+    setOpen(false);
   }
 
   function resetTableGridSize(): void {
@@ -81,8 +81,13 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
   }
 
   return (
-    <Popover modal>
-      <PopoverTrigger asChild>
+    <Popover
+    open={open}
+    onOpenChange={setOpen}
+    modal>
+      <PopoverTrigger
+      data-state={props?.dataState ? 'on' : 'off'}
+      asChild>
         {props?.children}
       </PopoverTrigger>
 
@@ -95,12 +100,12 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
             {createArray(tableGridSize?.rows)?.map((row: any) => {
               return (
                 <div className="richtext-flex richtext-gap-1"
-                  key={`r-${row}`}
+                  key={`richtext-table-row-${row}`}
                 >
                   {createArray(tableGridSize?.cols)?.map((col: any) => {
                     return (
                       <div
-                        key={`c-${col}`}
+                        key={`richtext-table-col-${col}`}
                         onMouseDown={() => onMouseDown(row, col)}
                         onMouseOver={() => selectTableGridSize(row, col)}
                         className={`richtext-cursor-pointer richtext-border-border ${
@@ -120,7 +125,6 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
 
           <div className="richtext-mt-2 richtext-text-center richtext-text-sm richtext-text-zinc-600">
             {selectedTableGridSize.rows}
-            {' '}
             x
             {selectedTableGridSize.cols}
           </div>

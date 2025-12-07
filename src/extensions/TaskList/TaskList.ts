@@ -5,8 +5,9 @@
 
 import { TaskList as TiptapTaskList, TaskItem, type TaskItemOptions, type TaskListOptions as  TiptapTaskListOptions } from '@tiptap/extension-list';
 
-import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
+
+export * from './components/RichTextTaskList';
 
 /**
  * Represents the interface for task list options, extending TiptapTaskListOptions and GeneralOptions.
@@ -31,10 +32,9 @@ export const TaskList = /* @__PURE__ */ TiptapTaskList.extend<TaskListOptions>({
         },
       },
       button: ({ editor, t, extension }) => ({
-        component: ActionButton,
         componentProps: {
           action: () => editor.commands.toggleTaskList(),
-          isActive: () => editor.isActive('taskList') || false,
+          isActive: () => editor.isActive('taskList'),
           disabled: false,
           icon: 'ListTodo',
           shortcutKeys: extension.options.shortcutKeys ?? ['shift', 'mod', '9'],

@@ -1,57 +1,75 @@
-import type { Extension } from '@tiptap/core';
 import type { HeadingOptions as TiptapHeadingOptions } from '@tiptap/extension-heading';
 import { Heading as TiptapHeading } from '@tiptap/extension-heading';
 
-import HeadingButton from '@/extensions/Heading/components/HeadingButton';
+import { HEADINGS } from '@/constants';
 import type { GeneralOptions } from '@/types';
 
-import type { BaseKitOptions } from '../BaseKit';
+export * from '@/extensions/Heading/components/RichTextHeading';
 
-export interface HeadingOptions extends TiptapHeadingOptions, GeneralOptions<HeadingOptions> {}
+export interface HeadingOptions extends TiptapHeadingOptions, GeneralOptions<HeadingOptions> { }
 
 export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),
-      levels: [1, 2, 3, 4, 5, 6],
+      levels: HEADINGS,
       button({ editor, extension, t }) {
-        const { extensions = [] } = editor.extensionManager ?? [];
         const levels = extension.options?.levels || [];
-        const baseKitExt = extensions.find(
-          k => k.name === 'base-kit',
-        ) as Extension<BaseKitOptions>;
 
-        const items: any[] = levels.map(level => ({
-          action: () => editor.commands.toggleHeading({ level }),
-          isActive: () => editor.isActive('heading', { level }) || false,
-          disabled: !editor.can().toggleHeading({ level }),
-          title: t(`editor.heading.h${level}.tooltip`),
-          level,
-          shortcutKeys: extension.options.shortcutKeys?.[level] ?? ['alt', 'mod', `${level}`],
-        }));
+        const items: any[] = levels.map((level: any) => {
+          const isDefault = level === 'Paragraph';
 
-        if (baseKitExt && baseKitExt.options.paragraph !== false) {
-          items.unshift({
-            action: () => editor.commands.setParagraph(),
-            isActive: () => editor.isActive('paragraph') || false,
-            disabled: !editor.can().setParagraph(),
-            level: 0,
-            title: t('editor.paragraph.tooltip'),
-            shortcutKeys: extension.options.shortcutKeys?.[0] ?? ['alt', 'mod', '0'],
-          });
-        }
+          return {
+            action: () => {
+              if (isDefault) {
+                const currentActiveLevel: any = levels.find((lvl: any) => editor.isActive('heading', { level: lvl }));
+                if (currentActiveLevel && currentActiveLevel !== 'Paragraph') {
+                  editor.commands.toggleHeading({ level: currentActiveLevel });
+                }
+                return;
+              }
+              editor.commands.toggleHeading({ level });
+            },
+            isActive: () => {
+              if (isDefault) {
+                return false;
+              }
+
+              return editor.isActive('heading', { level }) || false;
+            },
+            disabled: !editor.can().toggleHeading({ level }),
+            title: isDefault ? t('editor.paragraph.tooltip') : t(`editor.heading.h${level}.tooltip`),
+            level,
+            shortcutKeys: extension.options.shortcutKeys?.[level] ?? ['alt', 'mod', `${level}`],
+            default: isDefault,
+          };
+        });
 
         const disabled = items.filter((k: any) => k.disabled).length === items.length;
 
         return {
-          component: HeadingButton,
+          // component: HeadingButton,
           componentProps: {
             tooltip: t('editor.heading.tooltip'),
             disabled,
             items,
-            editor,
+            icon: 'MenuDown',
+            isActive: () => {
+              const find: any = items?.find((k: any) => k.isActive());
+
+              if (find && !find.default) {
+                return find;
+              }
+              const item = {
+                title: t('editor.paragraph.tooltip'),
+                level: 0,
+                isActive: () => false,
+              };
+              return item;
+            },
+            levels
           },
         };
       },

@@ -1,29 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
-import type { Editor } from '@tiptap/core';
+import { useEditorInstance } from '@/store/editor';
 
-export function useExtension(editor: Editor, attrbute: string) {
-  const [extension, setExtension] = useState<any>(undefined);
+export function useExtension(extensionName: string) {
+  const editor = useEditorInstance();
 
-  useEffect(() => {
-    const listener = () => {
-      const extension = editor.extensionManager.extensions.find(extension => extension.name === attrbute);
+  return useMemo(() => {
+    if (!editor) {
+      return null;
+    }
+    const extension = editor.extensionManager.extensions.find(extension => extension.name === extensionName);
 
-      if (!extension) {
-        return;
-      }
-
-      setExtension(extension as any);
-    };
-
-    editor.on('selectionUpdate', listener);
-    editor.on('transaction', listener);
-
-    return () => {
-      editor.off('selectionUpdate', listener);
-      editor.off('transaction', listener);
-    };
-  }, [editor, attrbute]);
-
-  return extension;
+    return extension;
+  }, [editor, extensionName]);
 }

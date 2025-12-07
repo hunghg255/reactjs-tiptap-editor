@@ -1,8 +1,9 @@
 import type { ItalicOptions as TiptapItalicOptions } from '@tiptap/extension-italic';
 import TiptapItalic from '@tiptap/extension-italic';
 
-import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
+
+export * from './components/RichTextItalic';
 
 export interface ItalicOptions extends TiptapItalicOptions, GeneralOptions<ItalicOptions> {}
 
@@ -14,7 +15,6 @@ export const Italic = /* @__PURE__ */ TiptapItalic.extend<ItalicOptions>({
       ...this.parent?.(),
       button({ editor, t, extension }) {
         return {
-          component: ActionButton,
           componentProps: {
             action: () => editor.commands.toggleItalic(),
             isActive: () => editor.isActive('italic') || false,

@@ -161,6 +161,7 @@ const locale = {
   'editor.textDirection.auto.tooltip': 'Automaattinen',
   'editor.textDirection.ltr.tooltip': 'Vasemmalta oikealle',
   'editor.textDirection.rtl.tooltip': 'Oikealta vasemmalle',
+  'editor.textDirection.unset.tooltip': 'Poista asetus',
   'editor.attachment.tooltip': 'Liite',
   'editor.attachment.uploading': 'Ladataan',
   'editor.attachment.please_upload': 'Lataa tiedosto',

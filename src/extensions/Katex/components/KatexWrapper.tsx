@@ -6,7 +6,7 @@ import katex from 'katex';
 import { useTheme } from '@/theme/theme';
 import { convertColorToRGBA } from '@/utils/color';
 
-export function KatexWrapper({ node }: any) {
+export function KatexNodeView({ node }: any) {
   const theme = useTheme();
   const { text } = node.attrs;
 

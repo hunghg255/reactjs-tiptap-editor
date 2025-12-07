@@ -71,10 +71,6 @@ export function getLocaleConfig(lang: string) {
           link: `${urlPrefix}/guide/bubble-menu`,
         },
         {
-          text: t('Customize'),
-          link: `${urlPrefix}/guide/customize.md`,
-        },
-        {
           text: t('Internationalization'),
           link: `${urlPrefix}/guide/internationalization`,
         },
@@ -85,8 +81,8 @@ export function getLocaleConfig(lang: string) {
       items: [
 
         {
-          text: 'BaseKit',
-          link: '/extensions/BaseKit/index.md',
+          text: 'Attachment',
+          link: '/extensions/Attachment/index.md',
         },
         {
           text: 'Blockquote',
@@ -113,12 +109,16 @@ export function getLocaleConfig(lang: string) {
           link: '/extensions/CodeBlock/index.md',
         },
         {
+          text: 'CodeView',
+          link: '/extensions/CodeView/index.md',
+        },
+        {
           text: 'Color',
           link: '/extensions/Color/index.md',
         },
         {
-          text: 'Document',
-          link: '/extensions/Document/index.md',
+          text: 'Column',
+          link: '/extensions/Column/index.md',
         },
         {
           text: 'FontFamily',
@@ -288,10 +288,7 @@ export function getLocaleConfig(lang: string) {
           text: 'Twitter',
           link: '/extensions/Twitter/index.md',
         },
-        {
-          text: 'Drawer',
-          link: '/extensions/Drawer/index.md',
-        },
+
       ],
     },
   ];

@@ -1,7 +1,8 @@
 import { Color as TiptapColor, type ColorOptions as TiptapColorOptions } from '@tiptap/extension-text-style';
 
-import ColorActionButton from '@/extensions/Color/components/ColorActionButton';
 import type { GeneralOptions } from '@/types';
+
+export * from './components/RichTextColor';
 
 export interface ColorOptions extends TiptapColorOptions, GeneralOptions<ColorOptions> {
   /**
@@ -23,26 +24,23 @@ export const Color = /* @__PURE__ */ TiptapColor.extend<ColorOptions>({
       ...this.parent?.(),
       button({ editor, t, extension }) {
         return {
-          component: ColorActionButton,
+          // component: ColorActionButton,
           componentProps: {
             colors: extension.options.colors,
             defaultColor: extension.options.defaultColor,
             action: (color?: unknown) => {
-              if (color === undefined) {
-                editor.chain().focus().unsetColor().run();
-              }
               if (typeof color === 'string') {
                 editor.chain().focus().setColor(color).run();
+                return;
               }
+
+              editor.chain().focus().unsetColor().run();
             },
             isActive: () => {
               const { color } = editor.getAttributes('textStyle');
-              if (!color) {
-                return false;
-              }
-              return editor.isActive({ color }) || false;
+
+              return color;
             },
-            editor,
             disabled: false,
             tooltip: t('editor.color.tooltip'),
           },

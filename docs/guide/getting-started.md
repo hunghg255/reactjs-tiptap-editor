@@ -6,7 +6,7 @@ next:
   link: /guide/toolbar.md
 ---
 
-# Installation React 19
+# Installation
 
 ::: code-group
 
@@ -21,71 +21,59 @@ pnpm install reactjs-tiptap-editor@latest
 ```sh [yarn]
 yarn add reactjs-tiptap-editor@latest
 ```
-
 :::
-
-## Install React version less than 18.0.0
-
-::: code-group
-
-```sh [npm]
-npm install reactjs-tiptap-editor@0.1.16
-```
-```
-
-```sh [pnpm]
-pnpm install reactjs-tiptap-editor@0.1.16
-```
-
-```sh [yarn]
-yarn add reactjs-tiptap-editor@0.1.16
-```
-
-:::
-
 
 ## Usage
 
 ```tsx
-import RichTextEditor from 'reactjs-tiptap-editor';
-import { BaseKit } from 'reactjs-tiptap-editor/base-kit';
-// import { BaseKit } from 'reactjs-tiptap-editor/extension-bundle'; // for version 0.1.16 and lower
+import { RichTextProvider } from 'reactjs-tiptap-editor'
+
+// Base Kit
+import { Document } from '@tiptap/extension-document'
+import { Text } from '@tiptap/extension-text'
+import { Paragraph } from '@tiptap/extension-paragraph'
+import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
+import { HardBreak } from '@tiptap/extension-hard-break'
+import { TextStyle } from '@tiptap/extension-text-style';
+import { ListItem } from '@tiptap/extension-list';
+
 
 // Import CSS
 import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [
-  BaseKit.configure({
-    // Show placeholder
-    placeholder: {  // [!code highlight]
-      showOnlyCurrent: true, // [!code highlight]
-    },  // [!code highlight]
+  // Base Extensions
+  Document,
+  Text,
+  Dropcursor,
+  Gapcursor,
+  HardBreak,
+  Paragraph,
+  TrailingNode,
+  ListItem,
+  TextStyle,
+  Placeholder.configure({
+    placeholder: 'Press \'/\' for commands',
+  })
 
-    // Character count
-    characterCount: {  // [!code highlight]
-      limit: 50_000,  // [!code highlight]
-    },  // [!code highlight]
-  }),
   ...
   // Import Extensions Here
 ];
 
-const DEFAULT = '';
-
 const App = () => {
-  const [content, setContent] = useState(DEFAULT);
-
-  const onChangeContent = (value: any) => {
-    setContent(value);
-  };
+   const editor = useEditor({
+    textDirection: 'auto', // global text direction
+    extensions,
+  });
 
   return (
-    <RichTextEditor
-      output='html'
-      content={content}
-      onChangeContent={onChangeContent}
-      extensions={extensions}
-    />
+    <RichTextProvider
+      editor={editor}
+    >
+      <EditorContent
+        editor={editor}
+      />
+    </RichTextProvider>
   );
 };
 ```
@@ -96,56 +84,12 @@ const App = () => {
 /**
  * Interface for RichTextEditor component props
  */
-export interface RichTextEditorProps {
-  /** Content of the editor */
-  content: string
-  /** Extensions for the editor */
-  extensions: AnyExtension[]
-
-  /** Output format */
-  output: 'html' | 'json' | 'text'
-  /** Model value */
-  modelValue?: string | object
-  /** Dark mode flag */
-  dark?: boolean
-  /** Dense mode flag */
-  dense?: boolean
-  /** Disabled flag */
-  disabled?: boolean
-  /** Label for the editor */
-  label?: string
-  /** Hide toolbar flag */
-  hideToolbar?: boolean
-  /** Disable bubble menu flag */
-  disableBubble?: boolean
-  /** Hide bubble menu flag */
-  hideBubble?: boolean
-  /** Remove default wrapper flag */
-  removeDefaultWrapper?: boolean
-  /** Maximum width */
-  maxWidth?: string | number
-  /** Minimum height */
-  minHeight?: string | number
-  /** Maximum height */
-  maxHeight?: string | number
-  /** Content class */
-  contentClass?: string | string[] | Record<string, any>
-  /** Content change callback */
-  onChangeContent?: (val: any) => void
-  /** Bubble menu props */
-  bubbleMenu?: BubbleMenuProps
-  /** Toolbar props */
-  toolbar?: ToolbarProps
-
-  /** Use editor options */
-  useEditorOptions?: UseEditorOptions
-
-  /** Use editor options */
-  resetCSS?: boolean
-
-  /** This option gives us the control to enable the default behavior of rendering the editor immediately.*/
-  immediatelyRender?: boolean
-
-  shouldRerenderOnTransaction?: boolean;
+export interface IProviderRichTextProps {
+  editor: Editor | null
+  dark: boolean
 }
 ```
+
+## Full Source Code Demo
+
+[Full Source Code Demo](https://github.com/hunghg255/reactjs-tiptap-editor-demo)

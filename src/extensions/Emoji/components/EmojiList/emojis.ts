@@ -1,4 +1,4 @@
-export const namesToEmoji = {
+const EMOJI_OBJECT = {
   '100': '💯',
   '1234': '🔢',
   'grinning': '😀',
@@ -1839,20 +1839,17 @@ export const namesToEmoji = {
   'wales': '🏴󠁧󠁢󠁷󠁬󠁳󠁿',
 } as any;
 
-export const emojisToName = Object.keys(namesToEmoji).reduce((accu: any, name: any) => {
-  const emoji = namesToEmoji[name];
-  accu[emoji] = name;
-  return accu;
-}, {});
+export const EMOJI_LIST = Object.keys(EMOJI_OBJECT).map((key) => {
+  return {
+    name: key,
+    emoji: EMOJI_OBJECT[key],
+  };
+});
 
-export const names = Object.keys(namesToEmoji).map(key => key);
-export const emojis = Object.keys(namesToEmoji).map(key => namesToEmoji[key]);
+export function useFilterEmojis (EmojiList: Array<{ name: string; emoji: string }>, query: string) {
+  const lowerCaseQuery = query.toLowerCase();
 
-export function emojiSearch(query: any) {
-  return names
-    .filter(name => name.startsWith(query))
-    .map(name => ({
-      name,
-      emoji: namesToEmoji[name],
-    }));
+  return EmojiList.filter(({ name }) =>
+    name.toLowerCase().includes(lowerCaseQuery)
+  );
 }

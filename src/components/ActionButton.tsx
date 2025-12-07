@@ -41,6 +41,8 @@ export interface ActionButtonProps {
   upload?: boolean
   /* Initial displayed color */
   initialDisplayedColor?: string
+
+  dataState?: boolean
 }
 
 const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonProps>>(
@@ -61,6 +63,7 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
       asChild = false,
       upload = false,
       initialDisplayedColor = undefined,
+      dataState = false,
       ...rest
     } = props;
 
@@ -71,13 +74,12 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
       <Tooltip>
         <TooltipTrigger asChild>
           <Comp
-            data-state={isActive?.() ? 'on' : 'off'}
+            className={cn('richtext-w-[32px] richtext-h-[32px]', customClass)}
+            data-state={dataState ? 'on' : 'off'} // active background control
+            disabled={disabled} // disable button control
             onClick={action}
             ref={ref}
             size="sm"
-            className={cn('richtext-w-[32px] richtext-h-[32px]', customClass)}
-            // pressed={isActive?.() || false}
-            disabled={disabled}
             {...(rest as Omit<typeof rest, 'loading'>)}
           >
             {Icon && <Icon className="richtext-size-4" />}

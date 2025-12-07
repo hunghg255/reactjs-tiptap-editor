@@ -2,8 +2,9 @@
 // import { OrderedList as TiptapOrderedList } from '@tiptap/extension-ordered-list';
 import { OrderedList as TiptapOrderedList, type OrderedListOptions as  TiptapOrderedListOptions } from '@tiptap/extension-list';
 
-import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
+
+export * from './components/RichTextOrderedList';
 
 export interface OrderedListOptions
   extends TiptapOrderedListOptions,
@@ -16,10 +17,9 @@ export const OrderedList = /* @__PURE__ */ TiptapOrderedList.extend<OrderedListO
     return {
       ...this.parent?.(),
       button: ({ editor, t, extension }) => ({
-        component: ActionButton,
         componentProps: {
           action: () => editor.commands.toggleOrderedList(),
-          isActive: () => editor.isActive('orderedList') || false,
+          isActive: () => editor.isActive('orderedList'),
           disabled: false,
           icon: 'ListOrdered',
           shortcutKeys: extension.options.shortcutKeys ?? ['mod', 'shift', '7'],

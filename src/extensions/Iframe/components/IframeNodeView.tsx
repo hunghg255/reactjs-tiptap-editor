@@ -4,11 +4,10 @@ import { NodeViewWrapper } from '@tiptap/react';
 import clsx from 'clsx';
 import { Resizable } from 're-resizable';
 
-// import { getEditorContainerDOMSize } from '@/utils'
 import { Button, Input } from '@/components/ui';
-import { getServiceSrc } from '@/extensions/Iframe/embed';
+import { getServiceSrc } from '@/extensions/Iframe/utils';
 import { Iframe } from '@/extensions/Iframe/Iframe';
-import { useEditableEditor } from '@/store/editableEditor';
+import { useEditableEditor } from '@/store/store';
 
 import styles from './index.module.scss';
 
@@ -16,7 +15,6 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
   const isEditable = useEditableEditor();
 
   const { src, width, height } = node.attrs;
-  // const { width: maxWidth } = getEditorContainerDOMSize(editor)
 
   const [originalLink, setOriginalLink] = useState<string>('');
 

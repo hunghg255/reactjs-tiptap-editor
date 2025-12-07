@@ -18,6 +18,7 @@ import { Image as ExtensionImage } from '@/extensions/Image';
 import { useLocale } from '@/locales';
 import { dataURLtoFile, readImageAsBase64 } from '@/utils/file';
 import { validateFiles } from '@/utils/validateFile';
+import { useExtension } from '@/hooks/useExtension';
 
 export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: any) {
   const { t } = useLocale();
@@ -35,12 +36,11 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
     src: '',
     file: null,
   });
+  const extension = useExtension(ExtensionImage.name);
 
   const uploadOptions = useMemo(() => {
-    return editor.extensionManager.extensions.find(
-      (extension: any) => extension.name === ExtensionImage.name,
-    )?.options;
-  }, [editor]);
+    return extension?.options ?? {};
+  }, [extension]);
 
   function onCropComplete(crop: PixelCrop) {
     if (imgRef.current && crop.width && crop.height) {

@@ -2,7 +2,7 @@ import { mergeAttributes, Node } from '@tiptap/core';
 import { textblockTypeInputRule } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import CodeBlockActiveButton from '@/extensions/CodeBlock/components/CodeBlockActiveButton';
+export * from '@/extensions/CodeBlock/components/RichTextCodeBlock';
 import { NodeViewCodeBlock } from '@/extensions/CodeBlock/components/NodeViewCodeBlock/NodeViewCodeBlock';
 import { type GeneralOptions } from '@/types';
 
@@ -37,10 +37,9 @@ export const CodeBlock = /* @__PURE__ */ Node.create({
       languages: [],
       button: ({ editor, t }: any) => {
         return {
-          component: CodeBlockActiveButton,
           componentProps: {
             action: () => editor.commands.setCodeBlock({}),
-            isActive: () => editor.isActive('codeBlock') || false,
+            isActive: () => editor.isActive('codeBlock'),
             disabled: false,
             icon: 'Code2',
             tooltip: t('editor.codeblock.tooltip'),

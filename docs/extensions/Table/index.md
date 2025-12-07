@@ -14,31 +14,73 @@ next:
 
 ## Usage
 
+
 ```tsx
-import { Table } from 'reactjs-tiptap-editor/table'; // [!code ++]
+import { RichTextProvider } from 'reactjs-tiptap-editor'
+
+// Base Kit
+import { Document } from '@tiptap/extension-document'
+import { Text } from '@tiptap/extension-text'
+import { Paragraph } from '@tiptap/extension-paragraph'
+import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
+import { HardBreak } from '@tiptap/extension-hard-break'
+import { TextStyle } from '@tiptap/extension-text-style';
+import { ListItem } from '@tiptap/extension-list';
+
+// Extension
+import { Table, RichTextTable } from 'reactjs-tiptap-editor/table'; // [!code ++]
+// ... other extensions
+
+
+// Import CSS
+import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [
-  ...,
+  // Base Extensions
+  Document,
+  Text,
+  Dropcursor,
+  Gapcursor,
+  HardBreak,
+  Paragraph,
+  TrailingNode,
+  ListItem,
+  TextStyle,
+  Placeholder.configure({
+    placeholder: 'Press \'/\' for commands',
+  })
+
+  ...
   // Import Extensions Here
-  Table // [!code ++]
+  Table// [!code ++]
 ];
+
+const RichTextToolbar = () => {
+  return (
+    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
+      <RichTextTable /> {/* [!code ++] */}
+    </div>
+  )
+}
+
+const App = () => {
+   const editor = useEditor({
+    textDirection: 'auto', // global text direction
+    extensions,
+  });
+
+  return (
+    <RichTextProvider
+      editor={editor}
+    >
+      <RichTextToolbar />
+
+      <EditorContent
+        editor={editor}
+      />
+    </RichTextProvider>
+  );
+};
 ```
 
-## Hiding default items from the bubble menu
-
-By default, a bubble menu is used to provide controls for table editing (such as adding rows, cols, ...).
-Items from this menu can be hidden with "hiddenActions" option in the tableConfig.
-
-```jsx
-<RichTextEditor
-  {...otherProps}
-  bubbleMenu={{
-    tableConfig: {
-      hiddenActions: ['setCellBackground'],
-    }
-  }}
-/>
-```
-                                         
-For supported action keys, please see [TableBubbleMenu.tsx](https://github.com/hunghg255/reactjs-tiptap-editor/blob/main/src/components/menus/components/TableBubbleMenu.tsx) 
 

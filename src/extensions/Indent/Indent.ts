@@ -1,8 +1,9 @@
 import { Extension } from '@tiptap/core';
 
-import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
 import { IndentProps, createIndentCommand } from '@/utils/indent';
+
+export * from './components/RichTextIndent';
 
 export interface IndentOptions extends GeneralOptions<IndentOptions> {
   types: string[]
@@ -26,8 +27,8 @@ declare module '@tiptap/core' {
 }
 
 export const Indent = /* @__PURE__ */ Extension.create<IndentOptions>({
-  name: 'indent',
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  name: 'richtextIndentOutdent',
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
@@ -36,10 +37,9 @@ export const Indent = /* @__PURE__ */ Extension.create<IndentOptions>({
       minIndent: IndentProps.min,
       maxIndent: IndentProps.max,
       button({ editor, t, extension }) {
-        return [
-          {
-            component: ActionButton,
-            componentProps: {
+        return {
+          componentProps: {
+            indent: {
               action: () => {
                 editor.commands.indent();
               },
@@ -47,19 +47,16 @@ export const Indent = /* @__PURE__ */ Extension.create<IndentOptions>({
               icon: 'IndentIncrease',
               tooltip: t('editor.indent.tooltip'),
             },
-          },
-          {
-            component: ActionButton,
-            componentProps: {
+            outdent: {
               action: () => {
                 editor.commands.outdent();
               },
               shortcutKeys: extension.options.shortcutKeys?.[1] ?? ['Shift', 'Tab'],
               icon: 'IndentDecrease',
-              tooltip: t('editor.outdent.tooltip'),
-            },
-          },
-        ];
+              tooltip: t('editor.outdent.tooltip')
+            }
+          }
+        };
       },
     };
   },

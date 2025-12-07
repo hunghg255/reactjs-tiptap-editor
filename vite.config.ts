@@ -9,7 +9,6 @@ import autoprefixer from 'autoprefixer'
 import postcssReplace from 'postcss-replace'
 import { globbySync } from 'globby'
 
-
 // https://vitejs.dev/config/
 export default defineConfig(async ({ mode }) => {
   const isDev = mode !== 'production';
@@ -17,7 +16,7 @@ export default defineConfig(async ({ mode }) => {
   const entry = [
     path.resolve(__dirname, 'src/index.ts'),
     path.resolve(__dirname, 'src/locale-bundle.ts'),
-    path.resolve(__dirname, 'src/components/menus/bubble-extra.ts'),
+    path.resolve(__dirname, 'src/bubble.ts'),
   ]
 
   const files = await globbySync('src/extensions/**/*.ts', {
@@ -30,24 +29,9 @@ export default defineConfig(async ({ mode }) => {
   files.forEach((v: any) => {
     const vv = v.replace('src/', '')
     const [, _name, i] = vv.split('/')
-    if (!_name?.includes('BaseKit')) {
-      entry.push(path.resolve(__dirname, `src/extensions/${_name}/${_name}.ts`))
 
-      exports[`./${_name.toLowerCase()}`] = {
-        require: {
-          types: `./lib/${_name}.d.cts`,
-          default: `./lib/${_name}.cjs`,
-        },
-        import: {
-          types: `./lib/${_name}.d.ts`,
-          default: `./lib/${_name}.js`,
-        },
-      }
-      typeVersions[`./${_name.toLowerCase()}`] = [
-        `./lib/${_name}.d.ts`,
-      ]
-    } else if (_name?.includes('BaseKit')) {
-      entry.push(path.resolve(__dirname, `src/extensions/${_name}`))
+    if (_name) {
+      entry.push(path.resolve(__dirname, `src/extensions/${_name}/${_name}.ts`))
 
       exports[`./${_name.toLowerCase()}`] = {
         require: {
@@ -138,7 +122,9 @@ export default defineConfig(async ({ mode }) => {
             return assetInfo.name;
           },
         },
-        external: ['react', 'react-dom', 'react/jsx-runtime', 'katex', 'docx', '@radix-ui/react-dropdown-menu', '@radix-ui/react-icons', '@radix-ui/react-label', '@radix-ui/react-popover', '@radix-ui/react-separator', '@radix-ui/react-slot', '@radix-ui/react-switch', '@radix-ui/react-tabs', '@radix-ui/react-toast', '@radix-ui/react-toggle', '@radix-ui/react-tooltip', '@radix-ui/react-select', '@radix-ui/react-checkbox', 'react-colorful', 'scroll-into-view-if-needed', 'lucide-react', 'prosemirror-docx', 're-resizable', '@excalidraw/excalidraw', '@radix-ui/react-dialog', 'react-image-crop', 'mermaid', 'easydrawer', 'frimousse'],
+        external: ['@tiptap/pm/model',
+        '@tiptap/pm/state',
+        '@tiptap/pm/view','react', 'react-dom', 'react/jsx-runtime', 'katex', 'docx', '@radix-ui/react-dropdown-menu', '@radix-ui/react-icons', '@radix-ui/react-label', '@radix-ui/react-popover', '@radix-ui/react-separator', '@radix-ui/react-slot', '@radix-ui/react-switch', '@radix-ui/react-tabs', '@radix-ui/react-toast', '@radix-ui/react-toggle', '@radix-ui/react-tooltip', '@radix-ui/react-select', '@radix-ui/react-checkbox', 'react-colorful', 'scroll-into-view-if-needed', 'lucide-react', 'prosemirror-docx', 're-resizable', '@excalidraw/excalidraw', '@radix-ui/react-dialog', 'react-image-crop', 'mermaid', 'easydrawer', 'frimousse'],
       },
     },
   }

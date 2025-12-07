@@ -4,21 +4,13 @@ import { HorizontalRule as TiptapHorizontalRule } from '@tiptap/extension-horizo
 
 import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
+export * from './components/RichTextHorizontalRule';
 
 export interface HorizontalRuleOptions
   extends TiptapHorizontalRuleOptions,
   GeneralOptions<HorizontalRuleOptions> {}
 
 export const HorizontalRule = /* @__PURE__ */ TiptapHorizontalRule.extend<HorizontalRuleOptions>({
-  renderHTML() {
-    return [
-      'div',
-      mergeAttributes(this.options.HTMLAttributes, {
-        'data-type': this.name,
-      }),
-      ['hr'],
-    ];
-  },
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
@@ -40,5 +32,14 @@ export const HorizontalRule = /* @__PURE__ */ TiptapHorizontalRule.extend<Horizo
     return {
       'Mod-Alt-s': () => this.editor.commands.setHorizontalRule(),
     };
+  },
+  renderHTML() {
+    return [
+      'div',
+      mergeAttributes(this.options.HTMLAttributes, {
+        'data-type': this.name,
+      }),
+      ['hr'],
+    ];
   },
 });

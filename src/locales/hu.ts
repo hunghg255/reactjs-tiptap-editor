@@ -161,6 +161,7 @@ const locale = {
   'editor.textDirection.auto.tooltip': 'Automatikus',
   'editor.textDirection.ltr.tooltip': 'Balról jobbra',
   'editor.textDirection.rtl.tooltip': 'Jobbról balra',
+  'editor.textDirection.unset.tooltip': 'Beállítás visszavonása',
   'editor.attachment.tooltip': 'Csatolmány',
   'editor.attachment.uploading': 'Feltöltés alatt',
   'editor.attachment.please_upload': 'Töltse fel a fájlt',

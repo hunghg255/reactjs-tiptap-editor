@@ -1,12 +1,11 @@
 import type {
   ToastProps,
 } from '@/components/ui/toast';
-import { type TranslationFunction } from '@/locales';
 
 interface ValidateFileOptions {
   acceptMimes: string[];
   maxSize: number;
-  t: TranslationFunction;
+  t: any;
   toast: (props: ToastProps) => void;
   onError?: (error: {
     type: 'size' | 'type' | 'upload';

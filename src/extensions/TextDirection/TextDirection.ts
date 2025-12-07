@@ -1,14 +1,15 @@
 import { Extension } from '@tiptap/core';
 
-import TextDirectionButton from '@/extensions/TextDirection/components/TextDirectionButton';
+export * from '@/extensions/TextDirection/components/RichTextTextDirection';
+
+export * from '@/extensions/TextDirection/components/RichTextTextDirection';
 
 const TextDirection = /* @__PURE__ */ Extension.create({
-  name: 'text-direction',
+  name: 'richTextTextDirection',
   addOptions() {
     return {
       ...this.parent?.(),
-      types: ['heading', 'paragraph'],
-      directions: ['auto', 'ltr', 'rtl'],
+      directions: ['auto', 'ltr', 'rtl', 'unset'],
       defaultDirection: 'auto',
       button({
         editor,
@@ -25,14 +26,15 @@ const TextDirection = /* @__PURE__ */ Extension.create({
           auto: 'TextDirection',
           ltr: 'LeftToRight',
           rtl: 'RightToLeft',
+          unset: 'X',
         } as any;
 
         const items = directions.map(k => ({
           title: t(`editor.textDirection.${k}.tooltip`),
+          value: k,
           icon: iconMap[k],
-          isActive: () => false,
           action: () => {
-            if (k === 'auto') {
+            if (k === 'unset') {
               editor.commands?.unsetTextDirection?.();
               return;
             }
@@ -41,52 +43,15 @@ const TextDirection = /* @__PURE__ */ Extension.create({
           },
           disabled: false,
         }));
-        const disabled = items.filter(k => k.disabled).length === items.length;
 
         return {
-          component: TextDirectionButton,
           componentProps: {
             icon: 'TextDirection',
             tooltip: t('editor.textDirection.tooltip'),
-            disabled,
             items,
+            isActive: () => editor.getAttributes('paragraph'),
           },
         };
-      },
-    };
-  },
-  addGlobalAttributes() {
-    return [
-      {
-        types: this.options.types,
-        attributes: {
-          dir: {
-            default: this.options.defaultDirection,
-            parseHTML: (element: any) => {
-              if (element.attributes.dir && this.options.directions.includes(element.attributes.dir)) {
-                return element.attributes.dir.value;
-              } else {
-                return this.options.defaultDirection;
-              }
-            },
-            renderHTML: (attributes) => {
-              return { dir: attributes.dir };
-            },
-          },
-        },
-      },
-    ];
-  },
-  addCommands() {
-    return {
-      setTextDirection: (direction: any) => ({ commands }: any) => {
-        if (!this.options.directions.includes(direction)) {
-          return false;
-        }
-        return this.options.types.every((type: any) => commands.updateAttributes(type, { dir: direction }));
-      },
-      unsetTextDirection: () => ({ commands }: any) => {
-        return this.options.types.every((type: any) => commands.resetAttributes(type, 'dir'));
       },
     };
   },

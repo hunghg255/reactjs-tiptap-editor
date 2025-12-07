@@ -161,6 +161,7 @@ const locale = {
   'editor.textDirection.auto.tooltip': 'Auto',
   'editor.textDirection.ltr.tooltip': 'Left to Right',
   'editor.textDirection.rtl.tooltip': 'Right to Left',
+  'editor.textDirection.unset.tooltip': 'Unset',
   'editor.attachment.tooltip': 'Attachment',
   'editor.attachment.uploading': 'Uploading',
   'editor.attachment.please_upload': 'Please upload the file',

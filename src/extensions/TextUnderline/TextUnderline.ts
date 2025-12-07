@@ -1,8 +1,9 @@
 import type { UnderlineOptions as TiptapUnderlineOptions } from '@tiptap/extension-underline';
 import TiptapUnderline from '@tiptap/extension-underline';
 
-import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
+
+export * from './components/RichTextUnderline';
 
 export interface UnderlineOptions
   extends TiptapUnderlineOptions,
@@ -16,7 +17,6 @@ export const TextUnderline = /* @__PURE__ */ TiptapUnderline.extend<UnderlineOpt
       ...this.parent?.(),
       button({ editor, t, extension }: any) {
         return {
-          component: ActionButton,
           componentProps: {
             action: () => editor.commands.toggleUnderline(),
             isActive: () => editor.isActive('underline') || false,

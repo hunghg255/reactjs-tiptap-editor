@@ -1,1 +1,1 @@
-export { default } from '@/components/RichTextEditor';
+export * from '@/components/RichTextProvider';

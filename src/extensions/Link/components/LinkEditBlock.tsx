@@ -2,10 +2,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useEffect, useState, useRef } from 'react';
 
+import type { Mark } from '@tiptap/pm/model';
+
 import { Button, IconComponent, Input, Label, Switch } from '@/components';
 import Link from '@/extensions/Link/Link';
 import { useLocale } from '@/locales';
-import type { Mark } from '@tiptap/pm/model';
+import { useExtension } from '@/hooks/useExtension';
 
 interface IPropsLinkEditBlock {
   editor: any;
@@ -25,14 +27,13 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
 
   const textInputRef = useRef<HTMLInputElement>(null);
   const linkInputRef = useRef<HTMLInputElement>(null);
+  const extension = useExtension(Link.name);
 
   useEffect(() => {
     const updateForm = () => {
       const { from, to, empty } = props.editor.state.selection;
 
-      const LinkOptions = props.editor.extensionManager.extensions.find(
-        (ext: any) => ext.name === Link.name,
-      )?.options;
+      const LinkOptions = extension?.options;
 
       let text = '';
       let link = '';
@@ -73,17 +74,14 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
       }
     };
 
-    // 初始更新
     updateForm();
 
-    // 添加选中变化监听
     props.editor.on('selectionUpdate', updateForm);
 
-    // 清理监听
     return () => {
       props.editor.off('selectionUpdate', updateForm);
     };
-  }, [props.editor, props.open]);
+  }, [props.editor, extension, props.open]);
 
   function handleSubmit(event: any) {
     event.preventDefault();
@@ -102,10 +100,10 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
         <div className="richtext-mb-[10px] richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
           <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
             <Input
-              ref={textInputRef}
               className="richtext-w-80"
               onChange={(e) => setForm({ ...form, text: e.target.value })}
               placeholder="Text"
+              ref={textInputRef}
               required
               type="text"
               value={form.text}
@@ -120,9 +118,9 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
         <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
           <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
             <Input
-              ref={linkInputRef}
               className="richtext-pl-10"
               onChange={(e) => setForm({ ...form, link: e.target.value })}
+              ref={linkInputRef}
               required
               type="url"
               value={form.link}

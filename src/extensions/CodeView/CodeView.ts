@@ -2,12 +2,13 @@
 import { Extension } from '@tiptap/core';
 import type { Editor } from '@tiptap/core';
 
-import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
 
-export interface CodeViewOptions extends GeneralOptions<CodeViewOptions> {
+interface CodeViewOptions extends GeneralOptions<CodeViewOptions> {
   isCodeViewMode?: boolean;
 }
+
+export * from './components/RichTextCodeView';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -28,17 +29,16 @@ export const CodeView = /* @__PURE__ */ Extension.create<CodeViewOptions>({
       ...this.parent?.(),
       button({ editor, t }: { editor: Editor; t: (...args: any[]) => string }) {
         return {
-          component: ActionButton,
           componentProps: {
             action: () => {
               editor.commands.toggleCodeView();
             },
             isActive: () => {
   //@ts-expect-error
-              return editor.storage.codeView.isActive || false;
+              return editor.storage.codeView.isActive;
             },
             disabled: false,
-            icon: 'CodeView',
+            icon: 'Html',
             tooltip: t('editor.codeView.tooltip') || 'View HTML Code',
             customClass: 'tiptap-code-view-button',
           },

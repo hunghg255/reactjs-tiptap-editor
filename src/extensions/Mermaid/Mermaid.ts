@@ -4,7 +4,7 @@ import { mergeAttributes } from '@tiptap/core';
 import TiptapImage from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import { MermaidActiveButton } from '@/extensions/Mermaid/components/MermaidActiveButton';
+export * from '@/extensions/Mermaid/components/RichTextMermaid';
 import { NodeViewMermaid } from '@/extensions/Mermaid/components/NodeViewMermaid/NodeViewMermaid';
 import type { GeneralOptions } from '@/types';
 
@@ -41,7 +41,6 @@ export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
         class: 'mermaid',
       },
       button: ({ editor, t, extension }: any) => ({
-        component: MermaidActiveButton,
         componentProps: {
           action: () => {
             return true;

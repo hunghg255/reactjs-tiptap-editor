@@ -3,7 +3,7 @@ import type { ImageOptions } from '@tiptap/extension-image';
 import TiptapImage from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-import ImageGifActionButton from '@/extensions/ImageGif/components/ImageGifActionButton';
+export * from '@/extensions/ImageGif/components/RichTextImageGif';
 import ImageGifView from '@/extensions/ImageGif/components/ImageGifView';
 
 export interface SetImageAttrsOptions {
@@ -66,11 +66,9 @@ export const ImageGif = /* @__PURE__ */ TiptapImage.extend<ImageGifOptions>({
         const apiKey = extension?.options?.API_KEY || '';
 
         return {
-          component: ImageGifActionButton,
           componentProps: {
-            editor,
-            action: () => {
-              return;
+            action: (src: string) => {
+              editor.chain().focus().setImageGif({ src }).run();
             },
             isActive: () => false,
             disabled: false,

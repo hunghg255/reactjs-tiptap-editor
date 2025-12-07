@@ -29,10 +29,11 @@ export interface ActionMenuButtonProps {
   isActive?: ButtonViewReturnComponentProps['isActive']
   /** Whether to render as child */
   asChild?: boolean
+  dataState?: boolean
 }
 
 const ActionMenuButton = React.forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
-  ({ asChild, ...props }, ref) => {
+  ({ asChild = false, tooltip, ...props }, ref) => {
     const Icon = icons[props.icon];
     const Comp = asChild ? Slot : Button;
 
@@ -41,6 +42,7 @@ const ActionMenuButton = React.forwardRef<HTMLButtonElement, ActionMenuButtonPro
         <TooltipTrigger asChild>
           <Comp
             className="richtext-h-[32px] richtext-min-w-24 richtext-overflow-hidden richtext-px-[5px]  richtext-py-0"
+            data-state={props?.dataState ? 'on' : 'off'} // active background control
             disabled={props?.disabled}
             ref={ref}
             variant="ghost"
@@ -58,10 +60,10 @@ const ActionMenuButton = React.forwardRef<HTMLButtonElement, ActionMenuButtonPro
           </Comp>
         </TooltipTrigger>
 
-        <TooltipContent {...props.tooltipOptions}>
+        {tooltip && <TooltipContent>
           <div className="richtext-flex richtext-max-w-24 richtext-flex-col richtext-items-center richtext-text-center">
-            {props?.tooltip && <div>
-              {props?.tooltip}
+            {tooltip && <div>
+              {tooltip}
             </div>}
 
             <div className="richtext-flex">
@@ -70,7 +72,7 @@ const ActionMenuButton = React.forwardRef<HTMLButtonElement, ActionMenuButtonPro
               </span>}
             </div>
           </div>
-        </TooltipContent>
+        </TooltipContent>}
       </Tooltip>
     );
   },

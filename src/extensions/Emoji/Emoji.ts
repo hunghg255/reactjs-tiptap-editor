@@ -1,19 +1,14 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { computePosition } from '@floating-ui/dom';
 import TiptapEmoji from '@tiptap/extension-emoji';
-import { PluginKey } from '@tiptap/pm/state';
 import { ReactRenderer } from '@tiptap/react';
 
-import EmojiPicker from '@/extensions/Emoji/components/EmojiPicker/EmojiPicker';
+import { updatePosition } from '@/utils/updatePosition';
 
-import { EmojiList } from './components/EmojiList/EmojiList';
-import { emojiSearch, emojisToName } from './components/EmojiList/emojis';
+import EmojiNodeView from './components/EmojiList/EmojiNodeView';
+
+export * from '@/extensions/Emoji/components/RichTextEmoji';
 
 export const EXTENSION_PRIORITY_HIGHEST = 200;
-
-export const EmojiPluginKey = new PluginKey('emoji');
-
-export { emojisToName };
 
 export const Emoji = /* @__PURE__ */ TiptapEmoji.extend({
   priority: EXTENSION_PRIORITY_HIGHEST,
@@ -27,14 +22,14 @@ export const Emoji = /* @__PURE__ */ TiptapEmoji.extend({
 
       button: ({ editor, t }: any) => {
         return {
-          component: EmojiPicker,
           componentProps: {
             editor,
-            action: () => {
-              return;
+            action: (emoji: any) => {
+              const { selection } = editor.state;
+              const { $anchor } = selection;
+              editor.chain().focus().insertContentAt($anchor.pos, emoji).run();
             },
-            isActive: () => false,
-            disabled: false,
+            isActive: () => true,
             icon: 'EmojiIcon',
             tooltip: t('editor.emoji.tooltip'),
           },
@@ -45,84 +40,58 @@ export const Emoji = /* @__PURE__ */ TiptapEmoji.extend({
 
 }).configure({
   suggestion: {
-    items: ({ query }: any) => {
-      return emojiSearch(query);
-    },
+    // items: ({ query }: any) => {
+    //   return emojiSearch(query);
+    // },
 
     allowSpaces: false,
 
     render: () => {
-      let component: any;
+              let reactRenderer: any;
 
-      function repositionComponent(clientRect: any) {
-        if (!component || !component.element) {
-          return;
-        }
+              return {
+                onStart: (props: any) => {
+                  if (!props.clientRect) {
+                    return;
+                  }
 
-        const virtualElement = {
-          getBoundingClientRect() {
-            return clientRect;
-          },
-        };
+                  reactRenderer = new ReactRenderer(EmojiNodeView, {
+                    props,
+                    editor: props.editor,
+                  });
 
-        computePosition(virtualElement, component.element, {
-          placement: 'bottom-start',
-        }).then(pos => {
-          Object.assign(component.element.style, {
-            left: `${pos.x}px`,
-            top: `${pos.y}px`,
-            position: pos.strategy === 'fixed' ? 'fixed' : 'absolute',
-          });
-        });
-      }
+                  reactRenderer.element.style.position = 'absolute';
 
-      const onClose = () => {
-        if (!component) return;
-        if (document.body.contains(component.element)) {
-          document.body.removeChild(component.element);
-        }
-        component.destroy();
-      };
+                  document.body.appendChild(reactRenderer.element);
 
-      return {
-        onStart: (props: any) => {
-              onClose();
+                  updatePosition(props.editor, reactRenderer.element);
+                },
 
-          component = new ReactRenderer(EmojiList, {
-            props: {
-              ...props,
-              onClose
+                onUpdate(props) {
+                  reactRenderer.updateProps(props);
+
+                  if (!props.clientRect) {
+                    return;
+                  }
+                  updatePosition(props.editor, reactRenderer.element);
+                },
+
+                onKeyDown(props) {
+                  if (props.event.key === 'Escape') {
+                    reactRenderer.destroy();
+                    reactRenderer.element.remove();
+
+                    return true;
+                  }
+
+                  return reactRenderer.ref?.onKeyDown(props);
+                },
+
+                onExit() {
+                  reactRenderer.destroy();
+                  reactRenderer.element.remove();
+                },
+              };
             },
-            editor: props.editor,
-          });
-
-          document.body.appendChild(component.element);
-          repositionComponent(props.clientRect());
-        },
-
-        onUpdate(props: any) {
-          component.updateProps(props);
-          repositionComponent(props.clientRect());
-        },
-
-        onKeyDown(props) {
-          if (props.event.key === 'Escape') {
-            document.body.removeChild(component.element);
-            component.destroy();
-
-            return true;
-          }
-
-          return component.ref?.onKeyDown(props);
-        },
-
-        // onExit() {
-        //   if (document.body.contains(component.element)) {
-        //     document.body.removeChild(component.element);
-        //   }
-        //   component.destroy();
-        // },
-      };
-    },
   }
 });

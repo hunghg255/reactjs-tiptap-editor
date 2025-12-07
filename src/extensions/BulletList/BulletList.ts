@@ -2,8 +2,9 @@
 // import { BulletList as TiptapBulletList } from '@tiptap/extension-bullet-list';
 import { BulletList as TiptapBulletList, type BulletListOptions as  TiptapBulletListOptions } from '@tiptap/extension-list';
 
-import { ActionButton } from '@/components';
 import type { GeneralOptions } from '@/types';
+
+export * from './components/RichTextBulletList';
 
 export interface BulletListOptions
   extends TiptapBulletListOptions,
@@ -16,10 +17,10 @@ export const BulletList = /* @__PURE__ */ TiptapBulletList.extend<BulletListOpti
     return {
       ...this.parent?.(),
       button: ({ editor, t, extension }) => ({
-        component: ActionButton,
+        // component: ActionButton,
         componentProps: {
           action: () => editor.commands.toggleBulletList(),
-          isActive: () => editor.isActive('bulletList') || false,
+          isActive: () => editor.isActive('bulletList'),
           disabled: false,
           shortcutKeys: extension.options.shortcutKeys ?? ['shift', 'mod', '8'],
           icon: 'List',

@@ -1,82 +1,65 @@
-import { Extension } from '@tiptap/core';
-import type { Editor } from '@tiptap/core';
+import { LineHeight as TiptapLineHeight, type LineHeightOptions as TiptapLineHeightOptions } from '@tiptap/extension-text-style';
 
-import { DEFAULT_LINE_HEIGHT, DEFAULT_LINE_HEIGHT_LIST } from '@/constants';
-import LineHeightDropdown from '@/extensions/LineHeight/components/LineHeightDropdown';
+import { DEFAULT_LINE_HEIGHT_LIST } from '@/constants';
 import type { GeneralOptions } from '@/types';
-import { createLineHeightCommand } from '@/utils/line-height';
 
-export {
-  DEFAULT_LINE_HEIGHT_LIST
-};
+export * from './components/RichTextLightHeight';
 
-export interface LineHeightOptions extends GeneralOptions<LineHeightOptions> {
-  types: string[]
+export interface LineHeightOptions extends GeneralOptions<TiptapLineHeightOptions> {
   lineHeights: string[]
-  defaultHeight: string
 }
 
-declare module '@tiptap/core' {
-  interface Commands<ReturnType> {
-    lineHeight: {
-      setLineHeight: (lineHeight: string) => ReturnType
-      unsetLineHeight: () => ReturnType
-    }
-  }
-}
-
-export const LineHeight = /* @__PURE__ */ Extension.create<LineHeightOptions>({
-  name: 'lineHeight',
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+export const LineHeight = /* @__PURE__ */ TiptapLineHeight.extend<LineHeightOptions>({
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
       ...this.parent?.(),
-      types: ['paragraph', 'heading', 'list_item', 'todo_item'],
       lineHeights: DEFAULT_LINE_HEIGHT_LIST,
-      defaultHeight: DEFAULT_LINE_HEIGHT,
-      button({ editor, t }: { editor: Editor, t: any }) {
+      button({ editor, extension, t }: any) {
+        const items = extension?.options?.lineHeights?.map((item: any) => {
+
+          return {
+            label: item === 'Default' ? t('editor.default') : String(item),
+            value: item,
+            isActive: () => {
+              const isDefault = item === 'Default';
+              if (isDefault) {
+                return true;
+              }
+              return editor.isActive('textStyle', { lineHeight: item }) || false;
+            },
+            action: () => {
+              if (item === 'Default') {
+                editor.chain().focus().unsetLineHeight().run();
+                return;
+              }
+              editor.chain().focus().toggleTextStyle({ lineHeight: item }).run();
+            },
+            // disabled: !editor.can().setFontSize(String(k.value)),
+            default: item === 'Default' || false,
+          };
+        });
+
         return {
-          component: LineHeightDropdown,
           componentProps: {
-            editor,
             tooltip: t('editor.lineheight.tooltip'),
+            items,
+            icon: 'LineHeight',
+            isActive: () => {
+              const find: any = (items || []).find((k: any) => k.isActive() && !k.default);
+              if (find && !find.default) {
+                return find;
+              }
+              const item = {
+                value: 'Default',
+                isActive: () => false,
+              };
+              return item;
+            },
           },
         };
       },
-    };
-  },
-
-  addGlobalAttributes() {
-    return [
-      {
-        types: this.options.types,
-        attributes: {
-          lineHeight: {
-            default: null,
-            parseHTML: (element) => {
-              return element.style.lineHeight || this.options.defaultHeight;
-            },
-            renderHTML: (attributes) => {
-              if (attributes.lineHeight === this.options.defaultHeight || !attributes.lineHeight) {
-                return {};
-              }
-              return { style: `line-height: ${attributes.lineHeight}` };
-            },
-          },
-        },
-      },
-    ];
-  },
-
-  addCommands() {
-    return {
-      setLineHeight: lineHeight => createLineHeightCommand(lineHeight),
-      unsetLineHeight:
-        () =>
-          ({ commands }) => {
-            return this.options.types.every(type => commands.resetAttributes(type, 'lineHeight'));
-          },
     };
   },
 });

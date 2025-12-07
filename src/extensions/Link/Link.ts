@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { getMarkRange, mergeAttributes } from '@tiptap/core';
+import { mergeAttributes } from '@tiptap/core';
 import type { LinkOptions as TiptapLinkOptions } from '@tiptap/extension-link';
 import { Link as TiptapLink } from '@tiptap/extension-link';
-import { Plugin, TextSelection } from '@tiptap/pm/state';
-import type { EditorView } from '@tiptap/pm/view';
 
-import LinkEditPopover from '@/extensions/Link/components/LinkEditPopover';
 import type { GeneralOptions } from '@/types';
+
+export * from '@/extensions/Link/components/RichTextLink';
 
 export interface LinkOptions
   extends TiptapLinkOptions,
@@ -38,12 +37,10 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
     const presetTarget = parentOptions.HTMLAttributes?.target;
     return {
       ...parentOptions,
-      openOnClick: true,
+      openOnClick: false,
       button: ({ editor, t }) => {
         return {
-          component: LinkEditPopover,
           componentProps: {
-            editor,
             action: (value) => {
               const { link, text, openInNewTab } = value;
 
@@ -81,8 +78,7 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
                 .focus()
                 .run();
             },
-            id: 'linkk',
-            isActive: () => editor.isActive('link') || false,
+            isActive: () => editor.isActive('link'),
             disabled: !editor.can().setLink({ href: '' }),
             icon: 'Link',
             tooltip: t('editor.link.tooltip'),
@@ -93,39 +89,40 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
     };
   },
 
-  addProseMirrorPlugins() {
-    return [
-      new Plugin({
-        props: {
-          handleClick: (view: EditorView, pos: number) => {
-            const { schema, doc, tr } = view.state;
-            const range = getMarkRange(doc.resolve(pos), schema.marks.link);
-            if (!range) {
-              return false;
-            }
+  // addProseMirrorPlugins() {
+  //   return [
+  //     new Plugin({
+  //       key: new PluginKey(`richtextCustomPlugin${this.name}`),
+  //       props: {
+  //         handleClick: (view: EditorView, pos: number) => {
+  //           const { schema, doc, tr } = view.state;
+  //           const range = getMarkRange(doc.resolve(pos), schema.marks.link);
+  //           if (!range) {
+  //             return false;
+  //           }
 
-            // honor openOnClick setting
-            let mark: any = null;
-            doc.nodesBetween(range.from, range.to, (node) => {
-              mark = node.marks.find((m) => m.type === schema.marks.link);
-              return !mark;
-            });
-            if (this.options.openOnClick && mark?.attrs.href && pos !== range.to) {
-              window.open(mark.attrs.href, mark.attrs.target || '_self');
-              return true;
-            }
+  //           // honor openOnClick setting
+  //           let mark: any = null;
+  //           doc.nodesBetween(range.from, range.to, (node) => {
+  //             mark = node.marks.find((m) => m.type === schema.marks.link);
+  //             return !mark;
+  //           });
+  //           if (this.options.openOnClick && mark?.attrs.href && pos !== range.to) {
+  //             window.open(mark.attrs.href, mark.attrs.target || '_self');
+  //             return true;
+  //           }
 
-            const $start = doc.resolve(range.from);
-            const $end = doc.resolve(range.to);
-            const transaction = tr.setSelection(
-              new TextSelection($start, $end)
-            );
-            view.dispatch(transaction);
-          },
-        },
-      }),
-    ];
-  },
+  //           const $start = doc.resolve(range.from);
+  //           const $end = doc.resolve(range.to);
+  //           const transaction = tr.setSelection(
+  //             new TextSelection($start, $end)
+  //           );
+  //           view.dispatch(transaction);
+  //         },
+  //       },
+  //     }),
+  //   ];
+  // },
 });
 
 export default Link;

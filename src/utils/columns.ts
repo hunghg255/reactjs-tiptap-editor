@@ -3,7 +3,7 @@ import { findParentNode } from '@tiptap/core';
 import { Node } from '@tiptap/pm/model';
 import { type EditorState, TextSelection } from '@tiptap/pm/state';
 
-import { Column, MultiColumn } from '@/extensions/MultiColumn';
+import { ColumnNode, MultipleColumnNode } from '@/extensions/Column';
 
 export function createColumn(colType: any, index: any, colContent = null) {
   if (colContent) {
@@ -53,8 +53,8 @@ export function addOrDeleteCol({
   dispatch: any
   type: 'addBefore' | 'addAfter' | 'delete'
 }) {
-  const maybeColumns = findParentNode((node: Node) => node.type.name === MultiColumn.name)(state.selection);
-  const maybeColumn = findParentNode((node: Node) => node.type.name === Column.name)(state.selection);
+  const maybeColumns = findParentNode((node: Node) => node.type.name === MultipleColumnNode.name)(state.selection);
+  const maybeColumn = findParentNode((node: Node) => node.type.name === ColumnNode.name)(state.selection);
 
   if (dispatch && maybeColumns && maybeColumn) {
     const cols = maybeColumns.node;
@@ -109,8 +109,8 @@ export function addOrDeleteCol({
 }
 
 export function gotoCol({ state, dispatch, type }: { state: EditorState, dispatch: any, type: 'before' | 'after' }) {
-  const maybeColumns = findParentNode((node: Node) => node.type.name === MultiColumn.name)(state.selection);
-  const maybeColumn = findParentNode((node: Node) => node.type.name === Column.name)(state.selection);
+  const maybeColumns = findParentNode((node: Node) => node.type.name === MultipleColumnNode.name)(state.selection);
+  const maybeColumn = findParentNode((node: Node) => node.type.name === ColumnNode.name)(state.selection);
 
   if (dispatch && maybeColumns && maybeColumn) {
     const cols = maybeColumns.node;
