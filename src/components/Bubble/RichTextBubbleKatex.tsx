@@ -6,15 +6,15 @@ import { Pencil, Trash2 } from 'lucide-react';
 
 import { ActionButton } from '@/components/ActionButton';
 import { Button } from '@/components/ui';
+import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Katex } from '@/extensions/Katex';
 import type { IKatexAttrs } from '@/extensions/Katex';
 import { useAttributes } from '@/hooks/useAttributes';
-import { deleteNode } from '@/utils/delete-node';
-import { useEditableEditor } from '@/store/store';
-import { useEditorInstance } from '@/store/editor';
-import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useLocale } from '@/locales';
+import { useEditorInstance } from '@/store/editor';
+import { useEditableEditor } from '@/store/store';
+import { deleteNode } from '@/utils/delete-node';
 
 function ModalEditKatex ({
   children,
@@ -69,10 +69,11 @@ function ModalEditKatex ({
     [currentValue, formatText],
   );
 
-  return <Dialog
+  return (
+<Dialog
       onOpenChange={toggleVisible}
       open={visible}
-    >
+>
       <DialogTrigger
         asChild
       >
@@ -90,15 +91,15 @@ function ModalEditKatex ({
           <div className="richtext-flex richtext-gap-[10px] richtext-rounded-[10px] richtext-p-[10px]">
             <Textarea
               autoFocus
-              onChange={e => setCurrentValue(e.target.value)}
-              required
-              value={currentValue}
-
               className="richtext-flex-1"
+              onChange={e => setCurrentValue(e.target.value)}
               placeholder="Text"
+
+              required
               rows={10}
+              value={currentValue}
               style={{
-                color: 'hsl(var(--richtext-foreground))',
+                color: 'hsl(var(--foreground))',
               }}
             />
 
@@ -119,7 +120,8 @@ function ModalEditKatex ({
           </Button>
         </DialogFooter>
       </DialogContent>
-  </Dialog>;
+</Dialog>
+);
 }
 
 export function RichTextBubbleKatex() {
@@ -142,14 +144,13 @@ export function RichTextBubbleKatex() {
   return (
     <BubbleMenu
       editor={editor}
-      shouldShow={shouldShow}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      shouldShow={shouldShow}
     >
-      <div className="richtext-rounded-lg !richtext-border richtext-border-neutral-200 richtext-bg-white richtext-p-2 richtext-shadow-sm dark:richtext-border-neutral-800 dark:richtext-bg-black">
-          <div className="richtext-flex richtext-items-center richtext-justify-center richtext-gap-[6px]">
+      <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
             <ModalEditKatex
-              visible={visible}
               toggleVisible={toggleVisible}
+              visible={visible}
             >
               <ActionButton action={() => toggleVisible(!visible)}
                 tooltip="Edit"
@@ -163,7 +164,6 @@ export function RichTextBubbleKatex() {
             >
               <Trash2 size={16} />
             </ActionButton>
-          </div>
       </div>
     </BubbleMenu>
   );

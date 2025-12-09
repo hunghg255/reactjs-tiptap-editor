@@ -162,7 +162,7 @@ export function RichTextMermaid () {
               rows={10}
               value={mermaidCode}
               style={{
-                color: 'hsl(var(--richtext-foreground))',
+                color: 'hsl(var(--foreground))',
               }}
             />
 

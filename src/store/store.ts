@@ -12,10 +12,6 @@ const { Provider: ProviderEditableEditor, useStore: useStoreEditableEditor } = c
   value: false
 });
 
-const { Provider: ProviderTheme, useStore: useStoreTheme } = createFastContext({
-  value: 'light'
-});
-
 function useEditableEditor () {
   const [isEditableEditor] = useStoreEditableEditor(store => store.value);
 
@@ -32,7 +28,4 @@ export {
   ProviderEditableEditor,
   useStoreEditableEditor,
   useEditableEditor,
-
-  ProviderTheme,
-  useStoreTheme,
 };

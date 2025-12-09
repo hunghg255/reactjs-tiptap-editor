@@ -5,8 +5,8 @@ import clsx from 'clsx';
 import { Resizable } from 're-resizable';
 
 import { Button, Input } from '@/components/ui';
-import { getServiceSrc } from '@/extensions/Iframe/utils';
 import { Iframe } from '@/extensions/Iframe/Iframe';
+import { getServiceSrc } from '@/extensions/Iframe/utils';
 import { useEditableEditor } from '@/store/store';
 
 import styles from './index.module.scss';
@@ -45,7 +45,7 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
   return (
     <NodeViewWrapper>
       {!src && (
-        <div className="richtext-mx-auto richtext-my-[12px] richtext-flex richtext-max-w-[600px] richtext-items-center richtext-justify-center richtext-gap-[10px] richtext-rounded-[12px] richtext-border richtext-border-solid richtext-border-[#ccc] richtext-p-[10px]">
+        <div className="richtext-mx-auto richtext-my-[12px] richtext-flex richtext-max-w-[600px] richtext-items-center richtext-justify-center richtext-gap-[10px] richtext-rounded-[12px] richtext-border richtext-border-solid richtext-border-border richtext-p-[10px]">
           <Input
             autoFocus
             className="richtext-flex-1"

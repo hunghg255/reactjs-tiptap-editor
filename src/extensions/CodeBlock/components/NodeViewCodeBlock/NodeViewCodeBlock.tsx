@@ -57,6 +57,8 @@ import { matchBrackets } from 'prism-code-editor-lightweight/match-brackets';
 import { matchTags } from 'prism-code-editor-lightweight/match-tags';
 
 // import { useEditableEditor } from '@/store/editableEditor';
+
+import { useEditableEditor } from '@/store/store';
 import { deleteNode } from '@/utils/delete-node';
 
 import styles from './index.module.scss';
@@ -84,8 +86,7 @@ const languages = [
 const tabSizes = [2, 4, 8];
 
 export function NodeViewCodeBlock(props: any) {
-  // const isEditable = useEditableEditor();
-  const isEditable = false;
+  const isEditable = useEditableEditor();
 
   const containerRef: any = useRef<HTMLPreElement>(null);
 
@@ -157,7 +158,7 @@ export function NodeViewCodeBlock(props: any) {
     if (containerRef.current) {
       const attrs = validateAndUpdateLanguage(props.node.attrs);
       codeEditor.current = createEditor(containerRef.current, {
-        readOnly: !props.editor.isEditable,
+        readOnly: !isEditable,
         language: attrs.language || 'plaintext',
         tabSize: attrs.tabSize ?? 2,
         lineNumbers: attrs.lineNumbers ?? true,
@@ -230,7 +231,6 @@ export function NodeViewCodeBlock(props: any) {
               </SelectTrigger>
 
               <SelectContent
-                className="richtext-border-[#3a3f4b] richtext-bg-[#21252b] richtext-text-[#ccc]"
                 onCloseAutoFocus={(e) => e.preventDefault()}
               >
                 {
@@ -310,7 +310,6 @@ export function NodeViewCodeBlock(props: any) {
               </SelectTrigger>
 
               <SelectContent
-                className="richtext-border-[#3a3f4b] richtext-bg-[#21252b] richtext-text-[#ccc]"
                 onCloseAutoFocus={(e) => e.preventDefault()}
               >
                 {

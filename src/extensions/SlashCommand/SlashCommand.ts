@@ -1,6 +1,5 @@
 import type { Editor, Range } from '@tiptap/core';
 import { Extension } from '@tiptap/core';
-import { PluginKey } from '@tiptap/pm/state';
 import { ReactRenderer } from '@tiptap/react';
 import { Suggestion } from '@tiptap/suggestion';
 
@@ -14,33 +13,41 @@ export const SlashCommand = /* @__PURE__ */ Extension.create<any>({
   name: 'richtextSlashCommand',
   priority: 200,
 
+  // addOptions() {
+  //   return {
+  //     suggestion: {
+  //       char: '/',
+  //     },
+  //   };
+  // },
+
   addProseMirrorPlugins() {
     return [
       Suggestion({
         editor: this.editor,
         char: '/',
-        allowSpaces: true,
-        startOfLine: true,
-        pluginKey: new PluginKey(`richtextCustomPlugin${this.name}`),
+        // allowSpaces: true,
+        // startOfLine: true,
+        // pluginKey: new PluginKey(`richtextCustomPlugin${this.name}`),
 
-        allow: ({ state, range }) => {
-          const $from = state.doc.resolve(range.from);
-          const isRootDepth = $from.depth === 1;
-          const isParagraph = $from.parent.type.name === 'paragraph';
-          const isStartOfNode = $from.parent.textContent?.charAt(0) === '/';
+        // allow: ({ state, range }) => {
+        //   const $from = state.doc.resolve(range.from);
+        //   const isRootDepth = $from.depth === 1;
+        //   const isParagraph = $from.parent.type.name === 'paragraph';
+        //   const isStartOfNode = $from.parent.textContent?.charAt(0) === '/';
 
-          const isInColumn = this.editor.isActive('column');
-          const afterContent = $from.parent.textContent?.slice(
-            Math.max(0, $from.parent.textContent?.indexOf('/')),
-          );
-          const isValidAfterContent = !afterContent?.endsWith('  ');
+        //   const isInColumn = this.editor.isActive('column');
+        //   const afterContent = $from.parent.textContent?.slice(
+        //     Math.max(0, $from.parent.textContent?.indexOf('/')),
+        //   );
+        //   const isValidAfterContent = !afterContent?.endsWith('  ');
 
-          return (
-            ((isRootDepth && isParagraph && isStartOfNode)
-              || (isInColumn && isParagraph && isStartOfNode))
-            && isValidAfterContent
-          );
-        },
+        //   return (
+        //     ((isRootDepth && isParagraph && isStartOfNode)
+        //       || (isInColumn && isParagraph && isStartOfNode))
+        //     && isValidAfterContent
+        //   );
+        // },
 
         command: ({ editor, range, props }: { editor: Editor, range: Range, props: any }) => {
           const { view } = editor;
@@ -90,6 +97,9 @@ export const SlashCommand = /* @__PURE__ */ Extension.create<any>({
             },
 
             onExit() {
+              if (!reactRenderer) {
+                return;
+              }
               reactRenderer.destroy();
               reactRenderer.element.remove();
             },
@@ -97,18 +107,5 @@ export const SlashCommand = /* @__PURE__ */ Extension.create<any>({
         },
       }),
     ];
-  },
-
-  addStorage() {
-    return {
-      rect: {
-        width: 0,
-        height: 0,
-        left: 0,
-        top: 0,
-        right: 0,
-        bottom: 0,
-      },
-    };
-  },
+  }
 });

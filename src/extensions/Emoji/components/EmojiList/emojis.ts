@@ -1845,11 +1845,3 @@ export const EMOJI_LIST = Object.keys(EMOJI_OBJECT).map((key) => {
     emoji: EMOJI_OBJECT[key],
   };
 });
-
-export function useFilterEmojis (EmojiList: Array<{ name: string; emoji: string }>, query: string) {
-  const lowerCaseQuery = query.toLowerCase();
-
-  return EmojiList.filter(({ name }) =>
-    name.toLowerCase().includes(lowerCaseQuery)
-  );
-}

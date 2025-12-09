@@ -1,13 +1,14 @@
 import { useEffect, useId } from 'react';
+
 import { type Editor } from '@tiptap/core';
+
 import { TooltipProvider } from '@/components';
-import { ProviderEditor, useStoreEditor } from '@/store/editor';
+import { RESET_CSS } from '@/constants/resetCSS';
 import { ProviderUniqueId } from '@/store/ProviderUniqueId';
 import { removeCSS, updateCSS } from '@/utils/dynamicCSS';
-import { RESET_CSS } from '@/constants/resetCSS';
-import { themeActions } from '@/theme/theme';
 
 import '../styles/index.scss';
+import { EditorContext } from '@tiptap/react';
 
 interface IProviderRichTextProps {
   editor: Editor
@@ -15,33 +16,8 @@ interface IProviderRichTextProps {
   dark?: boolean
 }
 
-function InitialStore({ editor, children }: { editor: Editor, children: React.ReactNode }) {
-  const [editorState, setEditor] = useStoreEditor(store => store.editor);
-
-  useEffect(() => {
-    setEditor({
-      editor: editor as any
-    });
-  }, [editor]);
-
-  if (!editorState) {
-    return <></>;
-  }
-
-  return (
-    <>
-      {children}
-    </>
-  );
-}
-
-export function RichTextProvider({ editor, children, dark }: IProviderRichTextProps) {
+export function RichTextProvider({ editor, children }: IProviderRichTextProps) {
   const id = useId();
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', dark);
-    themeActions.setTheme(id, dark ? 'dark' : 'light');
-  }, [dark]);
 
   useEffect(() => {
     // if (props?.resetCSS !== false) {
@@ -65,7 +41,7 @@ export function RichTextProvider({ editor, children, dark }: IProviderRichTextPr
 
   return (
     <div className="reactjs-tiptap-editor">
-      <ProviderEditor>
+      <EditorContext.Provider value={{ editor }}>
         <ProviderUniqueId
           editor={editor}
           id={id}
@@ -73,13 +49,11 @@ export function RichTextProvider({ editor, children, dark }: IProviderRichTextPr
           <TooltipProvider delayDuration={0}
             disableHoverableContent
           >
-            <InitialStore editor={editor}>
               {children}
-            </InitialStore>
 
           </TooltipProvider>
         </ProviderUniqueId>
-      </ProviderEditor>
+      </EditorContext.Provider>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -19,14 +20,15 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      'richtext-flex richtext-h-10 richtext-w-full richtext-items-center richtext-justify-between richtext-rounded-md richtext-border richtext-border-input richtext-bg-background richtext-px-3 richtext-py-2 richtext-text-sm richtext-ring-offset-background placeholder:richtext-text-muted-foreground focus:richtext-outline-none focus:richtext-ring-2 focus:richtext-ring-ring focus:richtext-ring-offset-2 disabled:richtext-cursor-not-allowed disabled:richtext-opacity-50 [&>span]:richtext-line-clamp-1',
+      'richtext-flex richtext-h-10 richtext-w-full richtext-items-center richtext-justify-between richtext-rounded-md richtext-border richtext-border-input richtext-bg-background richtext-px-3 richtext-py-2 richtext-text-sm richtext-ring-offset-background placeholder:richtext-text-muted-foreground focus:richtext-outline-none focus:richtext-ring-2 focus:richtext-ring-ring focus:richtext-ring-offset-1 disabled:richtext-cursor-not-allowed disabled:richtext-opacity-50 [&>span]:richtext-line-clamp-1',
       className,
     )}
     {...props}
   >
     {children}
+
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="richtext-h-4 richtext-w-4 richtext-opacity-50" />
+      <ChevronDown className="richtext-size-4 richtext-opacity-50" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -44,7 +46,7 @@ const SelectScrollUpButton = React.forwardRef<
     )}
     {...props}
   >
-    <ChevronUp className="richtext-h-4 richtext-w-4" />
+    <ChevronUp className="richtext-size-4" />
   </SelectPrimitive.ScrollUpButton>
 ));
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
@@ -61,7 +63,7 @@ const SelectScrollDownButton = React.forwardRef<
     )}
     {...props}
   >
-    <ChevronDown className="richtext-h-4 richtext-w-4" />
+    <ChevronDown className="richtext-size-4" />
   </SelectPrimitive.ScrollDownButton>
 ));
 SelectScrollDownButton.displayName
@@ -73,17 +75,19 @@ const SelectContent = React.forwardRef<
 >(({ className, children, position = 'popper', ...props }, ref) => (
   <SelectPrimitive.Portal>
     <SelectPrimitive.Content
+    data-richtext-portal
+      position={position}
       ref={ref}
       className={cn(
-        'richtext-relative richtext-z-50 richtext-max-h-60 richtext-overflow-y-auto richtext-min-w-[8rem] richtext-overflow-hidden richtext-rounded-md richtext-border richtext-bg-popover richtext-text-popover-foreground richtext-shadow-md data-[state=open]:richtext-animate-in data-[state=closed]:richtext-animate-out data-[state=closed]:richtext-fade-out-0 data-[state=open]:richtext-fade-in-0 data-[state=closed]:richtext-zoom-out-95 data-[state=open]:richtext-zoom-in-95 data-[side=bottom]:richtext-slide-in-from-top-2 data-[side=left]:richtext-slide-in-from-right-2 data-[side=right]:richtext-slide-in-from-left-2 data-[side=top]:richtext-slide-in-from-bottom-2',
+        'richtext-relative richtext-z-50 richtext-max-h-60 richtext-overflow-y-auto richtext-min-w-[8rem] richtext-overflow-hidden richtext-rounded-md richtext-border !richtext-border-border richtext-bg-popover richtext-text-popover-foreground richtext-shadow-md data-[state=open]:richtext-animate-in data-[state=closed]:richtext-animate-out data-[state=closed]:richtext-fade-out-0 data-[state=open]:richtext-fade-in-0 data-[state=closed]:richtext-zoom-out-95 data-[state=open]:richtext-zoom-in-95 data-[side=bottom]:richtext-slide-in-from-top-2 data-[side=left]:richtext-slide-in-from-right-2 data-[side=right]:richtext-slide-in-from-left-2 data-[side=top]:richtext-slide-in-from-bottom-2',
         position === 'popper'
         && 'data-[side=bottom]:richtext-translate-y-1 data-[side=left]:richtext--translate-x-1 data-[side=right]:richtext-translate-x-1 data-[side=top]:richtext--translate-y-1',
         className,
       )}
-      position={position}
       {...props}
     >
       <SelectScrollUpButton />
+
       <SelectPrimitive.Viewport
         className={cn(
           'richtext-p-1',
@@ -93,6 +97,7 @@ const SelectContent = React.forwardRef<
       >
         {children}
       </SelectPrimitive.Viewport>
+
       <SelectScrollDownButton />
     </SelectPrimitive.Content>
   </SelectPrimitive.Portal>
@@ -104,8 +109,8 @@ const SelectLabel = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
-    ref={ref}
     className={cn('richtext-py-1.5 richtext-pl-8 richtext-pr-2 richtext-text-sm richtext-font-semibold', className)}
+    ref={ref}
     {...props}
   />
 ));
@@ -123,9 +128,9 @@ const SelectItem = React.forwardRef<
     )}
     {...props}
   >
-    <span className="richtext-absolute richtext-left-2 richtext-flex richtext-h-3.5 richtext-w-3.5 richtext-items-center richtext-justify-center">
+    <span className="richtext-absolute richtext-left-2 richtext-flex richtext-size-3.5 richtext-items-center richtext-justify-center">
       <SelectPrimitive.ItemIndicator>
-        <Check className="richtext-h-4 richtext-w-4" />
+        <Check className="richtext-size-4" />
       </SelectPrimitive.ItemIndicator>
     </span>
 
@@ -141,8 +146,8 @@ const SelectSeparator = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
-    ref={ref}
     className={cn('richtext--mx-1 richtext-my-1 richtext-h-px richtext-bg-muted', className)}
+    ref={ref}
     {...props}
   />
 ));

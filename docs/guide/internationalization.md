@@ -2,8 +2,8 @@
 description: Internationalization
 
 next:
-  text: Attachment
-  link: /extensions/Attachment.md
+  text: Custom Theme
+  link: /guide/custom-theme.md
 ---
 
 # Internationalization (i18n)

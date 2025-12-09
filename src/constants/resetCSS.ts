@@ -1,8 +1,5 @@
 export const RESET_CSS = `
-.reactjs-tiptap-editor,
-.richtext-dialog-content {
-  color: hsl(var(--richtext-foreground));
-
+.reactjs-tiptap-editor {
   button,
   input:where([type=button]),
   input:where([type=reset]),
@@ -42,7 +39,6 @@ export const RESET_CSS = `
     box-sizing: border-box;
     border-width: 0;
     border-style: solid;
-    border-color: hsl(var(--richtext-border));
   }
 
 
@@ -82,10 +78,8 @@ export const RESET_CSS = `
     border-width: 1px;
   }
 
-
   input::placeholder {
     opacity: 1;
-    color: #9ca3af;
   }
 
   button, input {
@@ -109,24 +103,6 @@ export const RESET_CSS = `
   video {
     max-width: 100%;
     height: auto;
-  }
-}
-
-div[data-radix-popper-content-wrapper] {
-  color: hsl(var(--richtext-foreground));
-
-  *,
-  ::before,
-  ::after {
-    box-sizing: border-box;
-    border-width: 0;
-    border-style: solid;
-    border-color: hsl(var(--richtext-border));
-  }
-
-  button, input {
-    cursor: pointer;
-    color: inherit;
   }
 }
 `;

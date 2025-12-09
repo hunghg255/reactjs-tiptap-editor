@@ -1,21 +1,10 @@
 import { useMemo } from 'react';
 
 import { NodeViewWrapper } from '@tiptap/react';
-
 import katex from 'katex';
-import { useTheme } from '@/theme/theme';
-import { convertColorToRGBA } from '@/utils/color';
 
 export function KatexNodeView({ node }: any) {
-  const theme = useTheme();
   const { text } = node.attrs;
-
-  const backgroundColor = useMemo(() => {
-    const color = 'rgb(254, 242, 237)';
-    if (theme === 'dark')
-      return convertColorToRGBA(color, 0.75);
-    return color;
-  }, [theme]);
 
   const formatText = useMemo(() => {
     try {
@@ -29,7 +18,10 @@ export function KatexNodeView({ node }: any) {
     () =>
       text.trim()
         ? (
-          <span contentEditable={false} dangerouslySetInnerHTML={{ __html: formatText }}></span>
+          <span contentEditable={false}
+dangerouslySetInnerHTML={{ __html: formatText }}
+          >
+          </span>
         )
         : (
           <span contentEditable={false}>
@@ -41,11 +33,10 @@ export function KatexNodeView({ node }: any) {
 
   return (
     <NodeViewWrapper
+      as="span"
       style={{
         display: 'inline-block',
-        backgroundColor,
       }}
-      as="span"
     >
       {content}
     </NodeViewWrapper>

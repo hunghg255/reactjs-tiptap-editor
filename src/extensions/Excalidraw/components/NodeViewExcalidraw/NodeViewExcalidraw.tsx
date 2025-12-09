@@ -6,6 +6,7 @@ import { Resizable } from 're-resizable';
 
 import { ActionButton } from '@/components/ActionButton';
 import { Excalidraw } from '@/extensions/Excalidraw/Excalidraw';
+import { useEditableEditor } from '@/store/store';
 import { clamp } from '@/utils/utils';
 
 import styles from './index.module.scss';
@@ -18,7 +19,7 @@ const INHERIT_SIZE_STYLE = { width: '100%', height: '100%', maxWidth: '100%' };
 
 function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
   const exportToSvgRef: any = useRef(null);
-  // const isEditable = editor.isEditable
+  const isEditable = useEditableEditor();
   const isActive = editor.isActive(Excalidraw.name);
   // const { width: maxWidth } = getEditorContainerDOMSize(editor)
   const { data, width, height } = node.attrs;
@@ -83,7 +84,11 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
   };
 
   return (
-    <NodeViewWrapper className={clsx(styles.wrap, isActive && styles.isActive)}>
+    <NodeViewWrapper className={clsx(styles.wrap, {
+      [styles.active]: isActive,
+      [styles.disabled]: !isEditable,
+    })}
+    >
       <Resizable
         size={{ width: Number.parseInt(width), height: Number.parseInt(height) }}
         onResizeStop={(e, direction, ref, d) => {
@@ -129,12 +134,14 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
           <div className={styles.handlerWrap}>
             <ActionButton
               action={setZoom('minus')}
+              disabled={!isEditable}
               icon="ZoomOut"
               tooltip="Zoom Out"
             />
 
             <ActionButton
               action={setZoom('plus')}
+              disabled={!isEditable}
               icon="ZoomIn"
               tooltip="Zoom In"
             />

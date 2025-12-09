@@ -1,12 +1,13 @@
 .attachment, /* for browser ready HTML */
 .wrap { /* for NodeView */
   border-width: 1px !important;
-  border-radius: 4px;
-  padding: 10px;
+  border-radius: var(--radius) !important;
+  border-color: hsl(var(--border)) !important;
+  padding: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 8px 0;
 
   :global {
     .attachment__icon {

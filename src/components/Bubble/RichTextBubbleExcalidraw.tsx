@@ -8,11 +8,11 @@ import type { IExcalidrawAttrs } from '@/extensions/Excalidraw';
 import { Excalidraw } from '@/extensions/Excalidraw';
 import { useAttributes } from '@/hooks/useAttributes';
 import { useLocale } from '@/locales';
+import { useEditorInstance } from '@/store/editor';
+import { useEditableEditor } from '@/store/store';
 import { triggerOpenExcalidrawSettingModal } from '@/utils/_event';
 import { deleteNode } from '@/utils/delete-node';
 import { getEditorContainerDOMSize } from '@/utils/editor-container-size';
-import { useEditorInstance } from '@/store/editor';
-import { useEditableEditor } from '@/store/store';
 
 export function RichTextBubbleExcalidraw() {
   const editable = useEditableEditor();
@@ -59,10 +59,10 @@ export function RichTextBubbleExcalidraw() {
   return (
     <BubbleMenu
       editor={editor}
-      shouldShow={shouldShow}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      shouldShow={shouldShow}
     >
-      <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">
+      <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
         <ActionButton
           action={openEditLinkModal}
           icon="Pencil"

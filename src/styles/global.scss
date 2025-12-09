@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --radius: 0.5rem;
+
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
 
@@ -33,9 +35,6 @@
 
     --ring: 240 10% 3.9%;
 
-    --radius: 0.5rem;
-
-    --red: #FF5C33;
   }
 
   .dark {
@@ -67,8 +66,6 @@
     --destructive-foreground: 0 0% 98%;
 
     --ring: 240 4.9% 83.9%;
-
-    --red: #FF5C33;
   }
 }
 
@@ -77,11 +74,4 @@ html body[data-scroll-locked] {
   --removed-body-scroll-bar-size: 0 !important;
   // margin-right: 0 !important;
   position: initial !important;
-}
-
-/* Character count */
-.character-count {
-  &--warning {
-    color: var(--red) !important;
-  }
 }

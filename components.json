@@ -8,7 +8,7 @@
     "css": "src/styles/globals.css",
     "baseColor": "slate",
     "cssVariables": true,
-    "prefix": "richtext-"
+    "prefix": ""
   },
   "aliases": {
     "components": "@/components",

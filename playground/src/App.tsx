@@ -4,6 +4,9 @@ import { RichTextProvider } from 'reactjs-tiptap-editor'
 
 import { localeActions } from 'reactjs-tiptap-editor/locale-bundle'
 
+import { themeActions } from 'reactjs-tiptap-editor/theme'
+
+
 // Base Kit
 import { Document } from '@tiptap/extension-document'
 import { Text } from '@tiptap/extension-text'
@@ -76,7 +79,8 @@ import {
   RichTextBubbleMermaid,
   RichTextBubbleTable,
   RichTextBubbleText,
-  RichTextBubbleTwitter
+  RichTextBubbleTwitter,
+  RichTextBubbleMenuDragHandle
 } from 'reactjs-tiptap-editor/bubble';
 
 import 'reactjs-tiptap-editor/style.css'
@@ -263,7 +267,7 @@ const extensions = [
   // }),
 ]
 
-const DEFAULT = `<h1 dir="auto" style="text-align: center;">Rich Text Editor</h1><p dir="auto">A modern WYSIWYG rich text editor based on <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://github.com/scrumpy/tiptap">tiptap</a> and <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://ui.shadcn.com/">shadcn ui</a> for Reactjs</p><p dir="auto"><div class="image" style="text-align: center;"><img src="https://picsum.photos/1920/1080.webp?t=1" width="500" flipx="false" flipy="false" align="center" inline="false" style=""></div></p><p dir="auto"></p><div data-type="horizontalRule"><hr></div><h2 dir="auto">Demo</h2><p dir="auto">👉<a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://reactjs-tiptap-editor.vercel.app/">Demo</a></p><h2 dir="auto">Features</h2><ul><li><p dir="auto">Use <a target="_blank" rel="noopener noreferrer nofollow" class="link" href="https://ui.shadcn.com/">shadcn ui</a> components</p></li><li><p dir="auto">Markdown support</p></li><li><p dir="auto">TypeScript support</p></li><li><p dir="auto">I18n support (vi, en, zh, pt)</p></li><li><p dir="auto">React support</p></li><li><p dir="auto">Slash Commands</p></li><li><p dir="auto">Multi Column</p></li><li><p dir="auto">TailwindCss</p></li><li><p dir="auto">Support emoji</p></li><li><p dir="auto">Support iframe</p></li><li><p dir="auto">Support mermaid</p></li></ul><h2 dir="auto">Installation</h2><pre code="pnpm install reactjs-tiptap-editor" language="bash" linenumbers="true" wordwrap="false" tabsize="2" shouldfocus="false"><code>pnpm install reactjs-tiptap-editor</code></pre><p dir="auto"></p>`
+const DEFAULT = ``
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout
@@ -320,7 +324,59 @@ const Header = ({ editor, theme, setTheme }) => {
       <button type="button" onClick={() => {
         editor?.setEditable(!editorEditable);
       }}>{editorEditable ? 'Editable' : 'Disabled'}</button>
+
+
     </div>
+      <div className='flex items-center gap-1'>
+        <button className="border border-solid border-gray-500 p-1" onClick={() => {
+          themeActions.setTheme('light');
+        }}>Theme light</button>
+         <button className="border border-solid border-gray-500 p-1" onClick={() => {
+          themeActions.setTheme('dark');
+        }} >Theme dark</button>
+      </div>
+
+      <div className='flex items-center gap-1'>
+        <button className="border border-solid border-gray-500 p-1" onClick={() => {
+          themeActions.setColor('default');
+        }} >Color default</button>
+         <button className="border border-solid border-gray-500 p-1" onClick={() => {
+          themeActions.setColor('red');
+        }} >Theme red</button>
+
+        <button className="border border-solid border-gray-500 p-1" onClick={() => {
+          themeActions.setColor('blue');
+        }} >Theme blue</button>
+
+        <button className="border border-solid border-gray-500 p-1" onClick={() => {
+          themeActions.setColor('green');
+        }} >Theme green</button>
+
+        <button className="border border-solid border-gray-500 p-1" onClick={() => {
+          themeActions.setColor('orange');
+        }} >Theme orange</button>
+
+          <button className="border border-solid border-gray-500 p-1" onClick={() => {
+          themeActions.setColor('rose');
+        }} >Theme rose</button>
+
+         <button className="border border-solid border-gray-500 p-1" onClick={() => {
+          themeActions.setColor('violet');
+        }} >Theme violet</button>
+
+         <button className="border border-solid border-gray-500 p-1" onClick={() => {
+          themeActions.setColor('yellow');
+        }} >Theme yellow</button>
+      </div>
+
+      <div className='flex items-center gap-2'>
+        <span>Border radius</span>
+
+        <input type='range' min={0} max={3} step={0.05} defaultValue={0.65} onChange={(e) => {
+          const value = e.target.value;
+          themeActions.setBorderRadius(`${value}rem`);
+        }} />
+      </div>
   </>
 }
 
@@ -438,6 +494,8 @@ function App() {
             <RichTextBubbleTable />
             <RichTextBubbleText />
             <RichTextBubbleTwitter />
+
+            {/* <RichTextBubbleMenuDragHandle /> */}
 
             {/* Command List */}
             <SlashCommandList />

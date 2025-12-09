@@ -77,14 +77,7 @@
     @apply richtext-w-full richtext-border-border richtext-mt-2 richtext-rounded-sm richtext-h-full;
   }
 
-  [data-type='horizontalRule'] {
-    @apply richtext-my-8 richtext-py-4;
 
-    hr {
-      @apply richtext-border-0 richtext-border-t richtext-border-black/20 richtext-bg-black/80;
-      @apply dark:richtext-border-white/20 dark:richtext-bg-white/80;
-    }
-  }
   /* Block Quote */
   .blockquote {
     @apply richtext-border-l-4 richtext-text-black richtext-border-l-neutral-700 richtext-py-2 richtext-px-4 richtext-bg-opacity-80 richtext-rounded-lg richtext-rounded-tl-none richtext-rounded-bl-none;
@@ -94,17 +87,17 @@
   code {
     @apply richtext-caret-white richtext-text-white richtext-bg-neutral-900 richtext-rounded-sm richtext-shadow-lg richtext-font-mono;
 
-    &::selection {
-      @apply richtext-bg-white/30;
-    }
+    // &::selection {
+    //   @apply richtext-bg-white/30;
+    // }
   }
 
   pre {
-    @apply richtext-caret-white richtext-bg-neutral-700 richtext-text-white richtext-rounded richtext-my-12 richtext-p-4 !richtext-border richtext-border-black dark:richtext-bg-neutral-900 dark:richtext-border-neutral-800;
+    @apply richtext-caret-white richtext-bg-neutral-700 richtext-text-white richtext-rounded richtext-my-12 richtext-p-4 !richtext-border richtext-border-black dark:richtext-bg-neutral-900 richtext-border-border;
 
-    *::selection {
-      @apply richtext-bg-white/20;
-    }
+    // *::selection {
+    //   @apply richtext-bg-white/20;
+    // }
 
     code {
       @apply richtext-bg-inherit richtext-text-inherit richtext-p-0 richtext-shadow-none;

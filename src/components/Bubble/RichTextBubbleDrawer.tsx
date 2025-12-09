@@ -3,13 +3,13 @@ import { Fragment, useMemo } from 'react';
 import { BubbleMenu } from '@tiptap/react/menus';
 
 import { Separator } from '@/components';
+import { getBubbleDrawer } from '@/components/Bubble/formatBubble';
 import { Drawer } from '@/extensions/Drawer';
 import { EditDrawerBlock } from '@/extensions/Drawer/components/EditDrawerBlock';
 import { useAttributes } from '@/hooks/useAttributes';
 import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
-import { getBubbleDrawer } from '@/components/Bubble/formatBubble';
 import { useEditableEditor } from '@/store/store';
 
 function ItemA({ item, disabled, editor }: any) {
@@ -75,13 +75,12 @@ export function RichTextBubbleDrawer() {
   return (
     <BubbleMenu
       editor={editor}
-      shouldShow={shouldShow}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      shouldShow={shouldShow}
     >
       {items?.length
         ? (
-          <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">
-            <div className="richtext-relative richtext-flex richtext-h-[26px] richtext-flex-nowrap richtext-items-center richtext-justify-start richtext-whitespace-nowrap">
+          <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
               {items?.map((item: any, key: any) => {
                 if (item.type === 'edit' && attrs?.src) {
                   return (
@@ -102,7 +101,6 @@ export function RichTextBubbleDrawer() {
                   />
                 );
               })}
-            </div>
           </div>
         )
         : (

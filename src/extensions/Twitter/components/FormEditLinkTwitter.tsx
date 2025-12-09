@@ -34,7 +34,6 @@ function FormEditLinkTwitter(props: IPropsFormEditLinkTwitter) {
   }
 
   return (
-    <div className="border-neutral-200 richtext-rounded-lg !richtext-border richtext-bg-white richtext-p-2 richtext-shadow-sm dark:richtext-border-neutral-800 dark:richtext-bg-black">
       <form className="richtext-flex richtext-flex-col richtext-gap-2"
         onSubmit={handleSubmit}
       >
@@ -61,7 +60,6 @@ function FormEditLinkTwitter(props: IPropsFormEditLinkTwitter) {
           {t('editor.link.dialog.button.apply')}
         </Button>
       </form>
-    </div>
   );
 }
 

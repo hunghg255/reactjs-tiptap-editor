@@ -1,8 +1,10 @@
 export const EVENTS = {
   UPLOAD_IMAGE: (id: any) => `UPLOAD_IMAGE-${id}`,
   UPLOAD_VIDEO: (id: string) => `UPLOAD_VIDEO-${id}`,
-  UPDATE_THEME: (id: string) => `UPDATE_THEME-${id}`,
 
+  CHANGE_THEME: 'CHANGE_THEME',
+  CHANGE_COLOR: 'CHANGE_COLOR',
+  CHANGE_BORDER_RADIUS: 'CHANGE_BORDER_RADIUS',
   CHANGE_LANGUAGE: 'CHANGE_LANGUAGE',
 } as const;
 

@@ -67,6 +67,16 @@
         "default": "./lib/bubble.js"
       }
     },
+    "./theme": {
+      "require": {
+        "types": "./lib/theme/theme.d.cts",
+        "default": "./lib/theme.cjs"
+      },
+      "import": {
+        "types": "./lib/theme/theme.d.ts",
+        "default": "./lib/theme.js"
+      }
+    },
     "./style.css": {
       "require": "./lib/style.css",
       "import": "./lib/style.css"
@@ -74,463 +84,443 @@
     "./lib/*": "./lib/*",
     "./package.json": "./package.json",
     "./*": "./lib/*",
-    "./base-kit": {
-      "require": {
-        "types": "./lib/BaseKit.d.cts",
-        "default": "./lib/BaseKit.cjs"
-      },
-      "import": {
-        "types": "./lib/BaseKit.d.ts",
-        "default": "./lib/BaseKit.js"
-      }
-    },
     "./attachment": {
       "require": {
-        "types": "./lib/Attachment.d.cts",
+        "types": "./lib/extensions/Attachment/index.d.ts",
         "default": "./lib/Attachment.cjs"
       },
       "import": {
-        "types": "./lib/Attachment.d.ts",
+        "types": "./lib/extensions/Attachment/index.d.ts",
         "default": "./lib/Attachment.js"
       }
     },
     "./blockquote": {
       "require": {
-        "types": "./lib/Blockquote.d.cts",
+        "types": "./lib/extensions/Blockquote/index.d.ts",
         "default": "./lib/Blockquote.cjs"
       },
       "import": {
-        "types": "./lib/Blockquote.d.ts",
+        "types": "./lib/extensions/Blockquote/index.d.ts",
         "default": "./lib/Blockquote.js"
       }
     },
     "./bold": {
       "require": {
-        "types": "./lib/Bold.d.cts",
+        "types": "./lib/extensions/Bold/index.d.ts",
         "default": "./lib/Bold.cjs"
       },
       "import": {
-        "types": "./lib/Bold.d.ts",
+        "types": "./lib/extensions/Bold/index.d.ts",
         "default": "./lib/Bold.js"
       }
     },
     "./bulletlist": {
       "require": {
-        "types": "./lib/BulletList.d.cts",
+        "types": "./lib/extensions/BulletList/index.d.ts",
         "default": "./lib/BulletList.cjs"
       },
       "import": {
-        "types": "./lib/BulletList.d.ts",
+        "types": "./lib/extensions/BulletList/index.d.ts",
         "default": "./lib/BulletList.js"
       }
     },
     "./clear": {
       "require": {
-        "types": "./lib/Clear.d.cts",
+        "types": "./lib/extensions/Clear/index.d.ts",
         "default": "./lib/Clear.cjs"
       },
       "import": {
-        "types": "./lib/Clear.d.ts",
+        "types": "./lib/extensions/Clear/index.d.ts",
         "default": "./lib/Clear.js"
       }
     },
     "./code": {
       "require": {
-        "types": "./lib/Code.d.cts",
+        "types": "./lib/extensions/Code/index.d.ts",
         "default": "./lib/Code.cjs"
       },
       "import": {
-        "types": "./lib/Code.d.ts",
+        "types": "./lib/extensions/Code/index.d.ts",
         "default": "./lib/Code.js"
       }
     },
     "./codeview": {
       "require": {
-        "types": "./lib/CodeView.d.cts",
+        "types": "./lib/extensions/CodeView/index.d.ts",
         "default": "./lib/CodeView.cjs"
       },
       "import": {
-        "types": "./lib/CodeView.d.ts",
+        "types": "./lib/extensions/CodeView/index.d.ts",
         "default": "./lib/CodeView.js"
       }
     },
     "./codeblock": {
       "require": {
-        "types": "./lib/CodeBlock.d.cts",
+        "types": "./lib/extensions/CodeBlock/index.d.ts",
         "default": "./lib/CodeBlock.cjs"
       },
       "import": {
-        "types": "./lib/CodeBlock.d.ts",
+        "types": "./lib/extensions/CodeBlock/index.d.ts",
         "default": "./lib/CodeBlock.js"
       }
     },
     "./color": {
       "require": {
-        "types": "./lib/Color.d.cts",
+        "types": "./lib/extensions/Color/index.d.ts",
         "default": "./lib/Color.cjs"
       },
       "import": {
-        "types": "./lib/Color.d.ts",
+        "types": "./lib/extensions/Color/index.d.ts",
         "default": "./lib/Color.js"
       }
     },
     "./drawer": {
       "require": {
-        "types": "./lib/Drawer.d.cts",
+        "types": "./lib/extensions/Drawer/index.d.ts",
         "default": "./lib/Drawer.cjs"
       },
       "import": {
-        "types": "./lib/Drawer.d.ts",
+        "types": "./lib/extensions/Drawer/index.d.ts",
         "default": "./lib/Drawer.js"
       }
     },
     "./emoji": {
       "require": {
-        "types": "./lib/Emoji.d.cts",
+        "types": "./lib/extensions/Emoji/index.d.ts",
         "default": "./lib/Emoji.cjs"
       },
       "import": {
-        "types": "./lib/Emoji.d.ts",
+        "types": "./lib/extensions/Emoji/index.d.ts",
         "default": "./lib/Emoji.js"
       }
     },
     "./excalidraw": {
       "require": {
-        "types": "./lib/Excalidraw.d.cts",
+        "types": "./lib/extensions/Excalidraw/index.d.ts",
         "default": "./lib/Excalidraw.cjs"
       },
       "import": {
-        "types": "./lib/Excalidraw.d.ts",
+        "types": "./lib/extensions/Excalidraw/index.d.ts",
         "default": "./lib/Excalidraw.js"
       }
     },
     "./exportpdf": {
       "require": {
-        "types": "./lib/ExportPdf.d.cts",
+        "types": "./lib/extensions/ExportPdf/index.d.ts",
         "default": "./lib/ExportPdf.cjs"
       },
       "import": {
-        "types": "./lib/ExportPdf.d.ts",
+        "types": "./lib/extensions/ExportPdf/index.d.ts",
         "default": "./lib/ExportPdf.js"
       }
     },
     "./exportword": {
       "require": {
-        "types": "./lib/ExportWord.d.cts",
+        "types": "./lib/extensions/ExportWord/index.d.ts",
         "default": "./lib/ExportWord.cjs"
       },
       "import": {
-        "types": "./lib/ExportWord.d.ts",
+        "types": "./lib/extensions/ExportWord/index.d.ts",
         "default": "./lib/ExportWord.js"
       }
     },
     "./fontfamily": {
       "require": {
-        "types": "./lib/FontFamily.d.cts",
+        "types": "./lib/extensions/FontFamily/index.d.ts",
         "default": "./lib/FontFamily.cjs"
       },
       "import": {
-        "types": "./lib/FontFamily.d.ts",
+        "types": "./lib/extensions/FontFamily/index.d.ts",
         "default": "./lib/FontFamily.js"
       }
     },
     "./fontsize": {
       "require": {
-        "types": "./lib/FontSize.d.cts",
+        "types": "./lib/extensions/FontSize/index.d.ts",
         "default": "./lib/FontSize.cjs"
       },
       "import": {
-        "types": "./lib/FontSize.d.ts",
+        "types": "./lib/extensions/FontSize/index.d.ts",
         "default": "./lib/FontSize.js"
       }
     },
     "./heading": {
       "require": {
-        "types": "./lib/Heading.d.cts",
+        "types": "./lib/extensions/Heading/index.d.ts",
         "default": "./lib/Heading.cjs"
       },
       "import": {
-        "types": "./lib/Heading.d.ts",
+        "types": "./lib/extensions/Heading/index.d.ts",
         "default": "./lib/Heading.js"
       }
     },
     "./highlight": {
       "require": {
-        "types": "./lib/Highlight.d.cts",
+        "types": "./lib/extensions/Highlight/index.d.ts",
         "default": "./lib/Highlight.cjs"
       },
       "import": {
-        "types": "./lib/Highlight.d.ts",
+        "types": "./lib/extensions/Highlight/index.d.ts",
         "default": "./lib/Highlight.js"
       }
     },
     "./history": {
       "require": {
-        "types": "./lib/History.d.cts",
+        "types": "./lib/extensions/History/index.d.ts",
         "default": "./lib/History.cjs"
       },
       "import": {
-        "types": "./lib/History.d.ts",
+        "types": "./lib/extensions/History/index.d.ts",
         "default": "./lib/History.js"
       }
     },
     "./horizontalrule": {
       "require": {
-        "types": "./lib/HorizontalRule.d.cts",
+        "types": "./lib/extensions/HorizontalRule/index.d.ts",
         "default": "./lib/HorizontalRule.cjs"
       },
       "import": {
-        "types": "./lib/HorizontalRule.d.ts",
+        "types": "./lib/extensions/HorizontalRule/index.d.ts",
         "default": "./lib/HorizontalRule.js"
       }
     },
     "./iframe": {
       "require": {
-        "types": "./lib/Iframe.d.cts",
+        "types": "./lib/extensions/Iframe/index.d.ts",
         "default": "./lib/Iframe.cjs"
       },
       "import": {
-        "types": "./lib/Iframe.d.ts",
+        "types": "./lib/extensions/Iframe/index.d.ts",
         "default": "./lib/Iframe.js"
       }
     },
     "./image": {
       "require": {
-        "types": "./lib/Image.d.cts",
+        "types": "./lib/extensions/Image/index.d.ts",
         "default": "./lib/Image.cjs"
       },
       "import": {
-        "types": "./lib/Image.d.ts",
+        "types": "./lib/extensions/Image/index.d.ts",
         "default": "./lib/Image.js"
       }
     },
     "./imagegif": {
       "require": {
-        "types": "./lib/ImageGif.d.cts",
+        "types": "./lib/extensions/ImageGif/index.d.ts",
         "default": "./lib/ImageGif.cjs"
       },
       "import": {
-        "types": "./lib/ImageGif.d.ts",
+        "types": "./lib/extensions/ImageGif/index.d.ts",
         "default": "./lib/ImageGif.js"
       }
     },
     "./importword": {
       "require": {
-        "types": "./lib/ImportWord.d.cts",
+        "types": "./lib/extensions/ImportWord/index.d.ts",
         "default": "./lib/ImportWord.cjs"
       },
       "import": {
-        "types": "./lib/ImportWord.d.ts",
+        "types": "./lib/extensions/ImportWord/index.d.ts",
         "default": "./lib/ImportWord.js"
       }
     },
     "./indent": {
       "require": {
-        "types": "./lib/Indent.d.cts",
+        "types": "./lib/extensions/Indent/index.d.ts",
         "default": "./lib/Indent.cjs"
       },
       "import": {
-        "types": "./lib/Indent.d.ts",
+        "types": "./lib/extensions/Indent/index.d.ts",
         "default": "./lib/Indent.js"
       }
     },
     "./italic": {
       "require": {
-        "types": "./lib/Italic.d.cts",
+        "types": "./lib/extensions/Italic/index.d.ts",
         "default": "./lib/Italic.cjs"
       },
       "import": {
-        "types": "./lib/Italic.d.ts",
+        "types": "./lib/extensions/Italic/index.d.ts",
         "default": "./lib/Italic.js"
       }
     },
     "./katex": {
       "require": {
-        "types": "./lib/Katex.d.cts",
+        "types": "./lib/extensions/Katex/index.d.ts",
         "default": "./lib/Katex.cjs"
       },
       "import": {
-        "types": "./lib/Katex.d.ts",
+        "types": "./lib/extensions/Katex/index.d.ts",
         "default": "./lib/Katex.js"
       }
     },
     "./lineheight": {
       "require": {
-        "types": "./lib/LineHeight.d.cts",
+        "types": "./lib/extensions/LineHeight/index.d.ts",
         "default": "./lib/LineHeight.cjs"
       },
       "import": {
-        "types": "./lib/LineHeight.d.ts",
+        "types": "./lib/extensions/LineHeight/index.d.ts",
         "default": "./lib/LineHeight.js"
       }
     },
     "./link": {
       "require": {
-        "types": "./lib/Link.d.cts",
+        "types": "./lib/extensions/Link/index.d.ts",
         "default": "./lib/Link.cjs"
       },
       "import": {
-        "types": "./lib/Link.d.ts",
+        "types": "./lib/extensions/Link/index.d.ts",
         "default": "./lib/Link.js"
-      }
-    },
-    "./listitem": {
-      "require": {
-        "types": "./lib/ListItem.d.cts",
-        "default": "./lib/ListItem.cjs"
-      },
-      "import": {
-        "types": "./lib/ListItem.d.ts",
-        "default": "./lib/ListItem.js"
       }
     },
     "./mention": {
       "require": {
-        "types": "./lib/Mention.d.cts",
+        "types": "./lib/extensions/Mention/index.d.ts",
         "default": "./lib/Mention.cjs"
       },
       "import": {
-        "types": "./lib/Mention.d.ts",
+        "types": "./lib/extensions/Mention/index.d.ts",
         "default": "./lib/Mention.js"
       }
     },
     "./mermaid": {
       "require": {
-        "types": "./lib/Mermaid.d.cts",
+        "types": "./lib/extensions/Mermaid/index.d.ts",
         "default": "./lib/Mermaid.cjs"
       },
       "import": {
-        "types": "./lib/Mermaid.d.ts",
+        "types": "./lib/extensions/Mermaid/index.d.ts",
         "default": "./lib/Mermaid.js"
       }
     },
     "./moremark": {
       "require": {
-        "types": "./lib/MoreMark.d.cts",
+        "types": "./lib/extensions/MoreMark/index.d.ts",
         "default": "./lib/MoreMark.cjs"
       },
       "import": {
-        "types": "./lib/MoreMark.d.ts",
+        "types": "./lib/extensions/MoreMark/index.d.ts",
         "default": "./lib/MoreMark.js"
       }
     },
     "./column": {
       "require": {
-        "types": "./lib/Column.d.cts",
+        "types": "./lib/extensions/Column/index.d.ts",
         "default": "./lib/Column.cjs"
       },
       "import": {
-        "types": "./lib/Column.d.ts",
+        "types": "./lib/extensions/Column/index.d.ts",
         "default": "./lib/Column.js"
       }
     },
     "./orderedlist": {
       "require": {
-        "types": "./lib/OrderedList.d.cts",
+        "types": "./lib/extensions/OrderedList/index.d.ts",
         "default": "./lib/OrderedList.cjs"
       },
       "import": {
-        "types": "./lib/OrderedList.d.ts",
+        "types": "./lib/extensions/OrderedList/index.d.ts",
         "default": "./lib/OrderedList.js"
       }
     },
     "./searchandreplace": {
       "require": {
-        "types": "./lib/SearchAndReplace.d.cts",
+        "types": "./lib/extensions/SearchAndReplace/index.d.ts",
         "default": "./lib/SearchAndReplace.cjs"
       },
       "import": {
-        "types": "./lib/SearchAndReplace.d.ts",
+        "types": "./lib/extensions/SearchAndReplace/index.d.ts",
         "default": "./lib/SearchAndReplace.js"
       }
     },
     "./slashcommand": {
       "require": {
-        "types": "./lib/SlashCommand.d.cts",
+        "types": "./lib/extensions/SlashCommand/index.d.ts",
         "default": "./lib/SlashCommand.cjs"
       },
       "import": {
-        "types": "./lib/SlashCommand.d.ts",
+        "types": "./lib/extensions/SlashCommand/index.d.ts",
         "default": "./lib/SlashCommand.js"
       }
     },
     "./strike": {
       "require": {
-        "types": "./lib/Strike.d.cts",
+        "types": "./lib/extensions/Strike/index.d.ts",
         "default": "./lib/Strike.cjs"
       },
       "import": {
-        "types": "./lib/Strike.d.ts",
+        "types": "./lib/extensions/Strike/index.d.ts",
         "default": "./lib/Strike.js"
       }
     },
     "./table": {
       "require": {
-        "types": "./lib/Table.d.cts",
+        "types": "./lib/extensions/Table/index.d.ts",
         "default": "./lib/Table.cjs"
       },
       "import": {
-        "types": "./lib/Table.d.ts",
+        "types": "./lib/extensions/Table/index.d.ts",
         "default": "./lib/Table.js"
       }
     },
     "./tasklist": {
       "require": {
-        "types": "./lib/TaskList.d.cts",
+        "types": "./lib/extensions/TaskList/index.d.ts",
         "default": "./lib/TaskList.cjs"
       },
       "import": {
-        "types": "./lib/TaskList.d.ts",
+        "types": "./lib/extensions/TaskList/index.d.ts",
         "default": "./lib/TaskList.js"
       }
     },
     "./textalign": {
       "require": {
-        "types": "./lib/TextAlign.d.cts",
+        "types": "./lib/extensions/TextAlign/index.d.ts",
         "default": "./lib/TextAlign.cjs"
       },
       "import": {
-        "types": "./lib/TextAlign.d.ts",
+        "types": "./lib/extensions/TextAlign/index.d.ts",
         "default": "./lib/TextAlign.js"
       }
     },
     "./textdirection": {
       "require": {
-        "types": "./lib/TextDirection.d.cts",
+        "types": "./lib/extensions/TextDirection/index.d.ts",
         "default": "./lib/TextDirection.cjs"
       },
       "import": {
-        "types": "./lib/TextDirection.d.ts",
+        "types": "./lib/extensions/TextDirection/index.d.ts",
         "default": "./lib/TextDirection.js"
       }
     },
     "./textunderline": {
       "require": {
-        "types": "./lib/TextUnderline.d.cts",
+        "types": "./lib/extensions/TextUnderline/index.d.ts",
         "default": "./lib/TextUnderline.cjs"
       },
       "import": {
-        "types": "./lib/TextUnderline.d.ts",
+        "types": "./lib/extensions/TextUnderline/index.d.ts",
         "default": "./lib/TextUnderline.js"
       }
     },
     "./twitter": {
       "require": {
-        "types": "./lib/Twitter.d.cts",
+        "types": "./lib/extensions/Twitter/index.d.ts",
         "default": "./lib/Twitter.cjs"
       },
       "import": {
-        "types": "./lib/Twitter.d.ts",
+        "types": "./lib/extensions/Twitter/index.d.ts",
         "default": "./lib/Twitter.js"
       }
     },
     "./video": {
       "require": {
-        "types": "./lib/Video.d.cts",
+        "types": "./lib/extensions/Video/index.d.ts",
         "default": "./lib/Video.cjs"
       },
       "import": {
-        "types": "./lib/Video.d.ts",
+        "types": "./lib/extensions/Video/index.d.ts",
         "default": "./lib/Video.js"
       }
     }
@@ -540,150 +530,147 @@
       "locale-bundle": [
         "./lib/locale-bundle.d.ts"
       ],
-      "bubble-extra": [
-        "./lib/bubble-extra.d.ts"
+      "bubble": [
+        "./lib/bubble.d.ts"
+      ],
+      "theme": [
+        "./lib/theme.d.ts"
       ],
       "*": [
         "./lib/*",
         "./*"
       ],
       "./attachment": [
-        "./lib/Attachment.d.ts"
+        "./lib/extensions/Attachment/index.d.ts"
       ],
       "./blockquote": [
-        "./lib/Blockquote.d.ts"
+        "./lib/extensions/Blockquote/index.d.ts"
       ],
       "./bold": [
-        "./lib/Bold.d.ts"
+        "./lib/extensions/Bold/index.d.ts"
       ],
       "./bulletlist": [
-        "./lib/BulletList.d.ts"
+        "./lib/extensions/BulletList/index.d.ts"
       ],
       "./clear": [
-        "./lib/Clear.d.ts"
+        "./lib/extensions/Clear/index.d.ts"
       ],
       "./code": [
-        "./lib/Code.d.ts"
+        "./lib/extensions/Code/index.d.ts"
       ],
       "./codeblock": [
-        "./lib/CodeBlock.d.ts"
+        "./lib/extensions/CodeBlock/index.d.ts"
       ],
       "./codeview": [
-        "./lib/CodeView.d.ts"
+        "./lib/extensions/CodeView/index.d.ts"
       ],
       "./color": [
-        "./lib/Color.d.ts"
-      ],
-      "./document": [
-        "./lib/Document.d.ts"
+        "./lib/extensions/Color/index.d.ts"
       ],
       "./drawer": [
-        "./lib/Drawer.d.ts"
+        "./lib/extensions/Drawer/index.d.ts"
       ],
       "./emoji": [
-        "./lib/Emoji.d.ts"
+        "./lib/extensions/Emoji/index.d.ts"
       ],
       "./excalidraw": [
-        "./lib/Excalidraw.d.ts"
+        "./lib/extensions/Excalidraw/index.d.ts"
       ],
       "./exportpdf": [
-        "./lib/ExportPdf.d.ts"
+        "./lib/extensions/ExportPdf/index.d.ts"
       ],
       "./exportword": [
-        "./lib/ExportWord.d.ts"
+        "./lib/extensions/ExportWord/index.d.ts"
       ],
       "./fontfamily": [
-        "./lib/FontFamily.d.ts"
+        "./lib/extensions/FontFamily/index.d.ts"
       ],
       "./fontsize": [
-        "./lib/FontSize.d.ts"
+        "./lib/extensions/FontSize/index.d.ts"
       ],
       "./heading": [
-        "./lib/Heading.d.ts"
+        "./lib/extensions/Heading/index.d.ts"
       ],
       "./highlight": [
-        "./lib/Highlight.d.ts"
+        "./lib/extensions/Highlight/index.d.ts"
       ],
       "./history": [
-        "./lib/History.d.ts"
+        "./lib/extensions/History/index.d.ts"
       ],
       "./horizontalrule": [
-        "./lib/HorizontalRule.d.ts"
+        "./lib/extensions/HorizontalRule/index.d.ts"
       ],
       "./iframe": [
-        "./lib/Iframe.d.ts"
+        "./lib/extensions/Iframe/index.d.ts"
       ],
       "./image": [
-        "./lib/Image.d.ts"
+        "./lib/extensions/Image/index.d.ts"
       ],
       "./imagegif": [
-        "./lib/ImageGif.d.ts"
+        "./lib/extensions/ImageGif/index.d.ts"
       ],
       "./importword": [
-        "./lib/ImportWord.d.ts"
+        "./lib/extensions/ImportWord/index.d.ts"
       ],
       "./indent": [
-        "./lib/Indent.d.ts"
+        "./lib/extensions/Indent/index.d.ts"
       ],
       "./italic": [
-        "./lib/Italic.d.ts"
+        "./lib/extensions/Italic/index.d.ts"
       ],
       "./katex": [
-        "./lib/Katex.d.ts"
+        "./lib/extensions/Katex/index.d.ts"
       ],
       "./lineheight": [
-        "./lib/LineHeight.d.ts"
+        "./lib/extensions/LineHeight/index.d.ts"
       ],
       "./link": [
-        "./lib/Link.d.ts"
-      ],
-      "./listitem": [
-        "./lib/ListItem.d.ts"
+        "./lib/extensions/Link/index.d.ts"
       ],
       "./mention": [
-        "./lib/Mention.d.ts"
+        "./lib/extensions/Mention/index.d.ts"
       ],
       "./mermaid": [
-        "./lib/Mermaid.d.ts"
+        "./lib/extensions/Mermaid/index.d.ts"
       ],
       "./moremark": [
-        "./lib/MoreMark.d.ts"
+        "./lib/extensions/MoreMark/index.d.ts"
       ],
       "./column": [
-        "./lib/Column.d.ts"
+        "./lib/extensions/Column/index.d.ts"
       ],
       "./orderedlist": [
-        "./lib/OrderedList.d.ts"
+        "./lib/extensions/OrderedList/index.d.ts"
       ],
       "./searchandreplace": [
-        "./lib/SearchAndReplace.d.ts"
+        "./lib/extensions/SearchAndReplace/index.d.ts"
       ],
       "./slashcommand": [
-        "./lib/SlashCommand.d.ts"
+        "./lib/extensions/SlashCommand/index.d.ts"
       ],
       "./strike": [
-        "./lib/Strike.d.ts"
+        "./lib/extensions/Strike/index.d.ts"
       ],
       "./table": [
-        "./lib/Table.d.ts"
+        "./lib/extensions/Table/index.d.ts"
       ],
       "./tasklist": [
-        "./lib/TaskList.d.ts"
+        "./lib/extensions/TaskList/index.d.ts"
       ],
       "./textalign": [
-        "./lib/TextAlign.d.ts"
+        "./lib/extensions/TextAlign/index.d.ts"
       ],
       "./textdirection": [
-        "./lib/TextDirection.d.ts"
+        "./lib/extensions/TextDirection/index.d.ts"
       ],
       "./textunderline": [
-        "./lib/TextUnderline.d.ts"
+        "./lib/extensions/TextUnderline/index.d.ts"
       ],
       "./twitter": [
-        "./lib/Twitter.d.ts"
+        "./lib/extensions/Twitter/index.d.ts"
       ],
       "./video": [
-        "./lib/Video.d.ts"
+        "./lib/extensions/Video/index.d.ts"
       ]
     }
   },
@@ -697,7 +684,7 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build:lib": "vite build && pnpm modify-css",
+    "build:lib": "vite build",
     "build:lib:dev": "vite build  --mode development --watch",
     "build:playground": "pnpm build:lib && pnpm --dir ./playground run build",
     "docs:dev": "pnpm --parallel --filter docs... dev",
@@ -713,7 +700,6 @@
     "prepare": "git-scm-hooks",
     "release": "bumpp -r",
     "gen-changelog": "esno ./scripts/genExtensions.ts && esno ./scripts/changelog.ts",
-    "modify-css": "esno ./scripts/modifyCss.ts",
     "gen-contributors": "contributorkit"
   },
   "dependencies": {
@@ -739,11 +725,11 @@
     "@tiptap/extension-bold": "^3.11.1",
     "@tiptap/extension-bullet-list": "^3.11.1",
     "@tiptap/extension-code": "^3.11.1",
-    "@tiptap/extension-collaboration": "^3.12.0",
+    "@tiptap/extension-collaboration": "^3.13.0",
     "@tiptap/extension-collaboration-caret": "^3.12.0",
     "@tiptap/extension-document": "^3.11.1",
-    "@tiptap/extension-drag-handle": "^3.12.0",
-    "@tiptap/extension-drag-handle-react": "^3.12.0",
+    "@tiptap/extension-drag-handle": "^3.13.0",
+    "@tiptap/extension-drag-handle-react": "^3.13.0",
     "@tiptap/extension-emoji": "^3.11.1",
     "@tiptap/extension-hard-break": "^3.11.1",
     "@tiptap/extension-heading": "^3.11.1",
@@ -755,7 +741,7 @@
     "@tiptap/extension-list": "^3.11.1",
     "@tiptap/extension-list-item": "^3.11.1",
     "@tiptap/extension-mention": "^3.11.1",
-    "@tiptap/extension-node-range": "^3.12.0",
+    "@tiptap/extension-node-range": "^3.13.0",
     "@tiptap/extension-ordered-list": "^3.11.1",
     "@tiptap/extension-paragraph": "^3.11.1",
     "@tiptap/extension-strike": "^3.11.1",
@@ -824,9 +810,9 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^3.4.18",
     "typescript": "^5.9.3",
+    "unplugin-dts": "1.0.0-beta.6",
     "verify-commit-msg": "^0.1.0",
-    "vite": "^6.4.1",
-    "vite-plugin-dts": "^4.5.4"
+    "vite": "^6.4.1"
   },
   "browserslist": [
     ">0.3%",
