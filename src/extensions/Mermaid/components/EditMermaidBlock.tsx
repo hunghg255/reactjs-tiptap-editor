@@ -144,7 +144,7 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
               rows={10}
               value={mermaidCode}
               style={{
-                color: 'hsl(var(--richtext-foreground))',
+                color: 'hsl(var(--foreground))',
               }}
             />
 
@@ -152,7 +152,7 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
               className="richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]"
               dangerouslySetInnerHTML={{ __html: svgCode }}
               ref={mermaidRef as any}
-              style={{ height: '100%', border: '1px solid hsl(var(--border))', minHeight: 500, background: '#fff' }}
+              style={{ height: '100%', border: '1px solid hsl(var(--border))', minHeight: 500 }}
             />
           </div>
         </div>

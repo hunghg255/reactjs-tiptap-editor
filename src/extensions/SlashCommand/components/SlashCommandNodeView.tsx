@@ -7,11 +7,11 @@ import React, {
   useState,
 } from 'react';
 
-import { IconComponent } from '@/components';
+import { IconComponent, Label } from '@/components';
+import { useFilterCommandList } from '@/extensions/SlashCommand/renderCommandListDefault';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/locales';
 import { useSignalCommandList } from '@/store/commandList';
-import { useFilterCommandList } from '@/extensions/SlashCommand/renderCommandListDefault';
 
 function SlashCommandNodeView(props: any, ref: any) {
   const [commandList] = useSignalCommandList();
@@ -127,7 +127,8 @@ function SlashCommandNodeView(props: any, ref: any) {
 
   return (
     <div
-      className="richtext-max-h-[min(80vh,24rem)] richtext-flex-wrap richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-[hsl(var(--richtext-border))] richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none"
+    className="richtext-max-h-[min(80vh,24rem)] richtext-flex-wrap richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none"
+      data-richtext-portal
       ref={scrollContainer}
     >
       {commandQuery?.length
@@ -136,9 +137,9 @@ function SlashCommandNodeView(props: any, ref: any) {
             {commandQuery?.map((group: any, groupIndex: any) => {
               return (
                 <Fragment key={`slash-${group.title}`}>
-                  <div className="richtext-col-[1/-1] richtext-mx-2 richtext-mt-2 richtext-select-none richtext-text-[0.65rem] richtext-font-semibold richtext-uppercase richtext-tracking-wider !richtext-text-neutral-500 first:richtext-mt-0.5">
+                  <Label className="richtext-mx-[4px] richtext-mb-[4px] richtext-mt-[8px] !richtext-text-[0.65rem] richtext-uppercase ">
                     {group.title}
-                  </div>
+                  </Label>
 
                   {group.commands.map((command: any, commandIndex: any) => {
                     return (
@@ -146,7 +147,7 @@ function SlashCommandNodeView(props: any, ref: any) {
                         key={`command-${commandIndex}`}
                         onClick={() => createCommandClickHandler(groupIndex, commandIndex)}
                         ref={el => setActiveItemRef(groupIndex, commandIndex, el)}
-                        className={cn('richtext-flex richtext-items-center richtext-gap-3 richtext-px-2 richtext-py-1.5 richtext-text-sm !richtext-text-neutral-800 dark:!richtext-text-neutral-200 richtext-text-left richtext-w-full richtext-rounded-sm !richtext-outline-none !richtext-border-none richtext-transition-colors !richtext-bg-transparent hover:!richtext-bg-accent ', {
+                        className={cn('richtext-flex richtext-items-center richtext-gap-3 richtext-px-2 richtext-py-1.5 richtext-text-sm richtext-text-foreground richtext-text-left richtext-w-full richtext-rounded-sm !richtext-outline-none !richtext-border-none richtext-transition-colors !richtext-bg-transparent hover:!richtext-bg-accent ', {
                           'bg-item-active': selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex,
                         })}
                       >
@@ -172,7 +173,7 @@ function SlashCommandNodeView(props: any, ref: any) {
         )
         : (
           <div className="richtext-p-3">
-            <span className="richtext-text-xs richtext-text-gray-800 dark:richtext-text-gray-100">
+            <span className="richtext-text-xs richtext-text-foreground">
               {t('editor.slash.empty')}
             </span>
           </div>

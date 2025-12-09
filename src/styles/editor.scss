@@ -1,4 +1,4 @@
-.reactjs-tiptap-editor.reactjs-tiptap-editor {
+.reactjs-tiptap-editor {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
 
@@ -55,7 +55,7 @@
         @apply richtext-bg-black/5 dark:richtext-bg-white/10;
 
         hr {
-          @apply richtext-border-t-black/30 dark:richtext-border-t-white/30;
+          border-top-color: hsl(var(--foreground)) !important;
         }
       }
 
@@ -68,9 +68,8 @@
       @apply richtext-outline-none richtext-bg-black/10 dark:richtext-bg-white/20 richtext-shadow-none richtext-transition-colors;
     }
 
-    .selection:not(.image-view).selection:not(.search-result),
-    *:not(.image-view)::selection, *:not(.search-result)::selection {
-      @apply richtext-bg-black/10 dark:richtext-bg-white/20;
+    :not(.image-view)::selection, :not(.search-result)::selection {
+        background-color: hsl(var(--accent)) !important;
     }
 
     .is-empty::before {
@@ -183,8 +182,6 @@
       }
     }
 
-
-
     .image-resizer {
       position: absolute;
       top: 0;
@@ -250,38 +247,15 @@
     cursor: col-resize;
   }
 
-  .character-count {
-  align-items: center;
-  color: var(--gray-5);
-  display: flex;
-  font-size: 0.75rem;
-  gap: 0.5rem;
-  margin: 1.5rem;
-
-  svg {
-    color: var(--purple);
+  .ProseMirror {
+    caret-color: hsl(var(--richtext-text-foreground)) !important;
   }
-
-  &--warning,
-  &--warning svg {
-    color: var(--red);
-  }
-}
 }
 
 .bg-item-active.bg-item-active {
   background-color: hsl(var(--accent)) !important;
 }
 
-[data-dui-1-3-5~='dui-tooltip-wrapper'] {
-  display: inline-block;
-  position: relative;
-}
-
-// .heading-0 {
-//   font-weight: 700;
-//   font-size: 16px;
-// }
 .heading-1 {
   font-weight: 700;
   font-size: 28px;

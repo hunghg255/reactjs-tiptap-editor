@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 
 import type { Mark } from '@tiptap/pm/model';
 
-import { Button, IconComponent, Input, Label, Switch } from '@/components';
+import { Button, IconComponent, Input, Label, Checkbox } from '@/components';
 import { Link } from '@/extensions/Link/Link';
 import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
@@ -91,73 +91,71 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
   }
 
   return (
-    <div className="border-neutral-200 richtext-rounded-lg !richtext-border richtext-bg-white richtext-p-2 richtext-shadow-sm dark:richtext-border-neutral-800 dark:richtext-bg-black">
-      <div className="richtext-flex richtext-flex-col richtext-gap-2">
-        <Label className="mb-[6px]">
-          {t('editor.link.dialog.text')}
-        </Label>
+    <div className="richtext-flex richtext-flex-col richtext-gap-2">
+      <Label className="mb-[6px]">
+        {t('editor.link.dialog.text')}
+      </Label>
 
-        <div className="richtext-mb-[10px] richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
-          <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
-            <Input
-              className="richtext-w-80"
-              onChange={(e) => setForm({ ...form, text: e.target.value })}
-              placeholder="Text"
-              ref={textInputRef}
-              required
-              type="text"
-              value={form.text}
-            />
-          </div>
+      <div className="richtext-mb-[10px] richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
+        <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
+          <Input
+            className="richtext-w-80"
+            onChange={(e) => setForm({ ...form, text: e.target.value })}
+            placeholder="Text"
+            ref={textInputRef}
+            required
+            type="text"
+            value={form.text}
+          />
         </div>
-
-        <Label className="mb-[6px]">
-          {t('editor.link.dialog.link')}
-        </Label>
-
-        <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
-          <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
-            <Input
-              className="richtext-pl-10"
-              onChange={(e) => setForm({ ...form, link: e.target.value })}
-              ref={linkInputRef}
-              required
-              type="url"
-              value={form.link}
-            />
-
-            <span className="richtext-absolute richtext-inset-y-0 richtext-start-0 richtext-flex richtext-items-center richtext-justify-center richtext-px-2">
-              <IconComponent
-                className="richtext-size-5 richtext-text-muted-foreground"
-                name="Link"
-              />
-            </span>
-          </div>
-        </div>
-
-        {!props.target && (
-          <div className="richtext-flex richtext-items-center richtext-space-x-2">
-            <Label>
-              {t('editor.link.dialog.openInNewTab')}
-            </Label>
-
-            <Switch
-              checked={openInNewTab}
-              onCheckedChange={(e) => {
-                setOpenInNewTab(e);
-              }}
-            />
-          </div>
-        )}
-
-        <Button
-          className="richtext-mt-2 richtext-self-end"
-          onClick={handleSubmit}
-          type="button"
-        >
-          {t('editor.link.dialog.button.apply')}
-        </Button>
       </div>
+
+      <Label className="mb-[6px]">
+        {t('editor.link.dialog.link')}
+      </Label>
+
+      <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
+        <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
+          <Input
+            className="richtext-pl-10"
+            onChange={(e) => setForm({ ...form, link: e.target.value })}
+            ref={linkInputRef}
+            required
+            type="url"
+            value={form.link}
+          />
+
+          <span className="richtext-absolute richtext-inset-y-0 richtext-start-0 richtext-flex richtext-items-center richtext-justify-center richtext-px-2">
+            <IconComponent
+              className="richtext-size-5 richtext-text-muted-foreground"
+              name="Link"
+            />
+          </span>
+        </div>
+      </div>
+
+      {!props.target && (
+        <div className="richtext-flex richtext-items-center richtext-gap-1">
+          <Checkbox
+            checked={openInNewTab}
+            onCheckedChange={(v) => {
+              setOpenInNewTab(v as boolean);
+            }}
+          />
+
+          <Label>
+            {t('editor.link.dialog.openInNewTab')}
+          </Label>
+        </div>
+      )}
+
+      <Button
+        className="richtext-mt-2 richtext-self-end"
+        onClick={handleSubmit}
+        type="button"
+      >
+        {t('editor.link.dialog.button.apply')}
+      </Button>
     </div>
   );
 }

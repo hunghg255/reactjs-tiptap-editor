@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 import clsx from 'clsx';
 import scrollIntoView from 'scroll-into-view-if-needed';
 
-import { EMOJI_LIST, useFilterEmojis } from '@/extensions/Emoji/components/EmojiList/emojis';
+import { EMOJI_LIST } from '@/extensions/Emoji/components/EmojiList/emojis';
 import { useLocale } from '@/locales';
 
 function EmojiNodeView (props: any, ref: any) {
@@ -13,7 +13,13 @@ function EmojiNodeView (props: any, ref: any) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { t } = useLocale();
 
-  const filteredEmojis = useFilterEmojis(EMOJI_LIST, props?.query || '');
+  const filteredEmojis = useMemo(() => {
+    const lowerCaseQuery = props?.query?.toLowerCase();
+
+    return EMOJI_LIST.filter(({ name }) =>
+      name.toLowerCase().includes(lowerCaseQuery)
+    );
+  }, [props?.query]);
 
   const selectItem = (index: any) => {
     const item = filteredEmojis[index];
@@ -66,7 +72,9 @@ function EmojiNodeView (props: any, ref: any) {
   }));
 
   return (
-    <div className="richtext-max-h-[320px] richtext-w-[200px] richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-[hsl(var(--richtext-border))] richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
+    <div className="richtext-max-h-[320px] richtext-w-[200px] richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none"
+      data-richtext-portal
+    >
       <div ref={$container}>
         {filteredEmojis.length > 0
           ? (
@@ -76,7 +84,7 @@ function EmojiNodeView (props: any, ref: any) {
                 <span
                   key={`emoji-list-code-${name}`}
                   onClick={() => selectItem(index)}
-                  className={clsx('richtext-flex richtext-w-full richtext-items-center richtext-gap-3 richtext-rounded-sm !richtext-border-none !richtext-bg-transparent richtext-px-2 richtext-py-1.5 richtext-text-left richtext-text-sm !richtext-text-neutral-800 !richtext-outline-none richtext-transition-colors hover:!richtext-bg-accent dark:!richtext-text-neutral-200', {
+                  className={clsx('richtext-flex richtext-w-full richtext-items-center richtext-gap-3 richtext-rounded-sm !richtext-border-none !richtext-bg-transparent richtext-px-2 richtext-py-1.5 richtext-text-left richtext-text-sm richtext-text-foreground !richtext-outline-none richtext-transition-colors hover:!richtext-bg-accent ', {
                     'bg-item-active': index === selectedIndex,
                   })}
                 >
@@ -89,7 +97,7 @@ function EmojiNodeView (props: any, ref: any) {
             })
           )
           : (
-            <div className="richtext-relative richtext-flex  richtext-cursor-default richtext-select-none richtext-items-center richtext-rounded-sm richtext-px-2 richtext-py-1.5 richtext-text-sm richtext-outline-none richtext-transition-colors">
+            <div className="richtext-relative richtext-flex  richtext-cursor-default richtext-select-none richtext-items-center richtext-rounded-sm richtext-px-2 richtext-py-1.5 richtext-text-sm richtext-text-foreground richtext-outline-none richtext-transition-colors">
               <span>
                 {t('no_result_found')}
               </span>

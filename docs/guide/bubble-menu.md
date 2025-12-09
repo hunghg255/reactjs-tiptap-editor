@@ -43,7 +43,10 @@ import {
   RichTextBubbleMermaid,
   RichTextBubbleTable,
   RichTextBubbleText,
-  RichTextBubbleTwitter
+  RichTextBubbleTwitter,
+
+  // Drag Handle
+  RichTextBubbleMenuDragHandle
 } from 'reactjs-tiptap-editor/bubble';
 
 
@@ -97,6 +100,8 @@ const RichTextBubbleMenu = () => {
       <RichTextBubbleTable />
       <RichTextBubbleText />
       <RichTextBubbleTwitter />
+
+      <RichTextBubbleMenuDragHandle />
     </div>
   )
 }
@@ -142,3 +147,4 @@ The system provides the following default bubble menus:
 | RichTextBubbleExcalidraw   | Provides excalidraw-related operations like size, link , etc.  | excalidraw          |
 | RichTextBubbleMermaid   | Provides mermaid-related operations like size, link , etc.  | mermaid          |
 | RichTextBubbleTwitter   | Provides twitter-related operations like size, link , etc.  | twitter          |
+| RichTextBubbleMenuDrag  | Provides a drag handle to move the bubble menu around the editor area.                       | N/A           |

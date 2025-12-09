@@ -52,7 +52,7 @@ export function RichTextImage() {
   }, [extension]);
 
   useEffect(() => {
-    const rm1 = listenEvent(EVENTS.UPLOAD_IMAGE(editor.id), handleUploadImage);
+    const rm1 = listenEvent(EVENTS.UPLOAD_IMAGE((editor as any).id), handleUploadImage);
 
     return () => {
       rm1();
@@ -254,7 +254,7 @@ export function RichTextImage() {
                 editor={editor}
                 imageInline={imageInline}
                 onClose={() => {
-                  actionDialogImage.setOpen(editor.id, false);
+                  actionDialogImage.setOpen((editor as any).id, false);
                   setAlt('');
                 }}
               />

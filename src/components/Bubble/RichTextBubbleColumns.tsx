@@ -5,9 +5,9 @@ import { BubbleMenu } from '@tiptap/react/menus';
 import { ActionButton } from '@/components/ActionButton';
 import { MultipleColumnNode } from '@/extensions/Column';
 import { useLocale } from '@/locales';
-import { deleteNode } from '@/utils/delete-node';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
+import { deleteNode } from '@/utils/delete-node';
 
 export function RichTextBubbleColumns() {
   const editable = useEditableEditor();
@@ -27,10 +27,10 @@ export function RichTextBubbleColumns() {
   return (
     <BubbleMenu
       editor={editor}
-      shouldShow={shouldShow}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      shouldShow={shouldShow}
     >
-      <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">
+      <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
         <ActionButton
           action={addColBefore}
           icon="ColumnAddLeft"

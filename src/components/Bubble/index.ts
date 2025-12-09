@@ -9,3 +9,4 @@ export * from './RichTextBubbleMermaid';
 export * from './RichTextBubbleTable';
 export * from './RichTextBubbleText';
 export * from './RichTextBubbleTwitter';
+export * from './RichTextBubbleMenuDragHandle';

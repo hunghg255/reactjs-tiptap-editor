@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useEffect, useState } from 'react';
 
-import { ActionButton, Button, IconComponent, Input, Label, Popover, PopoverContent, PopoverTrigger, Switch } from '@/components';
+import { ActionButton, Button, IconComponent, Input, Label, Popover, PopoverContent, PopoverTrigger, Checkbox } from '@/components';
 import { SearchAndReplace } from '@/extensions/SearchAndReplace/SearchAndReplace';
 import { useActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
@@ -209,12 +209,12 @@ export function RichTextSearchAndReplace() {
           </div>
         </div>
 
-        <div className="richtext-mb-[10px] richtext-flex richtext-items-center richtext-space-x-2">
-          <Switch
+        <div className="richtext-my-[10px]  richtext-flex richtext-items-center richtext-gap-1">
+          <Checkbox
             checked={caseSensitive}
-            onCheckedChange={(e: any) => {
-              setCaseSensitive(e);
-              editor.commands.setCaseSensitive(e);
+            onCheckedChange={(v) => {
+              setCaseSensitive(v as boolean);
+              editor.commands.setCaseSensitive(v as boolean);
             }}
           />
 

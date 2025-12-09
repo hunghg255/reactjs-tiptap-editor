@@ -72,7 +72,7 @@ function RichTextBubbleTable({ hiddenActions = [] }: RichTextBubbleTableProps) {
       shouldShow={shouldShow}
       updateDelay={0}
     >
-      <div className="richtext-flex richtext-size-full richtext-min-w-32 richtext-flex-row richtext-items-center richtext-gap-0.5 richtext-rounded-lg !richtext-border richtext-border-border richtext-bg-background richtext-p-2 richtext-leading-none richtext-shadow-sm">
+      <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
 
         {!isHidden('addColumnBefore') && (
           <ActionButton

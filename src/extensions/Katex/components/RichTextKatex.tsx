@@ -109,7 +109,7 @@ export function RichTextKatex() {
             rows={10}
             value={currentValue}
             style={{
-              color: 'hsl(var(--richtext-foreground))',
+              color: 'hsl(var(--foreground))',
             }}
                           />
 

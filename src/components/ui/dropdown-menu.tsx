@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import { Check, ChevronRight, Circle } from 'lucide-react';
 
@@ -34,7 +35,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
     {...props}
   >
     {children}
-    <ChevronRight className="richtext-ml-auto richtext-h-4 richtext-w-4" />
+    <ChevronRight className="richtext-ml-auto richtext-size-4" />
   </DropdownMenuPrimitive.SubTrigger>
 ));
 DropdownMenuSubTrigger.displayName
@@ -60,12 +61,13 @@ const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
 >(({ className, sideOffset = 4, ...props }, ref) => (
-  <DropdownMenuPrimitive.Portal>
+  <DropdownMenuPrimitive.Portal data-richtext-portal>
     <DropdownMenuPrimitive.Content
+    data-richtext-portal
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        'richtext-z-50 richtext-min-w-[8rem] richtext-overflow-hidden richtext-rounded-md !richtext-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md data-[state=open]:richtext-animate-in data-[state=closed]:richtext-animate-out data-[state=closed]:richtext-fade-out-0 data-[state=open]:richtext-fade-in-0 data-[state=closed]:richtext-zoom-out-95 data-[state=open]:richtext-zoom-in-95 data-[side=bottom]:richtext-slide-in-from-top-2 data-[side=left]:richtext-slide-in-from-right-2 data-[side=right]:richtext-slide-in-from-left-2 data-[side=top]:richtext-slide-in-from-bottom-2',
+        'richtext-z-50 richtext-min-w-[8rem] richtext-overflow-hidden richtext-rounded-md !richtext-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md data-[state=open]:richtext-animate-in data-[state=closed]:richtext-animate-out data-[state=closed]:richtext-fade-out-0 data-[state=open]:richtext-fade-in-0 data-[state=closed]:richtext-zoom-out-95 data-[state=open]:richtext-zoom-in-95 data-[side=bottom]:richtext-slide-in-from-top-2 data-[side=left]:richtext-slide-in-from-right-2 data-[side=right]:richtext-slide-in-from-left-2 data-[side=top]:richtext-slide-in-from-bottom-2 !richtext-border-border',
         className,
       )}
       {...props}
@@ -97,19 +99,20 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
 >(({ className, children, checked, ...props }, ref) => (
   <DropdownMenuPrimitive.CheckboxItem
+    checked={checked}
     ref={ref}
     className={cn(
       'richtext-relative richtext-flex richtext-cursor-default richtext-select-none richtext-items-center richtext-rounded-sm richtext-py-1.5 richtext-pl-8 richtext-pr-2 richtext-text-sm richtext-outline-none richtext-transition-colors focus:richtext-bg-accent focus:richtext-text-accent-foreground data-[disabled]:richtext-pointer-events-none data-[disabled]:richtext-opacity-50',
       className,
     )}
-    checked={checked}
     {...props}
   >
-    <span className="richtext-absolute richtext-left-2 richtext-flex richtext-h-3.5 richtext-w-3.5 richtext-items-center richtext-justify-center">
+    <span className="richtext-absolute richtext-left-2 richtext-flex richtext-size-3.5 richtext-items-center richtext-justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
-        <Check className="richtext-h-4 richtext-w-4" />
+        <Check className="richtext-size-4" />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
+
     {children}
   </DropdownMenuPrimitive.CheckboxItem>
 ));
@@ -128,11 +131,12 @@ const DropdownMenuRadioItem = React.forwardRef<
     )}
     {...props}
   >
-    <span className="richtext-absolute richtext-left-2 richtext-flex richtext-h-3.5 richtext-w-3.5 richtext-items-center richtext-justify-center">
+    <span className="richtext-absolute richtext-left-2 richtext-flex richtext-size-3.5 richtext-items-center richtext-justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
-        <Circle className="richtext-h-2 richtext-w-2 richtext-fill-current" />
+        <Circle className="richtext-size-2 richtext-fill-current" />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
+
     {children}
   </DropdownMenuPrimitive.RadioItem>
 ));
@@ -161,8 +165,8 @@ const DropdownMenuSeparator = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
-    ref={ref}
     className={cn('richtext--mx-1 richtext-my-1 richtext-h-px richtext-bg-muted', className)}
+    ref={ref}
     {...props}
   />
 ));

@@ -156,7 +156,7 @@ function ColorPicker(props: ColorPickerProps) {
               {t('editor.recent')}
             </div>
 
-            <span className="richtext-relative richtext-flex richtext-h-auto richtext-w-full richtext-p-0 last:richtext-pb-2">
+            <span className="richtext-relative richtext-flex richtext-h-auto richtext-w-full richtext-flex-wrap richtext-p-0 last:richtext-pb-2">
               {recentColorsStore?.map((item, index) => {
                 return (
                   <span

@@ -47,10 +47,12 @@ export function RichTextAlign() {
 
   return (
     <Popover
-      open={open}
+      modal
       onOpenChange={setOpen}
-    modal>
+    open={open}
+    >
       <PopoverTrigger asChild
+        className='hover:richtext-bg-accent data-[state=on]:richtext-bg-accent'
         data-state={hasAlign ? 'on' : 'off'} // active background control
         disabled={disabled}
       >
@@ -79,11 +81,11 @@ export function RichTextAlign() {
                 <Toggle
                   className="richtext-size-7 richtext-p-1"
                   data-state={currentAlign === item.title ? 'on' : 'off'}
+                  size="sm"
                   onClick={() => {
                     item?.action();
                     setOpen(false);
                   }}
-                  size="sm"
                 >
                   {item?.icon && <IconComponent name={item.icon} />}
                 </Toggle>

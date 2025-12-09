@@ -88,7 +88,9 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
         </TooltipTrigger>
 
         {tooltip && (
-          <TooltipContent {...tooltipOptions}>
+          <TooltipContent {...tooltipOptions}
+className='richtext-tooltip'
+          >
             <div className="richtext-flex richtext-max-w-24 richtext-flex-col richtext-items-center richtext-text-center">
               <div>
                 {tooltip}

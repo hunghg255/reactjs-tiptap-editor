@@ -82,12 +82,14 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
 
   return (
     <Popover
-    open={open}
+    modal
     onOpenChange={setOpen}
-    modal>
+    open={open}
+    >
       <PopoverTrigger
+      asChild
       data-state={props?.dataState ? 'on' : 'off'}
-      asChild>
+      >
         {props?.children}
       </PopoverTrigger>
 
@@ -123,7 +125,7 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
             })}
           </div>
 
-          <div className="richtext-mt-2 richtext-text-center richtext-text-sm richtext-text-zinc-600">
+          <div className="richtext-mt-2 richtext-text-center richtext-text-sm richtext-text-foreground">
             {selectedTableGridSize.rows}
             x
             {selectedTableGridSize.cols}

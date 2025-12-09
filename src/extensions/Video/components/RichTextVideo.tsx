@@ -3,13 +3,13 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { ActionButton, Button, Input, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Video } from '@/extensions/Video/Video';
+import { useToggleActive } from '@/hooks/useActive';
+import { useButtonProps } from '@/hooks/useButtonProps';
+import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
+import { useEditorInstance } from '@/store/editor';
 import { listenEvent } from '@/utils/customEvents/customEvents';
 import { EVENTS } from '@/utils/customEvents/events.constant';
-import { useEditorInstance } from '@/store/editor';
-import { useButtonProps } from '@/hooks/useButtonProps';
-import { useToggleActive } from '@/hooks/useActive';
-import { useExtension } from '@/hooks/useExtension';
 
 function checkIsVideoUrl(url: string, allowedProviders?: string[]): boolean {
   let urlObj: URL;
@@ -27,7 +27,7 @@ function checkIsVideoUrl(url: string, allowedProviders?: string[]): boolean {
   return allowedProviders.some(provider => {
     if (provider.includes('*')) {
       const pattern = provider
-        .replace(/\./g, '\\.')
+        .replace(/\./g, String.raw`\.`)
         .replace(/\*/g, '.*');
       return new RegExp(`^${pattern}$`).test(urlObj.hostname);
     }
@@ -62,7 +62,7 @@ export function RichTextVideo() {
   };
 
   useEffect(() => {
-    const rm1 = listenEvent(EVENTS.UPLOAD_VIDEO(editor.id), handleUploadVideo);
+    const rm1 = listenEvent(EVENTS.UPLOAD_VIDEO((editor as any).id), handleUploadVideo);
 
     return () => {
       rm1();
@@ -130,13 +130,13 @@ export function RichTextVideo() {
     >
       <DialogTrigger asChild>
         <ActionButton
+          disabled={editorDisabled}
+          icon={icon}
+          tooltip={tooltip}
           action={() => {
             if (editorDisabled) return;
             setOpen(true);
           }}
-          icon={icon}
-          tooltip={tooltip}
-          disabled={editorDisabled}
         />
       </DialogTrigger>
 
@@ -196,9 +196,6 @@ export function RichTextVideo() {
                   required
                   type="url"
                   value={link}
-                  onChange={(e) => {
-                    setLink(e.target.value);
-                  }}
                   onBlur={(e) => {
                     const url = e.target.value;
                     const videoProviders = uploadOptions.videoProviders || ['.'];
@@ -209,9 +206,14 @@ export function RichTextVideo() {
                       setError('');
                     }
                   }}
+                  onChange={(e) => {
+                    setLink(e.target.value);
+                  }}
                 />
 
-                <Button type="button" onClick={handleLink}>
+                <Button onClick={handleLink}
+type="button"
+                >
                   {t('editor.video.dialog.button.apply')}
                 </Button>
               </div>

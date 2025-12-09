@@ -7,9 +7,9 @@ import { ActionButton } from '@/components/ActionButton';
 import { Twitter } from '@/extensions/Twitter';
 import FormEditLinkTwitter from '@/extensions/Twitter/components/FormEditLinkTwitter';
 import { useLocale } from '@/locales';
-import { deleteNode } from '@/utils/delete-node';
-import { useEditableEditor } from '@/store/store';
 import { useEditorInstance } from '@/store/editor';
+import { useEditableEditor } from '@/store/store';
+import { deleteNode } from '@/utils/delete-node';
 
 export function RichTextBubbleTwitter() {
   const { t } = useLocale();
@@ -37,8 +37,8 @@ export function RichTextBubbleTwitter() {
   return (
     <BubbleMenu
       editor={editor}
-      shouldShow={shouldShow}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      shouldShow={shouldShow}
     >
       <>
         {showEdit
@@ -49,8 +49,7 @@ export function RichTextBubbleTwitter() {
             />
           )
           : (
-            <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-lg !richtext-border richtext-border-neutral-200 richtext-bg-white richtext-p-2 richtext-shadow-sm dark:richtext-border-neutral-800 dark:richtext-bg-black">
-              <div className="richtext-flex richtext-flex-nowrap">
+              <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
                 <ActionButton
                   icon="Pencil"
                   tooltip={t('editor.link.edit.tooltip')}
@@ -67,7 +66,6 @@ export function RichTextBubbleTwitter() {
                   tooltipOptions={{ sideOffset: 15 }}
                 />
               </div>
-            </div>
           )}
       </>
     </BubbleMenu>

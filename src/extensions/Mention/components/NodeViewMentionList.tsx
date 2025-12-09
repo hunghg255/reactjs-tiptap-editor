@@ -68,13 +68,13 @@ export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => 
   }));
 
   return (
-    <div className={' !richtext-max-h-[320px] !richtext-w-[160px] richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-[hsl(var(--richtext-border))] richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'}>
+    <div className={' !richtext-max-h-[320px] !richtext-w-[160px] richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'}>
       <div ref={$container}>
         {props.items.length > 0
           ? (
             props.items.map((item, index) => (
               <span
-                className={clsx('richtext-flex richtext-w-full richtext-items-center richtext-gap-3 richtext-rounded-sm !richtext-border-none !richtext-bg-transparent richtext-px-2 richtext-py-1.5 richtext-text-left richtext-text-sm !richtext-text-neutral-800 !richtext-outline-none richtext-transition-colors hover:!richtext-bg-accent dark:!richtext-text-neutral-200',  { 'bg-item-active': index === selectedIndex })}
+                className={clsx('richtext-flex richtext-w-full richtext-items-center richtext-gap-3 richtext-rounded-sm !richtext-border-none !richtext-bg-transparent richtext-px-2 richtext-py-1.5 richtext-text-left richtext-text-sm richtext-text-foreground !richtext-outline-none richtext-transition-colors hover:!richtext-bg-accent ',  { 'bg-item-active': index === selectedIndex })}
                 key={index}
                 onClick={() => selectItem(index)}
               >
@@ -83,7 +83,7 @@ export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => 
             ))
           )
           : (
-            <div className={clsx('itemUserEmpty')}>
+            <div className={clsx('itemUserEmpty, richtext-text-foreground')}>
               Empty
             </div>
           )}

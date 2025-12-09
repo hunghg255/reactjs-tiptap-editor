@@ -74,6 +74,10 @@ export function getLocaleConfig(lang: string) {
           text: t('Internationalization'),
           link: `${urlPrefix}/guide/internationalization`,
         },
+        {
+          text: t('Custom Theme'),
+          link: `${urlPrefix}/guide/custom-theme`,
+        },
       ],
     },
     {

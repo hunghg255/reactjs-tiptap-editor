@@ -3,7 +3,7 @@ import fs from 'node:fs'
 
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
+import dts from 'unplugin-dts/vite'
 import tailwind from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 import postcssReplace from 'postcss-replace'
@@ -17,6 +17,7 @@ export default defineConfig(async ({ mode }) => {
     path.resolve(__dirname, 'src/index.ts'),
     path.resolve(__dirname, 'src/locale-bundle.ts'),
     path.resolve(__dirname, 'src/bubble.ts'),
+    path.resolve(__dirname, 'src/theme/theme.ts'),
   ]
 
   const files = await globbySync('src/extensions/**/*.ts', {
@@ -35,16 +36,16 @@ export default defineConfig(async ({ mode }) => {
 
       exports[`./${_name.toLowerCase()}`] = {
         require: {
-          types: `./lib/${_name}.d.cts`,
+          types: `./lib/extensions/${_name}/index.d.ts`,
           default: `./lib/${_name}.cjs`,
         },
         import: {
-          types: `./lib/${_name}.d.ts`,
+          types: `./lib/extensions/${_name}/index.d.ts`,
           default: `./lib/${_name}.js`,
         },
       }
       typeVersions[`./${_name.toLowerCase()}`] = [
-        `./lib/${_name}.d.ts`,
+        `./lib/extensions/${_name}/index.d.ts`,
       ]
     }
   });
@@ -65,17 +66,7 @@ export default defineConfig(async ({ mode }) => {
   return {
     plugins: [
       react(),
-      dts({
-        rollupTypes: true,
-        afterBuild: (emittedFiles) => {
-          emittedFiles.forEach((content, filePath) => {
-            if (filePath.endsWith('.d.ts')) {
-              const newFilePath = filePath.replace('.d.ts', '.d.cts')
-              fs.writeFileSync(newFilePath, content)
-            }
-          })
-        },
-      }),
+      dts(),
     ],
     resolve: {
       alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],

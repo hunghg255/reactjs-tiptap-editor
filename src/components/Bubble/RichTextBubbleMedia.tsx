@@ -3,13 +3,13 @@ import { Fragment, useMemo } from 'react';
 import { BubbleMenu } from '@tiptap/react/menus';
 
 import { Separator } from '@/components';
+import { getBubbleImage, getBubbleImageGif, getBubbleVideo } from '@/components/Bubble/formatBubble';
 import { Image } from '@/extensions/Image';
 import {  ImageGif } from '@/extensions/ImageGif';
 import { Video } from '@/extensions/Video';
 import { useLocale } from '@/locales';
-import { useEditableEditor } from '@/store/store';
 import { useEditorInstance } from '@/store/editor';
-import { getBubbleImage, getBubbleImageGif, getBubbleVideo } from '@/components/Bubble/formatBubble';
+import { useEditableEditor } from '@/store/store';
 
 function ItemA({ item, disabled, editor }: any) {
   const Comp = item.component;
@@ -81,13 +81,13 @@ function RichTextBubbleImage() {
   return (
     <BubbleMenu
       editor={editor}
-      shouldShow={shouldShow}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      shouldShow={shouldShow}
     >
       {items?.length
         ? (
-          <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">
-            <div className="richtext-relative richtext-flex richtext-h-[26px] richtext-flex-nowrap richtext-items-center richtext-justify-start richtext-whitespace-nowrap">
+          <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
+
               {items?.map((item: any, key: any) => {
                 return (
                   <ItemA
@@ -97,7 +97,7 @@ function RichTextBubbleImage() {
                   />
                 );
               })}
-            </div>
+
           </div>
         )
         : (
@@ -139,13 +139,13 @@ function RichTextBubbleImageGif() {
   return (
     <BubbleMenu
       editor={editor}
-      shouldShow={shouldShow}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      shouldShow={shouldShow}
     >
       {items?.length
         ? (
-          <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">
-            <div className="richtext-relative richtext-flex richtext-h-[26px] richtext-flex-nowrap richtext-items-center richtext-justify-start richtext-whitespace-nowrap">
+
+            <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
               {items?.map((item: any, key: any) => {
                 return (
                   <ItemA
@@ -155,8 +155,8 @@ function RichTextBubbleImageGif() {
                   />
                 );
               })}
+
             </div>
-          </div>
         )
         : (
           <></>
@@ -187,7 +187,7 @@ function RichTextBubbleVideo() {
 
   const items = useMemo(() => {
     return getBubbleVideo(editor, t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [editor, t]);
 
   if (!editable) {
@@ -197,13 +197,13 @@ function RichTextBubbleVideo() {
   return (
     <BubbleMenu
       editor={editor}
-      shouldShow={shouldShow}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      shouldShow={shouldShow}
     >
       {items?.length
         ? (
-          <div className="richtext-pointer-events-auto richtext-w-auto richtext-select-none richtext-rounded-sm !richtext-border richtext-border-neutral-200 richtext-bg-background richtext-px-3 richtext-py-2 richtext-shadow-sm richtext-transition-all dark:richtext-border-neutral-800">
-            <div className="richtext-relative richtext-flex richtext-h-[26px] richtext-flex-nowrap richtext-items-center richtext-justify-start richtext-whitespace-nowrap">
+
+            <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
               {items?.map((item: any, key: any) => {
                 return (
                   <ItemA
@@ -213,8 +213,8 @@ function RichTextBubbleVideo() {
                   />
                 );
               })}
+
             </div>
-          </div>
         )
         : (
           <></>

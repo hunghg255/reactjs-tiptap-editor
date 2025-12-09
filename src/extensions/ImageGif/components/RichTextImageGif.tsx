@@ -56,7 +56,7 @@ return {
 function ImageGifWrap({ selectImage, apiKey, provider, children }: IProps) {
   const [open, setOpen] = useState(false);
   const [gifs, setGifs] = useState<GifItem[]>([]);
-
+  const { editorDisabled } = useToggleActive();
   const inputRef = useRef(null);
 
   const { searchTrending, searchWord } = useServiceGif(provider, apiKey);
@@ -86,9 +86,11 @@ function ImageGifWrap({ selectImage, apiKey, provider, children }: IProps) {
     <Popover
       modal
       onOpenChange={setOpen}
-    open={open}
+      open={open}
     >
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild
+disabled={editorDisabled}
+      >
         {children}
       </PopoverTrigger>
 
@@ -175,6 +177,7 @@ export function RichTextImageGif() {
       selectImage={selectImage}
     >
       <ActionButton
+        disabled={editorDisabled}
         icon={icon}
         tooltip={tooltip}
       />
