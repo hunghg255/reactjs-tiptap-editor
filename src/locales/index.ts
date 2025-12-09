@@ -60,9 +60,12 @@ function useLocale() {
 }
 
 const localeActions = {
-  setLang: (lang: LanguageType) => {
+  setLang: (lang: LanguageType | (string & {})) => {
     dispatchEvent(EVENTS.CHANGE_LANGUAGE, lang);
-  }
+  },
+  setMessage: (lang: LanguageType | (string & {}), messages: Partial<Record<keyof typeof LANG.message.en, string>>) => {
+    dispatchEvent(EVENTS.MODIFY_LANGUAGE, { lang, messages });
+  },
 };
 
 export { localeActions, useLocale };

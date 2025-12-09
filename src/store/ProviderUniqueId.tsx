@@ -7,7 +7,7 @@ import { useSignal } from 'reactjs-signal';
 
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { atomLang } from '@/locales';
-import { ProviderEditableEditor, useStoreEditableEditor,  } from '@/store/store';
+import { ProviderEditableEditor, useStoreEditableEditor, } from '@/store/store';
 import { THEME } from '@/theme/theme';
 import { listenEvent } from '@/utils/customEvents/customEvents';
 import { EVENTS } from '@/utils/customEvents/events.constant';
@@ -47,28 +47,65 @@ const EventInitial = memo(({ editor, children }: any) => {
   );
 });
 
-function ProviderLanguage () {
-  const [lang, setLang] = useSignal(atomLang);
+function ProviderLanguage() {
+  const [, setLang] = useSignal(atomLang);
 
   const handChainLanguage = (evt: any) => {
-    setLang({
-      ...lang,
-      currentLang: evt.detail
+    setLang((prev) => {
+      return {
+        ...prev,
+        currentLang: evt.detail
+      };
+    });
+  };
+
+  const modifyLanguage = (evt: any) => {
+    const { lang: langKey, messages } = evt.detail;
+
+    setLang((prev) => {
+      if (prev.message[langKey as keyof typeof prev.message]) {
+        const newMesage = {
+          ...prev.message[langKey as keyof typeof prev.message],
+          ...messages
+        };
+
+        return {
+          currentLang: prev.currentLang,
+          message: {
+            ...prev.message,
+            [langKey]: newMesage
+          }
+        };
+      } else {
+
+        return {
+          currentLang: prev.currentLang,
+          message: {
+            ...prev.message,
+            [langKey]: messages
+          }
+        };
+      }
     });
   };
 
   useEffect(() => {
     const rm = listenEvent(EVENTS.CHANGE_LANGUAGE, handChainLanguage);
+    const rm1 = listenEvent(EVENTS.MODIFY_LANGUAGE, modifyLanguage);
 
     return () => {
       rm();
+      rm1();
     };
   }, []);
 
-  return <></>;
+  return (
+    <>
+    </>
+  );
 }
 
-function ThemeColor () {
+function ThemeColor() {
   const [theme, setTheme] = useLocalStorage('richtext-theme', 'light');
   const [color, setColor] = useLocalStorage('richtext-color', 'default');
   const [borderRadius, setBorderRadius] = useLocalStorage('richtext-border-radius', '0.65rem');
@@ -89,20 +126,20 @@ function ThemeColor () {
       .reactjs-tiptap-editor, .reactjs-tiptap-editor *,
       div[data-richtext-portal], div[data-richtext-portal] * {
         ${Object.entries(themeObject).map(([key, value]) => {
-          if (typeof borderRadius === 'string' && key === 'radius'  ) {
-            return `--${key}: ${borderRadius};`;
-          }
+      if (typeof borderRadius === 'string' && key === 'radius') {
+        return `--${key}: ${borderRadius};`;
+      }
 
-          return `--${key}: ${value};`;
-        }).join('\n')}
+      return `--${key}: ${value};`;
+    }).join('\n')}
       }
       `, 'richtext-theme', {
-        priority: 50
-      });
+      priority: 50
+    });
 
-      return () => {
-        removeCSS('richtext-theme');
-      };
+    return () => {
+      removeCSS('richtext-theme');
+    };
   }, [theme, color, borderRadius]);
 
   const onChangeTheme = (evt: any) => {
