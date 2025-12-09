@@ -336,7 +336,7 @@ export const THEME = {
       input: '215 27.9% 16.9%',
       ring: '263.4 70% 50.4%',
     },
-    yello: {
+    yellow: {
       radius: '0.65rem',
       background: '20 14.3% 4.1%',
       foreground: '60 9.1% 97.8%',

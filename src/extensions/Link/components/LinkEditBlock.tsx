@@ -156,7 +156,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
             onClick={props?.onClose}
             type="button"
                             >
-            {t('editor.link.dialog.button.apply')}
+            {t('editor.link.dialog.button.cancel')}
           </Button>
         }
 
