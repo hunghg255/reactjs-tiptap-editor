@@ -70,6 +70,7 @@ const locale = {
   'editor.link.dialog.link.placeholder': 'Endereço do link',
   'editor.link.dialog.text.placeholder': 'Texto do link',
   'editor.link.dialog.button.apply': 'Aplicar',
+  'editor.link.dialog.button.cancel': 'Cancelar',
   'editor.image.tooltip': 'Imagem',
   'editor.image.dragger.tooltip': 'Clique ou arraste a imagem para a área de upload',
   'editor.image.float.left.tooltip': 'Flutuar à esquerda',

@@ -70,6 +70,7 @@ const locale = {
   'editor.link.dialog.link.placeholder': '链接地址',
   'editor.link.dialog.text.placeholder': '添加描述',
   'editor.link.dialog.button.apply': '应用',
+  'editor.link.dialog.button.cancel': '取消',
   'editor.image.tooltip': '图片',
   'editor.image.dragger.tooltip': '点击或拖拽图片到此区域上传',
   'editor.image.float.left.tooltip': '左浮动',

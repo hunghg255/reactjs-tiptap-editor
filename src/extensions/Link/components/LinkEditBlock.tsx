@@ -14,6 +14,7 @@ interface IPropsLinkEditBlock {
   onSetLink: (link: string, text?: string, openInNewTab?: boolean) => void;
   open?: boolean;
   target?: string;
+  onClose?: () => void;
 }
 
 function LinkEditBlock(props: IPropsLinkEditBlock) {
@@ -149,13 +150,23 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
         </div>
       )}
 
-      <Button
-        className="richtext-mt-2 richtext-self-end"
-        onClick={handleSubmit}
-        type="button"
-      >
-        {t('editor.link.dialog.button.apply')}
-      </Button>
+      <div className='richtext-mt-2 richtext-flex richtext-items-center richtext-justify-end richtext-gap-2'>
+        {
+          props?.onClose && <Button
+            onClick={props?.onClose}
+            type="button"
+                            >
+            {t('editor.link.dialog.button.apply')}
+          </Button>
+        }
+
+        <Button
+          onClick={handleSubmit}
+          type="button"
+        >
+          {t('editor.link.dialog.button.apply')}
+        </Button>
+      </div>
     </div>
   );
 }

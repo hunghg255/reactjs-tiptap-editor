@@ -14,7 +14,6 @@ function LinkViewBlock(props: IPropsLinkViewBlock) {
   const { t } = useLocale();
 
   return (
-    <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
       <div className="richtext-flex richtext-flex-nowrap">
         <ActionButton
           disabled={!props?.link}
@@ -44,7 +43,6 @@ function LinkViewBlock(props: IPropsLinkViewBlock) {
           }}
         />
       </div>
-    </div>
   );
 }
 

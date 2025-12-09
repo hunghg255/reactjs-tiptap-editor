@@ -70,6 +70,7 @@ const locale = {
   'editor.link.dialog.link.placeholder': 'Địa chỉ liên kết',
   'editor.link.dialog.text.placeholder': 'Thêm mô tả',
   'editor.link.dialog.button.apply': 'Áp dụng',
+  'editor.link.dialog.button.cancel': 'Hủy',
   'editor.image.tooltip': 'Hình ảnh',
   'editor.image.dragger.tooltip': 'Nhấp hoặc kéo hình ảnh đến khu vực để tải lên',
   'editor.image.float.left.tooltip': 'Trôi sang trái',

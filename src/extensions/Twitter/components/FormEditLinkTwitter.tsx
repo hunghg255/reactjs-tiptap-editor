@@ -41,7 +41,7 @@ function FormEditLinkTwitter(props: IPropsFormEditLinkTwitter) {
           {t('editor.link.dialog.text')}
         </Label>
 
-        <div className="richtext-mb-[10px] richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
+        <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
           <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
             <Input
               className="richtext-w-80"

@@ -35,7 +35,9 @@ export function RichTextBubbleIframe() {
   const [visible, toggleVisible] = useState(false);
   const [formUrl, setFormUrl] = useState('');
 
-  const handleCancel = useCallback(() => {
+  const handleCancel = useCallback((e: any) => {
+    e?.preventDefault?.();
+
     toggleVisible(false);
   }, [toggleVisible]);
 
@@ -44,7 +46,9 @@ export function RichTextBubbleIframe() {
       setFormUrl(src as any);
   }, [visible, src]);
 
-  const handleOk = useCallback(() => {
+  const handleOk = useCallback((e: any) => {
+    e?.preventDefault?.();
+
     const urlFormat = getServiceSrc(formUrl);
 
     editor
@@ -142,11 +146,15 @@ export function RichTextBubbleIframe() {
           />
 
           <DialogFooter>
-            <Button onClick={handleCancel}>
+            <Button onClick={handleCancel}
+type='button'
+            >
               Cancel
             </Button>
 
-            <Button onClick={handleOk}>
+            <Button onClick={handleOk}
+type='button'
+            >
               OK
             </Button>
           </DialogFooter>

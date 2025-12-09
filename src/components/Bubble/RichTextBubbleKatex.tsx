@@ -16,7 +16,7 @@ import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 import { deleteNode } from '@/utils/delete-node';
 
-function ModalEditKatex ({
+function ModalEditKatex({
   children,
   visible,
   toggleVisible,
@@ -70,10 +70,10 @@ function ModalEditKatex ({
   );
 
   return (
-<Dialog
+    <Dialog
       onOpenChange={toggleVisible}
       open={visible}
->
+    >
       <DialogTrigger
         asChild
       >
@@ -82,7 +82,7 @@ function ModalEditKatex ({
 
       <DialogContent className="richtext-z-[99999] !richtext-max-w-[1300px]">
         <DialogTitle>
-            {t('editor.formula.dialog.text')}
+          {t('editor.formula.dialog.text')}
         </DialogTitle>
 
         <div
@@ -120,8 +120,8 @@ function ModalEditKatex ({
           </Button>
         </DialogFooter>
       </DialogContent>
-</Dialog>
-);
+    </Dialog>
+  );
 }
 
 export function RichTextBubbleKatex() {
@@ -148,22 +148,22 @@ export function RichTextBubbleKatex() {
       shouldShow={shouldShow}
     >
       <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
-            <ModalEditKatex
-              toggleVisible={toggleVisible}
-              visible={visible}
-            >
-              <ActionButton action={() => toggleVisible(!visible)}
-                tooltip="Edit"
-              >
-                <Pencil size={16} />
-              </ActionButton>
-            </ModalEditKatex>
+        <ModalEditKatex
+          toggleVisible={toggleVisible}
+          visible={visible}
+        >
+          <ActionButton action={() => toggleVisible(!visible)}
+            tooltip="Edit"
+          >
+            <Pencil size={16} />
+          </ActionButton>
+        </ModalEditKatex>
 
-            <ActionButton action={deleteMe}
-              tooltip="Delete"
-            >
-              <Trash2 size={16} />
-            </ActionButton>
+        <ActionButton action={deleteMe}
+          tooltip="Delete"
+        >
+          <Trash2 size={16} />
+        </ActionButton>
       </div>
     </BubbleMenu>
   );

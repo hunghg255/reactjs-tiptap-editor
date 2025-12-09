@@ -70,6 +70,7 @@ const locale = {
   'editor.link.dialog.link.placeholder': 'Link célpont',
   'editor.link.dialog.text.placeholder': 'Szöveg',
   'editor.link.dialog.button.apply': 'Alkalmaz',
+  'editor.link.dialog.button.cancel': 'Mégsem',
   'editor.image.tooltip': 'Kép',
   'editor.image.dragger.tooltip': 'Kattintson vagy húzza a feltölteni kívánt képet a területre',
   'editor.image.float.left.tooltip': 'Lebegtetés balra',

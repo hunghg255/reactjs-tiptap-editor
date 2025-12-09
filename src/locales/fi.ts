@@ -70,6 +70,7 @@ const locale = {
   'editor.link.dialog.link.placeholder': 'Linkin osoite',
   'editor.link.dialog.text.placeholder': 'Lisää kuvaus',
   'editor.link.dialog.button.apply': 'Käytä',
+  'editor.link.dialog.button.cancel': 'Peruuta',
   'editor.image.tooltip': 'Kuva',
   'editor.image.dragger.tooltip': 'Klikkaa tai pudota kuva ladataksesi',
   'editor.image.float.left.tooltip': 'Asemoi vasemmalle',

@@ -64,6 +64,10 @@ export function RichTextBubbleLink() {
     setShowEdit(false);
   }, [editor]);
 
+  const onClose = () => {
+    setShowEdit(false);
+  };
+
   if (!editable) {
     return <></>;
   }
@@ -76,20 +80,29 @@ export function RichTextBubbleLink() {
     >
       <>
         {showEdit ? (
-          <LinkEditBlock editor={editor}
-            onSetLink={onSetLink}
-          />
+          <div
+            className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-4 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'
+          >
+            <LinkEditBlock editor={editor}
+              onClose={onClose}
+              onSetLink={onSetLink}
+            />
+          </div>
         ) : (
-          <LinkViewBlock
-            editor={editor}
-            link={link}
-            onClear={unSetLink}
-            onEdit={() => {
-              setShowEdit(true);
-            }}
-          />
+          <div
+            className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'
+          >
+            <LinkViewBlock
+              editor={editor}
+              link={link}
+              onClear={unSetLink}
+              onEdit={() => {
+                setShowEdit(true);
+              }}
+            />
+          </div>
         )}
       </>
     </BubbleMenu>
-);
+  );
 }
