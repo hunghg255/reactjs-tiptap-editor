@@ -51,7 +51,7 @@ To override part of the current language system, first choose a new language nam
 
 ```javascript
 import { en } from 'reactjs-tiptap-editor/locale-bundle';
-locale.setMessage('en_US', {
+locale.setMessage('en', {
   ...en,
   'editor.remove': 'Delete',
 });
