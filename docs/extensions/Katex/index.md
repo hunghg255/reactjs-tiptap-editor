@@ -2,8 +2,8 @@
 description: Katex
 
 next:
-  text: ExportPdf
-  link: /extensions/ExportPdf/index.md
+  text: LineHeight
+  link: /extensions/LineHeight/index.md
 ---
 
 # Katex

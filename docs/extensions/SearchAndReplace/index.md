@@ -2,8 +2,8 @@
 description: Search And Replace
 
 next:
-  text: Emoji
-  link: /extensions/Emoji/index.md
+  text: SlashCommand
+  link: /extensions/SlashCommand/index.md
 ---
 
 # Search And Replace

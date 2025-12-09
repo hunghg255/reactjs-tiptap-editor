@@ -2,8 +2,8 @@
 description: Attachment
 
 next:
-  text: ImageGif
-  link: /extensions/ImageGif/index.md
+  text: Blockquote
+  link: /extensions/Blockquote/index.md
 ---
 
 # Attachment

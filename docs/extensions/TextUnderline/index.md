@@ -2,8 +2,8 @@
 description: UnderLine
 
 next:
-  text: Video
-  link: /extensions/Video/index.md
+  text: Twitter
+  link: /extensions/Twitter/index.md
 ---
 
 # UnderLine

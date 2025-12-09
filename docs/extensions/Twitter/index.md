@@ -2,8 +2,8 @@
 description: Twitter
 
 next:
-  text: Drawer
-  link: /extensions/Drawer/index.md
+  text: Video
+  link: /extensions/Video/index.md
 ---
 
 # Twitter

@@ -2,8 +2,8 @@
 description: TextAlign
 
 next:
-  text: TextBubble
-  link: /extensions/TextBubble/index.md
+  text: TextDirection
+  link: /extensions/TextDirection/index.md
 ---
 
 # Text Align

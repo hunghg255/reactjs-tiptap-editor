@@ -1,16 +1,16 @@
 [
   {
-    "name": "BaseKit.ts",
-    "package": "BaseKit.ts",
-    "alias": [
-      "BaseKit"
-    ]
-  },
-  {
     "name": "Attachment.ts",
     "package": "Attachment",
     "alias": [
       "Attachment"
+    ]
+  },
+  {
+    "name": "Blockquote.ts",
+    "package": "Blockquote",
+    "alias": [
+      "Blockquote"
     ]
   },
   {
@@ -35,10 +35,10 @@
     ]
   },
   {
-    "name": "Blockquote.ts",
-    "package": "Blockquote",
+    "name": "Code.ts",
+    "package": "Code",
     "alias": [
-      "Blockquote"
+      "Code"
     ]
   },
   {
@@ -46,13 +46,6 @@
     "package": "CodeBlock",
     "alias": [
       "CodeBlock"
-    ]
-  },
-  {
-    "name": "Code.ts",
-    "package": "Code",
-    "alias": [
-      "Code"
     ]
   },
   {
@@ -77,10 +70,10 @@
     ]
   },
   {
-    "name": "Document.ts",
-    "package": "Document",
+    "name": "Column.ts",
+    "package": "Column",
     "alias": [
-      "Document"
+      "Column"
     ]
   },
   {
@@ -126,13 +119,6 @@
     ]
   },
   {
-    "name": "FormatPainter.ts",
-    "package": "FormatPainter",
-    "alias": [
-      "FormatPainter"
-    ]
-  },
-  {
     "name": "Heading.ts",
     "package": "Heading",
     "alias": [
@@ -154,6 +140,13 @@
     ]
   },
   {
+    "name": "HorizontalRule.ts",
+    "package": "HorizontalRule",
+    "alias": [
+      "HorizontalRule"
+    ]
+  },
+  {
     "name": "Iframe.ts",
     "package": "Iframe",
     "alias": [
@@ -164,14 +157,7 @@
     "name": "Iframe.ts",
     "package": "Iframe",
     "alias": [
-      "embed"
-    ]
-  },
-  {
-    "name": "HorizontalRule.ts",
-    "package": "HorizontalRule",
-    "alias": [
-      "HorizontalRule"
+      "utils"
     ]
   },
   {
@@ -238,13 +224,6 @@
     ]
   },
   {
-    "name": "ListItem.ts",
-    "package": "ListItem",
-    "alias": [
-      "ListItem"
-    ]
-  },
-  {
     "name": "Mention.ts",
     "package": "Mention",
     "alias": [
@@ -266,20 +245,6 @@
     ]
   },
   {
-    "name": "MultiColumn.ts",
-    "package": "MultiColumn",
-    "alias": [
-      "Column"
-    ]
-  },
-  {
-    "name": "MultiColumn.ts",
-    "package": "MultiColumn",
-    "alias": [
-      "MultiColumn"
-    ]
-  },
-  {
     "name": "OrderedList.ts",
     "package": "OrderedList",
     "alias": [
@@ -294,13 +259,6 @@
     ]
   },
   {
-    "name": "Selection.ts",
-    "package": "Selection",
-    "alias": [
-      "Selection"
-    ]
-  },
-  {
     "name": "SlashCommand.ts",
     "package": "SlashCommand",
     "alias": [
@@ -311,7 +269,7 @@
     "name": "SlashCommand.ts",
     "package": "SlashCommand",
     "alias": [
-      "groups"
+      "renderCommandListDefault"
     ]
   },
   {
@@ -329,13 +287,6 @@
     ]
   },
   {
-    "name": "SubAndSuperScript.ts",
-    "package": "SubAndSuperScript",
-    "alias": [
-      "SubAndSuperScript"
-    ]
-  },
-  {
     "name": "Table.ts",
     "package": "Table",
     "alias": [
@@ -346,14 +297,7 @@
     "name": "Table.ts",
     "package": "Table",
     "alias": [
-      "cell-background"
-    ]
-  },
-  {
-    "name": "TableOfContent.ts",
-    "package": "TableOfContent",
-    "alias": [
-      "TableOfContent"
+      "TableCellBackground"
     ]
   },
   {
@@ -364,13 +308,6 @@
     ]
   },
   {
-    "name": "TextAlign.ts",
-    "package": "TextAlign",
-    "alias": [
-      "TextAlign"
-    ]
-  },
-  {
     "name": "TextDirection.ts",
     "package": "TextDirection",
     "alias": [
@@ -378,24 +315,17 @@
     ]
   },
   {
+    "name": "TextAlign.ts",
+    "package": "TextAlign",
+    "alias": [
+      "TextAlign"
+    ]
+  },
+  {
     "name": "TextUnderline.ts",
     "package": "TextUnderline",
     "alias": [
       "TextUnderline"
-    ]
-  },
-  {
-    "name": "TextBubble.ts",
-    "package": "TextBubble",
-    "alias": [
-      "TextBubble"
-    ]
-  },
-  {
-    "name": "TrailingNode.ts",
-    "package": "TrailingNode",
-    "alias": [
-      "TrailingNode"
     ]
   },
   {
@@ -420,22 +350,8 @@
     ]
   },
   {
-    "name": "MultiColumn.ts",
-    "package": "MultiColumn",
-    "alias": [
-      "components"
-    ]
-  },
-  {
-    "name": "Table.ts",
-    "package": "Table",
-    "alias": [
-      "components"
-    ]
-  },
-  {
-    "name": "Table.ts",
-    "package": "Table",
+    "name": "ImageGif.ts",
+    "package": "ImageGif",
     "alias": [
       "components"
     ]

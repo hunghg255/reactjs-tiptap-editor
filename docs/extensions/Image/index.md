@@ -2,8 +2,8 @@
 description: Image
 
 next:
-  text: Indent
-  link: /extensions/Indent/index.md
+  text: ImageGif
+  link: /extensions/ImageGif/index.md
 ---
 
 # Image

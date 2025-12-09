@@ -2,8 +2,8 @@
 description: Color
 
 next:
-  text: Document
-  link: /extensions/Document/index.md
+  text: Column
+  link: /extensions/Column/index.md
 ---
 
 # Color

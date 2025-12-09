@@ -2,8 +2,8 @@
 description: Emoji
 
 next:
-  text: Katex
-  link: /extensions/Katex/index.md
+  text: Excalidraw
+  link: /extensions/Excalidraw/index.md
 ---
 
 # Emoji

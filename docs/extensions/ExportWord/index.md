@@ -2,8 +2,8 @@
 description: Export Word
 
 next:
-  text: Table Of Contents
-  link: /extensions/TableOfContents/index.md
+  text: FontFamily
+  link: /extensions/FontFamily/index.md
 ---
 
 # Export Word

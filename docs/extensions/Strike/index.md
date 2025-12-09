@@ -2,8 +2,8 @@
 description: Strike
 
 next:
-  text: SubAndSuperScript
-  link: /extensions/SubAndSuperScript/index.md
+  text: Table
+  link: /extensions/Table/index.md
 ---
 
 # Strike

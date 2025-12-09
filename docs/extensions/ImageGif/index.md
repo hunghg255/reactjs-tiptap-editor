@@ -2,8 +2,8 @@
 description: ImageGif
 
 next:
-  text: Mermaid
-  link: /extensions/Mermaid/index.md
+  text: ImportWord
+  link: /extensions/ImportWord/index.md
 ---
 
 # ImageGif

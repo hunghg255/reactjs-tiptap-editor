@@ -1,5 +1,10 @@
 ---
 description: Drawer
+
+
+next:
+  text: Emoji
+  link: /extensions/Emoji/index.md
 ---
 
 # Drawer

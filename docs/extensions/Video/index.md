@@ -1,9 +1,5 @@
 ---
 description: Video
-
-next:
-  text: SearchAndReplace
-  link: /extensions/SearchAndReplace/index.md
 ---
 
 # Video

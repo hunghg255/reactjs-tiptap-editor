@@ -2,8 +2,8 @@
 description: Import Word
 
 next:
-  text: ExportWord
-  link: /extensions/ExportWord/index.md
+  text: Indent
+  link: /extensions/Indent/index.md
 ---
 
 # Import Word

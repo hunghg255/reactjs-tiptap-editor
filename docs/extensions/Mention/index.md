@@ -2,8 +2,8 @@
 description: Mention
 
 next:
-  text: Attachment
-  link: /extensions/Attachment/index.md
+  text: Mermaid
+  link: /extensions/Mermaid/index.md
 ---
 
 # Mention

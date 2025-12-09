@@ -2,8 +2,8 @@
 description: Link
 
 next:
-  text: ListItem
-  link: /extensions/ListItem/index.md
+  text: Mention
+  link: /extensions/Mention/index.md
 ---
 
 # Link

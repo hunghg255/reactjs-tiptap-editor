@@ -2,8 +2,8 @@
 description: Italic
 
 next:
-  text: LineHeight
-  link: /extensions/LineHeight/index.md
+  text: Katex
+  link: /extensions/Katex/index.md
 ---
 
 # Italic

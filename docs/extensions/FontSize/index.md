@@ -2,8 +2,8 @@
 description: FontSize
 
 next:
-  text: FormatPainter
-  link: /extensions/FormatPainter/index.md
+  text: Heading
+  link: /extensions/Heading/index.md
 ---
 
 # Font Size

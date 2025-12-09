@@ -24,6 +24,12 @@ const members = computed(() => [
     title: t('Contributor'),
     links: [{ icon: 'github', link: 'https://github.com/meliora' }],
   },
+  {
+    avatar: 'https://github.com/Found-L.png',
+    name: 'Found-L',
+    title: t('Contributor'),
+    links: [{ icon: 'github', link: 'https://github.com/Found-L' }],
+  },
 ]);
 </script>
 

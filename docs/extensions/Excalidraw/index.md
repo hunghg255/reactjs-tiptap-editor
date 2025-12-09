@@ -2,8 +2,8 @@
 description: Excalidraw
 
 next:
-  text: TextDirection
-  link: /extensions/TextDirection/index.md
+  text: ExportPdf
+  link: /extensions/ExportPdf/index.md
 ---
 
 # Excalidraw
