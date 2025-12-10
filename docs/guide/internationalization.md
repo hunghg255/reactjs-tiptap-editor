@@ -38,8 +38,9 @@ Currently, the editor supports the following languages:
 If the platform doesn't support your desired language, you can add a custom language, for example: `fr`.
 
 ```javascript
+import { localeActions } from 'reactjs-tiptap-editor/locale-bundle';
 // Don't worry about which content to translate; setMessage supports TypeScript
-locale.setMessage('fr', {
+localeActions.setMessage('fr', {
   'editor.remove': 'Supprimer',
   // ...
 });
@@ -50,9 +51,16 @@ locale.setMessage('fr', {
 To override part of the current language system, first choose a new language name, then import the default language data, and finally override the translations you want.
 
 ```javascript
+import { localeActions } from 'reactjs-tiptap-editor/locale-bundle';
 import { en } from 'reactjs-tiptap-editor/locale-bundle';
-locale.setMessage('en', {
+localeActions.setMessage('en', {
   ...en,
   'editor.remove': 'Delete',
 });
 ```
+
+### Full List of Translation Keys
+
+All translation keys used by the editor are located in the [English locale file](https://github.com/hunghg255/reactjs-tiptap-editor/blob/main/src/locales/en.ts).
+
+Use this file as the source of truth when creating or extending a language. Simply copy the keys and translate them based on your target language.
