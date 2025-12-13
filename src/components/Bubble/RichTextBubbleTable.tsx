@@ -69,8 +69,8 @@ function RichTextBubbleTable({ hiddenActions = [] }: RichTextBubbleTableProps) {
     <BubbleMenu
       editor={editor}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      pluginKey={'RichTextBubbleTable'}
       shouldShow={shouldShow}
-      updateDelay={0}
     >
       <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
 

@@ -79,6 +79,7 @@ export function RichTextBubbleMermaid() {
     <BubbleMenu
       editor={editor}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      pluginKey={'RichTextBubbleMermaid'}
       shouldShow={shouldShow}
     >
       {items?.length

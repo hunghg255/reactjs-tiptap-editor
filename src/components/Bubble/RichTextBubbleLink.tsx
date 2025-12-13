@@ -76,6 +76,7 @@ export function RichTextBubbleLink() {
     <BubbleMenu
       editor={editor}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      pluginKey={'RichTextBubbleLink'}
       shouldShow={shouldShow}
     >
       <>

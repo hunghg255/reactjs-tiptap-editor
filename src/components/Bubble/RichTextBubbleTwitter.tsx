@@ -38,6 +38,7 @@ export function RichTextBubbleTwitter() {
     <BubbleMenu
       editor={editor}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      pluginKey={'RichTextBubbleTwitter'}
       shouldShow={shouldShow}
     >
       <>

@@ -144,6 +144,7 @@ export function RichTextBubbleMenuDragHandle() {
       <DragHandle
         editor={editor}
         onNodeChange={handleNodeChange as any}
+        pluginKey={'RichTextBubbleMenuDragHandle'}
       >
         <div className="richtext-flex richtext-items-center richtext-gap-0.5 richtext-duration-200 richtext-ease-in-out [transition-property:top,_left]">
           <ActionButton
