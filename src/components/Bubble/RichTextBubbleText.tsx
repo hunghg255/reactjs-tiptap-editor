@@ -75,6 +75,7 @@ export function RichTextBubbleText({ buttonBubble }: RichTextBubbleTextProps) {
   return (
     <BubbleMenu editor={editor}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      pluginKey={'RichTextBubbleText'}
       shouldShow={shouldShow}
     >
       {buttonBubble

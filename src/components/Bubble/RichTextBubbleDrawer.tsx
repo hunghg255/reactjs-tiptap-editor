@@ -76,6 +76,7 @@ export function RichTextBubbleDrawer() {
     <BubbleMenu
       editor={editor}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      pluginKey={'RichTextBubbleDrawer'}
       shouldShow={shouldShow}
     >
       {items?.length

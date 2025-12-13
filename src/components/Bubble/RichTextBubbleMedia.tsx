@@ -82,6 +82,7 @@ function RichTextBubbleImage() {
     <BubbleMenu
       editor={editor}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      pluginKey={'RichTextBubbleImage'}
       shouldShow={shouldShow}
     >
       {items?.length
@@ -140,6 +141,7 @@ function RichTextBubbleImageGif() {
     <BubbleMenu
       editor={editor}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      pluginKey={'RichTextBubbleImageGif'}
       shouldShow={shouldShow}
     >
       {items?.length
@@ -198,6 +200,7 @@ function RichTextBubbleVideo() {
     <BubbleMenu
       editor={editor}
       options={{ placement: 'bottom', offset: 8, flip: true }}
+      pluginKey={'RichTextBubbleVideo'}
       shouldShow={shouldShow}
     >
       {items?.length

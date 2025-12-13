@@ -90,6 +90,7 @@ export function RichTextBubbleIframe() {
       <BubbleMenu
         editor={editor}
         options={{ placement: 'bottom', offset: 8, flip: true }}
+        pluginKey={'RichTextBubbleIframe'}
         shouldShow={shouldShow}
       >
 
