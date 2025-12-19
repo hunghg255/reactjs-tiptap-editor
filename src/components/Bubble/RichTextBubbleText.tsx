@@ -36,7 +36,6 @@ function DefaultButtonBubble () {
     <RichTextBold />
     <RichTextItalic />
     <RichTextUnderline />
-    <RichTextUnderline />
     <RichTextStrike />
     <RichTextCode/>
     <RichTextLink />
