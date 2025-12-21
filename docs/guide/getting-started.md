@@ -27,6 +27,7 @@ yarn add reactjs-tiptap-editor@latest
 
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
+import { EditorContent, useEditor } from "@tiptap/react";
 
 // Base Kit
 import { Document } from '@tiptap/extension-document'
