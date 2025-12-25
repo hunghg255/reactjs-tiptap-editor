@@ -9,7 +9,13 @@ import scrollIntoView from 'scroll-into-view-if-needed';
 
 interface IProps {
   editor: Editor
-  items: Array<string>
+  items: Array<{
+    id: string
+    label: string
+    avatar?: {
+      src: string
+    }
+  }>
   command: any
   onClose?: () => void
 }
@@ -22,7 +28,7 @@ export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => 
     const userName = props.items[index];
     if (!userName)
       return;
-    props.command({ id: userName, label: userName });
+    props.command(userName);
   };
 
   const upHandler = () => {
@@ -68,17 +74,33 @@ export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => 
   }));
 
   return (
-    <div className={' !richtext-max-h-[320px] !richtext-w-[160px] richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'}>
-      <div ref={$container}>
+    <div className={' !richtext-max-h-[320px] !richtext-w-[160px] richtext-overflow-y-auto richtext-overflow-x-hidden  richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'}
+      data-richtext-portal
+      ref={$container}
+    >
+      <div >
         {props.items.length > 0
           ? (
             props.items.map((item, index) => (
               <span
-                className={clsx('richtext-flex richtext-w-full richtext-items-center richtext-gap-3 richtext-rounded-sm !richtext-border-none !richtext-bg-transparent richtext-px-2 richtext-py-1.5 richtext-text-left richtext-text-sm richtext-text-foreground !richtext-outline-none richtext-transition-colors hover:!richtext-bg-accent ',  { 'bg-item-active': index === selectedIndex })}
-                key={index}
-                onClick={() => selectItem(index)}
+                className={clsx('richtext-flex richtext-w-full richtext-items-center richtext-gap-3 richtext-rounded-sm !richtext-border-none !richtext-bg-transparent richtext-px-2 richtext-py-1.5 richtext-text-left richtext-text-sm richtext-text-foreground !richtext-outline-none richtext-transition-colors hover:!richtext-bg-accent ', { 'bg-item-active': index === selectedIndex })}
+                key={`mention-item-${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  selectItem(index);
+                }}
               >
-                {item}
+                {
+                  item?.avatar?.src && (
+                    <img
+                      alt={item.label}
+                      className="richtext-size-5 richtext-rounded-full"
+                      src={item.avatar.src}
+                    />
+                  )
+                }
+
+                {item?.label}
               </span>
             ))
           )

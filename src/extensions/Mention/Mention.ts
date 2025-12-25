@@ -1,99 +1,86 @@
-import BulitInMention from '@tiptap/extension-mention';
-import { ReactRenderer } from '@tiptap/react';
+import BulitInMention, { type MentionOptions } from '@tiptap/extension-mention';
+import { Extension, ReactRenderer } from '@tiptap/react';
 
 import { NodeViewMentionList } from '@/extensions/Mention/components/NodeViewMentionList';
-import { getDatasetAttribute } from '@/utils/dom-dataset';
 import { updatePosition } from '@/utils/updatePosition';
 
-const MOCK_USERS = [
-  {
-    id: '1',
-    name: 'John Doe',
-  },
-  {
-    id: '2',
-    name: 'Jane Doe',
-  },
-  {
-    id: '3',
-    name: 'Alice',
-  },
-  {
-    id: '4',
-    name: 'Bob',
-  },
-];
+function render () {
+  let reactRenderer: any;
 
-export const Mention = /* @__PURE__ */ BulitInMention.extend({
-  addAttributes() {
-    return {
-      id: {
-        default: '',
-        parseHTML: getDatasetAttribute('id'),
-      },
-      label: {
-        default: '',
-        parseHTML: getDatasetAttribute('label'),
-      },
+  return {
+    onStart: (props: any) => {
+      if (!props.clientRect) {
+        return;
+      }
+
+      reactRenderer = new ReactRenderer(NodeViewMentionList, {
+        props,
+        editor: props.editor,
+      });
+
+      reactRenderer.element.style.position = 'absolute';
+
+      document.body.appendChild(reactRenderer.element);
+
+      updatePosition(props.editor, reactRenderer.element);
+    },
+
+    onUpdate(props: any) {
+      reactRenderer.updateProps(props);
+
+      if (!props.clientRect) {
+        return;
+      }
+      updatePosition(props.editor, reactRenderer.element);
+    },
+
+    onKeyDown(props: any) {
+      if (props.event.key === 'Escape') {
+        reactRenderer.destroy();
+        reactRenderer.element.remove();
+
+        return true;
+      }
+
+      return reactRenderer.ref?.onKeyDown(props);
+    },
+
+    onExit() {
+      reactRenderer.destroy();
+      reactRenderer.element.remove();
+    },
+  };
+}
+
+export const Mention = /* @__PURE__ */ Extension.create<MentionOptions>({
+  name: 'richTextMentionWrapper',
+
+  addExtensions() {
+    const config: any = {
+      ...this.options
     };
-  },
-}).configure({
-  HTMLAttributes: {
-    class: 'mention',
-  },
-  suggestion: {
-    items: async ({ query }: any) => {
-      const data = MOCK_USERS.map(item => item.name);
-      return data.filter(item => item.toLowerCase().startsWith(query.toLowerCase()));
-    },
 
-    render: () => {
-      let reactRenderer: any;
-
-      return {
-        onStart: (props: any) => {
-          if (!props.clientRect) {
-            return;
-          }
-
-          reactRenderer = new ReactRenderer(NodeViewMentionList, {
-            props,
-            editor: props.editor,
-          });
-
-          reactRenderer.element.style.position = 'absolute';
-
-          document.body.appendChild(reactRenderer.element);
-
-          updatePosition(props.editor, reactRenderer.element);
-        },
-
-        onUpdate(props) {
-          reactRenderer.updateProps(props);
-
-          if (!props.clientRect) {
-            return;
-          }
-          updatePosition(props.editor, reactRenderer.element);
-        },
-
-        onKeyDown(props) {
-          if (props.event.key === 'Escape') {
-            reactRenderer.destroy();
-            reactRenderer.element.remove();
-
-            return true;
-          }
-
-          return reactRenderer.ref?.onKeyDown(props);
-        },
-
-        onExit() {
-          reactRenderer.destroy();
-          reactRenderer.element.remove();
-        },
+    if (this.options?.suggestion) {
+      config['suggestion'] = {
+        render: render,
+        ...this.options.suggestion,
       };
-    },
+    }
 
+    if (this.options?.suggestions?.length) {
+      config['suggestions'] = this.options.suggestions?.map((s) => {
+        return {
+          render: render,
+          ...s,
+        };
+      });
+    }
+
+    return [BulitInMention.configure({
+      HTMLAttributes: {
+        class: 'mention',
+      },
+      ...config,
+    })];
   },
 });

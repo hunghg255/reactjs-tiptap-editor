@@ -47,51 +47,51 @@ export const Emoji = /* @__PURE__ */ TiptapEmoji.extend({
     allowSpaces: false,
 
     render: () => {
-              let reactRenderer: any;
+      let reactRenderer: any;
 
-              return {
-                onStart: (props: any) => {
-                  if (!props.clientRect) {
-                    return;
-                  }
+      return {
+        onStart: (props: any) => {
+          if (!props.clientRect) {
+            return;
+          }
 
-                  reactRenderer = new ReactRenderer(EmojiNodeView, {
-                    props,
-                    editor: props.editor,
-                  });
+          reactRenderer = new ReactRenderer(EmojiNodeView, {
+            props,
+            editor: props.editor,
+          });
 
-                  reactRenderer.element.style.position = 'absolute';
+          reactRenderer.element.style.position = 'absolute';
 
-                  document.body.appendChild(reactRenderer.element);
+          document.body.appendChild(reactRenderer.element);
 
-                  updatePosition(props.editor, reactRenderer.element);
-                },
+          updatePosition(props.editor, reactRenderer.element);
+        },
 
-                onUpdate(props) {
-                  reactRenderer.updateProps(props);
+        onUpdate(props) {
+          reactRenderer.updateProps(props);
 
-                  if (!props.clientRect) {
-                    return;
-                  }
-                  updatePosition(props.editor, reactRenderer.element);
-                },
+          if (!props.clientRect) {
+            return;
+          }
+          updatePosition(props.editor, reactRenderer.element);
+        },
 
-                onKeyDown(props) {
-                  if (props.event.key === 'Escape') {
-                    reactRenderer.destroy();
-                    reactRenderer.element.remove();
+        onKeyDown(props) {
+          if (props.event.key === 'Escape') {
+            reactRenderer.destroy();
+            reactRenderer.element.remove();
 
-                    return true;
-                  }
+            return true;
+          }
 
-                  return reactRenderer.ref?.onKeyDown(props);
-                },
+          return reactRenderer.ref?.onKeyDown(props);
+        },
 
-                onExit() {
-                  reactRenderer.destroy();
-                  reactRenderer.element.remove();
-                },
-              };
-            },
+        onExit() {
+          reactRenderer.destroy();
+          reactRenderer.element.remove();
+        },
+      };
+    },
   }
 });
