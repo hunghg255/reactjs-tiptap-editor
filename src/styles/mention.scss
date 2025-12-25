@@ -1,6 +1,6 @@
-.mention {
-  padding: 2px 6px;
-  color: #fff;
-  background-color: #666e76;
-  border-radius: 6px;
+[data-type="mention"] {
+    color: hsl(var(--primary));
+    background: hsl(var(--muted));
+    padding: 2px 4px;
+    border-radius: 6px;
 }

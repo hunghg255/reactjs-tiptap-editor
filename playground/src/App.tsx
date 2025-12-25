@@ -131,6 +131,43 @@ const DocumentColumn = /* @__PURE__ */ Document.extend({
   // echo editor is a block editor
 });
 
+const MOCK_USERS = [{
+    id: '0',
+    label: 'hunghg255',
+    avatar: {
+      src: 'https://avatars.githubusercontent.com/u/42096908?v=4'
+    }
+  },
+ {
+  id: '1',
+    label: 'benjamincanac',
+    avatar: {
+      src: 'https://avatars.githubusercontent.com/u/739984?v=4'
+    }
+  },
+  {
+    id: '2',
+    label: 'atinux',
+    avatar: {
+      src: 'https://avatars.githubusercontent.com/u/904724?v=4'
+    }
+  },
+  {
+    id: '3',
+    label: 'danielroe',
+    avatar: {
+      src: 'https://avatars.githubusercontent.com/u/28706372?v=4'
+    }
+  },
+  {
+    id: '4',
+    label: 'pi0',
+    avatar: {
+      src: 'https://avatars.githubusercontent.com/u/5158436?v=4'
+    }
+  }
+];
+
 const BaseKit = [
   DocumentColumn,
   Text,
@@ -251,7 +288,31 @@ const extensions = [
     },
   }),
   Twitter,
-  Mention,
+  Mention.configure({
+    suggestion: {
+      char: '@',
+      items: async ({ query }: any) => {
+        console.log('query', query);
+        // const data = MOCK_USERS.map(item => item.label);
+        // return data.filter(item => item.toLowerCase().startsWith(query.toLowerCase()));
+        return MOCK_USERS.filter(item => item.label.toLowerCase().startsWith(query.toLowerCase()));
+      },
+    }
+    // suggestions: [
+    //   {
+    //     char: '@',
+    //     items: async ({ query }: any) => {
+    //       return MOCK_USERS.filter(item => item.label.toLowerCase().startsWith(query.toLowerCase()));
+    //     },
+    //   },
+    //   {
+    //     char: '#',
+    //     items: async ({ query }: any) => {
+    //       return MOCK_USERS.filter(item => item.label.toLowerCase().startsWith(query.toLowerCase()));
+    //     },
+    //   }
+    // ]
+  }),
   SlashCommand,
   CodeView,
 
