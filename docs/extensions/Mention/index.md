@@ -28,12 +28,49 @@ import { TextStyle } from '@tiptap/extension-text-style';
 import { ListItem } from '@tiptap/extension-list';
 
 // Extension
-import { Mention, RichTextMention } from 'reactjs-tiptap-editor/mention'; // [!code ++]
+import { Mention } from 'reactjs-tiptap-editor/mention'; // [!code ++]
 // ... other extensions
 
 
 // Import CSS
 import 'reactjs-tiptap-editor/style.css';
+
+const MOCK_USERS = [{
+    id: '0',
+    label: 'hunghg255',
+    avatar: {
+      src: 'https://avatars.githubusercontent.com/u/42096908?v=4'
+    }
+  },
+  {
+  id: '1',
+    label: 'benjamincanac',
+    avatar: {
+      src: 'https://avatars.githubusercontent.com/u/739984?v=4'
+    }
+  },
+  {
+    id: '2',
+    label: 'atinux',
+    avatar: {
+      src: 'https://avatars.githubusercontent.com/u/904724?v=4'
+    }
+  },
+  {
+    id: '3',
+    label: 'danielroe',
+    avatar: {
+      src: 'https://avatars.githubusercontent.com/u/28706372?v=4'
+    }
+  },
+  {
+    id: '4',
+    label: 'pi0',
+    avatar: {
+      src: 'https://avatars.githubusercontent.com/u/5158436?v=4'
+    }
+  }
+];
 
 const extensions = [
   // Base Extensions
@@ -52,16 +89,30 @@ const extensions = [
 
   ...
   // Import Extensions Here
-  Mention// [!code ++]
+  Mention.configure({
+    // suggestion: {
+    //   char: '@',
+    //   items: async ({ query }: any) => {
+    //     return MOCK_USERS.filter(item => item.label.toLowerCase().startsWith(query.toLowerCase()));
+    //   },
+    // }
+    suggestions: [
+      {
+        char: '@',
+        items: async ({ query }: any) => {
+          return MOCK_USERS.filter(item => item.label.toLowerCase().startsWith(query.toLowerCase()));
+        },
+      },
+      {
+        char: '#',
+        items: async ({ query }: any) => {
+          return MOCK_USERS.filter(item => item.label.toLowerCase().startsWith(query.toLowerCase()));
+        },
+      }
+    ]
+  }),
 ];
 
-const RichTextToolbar = () => {
-  return (
-    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
-      <RichTextMention /> {/* [!code ++] */}
-    </div>
-  )
-}
 
 const App = () => {
    const editor = useEditor({
@@ -73,8 +124,6 @@ const App = () => {
     <RichTextProvider
       editor={editor}
     >
-      <RichTextToolbar />
-
       <EditorContent
         editor={editor}
       />

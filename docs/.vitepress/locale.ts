@@ -41,7 +41,7 @@ export function getLocaleConfig(lang: string) {
     },
     {
       text: t('Extensions'),
-      link: `${urlPrefix}/extensions/BaseKit/index.md`,
+      link: `${urlPrefix}/extensions/Attachment/index.md`,
       activeMatch: 'extensions',
     },
     {
