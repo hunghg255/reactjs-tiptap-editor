@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import DragHandle from '@tiptap/extension-drag-handle-react';
 import { type NodeSelection } from '@tiptap/pm/state';
+import type { Editor } from '@tiptap/react';
 
 import {
   ActionButton,
@@ -83,12 +84,20 @@ export function RichTextBubbleMenuDragHandle() {
       .run();
   }
 
-  function handleNodeChange({ node, pos }: { node: Node | null; pos: number }) {
-    if (node) {
-      setCurrentNode(node);
+  const handleNodeChange = useCallback((data: {
+    node: Node | null;
+    editor: Editor;
+    pos: number
+  }) => {
+    if (data.node) {
+      setCurrentNode(data.node);
     }
-    setCurrentNodePos(pos);
-  }
+    setCurrentNodePos(data.pos);
+    // Force update bubble menu position
+    requestAnimationFrame(() => {
+      data.editor.commands.focus();
+    });
+  }, []);
 
   function handleAdd() {
     if (currentNodePos !== -1) {
@@ -164,166 +173,166 @@ export function RichTextBubbleMenuDragHandle() {
               handleMenuOpenChange(!menuOpen);
             }}
           />
+
+          <DropdownMenu onOpenChange={handleMenuOpenChange}
+open={menuOpen}
+          >
+            <div className="richtext-relative richtext-flex richtext-flex-col">
+              <DropdownMenuTrigger className="richtext-absolute richtext-left-0 richtext-top-0 richtext-z-0 richtext-size-[28px]" />
+            </div>
+
+            <DropdownMenuContent align="start"
+                                 className="richtext-w-48"
+                                 hideWhenDetached
+                                 side="bottom"
+                                 sideOffset={0}
+            >
+              <DropdownMenuItem
+                  className="richtext-flex richtext-gap-3 richtext-bg-opacity-10 hover:richtext-bg-red-400 hover:richtext-bg-opacity-20 focus:richtext-bg-red-400 focus:richtext-bg-opacity-30 focus:richtext-text-red-500 dark:hover:richtext-bg-opacity-20 dark:hover:richtext-text-red-500"
+                  onClick={deleteNode}
+              >
+                <IconComponent name="Trash2" />
+
+                <span>
+              {t('editor.remove')}
+                </span>
+              </DropdownMenuItem>
+
+              {hasClearExtension
+                  ? (
+                      <DropdownMenuItem className="richtext-flex richtext-gap-3"
+                                        onClick={resetTextFormatting}
+                      >
+                        <IconComponent name="PaintRoller" />
+
+                        <span>
+                  {t('editor.clear.tooltip')}
+                        </span>
+                      </DropdownMenuItem>
+                  )
+                  : null}
+
+              <DropdownMenuItem className="richtext-flex richtext-gap-3"
+                                onClick={copyNodeToClipboard}
+              >
+                <IconComponent name="Clipboard" />
+
+                <span>
+              {t('editor.copyToClipboard')}
+                </span>
+              </DropdownMenuItem>
+
+              <DropdownMenuItem className="richtext-flex richtext-gap-3"
+                                onClick={duplicateNode}
+              >
+                <IconComponent name="Copy" />
+
+                <span>
+              {t('editor.copy')}
+                </span>
+              </DropdownMenuItem>
+
+              {hasTextAlignExtension || hasIndentExtension
+                  ? (
+                      <DropdownMenuSeparator />
+                  )
+                  : null}
+
+              {hasTextAlignExtension
+                  ? (
+                      <DropdownMenuSub>
+                        <DropdownMenuSubTrigger className="richtext-flex richtext-gap-3">
+                          <IconComponent name="AlignCenter" />
+
+                          <span>
+                    {t('editor.textalign.tooltip')}
+                          </span>
+                        </DropdownMenuSubTrigger>
+
+                        <DropdownMenuPortal>
+                          <DropdownMenuSubContent>
+                            <DropdownMenuItem className="richtext-flex richtext-gap-3"
+                                              onClick={() => setTextAlign('left')}
+                            >
+                              <IconComponent name="AlignLeft" />
+
+                              <span>
+                        {t('editor.textalign.left.tooltip')}
+                              </span>
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem className="richtext-flex richtext-gap-3"
+                                              onClick={() => setTextAlign('center')}
+                            >
+                              <IconComponent name="AlignCenter" />
+
+                              <span>
+                        {t('editor.textalign.center.tooltip')}
+                              </span>
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem className="richtext-flex richtext-gap-3"
+                                              onClick={() => setTextAlign('right')}
+                            >
+                              <IconComponent name="AlignRight" />
+
+                              <span>
+                        {t('editor.textalign.right.tooltip')}
+                              </span>
+                            </DropdownMenuItem>
+                          </DropdownMenuSubContent>
+                        </DropdownMenuPortal>
+                      </DropdownMenuSub>
+                  )
+                  : null}
+
+              {hasIndentExtension
+                  ? (
+                      <DropdownMenuSub>
+                        <DropdownMenuSubTrigger className="richtext-flex richtext-gap-3">
+                          <IconComponent name="IndentIncrease" />
+
+                          <span>
+                    {t('editor.indent')}
+                          </span>
+                        </DropdownMenuSubTrigger>
+
+                        <DropdownMenuPortal>
+                          <DropdownMenuSubContent>
+                            <DropdownMenuItem
+                                className="richtext-flex richtext-gap-3"
+                                disabled={currentNode?.attrs?.indent >= IndentProps.max}
+                                onClick={increaseIndent}
+                            >
+                              <IconComponent name="IndentIncrease" />
+
+                              <span>
+                        {t('editor.indent.tooltip')}
+                              </span>
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem
+                                className="richtext-flex richtext-gap-3"
+                                disabled={currentNode?.attrs?.indent <= IndentProps.min}
+                                onClick={decreaseIndent}
+                            >
+                              <IconComponent name="IndentDecrease" />
+
+                              <span>
+                        {t('editor.outdent.tooltip')}
+                              </span>
+                            </DropdownMenuItem>
+                          </DropdownMenuSubContent>
+                        </DropdownMenuPortal>
+                      </DropdownMenuSub>
+                  )
+                  : null}
+
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </DragHandle>
 
-      <DropdownMenu onOpenChange={handleMenuOpenChange}
-        open={menuOpen}
-      >
-        <div className="richtext-relative richtext-flex richtext-flex-col">
-
-          <DropdownMenuTrigger className="richtext-absolute richtext-left-0 richtext-top-0 richtext-z-0 richtext-size-[28px]" />
-        </div>
-
-        <DropdownMenuContent align="start"
-          className="richtext-w-48"
-          hideWhenDetached
-          side="bottom"
-          sideOffset={0}
-        >
-          <DropdownMenuItem
-            className="richtext-flex richtext-gap-3 richtext-bg-opacity-10 hover:richtext-bg-red-400 hover:richtext-bg-opacity-20 focus:richtext-bg-red-400 focus:richtext-bg-opacity-30 focus:richtext-text-red-500 dark:hover:richtext-bg-opacity-20 dark:hover:richtext-text-red-500"
-            onClick={deleteNode}
-          >
-            <IconComponent name="Trash2" />
-
-            <span>
-              {t('editor.remove')}
-            </span>
-          </DropdownMenuItem>
-
-          {hasClearExtension
-            ? (
-              <DropdownMenuItem className="richtext-flex richtext-gap-3"
-                onClick={resetTextFormatting}
-              >
-                <IconComponent name="PaintRoller" />
-
-                <span>
-                  {t('editor.clear.tooltip')}
-                </span>
-              </DropdownMenuItem>
-            )
-            : null}
-
-          <DropdownMenuItem className="richtext-flex richtext-gap-3"
-            onClick={copyNodeToClipboard}
-          >
-            <IconComponent name="Clipboard" />
-
-            <span>
-              {t('editor.copyToClipboard')}
-            </span>
-          </DropdownMenuItem>
-
-          <DropdownMenuItem className="richtext-flex richtext-gap-3"
-            onClick={duplicateNode}
-          >
-            <IconComponent name="Copy" />
-
-            <span>
-              {t('editor.copy')}
-            </span>
-          </DropdownMenuItem>
-
-          {hasTextAlignExtension || hasIndentExtension
-            ? (
-              <DropdownMenuSeparator />
-            )
-            : null}
-
-          {hasTextAlignExtension
-            ? (
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="richtext-flex richtext-gap-3">
-                  <IconComponent name="AlignCenter" />
-
-                  <span>
-                    {t('editor.textalign.tooltip')}
-                  </span>
-                </DropdownMenuSubTrigger>
-
-                <DropdownMenuPortal>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem className="richtext-flex richtext-gap-3"
-                      onClick={() => setTextAlign('left')}
-                    >
-                      <IconComponent name="AlignLeft" />
-
-                      <span>
-                        {t('editor.textalign.left.tooltip')}
-                      </span>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem className="richtext-flex richtext-gap-3"
-                      onClick={() => setTextAlign('center')}
-                    >
-                      <IconComponent name="AlignCenter" />
-
-                      <span>
-                        {t('editor.textalign.center.tooltip')}
-                      </span>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem className="richtext-flex richtext-gap-3"
-                      onClick={() => setTextAlign('right')}
-                    >
-                      <IconComponent name="AlignRight" />
-
-                      <span>
-                        {t('editor.textalign.right.tooltip')}
-                      </span>
-                    </DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuPortal>
-              </DropdownMenuSub>
-            )
-            : null}
-
-          {hasIndentExtension
-            ? (
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="richtext-flex richtext-gap-3">
-                  <IconComponent name="IndentIncrease" />
-
-                  <span>
-                    {t('editor.indent')}
-                  </span>
-                </DropdownMenuSubTrigger>
-
-                <DropdownMenuPortal>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem
-                      className="richtext-flex richtext-gap-3"
-                      disabled={currentNode?.attrs?.indent >= IndentProps.max}
-                      onClick={increaseIndent}
-                    >
-                      <IconComponent name="IndentIncrease" />
-
-                      <span>
-                        {t('editor.indent.tooltip')}
-                      </span>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem
-                      className="richtext-flex richtext-gap-3"
-                      disabled={currentNode?.attrs?.indent <= IndentProps.min}
-                      onClick={decreaseIndent}
-                    >
-                      <IconComponent name="IndentDecrease" />
-
-                      <span>
-                        {t('editor.outdent.tooltip')}
-                      </span>
-                    </DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuPortal>
-              </DropdownMenuSub>
-            )
-            : null}
-
-        </DropdownMenuContent>
-      </DropdownMenu>
     </>
   );
 }
