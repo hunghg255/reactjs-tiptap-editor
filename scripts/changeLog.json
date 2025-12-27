@@ -1,9 +1,129 @@
 [
   {
+    "hash": "dbd2422cf3aeeb1661da79fbd37e78da73de6bea",
+    "date": "Sat Dec 27 10:18:36 2025 +0700",
+    "message": "chore: release v1.0.9",
+    "refs": "HEAD -> main, tag: v1.0.9, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v1.0.9"
+  },
+  {
+    "hash": "80b43d4e5b200bcd02039a67d0210c02d991f795",
+    "date": "Sat Dec 27 10:09:04 2025 +0700",
+    "message": "feat: update macros katex",
+    "refs": "origin/update-macros-katex, update-macros-katex",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "Katex",
+      "KatexWrapper",
+      "RichTextKatex"
+    ]
+  },
+  {
+    "hash": "f05f785e8bfce53320a762c1d1d261e0c773c57b",
+    "date": "Thu Dec 25 22:04:59 2025 +0700",
+    "message": "docs: update",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "1398d951103eb309ef723926636971ea36b5c957",
+    "date": "Thu Dec 25 21:38:26 2025 +0700",
+    "message": "chore: release v1.0.8",
+    "refs": "tag: v1.0.8",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v1.0.8"
+  },
+  {
+    "hash": "95d79e152422f926d235f2c12b66457609c1f6e4",
+    "date": "Thu Dec 25 21:36:44 2025 +0700",
+    "message": "fix: extension mention",
+    "refs": "origin/fix-mention-extension, fix-mention-extension",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "Emoji",
+      "Mention",
+      "NodeViewMentionList"
+    ]
+  },
+  {
+    "hash": "4d75ab1ca702271e9caf134e9d81d728165db91d",
+    "date": "Fri Dec 19 10:14:33 2025 +0700",
+    "message": "chore: release v1.0.7",
+    "refs": "tag: v1.0.7",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v1.0.7"
+  },
+  {
+    "hash": "32d1f1c41029116a05ed71e5b6dc1611d43159d8",
+    "date": "Sat Dec 13 10:46:46 2025 +0700",
+    "message": "chore: release v1.0.6",
+    "refs": "tag: v1.0.6",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v1.0.6"
+  },
+  {
+    "hash": "0f1f1d39429f19c539f9593ab581f8802fb4cf0c",
+    "date": "Tue Dec 9 22:53:17 2025 +0700",
+    "message": "chore: release v1.0.5",
+    "refs": "tag: v1.0.5, vite-rolldown",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v1.0.5"
+  },
+  {
+    "hash": "9b62d0c2da475b29389e7d4198f5ada7594a967d",
+    "date": "Tue Dec 9 15:55:55 2025 +0700",
+    "message": "chore: release v1.0.4",
+    "refs": "tag: v1.0.4",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v1.0.4"
+  },
+  {
+    "hash": "984e897842deb885b51b0e7a58ec46e1b798980f",
+    "date": "Tue Dec 9 15:55:27 2025 +0700",
+    "message": "fix: fix theme value",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "LinkEditBlock"
+    ]
+  },
+  {
+    "hash": "1bd5beaa2f752ba5ba20c4447453b3c5c42134a5",
+    "date": "Tue Dec 9 13:36:06 2025 +0700",
+    "message": "docs: update docs, readme",
+    "refs": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "index.md",
+      "extensions.json"
+    ]
+  },
+  {
     "hash": "a705d03dfd76d244f1e0b45fe5ff5bef3e02dd3b",
     "date": "Tue Dec 9 13:17:43 2025 +0700",
     "message": "chore: release v1.0.3",
-    "refs": "HEAD -> main, tag: v1.0.3, origin/main",
+    "refs": "tag: v1.0.3",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1723,115 +1843,5 @@
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
     "version": "v0.2.5"
-  },
-  {
-    "hash": "7507afd8539d66f380effab682efa5483270b41a",
-    "date": "Mon Mar 10 20:20:34 2025 +0700",
-    "message": "fix: next 15",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "FileIcon",
-      "FileIconString",
-      "ImageView",
-      "ImageGifView",
-      "NodeViewMermaid"
-    ]
-  },
-  {
-    "hash": "968d3e05d2217892f35667a7772cb01b3eede982",
-    "date": "Mon Mar 10 13:07:09 2025 +0700",
-    "message": "chore: release v0.2.2",
-    "refs": "tag: v0.2.2",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.2.2"
-  },
-  {
-    "hash": "779ff2bddd4531f0647c3ad392791f7851a59c5b",
-    "date": "Mon Mar 10 12:31:03 2025 +0700",
-    "message": "chore: release v0.2.1",
-    "refs": "tag: v0.2.1",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.2.1"
-  },
-  {
-    "hash": "6f357450e48c4b88d7be8ddd05bf9f441500f8b5",
-    "date": "Mon Mar 10 12:22:44 2025 +0700",
-    "message": "docs: update",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
-  },
-  {
-    "hash": "fb6074907bf871bbc79377e8574cd22818aa01b1",
-    "date": "Mon Mar 10 12:00:14 2025 +0700",
-    "message": "chore: release v0.2.0",
-    "refs": "tag: v0.2.0",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.2.0"
-  },
-  {
-    "hash": "198590d6e0f71a46c24c3ba0fc39e47e9b21c022",
-    "date": "Thu Mar 6 22:35:21 2025 +0700",
-    "message": "chore: release v0.1.16",
-    "refs": "tag: v0.1.16",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.1.16"
-  },
-  {
-    "hash": "d4edc2d7e6bb19ac64d8aa0230cd33ef7e2e3831",
-    "date": "Mon Feb 17 22:51:56 2025 +0700",
-    "message": "docs: update",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
-  },
-  {
-    "hash": "9bd2d8ac7c8ad0d9197be2e263e5933f5bdea0fa",
-    "date": "Mon Feb 17 22:43:39 2025 +0700",
-    "message": "chore: release v0.1.15",
-    "refs": "tag: v0.1.15",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.1.15"
-  },
-  {
-    "hash": "7f7340085a8c7bafe7445d844be01878836de5d2",
-    "date": "Sat Jan 11 22:24:58 2025 +0700",
-    "message": "chore: release v0.1.14",
-    "refs": "tag: v0.1.14",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.1.14"
-  },
-  {
-    "hash": "761ac3675c043673ed8ff933b61f0e80e65ede4b",
-    "date": "Thu Jan 9 22:15:17 2025 +0800",
-    "message": "fix: import Word file by mammoth",
-    "refs": "",
-    "author_name": "Condor Hero",
-    "author_email": "love2xinwei@gmail.com",
-    "functions": [
-      "index.md",
-      "ImportWord",
-      "ImportWordButton"
-    ]
   }
 ]

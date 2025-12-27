@@ -21,13 +21,6 @@
     ]
   },
   {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
-    ]
-  },
-  {
     "name": "Clear.ts",
     "package": "Clear",
     "alias": [
@@ -35,10 +28,10 @@
     ]
   },
   {
-    "name": "Code.ts",
-    "package": "Code",
+    "name": "BulletList.ts",
+    "package": "BulletList",
     "alias": [
-      "Code"
+      "BulletList"
     ]
   },
   {
@@ -46,6 +39,13 @@
     "package": "CodeBlock",
     "alias": [
       "CodeBlock"
+    ]
+  },
+  {
+    "name": "Code.ts",
+    "package": "Code",
+    "alias": [
+      "Code"
     ]
   },
   {
@@ -63,17 +63,17 @@
     ]
   },
   {
-    "name": "Drawer.ts",
-    "package": "Drawer",
-    "alias": [
-      "Drawer"
-    ]
-  },
-  {
     "name": "Column.ts",
     "package": "Column",
     "alias": [
       "Column"
+    ]
+  },
+  {
+    "name": "Drawer.ts",
+    "package": "Drawer",
+    "alias": [
+      "Drawer"
     ]
   },
   {
@@ -119,17 +119,17 @@
     ]
   },
   {
-    "name": "Heading.ts",
-    "package": "Heading",
-    "alias": [
-      "Heading"
-    ]
-  },
-  {
     "name": "Highlight.ts",
     "package": "Highlight",
     "alias": [
       "Highlight"
+    ]
+  },
+  {
+    "name": "Heading.ts",
+    "package": "Heading",
+    "alias": [
+      "Heading"
     ]
   },
   {
@@ -147,20 +147,6 @@
     ]
   },
   {
-    "name": "Iframe.ts",
-    "package": "Iframe",
-    "alias": [
-      "Iframe"
-    ]
-  },
-  {
-    "name": "Iframe.ts",
-    "package": "Iframe",
-    "alias": [
-      "utils"
-    ]
-  },
-  {
     "name": "Image.ts",
     "package": "Image",
     "alias": [
@@ -172,6 +158,20 @@
     "package": "Image",
     "alias": [
       "store"
+    ]
+  },
+  {
+    "name": "Iframe.ts",
+    "package": "Iframe",
+    "alias": [
+      "Iframe"
+    ]
+  },
+  {
+    "name": "Iframe.ts",
+    "package": "Iframe",
+    "alias": [
+      "utils"
     ]
   },
   {
@@ -217,17 +217,17 @@
     ]
   },
   {
-    "name": "Link.ts",
-    "package": "Link",
-    "alias": [
-      "Link"
-    ]
-  },
-  {
     "name": "Mention.ts",
     "package": "Mention",
     "alias": [
       "Mention"
+    ]
+  },
+  {
+    "name": "Link.ts",
+    "package": "Link",
+    "alias": [
+      "Link"
     ]
   },
   {
@@ -308,17 +308,17 @@
     ]
   },
   {
-    "name": "TextDirection.ts",
-    "package": "TextDirection",
-    "alias": [
-      "TextDirection"
-    ]
-  },
-  {
     "name": "TextAlign.ts",
     "package": "TextAlign",
     "alias": [
       "TextAlign"
+    ]
+  },
+  {
+    "name": "TextDirection.ts",
+    "package": "TextDirection",
+    "alias": [
+      "TextDirection"
     ]
   },
   {
