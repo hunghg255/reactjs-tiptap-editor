@@ -34,7 +34,7 @@ function EmojiPickerSearch({
 }: React.ComponentProps<typeof EmojiPickerPrimitive.Search>) {
   return (
     <div
-      className={cn('!richtext-flex !richtext-h-9 !richtext-items-center !richtext-gap-2 !richtext-border-b !richtext-px-3', className)}
+      className={cn('!richtext-flex !richtext-h-9 !richtext-items-center !richtext-gap-2 !richtext-border-b richtext-border-border !richtext-px-3', className)}
       data-slot="emoji-picker-search-wrapper"
     >
       <SearchIcon className="!richtext-size-4 !richtext-shrink-0 !richtext-opacity-50" />
@@ -138,7 +138,7 @@ function EmojiPickerFooter({
     <div
       data-slot="emoji-picker-footer"
       className={cn(
-        '!richtext-max-w-(--frimousse-viewport-width) !richtext-flex !richtext-w-full !richtext-min-w-0 !richtext-items-center !richtext-gap-1 !richtext-border-t !richtext-p-2',
+        '!richtext-max-w-(--frimousse-viewport-width) !richtext-flex !richtext-w-full !richtext-min-w-0 !richtext-items-center !richtext-gap-1 !richtext-border-t richtext-border-border !richtext-p-2',
         className
       )}
       {...props}

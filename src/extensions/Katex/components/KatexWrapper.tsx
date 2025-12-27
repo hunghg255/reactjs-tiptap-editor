@@ -1,25 +1,29 @@
 import { useMemo } from 'react';
 
 import { NodeViewWrapper } from '@tiptap/react';
-import katex from 'katex';
+import katexLib from 'katex';
+
+import { parseJSONString } from '@/utils/columns';
 
 export function KatexNodeView({ node }: any) {
-  const { text } = node.attrs;
+  const { text, macros } = node.attrs;
 
   const formatText = useMemo(() => {
     try {
-      return katex.renderToString(`${text}`);
+      return katexLib.renderToString(decodeURIComponent(text || ''), {
+        macros: parseJSONString(decodeURIComponent(macros || ''))
+      });
     } catch {
       return text;
     }
-  }, [text]);
+  }, [text, macros]);
 
   const content = useMemo(
     () =>
       text.trim()
         ? (
           <span contentEditable={false}
-dangerouslySetInnerHTML={{ __html: formatText }}
+            dangerouslySetInnerHTML={{ __html: formatText }}
           >
           </span>
         )

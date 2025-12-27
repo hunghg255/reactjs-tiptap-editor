@@ -7,7 +7,7 @@ export * from '@/extensions/Katex/components/RichTextKatex';
 
 export interface IKatexAttrs {
   text?: string
-  defaultShowPicker?: boolean
+  macros?: string
 }
 
 interface IKatexOptions {
@@ -63,8 +63,9 @@ export const Katex = /* @__PURE__ */ Node.create<IKatexOptions>({
         default: '',
         parseHTML: getDatasetAttribute('text'),
       },
-      defaultShowPicker: {
-        default: false,
+      macros: {
+        default: '',
+        parseHTML: getDatasetAttribute('macros'),
       },
     };
   },
@@ -95,9 +96,6 @@ export const Katex = /* @__PURE__ */ Node.create<IKatexOptions>({
       nodeInputRule({
         find: /^\$katex\$$/,
         type: this.type,
-        getAttributes: () => {
-          return { defaultShowPicker: true };
-        },
       }),
     ];
   },

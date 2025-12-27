@@ -5,7 +5,7 @@ import katexLib from 'katex';
 import { Pencil, Trash2 } from 'lucide-react';
 
 import { ActionButton } from '@/components/ActionButton';
-import { Button } from '@/components/ui';
+import { Button, Label } from '@/components/ui';
 import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Katex } from '@/extensions/Katex';
@@ -14,6 +14,7 @@ import { useAttributes } from '@/hooks/useAttributes';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
+import { parseJSONString } from '@/utils/columns';
 import { deleteNode } from '@/utils/delete-node';
 
 function ModalEditKatex({
@@ -27,36 +28,38 @@ function ModalEditKatex({
 
   const attrs = useAttributes<IKatexAttrs>(editor, Katex.name, {
     text: '',
-    defaultShowPicker: false,
+    macros: '',
   });
-  const { text, defaultShowPicker } = attrs;
 
-  const [currentValue, setCurrentValue] = useState(text || '');
+  const { text, macros } = attrs;
+
+  const [currentValue, setCurrentValue] = useState(decodeURIComponent(text || ''));
+
+  const [currentMacros, setCurrentMacros] = useState(decodeURIComponent(macros || ''));
 
   useEffect(() => {
-    if (visible) setCurrentValue(text || '');
+    if (visible) {
+      setCurrentValue(decodeURIComponent(text || ''));
+      setCurrentMacros(decodeURIComponent(macros || ''));
+    }
   }, [visible]);
 
-  useEffect(() => {
-    if (defaultShowPicker) {
-      toggleVisible(true);
-      editor.chain().updateAttributes(Katex.name, { defaultShowPicker: false }).focus().run();
-    }
-  }, [editor, defaultShowPicker, toggleVisible]);
-
   const submit = useCallback(() => {
-    editor.chain().focus().setKatex({ text: currentValue }).run();
+    editor.chain().focus().setKatex({ text: encodeURIComponent(currentValue), macros: encodeURIComponent(currentMacros) }).run();
     setCurrentValue('');
+    setCurrentMacros('');
     toggleVisible(false);
-  }, [editor, currentValue, toggleVisible]);
+  }, [editor, currentValue, currentMacros, toggleVisible]);
 
   const formatText = useMemo(() => {
     try {
-      return katexLib.renderToString(`${currentValue}`);
+      return katexLib.renderToString(currentValue, {
+        macros: parseJSONString(currentMacros || '')
+      });
     } catch {
       return currentValue;
     }
-  }, [currentValue]);
+  }, [currentValue, currentMacros]);
 
   const previewContent = useMemo(
     () => {
@@ -89,19 +92,39 @@ function ModalEditKatex({
           style={{ height: '100%', border: '1px solid hsl(var(--border))' }}
         >
           <div className="richtext-flex richtext-gap-[10px] richtext-rounded-[10px] richtext-p-[10px]">
-            <Textarea
-              autoFocus
-              className="richtext-flex-1"
-              onChange={e => setCurrentValue(e.target.value)}
-              placeholder="Text"
+            <div className='richtext-flex-1'>
 
-              required
-              rows={10}
-              value={currentValue}
-              style={{
-                color: 'hsl(var(--foreground))',
-              }}
-            />
+              <Label className="mb-[6px]">
+                Expression
+              </Label>
+
+              <Textarea
+                autoFocus
+                className="richtext-mb-[10px]"
+                onChange={e => setCurrentValue(e.target.value)}
+                placeholder="Text"
+                required
+                rows={10}
+                value={currentValue}
+                style={{
+                  color: 'hsl(var(--foreground))',
+                }}
+              />
+
+              <Label className="mb-[6px]">
+                Macros
+              </Label>
+
+              <Textarea
+                onChange={e => setCurrentMacros(e.target.value)}
+                placeholder="Macros"
+                rows={10}
+                value={currentMacros}
+                style={{
+                  color: 'hsl(var(--foreground))',
+                }}
+              />
+            </div>
 
             <div
               className="richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]"
