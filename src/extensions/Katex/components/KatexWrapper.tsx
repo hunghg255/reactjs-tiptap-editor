@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { NodeViewWrapper } from '@tiptap/react';
 import katexLib from 'katex';
 
-import { parseJSONString } from '@/utils/columns';
+import { safeJSONParse } from '@/utils/json';
 
 export function KatexNodeView({ node }: any) {
   const { text, macros } = node.attrs;
@@ -11,7 +11,7 @@ export function KatexNodeView({ node }: any) {
   const formatText = useMemo(() => {
     try {
       return katexLib.renderToString(decodeURIComponent(text || ''), {
-        macros: parseJSONString(decodeURIComponent(macros || ''))
+        macros: safeJSONParse(decodeURIComponent(macros || ''))
       });
     } catch {
       return text;

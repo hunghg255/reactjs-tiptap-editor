@@ -130,7 +130,6 @@ function convertBase64ToBlob(base64: string) {
 // custom document to support columns
 const DocumentColumn = /* @__PURE__ */ Document.extend({
   content: '(block|columns)+',
-  // echo editor is a block editor
 });
 
 const MOCK_USERS = [{

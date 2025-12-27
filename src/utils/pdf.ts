@@ -1,5 +1,6 @@
 import type { Editor } from '@tiptap/core';
-import { ExportPdfOptions } from '@/extensions/ExportPdf';
+
+import { type ExportPdfOptions } from '@/extensions/ExportPdf';
 
 function printHtml(content: string, exportPdfOptions: ExportPdfOptions) {
   const iframe: HTMLIFrameElement = document.createElement('iframe');
@@ -15,7 +16,7 @@ function printHtml(content: string, exportPdfOptions: ExportPdfOptions) {
 
   const {
     paperSize,
-    title = 'Echo Editor',
+    title = 'React Tiptap Editor',
     margins: {
       top: marginTop,
       right: marginRight,

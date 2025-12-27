@@ -12,7 +12,7 @@ import { useAttributes } from '@/hooks/useAttributes';
 import { useButtonProps } from '@/hooks/useButtonProps';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
-import { parseJSONString } from '@/utils/columns';
+import { safeJSONParse } from '@/utils/json';
 
 export function RichTextKatex() {
   const { t } = useLocale();
@@ -55,7 +55,7 @@ export function RichTextKatex() {
   const formatText = useMemo(() => {
     try {
       return katexLib.renderToString(currentValue, {
-        macros: parseJSONString(currentMacros)
+        macros: safeJSONParse(currentMacros)
       });
     } catch {
       return currentValue;

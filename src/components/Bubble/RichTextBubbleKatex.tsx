@@ -14,8 +14,8 @@ import { useAttributes } from '@/hooks/useAttributes';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
-import { parseJSONString } from '@/utils/columns';
 import { deleteNode } from '@/utils/delete-node';
+import { safeJSONParse } from '@/utils/json';
 
 function ModalEditKatex({
   children,
@@ -54,7 +54,7 @@ function ModalEditKatex({
   const formatText = useMemo(() => {
     try {
       return katexLib.renderToString(currentValue, {
-        macros: parseJSONString(currentMacros || '')
+        macros: safeJSONParse(currentMacros || '')
       });
     } catch {
       return currentValue;
