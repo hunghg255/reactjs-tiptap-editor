@@ -140,3 +140,19 @@ export function gotoCol({ state, dispatch, type }: { state: EditorState, dispatc
 
   return false;
 }
+
+export function toJSONString (obj: any) {
+  try {
+    return JSON.stringify(obj);
+  } catch {
+    return '';
+  }
+}
+
+export function parseJSONString (str: string) {
+  try {
+    return JSON.parse(str);
+  } catch {
+    return {};
+  }
+}

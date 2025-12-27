@@ -90,6 +90,8 @@ import 'katex/dist/katex.min.css'
 import 'easydrawer/styles.css'
 import "@excalidraw/excalidraw/index.css";
 
+import 'katex/contrib/mhchem'
+
 // import Collaboration from '@tiptap/extension-collaboration'
 // import CollaborationCaret from '@tiptap/extension-collaboration-caret'
 // import { HocuspocusProvider } from '@hocuspocus/provider'

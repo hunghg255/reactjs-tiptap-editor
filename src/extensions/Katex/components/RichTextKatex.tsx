@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import katexLib from 'katex';
 
-import { ActionButton, Button } from '@/components';
+import { ActionButton, Button, Label } from '@/components';
 import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import type { IKatexAttrs } from '@/extensions/Katex/Katex';
@@ -12,51 +12,55 @@ import { useAttributes } from '@/hooks/useAttributes';
 import { useButtonProps } from '@/hooks/useButtonProps';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
+import { parseJSONString } from '@/utils/columns';
 
 export function RichTextKatex() {
   const { t } = useLocale();
   const [visible, toggleVisible] = useState(false);
 
-    const buttonProps = useButtonProps(Katex.name);
+  const buttonProps = useButtonProps(Katex.name);
 
-    const {
-      icon = undefined,
-      tooltip = undefined,
-      tooltipOptions = {},
-      isActive = undefined,
-    } = buttonProps?.componentProps ?? {};
+  const {
+    icon = undefined,
+    tooltip = undefined,
+    tooltipOptions = {},
+    isActive = undefined,
+  } = buttonProps?.componentProps ?? {};
 
-    const { editorDisabled } = useToggleActive(isActive);
+  const { editorDisabled } = useToggleActive(isActive);
 
   const editor = useEditorInstance();
 
   const attrs = useAttributes<IKatexAttrs>(editor, Katex.name, {
     text: '',
-    defaultShowPicker: false,
+    macros: '',
   });
-  const { text, defaultShowPicker } = attrs;
+  const { text, macros } = attrs;
 
-  const [currentValue, setCurrentValue] = useState(text || '');
+  const [currentValue, setCurrentValue] = useState(decodeURIComponent(text || ''));
+  const [currentMacros, setCurrentMacros] = useState(decodeURIComponent(macros || ''));
 
   const submit = useCallback(() => {
-    editor.chain().focus().setKatex({ text: currentValue }).run();
-    setCurrentValue('');
-    toggleVisible(false);
-  }, [editor, currentValue]);
 
-  useEffect(() => {
-    if (defaultShowPicker) {
-      editor.chain().updateAttributes(Katex.name, { defaultShowPicker: false }).focus().run();
-    }
-  }, [editor, defaultShowPicker]);
+    editor.chain().focus().setKatex({
+      text: encodeURIComponent(currentValue),
+      macros: encodeURIComponent(currentMacros),
+    }).run();
+
+    setCurrentValue('');
+    setCurrentMacros('');
+    toggleVisible(false);
+  }, [editor, currentValue, currentMacros]);
 
   const formatText = useMemo(() => {
     try {
-      return katexLib.renderToString(`${currentValue}`);
+      return katexLib.renderToString(currentValue, {
+        macros: parseJSONString(currentMacros)
+      });
     } catch {
       return currentValue;
     }
-  }, [currentValue]);
+  }, [currentMacros, currentValue]);
 
   const previewContent = useMemo(
     () => {
@@ -75,14 +79,14 @@ export function RichTextKatex() {
       open={visible}
     >
       <DialogTrigger
-      asChild
-      disabled={editorDisabled}
+        asChild
+        disabled={editorDisabled}
       >
         <ActionButton
           disabled={editorDisabled}
-        icon={icon}
-      tooltip={tooltip}
-        tooltipOptions={tooltipOptions}
+          icon={icon}
+          tooltip={tooltip}
+          tooltipOptions={tooltipOptions}
           action={() => {
             if (editorDisabled) return;
             toggleVisible(true);
@@ -92,26 +96,48 @@ export function RichTextKatex() {
 
       <DialogContent className="richtext-z-[99999] !richtext-max-w-[1300px]">
         <DialogTitle>
-            {t('editor.formula.dialog.text')}
+          {t('editor.formula.dialog.text')}
         </DialogTitle>
 
         <div
           style={{ height: '100%', border: '1px solid hsl(var(--border))' }}
         >
           <div className="richtext-flex richtext-gap-[10px] richtext-rounded-[10px] richtext-p-[10px]">
-                          <Textarea
-              autoFocus
-              className="richtext-flex-1"
-              onChange={e => setCurrentValue(e.target.value)}
-              placeholder="Text"
+            <div className='richtext-flex-1'>
+              <Label className="mb-[6px]">
+                Expression
+              </Label>
 
-            required
-            rows={10}
-            value={currentValue}
-            style={{
-              color: 'hsl(var(--foreground))',
-            }}
-                          />
+              <Textarea
+                autoFocus
+                className="richtext-mb-[10px]"
+                onChange={e => setCurrentValue(e.target.value)}
+                placeholder="Text"
+                required
+                rows={10}
+                value={currentValue}
+                style={{
+                  color: 'hsl(var(--foreground))',
+                }}
+              />
+
+              <Label className="mb-[6px]">
+                Macros
+              </Label>
+
+              <Textarea
+                className="richtext-flex-1"
+                placeholder="Macros"
+                rows={10}
+                value={currentMacros}
+                onChange={e => {
+                  setCurrentMacros(e.target.value);
+                }}
+                style={{
+                  color: 'hsl(var(--foreground))',
+                }}
+              />
+            </div>
 
             <div
               className="richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]"
