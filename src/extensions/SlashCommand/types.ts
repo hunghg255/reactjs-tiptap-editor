@@ -15,4 +15,5 @@ export interface Command {
   iconUrl?: string
   action: ({ editor, range }: { editor: Editor, range: Range }) => void
   shouldBeHidden?: (editor: Editor) => boolean
+  isActive?: (editor: Editor) => boolean
 }

@@ -124,6 +124,7 @@ function ThemeColor() {
 
     updateCSS(`
       .reactjs-tiptap-editor, .reactjs-tiptap-editor *,
+      .reactjs-tiptap-editor-theme, .reactjs-tiptap-editor-theme *,
       div[data-richtext-portal], div[data-richtext-portal] * {
         ${Object.entries(themeObject).map(([key, value]) => {
       if (typeof borderRadius === 'string' && key === 'radius') {

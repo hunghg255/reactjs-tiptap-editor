@@ -28,6 +28,7 @@ import {
   FlipVertical,
   Frame,
   GripVertical,
+  Pilcrow,
   Heading1,
   Heading2,
   Heading3,
@@ -102,13 +103,13 @@ import { Excalidraw } from '@/components/icons/Excalidraw';
 import { ExportPdf } from '@/components/icons/ExportPdf';
 import ExportWord from '@/components/icons/ExportWord';
 import { GifIcon } from '@/components/icons/GIfIcon';
+import { Html } from '@/components/icons/Html';
 import { LeftToRight } from '@/components/icons/LeftToRight';
 import { Mermaid } from '@/components/icons/Mermaid';
 import { RightToLeft } from '@/components/icons/RightToLeft';
 import { Twitter } from '@/components/icons/Twitter';
 
 import ImportWord from './ImportWord';
-import { Html } from '@/components/icons/Html';
 
 export const icons = {
   Bold,
@@ -159,6 +160,7 @@ export const icons = {
   ChevronsUpDown,
   LineHeight: FormatLineHeight,
   Word: FileWordOutline,
+  HeadingParagraph: Pilcrow,
   Heading1,
   Heading2,
   Heading3,

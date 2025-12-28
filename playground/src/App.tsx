@@ -172,7 +172,11 @@ const MOCK_USERS = [{
 const BaseKit = [
   DocumentColumn,
   Text,
-  Dropcursor,
+  Dropcursor.configure({
+    class: 'reactjs-tiptap-editor-theme',
+    color: 'hsl(var(--primary))',
+    width: 2,
+  }),
   Gapcursor,
   HardBreak,
   Paragraph,
@@ -556,7 +560,7 @@ function App() {
             <RichTextBubbleText />
             <RichTextBubbleTwitter />
 
-            {/* <RichTextBubbleMenuDragHandle /> */}
+            <RichTextBubbleMenuDragHandle />
 
             {/* Command List */}
             <SlashCommandList />

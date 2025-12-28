@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { HEADINGS } from '@/constants';
 import { actionDialogImage } from '@/extensions/Image/store';
 import { actionDialogVideo } from '@/extensions/Video/store';
 
@@ -20,15 +20,41 @@ export function renderCommandListDefault({ t }: any) {
     },
   ];
 
-   // heading
-  [1, 2, 3, 4, 5, 6].forEach((level: any) => {
+  // heading
+  HEADINGS.forEach((level: any) => {
     groups[0].commands.push({
       name: `heading${level}`,
-      label: t(`editor.heading.h${level}.tooltip`),
+      label: level === 'Paragraph' ? t('editor.paragraph.tooltip') : t(`editor.heading.h${level}.tooltip`),
       aliases: [`h${level}`, 'bt', `bt${level}`],
       iconName: `Heading${level}`,
+      isActive: (editor) => {
+        if (level === 'Paragraph') {
+          return false;
+        }
+
+        return editor.isActive('heading', { level }) || false;
+      },
       action: ({ editor, range }) => {
-        editor.chain().focus().deleteRange(range).setHeading({ level }).run();
+        const currentActiveLevel: any = HEADINGS.find((lvl: any) => editor.isActive('heading', { level: lvl }));
+
+        if (level === 'Paragraph') {
+          if (currentActiveLevel !== undefined && currentActiveLevel !== 'Paragraph') {
+            editor.commands.toggleHeading({ level: currentActiveLevel });
+            editor.chain().focus().deleteRange(range).run();
+            console.log('AAA');
+          } else {
+            editor.chain().focus().deleteRange(range).run();
+          }
+
+          return;
+        }
+
+        if (level) {
+          editor.chain().focus().deleteRange(range).setHeading({ level }).run();
+          return;
+        }
+
+        editor.chain().focus().deleteRange(range).run();
       },
     });
   });
@@ -39,6 +65,7 @@ export function renderCommandListDefault({ t }: any) {
     label: t('editor.bulletlist.tooltip'),
     aliases: ['ul', 'yxlb'],
     iconName: 'List',
+    isActive: (editor) => editor.isActive('bulletList'),
     action: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleBulletList().run();
     },
@@ -46,10 +73,11 @@ export function renderCommandListDefault({ t }: any) {
 
   //orderedlist
   groups[0].commands.push({
-    name: 'numberedList',
+    name: 'orderedlist',
     label: t('editor.orderedlist.tooltip'),
     aliases: ['ol', 'yxlb'],
     iconName: 'ListOrdered',
+    isActive: (editor) => editor.isActive('orderedList'),
     action: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleOrderedList().run();
     },
@@ -62,6 +90,7 @@ export function renderCommandListDefault({ t }: any) {
     iconName: 'ListTodo',
     description: 'Task list with todo items',
     aliases: ['todo'],
+    isActive: (editor) => editor.isActive('taskList'),
     action: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleTaskList().run();
     },
@@ -74,6 +103,7 @@ export function renderCommandListDefault({ t }: any) {
     description: '插入引入格式',
     aliases: ['yr'],
     iconName: 'TextQuote',
+    isActive: (editor) => editor.isActive('blockquote'),
     action: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).setBlockquote().run();
     },
@@ -86,6 +116,7 @@ export function renderCommandListDefault({ t }: any) {
     iconName: 'Code2',
     description: 'Code block with syntax highlighting',
     shouldBeHidden: editor => editor.isActive('columns'),
+    isActive: (editor) => editor.isActive('codeBlock'),
     action: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).setCodeBlock().run();
     },
@@ -165,7 +196,7 @@ export function renderCommandListDefault({ t }: any) {
   return groups;
 }
 
-export function useFilterCommandList (commandList: CommandList[], query: string) {
+export function useFilterCommandList(commandList: CommandList[], query: string) {
   const withFilteredCommands = commandList.map(group => ({
     ...group,
     commands: group.commands
