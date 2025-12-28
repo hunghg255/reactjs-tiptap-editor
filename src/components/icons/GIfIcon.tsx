@@ -1,10 +1,14 @@
 export function GifIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" color="currentColor">
-        <path d="M14.86 22h-4.312c-3.291 0-4.937 0-6.08-.798a4.2 4.2 0 0 1-.863-.805c-.855-1.066-.855-2.6-.855-5.67v-2.545c0-2.963 0-4.445.473-5.628c.761-1.903 2.37-3.403 4.41-4.113C8.9 2 10.49 2 13.667 2c1.816 0 2.723 0 3.448.252c1.166.406 2.085 1.263 2.52 2.35c.27.676.27 1.523.27 3.216V10"></path>
-        <path d="M2.75 12c0-1.84 1.506-3.333 3.364-3.333c.672 0 1.464.116 2.117-.057a1.67 1.67 0 0 0 1.19-1.179c.174-.647.057-1.432.057-2.098C9.478 3.493 10.984 2 12.84 2m.002 16h2.523m-4.949-4.15c-.126-.8-.281-.801-1.61-.85h-1.01c-.557 0-1.009.448-1.009 1v3c0 .552.452 1 1.01 1h1.816c.39 0 .803-.313.803-.7v-1.1c0-.11-.113-.304-.224-.304H9.068M12.842 13h1.261m0 0h1.262m-1.262 0v4.875M21.251 13h-2.523c-.557 0-1.009.448-1.009 1v1.5m0 0V18m0-2.5h2.523"></path>
-      </g>
-    </svg>
+     <svg height="1em"
+viewBox="0 0 15 15"
+width="1em"
+xmlns="http://www.w3.org/2000/svg"
+     >
+{/* Icon from Teenyicons by smhmd - https://github.com/teenyicons/teenyicons/blob/master/LICENSE */}
+<path d="M2.5 10.5H2v.5h.5zm2 0v.5H5v-.5zm9-7h.5v-.207l-.146-.147zm-3-3l.354-.354L10.707 0H10.5zM2 6v4.5h1V6zm.5 5h2v-1h-2zm2.5-.5v-2H4v2zM3 7h2V6H3zM2 5V1.5H1V5zm11-1.5V5h1V3.5zM2.5 1h8V0h-8zm7.646-.146l3 3l.708-.708l-3-3zM2 1.5a.5.5 0 0 1 .5-.5V0A1.5 1.5 0 0 0 1 1.5zM1 12v1.5h1V12zm1.5 3h10v-1h-10zM14 13.5V12h-1v1.5zM12.5 15a1.5 1.5 0 0 0 1.5-1.5h-1a.5.5 0 0 1-.5.5zM1 13.5A1.5 1.5 0 0 0 2.5 15v-1a.5.5 0 0 1-.5-.5zM6 7h3V6H6zm0 4h3v-1H6zm1-4.5v4h1v-4zm3.5.5H13V6h-2.5zM10 6v5h1V6zm.5 3H12V8h-1.5z"
+fill="currentColor"
+/>
+     </svg>
   );
 }

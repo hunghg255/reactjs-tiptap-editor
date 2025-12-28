@@ -66,10 +66,6 @@ export function RichTextBubbleIframe() {
     window.open(src, '_blank');
   }, [src]);
 
-  const openEditLinkModal = useCallback(() => {
-    toggleVisible(true);
-  }, [toggleVisible]);
-
   const setSize = useCallback(
     (size: any) => {
       editor.chain().updateAttributes(Iframe.name, size).setNodeSelection(editor.state.selection.from).focus().run();
@@ -101,11 +97,47 @@ export function RichTextBubbleIframe() {
             tooltip="Visit Link"
           />
 
-          <ActionButton
-            action={openEditLinkModal}
-            icon="Pencil"
-            tooltip="Open Edit Link"
-          />
+          <Dialog
+            onOpenChange={toggleVisible}
+            open={visible}
+          >
+            <DialogTrigger asChild>
+              <ActionButton
+                icon="Pencil"
+                tooltip="Open Edit Link"
+              />
+            </DialogTrigger>
+
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>
+                  Edit Link Iframe
+                </DialogTitle>
+              </DialogHeader>
+
+              <Input
+                autoFocus
+                onInput={(e: any) => setFormUrl(e.target.value)}
+                placeholder="Enter link"
+                type="url"
+                value={formUrl}
+              />
+
+              <DialogFooter>
+                <Button onClick={handleCancel}
+                  type='button'
+                >
+                  Cancel
+                </Button>
+
+                <Button onClick={handleOk}
+                  type='button'
+                >
+                  OK
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
 
           <SizeSetter height={height as any}
             onOk={setSize}
@@ -122,45 +154,10 @@ export function RichTextBubbleIframe() {
             icon="Trash2"
             tooltip={t('editor.delete')}
           />
+
         </div>
       </BubbleMenu>
 
-      <Dialog
-        onOpenChange={toggleVisible}
-        open={visible}
-      >
-        <DialogTrigger />
-
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>
-              Edit Link Iframe
-            </DialogTitle>
-          </DialogHeader>
-
-          <Input
-            autoFocus
-            onInput={(e: any) => setFormUrl(e.target.value)}
-            placeholder="Enter link"
-            type="url"
-            value={formUrl}
-          />
-
-          <DialogFooter>
-            <Button onClick={handleCancel}
-type='button'
-            >
-              Cancel
-            </Button>
-
-            <Button onClick={handleOk}
-type='button'
-            >
-              OK
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </>
   );
 }

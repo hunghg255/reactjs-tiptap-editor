@@ -70,6 +70,14 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
     const Icon = icons[icon as string];
     const Comp = asChild ? Slot : Toggle;
 
+    const onClickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      if (disabled) {
+        e.preventDefault();
+        return;
+      }
+      action?.(e);
+    };
+
     return (
       <Tooltip>
         <TooltipTrigger asChild>
@@ -77,7 +85,7 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
             className={cn('richtext-w-[32px] richtext-h-[32px]', customClass)}
             data-state={dataState ? 'on' : 'off'} // active background control
             disabled={disabled} // disable button control
-            onClick={action}
+            onClick={onClickHandler}
             ref={ref}
             size="sm"
             {...(rest as Omit<typeof rest, 'loading'>)}
@@ -89,7 +97,7 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
 
         {tooltip && (
           <TooltipContent {...tooltipOptions}
-className='richtext-tooltip'
+            className='richtext-tooltip'
           >
             <div className="richtext-flex richtext-max-w-24 richtext-flex-col richtext-items-center richtext-text-center">
               <div>

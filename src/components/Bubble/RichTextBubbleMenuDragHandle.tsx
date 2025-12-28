@@ -179,9 +179,7 @@ export function RichTextBubbleMenuDragHandle() {
         <DropdownMenu onOpenChange={handleMenuOpenChange}
           open={menuOpen}
         >
-          <div className="richtext-relative richtext-flex richtext-flex-col">
-            <DropdownMenuTrigger className="richtext-absolute richtext-left-0 richtext-top-0 richtext-z-0 richtext-size-[28px]" />
-          </div>
+          <DropdownMenuTrigger className="richtext-pointer-events-none" />
 
           <DropdownMenuContent align="start"
             className="richtext-w-48"
