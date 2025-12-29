@@ -15,8 +15,6 @@ async function genDocsNavExtension() {
         link: `/extensions/${name}/index.md`,
       };
     });
-    console.log(navItems);
-
   }
   catch {
     console.error('Failed to modify CSS!')

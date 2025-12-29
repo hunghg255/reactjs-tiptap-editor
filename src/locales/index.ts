@@ -1,10 +1,8 @@
 import { useCallback } from 'react';
 
-import { createSignal, useSignal } from 'reactjs-signal';
+import { create } from 'zustand';
 
 import { DEFAULT_LANG_VALUE } from '@/constants';
-import { dispatchEvent } from '@/utils/customEvents/customEvents';
-import { EVENTS } from '@/utils/customEvents/events.constant';
 
 import en from './en';
 import fi from './fi';
@@ -27,44 +25,74 @@ const LANG = {
 
 // // Define message key types based on the 'en' locale
 type MessageKeysType = keyof typeof en;
+type LanguageType = keyof typeof LANG.message | (string & {});
 
 // Proxy for reactive language state
-export const atomLang = createSignal(LANG);
+interface LangState {
+  currentLang: LanguageType;
+  message: typeof LANG.message;
+  setLang: (newLang: LanguageType) => void;
+  setMessage: (lang: LanguageType, messages: Partial<Record<keyof typeof en, string>>) => void;
+}
 
-// // Define supported language types
-type LanguageType = keyof typeof LANG.message;
+const useLang = create<LangState>()((set) => ({
+  currentLang: LANG.currentLang,
+  message: LANG.message,
+  setLang: (newLang: LanguageType) => {
+    set(() => ({
+      currentLang: newLang,
+    }));
+  },
+  setMessage: (lang: LanguageType, messages: Partial<Record<keyof typeof en, string>>) => {
+    set((state) => ({
+      message: {
+        ...state.message,
+        [lang]: {
+          ...state.message[lang as keyof typeof LANG.message],
+          ...messages,
+        },
+      },
+    }));
+  }
+}));
 
 function useLocale() {
-  const [lang, setLang] = useSignal(atomLang);
+  const currentLang = useLang((state) => state.currentLang);
+  const message = useLang((state) => state.message);
+  const setLang = useLang((state) => state.setLang);
 
   const t = useCallback((path: MessageKeysType, params?: Record<string, string | number>) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-expect-error
-    const message = lang.message[lang.currentLang] || {};
-    let template = message[path] || path;
+    try {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-expect-error
+      const messageObj = message[currentLang] || {};
+      let template = messageObj[path] || path;
 
-    if (params) {
-      Object.entries(params).forEach(([key, value]) => {
-        template = template.replace(new RegExp(`\\{${key}\\}`, 'g'), String(value));
-      });
+      if (params) {
+        Object.entries(params).forEach(([key, value]) => {
+          template = template.replace(new RegExp(`\\{${key}\\}`, 'g'), String(value));
+        });
+      }
+
+      return template;
+    } catch {
+      return path;
     }
-
-    return template;
-  }, [lang]);
+  }, [message, currentLang]);
 
   return {
     setLang,
-    lang: lang.currentLang,
+    lang: currentLang,
     t,
   };
 }
 
 const localeActions = {
   setLang: (lang: LanguageType | (string & {})) => {
-    dispatchEvent(EVENTS.CHANGE_LANGUAGE, lang);
+    useLang.getState().setLang(lang);
   },
   setMessage: (lang: LanguageType | (string & {}), messages: Partial<Record<keyof typeof LANG.message.en, string>>) => {
-    dispatchEvent(EVENTS.MODIFY_LANGUAGE, { lang, messages });
+    useLang.getState().setMessage(lang, messages);
   },
 };
 

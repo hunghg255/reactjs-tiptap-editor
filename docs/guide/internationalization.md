@@ -14,10 +14,15 @@ The editor provides built-in internationalization support, with English as the d
 
 ```javascript
 // Import the locale object
-import { localeActions } from 'reactjs-tiptap-editor/locale-bundle';
+import { localeActions, useLocale } from 'reactjs-tiptap-editor/locale-bundle';
 // Set the language to English
 localeActions.setLang('en');
 // End
+
+
+// Usage in a React component
+const { lang: currentLocale } = useLocale();
+console.log(currentLocale); // Outputs the current locale messages
 ```
 
 ## Supported Languages

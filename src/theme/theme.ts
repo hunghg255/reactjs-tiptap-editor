@@ -1,7 +1,5 @@
 // Get here: https://ui.shadcn.com/themes
-
-import { dispatchEvent } from '@/utils/customEvents/customEvents';
-import { EVENTS } from '@/utils/customEvents/events.constant';
+import { create } from 'zustand';
 
 export const THEME = {
   light: {
@@ -365,14 +363,56 @@ export const THEME = {
 export type ThemeType = keyof typeof THEME;
 export type ThemeColorType = keyof typeof THEME.light;
 
-export const themeActions = {
+interface ThemeStore {
+  theme: ThemeType;
+  color: ThemeColorType;
+  borderRadius: string;
+  setTheme: (theme: ThemeType) => void;
+  setColor: (color: ThemeColorType) => void;
+  setBorderRadius: (borderRadius: string) => void;
+}
+
+const useThemeStore = create<ThemeStore>((set) => ({
+  theme: 'light',
+  color: 'default',
+  borderRadius: '0.65rem',
   setTheme: (theme: ThemeType) => {
-    dispatchEvent(EVENTS.CHANGE_THEME, theme);
+    set(() => ({
+      theme,
+    }));
   },
   setColor: (color: ThemeColorType) => {
-    dispatchEvent(EVENTS.CHANGE_COLOR, color);
+    set(() => ({
+      color,
+    }));
   },
   setBorderRadius: (borderRadius: string) => {
-    dispatchEvent(EVENTS.CHANGE_BORDER_RADIUS, borderRadius);
+    set(() => ({
+      borderRadius,
+    }));
+  },
+}));
+
+export function useTheme () {
+  const theme = useThemeStore((state) => state.theme);
+  const color = useThemeStore((state) => state.color);
+  const borderRadius = useThemeStore((state) => state.borderRadius);
+
+  return {
+    theme,
+    color,
+    borderRadius,
+  };
+}
+
+export const themeActions = {
+  setTheme: (theme: ThemeType) => {
+    useThemeStore.getState().setTheme(theme);
+  },
+  setColor: (color: ThemeColorType) => {
+    useThemeStore.getState().setColor(color);
+  },
+  setBorderRadius: (borderRadius: string) => {
+    useThemeStore.getState().setBorderRadius(borderRadius);
   }
 };

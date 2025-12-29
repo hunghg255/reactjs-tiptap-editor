@@ -15,7 +15,7 @@ next:
 ## Usage
 
 ```javascript
-import { themeActions } from 'reactjs-tiptap-editor/theme'
+import { themeActions, useTheme } from 'reactjs-tiptap-editor/theme'
 
 // Set theme
 themeActions.setTheme('light') // or 'dark';
@@ -25,4 +25,8 @@ themeActions.setColor('default') //  "red" | "blue" | "green" | "orange" | "rose
 
 // Set radius
 themeActions.setRadius('0.5rem') // any valid CSS border-radius value
+
+// Usage in a React component
+const { theme, color, borderRadius } = useTheme();
+console.log(theme, color, borderRadius);
 ```

@@ -779,11 +779,11 @@
     "react-colorful": "^5.6.1",
     "react-image-crop": "^11.0.10",
     "react-tweet": "^3.3.0",
-    "reactjs-signal": "^2.0.1",
     "scroll-into-view-if-needed": "^3.1.0",
     "svg64": "^2.0.0",
     "y-protocols": "^1.0.7",
-    "yjs": "^13.6.28"
+    "yjs": "^13.6.28",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@hunghg255/eslint-config": "^1.0.1",

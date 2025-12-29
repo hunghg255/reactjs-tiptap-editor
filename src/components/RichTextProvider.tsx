@@ -1,14 +1,15 @@
 import { useEffect, useId } from 'react';
 
 import { type Editor } from '@tiptap/core';
+import { EditorContext } from '@tiptap/react';
 
 import { TooltipProvider } from '@/components';
 import { RESET_CSS } from '@/constants/resetCSS';
-import { ProviderUniqueId } from '@/store/ProviderUniqueId';
+import { EditorEditableReactive } from '@/store/EditorEditableReactive';
+import { ThemeColorReactive } from '@/store/ThemeColorReactive';
 import { removeCSS, updateCSS } from '@/utils/dynamicCSS';
 
 import '../styles/index.scss';
-import { EditorContext } from '@tiptap/react';
 
 interface IProviderRichTextProps {
   editor: Editor
@@ -20,9 +21,7 @@ export function RichTextProvider({ editor, children }: IProviderRichTextProps) {
   const id = useId();
 
   useEffect(() => {
-    // if (props?.resetCSS !== false) {
     updateCSS(RESET_CSS, 'react-tiptap-reset');
-    // }
 
     return () => {
       removeCSS('react-tiptap-reset');
@@ -42,17 +41,17 @@ export function RichTextProvider({ editor, children }: IProviderRichTextProps) {
   return (
     <div className="reactjs-tiptap-editor">
       <EditorContext.Provider value={{ editor }}>
-        <ProviderUniqueId
-          editor={editor}
-          id={id}
+        <TooltipProvider delayDuration={0}
+          disableHoverableContent
         >
-          <TooltipProvider delayDuration={0}
-            disableHoverableContent
-          >
-              {children}
+          {children}
+        </TooltipProvider>
 
-          </TooltipProvider>
-        </ProviderUniqueId>
+        <EditorEditableReactive
+          editor={editor}
+        />
+
+        <ThemeColorReactive />
       </EditorContext.Provider>
     </div>
   );

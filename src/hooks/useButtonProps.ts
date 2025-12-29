@@ -11,7 +11,7 @@ export function useButtonProps(extensionName: string) {
   const { t } = useLocale();
 
   return useMemo(() => {
-    if (!editor || !extension) {
+    if (!editor || !extension || !t) {
       return null;
     }
 

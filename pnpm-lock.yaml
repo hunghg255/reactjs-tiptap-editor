@@ -231,9 +231,6 @@ importers:
       react-tweet:
         specifier: ^3.3.0
         version: 3.3.0(react-dom@19.2.3)(react@19.2.3)
-      reactjs-signal:
-        specifier: ^2.0.1
-        version: 2.0.1(alien-signals@3.1.1)(react@19.2.3)
       scroll-into-view-if-needed:
         specifier: ^3.1.0
         version: 3.1.0
@@ -246,6 +243,9 @@ importers:
       yjs:
         specifier: ^13.6.28
         version: 13.6.28
+      zustand:
+        specifier: ^5.0.9
+        version: 5.0.9(@types/react@19.2.7)(react@19.2.3)
     devDependencies:
       '@hunghg255/eslint-config':
         specifier: ^1.0.1
@@ -5549,10 +5549,6 @@ packages:
     resolution: {integrity: sha512-cZIRkbERILsBOXTQmMrxc9hgpxglstn69zm+F1ARf4aPAzdAFYd6sBq87ErO0Fj3DV94tglcyHG5kQz9nDC/8A==}
     dev: true
 
-  /alien-signals@3.1.1:
-    resolution: {integrity: sha512-ogkIWbVrLwKtHY6oOAXaYkAxP+cTH7V5FZ5+Tm4NZFd8VDZ6uNMDrfzqctTZ42eTMCSR3ne3otpcxmqSnFfPYA==}
-    dev: false
-
   /ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
@@ -10234,16 +10230,6 @@ packages:
     resolution: {integrity: sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==}
     engines: {node: '>=0.10.0'}
 
-  /reactjs-signal@2.0.1(alien-signals@3.1.1)(react@19.2.3):
-    resolution: {integrity: sha512-dWmBbxwooYX960GM090NbsjndOJXiyVE0ymoAFNijUA5Tt4p1A1tnfenrVqAYCNqSrurmiKBnVP2ko8IXKkZLw==}
-    peerDependencies:
-      alien-signals: '>=2.0.1'
-      react: '>=18'
-    dependencies:
-      alien-signals: 3.1.1
-      react: 19.2.3
-    dev: false
-
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
     dependencies:
@@ -12073,6 +12059,28 @@ packages:
       '@types/react': 19.2.7
       react: 19.2.3
       use-sync-external-store: 1.6.0(react@19.2.3)
+    dev: false
+
+  /zustand@5.0.9(@types/react@19.2.7)(react@19.2.3):
+    resolution: {integrity: sha512-ALBtUj0AfjJt3uNRQoL1tL2tMvj6Gp/6e39dnfT6uzpelGru8v1tPOGBzayOWbPJvujM8JojDk3E1LxeFisBNg==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
+    dependencies:
+      '@types/react': 19.2.7
+      react: 19.2.3
     dev: false
 
   /zwitch@2.0.4:

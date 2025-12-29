@@ -1,3 +1,5 @@
+import { create } from 'zustand';
+
 import createFastContext from '@/store/fast-context';
 
 const { Provider: ProviderUploadImage, useStore: useStoreUploadImage } = createFastContext({
@@ -8,12 +10,17 @@ const { Provider: ProviderUploadVideo, useStore: useStoreUploadVideo } = createF
   value: false
 });
 
-const { Provider: ProviderEditableEditor, useStore: useStoreEditableEditor } = createFastContext({
-  value: false
-});
+const useStoreEditableEditor = create<{ value: boolean, setEditable: (newValue: { value: boolean }) => void }>((set) => ({
+  value: false,
+  setEditable: (newValue: { value: boolean }) => {
+    set(() => ({
+      value: newValue.value,
+    }));
+  },
+}));
 
 function useEditableEditor () {
-  const [isEditableEditor] = useStoreEditableEditor(store => store.value);
+  const isEditableEditor = useStoreEditableEditor(store => store.value);
 
   return isEditableEditor;
 }
@@ -25,7 +32,6 @@ export {
   ProviderUploadVideo,
   useStoreUploadVideo,
 
-  ProviderEditableEditor,
   useStoreEditableEditor,
   useEditableEditor,
 };

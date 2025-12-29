@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
-import { localeActions } from 'reactjs-tiptap-editor/locale-bundle'
+import { localeActions, useLocale } from 'reactjs-tiptap-editor/locale-bundle'
 
-import { themeActions } from 'reactjs-tiptap-editor/theme'
+import { themeActions, useTheme } from 'reactjs-tiptap-editor/theme'
 
 
 // Base Kit
@@ -343,9 +343,10 @@ function debounce(func: any, wait: number) {
   }
 }
 
-
 const Header = ({ editor, theme, setTheme }) => {
   const [editorEditable, setEditorEditable] = useState(false);
+  const currentLocale = useLocale();
+  const currentTheme = useTheme();
 
   useEffect(() => {
     setEditorEditable(editor?.isEditable ?? true);
@@ -376,6 +377,8 @@ const Header = ({ editor, theme, setTheme }) => {
         marginBottom: 10,
       }}
     >
+      {currentLocale.lang}
+      {currentTheme.color}
       <button type="button" onClick={() => {
         localeActions.setLang('vi')
       }}>Vietnamese</button>

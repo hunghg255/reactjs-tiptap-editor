@@ -15,10 +15,10 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Image as ExtensionImage } from '@/extensions/Image';
+import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { dataURLtoFile, readImageAsBase64 } from '@/utils/file';
 import { validateFiles } from '@/utils/validateFile';
-import { useExtension } from '@/hooks/useExtension';
 
 export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: any) {
   const { t } = useLocale();
@@ -104,7 +104,7 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
       resetFileInput();
       onClose();
     } catch (error) {
-      console.log('Error cropping image', error);
+      console.error('Error cropping image', error);
     } finally {
       setIsCropping(false);
     }

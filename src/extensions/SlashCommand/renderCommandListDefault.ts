@@ -41,7 +41,6 @@ export function renderCommandListDefault({ t }: any) {
           if (currentActiveLevel !== undefined && currentActiveLevel !== 'Paragraph') {
             editor.commands.toggleHeading({ level: currentActiveLevel });
             editor.chain().focus().deleteRange(range).run();
-            console.log('AAA');
           } else {
             editor.chain().focus().deleteRange(range).run();
           }
