@@ -176,6 +176,22 @@ const locale = {
   'editor.upload.fileTypeNotSupported': '{fileName} 文件类型不受支持',
   'editor.upload.fileSizeTooBig': '{fileName} 文件大小超出限制，最大大小为 {size}MB',
   'editor.upload.error': '上传文件时出错',
+  'editor.callout.tooltip': '标注框',
+  'editor.callout.dialog.title': '插入标注框',
+  'editor.callout.dialog.type': '标注框类型',
+  'editor.callout.dialog.type.placeholder': '选择标注框类型',
+  'editor.callout.dialog.title.label': '标题',
+  'editor.callout.dialog.title.placeholder': '输入自定义标题（可选）',
+  'editor.callout.dialog.body.label': '内容',
+  'editor.callout.dialog.body.placeholder': '输入内容（可选）',
+  'editor.callout.dialog.button.apply': '插入',
+  'editor.callout.dialog.button.cancel': '取消',
+  'editor.callout.edit.title': '编辑标注框',
+  'editor.callout.type.note': '笔记',
+  'editor.callout.type.tip': '提示',
+  'editor.callout.type.important': '重要',
+  'editor.callout.type.warning': '警告',
+  'editor.callout.type.caution': '注意',
 };
 
 export default locale;

@@ -87,6 +87,7 @@ export function getLocaleConfig(lang: string) {
         { text: 'Blockquote', link: '/extensions/Blockquote/index.md' },
         { text: 'Bold', link: '/extensions/Bold/index.md' },
         { text: 'BulletList', link: '/extensions/BulletList/index.md' },
+        { text: 'Callout', link: '/extensions/Callout/index.md' },
         { text: 'Clear', link: '/extensions/Clear/index.md' },
         { text: 'Code', link: '/extensions/Code/index.md' },
         { text: 'CodeBlock', link: '/extensions/CodeBlock/index.md' },

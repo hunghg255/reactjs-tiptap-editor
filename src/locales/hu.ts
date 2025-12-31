@@ -176,6 +176,22 @@ const locale = {
   'editor.upload.fileTypeNotSupported': '{fileName} fájltípus nem támogatott',
   'editor.upload.fileSizeTooBig': '{fileName} fájlméret túl nagy, maximális méret {size}MB',
   'editor.upload.error': 'Hiba a fájl feltöltésekor',
+  'editor.callout.tooltip': 'Kiemelő doboz',
+  'editor.callout.dialog.title': 'Kiemelő doboz beszúrása',
+  'editor.callout.dialog.type': 'Kiemelő doboz típusa',
+  'editor.callout.dialog.type.placeholder': 'Válasszon egy kiemelő doboz típust',
+  'editor.callout.dialog.title.label': 'Cím',
+  'editor.callout.dialog.title.placeholder': 'Írjon be egyedi címet (opcionális)',
+  'editor.callout.dialog.body.label': 'Tartalom',
+  'editor.callout.dialog.body.placeholder': 'Írja be a tartalmat (opcionális)',
+  'editor.callout.dialog.button.apply': 'Beszúrás',
+  'editor.callout.dialog.button.cancel': 'Mégsem',
+  'editor.callout.edit.title': 'Kiemelő doboz szerkesztése',
+  'editor.callout.type.note': 'Megjegyzés',
+  'editor.callout.type.tip': 'Tipp',
+  'editor.callout.type.important': 'Fontos',
+  'editor.callout.type.warning': 'Figyelmeztetés',
+  'editor.callout.type.caution': 'Óvatosan',
 };
 
 export default locale;

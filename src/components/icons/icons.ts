@@ -80,7 +80,8 @@ import {
   WrapText,
   Loader2 as Loader,
   X,
-  ExternalLink
+  ExternalLink,
+  NotebookPen
 } from 'lucide-react';
 
 import {
@@ -222,5 +223,6 @@ export const icons = {
   Loader,
   X,
   Html,
-  ExternalLink
+  ExternalLink,
+  Callout: NotebookPen
 } as any;
