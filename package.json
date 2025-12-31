@@ -527,6 +527,16 @@
         "types": "./lib/extensions/Video/index.d.ts",
         "default": "./lib/Video.js"
       }
+    },
+     "./callout": {
+      "require": {
+        "types": "./lib/extensions/Callout/index.d.ts",
+        "default": "./lib/Callout.cjs"
+      },
+      "import": {
+        "types": "./lib/extensions/Callout/index.d.ts",
+        "default": "./lib/Callout.js"
+      }
     }
   },
   "typesVersions": {
@@ -675,6 +685,9 @@
       ],
       "./video": [
         "./lib/extensions/Video/index.d.ts"
+      ],
+      "./callout": [
+        "./lib/extensions/Callout/index.d.ts"
       ]
     }
   },
