@@ -28,7 +28,7 @@ import { TextStyle } from '@tiptap/extension-text-style';
 import { ListItem } from '@tiptap/extension-list';
 
 // Extension
-import { TextUnderline, RichTextTextUnderline } from 'reactjs-tiptap-editor/textunderline'; // [!code ++]
+import { TextUnderline, RichTextUnderline } from 'reactjs-tiptap-editor/textunderline'; // [!code ++]
 // ... other extensions
 
 
@@ -58,7 +58,7 @@ const extensions = [
 const RichTextToolbar = () => {
   return (
     <div className="flex items-center gap-2 flex-wrap border-b border-solid">
-      <RichTextTextUnderline /> {/* [!code ++] */}
+      <RichTextUnderline /> {/* [!code ++] */}
     </div>
   )
 }

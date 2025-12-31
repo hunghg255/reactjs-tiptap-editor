@@ -52,6 +52,10 @@ export function getLocaleConfig(lang: string) {
       text: `v${version}`,
       items: VERSIONS,
     },
+    {
+      text: 'llmstxt',
+      link: 'https://reactjs-tiptap-editor.vercel.app/llms-full.txt',
+    },
   ];
 
   const sidebar: DefaultTheme.SidebarItem[] = [

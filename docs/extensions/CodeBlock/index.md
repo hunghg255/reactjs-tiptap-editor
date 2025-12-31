@@ -12,6 +12,16 @@ next:
 
 ## Usage
 
+- First Install `prism-code-editor-lightweight` package:
+
+```bash
+npm install prism-code-editor-lightweight
+# or
+yarn add prism-code-editor-lightweight
+or
+pnpm install prism-code-editor-lightweight
+```
+
 
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'

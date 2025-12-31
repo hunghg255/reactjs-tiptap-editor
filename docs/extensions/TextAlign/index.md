@@ -28,7 +28,7 @@ import { TextStyle } from '@tiptap/extension-text-style';
 import { ListItem } from '@tiptap/extension-list';
 
 // Extension
-import { TextAlign, RichTextTextAlign } from 'reactjs-tiptap-editor/textalign'; // [!code ++]
+import { TextAlign, RichTextAlign } from 'reactjs-tiptap-editor/textalign'; // [!code ++]
 // ... other extensions
 
 
@@ -58,7 +58,7 @@ const extensions = [
 const RichTextToolbar = () => {
   return (
     <div className="flex items-center gap-2 flex-wrap border-b border-solid">
-      <RichTextTextAlign /> {/* [!code ++] */}
+      <RichTextAlign /> {/* [!code ++] */}
     </div>
   )
 }
