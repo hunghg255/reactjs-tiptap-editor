@@ -53,7 +53,7 @@ const extensions = [
   SlashCommand// [!code ++]
 ];
 
-const RichTextToolbar = () => {
+const RichTextBubbleSlashCommandList = () => {
   return (
     <div className="flex items-center gap-2 flex-wrap border-b border-solid">
       <SlashCommandList /> {/* [!code ++] */}
@@ -71,7 +71,7 @@ const App = () => {
     <RichTextProvider
       editor={editor}
     >
-      <RichTextToolbar />
+      <RichTextBubbleSlashCommandList />
 
       <EditorContent
         editor={editor}
