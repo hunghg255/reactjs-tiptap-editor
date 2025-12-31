@@ -60,6 +60,7 @@ import { Drawer, RichTextDrawer } from 'reactjs-tiptap-editor/drawer';
 import { Twitter, RichTextTwitter } from 'reactjs-tiptap-editor/twitter';
 import { Mention } from 'reactjs-tiptap-editor/mention';
 import { CodeView, RichTextCodeView } from 'reactjs-tiptap-editor/codeview';
+import { Callout, RichTextCallout} from 'reactjs-tiptap-editor/callout';
 
 // Slash Command
 import { SlashCommand, SlashCommandList } from 'reactjs-tiptap-editor/slashcommand';
@@ -67,6 +68,7 @@ import { SlashCommand, SlashCommandList } from 'reactjs-tiptap-editor/slashcomma
 
 // Bubble
 import {
+  RichTextBubbleCallout,
   RichTextBubbleColumns,
   RichTextBubbleDrawer,
   RichTextBubbleExcalidraw,
@@ -320,7 +322,7 @@ const extensions = [
   }),
   SlashCommand,
   CodeView,
-
+Callout
   //  Collaboration.configure({
   //   document: hocuspocusProvider.document,
   // }),
@@ -332,7 +334,7 @@ const extensions = [
   // }),
 ]
 
-const DEFAULT = ``
+const DEFAULT = `<div class="callout" dir="auto" type="note" title="1" body="1"></div><div class="callout" dir="auto" type="tip" title="2" body="2"></div><div class="callout" dir="auto" type="important" title="3" body="3"></div><div class="callout" dir="auto" type="warning" title="4" body="4"></div><div class="callout" dir="auto" type="caution" title="5" body="5"></div><p dir="auto"></p>`
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout
@@ -494,6 +496,7 @@ const RichTextToolbar = () => {
     <RichTextDrawer />
     <RichTextTwitter />
     <RichTextCodeView />
+    <RichTextCallout />
   </div>
 }
 
@@ -547,6 +550,7 @@ function App() {
             />
 
             {/* Bubble */}
+            <RichTextBubbleCallout />
             <RichTextBubbleColumns />
             <RichTextBubbleDrawer />
             <RichTextBubbleExcalidraw />

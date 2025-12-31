@@ -6,6 +6,7 @@ export * from './popover';
 export * from './separator';
 export * from './switch';
 export * from './tabs';
+export * from './textarea';
 export * from './toast';
 export * from './toggle';
 export * from './tooltip';

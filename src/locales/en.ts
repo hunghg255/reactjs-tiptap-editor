@@ -176,6 +176,22 @@ const locale = {
   'editor.upload.fileTypeNotSupported': '{fileName} file type not supported',
   'editor.upload.fileSizeTooBig': '{fileName} file size too big, maximum size is {size}MB',
   'editor.upload.error': 'Error uploading file',
+  'editor.callout.tooltip': 'Callout',
+  'editor.callout.dialog.title': 'Insert Callout',
+  'editor.callout.dialog.type': 'Callout Type',
+  'editor.callout.dialog.type.placeholder': 'Select a callout type',
+  'editor.callout.dialog.title.label': 'Title',
+  'editor.callout.dialog.title.placeholder': 'Enter custom title (optional)',
+  'editor.callout.dialog.body.label': 'Body Content',
+  'editor.callout.dialog.body.placeholder': 'Enter body content (optional)',
+  'editor.callout.dialog.button.apply': 'Insert',
+  'editor.callout.dialog.button.cancel': 'Cancel',
+  'editor.callout.edit.title': 'Edit Callout',
+  'editor.callout.type.note': 'Note',
+  'editor.callout.type.tip': 'Tip',
+  'editor.callout.type.important': 'Important',
+  'editor.callout.type.warning': 'Warning',
+  'editor.callout.type.caution': 'Caution',
 };
 
 export default locale;

@@ -1,3 +1,4 @@
+export * from './RichTextBubbleCallout';
 export * from './RichTextBubbleColumns';
 export * from './RichTextBubbleDrawer';
 export * from './RichTextBubbleExcalidraw';

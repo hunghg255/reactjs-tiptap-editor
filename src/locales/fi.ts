@@ -176,6 +176,22 @@ const locale = {
   'editor.upload.fileTypeNotSupported': '{fileName}-tiedostotyyppi ei tuettu',
   'editor.upload.fileSizeTooBig': '{fileName}-tiedosto liian suuri, suurin sallittu koko on {size}MB',
   'editor.upload.error': 'Virhe tiedoston latauksessa',
+  'editor.callout.tooltip': 'Huomiolaatikko',
+  'editor.callout.dialog.title': 'Lisää huomiolaatikko',
+  'editor.callout.dialog.type': 'Huomiolaatikon tyyppi',
+  'editor.callout.dialog.type.placeholder': 'Valitse huomiolaatikon tyyppi',
+  'editor.callout.dialog.title.label': 'Otsikko',
+  'editor.callout.dialog.title.placeholder': 'Kirjoita mukautettu otsikko (valinnainen)',
+  'editor.callout.dialog.body.label': 'Sisältö',
+  'editor.callout.dialog.body.placeholder': 'Kirjoita sisältö (valinnainen)',
+  'editor.callout.dialog.button.apply': 'Lisää',
+  'editor.callout.dialog.button.cancel': 'Peruuta',
+  'editor.callout.edit.title': 'Muokkaa huomiolaatikkoa',
+  'editor.callout.type.note': 'Huomio',
+  'editor.callout.type.tip': 'Vinkki',
+  'editor.callout.type.important': 'Tärkeä',
+  'editor.callout.type.warning': 'Varoitus',
+  'editor.callout.type.caution': 'Varovaisuus',
 };
 
 export default locale;

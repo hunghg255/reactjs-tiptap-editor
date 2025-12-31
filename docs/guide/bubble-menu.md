@@ -148,3 +148,4 @@ The system provides the following default bubble menus:
 | RichTextBubbleMermaid   | Provides mermaid-related operations like size, link , etc.  | mermaid          |
 | RichTextBubbleTwitter   | Provides twitter-related operations like size, link , etc.  | twitter          |
 | RichTextBubbleMenuDragHandle  | Provides a drag handle to move the bubble menu around the editor area.                       | N/A           |
+| RichTextBubbleCallout  | Provides callout-related operations like style, content, etc.  | callout           |

@@ -176,6 +176,22 @@ const locale = {
   'editor.upload.fileTypeNotSupported': '{fileName} tipo de arquivo não suportado',
   'editor.upload.fileSizeTooBig': '{fileName} tamanho do arquivo muito grande, o tamanho máximo é {size}MB',
   'editor.upload.error': 'Erro ao enviar arquivo',
+  'editor.callout.tooltip': 'Caixa de destaque',
+  'editor.callout.dialog.title': 'Inserir caixa de destaque',
+  'editor.callout.dialog.type': 'Tipo de caixa de destaque',
+  'editor.callout.dialog.type.placeholder': 'Selecione um tipo de caixa de destaque',
+  'editor.callout.dialog.title.label': 'Título',
+  'editor.callout.dialog.title.placeholder': 'Digite um título personalizado (opcional)',
+  'editor.callout.dialog.body.label': 'Conteúdo',
+  'editor.callout.dialog.body.placeholder': 'Digite o conteúdo (opcional)',
+  'editor.callout.dialog.button.apply': 'Inserir',
+  'editor.callout.dialog.button.cancel': 'Cancelar',
+  'editor.callout.edit.title': 'Editar caixa de destaque',
+  'editor.callout.type.note': 'Nota',
+  'editor.callout.type.tip': 'Dica',
+  'editor.callout.type.important': 'Importante',
+  'editor.callout.type.warning': 'Aviso',
+  'editor.callout.type.caution': 'Cuidado',
 };
 
 export default locale;

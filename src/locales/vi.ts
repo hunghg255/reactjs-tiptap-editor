@@ -176,6 +176,22 @@ const locale = {
   'editor.upload.fileTypeNotSupported': '{fileName} loại tệp không được hỗ trợ',
   'editor.upload.fileSizeTooBig': '{fileName} kích thước tệp quá lớn, kích thước tối đa là {size}MB',
   'editor.upload.error': 'Lỗi khi tải lên tệp',
+  'editor.callout.tooltip': 'Hộp ghi chú',
+  'editor.callout.dialog.title': 'Chèn hộp ghi chú',
+  'editor.callout.dialog.type': 'Loại hộp ghi chú',
+  'editor.callout.dialog.type.placeholder': 'Chọn loại hộp ghi chú',
+  'editor.callout.dialog.title.label': 'Tiêu đề',
+  'editor.callout.dialog.title.placeholder': 'Nhập tiêu đề tùy chỉnh (tùy chọn)',
+  'editor.callout.dialog.body.label': 'Nội dung',
+  'editor.callout.dialog.body.placeholder': 'Nhập nội dung (tùy chọn)',
+  'editor.callout.dialog.button.apply': 'Chèn',
+  'editor.callout.dialog.button.cancel': 'Hủy',
+  'editor.callout.edit.title': 'Chỉnh sửa hộp ghi chú',
+  'editor.callout.type.note': 'Ghi chú',
+  'editor.callout.type.tip': 'Mẹo',
+  'editor.callout.type.important': 'Quan trọng',
+  'editor.callout.type.warning': 'Cảnh báo',
+  'editor.callout.type.caution': 'Thận trọng',
 };
 
 export default locale;
