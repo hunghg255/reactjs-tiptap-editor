@@ -12,6 +12,16 @@ next:
 
 ## Usage
 
+- First Install `react-image-crop` package:
+
+```bash
+npm install react-image-crop
+# or
+yarn add react-image-crop
+or
+pnpm install react-image-crop
+```
+
 
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'

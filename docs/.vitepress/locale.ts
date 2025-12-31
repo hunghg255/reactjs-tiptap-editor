@@ -48,13 +48,13 @@ export function getLocaleConfig(lang: string) {
       text: t('Playground'),
       link: 'https://reactjs-tiptap-editor-playground.vercel.app/',
     },
+     {
+      text: 'llmstxt',
+      link: 'https://reactjs-tiptap-editor.vercel.app/llms-full.txt',
+    },
     {
       text: `v${version}`,
       items: VERSIONS,
-    },
-    {
-      text: 'llmstxt',
-      link: 'https://reactjs-tiptap-editor.vercel.app/llms-full.txt',
     },
   ];
 
