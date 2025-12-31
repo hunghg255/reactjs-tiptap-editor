@@ -61,9 +61,7 @@ const extensions = [
 
 const RichTextToolbar = () => {
   return (
-    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
-      <RichTextMermaid /> {/* [!code ++] */}
-    </div>
+    <RichTextMermaid /> {/* [!code ++] */}
   )
 }
 
@@ -87,26 +85,3 @@ const App = () => {
 };
 ```
 
-## Configuration bubble menu
-
-```tsx
-import { BubbleMenuMermaid } from 'reactjs-tiptap-editor/bubble-extra'; // [!code ++]
-
-const App = () => {
-
-  return  <RichTextEditor
-    bubbleMenu={{
-      render({ extensionsNames, editor, disabled }, bubbleDefaultDom) {
-        return <>
-          {bubbleDefaultDom}
-
-          {extensionsNames.includes('mermaid')  ? <BubbleMenuMermaid disabled={disabled}
-            editor={editor}
-            key="mermaid"
-          /> : null}
-        </>
-      },
-    }}
-  />
-}
-```

@@ -35,6 +35,7 @@ import { Mention } from 'reactjs-tiptap-editor/mention'; // [!code ++]
 // Import CSS
 import 'reactjs-tiptap-editor/style.css';
 
+// Mock Data for Mention
 const MOCK_USERS = [{
     id: '0',
     label: 'hunghg255',

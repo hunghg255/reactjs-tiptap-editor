@@ -58,9 +58,7 @@ const extensions = [
 
 const RichTextToolbar = () => {
   return (
-    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
-      <RichTextKatex /> {/* [!code ++] */}
-    </div>
+    <RichTextKatex /> {/* [!code ++] */}
   )
 }
 
@@ -84,26 +82,3 @@ const App = () => {
 };
 ```
 
-## Configuration bubble menu
-
-```tsx
-import { BubbleMenuKatex } from 'reactjs-tiptap-editor/bubble-extra'; // [!code ++]
-
-const App = () => {
-
-  return  <RichTextEditor
-    bubbleMenu={{
-      render({ extensionsNames, editor, disabled }, bubbleDefaultDom) {
-        return <>
-          {bubbleDefaultDom}
-
-          {extensionsNames.includes('katex')  ? <BubbleMenuKatex disabled={disabled}
-            editor={editor}
-            key="katex"
-          /> : null}
-        </>
-      },
-    }}
-  />
-}
-```

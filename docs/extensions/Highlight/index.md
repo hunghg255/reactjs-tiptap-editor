@@ -57,9 +57,7 @@ const extensions = [
 
 const RichTextToolbar = () => {
   return (
-    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
-      <RichTextHighlight /> {/* [!code ++] */}
-    </div>
+    <RichTextHighlight /> {/* [!code ++] */}
   )
 }
 

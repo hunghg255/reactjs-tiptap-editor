@@ -55,9 +55,7 @@ const extensions = [
 
 const RichTextBubbleSlashCommandList = () => {
   return (
-    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
-      <SlashCommandList /> {/* [!code ++] */}
-    </div>
+    <SlashCommandList /> {/* [!code ++] */}
   )
 }
 

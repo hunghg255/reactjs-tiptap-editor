@@ -24,6 +24,7 @@ import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extens
 import { HardBreak } from '@tiptap/extension-hard-break'
 import { TextStyle } from '@tiptap/extension-text-style';
 import { ListItem } from '@tiptap/extension-list';
+import { SlashCommandList } from 'reactjs-tiptap-editor/slashcommand'; // [!code ++]
 
 // Extension
 import { History, RichTextUndo, RichTextRedo } from 'reactjs-tiptap-editor/history';
@@ -44,6 +45,7 @@ import {
   RichTextBubbleTable,
   RichTextBubbleText,
   RichTextBubbleTwitter,
+  RichTextBubbleCallout
 
   // Drag Handle
   RichTextBubbleMenuDragHandle
@@ -70,7 +72,8 @@ const extensions = [
 
   ...
   // Import Extensions Here
-  History
+  History,
+  ...,
 ];
 
 const RichTextToolbar = () => {
@@ -100,8 +103,11 @@ const RichTextBubbleMenu = () => {
       <RichTextBubbleTable />
       <RichTextBubbleText />
       <RichTextBubbleTwitter />
+      <RichTextBubbleCallout />
 
       <RichTextBubbleMenuDragHandle />
+
+      <SlashCommandList /> {/* Optional: If you want to use Slash Command inside Bubble Menu */}
     </div>
   )
 }
@@ -117,6 +123,7 @@ const App = () => {
       editor={editor}
     >
       <RichTextToolbar />
+
       <RichTextBubbleMenu />
 
       <EditorContent
@@ -149,3 +156,4 @@ The system provides the following default bubble menus:
 | RichTextBubbleTwitter   | Provides twitter-related operations like size, link , etc.  | twitter          |
 | RichTextBubbleMenuDragHandle  | Provides a drag handle to move the bubble menu around the editor area.                       | N/A           |
 | RichTextBubbleCallout  | Provides callout-related operations like style, content, etc.  | callout           |
+| SlashCommandList  | Provides a list of slash commands for quick access to various editor functionalities.  | slashcommand           |

@@ -57,9 +57,7 @@ const extensions = [
 
 const RichTextToolbar = () => {
   return (
-    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
-      <RichTextTwitter /> {/* [!code ++] */}
-    </div>
+    <RichTextTwitter /> {/* [!code ++] */}
   )
 }
 
@@ -81,29 +79,4 @@ const App = () => {
     </RichTextProvider>
   );
 };
-```
-
-
-## Configuration bubble menu
-
-```tsx
-import { BubbleMenuTwitter } from 'reactjs-tiptap-editor/bubble-extra'; // [!code ++]
-
-const App = () => {
-
-  return  <RichTextEditor
-    bubbleMenu={{
-      render({ extensionsNames, editor, disabled }, bubbleDefaultDom) {
-        return <>
-          {bubbleDefaultDom}
-
-          {extensionsNames.includes('twitter')  ? <BubbleMenuTwitter disabled={disabled}
-            editor={editor}
-            key="twitter"
-          /> : null}
-        </>
-      },
-    }}
-  />
-}
 ```
