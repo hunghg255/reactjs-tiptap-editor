@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
-import { defaultHoverInfoProcessor, transformerTwoslash } from '@shikijs/vitepress-twoslash';
-import { transformerRemoveNotationEscape, transformerNotationDiff } from '@shikijs/transformers';
+import llmstxt from 'vitepress-plugin-llms';
+import { copyOrDownloadAsMarkdownButtons } from 'vitepress-plugin-llms';
+
 import { getLocaleConfig } from './locale';
 import { transformHead } from './transformHead';
 
@@ -11,6 +12,9 @@ export default defineConfig({
   ignoreDeadLinks: true,
   locales: {
     root: getLocaleConfig('en'),
+  },
+  vite: {
+    plugins: [llmstxt()]
   },
   themeConfig: {
     search: {
@@ -42,6 +46,11 @@ export default defineConfig({
     hostname: docsLink,
   },
   transformHead,
+  markdown: {
+    config(md) {
+      md.use(copyOrDownloadAsMarkdownButtons);
+    }
+  }
   // markdown: {
   //   codeTransformers: [
   //     {
