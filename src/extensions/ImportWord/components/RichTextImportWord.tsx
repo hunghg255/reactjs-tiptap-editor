@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import mammoth from 'mammoth';
 
 import { ActionButton, useToast } from '@/components';
+import { Image } from '@/extensions/Image';
 import { ImportWord } from '@/extensions/ImportWord/ImportWord';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
@@ -63,7 +64,7 @@ export function RichTextImportWord() {
     if (images.length === 0) {
       return doc.body.innerHTML;
     }
-    const hasImage = hasExtension(editor, 'image');
+    const hasImage = hasExtension(editor, Image.name);
     if (hasImage) {
       const uploadOptions = extension?.options;
 

@@ -99,6 +99,7 @@ import 'katex/contrib/mhchem'
 // import { HocuspocusProvider } from '@hocuspocus/provider'
 // import * as Y from 'yjs'
 import { EditorContent, useEditor } from '@tiptap/react';
+import { EMOJI_LIST } from '@/emojis'
 
 // const ydoc = new Y.Doc()
 
@@ -204,7 +205,17 @@ const extensions = [
   TextUnderline,
   Strike,
   MoreMark,
-  Emoji,
+  Emoji.configure({
+    suggestion: {
+      items: async ({ query,  }: any) => {
+        const lowerCaseQuery = query?.toLowerCase();
+
+        return EMOJI_LIST.filter(({ name }) =>
+          name.toLowerCase().includes(lowerCaseQuery)
+        );
+      },
+    },
+  }),
   Color,
   Highlight,
   BulletList,
@@ -334,7 +345,7 @@ Callout
   // }),
 ]
 
-const DEFAULT = `<div class="callout" dir="auto" type="note" title="1" body="1"></div><div class="callout" dir="auto" type="tip" title="2" body="2"></div><div class="callout" dir="auto" type="important" title="3" body="3"></div><div class="callout" dir="auto" type="warning" title="4" body="4"></div><div class="callout" dir="auto" type="caution" title="5" body="5"></div><p dir="auto"></p>`
+const DEFAULT = `<div class="callout" dir="auto" type="note" title="1" body="1"></div><div class="callout" dir="auto" type="tip" title="2" body="2"></div><div class="callout" dir="auto" type="important" title="3" body="3"></div><div class="callout" dir="auto" type="warning" title="4" body="4"></div><div class="callout" dir="auto" type="caution" title="5" body="5"></div><p dir="auto"><span dir="auto" data-name="smiley" data-type="emoji">😃</span> </p>`
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout
@@ -351,6 +362,8 @@ const Header = ({ editor, theme, setTheme }) => {
   const currentTheme = useTheme();
 
   useEffect(() => {
+    localeActions.setLang('vi')
+themeActions.setColor('red')
     setEditorEditable(editor?.isEditable ?? true);
   }, []);
 

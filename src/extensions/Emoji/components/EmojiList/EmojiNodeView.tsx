@@ -1,25 +1,28 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
 import clsx from 'clsx';
 import scrollIntoView from 'scroll-into-view-if-needed';
 
-import { EMOJI_LIST } from '@/extensions/Emoji/components/EmojiList/emojis';
 import { useLocale } from '@/locales';
 
-function EmojiNodeView (props: any, ref: any) {
+interface IPropsEmojiNodeVIew {
+  items: Array<{
+    name: string
+    emoji: string
+  }>
+
+  query: string
+  command: any
+}
+
+function EmojiNodeView(props: IPropsEmojiNodeVIew, ref: any) {
   const $container: any = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { t } = useLocale();
 
-  const filteredEmojis = useMemo(() => {
-    const lowerCaseQuery = props?.query?.toLowerCase();
-
-    return EMOJI_LIST.filter(({ name }) =>
-      name.toLowerCase().includes(lowerCaseQuery)
-    );
-  }, [props?.query]);
+  const filteredEmojis = props?.items ?? [];
 
   const selectItem = (index: any) => {
     const item = filteredEmojis[index];
@@ -89,9 +92,9 @@ function EmojiNodeView (props: any, ref: any) {
                   })}
                 >
                   {emoji}
-:
-{name}
-:
+                  :
+                  {name}
+                  :
                 </span>
               );
             })

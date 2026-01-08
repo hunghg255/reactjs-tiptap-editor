@@ -1,8 +1,9 @@
+import { useEffect } from 'react';
+
 import { renderCommandListDefault } from '@/extensions/SlashCommand/renderCommandListDefault';
-import { CommandList } from '@/extensions/SlashCommand/types';
+import { type CommandList } from '@/extensions/SlashCommand/types';
 import { useLocale } from '@/locales';
 import { useSignalCommandList } from '@/store/commandList';
-import { useEffect } from 'react';
 
 interface SlashCommandListProps {
   // Define any props needed for the SlashCommandList component

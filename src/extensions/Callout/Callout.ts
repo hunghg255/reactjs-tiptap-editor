@@ -20,10 +20,6 @@ export interface CalloutOptions extends GeneralOptions<CalloutOptions> {
 
 function getDatasetAttribute(attribute: string) {
   return (element: any) => {
-    console.log({
-      element
-    });
-
     return element.getAttribute(attribute);
   };
 }
@@ -65,10 +61,6 @@ export const Callout = /* @__PURE__ */ Node.create<CalloutOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
-    console.log({
-      HTMLAttributes
-    });
-
     return ['div', mergeAttributes((this.options && this.options.HTMLAttributes) || {}, HTMLAttributes)];
   },
 

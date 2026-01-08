@@ -50,8 +50,20 @@ const extensions = [
 
   ...
   // Import Extensions Here
-  Emoji// [!code ++]
+  Emoji.configure({
+    suggestion: {
+      char: ':',
+      items: async ({ query,  }: any) => {
+        const lowerCaseQuery = query?.toLowerCase();
+
+        return EMOJI_LIST.filter(({ name }) =>
+          name.toLowerCase().includes(lowerCaseQuery)
+        );
+      },
+    },
+  }),
 ];
+
 
 const RichTextToolbar = () => {
   return (
@@ -78,3 +90,6 @@ const App = () => {
   );
 };
 ```
+
+
+- Copy Emoji List here: https://github.com/hunghg255/reactjs-tiptap-editor-demo/blob/master/src/components/Editor/emojis.ts

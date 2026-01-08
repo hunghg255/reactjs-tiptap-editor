@@ -74,8 +74,8 @@ export function RichTextEmoji() {
 
   return (
     <EmojiPickerWrap
-    disabled={disabled}
-    onSelectEmoji={onAction}
+      disabled={disabled}
+      onSelectEmoji={onAction}
     >
       <ActionButton
         icon={icon}
