@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { create } from 'zustand';
+import { createSignal, getSignal, useSetSignal, useSignalValue } from 'reactjs-signal';
 
 import { DEFAULT_LANG_VALUE } from '@/constants';
 
@@ -31,35 +31,33 @@ type LanguageType = keyof typeof LANG.message | (string & {});
 interface LangState {
   currentLang: LanguageType;
   message: typeof LANG.message;
-  setLang: (newLang: LanguageType) => void;
-  setMessage: (lang: LanguageType, messages: Partial<Record<keyof typeof en, string>>) => void;
 }
 
-const useLang = create<LangState>()((set) => ({
+const langSignal = createSignal<LangState>({
   currentLang: LANG.currentLang,
   message: LANG.message,
-  setLang: (newLang: LanguageType) => {
-    set(() => ({
-      currentLang: newLang,
-    }));
-  },
-  setMessage: (lang: LanguageType, messages: Partial<Record<keyof typeof en, string>>) => {
-    set((state) => ({
-      message: {
-        ...state.message,
-        [lang]: {
-          ...state.message[lang as keyof typeof LANG.message],
-          ...messages,
-        },
-      },
-    }));
-  }
-}));
+});
 
+  // setLang: (newLang: LanguageType) => {
+  //   set(() => ({
+  //     currentLang: newLang,
+  //   }));
+  // },
+  // setMessage: (lang: LanguageType, messages: Partial<Record<keyof typeof en, string>>) => {
+  //   set((state) => ({
+  //     message: {
+  //       ...state.message,
+  //       [lang]: {
+  //         ...state.message[lang as keyof typeof LANG.message],
+  //         ...messages,
+  //       },
+  //     },
+  //   }));
+  // }
 function useLocale() {
-  const currentLang = useLang((state) => state.currentLang);
-  const message = useLang((state) => state.message);
-  const setLang = useLang((state) => state.setLang);
+  const currentLang = useSignalValue(langSignal).currentLang;
+  const message = useSignalValue(langSignal).message;
+  const setLang = useSetSignal(langSignal);
 
   const t = useCallback((path: MessageKeysType, params?: Record<string, string | number>) => {
     try {
@@ -89,10 +87,22 @@ function useLocale() {
 
 const localeActions = {
   setLang: (lang: LanguageType | (string & {})) => {
-    useLang.getState().setLang(lang);
+    getSignal(langSignal).setValue((prev => ({
+      ...prev,
+      currentLang: lang,
+    })));
   },
   setMessage: (lang: LanguageType | (string & {}), messages: Partial<Record<keyof typeof LANG.message.en, string>>) => {
-    useLang.getState().setMessage(lang, messages);
+    getSignal(langSignal).setValue((prev) => ({
+      ...prev,
+      message: {
+        ...prev.message,
+        [lang]: {
+          ...prev.message[lang as keyof typeof LANG.message],
+          ...messages,
+        },
+      },
+    }));
   },
 };
 

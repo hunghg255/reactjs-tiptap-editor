@@ -1,24 +1,18 @@
-import { create } from 'zustand';
+import { createSignal, useSetSignal, useSignalValue } from 'reactjs-signal';
 
 import { type CommandList } from '@/extensions/SlashCommand/types';
 
 interface SignalCommandListState {
   commandList: CommandList[];
-  setCommandList: (newCommandList: CommandList[]) => void;
 }
 
-const useSignalCommandListStore = create<SignalCommandListState>((set => ({
+const useSignalCommandListStore = createSignal<SignalCommandListState>({
   commandList: [],
-  setCommandList: (newCommandList: CommandList[]) => {
-    set(() => ({
-      commandList: newCommandList,
-    }));
-  },
-})));
+});
 
 export function useSignalCommandList () {
-  const commandList = useSignalCommandListStore(state => state.commandList);
-  const setCommandList = useSignalCommandListStore(state => state.setCommandList);
+  const commandList = useSignalValue(useSignalCommandListStore).commandList;
+  const setCommandList = useSetSignal(useSignalCommandListStore);
 
   return [commandList, setCommandList] as const;
 }

@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useStoreEditableEditor, } from '@/store/store';
 
 export function EditorEditableReactive ({ editor }: any) {
-  const setEditable = useStoreEditableEditor(store => store.setEditable);
+  const setEditable = useStoreEditableEditor();
 
   useEffect(() => {
     setEditable({

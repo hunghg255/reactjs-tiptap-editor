@@ -1,5 +1,5 @@
 // Get here: https://ui.shadcn.com/themes
-import { create } from 'zustand';
+import { createSignal, getSignal, useSignalValue } from 'reactjs-signal';
 
 export const THEME = {
   light: {
@@ -367,36 +367,16 @@ interface ThemeStore {
   theme: ThemeType;
   color: ThemeColorType;
   borderRadius: string;
-  setTheme: (theme: ThemeType) => void;
-  setColor: (color: ThemeColorType) => void;
-  setBorderRadius: (borderRadius: string) => void;
 }
 
-const useThemeStore = create<ThemeStore>((set) => ({
+const themeSignal = createSignal<ThemeStore>({
   theme: 'light',
   color: 'default',
   borderRadius: '0.65rem',
-  setTheme: (theme: ThemeType) => {
-    set(() => ({
-      theme,
-    }));
-  },
-  setColor: (color: ThemeColorType) => {
-    set(() => ({
-      color,
-    }));
-  },
-  setBorderRadius: (borderRadius: string) => {
-    set(() => ({
-      borderRadius,
-    }));
-  },
-}));
+});
 
 export function useTheme () {
-  const theme = useThemeStore((state) => state.theme);
-  const color = useThemeStore((state) => state.color);
-  const borderRadius = useThemeStore((state) => state.borderRadius);
+  const { theme, color, borderRadius } = useSignalValue(themeSignal);
 
   return {
     theme,
@@ -407,12 +387,21 @@ export function useTheme () {
 
 export const themeActions = {
   setTheme: (theme: ThemeType) => {
-    useThemeStore.getState().setTheme(theme);
+    getSignal(themeSignal).setValue((prev) => ({
+      ...prev,
+      theme,
+    }));
   },
   setColor: (color: ThemeColorType) => {
-    useThemeStore.getState().setColor(color);
+    getSignal(themeSignal).setValue((prev) => ({
+      ...prev,
+      color,
+    }));
   },
   setBorderRadius: (borderRadius: string) => {
-    useThemeStore.getState().setBorderRadius(borderRadius);
+    getSignal(themeSignal).setValue((prev) => ({
+      ...prev,
+      borderRadius,
+    }));
   }
 };

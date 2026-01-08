@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { createSignal, useSetSignal, useSignalValue } from 'reactjs-signal';
 
 import createFastContext from '@/store/fast-context';
 
@@ -10,19 +10,18 @@ const { Provider: ProviderUploadVideo, useStore: useStoreUploadVideo } = createF
   value: false
 });
 
-const useStoreEditableEditor = create<{ value: boolean, setEditable: (newValue: { value: boolean }) => void }>((set) => ({
+const editableEditorSignal = createSignal<{ value: boolean }>({
   value: false,
-  setEditable: (newValue: { value: boolean }) => {
-    set(() => ({
-      value: newValue.value,
-    }));
-  },
-}));
+});
 
 function useEditableEditor () {
-  const isEditableEditor = useStoreEditableEditor(store => store.value);
+  const isEditableEditor = useSignalValue(editableEditorSignal).value;
 
   return isEditableEditor;
+}
+
+function useStoreEditableEditor () {
+  return useSetSignal(editableEditorSignal);
 }
 
 export {
