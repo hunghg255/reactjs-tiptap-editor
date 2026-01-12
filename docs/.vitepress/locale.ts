@@ -82,6 +82,10 @@ export function getLocaleConfig(lang: string) {
           text: t('Custom Theme'),
           link: `${urlPrefix}/guide/custom-theme`,
         },
+        {
+          text: t('How to Migrate'),
+          link: `${urlPrefix}/guide/how-to-migrate`,
+        },
       ],
     },
     {

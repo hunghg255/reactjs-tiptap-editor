@@ -2,8 +2,8 @@
 description: Custom Theme
 
 next:
-  text: Attachment
-  link: /extensions/Attachment.md
+  text: How to Migrate
+  link: /guide/how-to-migrate.md
 ---
 
 # Custom Theme
