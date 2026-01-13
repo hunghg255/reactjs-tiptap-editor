@@ -1,21 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useCallback, useEffect, useState, useMemo } from 'react';
 
 import { ActionButton } from '@/components/ActionButton';
+import { useListener } from '@/components/ReactBus';
 import { Button } from '@/components/ui';
 import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 import { useExtension } from '@/hooks/useExtension';
 import { useEditorInstance } from '@/store/editor';
-import { OPEN_EXCALIDRAW_SETTING_MODAL, cancelSubject, subject } from '@/utils/_event';
+import { EVENTS } from '@/utils/customEvents/events.constant';
 
 import { Excalidraw as ExcalidrawExtension } from '../Excalidraw';
 
-export function RichTextExcalidraw () {
-
+export function RichTextExcalidraw() {
   const editor = useEditorInstance();
 
   const buttonProps = useButtonProps(ExcalidrawExtension.name);
@@ -79,20 +78,14 @@ export function RichTextExcalidraw () {
     toggleVisible(false);
   }, [Excalidraw, editor, data, toggleVisible]);
 
-  useEffect(() => {
-    const handler = (data: any) => {
-      if (data?.editor !== editor) return; // only respond to events from the matching editor
+  const handler = (data: any) => {
+    toggleVisible(true);
+    if (data?.data) setInitialData(data?.data);
+  };
 
-      toggleVisible(true);
-      data && setInitialData(data.data);
-    };
+  const EVENT_ID = EVENTS.EXCALIDRAW((editor as any).id);
 
-    subject(OPEN_EXCALIDRAW_SETTING_MODAL, handler);
-
-    return () => {
-      cancelSubject(OPEN_EXCALIDRAW_SETTING_MODAL, handler);
-    };
-  }, [editor, toggleVisible]);
+  useListener(handler, [EVENT_ID]);
 
   useEffect(() => {
     if (!loading && Excalidraw && visible) {
@@ -115,8 +108,8 @@ export function RichTextExcalidraw () {
           tooltip="Excalidraw"
           tooltipOptions={tooltipOptions}
           action={() => {
-              if (editorDisabled) return;
-              toggleVisible(true);
+            if (editorDisabled) return;
+            toggleVisible(true);
           }}
         />
       </DialogTrigger>

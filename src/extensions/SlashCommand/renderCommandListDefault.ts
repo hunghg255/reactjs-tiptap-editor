@@ -1,6 +1,6 @@
+import { emit } from '@/components/ReactBus';
 import { HEADINGS } from '@/constants';
-import { actionDialogImage } from '@/extensions/Image/store';
-import { actionDialogVideo } from '@/extensions/Video/store';
+import { EVENTS } from '@/utils/customEvents/events.constant';
 
 import type { CommandList } from './types';
 
@@ -132,8 +132,8 @@ export function renderCommandListDefault({ t }: any) {
     shouldBeHidden: editor => editor.isActive('columns'),
     action: ({ editor, range }: any) => {
       editor.chain().focus().deleteRange(range).run();
-
-      actionDialogImage.setOpen(editor.id, true);
+      const EVENT_ID = EVENTS.UPLOAD_IMAGE((editor).id);
+      emit(EVENT_ID, true);
     },
   });
 
@@ -147,7 +147,8 @@ export function renderCommandListDefault({ t }: any) {
     shouldBeHidden: editor => editor.isActive('columns'),
     action: ({ editor, range }: any) => {
       editor.chain().focus().deleteRange(range).run();
-      actionDialogVideo.setOpen(editor.id, true);
+      const EVENT_ID = EVENTS.UPLOAD_VIDEO((editor).id);
+      emit(EVENT_ID, true);
     },
   });
 

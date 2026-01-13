@@ -1,27 +1,28 @@
 import { useMemo, useRef, useState } from 'react';
 
-import { ActionButton, Button, Input, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Button, Input, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
+import { useListener } from '@/components/ReactBus';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Video } from '@/extensions/Video/Video';
 import { useToggleActive } from '@/hooks/useActive';
-import { useButtonProps } from '@/hooks/useButtonProps';
 import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { checkIsVideoUrl } from '@/utils/checkIsVideoUrl';
+import { EVENTS } from '@/utils/customEvents/events.constant';
 
-export function RichTextVideo() {
+export function RenderDialogUploadVideo() {
   const { t } = useLocale();
 
-    const editor = useEditorInstance();
-    const buttonProps = useButtonProps(Video.name);
+  const editor = useEditorInstance();
+  // const buttonProps = useButtonProps(Video.name);
 
-    const {
-      icon,
-      tooltip,
-    } = buttonProps?.componentProps ?? {};
+  // const {
+  //   icon,
+  //   tooltip,
+  // } = buttonProps?.componentProps ?? {};
 
-    const { editorDisabled } = useToggleActive();
+  const { editorDisabled } = useToggleActive();
 
   const [link, setLink] = useState<string>('');
   const fileInput = useRef<HTMLInputElement>(null);
@@ -30,6 +31,10 @@ export function RichTextVideo() {
 
   const [open, setOpen] = useState(false);
   const extension = useExtension(Video.name);
+
+  const EVENT_ID = EVENTS.UPLOAD_VIDEO((editor as any).id);
+
+  useListener(setOpen, [EVENT_ID]);
 
   const uploadOptions = useMemo(() => {
     const uploadOptions = extension?.options ?? {};
@@ -86,22 +91,14 @@ export function RichTextVideo() {
     fileInput.current?.click();
   }
 
+  if (editorDisabled) {
+    return <></>;
+  }
+
   return (
     <Dialog onOpenChange={setOpen}
       open={open}
     >
-      <DialogTrigger asChild>
-        <ActionButton
-          disabled={editorDisabled}
-          icon={icon}
-          tooltip={tooltip}
-          action={() => {
-            if (editorDisabled) return;
-            setOpen(true);
-          }}
-        />
-      </DialogTrigger>
-
       <DialogContent>
         <DialogTitle>
           {t('editor.video.dialog.title')}
@@ -174,7 +171,7 @@ export function RichTextVideo() {
                 />
 
                 <Button onClick={handleLink}
-type="button"
+                  type="button"
                 >
                   {t('editor.video.dialog.button.apply')}
                 </Button>

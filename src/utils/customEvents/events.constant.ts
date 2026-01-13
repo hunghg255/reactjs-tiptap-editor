@@ -1,6 +1,8 @@
 export const EVENTS = {
   UPLOAD_IMAGE: (id: any) => `UPLOAD_IMAGE-${id}`,
   UPLOAD_VIDEO: (id: string) => `UPLOAD_VIDEO-${id}`,
+
+  EXCALIDRAW: (id: string) => `EXCALIDRAW-${id}`,
 } as const;
 
 // type EventsType = typeof EVENTS;
