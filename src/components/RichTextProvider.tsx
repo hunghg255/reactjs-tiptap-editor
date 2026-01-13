@@ -4,6 +4,8 @@ import { type Editor } from '@tiptap/core';
 import { EditorContext } from '@tiptap/react';
 
 import { TooltipProvider } from '@/components';
+import { ReactBusProvider } from '@/components/ReactBus';
+import SlashDialogTrigger from '@/components/SlashDialogTrigger/SlashDialogTrigger';
 import { RESET_CSS } from '@/constants/resetCSS';
 import { EditorEditableReactive } from '@/store/EditorEditableReactive';
 import { ThemeColorReactive } from '@/store/ThemeColorReactive';
@@ -40,19 +42,22 @@ export function RichTextProvider({ editor, children }: IProviderRichTextProps) {
 
   return (
     <div className="reactjs-tiptap-editor">
-      <EditorContext.Provider value={{ editor }}>
-        <TooltipProvider delayDuration={0}
-          disableHoverableContent
-        >
-          {children}
-        </TooltipProvider>
+      <ReactBusProvider>
+        <EditorContext.Provider value={{ editor }}>
+          <TooltipProvider delayDuration={0}
+            disableHoverableContent
+          >
+            {children}
+          </TooltipProvider>
 
-        <EditorEditableReactive
-          editor={editor}
-        />
+          <EditorEditableReactive
+            editor={editor}
+          />
 
-        <ThemeColorReactive />
-      </EditorContext.Provider>
+          <SlashDialogTrigger />
+          <ThemeColorReactive />
+        </EditorContext.Provider>
+      </ReactBusProvider>
     </div>
   );
 }

@@ -7,15 +7,11 @@ export function EditorEditableReactive ({ editor }: any) {
   const setEditable = useStoreEditableEditor();
 
   useEffect(() => {
-    setEditable({
-      value: editor?.isEditable
-    });
+    setEditable(editor?.isEditable);
   }, [editor?.isEditable]);
 
   const onEditableChange = () => {
-    setEditable({
-      value: editor?.isEditable
-    });
+    setEditable(editor?.isEditable);
   };
 
   useEffect(() => {

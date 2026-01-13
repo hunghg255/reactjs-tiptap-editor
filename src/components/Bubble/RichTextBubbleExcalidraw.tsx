@@ -3,6 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { BubbleMenu } from '@tiptap/react/menus';
 
 import { ActionButton } from '@/components/ActionButton';
+import { emit } from '@/components/ReactBus';
 import { SizeSetter } from '@/components/SizeSetter/SizeSetter';
 import type { IExcalidrawAttrs } from '@/extensions/Excalidraw';
 import { Excalidraw } from '@/extensions/Excalidraw';
@@ -10,7 +11,7 @@ import { useAttributes } from '@/hooks/useAttributes';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
-import { triggerOpenExcalidrawSettingModal } from '@/utils/_event';
+import { EVENTS } from '@/utils/customEvents/events.constant';
 import { deleteNode } from '@/utils/delete-node';
 import { getEditorContainerDOMSize } from '@/utils/editor-container-size';
 
@@ -39,9 +40,12 @@ export function RichTextBubbleExcalidraw() {
     },
     [editor],
   );
+
   const openEditLinkModal = useCallback(() => {
-    triggerOpenExcalidrawSettingModal({ ...attrs, editor });
+    const EVENT_ID = EVENTS.EXCALIDRAW((editor as any).id);
+    emit(EVENT_ID, attrs);
   }, [editor, attrs]);
+
   const shouldShow = useCallback(() => editor.isActive(Excalidraw.name), [editor]);
   const deleteMe = useCallback(() => deleteNode(Excalidraw.name, editor), [editor]);
 

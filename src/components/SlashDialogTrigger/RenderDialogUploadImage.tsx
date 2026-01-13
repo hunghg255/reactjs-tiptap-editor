@@ -1,31 +1,37 @@
 import { useMemo, useRef, useState } from 'react';
 
-import { ActionButton, Button, Checkbox, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger, useToast, IconComponent } from '@/components';
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Button, Checkbox, IconComponent, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger, useToast } from '@/components';
+import { useListener } from '@/components/ReactBus';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { ImageCropper } from '@/extensions/Image/components/ImageCropper';
 import { Image } from '@/extensions/Image/Image';
 import { useToggleActive } from '@/hooks/useActive';
-import { useButtonProps } from '@/hooks/useButtonProps';
+// import { useButtonProps } from '@/hooks/useButtonProps';
 import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
+import { EVENTS } from '@/utils/customEvents/events.constant';
 import { validateFiles } from '@/utils/validateFile';
 
-export function RichTextImage() {
+export function RenderDialogUploadImage () {
   const { t } = useLocale();
   const { toast } = useToast();
 
   const editor = useEditorInstance();
-  const buttonProps = useButtonProps(Image.name);
+  // const buttonProps = useButtonProps(Image.name);
 
-  const {
-    icon,
-    tooltip,
-  } = buttonProps?.componentProps ?? {};
+  // const {
+  //   icon,
+  //   tooltip,
+  // } = buttonProps?.componentProps ?? {};
 
   const { editorDisabled } = useToggleActive();
 
   const [open, setOpen] = useState(false);
+
+  const EVENT_ID = EVENTS.UPLOAD_IMAGE((editor as any).id);
+
+  useListener(setOpen, [EVENT_ID]);
 
   const [isUploading, setIsUploading] = useState(false);
   const extension = useExtension(Image.name);
@@ -133,7 +139,7 @@ export function RichTextImage() {
     fileInput.current?.click();
   }
 
-  if (!buttonProps) {
+  if (editorDisabled) {
     return <></>;
   }
 
@@ -142,20 +148,6 @@ export function RichTextImage() {
       onOpenChange={setOpen}
       open={open}
     >
-      <DialogTrigger
-      asChild
-      >
-        <ActionButton
-          disabled={editorDisabled}
-          icon={icon}
-          tooltip={tooltip}
-          action={() => {
-            if (editorDisabled) return;
-            setOpen(true);
-          }}
-        />
-      </DialogTrigger>
-
       <DialogContent>
         <DialogTitle>
           {t('editor.image.dialog.title')}
