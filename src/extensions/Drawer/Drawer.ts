@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { CommandProps } from '@tiptap/core';
 import { mergeAttributes } from '@tiptap/core';
 import TiptapImage from '@tiptap/extension-image';
@@ -12,20 +11,20 @@ export * from '@/extensions/Drawer/components/RichTextDrawer';
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     drawer: {
-      setDrawer: (options: any, replace?: any) => ReturnType
-      setAlignImageDrawer: (align: 'left' | 'center' | 'right') => ReturnType
-    }
+      setDrawer: (options: any, replace?: any) => ReturnType;
+      setAlignImageDrawer: (align: 'left' | 'center' | 'right') => ReturnType;
+    };
   }
 }
 
 export interface DrawerOptions extends GeneralOptions<DrawerOptions> {
   /** Function for uploading files */
-  upload?: (file: File) => Promise<string>
+  upload?: (file: File) => Promise<string>;
 }
 
 export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
   name: 'richTextDrawer',
-     
+
   //@ts-expect-error
   addOptions() {
     return {
@@ -90,7 +89,7 @@ export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
       },
       align: {
         default: 'center',
-        parseHTML: element => element.getAttribute('align'),
+        parseHTML: (element) => element.getAttribute('align'),
         renderHTML: (attributes) => {
           return {
             align: attributes.align,
@@ -108,28 +107,25 @@ export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
   addCommands() {
     return {
       setDrawer:
-          (
-            options: { src: string, alt?: string },
-            replace?: boolean,
-          ) =>
-            ({ commands, editor }: CommandProps) => {
-              if (replace) {
-                return commands.insertContent({
-                  type: this.name,
-                  attrs: options,
-                });
-              }
-              return commands.insertContentAt(editor.state.selection.anchor, {
-                type: this.name,
-                attrs: options,
-              });
-            },
+        (options: { src: string; alt?: string }, replace?: boolean) =>
+        ({ commands, editor }: CommandProps) => {
+          if (replace) {
+            return commands.insertContent({
+              type: this.name,
+              attrs: options,
+            });
+          }
+          return commands.insertContentAt(editor.state.selection.anchor, {
+            type: this.name,
+            attrs: options,
+          });
+        },
 
       setAlignImageDrawer:
-            (align: any) =>
-              ({ commands }: any) => {
-                return commands.updateAttributes(this.name, { align });
-              },
+        (align: any) =>
+        ({ commands }: any) => {
+          return commands.updateAttributes(this.name, { align });
+        },
     };
   },
 
@@ -148,7 +144,7 @@ export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
         mergeAttributes(
           // @ts-ignore
           this.options.HTMLAttributes,
-          HTMLAttributes,
+          HTMLAttributes
         ),
       ],
     ];

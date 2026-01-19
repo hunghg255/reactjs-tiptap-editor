@@ -7,23 +7,22 @@ export * from '@/extensions/ImportWord/components/RichTextImportWord';
 
 interface ImportWordOptions extends GeneralOptions<ImportWordOptions> {
   /** Function for converting Word files to HTML */
-  convert?: (file: File) => Promise<string>
+  convert?: (file: File) => Promise<string>;
 
   /** Function for uploading images */
-  upload?: (files: File[]) => Promise<unknown>
+  upload?: (files: File[]) => Promise<unknown>;
 
   /**
    * File Size limit(10 MB)
    *
    * @default 1024 * 1024 * 10
    */
-  limit?: number
-  mammothOptions?: Parameters<typeof Mammoth['convertToHtml']>[1]
+  limit?: number;
+  mammothOptions?: Parameters<(typeof Mammoth)['convertToHtml']>[1];
 }
 
 export const ImportWord = /* @__PURE__ */ Extension.create<ImportWordOptions>({
   name: 'importWord',
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {

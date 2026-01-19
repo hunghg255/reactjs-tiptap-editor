@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Extension } from '@tiptap/core';
 import type { Editor } from '@tiptap/core';
 
@@ -14,10 +13,10 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     codeView: {
       /**
-             * Toggle code view mode
-             */
-      toggleCodeView: () => ReturnType
-    }
+       * Toggle code view mode
+       */
+      toggleCodeView: () => ReturnType;
+    };
   }
 }
 
@@ -34,7 +33,7 @@ export const CodeView = /* @__PURE__ */ Extension.create<CodeViewOptions>({
               editor.commands.toggleCodeView();
             },
             isActive: () => {
-  //@ts-expect-error
+              //@ts-expect-error
               return editor.storage.codeView.isActive;
             },
             disabled: false,
@@ -56,34 +55,36 @@ export const CodeView = /* @__PURE__ */ Extension.create<CodeViewOptions>({
 
   addCommands() {
     return {
-      toggleCodeView: () => ({ editor }) => {
-  //@ts-expect-error
-        const isActive = editor.storage.codeView.isActive;
+      toggleCodeView:
+        () =>
+        ({ editor }) => {
+          //@ts-expect-error
+          const isActive = editor.storage.codeView.isActive;
 
-        if (!isActive) {
-          const htmlContent = editor.getHTML();
-  //@ts-expect-error
-          editor.storage.codeView.originalContent = htmlContent;
+          if (!isActive) {
+            const htmlContent = editor.getHTML();
+            //@ts-expect-error
+            editor.storage.codeView.originalContent = htmlContent;
 
-          const escapedHtml = htmlContent
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
+            const escapedHtml = htmlContent
+              .replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+              .replace(/'/g, '&#039;');
 
-          editor.commands.setContent(
-            `<div class="tiptap-code-view-wrapper">${escapedHtml}</div>`
-          );
-        } else {
-          editor.commands.setContent(editor.getText());
-        }
+            editor.commands.setContent(
+              `<div class="tiptap-code-view-wrapper">${escapedHtml}</div>`
+            );
+          } else {
+            editor.commands.setContent(editor.getText());
+          }
 
-  //@ts-expect-error
-        editor.storage.codeView.isActive = !isActive;
+          //@ts-expect-error
+          editor.storage.codeView.isActive = !isActive;
 
-        return true;
-      },
+          return true;
+        },
     };
   },
 });

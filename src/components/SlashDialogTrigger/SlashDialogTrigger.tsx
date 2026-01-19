@@ -3,7 +3,7 @@ import React from 'react';
 import { RenderDialogUploadImage } from '@/components/SlashDialogTrigger/RenderDialogUploadImage';
 import { RenderDialogUploadVideo } from '@/components/SlashDialogTrigger/RenderDialogUploadVideo';
 
-function SlashDialogTrigger () {
+function SlashDialogTrigger() {
   return (
     <>
       <RenderDialogUploadImage />

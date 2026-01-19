@@ -1,13 +1,31 @@
+import { Color4 } from 'easydrawer';
 import React, { useState } from 'react';
-
-import {
-  Color4
-} from 'easydrawer';
 
 import { cn } from '@/lib/utils';
 
 import styles from './ControlDrawer.module.scss';
-import { MingcuteDiamondSquareLine, HugeiconsCursorRectangleSelection01, IcSharpArrowRightAlt, MaterialSymbolsCircleOutline, MaterialSymbolsEdit, MaterialSymbolsHexagonOutline, MaterialSymbolsRectangleOutline, MdiFormatLetterCase, MdiSquareOutline, OuiEraser, PhHighlighter, TablerTriangle, PhLineSegmentFill, IcSharpFavorite, MaterialSymbolsKidStar, MaterialSymbolsCloud, AkarIconsParallelogram, SolarUndoLeftRoundBold, SolarUndoRightRoundBold, MaterialSymbolsDelete } from './icon';
+import {
+  MingcuteDiamondSquareLine,
+  HugeiconsCursorRectangleSelection01,
+  IcSharpArrowRightAlt,
+  MaterialSymbolsCircleOutline,
+  MaterialSymbolsEdit,
+  MaterialSymbolsHexagonOutline,
+  MaterialSymbolsRectangleOutline,
+  MdiFormatLetterCase,
+  MdiSquareOutline,
+  OuiEraser,
+  PhHighlighter,
+  TablerTriangle,
+  PhLineSegmentFill,
+  IcSharpFavorite,
+  MaterialSymbolsKidStar,
+  MaterialSymbolsCloud,
+  AkarIconsParallelogram,
+  SolarUndoLeftRoundBold,
+  SolarUndoRightRoundBold,
+  MaterialSymbolsDelete,
+} from './icon';
 
 const enum ShapeType {
   square = 0,
@@ -21,17 +39,17 @@ const enum ShapeType {
   heart = 8,
   star = 9,
   cloud = 10,
-  parallelogram = 11
+  parallelogram = 11,
 }
 
 const highlightC = [
   Color4.blackHighlight,
-  Color4.ofRGBA(166/255, 81/255, 167/255, 0.3),
-  Color4.ofRGBA(247/255, 78/255, 158/255, 0.3),
-  Color4.ofRGBA(166/255, 83/255, 88/255, 0.3),
-  Color4.ofRGBA(246/255, 130/255, 28/255, 0.3),
-  Color4.ofRGBA(166/255, 198/255, 0, 0.3),
-  Color4.ofRGBA(98/255, 186/255, 70/255, 0.3),
+  Color4.ofRGBA(166 / 255, 81 / 255, 167 / 255, 0.3),
+  Color4.ofRGBA(247 / 255, 78 / 255, 158 / 255, 0.3),
+  Color4.ofRGBA(166 / 255, 83 / 255, 88 / 255, 0.3),
+  Color4.ofRGBA(246 / 255, 130 / 255, 28 / 255, 0.3),
+  Color4.ofRGBA(166 / 255, 198 / 255, 0, 0.3),
+  Color4.ofRGBA(98 / 255, 186 / 255, 70 / 255, 0.3),
 ];
 
 const COLOR = [
@@ -52,13 +70,35 @@ const COLOR = [
   Color4.fromHex('#AADC99'),
 ];
 
-function ColorPickerHighlight ({ onChange }: any) {
+function ColorPickerHighlight({ onChange }: any) {
   const [selected, setSelected] = useState(Color4.blackHighlight);
 
   return (
     <div className={styles.colorWrap}>
-      {
-        highlightC.map((color, index) => (
+      {highlightC.map((color, index) => (
+        <button
+          key={index}
+          style={{ backgroundColor: color.toHexString() }}
+          className={cn(styles.color, {
+            [styles.colorActive]: selected.toHexString() === color.toHexString(),
+          })}
+          onClick={() => {
+            setSelected(color);
+            onChange(color);
+          }}
+        ></button>
+      ))}
+    </div>
+  );
+}
+
+function ColorPicker({ onChange }: any) {
+  const [selected, setSelected] = useState(Color4.black);
+
+  return (
+    <>
+      <div className={styles.colorWrap}>
+        {COLOR.slice(0, 7).map((color, index) => (
           <button
             key={index}
             style={{ backgroundColor: color.toHexString() }}
@@ -69,55 +109,24 @@ function ColorPickerHighlight ({ onChange }: any) {
               setSelected(color);
               onChange(color);
             }}
-          >
-          </button>
-        ))
-      }
-    </div>
-  );
-}
-
-function ColorPicker ({ onChange }: any) {
-  const [selected, setSelected] = useState(Color4.black);
-
-  return (
-    <>
-      <div className={styles.colorWrap}>
-        {
-          COLOR.slice(0, 7).map((color, index) => (
-            <button
-              key={index}
-              style={{ backgroundColor: color.toHexString() }}
-              className={cn(styles.color, {
-                [styles.colorActive]: selected.toHexString() === color.toHexString(),
-              })}
-              onClick={() => {
-                setSelected(color);
-                onChange(color);
-              }}
-            >
-            </button>
-          ))
-        }
+          ></button>
+        ))}
       </div>
 
       <div className={styles.colorWrap}>
-        {
-          COLOR.slice(7).map((color, index) => (
-            <button
-              key={index}
-              style={{ backgroundColor: color.toHexString() }}
-              className={cn(styles.color, {
-                [styles.colorActive]: selected.toHexString() === color.toHexString(),
-              })}
-              onClick={() => {
-                setSelected(color);
-                onChange(color);
-              }}
-            >
-            </button>
-          ))
-        }
+        {COLOR.slice(7).map((color, index) => (
+          <button
+            key={index}
+            style={{ backgroundColor: color.toHexString() }}
+            className={cn(styles.color, {
+              [styles.colorActive]: selected.toHexString() === color.toHexString(),
+            })}
+            onClick={() => {
+              setSelected(color);
+              onChange(color);
+            }}
+          ></button>
+        ))}
       </div>
     </>
   );
@@ -129,18 +138,17 @@ function PencilOption({ setColorPen, setThicknessPen }: any) {
   return (
     <div className={styles.options}>
       <div>
-        <ColorPicker
-          onChange={(color: any) => setColorPen(color)}
-        />
+        <ColorPicker onChange={(color: any) => setColorPen(color)} />
       </div>
 
       <div className={styles.line}></div>
 
       <div>
-        <input max={10}
+        <input
+          max={10}
           min={1}
           step={0.1}
-          type="range"
+          type='range'
           value={thickness}
           onChange={(e) => {
             setThicknessPen(Number.parseFloat(e.target.value));
@@ -155,41 +163,33 @@ function PencilOption({ setColorPen, setThicknessPen }: any) {
 function HighlightOption({ setColorHighlight }: any) {
   return (
     <div className={styles.options}>
-      <ColorPickerHighlight
-        onChange={(color: any) => setColorHighlight(color)}
-      />
+      <ColorPickerHighlight onChange={(color: any) => setColorHighlight(color)} />
     </div>
   );
 }
 
-function ShapeOption({ changeColorShape, changeBorderColorShape,
-  onThicknessChange
-}: any) {
-
+function ShapeOption({ changeColorShape, changeBorderColorShape, onThicknessChange }: any) {
   return (
     <div className={styles.options}>
       <div>
-        <ColorPicker
-          onChange={(color: any) => changeColorShape(color)}
-        />
+        <ColorPicker onChange={(color: any) => changeColorShape(color)} />
       </div>
 
       <div className={styles.line}></div>
 
       <div>
-        <ColorPicker
-          onChange={(color: any) => changeBorderColorShape(color)}
-        />
+        <ColorPicker onChange={(color: any) => changeBorderColorShape(color)} />
       </div>
 
       <div className={styles.line}></div>
 
       <div>
-        <input defaultValue={0}
+        <input
+          defaultValue={0}
           max={20}
           min={0}
           step={1}
-          type="range"
+          type='range'
           // value={thickness}
           onChange={(e) => {
             onThicknessChange(Number.parseFloat(e.target.value));
@@ -214,15 +214,15 @@ function ControlDrawer(props: any) {
     onRedo,
     onClear,
   } = props;
-  const [tool, setTool] = useState<'select' | 'text' | 'pencil' | 'highlighter' | 'eraser' | 'shapes' | null>(null);
+  const [tool, setTool] = useState<
+    'select' | 'text' | 'pencil' | 'highlighter' | 'eraser' | 'shapes' | null
+  >(null);
 
   const [type, setType] = useState(ShapeType.square);
 
   return (
     <>
-      <div
-        className={styles.wrapper}
-      >
+      <div className={styles.wrapper}>
         <div className={styles.pen}>
           <button
             className={cn(styles.tool, {
@@ -289,7 +289,6 @@ function ControlDrawer(props: any) {
           </button>
 
           <button
-
             className={cn(styles.tool, {
               [styles.active]: tool === 'highlighter',
             })}
@@ -331,19 +330,20 @@ function ControlDrawer(props: any) {
 
           <div className={styles.line}></div>
 
-          <button className={cn(styles.tool, {
-            [styles.active]: tool === 'shapes' && type === ShapeType.square,
-          })}
-          onClick={() => {
-            const penTool = refEditor.current!.toolController.getPrimaryTools();
+          <button
+            className={cn(styles.tool, {
+              [styles.active]: tool === 'shapes' && type === ShapeType.square,
+            })}
+            onClick={() => {
+              const penTool = refEditor.current!.toolController.getPrimaryTools();
 
-            refEditor.current!.toolController.setToolEnabled(penTool[5]);
-            setTool('shapes');
-            penTool[5].setEnabled(true);
+              refEditor.current!.toolController.setToolEnabled(penTool[5]);
+              setTool('shapes');
+              penTool[5].setEnabled(true);
 
-            changeShape(ShapeType.square);
-            setType(ShapeType.square);
-          }}
+              changeShape(ShapeType.square);
+              setType(ShapeType.square);
+            }}
           >
             <MdiSquareOutline />
           </button>
@@ -548,49 +548,36 @@ function ControlDrawer(props: any) {
 
           <div className={styles.line}></div>
 
-          <button
-            className={cn(styles.tool)}
-            onClick={onUndo}
-          >
+          <button className={cn(styles.tool)} onClick={onUndo}>
             <SolarUndoLeftRoundBold />
           </button>
 
-          <button
-            className={cn(styles.tool)}
-
-            onClick={onRedo}
-
-          >
+          <button className={cn(styles.tool)} onClick={onRedo}>
             <SolarUndoRightRoundBold />
           </button>
 
-          <button
-            className={cn(styles.tool)}
-
-            onClick={onClear}
-
-          >
+          <button className={cn(styles.tool)} onClick={onClear}>
             <MaterialSymbolsDelete />
           </button>
         </div>
 
         <div className={styles.optionsWrap}>
-          {tool === 'pencil' && <PencilOption
-            setColorPen={setColorPen}
-            setThicknessPen={setThicknessPen}
-          />}
+          {tool === 'pencil' && (
+            <PencilOption setColorPen={setColorPen} setThicknessPen={setThicknessPen} />
+          )}
 
           {tool === 'highlighter' && <HighlightOption setColorHighlight={setColorHighlight} />}
 
-          {tool === 'shapes' && <ShapeOption
-            changeBorderColorShape={changeBorderColorShape}
-            changeColorShape={changeColorShape}
-            changeShape={changeShape}
-            onThicknessChange={onThicknessChange}
-          />}
+          {tool === 'shapes' && (
+            <ShapeOption
+              changeBorderColorShape={changeBorderColorShape}
+              changeColorShape={changeColorShape}
+              changeShape={changeShape}
+              onThicknessChange={onThicknessChange}
+            />
+          )}
         </div>
       </div>
-
     </>
   );
 }

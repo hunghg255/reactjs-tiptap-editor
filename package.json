@@ -1,43 +1,191 @@
 {
   "name": "reactjs-tiptap-editor",
-  "type": "module",
   "version": "1.0.17",
-  "packageManager": "pnpm@8.15.9",
   "description": "A modern WYSIWYG rich text editor based on tiptap and shadcn ui for React",
-  "license": "MIT",
+  "keywords": [
+    "editor",
+    "react",
+    "reactjs-tiptap-editor",
+    "rich-text",
+    "tiptap",
+    "tiptap-editor",
+    "tiptap-react",
+    "tiptap-react-editor",
+    "tiptap-react-rc-editor",
+    "tiptap-react-rc-rich-text",
+    "tiptap-react-rc-wysiwyg",
+    "tiptap-react-rich-text",
+    "tiptap-react-wysiwyg",
+    "wysiwyg"
+  ],
   "homepage": "https://reactjs-tiptap-editor.vercel.app/",
+  "bugs": "https://github.com/hunghg255/reactjs-tiptap-editor/issues",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hunghg255/reactjs-tiptap-editor.git"
   },
-  "bugs": "https://github.com/hunghg255/reactjs-tiptap-editor/issues",
-  "keywords": [
-    "react",
-    "tiptap",
-    "editor",
-    "wysiwyg",
-    "rich-text",
-    "reactjs-tiptap-editor",
-    "tiptap-editor",
-    "tiptap-react",
-    "tiptap-react-editor",
-    "tiptap-react-wysiwyg",
-    "tiptap-react-rich-text",
-    "tiptap-react-rc-editor",
-    "tiptap-react-rc-wysiwyg",
-    "tiptap-react-rc-rich-text"
+  "files": [
+    "lib",
+    "LICENSE",
+    "package.json",
+    "README.md"
   ],
+  "type": "module",
   "sideEffects": false,
   "main": "./lib/index.cjs",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
-  "pnpm": {
-    "overrides": {
-      "@excalidraw/excalidraw>nanoid": "3.3.11",
-      "@excalidraw/mermaid-to-excalidraw": "2.0.0",
-      "@excalidraw/mermaid-to-excalidraw>nanoid": "5.1.6",
-      "esbuild": "0.25.12",
-      "prosemirror-view": "1.41.1"
+  "typesVersions": {
+    "*": {
+      "locale-bundle": [
+        "./lib/locale-bundle.d.ts"
+      ],
+      "bubble": [
+        "./lib/bubble.d.ts"
+      ],
+      "theme": [
+        "./lib/theme.d.ts"
+      ],
+      "*": [
+        "./lib/*",
+        "./*"
+      ],
+      "./attachment": [
+        "./lib/extensions/Attachment/index.d.ts"
+      ],
+      "./blockquote": [
+        "./lib/extensions/Blockquote/index.d.ts"
+      ],
+      "./bold": [
+        "./lib/extensions/Bold/index.d.ts"
+      ],
+      "./bulletlist": [
+        "./lib/extensions/BulletList/index.d.ts"
+      ],
+      "./clear": [
+        "./lib/extensions/Clear/index.d.ts"
+      ],
+      "./code": [
+        "./lib/extensions/Code/index.d.ts"
+      ],
+      "./codeblock": [
+        "./lib/extensions/CodeBlock/index.d.ts"
+      ],
+      "./codeview": [
+        "./lib/extensions/CodeView/index.d.ts"
+      ],
+      "./color": [
+        "./lib/extensions/Color/index.d.ts"
+      ],
+      "./drawer": [
+        "./lib/extensions/Drawer/index.d.ts"
+      ],
+      "./emoji": [
+        "./lib/extensions/Emoji/index.d.ts"
+      ],
+      "./excalidraw": [
+        "./lib/extensions/Excalidraw/index.d.ts"
+      ],
+      "./exportpdf": [
+        "./lib/extensions/ExportPdf/index.d.ts"
+      ],
+      "./exportword": [
+        "./lib/extensions/ExportWord/index.d.ts"
+      ],
+      "./fontfamily": [
+        "./lib/extensions/FontFamily/index.d.ts"
+      ],
+      "./fontsize": [
+        "./lib/extensions/FontSize/index.d.ts"
+      ],
+      "./heading": [
+        "./lib/extensions/Heading/index.d.ts"
+      ],
+      "./highlight": [
+        "./lib/extensions/Highlight/index.d.ts"
+      ],
+      "./history": [
+        "./lib/extensions/History/index.d.ts"
+      ],
+      "./horizontalrule": [
+        "./lib/extensions/HorizontalRule/index.d.ts"
+      ],
+      "./iframe": [
+        "./lib/extensions/Iframe/index.d.ts"
+      ],
+      "./image": [
+        "./lib/extensions/Image/index.d.ts"
+      ],
+      "./imagegif": [
+        "./lib/extensions/ImageGif/index.d.ts"
+      ],
+      "./importword": [
+        "./lib/extensions/ImportWord/index.d.ts"
+      ],
+      "./indent": [
+        "./lib/extensions/Indent/index.d.ts"
+      ],
+      "./italic": [
+        "./lib/extensions/Italic/index.d.ts"
+      ],
+      "./katex": [
+        "./lib/extensions/Katex/index.d.ts"
+      ],
+      "./lineheight": [
+        "./lib/extensions/LineHeight/index.d.ts"
+      ],
+      "./link": [
+        "./lib/extensions/Link/index.d.ts"
+      ],
+      "./mention": [
+        "./lib/extensions/Mention/index.d.ts"
+      ],
+      "./mermaid": [
+        "./lib/extensions/Mermaid/index.d.ts"
+      ],
+      "./moremark": [
+        "./lib/extensions/MoreMark/index.d.ts"
+      ],
+      "./column": [
+        "./lib/extensions/Column/index.d.ts"
+      ],
+      "./orderedlist": [
+        "./lib/extensions/OrderedList/index.d.ts"
+      ],
+      "./searchandreplace": [
+        "./lib/extensions/SearchAndReplace/index.d.ts"
+      ],
+      "./slashcommand": [
+        "./lib/extensions/SlashCommand/index.d.ts"
+      ],
+      "./strike": [
+        "./lib/extensions/Strike/index.d.ts"
+      ],
+      "./table": [
+        "./lib/extensions/Table/index.d.ts"
+      ],
+      "./tasklist": [
+        "./lib/extensions/TaskList/index.d.ts"
+      ],
+      "./textalign": [
+        "./lib/extensions/TextAlign/index.d.ts"
+      ],
+      "./textdirection": [
+        "./lib/extensions/TextDirection/index.d.ts"
+      ],
+      "./textunderline": [
+        "./lib/extensions/TextUnderline/index.d.ts"
+      ],
+      "./twitter": [
+        "./lib/extensions/Twitter/index.d.ts"
+      ],
+      "./video": [
+        "./lib/extensions/Video/index.d.ts"
+      ],
+      "./callout": [
+        "./lib/extensions/Callout/index.d.ts"
+      ]
     }
   },
   "exports": {
@@ -539,167 +687,6 @@
       }
     }
   },
-  "typesVersions": {
-    "*": {
-      "locale-bundle": [
-        "./lib/locale-bundle.d.ts"
-      ],
-      "bubble": [
-        "./lib/bubble.d.ts"
-      ],
-      "theme": [
-        "./lib/theme.d.ts"
-      ],
-      "*": [
-        "./lib/*",
-        "./*"
-      ],
-      "./attachment": [
-        "./lib/extensions/Attachment/index.d.ts"
-      ],
-      "./blockquote": [
-        "./lib/extensions/Blockquote/index.d.ts"
-      ],
-      "./bold": [
-        "./lib/extensions/Bold/index.d.ts"
-      ],
-      "./bulletlist": [
-        "./lib/extensions/BulletList/index.d.ts"
-      ],
-      "./clear": [
-        "./lib/extensions/Clear/index.d.ts"
-      ],
-      "./code": [
-        "./lib/extensions/Code/index.d.ts"
-      ],
-      "./codeblock": [
-        "./lib/extensions/CodeBlock/index.d.ts"
-      ],
-      "./codeview": [
-        "./lib/extensions/CodeView/index.d.ts"
-      ],
-      "./color": [
-        "./lib/extensions/Color/index.d.ts"
-      ],
-      "./drawer": [
-        "./lib/extensions/Drawer/index.d.ts"
-      ],
-      "./emoji": [
-        "./lib/extensions/Emoji/index.d.ts"
-      ],
-      "./excalidraw": [
-        "./lib/extensions/Excalidraw/index.d.ts"
-      ],
-      "./exportpdf": [
-        "./lib/extensions/ExportPdf/index.d.ts"
-      ],
-      "./exportword": [
-        "./lib/extensions/ExportWord/index.d.ts"
-      ],
-      "./fontfamily": [
-        "./lib/extensions/FontFamily/index.d.ts"
-      ],
-      "./fontsize": [
-        "./lib/extensions/FontSize/index.d.ts"
-      ],
-      "./heading": [
-        "./lib/extensions/Heading/index.d.ts"
-      ],
-      "./highlight": [
-        "./lib/extensions/Highlight/index.d.ts"
-      ],
-      "./history": [
-        "./lib/extensions/History/index.d.ts"
-      ],
-      "./horizontalrule": [
-        "./lib/extensions/HorizontalRule/index.d.ts"
-      ],
-      "./iframe": [
-        "./lib/extensions/Iframe/index.d.ts"
-      ],
-      "./image": [
-        "./lib/extensions/Image/index.d.ts"
-      ],
-      "./imagegif": [
-        "./lib/extensions/ImageGif/index.d.ts"
-      ],
-      "./importword": [
-        "./lib/extensions/ImportWord/index.d.ts"
-      ],
-      "./indent": [
-        "./lib/extensions/Indent/index.d.ts"
-      ],
-      "./italic": [
-        "./lib/extensions/Italic/index.d.ts"
-      ],
-      "./katex": [
-        "./lib/extensions/Katex/index.d.ts"
-      ],
-      "./lineheight": [
-        "./lib/extensions/LineHeight/index.d.ts"
-      ],
-      "./link": [
-        "./lib/extensions/Link/index.d.ts"
-      ],
-      "./mention": [
-        "./lib/extensions/Mention/index.d.ts"
-      ],
-      "./mermaid": [
-        "./lib/extensions/Mermaid/index.d.ts"
-      ],
-      "./moremark": [
-        "./lib/extensions/MoreMark/index.d.ts"
-      ],
-      "./column": [
-        "./lib/extensions/Column/index.d.ts"
-      ],
-      "./orderedlist": [
-        "./lib/extensions/OrderedList/index.d.ts"
-      ],
-      "./searchandreplace": [
-        "./lib/extensions/SearchAndReplace/index.d.ts"
-      ],
-      "./slashcommand": [
-        "./lib/extensions/SlashCommand/index.d.ts"
-      ],
-      "./strike": [
-        "./lib/extensions/Strike/index.d.ts"
-      ],
-      "./table": [
-        "./lib/extensions/Table/index.d.ts"
-      ],
-      "./tasklist": [
-        "./lib/extensions/TaskList/index.d.ts"
-      ],
-      "./textalign": [
-        "./lib/extensions/TextAlign/index.d.ts"
-      ],
-      "./textdirection": [
-        "./lib/extensions/TextDirection/index.d.ts"
-      ],
-      "./textunderline": [
-        "./lib/extensions/TextUnderline/index.d.ts"
-      ],
-      "./twitter": [
-        "./lib/extensions/Twitter/index.d.ts"
-      ],
-      "./video": [
-        "./lib/extensions/Video/index.d.ts"
-      ],
-      "./callout": [
-        "./lib/extensions/Callout/index.d.ts"
-      ]
-    }
-  },
-  "files": [
-    "lib",
-    "package.json",
-    "README.md",
-    "LICENSE"
-  ],
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "scripts": {
     "build:lib": "vite build",
     "build:lib:dev": "vite build  --mode development --watch",
@@ -710,8 +697,10 @@
     "prepublishOnly": "pnpm build:lib",
     "playground": "pnpm --dir ./playground run dev",
     "preview": "pnpm --dir ./playground run preview",
-    "lint": "eslint src --quiet",
-    "lint:fix": "eslint src --fix --quiet",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
     "type-check": "tsc",
     "verify-commit": "verify-commit-msg",
     "prepare": "git-scm-hooks",
@@ -799,7 +788,6 @@
     "yjs": "^13.6.28"
   },
   "devDependencies": {
-    "@hunghg255/eslint-config": "^1.0.1",
     "@types/deep-equal": "^1.0.4",
     "@types/katex": "^0.16.7",
     "@types/lodash-es": "^4.17.12",
@@ -810,14 +798,14 @@
     "autoprefixer": "^10.4.23",
     "bumpp": "^10.3.2",
     "contributorkit": "^0.0.4",
-    "eslint": "^9.39.2",
-    "eslint-plugin-tailwindcss": "^3.18.2",
     "esno": "^4.8.0",
     "execa": "^9.6.1",
     "git-scm-hooks": "^0.2.0",
     "globby": "^14.1.0",
     "mammoth": "^1.11.0",
     "md5": "^2.3.0",
+    "oxfmt": "^0.24.0",
+    "oxlint": "^1.39.0",
     "postcss": "^8.5.6",
     "postcss-replace": "^2.0.1",
     "postcss-scss": "^4.0.9",
@@ -837,6 +825,19 @@
     "not dead",
     "not op_mini all"
   ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "pnpm@8.15.9",
+  "pnpm": {
+    "overrides": {
+      "@excalidraw/excalidraw>nanoid": "3.3.11",
+      "@excalidraw/mermaid-to-excalidraw": "2.0.0",
+      "@excalidraw/mermaid-to-excalidraw>nanoid": "5.1.6",
+      "esbuild": "0.25.12",
+      "prosemirror-view": "1.41.1"
+    }
+  },
   "git-hooks": {
     "pre-commit": "npm run lint:fix",
     "commit-msg": "npm run verify-commit"

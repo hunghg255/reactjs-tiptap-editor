@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
@@ -13,8 +12,8 @@ declare module '@tiptap/core' {
       /**
        * Add an iframe
        */
-      setIframe: (options: { src: string, service: string }) => ReturnType
-    }
+      setIframe: (options: { src: string; service: string }) => ReturnType;
+    };
   }
 }
 
@@ -37,12 +36,12 @@ export const Iframe = /* @__PURE__ */ Node.create({
         extension,
         t,
       }: {
-        editor: any
-        extension: any
-        t: (key: string) => string
+        editor: any;
+        extension: any;
+        t: (key: string) => string;
       }) => ({
         componentProps: {
-          action: (options: { src: string, service: string }) => editor.commands.setIframe(options),
+          action: (options: { src: string; service: string }) => editor.commands.setIframe(options),
           upload: extension.options.upload,
           // isActive: () => editor.can().setIframe({}),
           icon: 'Iframe',
@@ -94,23 +93,23 @@ export const Iframe = /* @__PURE__ */ Node.create({
   addCommands() {
     return {
       setIframe:
-        options =>
-          ({ tr, commands, chain }) => {
+        (options) =>
+        ({ tr, commands, chain }) => {
           // @ts-ignore
-            if (tr.selection?.node?.type?.name == this.name) {
-              return commands.updateAttributes(this.name, options);
-            }
+          if (tr.selection?.node?.type?.name == this.name) {
+            return commands.updateAttributes(this.name, options);
+          }
 
-            const attrs = options || { url: '' };
-            // const { selection } = editor.state
+          const attrs = options || { url: '' };
+          // const { selection } = editor.state
 
-            return chain()
-              .insertContent({
-                type: this.name,
-                attrs,
-              })
-              .run();
-          },
+          return chain()
+            .insertContent({
+              type: this.name,
+              attrs,
+            })
+            .run();
+        },
     };
   },
 

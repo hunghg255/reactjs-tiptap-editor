@@ -7,39 +7,38 @@ import type { GeneralOptions } from '@/types';
 export * from './components/RichTextHorizontalRule';
 
 export interface HorizontalRuleOptions
-  extends TiptapHorizontalRuleOptions,
-  GeneralOptions<HorizontalRuleOptions> {}
+  extends TiptapHorizontalRuleOptions, GeneralOptions<HorizontalRuleOptions> {}
 
-export const HorizontalRule = /* @__PURE__ */ TiptapHorizontalRule.extend<HorizontalRuleOptions>({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-expect-error
-  addOptions() {
-    return {
-      ...this.parent?.(),
-      button: ({ editor, t, extension }) => ({
-        component: ActionButton,
-        componentProps: {
-          action: () => editor.commands.setHorizontalRule(),
-          disabled: !editor.can().setHorizontalRule(),
-          icon: 'Minus',
-          shortcutKeys: extension.options.shortcutKeys ?? ['mod', 'alt', 'S'],
-          tooltip: t('editor.horizontalrule.tooltip'),
-        },
-      }),
-    };
-  },
-  addKeyboardShortcuts() {
-    return {
-      'Mod-Alt-s': () => this.editor.commands.setHorizontalRule(),
-    };
-  },
-  renderHTML() {
-    return [
-      'div',
-      mergeAttributes(this.options.HTMLAttributes, {
-        'data-type': this.name,
-      }),
-      ['hr'],
-    ];
-  },
-});
+export const HorizontalRule =
+  /* @__PURE__ */ TiptapHorizontalRule.extend<HorizontalRuleOptions>({
+    //@ts-expect-error
+    addOptions() {
+      return {
+        ...this.parent?.(),
+        button: ({ editor, t, extension }) => ({
+          component: ActionButton,
+          componentProps: {
+            action: () => editor.commands.setHorizontalRule(),
+            disabled: !editor.can().setHorizontalRule(),
+            icon: 'Minus',
+            shortcutKeys: extension.options.shortcutKeys ?? ['mod', 'alt', 'S'],
+            tooltip: t('editor.horizontalrule.tooltip'),
+          },
+        }),
+      };
+    },
+    addKeyboardShortcuts() {
+      return {
+        'Mod-Alt-s': () => this.editor.commands.setHorizontalRule(),
+      };
+    },
+    renderHTML() {
+      return [
+        'div',
+        mergeAttributes(this.options.HTMLAttributes, {
+          'data-type': this.name,
+        }),
+        ['hr'],
+      ];
+    },
+  });

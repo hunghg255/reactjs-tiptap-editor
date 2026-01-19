@@ -14,7 +14,6 @@ Mermaid is a node extension that allows you to add an Mermaid to your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -84,4 +83,3 @@ const App = () => {
   );
 };
 ```
-

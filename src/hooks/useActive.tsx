@@ -53,8 +53,8 @@ export function useActive(isActive = fnActiveDefault) {
 
   return {
     disabled, // can not action, opacity < 1
-    dataState,  // true => show background, false => no background
-    editorDisabled
+    dataState, // true => show background, false => no background
+    editorDisabled,
   };
 }
 
@@ -100,13 +100,13 @@ export function useToggleActive(isActive = fnActiveDefault) {
     return false;
   }, [editable, editor]);
 
-    const editorDisabled = useMemo(() => {
+  const editorDisabled = useMemo(() => {
     return !editable || !editor;
   }, [editable, editor]);
 
   return {
     disabled, // can not action, opacity < 1
-    dataState,  // true => show background, false => no background
+    dataState, // true => show background, false => no background
     editorDisabled,
     update: () => setUpdate({}), // force update
   };

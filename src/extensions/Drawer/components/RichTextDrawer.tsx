@@ -1,37 +1,35 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { makeDropdownToolbar, Editor as Editor4 } from 'easydrawer';
 import { useEffect, useRef, useState } from 'react';
-
-import {
-  makeDropdownToolbar,
-  Editor as Editor4,
-} from 'easydrawer';
 // @ts-ignore
 import svg64 from 'svg64';
 
 import { ActionButton } from '@/components/ActionButton';
 import { Button } from '@/components/ui';
-import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import ControlDrawer from '@/extensions/Drawer/components/ControlDrawer/ControlDrawer';
-import { dataURLtoFile } from '@/utils/file';
-import { shortId } from '@/utils/shortId';
-import { useButtonProps } from '@/hooks/useButtonProps';
 import { Drawer } from '@/extensions/Drawer/Drawer';
 import { useToggleActive } from '@/hooks/useActive';
+import { useButtonProps } from '@/hooks/useButtonProps';
 import { useEditorInstance } from '@/store/editor';
+import { dataURLtoFile } from '@/utils/file';
+import { shortId } from '@/utils/shortId';
 
 let clear = false;
 
-export function RichTextDrawer () {
+export function RichTextDrawer() {
   const editor = useEditorInstance();
 
-    const buttonProps = useButtonProps(Drawer.name);
+  const buttonProps = useButtonProps(Drawer.name);
 
-    const {
-      isActive = undefined,
-      upload
-    } = buttonProps?.componentProps ?? {};
+  const { isActive = undefined, upload } = buttonProps?.componentProps ?? {};
 
-    const { editorDisabled } = useToggleActive(isActive);
+  const { editorDisabled } = useToggleActive(isActive);
 
   const [visible, toggleVisible] = useState(false);
   const refEditor = useRef<Editor4 | null>(null);
@@ -86,9 +84,9 @@ export function RichTextDrawer () {
             src,
             alt: encodeURIComponent(contentHtml),
             width: 426,
-            height: 212
+            height: 212,
           },
-          !!contentHtml,
+          !!contentHtml
         )
         .run();
     }
@@ -164,7 +162,7 @@ export function RichTextDrawer () {
     }
   };
 
-  const onUndo =() => {
+  const onUndo = () => {
     if (clear) {
       while (refEditor.current!.history.redoStackSize > 0) {
         refEditor.current!.history.redo();
@@ -176,7 +174,7 @@ export function RichTextDrawer () {
     refEditor.current!.history.undo();
   };
 
-  const onRedo =() => {
+  const onRedo = () => {
     if (clear) {
       return;
     }
@@ -184,7 +182,7 @@ export function RichTextDrawer () {
     refEditor.current!.history.redo();
   };
 
-  const onClear =() => {
+  const onClear = () => {
     if (clear) {
       return;
     }
@@ -195,15 +193,12 @@ export function RichTextDrawer () {
     clear = true;
   };
 
-    if (!buttonProps) {
-      return <></>;
-    }
+  if (!buttonProps) {
+    return <></>;
+  }
 
   return (
-    <Dialog
-      onOpenChange={toggleVisible}
-      open={visible}
-    >
+    <Dialog onOpenChange={toggleVisible} open={visible}>
       <DialogTrigger asChild>
         <ActionButton
           disabled={editorDisabled}
@@ -212,22 +207,24 @@ export function RichTextDrawer () {
 
             toggleVisible(true);
           }}
-          icon="PencilRuler"
-          tooltip="Drawer"
+          icon='PencilRuler'
+          tooltip='Drawer'
         />
       </DialogTrigger>
 
-      <DialogContent className="richtext-z-[99999] !richtext-max-w-[1300px]">
-        <DialogTitle>
-          Drawer
-        </DialogTitle>
+      <DialogContent className='richtext-z-[99999] !richtext-max-w-[1300px]'>
+        <DialogTitle>Drawer</DialogTitle>
 
-        <div style={{ height: '600px', width: '100%', borderWidth: 1, background: 'white', position: 'relative' }}>
-          <div
-            className='richtext-size-full'
-            id='easydrawer'
-          >
-          </div>
+        <div
+          style={{
+            height: '600px',
+            width: '100%',
+            borderWidth: 1,
+            background: 'white',
+            position: 'relative',
+          }}
+        >
+          <div className='richtext-size-full' id='easydrawer'></div>
 
           <ControlDrawer
             changeBorderColorShape={changeBorderColorShape}
@@ -245,10 +242,7 @@ export function RichTextDrawer () {
         </div>
 
         <DialogFooter>
-          <Button
-            onClick={setSvg}
-            type="button"
-          >
+          <Button onClick={setSvg} type='button'>
             Save changes
           </Button>
         </DialogFooter>

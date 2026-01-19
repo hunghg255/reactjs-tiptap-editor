@@ -1,23 +1,24 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { makeDropdownToolbar, Editor as Editor4 } from 'easydrawer';
 import { useEffect, useRef, useState } from 'react';
-
-import {
-  makeDropdownToolbar,
-  Editor as Editor4,
-} from 'easydrawer';
 // @ts-ignore
 import svg64 from 'svg64';
 
 import { ActionButton } from '@/components/ActionButton';
 import { Button } from '@/components/ui';
-import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import ControlDrawer from '@/extensions/Drawer/components/ControlDrawer/ControlDrawer';
 import { dataURLtoFile } from '@/utils/file';
 import { shortId } from '@/utils/shortId';
 
 let clear = false;
 
-export function EditDrawerBlock ({ editor, attrs, extension }: any) {
+export function EditDrawerBlock({ editor, attrs, extension }: any) {
   const [visible, toggleVisible] = useState(false);
   const refEditor = useRef<Editor4 | null>(null);
   const refWidget = useRef<any>(null);
@@ -74,9 +75,9 @@ export function EditDrawerBlock ({ editor, attrs, extension }: any) {
             src,
             alt: encodeURIComponent(contentHtml),
             width: 426,
-            height: 212
+            height: 212,
           },
-          !!contentHtml,
+          !!contentHtml
         )
         .run();
       editor?.commands.setAlignImageDrawer(align);
@@ -153,7 +154,7 @@ export function EditDrawerBlock ({ editor, attrs, extension }: any) {
     }
   };
 
-  const onUndo =() => {
+  const onUndo = () => {
     if (clear) {
       while (refEditor.current!.history.redoStackSize > 0) {
         refEditor.current!.history.redo();
@@ -165,7 +166,7 @@ export function EditDrawerBlock ({ editor, attrs, extension }: any) {
     refEditor.current!.history.undo();
   };
 
-  const onRedo =() => {
+  const onRedo = () => {
     if (clear) {
       return;
     }
@@ -173,7 +174,7 @@ export function EditDrawerBlock ({ editor, attrs, extension }: any) {
     refEditor.current!.history.redo();
   };
 
-  const onClear =() => {
+  const onClear = () => {
     if (clear) {
       return;
     }
@@ -185,29 +186,23 @@ export function EditDrawerBlock ({ editor, attrs, extension }: any) {
   };
 
   return (
-    <Dialog
-      onOpenChange={toggleVisible}
-      open={visible}
-    >
+    <Dialog onOpenChange={toggleVisible} open={visible}>
       <DialogTrigger asChild>
-        <ActionButton
-          action={() => toggleVisible(true)}
-          icon="Pencil"
-          tooltip="Edit Drawer"
-        />
+        <ActionButton action={() => toggleVisible(true)} icon='Pencil' tooltip='Edit Drawer' />
       </DialogTrigger>
 
-      <DialogContent className="richtext-z-[99999] !richtext-max-w-[1300px]">
-        <DialogTitle>
-          Edit Drawer
-        </DialogTitle>
+      <DialogContent className='richtext-z-[99999] !richtext-max-w-[1300px]'>
+        <DialogTitle>Edit Drawer</DialogTitle>
 
-        <div style={{ height: '100%', borderWidth: 1, background: 'white', position: 'relative' }}>
-          <div
-            className='richtext-size-full'
-            id='easydrawer'
-          >
-          </div>
+        <div
+          style={{
+            height: '100%',
+            borderWidth: 1,
+            background: 'white',
+            position: 'relative',
+          }}
+        >
+          <div className='richtext-size-full' id='easydrawer'></div>
 
           <ControlDrawer
             changeBorderColorShape={changeBorderColorShape}
@@ -225,10 +220,7 @@ export function EditDrawerBlock ({ editor, attrs, extension }: any) {
         </div>
 
         <DialogFooter>
-          <Button
-            onClick={setSvg}
-            type="button"
-          >
+          <Button onClick={setSvg} type='button'>
             Save changes
           </Button>
         </DialogFooter>

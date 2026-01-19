@@ -8,7 +8,6 @@ The Video extension allows you to add a video to your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -84,27 +83,27 @@ interface VideoOptions extends GeneralOptions<VideoOptions> {
    *
    * @default true
    */
-  allowFullscreen: boolean
+  allowFullscreen: boolean;
   /**
    * Indicates whether to display the frameborder
    *
    * @default false
    */
-  frameborder: boolean
+  frameborder: boolean;
   /**
    * Width of the video, can be a number or string
    *
    * @default VIDEO_SIZE['size-medium']
    */
-  width: number | string
+  width: number | string;
   /** HTML attributes object for passing additional attributes */
   HTMLAttributes: {
-    [key: string]: any
-  }
+    [key: string]: any;
+  };
   /** Function for uploading files */
-  upload?: (file: File) => Promise<string>
+  upload?: (file: File) => Promise<string>;
 
   /** The source URL of the video */
-  resourceVideo: 'upload' | 'link' | 'both'
+  resourceVideo: 'upload' | 'link' | 'both';
 }
 ```

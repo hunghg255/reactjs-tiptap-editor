@@ -15,9 +15,7 @@ export function useButtonProps(extensionName: string) {
       return null;
     }
 
-    const {
-      button,
-    } = extension.options;
+    const { button } = extension.options;
 
     if (!button || !isFunction(button)) {
       return null;

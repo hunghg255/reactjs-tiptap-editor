@@ -1,4 +1,4 @@
-import { defineConfig } from 'contributorkit'
+import { defineConfig } from 'contributorkit';
 
 export default defineConfig({
   outputDir: './screenshot',
@@ -16,4 +16,4 @@ export default defineConfig({
       width: 1000,
     },
   ],
-})
+});

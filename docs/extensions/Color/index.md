@@ -14,7 +14,6 @@ The Color extension allows you to add text color to your editor with support for
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -81,7 +80,6 @@ const App = () => {
 };
 ```
 
-
 ## Options
 
 ### colors
@@ -92,13 +90,13 @@ Default: `undefined`
 An array of color options to display in the color picker. If not provided, a default set of colors will be used.
 
 ```js
-import { COLORS_LIST } from 'reactjs-tiptap-editor'
+import { COLORS_LIST } from 'reactjs-tiptap-editor';
 
 Color.configure({
   colors: COLORS_LIST,
   // or custom colors
   colors: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'],
-})
+});
 ```
 
 ### defaultColor
@@ -109,13 +107,13 @@ Default: `undefined`
 The default color to use when the extension is initialized. This color will be used when applying color via keyboard shortcut for the first time.
 
 ```js
-import { DEFAULT_COLOR } from 'reactjs-tiptap-editor'
+import { DEFAULT_COLOR } from 'reactjs-tiptap-editor';
 
 Color.configure({
   defaultColor: DEFAULT_COLOR,
   // or
   defaultColor: '#000000',
-})
+});
 ```
 
 ### shortcutKeys
@@ -128,7 +126,7 @@ Keyboard shortcuts for applying the color. Default is `Mod-Shift-C` (Ctrl-Shift-
 ```js
 Color.configure({
   shortcutKeys: ['⇧', 'mod', 'C'],
-})
+});
 ```
 
 ## Keyboard Shortcut Behavior
@@ -156,9 +154,7 @@ The extension maintains a shared color state across all instances:
 ```tsx
 import { Color } from 'reactjs-tiptap-editor/color';
 
-const extensions = [
-  Color,
-];
+const extensions = [Color];
 ```
 
 ### With Custom Colors

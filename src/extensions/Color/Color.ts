@@ -1,4 +1,7 @@
-import { Color as TiptapColor, type ColorOptions as TiptapColorOptions } from '@tiptap/extension-text-style';
+import {
+  Color as TiptapColor,
+  type ColorOptions as TiptapColorOptions,
+} from '@tiptap/extension-text-style';
 
 import type { GeneralOptions } from '@/types';
 
@@ -8,21 +11,21 @@ export interface ColorOptions extends TiptapColorOptions, GeneralOptions<ColorOp
   /**
    * An array of color options to display in the color picker
    */
-  colors?: string[]
+  colors?: string[];
 
   /**
    * The default color to use when no color is selected
    */
-  defaultColor?: string
+  defaultColor?: string;
 }
 
 export interface ColorStorage {
-  currentColor?: string
+  currentColor?: string;
 }
 
 declare module '@tiptap/core' {
   interface Storage {
-    color: ColorStorage
+    color: ColorStorage;
   }
 }
 
@@ -34,7 +37,6 @@ export const Color = /* @__PURE__ */ TiptapColor.extend<ColorOptions>({
     };
   },
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
@@ -86,7 +88,9 @@ export const Color = /* @__PURE__ */ TiptapColor.extend<ColorOptions>({
         }
 
         // Check if the ENTIRE selection has the exact same text color
-        const isExactColorActive = this.editor.isActive('textStyle', { color: colorToUse });
+        const isExactColorActive = this.editor.isActive('textStyle', {
+          color: colorToUse,
+        });
 
         if (isExactColorActive) {
           // If the entire selection has this exact color, remove it

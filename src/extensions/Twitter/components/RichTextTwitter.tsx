@@ -33,11 +33,7 @@ export function RichTextTwitter() {
   }
 
   return (
-    <Popover
-    modal
-    onOpenChange={setOpen}
-    open={open}
-    >
+    <Popover modal onOpenChange={setOpen} open={open}>
       <PopoverTrigger asChild>
         <ActionButton
           disabled={editorDisabled}
@@ -49,14 +45,8 @@ export function RichTextTwitter() {
         </ActionButton>
       </PopoverTrigger>
 
-      <PopoverContent align="start"
-className="richtext-w-full"
-hideWhenDetached
-side="bottom"
-      >
-        <FormEditLinkTwitter editor={editor}
-onSetLink={onSetLink}
-        />
+      <PopoverContent align='start' className='richtext-w-full' hideWhenDetached side='bottom'>
+        <FormEditLinkTwitter editor={editor} onSetLink={onSetLink} />
       </PopoverContent>
     </Popover>
   );

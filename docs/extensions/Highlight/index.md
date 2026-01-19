@@ -14,7 +14,6 @@ The Highlight extension allows you to highlight text in your editor with support
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -105,7 +104,7 @@ Highlight.configure({
   defaultColor: '#ffff00', // Yellow
   // or
   defaultColor: '#ffc078', // Orange
-})
+});
 ```
 
 ### shortcutKeys
@@ -118,7 +117,7 @@ Keyboard shortcuts for applying the highlight. Default is `Mod-Shift-H` (Ctrl-Sh
 ```js
 Highlight.configure({
   shortcutKeys: ['⇧', 'mod', 'H'],
-})
+});
 ```
 
 ## Keyboard Shortcut Behavior
@@ -147,9 +146,7 @@ The extension maintains a shared highlight color state across all instances:
 ```tsx
 import { Highlight } from 'reactjs-tiptap-editor/highlight';
 
-const extensions = [
-  Highlight,
-];
+const extensions = [Highlight];
 ```
 
 ### With Default Color
@@ -197,9 +194,9 @@ The highlight color picker includes:
 
 ## Differences from Color Extension
 
-| Feature | Highlight | Color |
-|---------|-----------|-------|
-| Purpose | Background highlighting | Text color |
-| Default Shortcut | `Mod-Shift-H` | `Mod-Shift-C` |
-| No Fill Behavior | Removes highlight | Removes text color |
-| Visual Style | Background color | Foreground color |
+| Feature          | Highlight               | Color              |
+| ---------------- | ----------------------- | ------------------ |
+| Purpose          | Background highlighting | Text color         |
+| Default Shortcut | `Mod-Shift-H`           | `Mod-Shift-C`      |
+| No Fill Behavior | Removes highlight       | Removes text color |
+| Visual Style     | Background color        | Foreground color   |

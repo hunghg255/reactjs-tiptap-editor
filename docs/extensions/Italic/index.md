@@ -12,7 +12,6 @@ next:
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 

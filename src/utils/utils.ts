@@ -21,8 +21,7 @@ export const isBoolean = (value: unknown): value is boolean => typeof value === 
 export const isFunction = (value: unknown): boolean => typeof value === 'function';
 
 export function getCssUnitWithDefault(value?: string | number, defaultUnit = 'px') {
-  if (!value)
-    return value;
+  if (!value) return value;
 
   const stringValue = isNumber(value) ? String(value) : value;
 
@@ -49,7 +48,7 @@ export function hasExtension(editor: Editor, name: string): boolean {
   const { extensions = [] } = editor?.extensionManager ?? {};
 
   // Check if the extension method with the specified name is present in the extension manager
-  const find = extensions.find(i => i.name === name);
+  const find = extensions.find((i) => i.name === name);
 
   // Return false if the extension method with the specified name is not found, otherwise return true
   if (!find) {

@@ -1,9 +1,8 @@
 'use client';
 
-import * as React from 'react';
-
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import { Check, ChevronRight, Circle } from 'lucide-react';
+import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -22,7 +21,7 @@ const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 const DropdownMenuSubTrigger = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> & {
-    inset?: boolean
+    inset?: boolean;
   }
 >(({ className, inset, children, ...props }, ref) => (
   <DropdownMenuPrimitive.SubTrigger
@@ -30,16 +29,15 @@ const DropdownMenuSubTrigger = React.forwardRef<
     className={cn(
       'richtext-flex richtext-cursor-default richtext-select-none richtext-items-center richtext-rounded-sm richtext-px-2 richtext-py-1.5 richtext-text-sm richtext-outline-none focus:richtext-bg-accent data-[state=open]:richtext-bg-accent',
       inset && 'richtext-pl-8',
-      className,
+      className
     )}
     {...props}
   >
     {children}
-    <ChevronRight className="richtext-ml-auto richtext-size-4" />
+    <ChevronRight className='richtext-ml-auto richtext-size-4' />
   </DropdownMenuPrimitive.SubTrigger>
 ));
-DropdownMenuSubTrigger.displayName
-  = DropdownMenuPrimitive.SubTrigger.displayName;
+DropdownMenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayName;
 
 const DropdownMenuSubContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
@@ -50,13 +48,12 @@ const DropdownMenuSubContent = React.forwardRef<
     ref={ref}
     className={cn(
       'richtext-z-50 richtext-min-w-[8rem] richtext-overflow-hidden richtext-rounded-md !richtext-border !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-lg data-[state=open]:richtext-animate-in data-[state=closed]:richtext-animate-out data-[state=closed]:richtext-fade-out-0 data-[state=open]:richtext-fade-in-0 data-[state=closed]:richtext-zoom-out-95 data-[state=open]:richtext-zoom-in-95 data-[side=bottom]:richtext-slide-in-from-top-2 data-[side=left]:richtext-slide-in-from-right-2 data-[side=right]:richtext-slide-in-from-left-2 data-[side=top]:richtext-slide-in-from-bottom-2',
-      className,
+      className
     )}
     {...props}
   />
 ));
-DropdownMenuSubContent.displayName
-  = DropdownMenuPrimitive.SubContent.displayName;
+DropdownMenuSubContent.displayName = DropdownMenuPrimitive.SubContent.displayName;
 
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
@@ -64,12 +61,12 @@ const DropdownMenuContent = React.forwardRef<
 >(({ className, sideOffset = 4, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal data-richtext-portal>
     <DropdownMenuPrimitive.Content
-    data-richtext-portal
+      data-richtext-portal
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        'richtext-z-50 richtext-min-w-[8rem] richtext-overflow-hidden richtext-rounded-md !richtext-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md data-[state=open]:richtext-animate-in data-[state=closed]:richtext-animate-out data-[state=closed]:richtext-fade-out-0 data-[state=open]:richtext-fade-in-0 data-[state=closed]:richtext-zoom-out-95 data-[state=open]:richtext-zoom-in-95 data-[side=bottom]:richtext-slide-in-from-top-2 data-[side=left]:richtext-slide-in-from-right-2 data-[side=right]:richtext-slide-in-from-left-2 data-[side=top]:richtext-slide-in-from-bottom-2 !richtext-border-border',
-        className,
+        'richtext-z-50 richtext-min-w-[8rem] richtext-overflow-hidden richtext-rounded-md !richtext-border !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md data-[state=open]:richtext-animate-in data-[state=closed]:richtext-animate-out data-[state=closed]:richtext-fade-out-0 data-[state=open]:richtext-fade-in-0 data-[state=closed]:richtext-zoom-out-95 data-[state=open]:richtext-zoom-in-95 data-[side=bottom]:richtext-slide-in-from-top-2 data-[side=left]:richtext-slide-in-from-right-2 data-[side=right]:richtext-slide-in-from-left-2 data-[side=top]:richtext-slide-in-from-bottom-2',
+        className
       )}
       {...props}
     />
@@ -80,7 +77,7 @@ DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
 const DropdownMenuItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & {
-    inset?: boolean
+    inset?: boolean;
   }
 >(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Item
@@ -88,7 +85,7 @@ const DropdownMenuItem = React.forwardRef<
     className={cn(
       'richtext-relative richtext-flex richtext-cursor-default richtext-select-none richtext-items-center richtext-rounded-sm richtext-px-2 richtext-py-1.5 richtext-text-sm richtext-outline-none richtext-transition-colors focus:richtext-bg-accent focus:richtext-text-accent-foreground data-[disabled]:richtext-pointer-events-none data-[disabled]:richtext-opacity-50',
       inset && 'richtext-pl-8',
-      className,
+      className
     )}
     {...props}
   />
@@ -104,21 +101,20 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     ref={ref}
     className={cn(
       'richtext-relative richtext-flex richtext-cursor-default richtext-select-none richtext-items-center richtext-rounded-sm richtext-py-1.5 richtext-pl-8 richtext-pr-2 richtext-text-sm richtext-outline-none richtext-transition-colors focus:richtext-bg-accent focus:richtext-text-accent-foreground data-[disabled]:richtext-pointer-events-none data-[disabled]:richtext-opacity-50',
-      className,
+      className
     )}
     {...props}
   >
-    <span className="richtext-absolute richtext-left-2 richtext-flex richtext-size-3.5 richtext-items-center richtext-justify-center">
+    <span className='richtext-absolute richtext-left-2 richtext-flex richtext-size-3.5 richtext-items-center richtext-justify-center'>
       <DropdownMenuPrimitive.ItemIndicator>
-        <Check className="richtext-size-4" />
+        <Check className='richtext-size-4' />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
 
     {children}
   </DropdownMenuPrimitive.CheckboxItem>
 ));
-DropdownMenuCheckboxItem.displayName
-  = DropdownMenuPrimitive.CheckboxItem.displayName;
+DropdownMenuCheckboxItem.displayName = DropdownMenuPrimitive.CheckboxItem.displayName;
 
 const DropdownMenuRadioItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
@@ -128,13 +124,13 @@ const DropdownMenuRadioItem = React.forwardRef<
     ref={ref}
     className={cn(
       'richtext-relative richtext-flex richtext-cursor-default richtext-select-none richtext-items-center richtext-rounded-sm richtext-py-1.5 richtext-pl-8 richtext-pr-2 richtext-text-sm richtext-outline-none richtext-transition-colors focus:richtext-bg-accent focus:richtext-text-accent-foreground data-[disabled]:richtext-pointer-events-none data-[disabled]:richtext-opacity-50',
-      className,
+      className
     )}
     {...props}
   >
-    <span className="richtext-absolute richtext-left-2 richtext-flex richtext-size-3.5 richtext-items-center richtext-justify-center">
+    <span className='richtext-absolute richtext-left-2 richtext-flex richtext-size-3.5 richtext-items-center richtext-justify-center'>
       <DropdownMenuPrimitive.ItemIndicator>
-        <Circle className="richtext-size-2 richtext-fill-current" />
+        <Circle className='richtext-size-2 richtext-fill-current' />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
 
@@ -146,7 +142,7 @@ DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName;
 const DropdownMenuLabel = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Label>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> & {
-    inset?: boolean
+    inset?: boolean;
   }
 >(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Label
@@ -154,7 +150,7 @@ const DropdownMenuLabel = React.forwardRef<
     className={cn(
       'richtext-px-2 richtext-py-1.5 richtext-text-sm richtext-font-semibold',
       inset && 'richtext-pl-8',
-      className,
+      className
     )}
     {...props}
   />
@@ -173,13 +169,13 @@ const DropdownMenuSeparator = React.forwardRef<
 ));
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
 
-function DropdownMenuShortcut({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLSpanElement>) {
+function DropdownMenuShortcut({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
-      className={cn('richtext-ml-auto richtext-text-xs richtext-tracking-widest richtext-opacity-60', className)}
+      className={cn(
+        'richtext-ml-auto richtext-text-xs richtext-tracking-widest richtext-opacity-60',
+        className
+      )}
       {...props}
     />
   );

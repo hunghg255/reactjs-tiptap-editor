@@ -38,7 +38,7 @@ jobs:
         with:
           surge_token: ${{ secrets.SURGE_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          dist: "playground/dist"
+          dist: 'playground/dist'
           failOnError: true
           teardown: 'true'
           build: |

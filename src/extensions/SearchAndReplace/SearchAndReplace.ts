@@ -1,12 +1,6 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Extension, type Range } from '@tiptap/core';
 import { type Node as PMNode } from '@tiptap/pm/model';
-import {
-  Plugin,
-  PluginKey,
-  type EditorState,
-  type Transaction,
-} from '@tiptap/pm/state';
+import { Plugin, PluginKey, type EditorState, type Transaction } from '@tiptap/pm/state';
 import { Decoration, DecorationSet } from '@tiptap/pm/view';
 
 export * from '@/extensions/SearchAndReplace/components/RichTextSearchAndReplace';
@@ -33,12 +27,10 @@ interface TextNodesWithPosition {
 
 const updateView = (state: EditorState, dispatch: any) => dispatch(state.tr);
 
-function getRegex (s: string,
-  disableRegex: boolean,
-  caseSensitive: boolean): RegExp {
+function getRegex(s: string, disableRegex: boolean, caseSensitive: boolean): RegExp {
   return RegExp(
     disableRegex ? s.replace(/[$()*+.?[\\\]^{|}]/g, String.raw`\$&`) : s,
-    caseSensitive ? 'gu' : 'gui',
+    caseSensitive ? 'gu' : 'gui'
   );
 }
 
@@ -51,7 +43,7 @@ function processSearches(
   doc: PMNode,
   searchTerm: RegExp,
   searchResultClass: string,
-  resultIndex: number,
+  resultIndex: number
 ): ProcessedSearches {
   const decorations: Decoration[] = [];
   const results: Range[] = [];
@@ -88,9 +80,7 @@ function processSearches(
 
   for (const element of textNodesWithPosition) {
     const { text, pos } = element;
-    const matches = Array.from(text.matchAll(searchTerm)).filter(
-      ([matchText]) => matchText.trim(),
-    );
+    const matches = Array.from(text.matchAll(searchTerm)).filter(([matchText]) => matchText.trim());
 
     for (const m of matches) {
       if (m[0] === '') break;
@@ -106,9 +96,7 @@ function processSearches(
 
   for (const [i, r] of results.entries()) {
     const className =
-      i === resultIndex
-        ? `${searchResultClass} ${searchResultClass}-current`
-        : searchResultClass;
+      i === resultIndex ? `${searchResultClass} ${searchResultClass}-current` : searchResultClass;
     const decoration: Decoration = Decoration.inline(r.from, r.to, {
       class: className,
     });
@@ -122,9 +110,11 @@ function processSearches(
   };
 }
 
-function replace (replaceTerm: string,
+function replace(
+  replaceTerm: string,
   results: Range[],
-  { state, dispatch }: { state: EditorState; dispatch: (tr: Transaction) => void }) {
+  { state, dispatch }: { state: EditorState; dispatch: (tr: Transaction) => void }
+) {
   const firstResult = results[0];
 
   if (!firstResult) return;
@@ -134,10 +124,12 @@ function replace (replaceTerm: string,
   if (dispatch) dispatch(state.tr.insertText(replaceTerm, from, to));
 }
 
-function rebaseNextResult (replaceTerm: string,
+function rebaseNextResult(
+  replaceTerm: string,
   index: number,
   lastOffset: number,
-  results: Range[]): [number, Range[]] | null {
+  results: Range[]
+): [number, Range[]] | null {
   const nextIndex = index + 1;
 
   if (!results[nextIndex]) return null;
@@ -156,9 +148,11 @@ function rebaseNextResult (replaceTerm: string,
   return [offset, results];
 }
 
-function replaceAll (replaceTerm: string,
+function replaceAll(
+  replaceTerm: string,
   results: Range[],
-  { tr, dispatch }: { tr: Transaction; dispatch: (tr: Transaction) => void }) {
+  { tr, dispatch }: { tr: Transaction; dispatch: (tr: Transaction) => void }
+) {
   let offset = 0;
 
   let resultsCopy = results.slice();
@@ -170,12 +164,7 @@ function replaceAll (replaceTerm: string,
 
     tr.insertText(replaceTerm, from, to);
 
-    const rebaseNextResultResponse = rebaseNextResult(
-      replaceTerm,
-      i,
-      offset,
-      resultsCopy,
-    );
+    const rebaseNextResultResponse = rebaseNextResult(replaceTerm, i, offset, resultsCopy);
 
     if (!rebaseNextResultResponse) continue;
 
@@ -208,10 +197,7 @@ declare module '@tiptap/core' {
   }
 }
 
-export const SearchAndReplace = Extension.create<
-  SearchAndReplaceOptions,
-  SearchAndReplaceStorage
->({
+export const SearchAndReplace = Extension.create<SearchAndReplaceOptions, SearchAndReplaceStorage>({
   name: 'searchAndReplace',
 
   addOptions() {
@@ -259,7 +245,7 @@ export const SearchAndReplace = Extension.create<
     return {
       setSearchTerm:
         (searchTerm: string) =>
-        ({ editor, state, dispatch  }) => {
+        ({ editor, state, dispatch }) => {
           editor.storage.searchAndReplace.searchTerm = searchTerm;
           updateView(state, dispatch);
           return false;
@@ -282,7 +268,7 @@ export const SearchAndReplace = Extension.create<
         },
       resetIndex:
         () =>
-        ({ editor, state, dispatch  }) => {
+        ({ editor, state, dispatch }) => {
           editor.storage.searchAndReplace.resultIndex = 0;
           updateView(state, dispatch);
 
@@ -323,17 +309,17 @@ export const SearchAndReplace = Extension.create<
         ({ editor, state, dispatch }) => {
           const { replaceTerm, results, resultIndex } = editor.storage.searchAndReplace;
 
-            const currentResult = results[resultIndex];
+          const currentResult = results[resultIndex];
 
-            if (currentResult) {
-          //@ts-expect-error
-              replace(replaceTerm, [currentResult], { state, dispatch });
-              editor.storage.searchAndReplace.results.splice(resultIndex, 1);
-            } else {
-          //@ts-expect-error
-              replace(replaceTerm, results, { state, dispatch });
-              editor.storage.searchAndReplace.results.shift();
-            }
+          if (currentResult) {
+            //@ts-expect-error
+            replace(replaceTerm, [currentResult], { state, dispatch });
+            editor.storage.searchAndReplace.results.splice(resultIndex, 1);
+          } else {
+            //@ts-expect-error
+            replace(replaceTerm, results, { state, dispatch });
+            editor.storage.searchAndReplace.results.shift();
+          }
           updateView(state, dispatch);
 
           return false;
@@ -357,12 +343,10 @@ export const SearchAndReplace = Extension.create<
     const editor = this.editor;
     const { searchResultClass, disableRegex } = this.options;
 
-    const setLastSearchTerm = (t: string) =>
-      (editor.storage.searchAndReplace.lastSearchTerm = t);
+    const setLastSearchTerm = (t: string) => (editor.storage.searchAndReplace.lastSearchTerm = t);
     const setLastCaseSensitive = (t: boolean) =>
       (editor.storage.searchAndReplace.lastCaseSensitive = t);
-    const setLastResultIndex = (t: number) =>
-      (editor.storage.searchAndReplace.lastResultIndex = t);
+    const setLastResultIndex = (t: number) => (editor.storage.searchAndReplace.lastResultIndex = t);
 
     return [
       new Plugin({
@@ -400,7 +384,7 @@ export const SearchAndReplace = Extension.create<
               doc,
               getRegex(searchTerm, disableRegex, caseSensitive),
               searchResultClass,
-              resultIndex,
+              resultIndex
             );
 
             editor.storage.searchAndReplace.results = results;

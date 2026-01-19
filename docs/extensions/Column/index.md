@@ -12,7 +12,6 @@ The Column extension allows you to create multi-column layouts in your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 

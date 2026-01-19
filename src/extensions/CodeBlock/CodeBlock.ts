@@ -6,13 +6,13 @@ export * from '@/extensions/CodeBlock/components/RichTextCodeBlock';
 import { NodeViewCodeBlock } from '@/extensions/CodeBlock/components/NodeViewCodeBlock/NodeViewCodeBlock';
 import { type GeneralOptions } from '@/types';
 
-export interface CodeBlockOptions extends GeneralOptions<CodeBlockOptions> { }
+export interface CodeBlockOptions extends GeneralOptions<CodeBlockOptions> {}
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     setCodeBlock: {
-      setCodeBlock: (options?: any) => ReturnType
-    }
+      setCodeBlock: (options?: any) => ReturnType;
+    };
   }
 }
 
@@ -54,7 +54,7 @@ export const CodeBlock = /* @__PURE__ */ Node.create({
         default: '',
         parseHTML: (element) => {
           return element.textContent || '';
-        }
+        },
       },
       language: {
         default: 'plaintext',
@@ -66,13 +66,13 @@ export const CodeBlock = /* @__PURE__ */ Node.create({
         default: false,
       },
       tabSize: {
-        default: 2
+        default: 2,
       },
       shouldFocus: {
         default: true,
         parseHTML: () => false,
-        renderHTML: false
-      }
+        renderHTML: false,
+      },
     };
   },
   parseHTML() {
@@ -82,19 +82,19 @@ export const CodeBlock = /* @__PURE__ */ Node.create({
         preserveWhitespace: 'full',
         getAttrs: (node: HTMLElement) => {
           return {
-            code: node.textContent || ''
+            code: node.textContent || '',
           };
-        }
+        },
       },
       {
         tag: 'pre code',
         preserveWhitespace: 'full',
         getAttrs: (node: HTMLElement) => {
           return {
-            code: node.textContent || ''
+            code: node.textContent || '',
           };
-        }
-      }
+        },
+      },
     ];
   },
   renderHTML({ HTMLAttributes, node }) {
@@ -102,7 +102,7 @@ export const CodeBlock = /* @__PURE__ */ Node.create({
     return [
       'pre',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
-      ['code', {}, code]
+      ['code', {}, code],
     ];
   },
   addNodeView() {
@@ -112,15 +112,15 @@ export const CodeBlock = /* @__PURE__ */ Node.create({
     return {
       setCodeBlock:
         (options) =>
-          ({ commands }) => {
-            return commands.insertContent({
-              type: this.name,
-              attrs: {
-                ...options,
-                shouldFocus: true
-              },
-            });
-          },
+        ({ commands }) => {
+          return commands.insertContent({
+            type: this.name,
+            attrs: {
+              ...options,
+              shouldFocus: true,
+            },
+          });
+        },
     };
   },
   addKeyboardShortcuts() {
@@ -133,14 +133,14 @@ export const CodeBlock = /* @__PURE__ */ Node.create({
       textblockTypeInputRule({
         find: backtickInputRegex,
         type: this.type,
-        getAttributes: match => ({
+        getAttributes: (match) => ({
           language: match[1],
         }),
       }),
       textblockTypeInputRule({
         find: tildeInputRegex,
         type: this.type,
-        getAttributes: match => ({
+        getAttributes: (match) => ({
           language: match[1],
         }),
       }),

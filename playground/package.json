@@ -1,15 +1,13 @@
 {
   "name": "playground",
+  "version": "1.0.17",
   "private": true,
   "type": "module",
-  "version": "1.0.17",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "start": "npm run build && vite preview",
-    "lint": "eslint --ext .ts,.tsx src --color",
-    "format": "prettier --write \"./src/**/*.{ts,tsx,json}\"",
     "analyze": "npm run lint && tsc && vite build --mode=analyze && source-map-explorer 'dist/assets/*.js'",
     "release": "bumpp -r"
   },
@@ -25,7 +23,6 @@
     "@vitejs/plugin-react": "^4.3.4",
     "bumpp": "^9.11.1",
     "git-scm-hooks": "^0.0.11",
-    "prettier": "^2.8.8",
     "sass": "^1.86.2",
     "source-map-explorer": "^2.5.3",
     "typescript": "^5.8.2",

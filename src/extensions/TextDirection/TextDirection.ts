@@ -16,9 +16,9 @@ const TextDirection = /* @__PURE__ */ Extension.create({
         extension,
         t,
       }: {
-        editor: any
-        extension: Extension
-        t: (...args: any[]) => string
+        editor: any;
+        extension: Extension;
+        t: (...args: any[]) => string;
       }) {
         const directions = (extension.options?.directions as any[]) || [];
 
@@ -29,7 +29,7 @@ const TextDirection = /* @__PURE__ */ Extension.create({
           unset: 'X',
         } as any;
 
-        const items = directions.map(k => ({
+        const items = directions.map((k) => ({
           title: t(`editor.textDirection.${k}.tooltip`),
           value: k,
           icon: iconMap[k],

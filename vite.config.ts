@@ -1,13 +1,13 @@
-import * as path from 'node:path'
-import fs from 'node:fs'
+import fs from 'node:fs';
+import * as path from 'node:path';
 
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
-import dts from 'unplugin-dts/vite'
-import tailwind from 'tailwindcss'
-import autoprefixer from 'autoprefixer'
-import postcssReplace from 'postcss-replace'
-import { globbySync } from 'globby'
+import react from '@vitejs/plugin-react';
+import autoprefixer from 'autoprefixer';
+import { globbySync } from 'globby';
+import postcssReplace from 'postcss-replace';
+import tailwind from 'tailwindcss';
+import dts from 'unplugin-dts/vite';
+import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(async ({ mode }) => {
@@ -18,7 +18,7 @@ export default defineConfig(async ({ mode }) => {
     path.resolve(__dirname, 'src/locale-bundle.ts'),
     path.resolve(__dirname, 'src/bubble.ts'),
     path.resolve(__dirname, 'src/theme/theme.ts'),
-  ]
+  ];
 
   const files = await globbySync('src/extensions/**/*.ts', {
     ignore: ['src/**/*/index.ts', 'src/**/*.spec.ts'], // Exclude .spec.ts files
@@ -28,11 +28,11 @@ export default defineConfig(async ({ mode }) => {
   const typeVersions = {};
 
   files.forEach((v: any) => {
-    const vv = v.replace('src/', '')
-    const [, _name, i] = vv.split('/')
+    const vv = v.replace('src/', '');
+    const [, _name, i] = vv.split('/');
 
     if (_name) {
-      entry.push(path.resolve(__dirname, `src/extensions/${_name}/${_name}.ts`))
+      entry.push(path.resolve(__dirname, `src/extensions/${_name}/${_name}.ts`));
 
       exports[`./${_name.toLowerCase()}`] = {
         require: {
@@ -43,10 +43,8 @@ export default defineConfig(async ({ mode }) => {
           types: `./lib/extensions/${_name}/index.d.ts`,
           default: `./lib/${_name}.js`,
         },
-      }
-      typeVersions[`./${_name.toLowerCase()}`] = [
-        `./lib/extensions/${_name}/index.d.ts`,
-      ]
+      };
+      typeVersions[`./${_name.toLowerCase()}`] = [`./lib/extensions/${_name}/index.d.ts`];
     }
   });
 
@@ -64,10 +62,7 @@ export default defineConfig(async ({ mode }) => {
   // fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2))
 
   return {
-    plugins: [
-      react(),
-      dts(),
-    ],
+    plugins: [react(), dts()],
     resolve: {
       alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
     },
@@ -109,14 +104,46 @@ export default defineConfig(async ({ mode }) => {
       rollupOptions: {
         output: {
           assetFileNames: (assetInfo) => {
-            if (assetInfo.name == "reactjs-tiptap-editor.css") return "style.css";
+            if (assetInfo.name == 'reactjs-tiptap-editor.css') return 'style.css';
             return assetInfo.name;
           },
         },
-        external: ['@tiptap/pm/model',
-        '@tiptap/pm/state',
-        '@tiptap/pm/view','react', 'react-dom', 'react/jsx-runtime', 'katex', 'docx', '@radix-ui/react-dropdown-menu', '@radix-ui/react-icons', '@radix-ui/react-label', '@radix-ui/react-popover', '@radix-ui/react-separator', '@radix-ui/react-slot', '@radix-ui/react-switch', '@radix-ui/react-tabs', '@radix-ui/react-toast', '@radix-ui/react-toggle', '@radix-ui/react-tooltip', '@radix-ui/react-select', '@radix-ui/react-checkbox', 'react-colorful', 'scroll-into-view-if-needed', 'lucide-react', 'prosemirror-docx', 're-resizable', '@excalidraw/excalidraw', '@radix-ui/react-dialog', 'react-image-crop', 'mermaid', 'easydrawer', 'frimousse', 'mammoth'],
+        external: [
+          '@tiptap/pm/model',
+          '@tiptap/pm/state',
+          '@tiptap/pm/view',
+          'react',
+          'react-dom',
+          'react/jsx-runtime',
+          'katex',
+          'docx',
+          '@radix-ui/react-dropdown-menu',
+          '@radix-ui/react-icons',
+          '@radix-ui/react-label',
+          '@radix-ui/react-popover',
+          '@radix-ui/react-separator',
+          '@radix-ui/react-slot',
+          '@radix-ui/react-switch',
+          '@radix-ui/react-tabs',
+          '@radix-ui/react-toast',
+          '@radix-ui/react-toggle',
+          '@radix-ui/react-tooltip',
+          '@radix-ui/react-select',
+          '@radix-ui/react-checkbox',
+          'react-colorful',
+          'scroll-into-view-if-needed',
+          'lucide-react',
+          'prosemirror-docx',
+          're-resizable',
+          '@excalidraw/excalidraw',
+          '@radix-ui/react-dialog',
+          'react-image-crop',
+          'mermaid',
+          'easydrawer',
+          'frimousse',
+          'mammoth',
+        ],
       },
     },
-  }
-})
+  };
+});

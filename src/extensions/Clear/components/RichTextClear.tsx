@@ -18,7 +18,7 @@ export function RichTextClear() {
   const { disabled } = useActive(isActive);
 
   const onAction = () => {
-       if (disabled) return;
+    if (disabled) return;
 
     if (action) action();
   };

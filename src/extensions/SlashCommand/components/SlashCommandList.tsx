@@ -7,10 +7,10 @@ import { useSignalCommandList } from '@/store/commandList';
 
 interface SlashCommandListProps {
   // Define any props needed for the SlashCommandList component
-  commandList?: CommandList[]
+  commandList?: CommandList[];
 }
 
-export function SlashCommandList ({ commandList }: SlashCommandListProps) {
+export function SlashCommandList({ commandList }: SlashCommandListProps) {
   const [, setSignalCommandListValue] = useSignalCommandList();
   const { t } = useLocale();
 

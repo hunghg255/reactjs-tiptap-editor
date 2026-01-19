@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { findParentNode } from '@tiptap/core';
 import { Node } from '@tiptap/pm/model';
 import { type EditorState, TextSelection } from '@tiptap/pm/state';
@@ -49,12 +48,16 @@ export function addOrDeleteCol({
   dispatch,
   type,
 }: {
-  state: EditorState
-  dispatch: any
-  type: 'addBefore' | 'addAfter' | 'delete'
+  state: EditorState;
+  dispatch: any;
+  type: 'addBefore' | 'addAfter' | 'delete';
 }) {
-  const maybeColumns = findParentNode((node: Node) => node.type.name === MultipleColumnNode.name)(state.selection);
-  const maybeColumn = findParentNode((node: Node) => node.type.name === ColumnNode.name)(state.selection);
+  const maybeColumns = findParentNode((node: Node) => node.type.name === MultipleColumnNode.name)(
+    state.selection
+  );
+  const maybeColumn = findParentNode((node: Node) => node.type.name === ColumnNode.name)(
+    state.selection
+  );
 
   if (dispatch && maybeColumns && maybeColumn) {
     const cols = maybeColumns.node;
@@ -98,9 +101,11 @@ export function addOrDeleteCol({
 
     const tr = state.tr.setTime(Date.now());
 
-    tr.replaceWith(maybeColumns.pos, maybeColumns.pos + maybeColumns.node.nodeSize, nextCols).setSelection(
-      TextSelection.near(tr.doc.resolve(nextSelectPos)),
-    );
+    tr.replaceWith(
+      maybeColumns.pos,
+      maybeColumns.pos + maybeColumns.node.nodeSize,
+      nextCols
+    ).setSelection(TextSelection.near(tr.doc.resolve(nextSelectPos)));
 
     dispatch(tr);
   }
@@ -108,9 +113,21 @@ export function addOrDeleteCol({
   return true;
 }
 
-export function gotoCol({ state, dispatch, type }: { state: EditorState, dispatch: any, type: 'before' | 'after' }) {
-  const maybeColumns = findParentNode((node: Node) => node.type.name === MultipleColumnNode.name)(state.selection);
-  const maybeColumn = findParentNode((node: Node) => node.type.name === ColumnNode.name)(state.selection);
+export function gotoCol({
+  state,
+  dispatch,
+  type,
+}: {
+  state: EditorState;
+  dispatch: any;
+  type: 'before' | 'after';
+}) {
+  const maybeColumns = findParentNode((node: Node) => node.type.name === MultipleColumnNode.name)(
+    state.selection
+  );
+  const maybeColumn = findParentNode((node: Node) => node.type.name === ColumnNode.name)(
+    state.selection
+  );
 
   if (dispatch && maybeColumns && maybeColumn) {
     const cols = maybeColumns.node;

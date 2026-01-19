@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import type { Command, Editor } from '@tiptap/core';
 import { isList } from '@tiptap/core';
 import type { Transaction } from '@tiptap/pm/state';
@@ -25,7 +24,7 @@ function updateIndentLevel(
   tr: Transaction,
   delta: number,
   types: string[],
-  editor: Editor,
+  editor: Editor
 ): Transaction {
   const { doc, selection } = tr;
 
@@ -81,7 +80,7 @@ export function setNodeIndentMarkup(tr: Transaction, pos: number, delta: number)
   return tr.setNodeMarkup(pos, node.type, nodeAttrs, node.marks);
 }
 
-export function createIndentCommand({ delta, types }: { delta: number, types: string[] }): Command {
+export function createIndentCommand({ delta, types }: { delta: number; types: string[] }): Command {
   return ({ state, dispatch, editor }) => {
     const { selection } = state;
     let { tr } = state;
@@ -89,8 +88,7 @@ export function createIndentCommand({ delta, types }: { delta: number, types: st
     tr = updateIndentLevel(tr, delta, types, editor);
 
     if (tr.docChanged) {
-      if (dispatch)
-        dispatch(tr);
+      if (dispatch) dispatch(tr);
       return true;
     }
 

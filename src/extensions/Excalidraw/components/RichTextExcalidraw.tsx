@@ -1,11 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useCallback, useEffect, useState, useMemo } from 'react';
 
 import { ActionButton } from '@/components/ActionButton';
 import { useListener } from '@/components/ReactBus';
 import { Button } from '@/components/ui';
-import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 import { useExtension } from '@/hooks/useExtension';
@@ -21,10 +25,7 @@ export function RichTextExcalidraw() {
 
   const extension = useExtension(ExcalidrawExtension.name);
 
-  const {
-    tooltipOptions = {},
-    isActive = undefined,
-  } = buttonProps?.componentProps ?? {};
+  const { tooltipOptions = {}, isActive = undefined } = buttonProps?.componentProps ?? {};
 
   const { editorDisabled } = useToggleActive(isActive);
 
@@ -34,15 +35,18 @@ export function RichTextExcalidraw() {
 
   const [Excalidraw, setExcalidraw] = useState<any>(null);
   const [data, setData] = useState({});
-  const [initialData, setInitialData] = useState({ elements: [], appState: { isLoading: false }, files: null });
+  const [initialData, setInitialData] = useState({
+    elements: [],
+    appState: { isLoading: false },
+    files: null,
+  });
   const [visible, toggleVisible] = useState(false);
   const [loading, toggleLoading] = useState(true);
   const [error, setError] = useState<any>(null);
 
   const renderEditor = useCallback(
     (div: any) => {
-      if (!div)
-        return;
+      if (!div) return;
 
       import('@excalidraw/excalidraw')
         .then((res) => {
@@ -51,7 +55,7 @@ export function RichTextExcalidraw() {
         .catch(setError)
         .finally(() => toggleLoading(false));
     },
-    [toggleLoading],
+    [toggleLoading]
   );
 
   const renderExcalidraw: any = useCallback((app: any) => {
@@ -97,15 +101,12 @@ export function RichTextExcalidraw() {
   }, [loading, Excalidraw, visible]);
 
   return (
-    <Dialog
-      onOpenChange={toggleVisible}
-      open={visible}
-    >
+    <Dialog onOpenChange={toggleVisible} open={visible}>
       <DialogTrigger asChild>
         <ActionButton
           disabled={editorDisabled}
-          icon="Excalidraw"
-          tooltip="Excalidraw"
+          icon='Excalidraw'
+          tooltip='Excalidraw'
           tooltipOptions={tooltipOptions}
           action={() => {
             if (editorDisabled) return;
@@ -114,44 +115,29 @@ export function RichTextExcalidraw() {
         />
       </DialogTrigger>
 
-      <DialogContent className="richtext-z-[99999] !richtext-max-w-[1300px]">
-        <DialogTitle>
-          Excalidraw
-        </DialogTitle>
+      <DialogContent className='richtext-z-[99999] !richtext-max-w-[1300px]'>
+        <DialogTitle>Excalidraw</DialogTitle>
 
         <div style={{ height: '100%', borderWidth: 1 }}>
-          {loading && (
-            <p>
-              Loading...
-            </p>
-          )}
+          {loading && <p>Loading...</p>}
 
-          {error && <p>
-            {(error && error.message) || 'Error'}
-          </p>}
+          {error && <p>{(error && error.message) || 'Error'}</p>}
 
-          <div ref={renderEditor}
-            style={{ width: '100%', height: 600 }}
-          >
-            {!loading && !error && Excalidraw
-              ? (
-                <Excalidraw initialData={initialData}
-                  langCode="en"
-                  onChange={onChange}
-                  ref={renderExcalidraw}
-                  {...excalidrawOptions.excalidrawProps}
-                />
-              )
-              : null}
+          <div ref={renderEditor} style={{ width: '100%', height: 600 }}>
+            {!loading && !error && Excalidraw ? (
+              <Excalidraw
+                initialData={initialData}
+                langCode='en'
+                onChange={onChange}
+                ref={renderExcalidraw}
+                {...excalidrawOptions.excalidrawProps}
+              />
+            ) : null}
           </div>
         </div>
 
         <DialogFooter>
-          <Button
-            disabled={!Excalidraw}
-            onClick={save}
-            type="button"
-          >
+          <Button disabled={!Excalidraw} onClick={save} type='button'>
             Save changes
           </Button>
         </DialogFooter>

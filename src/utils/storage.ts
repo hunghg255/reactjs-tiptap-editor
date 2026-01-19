@@ -1,11 +1,9 @@
 export function getStorage(key: any, defaultValue = null) {
-  if (typeof window === 'undefined')
-    // eslint-disable-next-line unicorn/error-message
-    throw new Error();
+  // oxlint-disable-next-line unicorn/error-message
+  if (typeof window === 'undefined') throw new Error();
 
   const value = localStorage.getItem(key);
-  if (!value)
-    return defaultValue;
+  if (!value) return defaultValue;
   try {
     return JSON.parse(value);
   } catch {

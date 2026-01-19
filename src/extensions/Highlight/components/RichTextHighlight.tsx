@@ -16,7 +16,7 @@ export function RichTextHighlight() {
     defaultColor = undefined,
     colors,
     action,
-    shortcutKeys
+    shortcutKeys,
   } = buttonProps?.componentProps ?? {};
 
   const { editorDisabled } = useActive(isActive);
@@ -50,14 +50,14 @@ export function RichTextHighlight() {
         // tooltipOptions={tooltipOptions}
         shortcutKeys={shortcutKeys}
       >
-        <span className="richtext-flex richtext-items-center richtext-justify-center richtext-gap-[4px] richtext-text-sm">
+        <span className='richtext-flex richtext-items-center richtext-justify-center richtext-gap-[4px] richtext-text-sm'>
           <IconHighlightFill fill={selectedColor} />
 
-              <IconComponent className="!richtext-h-3 !richtext-w-3 richtext-text-zinc-500"
-          name="MenuDown"
-              />
+          <IconComponent
+            className='!richtext-h-3 !richtext-w-3 richtext-text-zinc-500'
+            name='MenuDown'
+          />
         </span>
-
       </ActionButton>
     </ColorPicker>
   );

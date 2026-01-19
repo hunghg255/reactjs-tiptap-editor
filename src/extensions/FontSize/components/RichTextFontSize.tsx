@@ -15,13 +15,13 @@ import { useLocale } from '@/locales';
 import type { ButtonViewReturnComponentProps } from '@/types';
 
 export interface Item {
-  title: string
-  isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>
-  action?: ButtonViewReturnComponentProps['action']
-  style?: React.CSSProperties
-  disabled?: boolean
-  divider?: boolean
-  default?: boolean
+  title: string;
+  isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>;
+  action?: ButtonViewReturnComponentProps['action'];
+  style?: React.CSSProperties;
+  disabled?: boolean;
+  divider?: boolean;
+  default?: boolean;
 }
 
 export function RichTextFontSize() {
@@ -47,34 +47,26 @@ export function RichTextFontSize() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild
-        disabled={disabled}
-      >
+      <DropdownMenuTrigger asChild disabled={disabled}>
         <ActionMenuButton
           disabled={disabled}
           icon={icon}
           title={title}
           tooltip={tooltip}
-        // tooltipOptions={tooltipOptions}
+          // tooltipOptions={tooltipOptions}
         />
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="richtext-max-h-96 richtext-w-32 richtext-overflow-y-auto">
+      <DropdownMenuContent className='richtext-max-h-96 richtext-w-32 richtext-overflow-y-auto'>
         {items?.map((item: any, index: any) => {
           return (
             <Fragment key={`font-size-${index}`}>
-              <DropdownMenuCheckboxItem
-                checked={title === item.title}
-                onClick={item.action}
-              >
-                <div className="richtext-ml-1 richtext-h-full">
-                  {item.title}
-                </div>
+              <DropdownMenuCheckboxItem checked={title === item.title} onClick={item.action}>
+                <div className='richtext-ml-1 richtext-h-full'>{item.title}</div>
               </DropdownMenuCheckboxItem>
 
               {item.title === t('editor.fontSize.default.tooltip') && <DropdownMenuSeparator />}
             </Fragment>
-
           );
         })}
       </DropdownMenuContent>

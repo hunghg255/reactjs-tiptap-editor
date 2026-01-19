@@ -23,7 +23,7 @@ export const THEME = {
       'destructive-foreground': '0 0% 98%',
       border: '240 5.9% 90%',
       input: '240 5.9% 90%',
-      ring: '240 5.9% 10%'
+      ring: '240 5.9% 10%',
     },
     red: {
       radius: '0.65rem',
@@ -176,8 +176,8 @@ export const THEME = {
       'destructive-foreground': '60 9.1% 97.8%',
       border: '20 5.9% 90%',
       input: '20 5.9% 90%',
-      ring: '20 14.3% 4.1'
-    }
+      ring: '20 14.3% 4.1',
+    },
   },
   dark: {
     default: {
@@ -200,7 +200,7 @@ export const THEME = {
       'destructive-foreground': '0 0% 98%',
       border: '240 3.7% 15.9%',
       input: '240 3.7% 15.9%',
-      ring: '240 4.9% 83.9%'
+      ring: '240 4.9% 83.9%',
     },
     red: {
       radius: '0.65rem',
@@ -310,7 +310,7 @@ export const THEME = {
       'destructive-foreground': '0 85.7% 97.3%',
       border: '240 3.7% 15.9%',
       input: '240 3.7% 15.9%',
-      ring: '346.8 77.2% 49.8%'
+      ring: '346.8 77.2% 49.8%',
     },
     violet: {
       radius: '0.65rem',
@@ -355,9 +355,8 @@ export const THEME = {
       border: '12 6.5% 15.1%',
       input: '12 6.5% 15.1%',
       ring: '35.5 91.7% 32.9%',
-    }
+    },
   },
-
 };
 
 export type ThemeType = keyof typeof THEME;
@@ -375,7 +374,7 @@ const themeSignal = createSignal<ThemeStore>({
   borderRadius: '0.65rem',
 });
 
-export function useTheme () {
+export function useTheme() {
   const { theme, color, borderRadius } = useSignalValue(themeSignal);
 
   return {
@@ -403,5 +402,5 @@ export const themeActions = {
       ...prev,
       borderRadius,
     }));
-  }
+  },
 };

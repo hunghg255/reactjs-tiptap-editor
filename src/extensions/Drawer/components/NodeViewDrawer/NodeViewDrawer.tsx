@@ -1,17 +1,13 @@
-/* eslint-disable no-unsafe-optional-chaining */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-
 import { NodeViewWrapper, isNumber } from '@tiptap/react';
 import { throttle } from 'lodash-es';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { IMAGE_MAX_SIZE, IMAGE_MIN_SIZE, IMAGE_THROTTLE_WAIT_TIME } from '@/constants';
 import { clamp } from '@/utils/utils';
 
 interface Size {
-  width: number
-  height: number
+  width: number;
+  height: number;
 }
 
 const ResizeDirection = {
@@ -96,7 +92,7 @@ export function NodeViewDrawer({ editor, node, updateAttributes, getPos, selecte
         };
       });
     }, IMAGE_THROTTLE_WAIT_TIME),
-    [editor],
+    [editor]
   );
 
   function onMouseDown(e: MouseEvent, dir: string) {
@@ -159,7 +155,7 @@ export function NodeViewDrawer({ editor, node, updateAttributes, getPos, selecte
         height,
       });
     }, IMAGE_THROTTLE_WAIT_TIME),
-    [resizing, resizerState, maxSize, updateAttributes, node?.attrs],
+    [resizing, resizerState, maxSize, updateAttributes, node?.attrs]
   );
 
   const onMouseUp = useCallback(
@@ -181,7 +177,7 @@ export function NodeViewDrawer({ editor, node, updateAttributes, getPos, selecte
 
       selectImage();
     },
-    [resizing, selectImage],
+    [resizing, selectImage]
   );
 
   const onEvents = useCallback(() => {
@@ -219,12 +215,13 @@ export function NodeViewDrawer({ editor, node, updateAttributes, getPos, selecte
   }, [editor.view.dom, resizeOb]);
 
   return (
-    <NodeViewWrapper className="image-view"
+    <NodeViewWrapper
+      className='image-view'
       style={{ ...imageMaxStyle, width: '100%', textAlign: align }}
     >
       <div
         data-drag-handle
-        draggable="true"
+        draggable='true'
         style={{ ...imageMaxStyle, background: '#fff' }}
         className={`image-view__body ${selected ? 'image-view__body--focused' : ''} ${
           resizing ? 'image-view__body--resizing' : ''
@@ -232,8 +229,8 @@ export function NodeViewDrawer({ editor, node, updateAttributes, getPos, selecte
       >
         <img
           alt={imgAttrs.alt}
-          className="image-view__body__image block"
-          height="auto"
+          className='image-view__body__image block'
+          height='auto'
           onClick={selectImage}
           onLoad={onImageLoad}
           src={imgAttrs.src}
@@ -241,15 +238,14 @@ export function NodeViewDrawer({ editor, node, updateAttributes, getPos, selecte
         />
 
         {editor.view.editable && (selected || resizing) && (
-          <div className="image-resizer">
+          <div className='image-resizer'>
             {resizeDirections?.map((direction) => {
               return (
                 <span
                   className={`image-resizer__handler image-resizer__handler--${direction}`}
                   key={`image-dir-${direction}`}
                   onMouseDown={(e: any) => onMouseDown(e, direction)}
-                >
-                </span>
+                ></span>
               );
             })}
           </div>

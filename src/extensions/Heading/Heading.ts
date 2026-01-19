@@ -6,10 +6,9 @@ import type { GeneralOptions } from '@/types';
 
 export * from '@/extensions/Heading/components/RichTextHeading';
 
-export interface HeadingOptions extends TiptapHeadingOptions, GeneralOptions<HeadingOptions> { }
+export interface HeadingOptions extends TiptapHeadingOptions, GeneralOptions<HeadingOptions> {}
 
 export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
@@ -24,7 +23,9 @@ export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
           return {
             action: () => {
               if (isDefault) {
-                const currentActiveLevel: any = levels.find((lvl: any) => editor.isActive('heading', { level: lvl }));
+                const currentActiveLevel: any = levels.find((lvl: any) =>
+                  editor.isActive('heading', { level: lvl })
+                );
                 if (currentActiveLevel && currentActiveLevel !== 'Paragraph') {
                   editor.commands.toggleHeading({ level: currentActiveLevel });
                 }
@@ -40,7 +41,9 @@ export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
               return editor.isActive('heading', { level }) || false;
             },
             disabled: !editor.can().toggleHeading({ level }),
-            title: isDefault ? t('editor.paragraph.tooltip') : t(`editor.heading.h${level}.tooltip`),
+            title: isDefault
+              ? t('editor.paragraph.tooltip')
+              : t(`editor.heading.h${level}.tooltip`),
             level,
             shortcutKeys: extension.options.shortcutKeys?.[level] ?? ['alt', 'mod', `${level}`],
             default: isDefault,
@@ -69,7 +72,7 @@ export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
               };
               return item;
             },
-            levels
+            levels,
           },
         };
       },

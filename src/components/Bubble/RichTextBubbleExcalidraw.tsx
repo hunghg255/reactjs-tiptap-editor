@@ -1,6 +1,5 @@
-import { useCallback, useEffect } from 'react';
-
 import { BubbleMenu } from '@tiptap/react/menus';
+import { useCallback, useEffect } from 'react';
 
 import { ActionButton } from '@/components/ActionButton';
 import { emit } from '@/components/ReactBus';
@@ -38,7 +37,7 @@ export function RichTextBubbleExcalidraw() {
         .focus()
         .run();
     },
-    [editor],
+    [editor]
   );
 
   const openEditLinkModal = useCallback(() => {
@@ -67,29 +66,14 @@ export function RichTextBubbleExcalidraw() {
       pluginKey={'RichTextBubbleExcalidraw'}
       shouldShow={shouldShow}
     >
-      <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
-        <ActionButton
-          action={openEditLinkModal}
-          icon="Pencil"
-          tooltip={t('editor.edit')}
-        />
+      <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
+        <ActionButton action={openEditLinkModal} icon='Pencil' tooltip={t('editor.edit')} />
 
-        <SizeSetter height={height as any}
-          maxWidth={maxWidth}
-          onOk={setSize}
-          width={width as any}
-        >
-          <ActionButton
-            icon="Settings"
-            tooltip={t('editor.settings')}
-          />
+        <SizeSetter height={height as any} maxWidth={maxWidth} onOk={setSize} width={width as any}>
+          <ActionButton icon='Settings' tooltip={t('editor.settings')} />
         </SizeSetter>
 
-        <ActionButton
-          action={deleteMe}
-          icon="Trash2"
-          tooltip={t('editor.delete')}
-        />
+        <ActionButton action={deleteMe} icon='Trash2' tooltip={t('editor.delete')} />
       </div>
     </BubbleMenu>
   );

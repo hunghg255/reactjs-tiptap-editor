@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { mergeAttributes } from '@tiptap/core';
 import type { LinkOptions as TiptapLinkOptions } from '@tiptap/extension-link';
 import { Link as TiptapLink } from '@tiptap/extension-link';
@@ -7,9 +6,7 @@ import type { GeneralOptions } from '@/types';
 
 export * from '@/extensions/Link/components/RichTextLink';
 
-export interface LinkOptions
-  extends TiptapLinkOptions,
-  GeneralOptions<LinkOptions> {}
+export interface LinkOptions extends TiptapLinkOptions, GeneralOptions<LinkOptions> {}
 
 export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
   inclusive: false,
@@ -44,7 +41,7 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
             action: (value) => {
               const { link, text, openInNewTab } = value;
 
-              if(!link) {
+              if (!link) {
                 // if user clears the link and applies, remove the link
                 editor.chain().extendMarkRange('link').unsetLink().run();
                 return;

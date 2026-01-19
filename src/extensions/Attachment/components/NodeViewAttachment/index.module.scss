@@ -1,5 +1,6 @@
 .attachment, /* for browser ready HTML */
-.wrap { /* for NodeView */
+.wrap {
+  /* for NodeView */
   border-width: 1px !important;
   border-radius: var(--radius) !important;
   border-color: hsl(var(--border)) !important;
@@ -21,4 +22,3 @@
     }
   }
 }
-

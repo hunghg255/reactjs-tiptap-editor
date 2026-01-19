@@ -1,11 +1,12 @@
-import fs from 'node:fs'
-import path from 'node:path'
-import { cwd } from 'node:process'
-import { globbySync } from 'globby'
+import fs from 'node:fs';
+import path from 'node:path';
+import { cwd } from 'node:process';
+
+import { globbySync } from 'globby';
 
 async function genDocsNavExtension() {
   try {
-   const files = await globbySync('docs/extensions/**/*.md');
+    const files = await globbySync('docs/extensions/**/*.md');
 
     const navItems = files.map((file) => {
       const parts = file.split('/');
@@ -15,10 +16,9 @@ async function genDocsNavExtension() {
         link: `/extensions/${name}/index.md`,
       };
     });
-  }
-  catch {
-    console.error('Failed to modify CSS!')
+  } catch {
+    console.error('Failed to modify CSS!');
   }
 }
 
-genDocsNavExtension()
+genDocsNavExtension();

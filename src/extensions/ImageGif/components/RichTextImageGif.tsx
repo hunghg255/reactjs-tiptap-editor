@@ -1,24 +1,28 @@
+import { debounce } from 'lodash-es';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { debounce } from 'lodash-es';
-
 import { ActionButton, Input, Popover, PopoverContent, PopoverTrigger } from '@/components';
-import { type GifItem, serviceGetTrendingGiphy, serviceGetTrendingTenor, serviceSearchGiphy, serviceSearchTenor } from '@/extensions/ImageGif/components/services';
+import {
+  type GifItem,
+  serviceGetTrendingGiphy,
+  serviceGetTrendingTenor,
+  serviceSearchGiphy,
+  serviceSearchTenor,
+} from '@/extensions/ImageGif/components/services';
 import { ImageGif } from '@/extensions/ImageGif/ImageGif';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 
 interface IProps {
-  showClear?: boolean
-  selectImage: (arg: string) => void
-  children: React.ReactNode
-  apiKey: string
+  showClear?: boolean;
+  selectImage: (arg: string) => void;
+  children: React.ReactNode;
+  apiKey: string;
   provider: string;
 }
 
-function useServiceGif (provider: string, apiKey: string) {
-
+function useServiceGif(provider: string, apiKey: string) {
   const searchTrending = async (): Promise<GifItem[]> => {
     if (!apiKey) return [];
 
@@ -47,10 +51,10 @@ function useServiceGif (provider: string, apiKey: string) {
     return [];
   };
 
-return {
-  searchTrending,
-  searchWord
-};
+  return {
+    searchTrending,
+    searchWord,
+  };
 }
 
 function ImageGifWrap({ selectImage, apiKey, provider, children }: IProps) {
@@ -76,74 +80,61 @@ function ImageGifWrap({ selectImage, apiKey, provider, children }: IProps) {
         return;
       }
       // Add your logic here
-      const r = await  searchWord(event.target.value);
+      const r = await searchWord(event.target.value);
       setGifs(r);
     }, 350), // Adjust the debounce delay as needed
-    [],
+    []
   );
 
   return (
-    <Popover
-      modal
-      onOpenChange={setOpen}
-      open={open}
-    >
-      <PopoverTrigger asChild
-disabled={editorDisabled}
-      >
+    <Popover modal onOpenChange={setOpen} open={open}>
+      <PopoverTrigger asChild disabled={editorDisabled}>
         {children}
       </PopoverTrigger>
 
-      <PopoverContent align="start"
-        className="richtext-size-full richtext-p-2"
+      <PopoverContent
+        align='start'
+        className='richtext-size-full richtext-p-2'
         hideWhenDetached
-        side="bottom"
+        side='bottom'
       >
+        {apiKey ? (
+          <>
+            <div className='richtext-mb-[10px] richtext-w-full'>
+              <Input
+                onChange={handleInputChange}
+                placeholder='Search GIF'
+                ref={inputRef}
+                type='text'
+              />
+            </div>
 
-        {
-          apiKey
-            ? (
-              <>
-                <div className="richtext-mb-[10px] richtext-w-full">
-                  <Input
-                    onChange={handleInputChange}
-                    placeholder="Search GIF"
-                    ref={inputRef}
-                    type="text"
-                  />
-                </div>
-
-                <div className="richtext-max-h-[280px] !richtext-max-w-[400px] richtext-overflow-y-auto">
-                  <div className="richtext-grid richtext-grid-cols-2 richtext-gap-1 ">
-
-                    {gifs?.length
-                      ? gifs?.map((item) => (
-                        <img
-                          alt=''
-                          className="richtext-cursor-pointer richtext-object-contain richtext-text-center"
-                          key={item.id}
-                          src={item.src}
-                          onClick={() => {
-                            selectImage(item.src);
-                            setOpen(false);
-                          }}
-                        />
-                      ))
-                      : <p>
-                        No GIFs found
-                      </p>}
-                  </div>
-                </div>
-              </>
-            )
-            : (
-              <div>
-                <p>
-                  Missing Giphy API Key
-                </p>
+            <div className='richtext-max-h-[280px] !richtext-max-w-[400px] richtext-overflow-y-auto'>
+              <div className='richtext-grid richtext-grid-cols-2 richtext-gap-1'>
+                {gifs?.length ? (
+                  gifs?.map((item) => (
+                    <img
+                      alt=''
+                      className='richtext-cursor-pointer richtext-object-contain richtext-text-center'
+                      key={item.id}
+                      src={item.src}
+                      onClick={() => {
+                        selectImage(item.src);
+                        setOpen(false);
+                      }}
+                    />
+                  ))
+                ) : (
+                  <p>No GIFs found</p>
+                )}
               </div>
-            )
-        }
+            </div>
+          </>
+        ) : (
+          <div>
+            <p>Missing Giphy API Key</p>
+          </div>
+        )}
       </PopoverContent>
     </Popover>
   );
@@ -152,13 +143,7 @@ disabled={editorDisabled}
 export function RichTextImageGif() {
   const buttonProps = useButtonProps(ImageGif.name);
 
-  const {
-    action,
-    icon,
-    tooltip,
-    apiKey,
-    provider,
-  } = buttonProps?.componentProps ?? {};
+  const { action, icon, tooltip, apiKey, provider } = buttonProps?.componentProps ?? {};
 
   const { editorDisabled } = useToggleActive();
 
@@ -171,16 +156,8 @@ export function RichTextImageGif() {
   };
 
   return (
-    <ImageGifWrap
-      apiKey={apiKey}
-      provider={provider}
-      selectImage={selectImage}
-    >
-      <ActionButton
-        disabled={editorDisabled}
-        icon={icon}
-        tooltip={tooltip}
-      />
+    <ImageGifWrap apiKey={apiKey} provider={provider} selectImage={selectImage}>
+      <ActionButton disabled={editorDisabled} icon={icon} tooltip={tooltip} />
     </ImageGifWrap>
   );
 }

@@ -14,7 +14,6 @@ The Excalidraw extension allows you to add an Excalidraw to your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 

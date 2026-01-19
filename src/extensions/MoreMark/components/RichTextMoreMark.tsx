@@ -16,15 +16,15 @@ import type { ButtonViewReturnComponentProps } from '@/types';
 import { getShortcutKeys } from '@/utils/plateform';
 
 export interface Item {
-  title: string
-  icon?: any
-  isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>
-  action?: ButtonViewReturnComponentProps['action']
-  style?: React.CSSProperties
-  shortcutKeys?: string[]
-  disabled?: boolean
-  divider?: boolean
-  default?: boolean
+  title: string;
+  icon?: any;
+  isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>;
+  action?: ButtonViewReturnComponentProps['action'];
+  style?: React.CSSProperties;
+  shortcutKeys?: string[];
+  disabled?: boolean;
+  divider?: boolean;
+  default?: boolean;
 }
 
 export function RichTextMoreMark() {
@@ -49,36 +49,32 @@ export function RichTextMoreMark() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild
-        disabled={disabled}
-      >
+      <DropdownMenuTrigger asChild disabled={disabled}>
         <ActionButton
-          customClass="!richtext-w-12 richtext-h-12"
+          customClass='!richtext-w-12 richtext-h-12'
           disabled={disabled}
           icon={icon}
           tooltip={tooltip}
         >
-          <MenuDown className="richtext-size-3 richtext-text-gray-500" />
+          <MenuDown className='richtext-size-3 richtext-text-gray-500' />
         </ActionButton>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="w-full">
+      <DropdownMenuContent className='w-full'>
         {items?.map((item: any, index: any) => {
           return (
             <DropdownMenuCheckboxItem
               checked={titleActive === item.title}
-              className="richtext-flex richtext-items-center richtext-gap-3"
+              className='richtext-flex richtext-items-center richtext-gap-3'
               key={`more-mark-${index}`}
               onClick={item.action}
             >
               <IconComponent name={item?.icon} />
 
-              <span className="richtext-ml-1">
-                {item.title}
-              </span>
+              <span className='richtext-ml-1'>{item.title}</span>
 
               {!!item?.shortcutKeys && (
-                <span className="richtext-ml-auto richtext-text-xs richtext-tracking-widest richtext-opacity-60">
+                <span className='richtext-ml-auto richtext-text-xs richtext-tracking-widest richtext-opacity-60'>
                   {getShortcutKeys(item.shortcutKeys)}
                 </span>
               )}

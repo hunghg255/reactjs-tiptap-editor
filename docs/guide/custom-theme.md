@@ -15,16 +15,16 @@ next:
 ## Usage
 
 ```javascript
-import { themeActions, useTheme } from 'reactjs-tiptap-editor/theme'
+import { themeActions, useTheme } from 'reactjs-tiptap-editor/theme';
 
 // Set theme
-themeActions.setTheme('light') // or 'dark';
+themeActions.setTheme('light'); // or 'dark';
 
 // Set color
-themeActions.setColor('default') //  "red" | "blue" | "green" | "orange" | "rose" | "violet" | "yellow"
+themeActions.setColor('default'); //  "red" | "blue" | "green" | "orange" | "rose" | "violet" | "yellow"
 
 // Set radius
-themeActions.setRadius('0.5rem') // any valid CSS border-radius value
+themeActions.setRadius('0.5rem'); // any valid CSS border-radius value
 
 // Usage in a React component
 const { theme, color, borderRadius } = useTheme();

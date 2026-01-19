@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Node, mergeAttributes } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
@@ -12,14 +11,14 @@ import { normalizeFileSize } from '@/utils/file';
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     attachment: {
-      setAttachment: (attrs?: unknown) => ReturnType
-    }
+      setAttachment: (attrs?: unknown) => ReturnType;
+    };
   }
 }
 
 export interface AttachmentOptions extends GeneralOptions<AttachmentOptions> {
   /** Function for uploading files */
-  upload?: (file: File) => Promise<string>
+  upload?: (file: File) => Promise<string>;
 }
 
 export * from './components/RichTextAttachment';
@@ -71,7 +70,7 @@ export const Attachment = /* @__PURE__ */ Node.create<AttachmentOptions>({
     const mergedAttributes = mergeAttributes(
       // @ts-expect-error
       this.options.HTMLAttributes || {},
-      HTMLAttributes || {},
+      HTMLAttributes || {}
     );
 
     // Return the structured array
@@ -80,19 +79,15 @@ export const Attachment = /* @__PURE__ */ Node.create<AttachmentOptions>({
       mergedAttributes,
       url
         ? [
-          'a',
-          { href: url || '#' },
-          [
-            'span',
-            { class: 'attachment__icon' },
-            getFileTypeIcon(fileType, true),
-          ],
-          [
-            'span',
-            { class: 'attachment__text' },
-            `${fileName}.${fileExt} (${normalizeFileSize(fileSize)})`,
-          ],
-        ]
+            'a',
+            { href: url || '#' },
+            ['span', { class: 'attachment__icon' }, getFileTypeIcon(fileType, true)],
+            [
+              'span',
+              { class: 'attachment__text' },
+              `${fileName}.${fileExt} (${normalizeFileSize(fileSize)})`,
+            ],
+          ]
         : ['div', { class: 'attachment__placeholder' }],
     ];
   },
@@ -121,7 +116,7 @@ export const Attachment = /* @__PURE__ */ Node.create<AttachmentOptions>({
       },
       hasTrigger: {
         default: false,
-        parseHTML: element => getDatasetAttribute('hastrigger')(element) === 'true',
+        parseHTML: (element) => getDatasetAttribute('hastrigger')(element) === 'true',
       },
       error: {
         default: null,
@@ -134,10 +129,10 @@ export const Attachment = /* @__PURE__ */ Node.create<AttachmentOptions>({
     return {
       setAttachment:
         (attrs = {}) =>
-          ({ chain }) => {
-            // @ts-expect-error
-            return chain().insertContent({ type: this.name, attrs }).run();
-          },
+        ({ chain }) => {
+          // @ts-expect-error
+          return chain().insertContent({ type: this.name, attrs }).run();
+        },
     };
   },
 

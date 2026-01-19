@@ -1,6 +1,5 @@
-import { useCallback } from 'react';
-
 import { BubbleMenu } from '@tiptap/react/menus';
+import { useCallback } from 'react';
 
 import { ActionButton } from '@/components/ActionButton';
 import { MultipleColumnNode } from '@/extensions/Column';
@@ -31,28 +30,28 @@ export function RichTextBubbleColumns() {
       pluginKey={'RichTextBubbleColumns'}
       shouldShow={shouldShow}
     >
-      <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
+      <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
         <ActionButton
           action={addColBefore}
-          icon="ColumnAddLeft"
+          icon='ColumnAddLeft'
           tooltip={t('editor.table.menu.insertColumnBefore')}
         />
 
         <ActionButton
           action={addColAfter}
-          icon="ColumnAddRight"
+          icon='ColumnAddRight'
           tooltip={t('editor.table.menu.insertColumnAfter')}
         />
 
         <ActionButton
           action={deleteCol}
-          icon="DeleteColumn"
+          icon='DeleteColumn'
           tooltip={t('editor.table.menu.deleteColumn')}
         />
 
         <ActionButton
           action={deleteMe}
-          icon="Trash2"
+          icon='Trash2'
           tooltip={t('editor.table.menu.delete_column')}
         />
       </div>

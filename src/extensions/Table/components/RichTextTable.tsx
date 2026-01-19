@@ -9,14 +9,14 @@ import { useEditorInstance } from '@/store/editor';
 
 export function RichTextTable() {
   const editor = useEditorInstance();
- const buttonProps = useButtonProps(Table.name);
+  const buttonProps = useButtonProps(Table.name);
 
   const {
     icon = undefined,
     tooltip = undefined,
     action = undefined,
     isActive = undefined,
-    color
+    color,
   } = buttonProps?.componentProps ?? {};
 
   const { dataState, disabled } = useToggleActive(isActive);
@@ -34,9 +34,7 @@ export function RichTextTable() {
   }
 
   return (
-    <CreateTablePopover createTable={createTable}
-    dataState={dataState}
-    >
+    <CreateTablePopover createTable={createTable} dataState={dataState}>
       <ActionButton
         action={action}
         color={color}

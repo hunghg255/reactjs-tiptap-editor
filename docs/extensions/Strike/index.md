@@ -14,7 +14,6 @@ The Strike extension allows you to strike through text in your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 

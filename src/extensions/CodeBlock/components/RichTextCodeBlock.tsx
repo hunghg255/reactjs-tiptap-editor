@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {
-  ActionButton,
-} from '@/components';
+import { ActionButton } from '@/components';
 import { CodeBlock } from '@/extensions/CodeBlock/CodeBlock';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';

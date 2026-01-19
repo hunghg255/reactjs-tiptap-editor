@@ -14,7 +14,6 @@ The BulletList extension allows you to add bullet lists to your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -80,7 +79,6 @@ const App = () => {
   );
 };
 ```
-
 
 ## Options
 

@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
-
 import DragHandle from '@tiptap/extension-drag-handle-react';
 import { type NodeSelection } from '@tiptap/pm/state';
 import type { Editor } from '@tiptap/react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import {
   ActionButton,
@@ -34,9 +33,15 @@ export function RichTextBubbleMenuDragHandle() {
   const [currentNodePos, setCurrentNodePos] = useState(-1);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const hasTextAlignExtension = editor?.extensionManager?.extensions?.some((ext: any) => ext?.name === TextAlign.name);
-  const hasIndentExtension = editor?.extensionManager?.extensions?.some((ext: any) => ext?.name === Indent.name);
-  const hasClearExtension = editor?.extensionManager?.extensions?.some((ext: any) => ext?.name === Clear.name);
+  const hasTextAlignExtension = editor?.extensionManager?.extensions?.some(
+    (ext: any) => ext?.name === TextAlign.name
+  );
+  const hasIndentExtension = editor?.extensionManager?.extensions?.some(
+    (ext: any) => ext?.name === Indent.name
+  );
+  const hasClearExtension = editor?.extensionManager?.extensions?.some(
+    (ext: any) => ext?.name === Clear.name
+  );
 
   function resetTextFormatting() {
     const chain = editor.chain();
@@ -66,13 +71,11 @@ export function RichTextBubbleMenuDragHandle() {
   function increaseIndent() {
     const indentTr = setNodeIndentMarkup(editor.state.tr, currentNodePos, 1);
     indentTr.setMeta('hideDragHandle', true);
-    if (editor.view.dispatch)
-      editor.view.dispatch(indentTr);
+    if (editor.view.dispatch) editor.view.dispatch(indentTr);
   }
   function decreaseIndent() {
     const tr = setNodeIndentMarkup(editor.state.tr, currentNodePos, -1);
-    if (editor.view.dispatch)
-      editor.view.dispatch(tr);
+    if (editor.view.dispatch) editor.view.dispatch(tr);
   }
 
   function deleteNode() {
@@ -84,20 +87,19 @@ export function RichTextBubbleMenuDragHandle() {
       .run();
   }
 
-  const handleNodeChange = useCallback((data: {
-    node: Node | null;
-    editor: Editor;
-    pos: number
-  }) => {
-    if (data.node) {
-      setCurrentNode(data.node);
-    }
-    setCurrentNodePos(data.pos);
-    // Force update bubble menu position
-    requestAnimationFrame(() => {
-      data.editor.commands.focus();
-    });
-  }, []);
+  const handleNodeChange = useCallback(
+    (data: { node: Node | null; editor: Editor; pos: number }) => {
+      if (data.node) {
+        setCurrentNode(data.node);
+      }
+      setCurrentNodePos(data.pos);
+      // Force update bubble menu position
+      requestAnimationFrame(() => {
+        data.editor.commands.focus();
+      });
+    },
+    []
+  );
 
   const handleAdd = (e: any) => {
     e.preventDefault();
@@ -105,8 +107,8 @@ export function RichTextBubbleMenuDragHandle() {
     if (currentNodePos !== -1) {
       const currentNodeSize = currentNode?.nodeSize || 0;
       const insertPos = currentNodePos + currentNodeSize;
-      const currentNodeIsEmptyParagraph
-        = currentNode?.type.name === 'paragraph' && currentNode?.content?.size === 0;
+      const currentNodeIsEmptyParagraph =
+        currentNode?.type.name === 'paragraph' && currentNode?.content?.size === 0;
       const focusPos = currentNodeIsEmptyParagraph ? currentNodePos + 2 : insertPos + 2;
       editor
         .chain()
@@ -117,7 +119,7 @@ export function RichTextBubbleMenuDragHandle() {
             } else {
               tr.insert(
                 insertPos,
-                state.schema.nodes.paragraph.create(null, [state.schema.text('/')]),
+                state.schema.nodes.paragraph.create(null, [state.schema.text('/')])
               );
             }
 
@@ -157,13 +159,8 @@ export function RichTextBubbleMenuDragHandle() {
       onNodeChange={handleNodeChange as any}
       pluginKey={'RichTextBubbleMenuDragHandle'}
     >
-      <div className="richtext-flex richtext-items-center richtext-gap-0.5">
-        <ActionButton
-          action={handleAdd}
-          disabled={!editable}
-          icon='Plus'
-          tooltip='Insert block'
-        />
+      <div className='richtext-flex richtext-items-center richtext-gap-0.5'>
+        <ActionButton action={handleAdd} disabled={!editable} icon='Plus' tooltip='Insert block' />
 
         <ActionButton
           disabled={!editable}
@@ -176,158 +173,127 @@ export function RichTextBubbleMenuDragHandle() {
           }}
         />
 
-        <DropdownMenu onOpenChange={handleMenuOpenChange}
-          open={menuOpen}
-        >
-          <DropdownMenuTrigger className="richtext-pointer-events-none" />
+        <DropdownMenu onOpenChange={handleMenuOpenChange} open={menuOpen}>
+          <DropdownMenuTrigger className='richtext-pointer-events-none' />
 
-          <DropdownMenuContent align="start"
-            className="richtext-w-48"
+          <DropdownMenuContent
+            align='start'
+            className='richtext-w-48'
             hideWhenDetached
-            side="bottom"
+            side='bottom'
             sideOffset={0}
           >
             <DropdownMenuItem
-              className="richtext-flex richtext-gap-3 richtext-bg-opacity-10 hover:richtext-bg-red-400 hover:richtext-bg-opacity-20 focus:richtext-bg-red-400 focus:richtext-bg-opacity-30 focus:richtext-text-red-500 dark:hover:richtext-bg-opacity-20 dark:hover:richtext-text-red-500"
+              className='richtext-flex richtext-gap-3 richtext-bg-opacity-10 hover:richtext-bg-red-400 hover:richtext-bg-opacity-20 focus:richtext-bg-red-400 focus:richtext-bg-opacity-30 focus:richtext-text-red-500 dark:hover:richtext-bg-opacity-20 dark:hover:richtext-text-red-500'
               onClick={deleteNode}
             >
-              <IconComponent name="Trash2" />
+              <IconComponent name='Trash2' />
 
-              <span>
-                {t('editor.remove')}
-              </span>
+              <span>{t('editor.remove')}</span>
             </DropdownMenuItem>
 
-            {hasClearExtension
-              ? (
-                <DropdownMenuItem className="richtext-flex richtext-gap-3"
-                  onClick={resetTextFormatting}
-                >
-                  <IconComponent name="PaintRoller" />
+            {hasClearExtension ? (
+              <DropdownMenuItem
+                className='richtext-flex richtext-gap-3'
+                onClick={resetTextFormatting}
+              >
+                <IconComponent name='PaintRoller' />
 
-                  <span>
-                    {t('editor.clear.tooltip')}
-                  </span>
-                </DropdownMenuItem>
-              )
-              : null}
+                <span>{t('editor.clear.tooltip')}</span>
+              </DropdownMenuItem>
+            ) : null}
 
-            <DropdownMenuItem className="richtext-flex richtext-gap-3"
+            <DropdownMenuItem
+              className='richtext-flex richtext-gap-3'
               onClick={copyNodeToClipboard}
             >
-              <IconComponent name="Clipboard" />
+              <IconComponent name='Clipboard' />
 
-              <span>
-                {t('editor.copyToClipboard')}
-              </span>
+              <span>{t('editor.copyToClipboard')}</span>
             </DropdownMenuItem>
 
-            <DropdownMenuItem className="richtext-flex richtext-gap-3"
-              onClick={duplicateNode}
-            >
-              <IconComponent name="Copy" />
+            <DropdownMenuItem className='richtext-flex richtext-gap-3' onClick={duplicateNode}>
+              <IconComponent name='Copy' />
 
-              <span>
-                {t('editor.copy')}
-              </span>
+              <span>{t('editor.copy')}</span>
             </DropdownMenuItem>
 
-            {hasTextAlignExtension || hasIndentExtension
-              ? (
-                <DropdownMenuSeparator />
-              )
-              : null}
+            {hasTextAlignExtension || hasIndentExtension ? <DropdownMenuSeparator /> : null}
 
-            {hasTextAlignExtension
-              ? (
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger className="richtext-flex richtext-gap-3">
-                    <IconComponent name="AlignCenter" />
+            {hasTextAlignExtension ? (
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className='richtext-flex richtext-gap-3'>
+                  <IconComponent name='AlignCenter' />
 
-                    <span>
-                      {t('editor.textalign.tooltip')}
-                    </span>
-                  </DropdownMenuSubTrigger>
+                  <span>{t('editor.textalign.tooltip')}</span>
+                </DropdownMenuSubTrigger>
 
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                      <DropdownMenuItem className="richtext-flex richtext-gap-3"
-                        onClick={() => setTextAlign('left')}
-                      >
-                        <IconComponent name="AlignLeft" />
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem
+                      className='richtext-flex richtext-gap-3'
+                      onClick={() => setTextAlign('left')}
+                    >
+                      <IconComponent name='AlignLeft' />
 
-                        <span>
-                          {t('editor.textalign.left.tooltip')}
-                        </span>
-                      </DropdownMenuItem>
+                      <span>{t('editor.textalign.left.tooltip')}</span>
+                    </DropdownMenuItem>
 
-                      <DropdownMenuItem className="richtext-flex richtext-gap-3"
-                        onClick={() => setTextAlign('center')}
-                      >
-                        <IconComponent name="AlignCenter" />
+                    <DropdownMenuItem
+                      className='richtext-flex richtext-gap-3'
+                      onClick={() => setTextAlign('center')}
+                    >
+                      <IconComponent name='AlignCenter' />
 
-                        <span>
-                          {t('editor.textalign.center.tooltip')}
-                        </span>
-                      </DropdownMenuItem>
+                      <span>{t('editor.textalign.center.tooltip')}</span>
+                    </DropdownMenuItem>
 
-                      <DropdownMenuItem className="richtext-flex richtext-gap-3"
-                        onClick={() => setTextAlign('right')}
-                      >
-                        <IconComponent name="AlignRight" />
+                    <DropdownMenuItem
+                      className='richtext-flex richtext-gap-3'
+                      onClick={() => setTextAlign('right')}
+                    >
+                      <IconComponent name='AlignRight' />
 
-                        <span>
-                          {t('editor.textalign.right.tooltip')}
-                        </span>
-                      </DropdownMenuItem>
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>
-              )
-              : null}
+                      <span>{t('editor.textalign.right.tooltip')}</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
+            ) : null}
 
-            {hasIndentExtension
-              ? (
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger className="richtext-flex richtext-gap-3">
-                    <IconComponent name="IndentIncrease" />
+            {hasIndentExtension ? (
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className='richtext-flex richtext-gap-3'>
+                  <IconComponent name='IndentIncrease' />
 
-                    <span>
-                      {t('editor.indent')}
-                    </span>
-                  </DropdownMenuSubTrigger>
+                  <span>{t('editor.indent')}</span>
+                </DropdownMenuSubTrigger>
 
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                      <DropdownMenuItem
-                        className="richtext-flex richtext-gap-3"
-                        disabled={currentNode?.attrs?.indent >= IndentProps.max}
-                        onClick={increaseIndent}
-                      >
-                        <IconComponent name="IndentIncrease" />
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem
+                      className='richtext-flex richtext-gap-3'
+                      disabled={currentNode?.attrs?.indent >= IndentProps.max}
+                      onClick={increaseIndent}
+                    >
+                      <IconComponent name='IndentIncrease' />
 
-                        <span>
-                          {t('editor.indent.tooltip')}
-                        </span>
-                      </DropdownMenuItem>
+                      <span>{t('editor.indent.tooltip')}</span>
+                    </DropdownMenuItem>
 
-                      <DropdownMenuItem
-                        className="richtext-flex richtext-gap-3"
-                        disabled={currentNode?.attrs?.indent <= IndentProps.min}
-                        onClick={decreaseIndent}
-                      >
-                        <IconComponent name="IndentDecrease" />
+                    <DropdownMenuItem
+                      className='richtext-flex richtext-gap-3'
+                      disabled={currentNode?.attrs?.indent <= IndentProps.min}
+                      onClick={decreaseIndent}
+                    >
+                      <IconComponent name='IndentDecrease' />
 
-                        <span>
-                          {t('editor.outdent.tooltip')}
-                        </span>
-                      </DropdownMenuItem>
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>
-              )
-              : null}
-
+                      <span>{t('editor.outdent.tooltip')}</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
+            ) : null}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

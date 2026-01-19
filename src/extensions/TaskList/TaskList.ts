@@ -3,7 +3,12 @@
 // import type { TaskListOptions as TiptapTaskListOptions } from '@tiptap/extension-task-list';
 // import { TaskList as TiptapTaskList } from '@tiptap/extension-task-list';
 
-import { TaskList as TiptapTaskList, TaskItem, type TaskItemOptions, type TaskListOptions as  TiptapTaskListOptions } from '@tiptap/extension-list';
+import {
+  TaskList as TiptapTaskList,
+  TaskItem,
+  type TaskItemOptions,
+  type TaskListOptions as TiptapTaskListOptions,
+} from '@tiptap/extension-list';
 
 import type { GeneralOptions } from '@/types';
 
@@ -14,11 +19,10 @@ export * from './components/RichTextTaskList';
  */
 export interface TaskListOptions extends TiptapTaskListOptions, GeneralOptions<TaskListOptions> {
   /** options for task items */
-  taskItem: Partial<TaskItemOptions>
+  taskItem: Partial<TaskItemOptions>;
 }
 
 export const TaskList = /* @__PURE__ */ TiptapTaskList.extend<TaskListOptions>({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {

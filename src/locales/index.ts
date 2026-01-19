@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-
 import { createSignal, getSignal, useSetSignal, useSignalValue } from 'reactjs-signal';
 
 import { DEFAULT_LANG_VALUE } from '@/constants';
@@ -38,45 +37,47 @@ const langSignal = createSignal<LangState>({
   message: LANG.message,
 });
 
-  // setLang: (newLang: LanguageType) => {
-  //   set(() => ({
-  //     currentLang: newLang,
-  //   }));
-  // },
-  // setMessage: (lang: LanguageType, messages: Partial<Record<keyof typeof en, string>>) => {
-  //   set((state) => ({
-  //     message: {
-  //       ...state.message,
-  //       [lang]: {
-  //         ...state.message[lang as keyof typeof LANG.message],
-  //         ...messages,
-  //       },
-  //     },
-  //   }));
-  // }
+// setLang: (newLang: LanguageType) => {
+//   set(() => ({
+//     currentLang: newLang,
+//   }));
+// },
+// setMessage: (lang: LanguageType, messages: Partial<Record<keyof typeof en, string>>) => {
+//   set((state) => ({
+//     message: {
+//       ...state.message,
+//       [lang]: {
+//         ...state.message[lang as keyof typeof LANG.message],
+//         ...messages,
+//       },
+//     },
+//   }));
+// }
 function useLocale() {
   const currentLang = useSignalValue(langSignal).currentLang;
   const message = useSignalValue(langSignal).message;
   const setLang = useSetSignal(langSignal);
 
-  const t = useCallback((path: MessageKeysType, params?: Record<string, string | number>) => {
-    try {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-expect-error
-      const messageObj = message[currentLang] || {};
-      let template = messageObj[path] || path;
+  const t = useCallback(
+    (path: MessageKeysType, params?: Record<string, string | number>) => {
+      try {
+        //@ts-expect-error
+        const messageObj = message[currentLang] || {};
+        let template = messageObj[path] || path;
 
-      if (params) {
-        Object.entries(params).forEach(([key, value]) => {
-          template = template.replace(new RegExp(`\\{${key}\\}`, 'g'), String(value));
-        });
+        if (params) {
+          Object.entries(params).forEach(([key, value]) => {
+            template = template.replace(new RegExp(`\\{${key}\\}`, 'g'), String(value));
+          });
+        }
+
+        return template;
+      } catch {
+        return path;
       }
-
-      return template;
-    } catch {
-      return path;
-    }
-  }, [message, currentLang]);
+    },
+    [message, currentLang]
+  );
 
   return {
     setLang,
@@ -87,12 +88,15 @@ function useLocale() {
 
 const localeActions = {
   setLang: (lang: LanguageType | (string & {})) => {
-    getSignal(langSignal).setValue((prev => ({
+    getSignal(langSignal).setValue((prev) => ({
       ...prev,
       currentLang: lang,
-    })));
+    }));
   },
-  setMessage: (lang: LanguageType | (string & {}), messages: Partial<Record<keyof typeof LANG.message.en, string>>) => {
+  setMessage: (
+    lang: LanguageType | (string & {}),
+    messages: Partial<Record<keyof typeof LANG.message.en, string>>
+  ) => {
     getSignal(langSignal).setValue((prev) => ({
       ...prev,
       message: {

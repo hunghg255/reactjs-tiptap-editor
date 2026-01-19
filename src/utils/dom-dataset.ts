@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
- 
 import { safeJSONParse } from '@/utils/json';
 
 /**
@@ -57,7 +55,7 @@ export function getDatasetAttribute(attribute: string, transformToJSON = false) 
         const texts = html.match(/([\S\s])+?="([\S\s])+?"/g);
         if (texts && texts.length > 0) {
           const params = texts
-            .map(str => str.trim())
+            .map((str) => str.trim())
             .reduce((accu, item) => {
               const i = item.indexOf('=');
               const arr = [item.slice(0, i), item.slice(i + 1).slice(1, -1)];

@@ -14,8 +14,8 @@ export function getRenderContainer(editor: Editor, nodeType: string) {
   const element = innermostNode as any;
 
   if (
-    (element && element.dataset.type && element.dataset.type === nodeType)
-    || (element && element.classList && element.classList.contains(nodeType))
+    (element && element.dataset.type && element.dataset.type === nodeType) ||
+    (element && element.classList && element.classList.contains(nodeType))
   ) {
     return element;
   }
@@ -28,9 +28,9 @@ export function getRenderContainer(editor: Editor, nodeType: string) {
   }
 
   while (
-    container
-    && !(container.dataset.type && container.dataset.type === nodeType)
-    && !container.classList.contains(nodeType)
+    container &&
+    !(container.dataset.type && container.dataset.type === nodeType) &&
+    !container.classList.contains(nodeType)
   ) {
     container = container.parentElement;
   }

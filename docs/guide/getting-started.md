@@ -21,6 +21,7 @@ pnpm install reactjs-tiptap-editor@latest
 ```sh [yarn]
 yarn add reactjs-tiptap-editor@latest
 ```
+
 :::
 
 ## Usage
@@ -86,8 +87,8 @@ const App = () => {
  * Interface for RichTextEditor component props
  */
 export interface IProviderRichTextProps {
-  editor: Editor | null
-  dark: boolean
+  editor: Editor | null;
+  dark: boolean;
 }
 ```
 

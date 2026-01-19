@@ -4,10 +4,7 @@ import { type ExportPdfOptions } from '@/extensions/ExportPdf';
 
 function printHtml(content: string, exportPdfOptions: ExportPdfOptions) {
   const iframe: HTMLIFrameElement = document.createElement('iframe');
-  iframe.setAttribute(
-    'style',
-    'position: absolute; width: 0; height: 0; top: 0; left: 0;'
-  );
+  iframe.setAttribute('style', 'position: absolute; width: 0; height: 0; top: 0; left: 0;');
   document.body.appendChild(iframe);
 
   const doc = iframe.contentDocument || iframe.contentWindow?.document;
@@ -17,12 +14,7 @@ function printHtml(content: string, exportPdfOptions: ExportPdfOptions) {
   const {
     paperSize,
     title = 'React Tiptap Editor',
-    margins: {
-      top: marginTop,
-      right: marginRight,
-      bottom: marginBottom,
-      left: marginLeft,
-    },
+    margins: { top: marginTop, right: marginRight, bottom: marginBottom, left: marginLeft },
   } = exportPdfOptions;
 
   const html = `
@@ -84,10 +76,7 @@ function printHtml(content: string, exportPdfOptions: ExportPdfOptions) {
   });
 }
 
-export function printEditorContent(
-  editor: Editor,
-  exportPdfOptions: ExportPdfOptions
-) {
+export function printEditorContent(editor: Editor, exportPdfOptions: ExportPdfOptions) {
   const content = editor.getHTML();
   if (content) {
     printHtml(content, exportPdfOptions);

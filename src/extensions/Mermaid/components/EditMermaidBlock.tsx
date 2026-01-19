@@ -1,20 +1,25 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { useCallback, useEffect, useRef, useState } from 'react';
-
 import type { Editor } from '@tiptap/core';
-
+import { useCallback, useEffect, useRef, useState } from 'react';
 // @ts-ignore
 import svg64 from 'svg64';
 
 import { ActionButton } from '@/components/ActionButton';
 import { Button } from '@/components/ui';
-import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { dataURLtoFile } from '@/utils/file';
 import { shortId } from '@/utils/shortId';
 
 interface IProps {
-  editor: Editor, attrs?: any, extension?: any
+  editor: Editor;
+  attrs?: any;
+  extension?: any;
 }
 
 const defaultCode = 'graph TB\na-->b';
@@ -29,18 +34,13 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
 
   const upload = extension?.options.upload;
 
-  const loadMermaid = useCallback(
-    (div: any) => {
-      if (!div)
-        return;
+  const loadMermaid = useCallback((div: any) => {
+    if (!div) return;
 
-      import('mermaid')
-        .then((res) => {
-          setMermaidInstance(res.default);
-        });
-    },
-    [],
-  );
+    import('mermaid').then((res) => {
+      setMermaidInstance(res.default);
+    });
+  }, []);
 
   const renderMermaid = async (value: any) => {
     try {
@@ -104,7 +104,7 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
             width,
             height,
           },
-          !!mermaidCode,
+          !!mermaidCode
         )
         .run();
       editor?.commands.setAlignImageMermaid(align);
@@ -113,33 +113,22 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
   };
 
   return (
-    <Dialog
-      onOpenChange={toggleVisible}
-      open={visible}
-    >
+    <Dialog onOpenChange={toggleVisible} open={visible}>
       <DialogTrigger asChild>
-        <ActionButton
-          action={() => toggleVisible(true)}
-          icon="Pencil"
-          tooltip="Edit Mermaid"
-        />
+        <ActionButton action={() => toggleVisible(true)} icon='Pencil' tooltip='Edit Mermaid' />
       </DialogTrigger>
 
-      <DialogContent className="richtext-z-[99999] !richtext-max-w-[1300px]">
-        <DialogTitle>
-          Edit Mermaid
-        </DialogTitle>
+      <DialogContent className='richtext-z-[99999] !richtext-max-w-[1300px]'>
+        <DialogTitle>Edit Mermaid</DialogTitle>
 
-        <div ref={loadMermaid}
-          style={{ height: '100%', border: '1px solid hsl(var(--border))' }}
-        >
-          <div className="richtext-flex richtext-gap-[10px] richtext-rounded-[10px] richtext-p-[10px]">
+        <div ref={loadMermaid} style={{ height: '100%', border: '1px solid hsl(var(--border))' }}>
+          <div className='richtext-flex richtext-gap-[10px] richtext-rounded-[10px] richtext-p-[10px]'>
             <Textarea
               autoFocus
-              className="richtext-flex-1"
+              className='richtext-flex-1'
               defaultValue={defaultCode}
-              onChange={e => setMermaidCode(e.target.value)}
-              placeholder="Text"
+              onChange={(e) => setMermaidCode(e.target.value)}
+              placeholder='Text'
               required
               rows={10}
               value={mermaidCode}
@@ -149,19 +138,20 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
             />
 
             <div
-              className="richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]"
+              className='richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]'
               dangerouslySetInnerHTML={{ __html: svgCode }}
               ref={mermaidRef as any}
-              style={{ height: '100%', border: '1px solid hsl(var(--border))', minHeight: 500 }}
+              style={{
+                height: '100%',
+                border: '1px solid hsl(var(--border))',
+                minHeight: 500,
+              }}
             />
           </div>
         </div>
 
         <DialogFooter>
-          <Button
-            onClick={setMermaid}
-            type="button"
-          >
+          <Button onClick={setMermaid} type='button'>
             Save changes
           </Button>
         </DialogFooter>

@@ -1,7 +1,7 @@
 .ProseMirror {
   /* Typography */
   p {
-    @apply richtext-leading-relaxed richtext-mb-1.5 first:richtext-mt-0 last:richtext-mb-0;
+    @apply richtext-mb-1.5 richtext-leading-relaxed first:richtext-mt-0 last:richtext-mb-0;
   }
 
   & > p {
@@ -54,11 +54,11 @@
   }
 
   a.link {
-    @apply richtext-text-blue-500 richtext-font-extrabold dark:richtext-text-blue-400;
+    @apply richtext-font-extrabold richtext-text-blue-500 dark:richtext-text-blue-400;
   }
 
   mark {
-    @apply richtext-bg-red-500 richtext-rounded-sm richtext-decoration-clone richtext-text-inherit richtext-py-1 richtext-px-0 dark:richtext-bg-red-400;
+    @apply richtext-rounded-sm richtext-bg-red-500 richtext-decoration-clone richtext-px-0 richtext-py-1 richtext-text-inherit dark:richtext-bg-red-400;
   }
 
   & img {
@@ -74,18 +74,17 @@
   }
   iframe {
     @apply richtext-border !important;
-    @apply richtext-w-full richtext-border-border richtext-mt-2 richtext-rounded-sm richtext-h-full;
+    @apply richtext-mt-2 richtext-h-full richtext-w-full richtext-rounded-sm richtext-border-border;
   }
-
 
   /* Block Quote */
   .blockquote {
-    @apply richtext-border-l-4 richtext-text-black richtext-border-l-neutral-700 richtext-py-2 richtext-px-4 richtext-bg-opacity-80 richtext-rounded-lg richtext-rounded-tl-none richtext-rounded-bl-none;
+    @apply richtext-rounded-lg richtext-rounded-bl-none richtext-rounded-tl-none richtext-border-l-4 richtext-border-l-neutral-700 richtext-bg-opacity-80 richtext-px-4 richtext-py-2 richtext-text-black;
     @apply dark:richtext-border-l-neutral-300 dark:richtext-text-white;
   }
 
   code {
-    @apply richtext-caret-white richtext-text-white richtext-bg-neutral-900 richtext-rounded-sm richtext-shadow-lg richtext-font-mono;
+    @apply richtext-rounded-sm richtext-bg-neutral-900 richtext-font-mono richtext-text-white richtext-caret-white richtext-shadow-lg;
 
     // &::selection {
     //   @apply richtext-bg-white/30;
@@ -93,14 +92,14 @@
   }
 
   pre {
-    @apply richtext-caret-white richtext-bg-neutral-700 richtext-text-white richtext-rounded richtext-my-12 richtext-p-4 !richtext-border richtext-border-black dark:richtext-bg-neutral-900 richtext-border-border;
+    @apply richtext-my-12 richtext-rounded !richtext-border richtext-border-black richtext-border-border richtext-bg-neutral-700 richtext-p-4 richtext-text-white richtext-caret-white dark:richtext-bg-neutral-900;
 
     // *::selection {
     //   @apply richtext-bg-white/20;
     // }
 
     code {
-      @apply richtext-bg-inherit richtext-text-inherit richtext-p-0 richtext-shadow-none;
+      @apply richtext-bg-inherit richtext-p-0 richtext-text-inherit richtext-shadow-none;
     }
   }
   /* List */
@@ -114,7 +113,7 @@
 
   ul,
   ol {
-    @apply richtext-py-0 richtext-px-8 richtext-my-6 first:richtext-mt-0 last:richtext-mb-0;
+    @apply richtext-my-6 richtext-px-8 richtext-py-0 first:richtext-mt-0 last:richtext-mb-0;
 
     ul,
     ol,
@@ -123,7 +122,7 @@
     }
 
     p {
-      @apply richtext-mt-0 richtext-mb-1;
+      @apply richtext-mb-1 richtext-mt-0;
     }
   }
 
@@ -143,7 +142,7 @@
       @apply richtext-flex;
 
       > label {
-        @apply richtext-grow-0 richtext-shrink-0 richtext-flex-auto richtext-inline richtext-mr-2 richtext-select-none;
+        @apply richtext-mr-2 richtext-inline richtext-flex-auto richtext-shrink-0 richtext-grow-0 richtext-select-none;
       }
 
       > div {
@@ -158,14 +157,14 @@
 
   table {
     border: 1px solid;
-    @apply richtext-border-collapse richtext-border-black/10 richtext-table-fixed richtext-box-border richtext-overflow-x-auto richtext-overflow-y-hidden richtext-block;
+    @apply richtext-box-border richtext-block richtext-table-fixed richtext-border-collapse richtext-overflow-x-auto richtext-overflow-y-hidden richtext-border-black/10;
     @apply dark:richtext-border-white/20;
 
     td,
     th {
-    border: 1px solid;
+      border: 1px solid;
       @apply richtext-border !important;
-      @apply richtext-border-black/10 richtext-min-w-[1em] richtext-p-2 richtext-box-border richtext-relative richtext-text-left richtext-align-top;
+      @apply richtext-relative richtext-box-border richtext-min-w-[1em] richtext-border-black/10 richtext-p-2 richtext-text-left richtext-align-top;
       @apply dark:richtext-border-white/20;
 
       &:first-of-type:not(a) {
@@ -182,16 +181,15 @@
     }
 
     th {
-      @apply richtext-font-bold richtext-text-left;
+      @apply richtext-text-left richtext-font-bold;
     }
   }
 }
 
-
 .reactjs-tiptap-editor .ProseMirror .search-result {
-    background-color: #ffd90080
+  background-color: #ffd90080;
 }
 
 .reactjs-tiptap-editor .ProseMirror .search-result-current {
-    background-color: #0dff0080
+  background-color: #0dff0080;
 }

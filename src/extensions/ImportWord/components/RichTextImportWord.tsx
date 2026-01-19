@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { useRef, useState } from 'react';
-
 import mammoth from 'mammoth';
+import { useRef, useState } from 'react';
 
 import { ActionButton, useToast } from '@/components';
 import { Image } from '@/extensions/Image';
@@ -26,7 +24,7 @@ export function RichTextImportWord() {
     isActive = undefined,
     mammothOptions,
     limit,
-    convert
+    convert,
   } = buttonProps?.componentProps ?? {};
 
   const { editorDisabled } = useToggleActive(isActive);
@@ -109,10 +107,7 @@ export function RichTextImportWord() {
       } else {
         const arrayBuffer = await importFile.arrayBuffer();
         // TODO: add messages
-        const { value } = await mammoth.convertToHtml(
-          { arrayBuffer },
-          mammothOptions,
-        );
+        const { value } = await mammoth.convertToHtml({ arrayBuffer }, mammothOptions);
         handleResult(value);
       }
     } finally {
@@ -125,13 +120,14 @@ export function RichTextImportWord() {
     editor.chain().setContent(html, true).run();
   }
 
-    if (!buttonProps) {
+  if (!buttonProps) {
     return <></>;
   }
 
   return (
     <>
-      <ActionButton action={triggerFileInput}
+      <ActionButton
+        action={triggerFileInput}
         disabled={editorDisabled}
         icon={icon}
         loading={loading}
@@ -140,10 +136,10 @@ export function RichTextImportWord() {
       />
 
       <input
-        accept=".docx"
+        accept='.docx'
         onChange={handleFileChange}
         ref={fileInput}
-        type="file"
+        type='file'
         style={{
           display: 'none',
         }}

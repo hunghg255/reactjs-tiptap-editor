@@ -1,8 +1,6 @@
-/* eslint-disable react/display-name */
-import React from 'react';
-
 import { Slot } from '@radix-ui/react-slot';
 import type { TooltipContentProps } from '@radix-ui/react-tooltip';
+import React from 'react';
 
 import { Button, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components';
 import type { ButtonViewReturnComponentProps } from '@/types';
@@ -10,26 +8,26 @@ import { getShortcutKeys } from '@/utils/plateform';
 
 export interface ActionMenuButtonProps {
   /** Icon name to display */
-  icon?: any
+  icon?: any;
   /** Button title text */
-  title?: string
+  title?: string;
   /** Tooltip text */
-  tooltip?: string
+  tooltip?: string;
   /** Tooltip options */
-  tooltipOptions?: TooltipContentProps
+  tooltipOptions?: TooltipContentProps;
   /** Whether the button is disabled */
-  disabled?: boolean
+  disabled?: boolean;
   /** Keyboard shortcut keys */
-  shortcutKeys?: string[]
+  shortcutKeys?: string[];
   /** Button color */
-  color?: string
+  color?: string;
   /** Click action handler */
-  action?: ButtonViewReturnComponentProps['action']
+  action?: ButtonViewReturnComponentProps['action'];
   /** Active state checker */
-  isActive?: ButtonViewReturnComponentProps['isActive']
+  isActive?: ButtonViewReturnComponentProps['isActive'];
   /** Whether to render as child */
-  asChild?: boolean
-  dataState?: boolean
+  asChild?: boolean;
+  dataState?: boolean;
 }
 
 const ActionMenuButton = React.forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
@@ -41,41 +39,43 @@ const ActionMenuButton = React.forwardRef<HTMLButtonElement, ActionMenuButtonPro
       <Tooltip>
         <TooltipTrigger asChild>
           <Comp
-            className="richtext-h-[32px] richtext-min-w-24 richtext-overflow-hidden richtext-px-[5px]  richtext-py-0"
+            className='richtext-h-[32px] richtext-min-w-24 richtext-overflow-hidden richtext-px-[5px] richtext-py-0'
             data-state={props?.dataState ? 'on' : 'off'} // active background control
             disabled={props?.disabled}
             ref={ref}
-            variant="ghost"
+            variant='ghost'
             {...props}
           >
-            <div className="richtext-flex richtext-h-full richtext-items-center richtext-font-normal">
+            <div className='richtext-flex richtext-h-full richtext-items-center richtext-font-normal'>
               {props?.title && (
-                <div className="richtext-grow richtext-truncate richtext-text-left richtext-text-sm">
+                <div className='richtext-grow richtext-truncate richtext-text-left richtext-text-sm'>
                   {props?.title}
                 </div>
               )}
 
-              {Icon && <Icon className="richtext-ml-1 richtext-size-3 richtext-shrink-0 richtext-text-zinc-500" />}
+              {Icon && (
+                <Icon className='richtext-ml-1 richtext-size-3 richtext-shrink-0 richtext-text-zinc-500' />
+              )}
             </div>
           </Comp>
         </TooltipTrigger>
 
-        {tooltip && <TooltipContent>
-          <div className="richtext-flex richtext-max-w-24 richtext-flex-col richtext-items-center richtext-text-center">
-            {tooltip && <div>
-              {tooltip}
-            </div>}
+        {tooltip && (
+          <TooltipContent>
+            <div className='richtext-flex richtext-max-w-24 richtext-flex-col richtext-items-center richtext-text-center'>
+              {tooltip && <div>{tooltip}</div>}
 
-            <div className="richtext-flex">
-              {!!props?.shortcutKeys?.length && <span>
-                {getShortcutKeys(props?.shortcutKeys)}
-              </span>}
+              <div className='richtext-flex'>
+                {!!props?.shortcutKeys?.length && (
+                  <span>{getShortcutKeys(props?.shortcutKeys)}</span>
+                )}
+              </div>
             </div>
-          </div>
-        </TooltipContent>}
+          </TooltipContent>
+        )}
       </Tooltip>
     );
-  },
+  }
 );
 
 export { ActionMenuButton };

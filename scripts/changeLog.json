@@ -16,11 +16,7 @@
     "refs": "origin/update-macros-katex, update-macros-katex",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "Katex",
-      "KatexWrapper",
-      "RichTextKatex"
-    ]
+    "functions": ["Katex", "KatexWrapper", "RichTextKatex"]
   },
   {
     "hash": "f05f785e8bfce53320a762c1d1d261e0c773c57b",
@@ -29,9 +25,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md"
-    ]
+    "functions": ["index.md"]
   },
   {
     "hash": "1398d951103eb309ef723926636971ea36b5c957",
@@ -50,11 +44,7 @@
     "refs": "origin/fix-mention-extension, fix-mention-extension",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "Emoji",
-      "Mention",
-      "NodeViewMentionList"
-    ]
+    "functions": ["Emoji", "Mention", "NodeViewMentionList"]
   },
   {
     "hash": "4d75ab1ca702271e9caf134e9d81d728165db91d",
@@ -103,9 +93,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "LinkEditBlock"
-    ]
+    "functions": ["LinkEditBlock"]
   },
   {
     "hash": "1bd5beaa2f752ba5ba20c4447453b3c5c42134a5",
@@ -114,10 +102,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "extensions.json"
-    ]
+    "functions": ["index.md", "extensions.json"]
   },
   {
     "hash": "a705d03dfd76d244f1e0b45fe5ff5bef3e02dd3b",
@@ -189,11 +174,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "RichTextColor",
-      "RichTextHighlight",
-      "RichTextImportWord"
-    ]
+    "functions": ["RichTextColor", "RichTextHighlight", "RichTextImportWord"]
   },
   {
     "hash": "85814be50d517b1ecc3490101b4c84897030ac60",
@@ -391,12 +372,7 @@
     "refs": "",
     "author_name": "Found-L",
     "author_email": "lin752612@sina.com",
-    "functions": [
-      "Color",
-      "ColorActionButton",
-      "Highlight",
-      "HighlightActionButton"
-    ]
+    "functions": ["Color", "ColorActionButton", "Highlight", "HighlightActionButton"]
   },
   {
     "hash": "21fd6bc33496d011bc4b0122a0adc1e749875c2d",
@@ -413,13 +389,7 @@
     "date": "Thu Dec 4 15:00:43 2025 +0800",
     "message": "fix: Sync issues for Color/Highlight",
     "refs": "",
-    "functions": [
-      "index.md",
-      "Color",
-      "ColorActionButton",
-      "Highlight",
-      "HighlightActionButton"
-    ]
+    "functions": ["index.md", "Color", "ColorActionButton", "Highlight", "HighlightActionButton"]
   },
   {
     "hash": "08f8767d0dcd2343bf2064af738de5830dd9250c",
@@ -562,9 +532,7 @@
     "refs": "",
     "author_name": "markok",
     "author_email": "marko.kanala@meliora.fi",
-    "functions": [
-      "Image"
-    ]
+    "functions": ["Image"]
   },
   {
     "hash": "70276528b7e2d9b262766e3af6ad0191c5c49103",
@@ -573,9 +541,7 @@
     "refs": "",
     "author_name": "markok",
     "author_email": "marko.kanala@meliora.fi",
-    "functions": [
-      "Image"
-    ]
+    "functions": ["Image"]
   },
   {
     "hash": "97040ceb5d85b6cbcd174584b3088bbd9398f6df",
@@ -594,12 +560,7 @@
     "refs": "origin/feature/image-gif-tenor, feature/image-gif-tenor",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md",
-      "ImageGif",
-      "ImageGifActionButton",
-      "services"
-    ]
+    "functions": ["index.md", "ImageGif", "ImageGifActionButton", "services"]
   },
   {
     "hash": "6f6f1d76877de67e4e3d9858b70ae8a2f984d70f",
@@ -608,9 +569,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "761233f621ddafd171764ca15267692ec2acfbb3",
@@ -629,9 +588,7 @@
     "refs": "",
     "author_name": "markok",
     "author_email": "marko.kanala@meliora.fi",
-    "functions": [
-      "index.md"
-    ]
+    "functions": ["index.md"]
   },
   {
     "hash": "5d60adbd329946e5e6e430a4afcf13118437fbd4",
@@ -640,10 +597,7 @@
     "refs": "",
     "author_name": "markok",
     "author_email": "marko.kanala@meliora.fi",
-    "functions": [
-      "Indent",
-      "Italic"
-    ]
+    "functions": ["Indent", "Italic"]
   },
   {
     "hash": "2012590bb2898347965543715eabd7e9f160d0c2",
@@ -679,10 +633,7 @@
     "refs": "",
     "author_name": "markok",
     "author_email": "marko.kanala@meliora.fi",
-    "functions": [
-      "Highlight",
-      "HighlightActionButton"
-    ]
+    "functions": ["Highlight", "HighlightActionButton"]
   },
   {
     "hash": "fdaf78543b65532bf3b49c1943a1dd43d4aaf221",
@@ -691,9 +642,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "dbe9065b708a0e80ec09d8333268ca582c66a3e3",
@@ -712,9 +661,7 @@
     "refs": "",
     "author_name": "markok",
     "author_email": "marko.kanala@meliora.fi",
-    "functions": [
-      "ActionImageButton"
-    ]
+    "functions": ["ActionImageButton"]
   },
   {
     "hash": "d0bf58fdc1f1bc1cd9cc5635499adaec421e2d41",
@@ -723,11 +670,7 @@
     "refs": "",
     "author_name": "markok",
     "author_email": "marko.kanala@meliora.fi",
-    "functions": [
-      "Link",
-      "LinkEditBlock",
-      "LinkEditPopover"
-    ]
+    "functions": ["Link", "LinkEditBlock", "LinkEditPopover"]
   },
   {
     "hash": "3cb99660f5c6ad13fc3fc0b1e4805a3e1b145e3d",
@@ -746,9 +689,7 @@
     "refs": "",
     "author_name": "Loan Nguyen",
     "author_email": "loancv12@gmail.com",
-    "functions": [
-      "LinkEditBlock"
-    ]
+    "functions": ["LinkEditBlock"]
   },
   {
     "hash": "2c427645ed47b32c4f375f1f354cccdd6a124520",
@@ -757,9 +698,7 @@
     "refs": "",
     "author_name": "chris",
     "author_email": "zhangyunfei@lightdigit.ai",
-    "functions": [
-      "ExportPdf"
-    ]
+    "functions": ["ExportPdf"]
   },
   {
     "hash": "5674a7a469a922909524fb0794e664edb51028d0",
@@ -788,9 +727,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "8bb40360bf8331e65af4b482cfe3f3b497cc7a70",
@@ -809,9 +746,7 @@
     "refs": "",
     "author_name": "Loan Nguyen",
     "author_email": "loancv12@gmail.com",
-    "functions": [
-      "ActiveVideoButton"
-    ]
+    "functions": ["ActiveVideoButton"]
   },
   {
     "hash": "31f066b8edf07320cec6797bec102477de8a6dcb",
@@ -820,9 +755,7 @@
     "refs": "",
     "author_name": "Loan Nguyen",
     "author_email": "loancv12@gmail.com",
-    "functions": [
-      "ActiveVideoButton"
-    ]
+    "functions": ["ActiveVideoButton"]
   },
   {
     "hash": "23e07867acb880e7fec61a154801e79ddf355586",
@@ -841,9 +774,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "EmojiPicker"
-    ]
+    "functions": ["EmojiPicker"]
   },
   {
     "hash": "c885c61f78cd65b472d8bc98d6af0587fa65e052",
@@ -872,11 +803,7 @@
     "refs": "",
     "author_name": "Found-L",
     "author_email": "lin752612@sina.com",
-    "functions": [
-      "index.md",
-      "Image",
-      "ActionImageButton"
-    ]
+    "functions": ["index.md", "Image", "ActionImageButton"]
   },
   {
     "hash": "be35295436573406d88be18e195f4317359950a9",
@@ -885,9 +812,7 @@
     "refs": "",
     "author_name": "Found-L",
     "author_email": "lin752612@sina.com",
-    "functions": [
-      "ActionImageButton"
-    ]
+    "functions": ["ActionImageButton"]
   },
   {
     "hash": "5d197a7a746e284aec5aa88689d7eb7b780955de",
@@ -896,10 +821,7 @@
     "refs": "",
     "author_name": "Found-L",
     "author_email": "lin752612@sina.com",
-    "functions": [
-      "ActionImageButton",
-      "ImageCropper"
-    ]
+    "functions": ["ActionImageButton", "ImageCropper"]
   },
   {
     "hash": "c83b08bc0ae2f1533f683b7ea48f166634337b11",
@@ -908,10 +830,7 @@
     "refs": "",
     "author_name": "markok",
     "author_email": "marko.kanala@meliora.fi",
-    "functions": [
-      "Excalidraw",
-      "ExcalidrawActiveButton"
-    ]
+    "functions": ["Excalidraw", "ExcalidrawActiveButton"]
   },
   {
     "hash": "aef771042a4255eecfe87fe8372727b53f7c244f",
@@ -920,9 +839,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "1e6ef23297b2c57db8231961faa59c23e1aef3d3",
@@ -951,9 +868,7 @@
     "refs": "",
     "author_name": "HamzaA598",
     "author_email": "hamzaemad598@gmail.com",
-    "functions": [
-      "index.md"
-    ]
+    "functions": ["index.md"]
   },
   {
     "hash": "c28fa9998cf59868afc3a11e03e87b8d1fedff19",
@@ -962,19 +877,14 @@
     "refs": "",
     "author_name": "Found",
     "author_email": "lin752612@sina.com",
-    "functions": [
-      "ActionImageButton"
-    ]
+    "functions": ["ActionImageButton"]
   },
   {
     "hash": "1ed17e93fb7ac2d6fbe4ab027b785dfcac51eeff",
     "date": "Wed Jul 30 14:46:06 2025 +0800",
     "message": "feat(image): support more flexible MIME type validation and config",
     "refs": "",
-    "functions": [
-      "index.md",
-      "ActionImageButton"
-    ]
+    "functions": ["index.md", "ActionImageButton"]
   },
   {
     "hash": "9f68600ee07e90ef61b5b8e110cdd3f8930d1ce5",
@@ -991,20 +901,14 @@
     "date": "Tue Jul 29 14:25:23 2025 +0800",
     "message": "fix(codeBlock): improve clipboard handling and focus behavior",
     "refs": "",
-    "functions": [
-      "NodeViewCodeBlock"
-    ]
+    "functions": ["NodeViewCodeBlock"]
   },
   {
     "hash": "cbe0c20d9e8fd7a427f9826da0234cb1861d8ff0",
     "date": "Mon Jul 28 18:47:00 2025 +0800",
     "message": "fix(image): improve crop modal and upload handling",
     "refs": "",
-    "functions": [
-      "Image",
-      "ActionImageButton",
-      "ImageCropper"
-    ]
+    "functions": ["Image", "ActionImageButton", "ImageCropper"]
   },
   {
     "hash": "583a1d309d5e0cb39a7428f72829ec7c7881d1bd",
@@ -1013,9 +917,7 @@
     "refs": "",
     "author_name": "HamzaA598",
     "author_email": "hamzaemad598@gmail.com",
-    "functions": [
-      "ActionImageButton"
-    ]
+    "functions": ["ActionImageButton"]
   },
   {
     "hash": "a9a51c92dbcc2197a8461df7c28324c6f76d9808",
@@ -1034,10 +936,7 @@
     "refs": "",
     "author_name": "HamzaA598",
     "author_email": "hamzaemad598@gmail.com",
-    "functions": [
-      "Image",
-      "ImageView"
-    ]
+    "functions": ["Image", "ImageView"]
   },
   {
     "hash": "d33c1464ffd4d021833c52c4c2ffb3602d3ef282",
@@ -1046,9 +945,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "ca9a99edab858a5606e4c768205b102d2462d8f4",
@@ -1067,9 +964,7 @@
     "refs": "",
     "author_name": "HamzaA598",
     "author_email": "hamzaemad598@gmail.com",
-    "functions": [
-      "index.md"
-    ]
+    "functions": ["index.md"]
   },
   {
     "hash": "53b799cf13a768c44b7b3abae1a1f01c8ebdec8f",
@@ -1078,9 +973,7 @@
     "refs": "",
     "author_name": "HamzaA598",
     "author_email": "hamzaemad598@gmail.com",
-    "functions": [
-      "ExportPdf"
-    ]
+    "functions": ["ExportPdf"]
   },
   {
     "hash": "d19cf27952468696504dc58251a0de02c272eefb",
@@ -1099,10 +992,7 @@
     "refs": "",
     "author_name": "Found",
     "author_email": "lin752612@sina.com",
-    "functions": [
-      "Link",
-      "LinkEditBlock"
-    ]
+    "functions": ["Link", "LinkEditBlock"]
   },
   {
     "hash": "4e0cbe33d52314c9b9d873fdb77be977e649be39",
@@ -1131,9 +1021,7 @@
     "refs": "",
     "author_name": "Loan Nguyen",
     "author_email": "loancv12@gmail.com",
-    "functions": [
-      "Link"
-    ]
+    "functions": ["Link"]
   },
   {
     "hash": "f29718fff6fdfc308558b599042dc3a6124fb553",
@@ -1142,9 +1030,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "5c545d8618a26eb4f0601ad87418f29ea37eb6f0",
@@ -1173,9 +1059,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "NodeViewExcalidraw"
-    ]
+    "functions": ["NodeViewExcalidraw"]
   },
   {
     "hash": "9aaacfcc918850074473de1e9f1836bd247e6c73",
@@ -1184,9 +1068,7 @@
     "refs": "",
     "author_name": "markok",
     "author_email": "marko.kanala@meliora.fi",
-    "functions": [
-      "ExcalidrawActiveButton"
-    ]
+    "functions": ["ExcalidrawActiveButton"]
   },
   {
     "hash": "f40f9d15e92422162a79fa55a34a5168966c956a",
@@ -1205,9 +1087,7 @@
     "refs": "",
     "author_name": "markok",
     "author_email": "marko.kanala@meliora.fi",
-    "functions": [
-      "ExcalidrawActiveButton"
-    ]
+    "functions": ["ExcalidrawActiveButton"]
   },
   {
     "hash": "85d00b7b2b1ae4da80fbee896370dbcd3d71db51",
@@ -1236,9 +1116,7 @@
     "refs": "",
     "author_name": "Loan Nguyen",
     "author_email": "loancv12@gmail.com",
-    "functions": [
-      "LinkEditBlock"
-    ]
+    "functions": ["LinkEditBlock"]
   },
   {
     "hash": "c1ff0b377f00a117b002fd1b5bec9964cbf94a05",
@@ -1247,9 +1125,7 @@
     "refs": "",
     "author_name": "Loan Nguyen",
     "author_email": "loancv12@gmail.com",
-    "functions": [
-      "LinkEditBlock"
-    ]
+    "functions": ["LinkEditBlock"]
   },
   {
     "hash": "ae751c2b2925d9e4e2028e92dddc7964617f3338",
@@ -1258,9 +1134,7 @@
     "refs": "",
     "author_name": "Loan Nguyen",
     "author_email": "loancv12@gmail.com",
-    "functions": [
-      "LinkEditBlock"
-    ]
+    "functions": ["LinkEditBlock"]
   },
   {
     "hash": "119aa7a7b464cd1ac8f6043fa3aa2febc8d45397",
@@ -1269,9 +1143,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "9b2c85b714b600c2df1a4db7a18e152e26b32cb4",
@@ -1290,9 +1162,7 @@
     "refs": "",
     "author_name": "vk",
     "author_email": "morcano91@gmail.com",
-    "functions": [
-      "Video"
-    ]
+    "functions": ["Video"]
   },
   {
     "hash": "57d8fdd6e64326d8d0082183c1803bda4904f405",
@@ -1301,9 +1171,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "1ba77bd6302cda318dc63141bd27668ea0bd5153",
@@ -1312,11 +1180,7 @@
     "refs": "",
     "author_name": "Zeeshan Ahmad",
     "author_email": "zeeshan",
-    "functions": [
-      "Table",
-      "TableCell",
-      "TableRow"
-    ]
+    "functions": ["Table", "TableCell", "TableRow"]
   },
   {
     "hash": "3ad2718adeb3542fb973909b961cae5ba1d66203",
@@ -1325,11 +1189,7 @@
     "refs": "",
     "author_name": "Zeeshan Ahmad",
     "author_email": "zeeshan",
-    "functions": [
-      "Table",
-      "TableCell",
-      "TableRow"
-    ]
+    "functions": ["Table", "TableCell", "TableRow"]
   },
   {
     "hash": "a7323a4144841d6569a6eebb5ec04c62d592d63e",
@@ -1338,9 +1198,7 @@
     "refs": "",
     "author_name": "Zeeshan Ahmad",
     "author_email": "zeeshan.ahmad@hdworks.in",
-    "functions": [
-      "Video"
-    ]
+    "functions": ["Video"]
   },
   {
     "hash": "723c098f3f9dcca648d986be69082402f7fa5623",
@@ -1349,9 +1207,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "930988280ec3051b9bde2c1bba1730a9c1e54b7a",
@@ -1370,9 +1226,7 @@
     "refs": "",
     "author_name": "ludejun",
     "author_email": "ludejun@live.cn",
-    "functions": [
-      "TableOfContent"
-    ]
+    "functions": ["TableOfContent"]
   },
   {
     "hash": "70aa7eb355c6353199d6682a4ba52eb2e9731d7c",
@@ -1381,11 +1235,7 @@
     "refs": "",
     "author_name": "vk",
     "author_email": "vladimir@voma.ai",
-    "functions": [
-      "extensions.json",
-      "CodeView",
-      "index"
-    ]
+    "functions": ["extensions.json", "CodeView", "index"]
   },
   {
     "hash": "f57ef3188e17024cbe13f70a8390d5ee8a5b7ddd",
@@ -1394,11 +1244,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json",
-      "LinkEditBlock",
-      "ActiveVideoButton"
-    ]
+    "functions": ["extensions.json", "LinkEditBlock", "ActiveVideoButton"]
   },
   {
     "hash": "a54225ebd6729e0c973a6ec92db30b06dc9aa788",
@@ -1417,10 +1263,7 @@
     "refs": "",
     "author_name": "vk",
     "author_email": "vladimir@voma.ai",
-    "functions": [
-      "Video",
-      "ActiveVideoButton"
-    ]
+    "functions": ["Video", "ActiveVideoButton"]
   },
   {
     "hash": "8ce0a507b4fe3dde77df6f7e3ea879e34beb3622",
@@ -1429,9 +1272,7 @@
     "refs": "",
     "author_name": "vk",
     "author_email": "vladimir@voma.ai",
-    "functions": [
-      "ActiveVideoButton"
-    ]
+    "functions": ["ActiveVideoButton"]
   },
   {
     "hash": "f9c9898c1aa6be2dc976ecca5795ab0298f25699",
@@ -1460,10 +1301,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "IframeNodeView",
-      "embed"
-    ]
+    "functions": ["IframeNodeView", "embed"]
   },
   {
     "hash": "6c0d9e7190a5fc83359909e9e6348f6d05b809b8",
@@ -1532,9 +1370,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md"
-    ]
+    "functions": ["index.md"]
   },
   {
     "hash": "163beb11c797ae95ff30b370b09846210841f253",
@@ -1543,9 +1379,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "9f28d9f2a52d6ca4e24952fda76aed49652f0d9b",
@@ -1574,9 +1408,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "9d6e61e6705195b4a20418d121aeb60c2069aa6a",
@@ -1605,10 +1437,7 @@
     "refs": "",
     "author_name": "lilyzhou",
     "author_email": "lj_zhou@outlook.com",
-    "functions": [
-      "SlashCommand",
-      "groups"
-    ]
+    "functions": ["SlashCommand", "groups"]
   },
   {
     "hash": "7ccf62c645aa840f62862d851dad10fdfbf28d4a",
@@ -1617,9 +1446,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "1bd7bce83d4f44aed8cba8c337117819f97b82da",
@@ -1768,9 +1595,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md"
-    ]
+    "functions": ["index.md"]
   },
   {
     "hash": "5b46ae4c7115027997a9450cf684df92b7817217",
@@ -1779,9 +1604,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
+    "functions": ["extensions.json"]
   },
   {
     "hash": "a870e5e09f9623db3f5a88aa6fee0832edd932ca",
@@ -1800,9 +1623,7 @@
     "refs": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "index.md"
-    ]
+    "functions": ["index.md"]
   },
   {
     "hash": "b491442310f4e7a835a2b5fbc75249e477922362",
@@ -1830,9 +1651,7 @@
     "refs": "",
     "author_name": "deepanshut041",
     "author_email": "deepanshut041@gmail.com",
-    "functions": [
-      "ExportWord"
-    ]
+    "functions": ["ExportWord"]
   },
   {
     "hash": "9f16a7cef10227dd01d600da5043b68b464e4f81",

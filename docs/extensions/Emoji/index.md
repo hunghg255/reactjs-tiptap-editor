@@ -12,7 +12,6 @@ The Document extension allows you to add a emoji to your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -90,6 +89,5 @@ const App = () => {
   );
 };
 ```
-
 
 - Copy Emoji List here: https://github.com/hunghg255/reactjs-tiptap-editor-demo/blob/master/src/components/Editor/emojis.ts

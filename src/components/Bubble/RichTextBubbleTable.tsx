@@ -9,7 +9,7 @@ import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 
 interface RichTextBubbleTableProps {
-  hiddenActions?: string[]
+  hiddenActions?: string[];
 }
 
 function RichTextBubbleTable({ hiddenActions = [] }: RichTextBubbleTableProps) {
@@ -72,13 +72,12 @@ function RichTextBubbleTable({ hiddenActions = [] }: RichTextBubbleTableProps) {
       pluginKey={'RichTextBubbleTable'}
       shouldShow={shouldShow}
     >
-      <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
-
+      <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
         {!isHidden('addColumnBefore') && (
           <ActionButton
             action={onAddColumnBefore}
             disabled={!editor?.can()?.addColumnBefore?.()}
-            icon="BetweenHorizonalEnd"
+            icon='BetweenHorizonalEnd'
             tooltip={t('editor.table.menu.insertColumnBefore')}
             tooltipOptions={{ sideOffset: 15 }}
           />
@@ -88,7 +87,7 @@ function RichTextBubbleTable({ hiddenActions = [] }: RichTextBubbleTableProps) {
           <ActionButton
             action={onAddColumnAfter}
             disabled={!editor?.can()?.addColumnAfter?.()}
-            icon="BetweenHorizonalStart"
+            icon='BetweenHorizonalStart'
             tooltip={t('editor.table.menu.insertColumnAfter')}
             tooltipOptions={{ sideOffset: 15 }}
           />
@@ -98,21 +97,22 @@ function RichTextBubbleTable({ hiddenActions = [] }: RichTextBubbleTableProps) {
           <ActionButton
             action={onDeleteColumn}
             disabled={!editor?.can().deleteColumn?.()}
-            icon="DeleteColumn"
+            icon='DeleteColumn'
             tooltip={t('editor.table.menu.deleteColumn')}
             tooltipOptions={{ sideOffset: 15 }}
           />
         )}
 
-        <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]"
-          orientation="vertical"
+        <Separator
+          className='!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]'
+          orientation='vertical'
         />
 
         {!isHidden('addRowAbove') && (
           <ActionButton
             action={onAddRowAbove}
             disabled={!editor?.can().addRowBefore?.()}
-            icon="BetweenVerticalEnd"
+            icon='BetweenVerticalEnd'
             tooltip={t('editor.table.menu.insertRowAbove')}
             tooltipOptions={{ sideOffset: 15 }}
           />
@@ -122,7 +122,7 @@ function RichTextBubbleTable({ hiddenActions = [] }: RichTextBubbleTableProps) {
           <ActionButton
             action={onAddRowBelow}
             disabled={!editor?.can()?.addRowAfter?.()}
-            icon="BetweenVerticalStart"
+            icon='BetweenVerticalStart'
             tooltip={t('editor.table.menu.insertRowBelow')}
             tooltipOptions={{ sideOffset: 15 }}
           />
@@ -132,21 +132,22 @@ function RichTextBubbleTable({ hiddenActions = [] }: RichTextBubbleTableProps) {
           <ActionButton
             action={onDeleteRow}
             disabled={!editor?.can()?.deleteRow?.()}
-            icon="DeleteRow"
+            icon='DeleteRow'
             tooltip={t('editor.table.menu.deleteRow')}
             tooltipOptions={{ sideOffset: 15 }}
           />
         )}
 
-        <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]"
-          orientation="vertical"
+        <Separator
+          className='!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]'
+          orientation='vertical'
         />
 
         {!isHidden('mergeCells') && (
           <ActionButton
             action={onMergeCell}
             disabled={!editor?.can()?.mergeCells?.()}
-            icon="TableCellsMerge"
+            icon='TableCellsMerge'
             tooltip={t('editor.table.menu.mergeCells')}
             tooltipOptions={{ sideOffset: 15 }}
           />
@@ -156,14 +157,15 @@ function RichTextBubbleTable({ hiddenActions = [] }: RichTextBubbleTableProps) {
           <ActionButton
             action={onSplitCell}
             disabled={!editor?.can()?.splitCell?.()}
-            icon="TableCellsSplit"
+            icon='TableCellsSplit'
             tooltip={t('editor.table.menu.splitCells')}
             tooltipOptions={{ sideOffset: 15 }}
           />
         )}
 
-        <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]"
-          orientation="vertical"
+        <Separator
+          className='!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]'
+          orientation='vertical'
         />
 
         {/* {!isHidden('setCellBackground') && (
@@ -179,7 +181,7 @@ function RichTextBubbleTable({ hiddenActions = [] }: RichTextBubbleTableProps) {
           <ActionButton
             action={onDeleteTable}
             disabled={!editor?.can()?.deleteTable?.()}
-            icon="Trash2"
+            icon='Trash2'
             tooltip={t('editor.table.menu.deleteTable')}
             tooltipOptions={{ sideOffset: 15 }}
           />

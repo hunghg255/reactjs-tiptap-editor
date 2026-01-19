@@ -4,20 +4,24 @@ import type { Transaction } from '@tiptap/pm/state';
 import { CellSelection } from '@tiptap/pm/tables';
 
 export interface TableCellBackgroundOptions {
-  HTMLAttributes: Record<string, any>
-  types?: any
+  HTMLAttributes: Record<string, any>;
+  types?: any;
 }
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     tableCellBackground: {
-      setTableCellBackground: (color: string) => ReturnType
-      unsetTableCellBackground: () => ReturnType
-    }
+      setTableCellBackground: (color: string) => ReturnType;
+      unsetTableCellBackground: () => ReturnType;
+    };
   }
 }
 
-function setCellBackgroundMarkup(tr: Transaction, pos: number, backgroundColor: string): Transaction {
+function setCellBackgroundMarkup(
+  tr: Transaction,
+  pos: number,
+  backgroundColor: string
+): Transaction {
   if (!tr.doc) {
     return tr;
   }
@@ -39,7 +43,11 @@ function setCellBackgroundMarkup(tr: Transaction, pos: number, backgroundColor: 
   return tr.setNodeMarkup(pos, node.type, nodeAttrs, node.marks);
 }
 
-function updateCellBackground(tr: Transaction, options: TableCellBackgroundOptions, backgroundColor: string): Transaction {
+function updateCellBackground(
+  tr: Transaction,
+  options: TableCellBackgroundOptions,
+  backgroundColor: string
+): Transaction {
   const { doc, selection } = tr;
 
   if (!doc || !selection || !(selection instanceof CellSelection)) {
@@ -53,7 +61,10 @@ function updateCellBackground(tr: Transaction, options: TableCellBackgroundOptio
   return tr;
 }
 
-function createCellBackgroundCommand(backgroundColor: string, options: TableCellBackgroundOptions): Command {
+function createCellBackgroundCommand(
+  backgroundColor: string,
+  options: TableCellBackgroundOptions
+): Command {
   return ({ tr, state, dispatch }) => {
     const { selection } = state;
     tr = tr.setSelection(selection);

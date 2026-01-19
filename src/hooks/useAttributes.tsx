@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { useEffect, useRef, useState } from 'react';
-
 import type { Editor } from '@tiptap/core';
 import deepEqual from 'deep-equal';
+import { useEffect, useRef, useState } from 'react';
 
 type MapFn<T, R> = (arg: T) => R;
 
@@ -10,14 +8,22 @@ function mapSelf<T>(d: T): T {
   return d;
 }
 
-export function useAttributes<T, R = T>(editor: Editor, attrbute: string, defaultValue?: T, map?: (arg: T) => R) {
+export function useAttributes<T, R = T>(
+  editor: Editor,
+  attrbute: string,
+  defaultValue?: T,
+  map?: (arg: T) => R
+) {
   const mapFn = (map || mapSelf) as MapFn<T, R>;
   const [value, setValue] = useState<R>(mapFn(defaultValue as any));
   const prevValueCache = useRef<R>(value);
 
   useEffect(() => {
     const listener = () => {
-      const attrs = { ...defaultValue, ...editor.getAttributes(attrbute) } as any;
+      const attrs = {
+        ...defaultValue,
+        ...editor.getAttributes(attrbute),
+      } as any;
       Object.keys(attrs).forEach((key) => {
         if (attrs[key] === null || attrs[key] === undefined) {
           // @ts-ignore

@@ -1,9 +1,14 @@
+import katexLib from 'katex';
 import { useCallback, useMemo, useState } from 'react';
 
-import katexLib from 'katex';
-
 import { ActionButton, Button, Label } from '@/components';
-import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import type { IKatexAttrs } from '@/extensions/Katex/Katex';
 import { Katex } from '@/extensions/Katex/Katex';
@@ -41,11 +46,14 @@ export function RichTextKatex() {
   const [currentMacros, setCurrentMacros] = useState(decodeURIComponent(macros || ''));
 
   const submit = useCallback(() => {
-
-    editor.chain().focus().setKatex({
-      text: encodeURIComponent(currentValue),
-      macros: encodeURIComponent(currentMacros),
-    }).run();
+    editor
+      .chain()
+      .focus()
+      .setKatex({
+        text: encodeURIComponent(currentValue),
+        macros: encodeURIComponent(currentMacros),
+      })
+      .run();
 
     setCurrentValue('');
     setCurrentMacros('');
@@ -55,33 +63,24 @@ export function RichTextKatex() {
   const formatText = useMemo(() => {
     try {
       return katexLib.renderToString(currentValue, {
-        macros: safeJSONParse(currentMacros)
+        macros: safeJSONParse(currentMacros),
       });
     } catch {
       return currentValue;
     }
   }, [currentMacros, currentValue]);
 
-  const previewContent = useMemo(
-    () => {
-      if (`${currentValue}`.trim()) {
-        return formatText;
-      }
+  const previewContent = useMemo(() => {
+    if (`${currentValue}`.trim()) {
+      return formatText;
+    }
 
-      return null;
-    },
-    [currentValue, formatText],
-  );
+    return null;
+  }, [currentValue, formatText]);
 
   return (
-    <Dialog
-      onOpenChange={toggleVisible}
-      open={visible}
-    >
-      <DialogTrigger
-        asChild
-        disabled={editorDisabled}
-      >
+    <Dialog onOpenChange={toggleVisible} open={visible}>
+      <DialogTrigger asChild disabled={editorDisabled}>
         <ActionButton
           disabled={editorDisabled}
           icon={icon}
@@ -94,25 +93,19 @@ export function RichTextKatex() {
         />
       </DialogTrigger>
 
-      <DialogContent className="richtext-z-[99999] !richtext-max-w-[1300px]">
-        <DialogTitle>
-          {t('editor.formula.dialog.text')}
-        </DialogTitle>
+      <DialogContent className='richtext-z-[99999] !richtext-max-w-[1300px]'>
+        <DialogTitle>{t('editor.formula.dialog.text')}</DialogTitle>
 
-        <div
-          style={{ height: '100%', border: '1px solid hsl(var(--border))' }}
-        >
-          <div className="richtext-flex richtext-gap-[10px] richtext-rounded-[10px] richtext-p-[10px]">
+        <div style={{ height: '100%', border: '1px solid hsl(var(--border))' }}>
+          <div className='richtext-flex richtext-gap-[10px] richtext-rounded-[10px] richtext-p-[10px]'>
             <div className='richtext-flex-1'>
-              <Label className="mb-[6px]">
-                Expression
-              </Label>
+              <Label className='mb-[6px]'>Expression</Label>
 
               <Textarea
                 autoFocus
-                className="richtext-mb-[10px]"
-                onChange={e => setCurrentValue(e.target.value)}
-                placeholder="Text"
+                className='richtext-mb-[10px]'
+                onChange={(e) => setCurrentValue(e.target.value)}
+                placeholder='Text'
                 required
                 rows={10}
                 value={currentValue}
@@ -121,16 +114,14 @@ export function RichTextKatex() {
                 }}
               />
 
-              <Label className="mb-[6px]">
-                Macros
-              </Label>
+              <Label className='mb-[6px]'>Macros</Label>
 
               <Textarea
-                className="richtext-flex-1"
-                placeholder="Macros"
+                className='richtext-flex-1'
+                placeholder='Macros'
                 rows={10}
                 value={currentMacros}
-                onChange={e => {
+                onChange={(e) => {
                   setCurrentMacros(e.target.value);
                 }}
                 style={{
@@ -140,18 +131,20 @@ export function RichTextKatex() {
             </div>
 
             <div
-              className="richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]"
+              className='richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]'
               dangerouslySetInnerHTML={{ __html: previewContent || '' }}
-              style={{ height: '100%', borderWidth: 1, minHeight: 500, background: '#fff' }}
+              style={{
+                height: '100%',
+                borderWidth: 1,
+                minHeight: 500,
+                background: '#fff',
+              }}
             />
           </div>
         </div>
 
         <DialogFooter>
-          <Button
-            onClick={submit}
-            type="button"
-          >
+          <Button onClick={submit} type='button'>
             Save changes
           </Button>
         </DialogFooter>

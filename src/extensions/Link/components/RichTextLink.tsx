@@ -12,13 +12,7 @@ export function RichTextLink() {
   const editor = useEditorInstance();
   const buttonProps = useButtonProps(Link.name);
 
-  const {
-    isActive,
-    icon,
-    tooltip,
-    target,
-    action
-  } = buttonProps?.componentProps ?? {};
+  const { isActive, icon, tooltip, target, action } = buttonProps?.componentProps ?? {};
 
   const { dataState, editorDisabled, update } = useToggleActive(isActive);
 
@@ -37,33 +31,19 @@ export function RichTextLink() {
   }
 
   return (
-    <Popover modal
-      onOpenChange={setOpen}
-      open={open}
-    >
-      <PopoverTrigger asChild
+    <Popover modal onOpenChange={setOpen} open={open}>
+      <PopoverTrigger
+        asChild
         data-state={dataState ? 'on' : 'off'} // active background control
         disabled={editorDisabled}
       >
-        <ActionButton
-          dataState={dataState}
-          disabled={editorDisabled}
-          tooltip={tooltip}
-        >
+        <ActionButton dataState={dataState} disabled={editorDisabled} tooltip={tooltip}>
           <IconComponent name={icon} />
         </ActionButton>
       </PopoverTrigger>
 
-      <PopoverContent align="start"
-        className="richtext-w-full"
-        hideWhenDetached
-        side="bottom"
-      >
-        <LinkEditBlock editor={editor}
-          onSetLink={onSetLink}
-          open={open}
-          target={target}
-        />
+      <PopoverContent align='start' className='richtext-w-full' hideWhenDetached side='bottom'>
+        <LinkEditBlock editor={editor} onSetLink={onSetLink} open={open} target={target} />
       </PopoverContent>
     </Popover>
   );

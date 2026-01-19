@@ -1,8 +1,8 @@
-import animate from './animate'
+import animate from './animate';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: ['class', '[class~=\'dark\']'],
+  darkMode: ['class', "[class~='dark']"],
   safelist: ['dark'],
   corePlugins: {
     preflight: false,
@@ -94,4 +94,4 @@ export default {
     },
   },
   plugins: [animate],
-}
+};

@@ -12,7 +12,6 @@ The Text Direction extension allows you to change the text direction of your edi
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -90,5 +89,4 @@ const editor = new Editor({
   extensions: [StarterKit],
   textDirection: 'auto', // or 'ltr', 'rtl'
 })
-````
-
+```

@@ -14,7 +14,6 @@ Ordered List extension allows you to create ordered lists in your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 

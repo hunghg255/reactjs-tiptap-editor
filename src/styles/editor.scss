@@ -3,14 +3,14 @@
   color: hsl(var(--foreground));
 
   .ProseMirror.ProseMirror.ProseMirror {
-    @apply richtext-caret-black dark:richtext-caret-white richtext-outline-0 richtext-pr-8 richtext-pl-20 richtext-py-16 richtext-z-0 lg:richtext-pl-8 lg:richtext-pr-8;
+    @apply richtext-z-0 richtext-py-16 richtext-pl-20 richtext-pr-8 richtext-caret-black richtext-outline-0 dark:richtext-caret-white lg:richtext-pl-8 lg:richtext-pr-8;
     min-height: 180px;
     padding: 32px 80px;
 
     .img-placeholder {
       width: fit-content;
       position: relative;
-      @apply richtext-backdrop-blur-sm richtext-bg-white/30;
+      @apply richtext-bg-white/30 richtext-backdrop-blur-sm;
 
       &:before {
         content: '';
@@ -21,7 +21,7 @@
         width: 24px;
         height: 24px;
         margin: -12px 0 0 -12px;
-        @apply richtext-animate-spin richtext-border-current richtext-border-t-transparent richtext-rounded-full richtext-border-[3px] richtext-inline-block;
+        @apply richtext-inline-block richtext-animate-spin richtext-rounded-full richtext-border-[3px] richtext-border-current richtext-border-t-transparent;
       }
     }
 
@@ -35,21 +35,21 @@
         width: 100%;
 
         .column-resize-handle {
-          @apply richtext-bottom-[-2px] richtext-absolute richtext-right-[-2px] richtext-top-0 richtext-w-1 richtext-z-10 richtext-pointer-events-none richtext-bg-primary;
+          @apply richtext-pointer-events-none richtext-absolute richtext-bottom-[-2px] richtext-right-[-2px] richtext-top-0 richtext-z-10 richtext-w-1 richtext-bg-primary;
         }
         .resize-cursor {
           cursor: 'col-resize';
         }
 
         .selectedCell {
-          @apply richtext-bg-black/5 richtext-border-black/20 richtext-border-double;
-          @apply dark:richtext-bg-white/10 dark:richtext-border-white/20;
+          @apply richtext-border-double richtext-border-black/20 richtext-bg-black/5;
+          @apply dark:richtext-border-white/20 dark:richtext-bg-white/10;
         }
       }
     }
 
     [data-type='horizontalRule'] {
-      @apply richtext-transition-all richtext-duration-100 richtext-ease-in-out richtext-cursor-pointer;
+      @apply richtext-cursor-pointer richtext-transition-all richtext-duration-100 richtext-ease-in-out;
 
       &.ProseMirror-selectednode {
         @apply richtext-bg-black/5 dark:richtext-bg-white/10;
@@ -64,12 +64,14 @@
         @apply dark:richtext-bg-white/10;
       }
     }
-    :not(.dragging) .ProseMirror-selectednode:not(.image-view), :not(.dragging) .ProseMirror-selectednode:not(.search-result) {
-      @apply richtext-outline-none richtext-bg-black/10 dark:richtext-bg-white/20 richtext-shadow-none richtext-transition-colors;
+    :not(.dragging) .ProseMirror-selectednode:not(.image-view),
+    :not(.dragging) .ProseMirror-selectednode:not(.search-result) {
+      @apply richtext-bg-black/10 richtext-shadow-none richtext-outline-none richtext-transition-colors dark:richtext-bg-white/20;
     }
 
-    :not(.image-view)::selection, :not(.search-result)::selection {
-        background-color: hsl(var(--accent)) !important;
+    :not(.image-view)::selection,
+    :not(.search-result)::selection {
+      background-color: hsl(var(--accent)) !important;
     }
 
     .is-empty::before {
@@ -102,10 +104,10 @@
       content: attr(data-placeholder);
     }
     .ProseMirror-gapcursor {
-      @apply richtext-relative richtext-w-full richtext-max-w-2xl richtext-mx-auto;
+      @apply richtext-relative richtext-mx-auto richtext-w-full richtext-max-w-2xl;
 
       &:after {
-        @apply richtext-border-t-black/40 dark:richtext-border-t-white/40 richtext-w-full richtext-top-[-1.5em] richtext-max-w-2xl richtext-mx-auto richtext-left-0 richtext-right-0;
+        @apply richtext-left-0 richtext-right-0 richtext-top-[-1.5em] richtext-mx-auto richtext-w-full richtext-max-w-2xl richtext-border-t-black/40 dark:richtext-border-t-white/40;
       }
     }
 
@@ -172,7 +174,7 @@
 
       &.focus {
         img {
-          @apply richtext-outline-primary richtext-outline-2 richtext-outline;
+          @apply richtext-outline richtext-outline-2 richtext-outline-primary;
         }
       }
 
@@ -191,7 +193,6 @@
       height: 100%;
       @apply richtext-border !important;
       @apply richtext-border-border !important;
-
 
       &__handler {
         position: absolute;

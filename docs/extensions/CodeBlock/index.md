@@ -22,7 +22,6 @@ or
 pnpm install prism-code-editor-lightweight
 ```
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -92,5 +91,4 @@ const App = () => {
 };
 ```
 
-
-- You can write `` ``` ``, press <kbd>Enter</kbd>, and write some code! It loads the language on the fly.
+- You can write ` ``` `, press <kbd>Enter</kbd>, and write some code! It loads the language on the fly.
