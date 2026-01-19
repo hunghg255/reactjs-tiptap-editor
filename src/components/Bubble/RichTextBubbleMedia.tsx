@@ -1,11 +1,14 @@
+import { BubbleMenu } from '@tiptap/react/menus';
 import { Fragment, useMemo } from 'react';
 
-import { BubbleMenu } from '@tiptap/react/menus';
-
 import { Separator } from '@/components';
-import { getBubbleImage, getBubbleImageGif, getBubbleVideo } from '@/components/Bubble/formatBubble';
+import {
+  getBubbleImage,
+  getBubbleImageGif,
+  getBubbleVideo,
+} from '@/components/Bubble/formatBubble';
 import { Image } from '@/extensions/Image';
-import {  ImageGif } from '@/extensions/ImageGif';
+import { ImageGif } from '@/extensions/ImageGif';
 import { Video } from '@/extensions/Video';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
@@ -20,19 +23,18 @@ function ItemA({ item, disabled, editor }: any) {
 
   return (
     <Fragment>
-      {item.type === 'divider'
-        ? (
-          <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]"
-            orientation="vertical"
-          />
-        )
-        : (
-          <Comp
-            {...item.componentProps}
-            disabled={disabled || item?.componentdisabled}
-            editor={editor}
-          />
-        )}
+      {item.type === 'divider' ? (
+        <Separator
+          className='!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]'
+          orientation='vertical'
+        />
+      ) : (
+        <Comp
+          {...item.componentProps}
+          disabled={disabled || item?.componentdisabled}
+          editor={editor}
+        />
+      )}
     </Fragment>
   );
 }
@@ -71,7 +73,6 @@ function RichTextBubbleImage() {
 
   const items = useMemo(() => {
     return getBubbleImage(editor, t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editor, lang, t]);
 
   if (!editable) {
@@ -85,25 +86,15 @@ function RichTextBubbleImage() {
       pluginKey={'RichTextBubbleImage'}
       shouldShow={shouldShow}
     >
-      {items?.length
-        ? (
-          <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
-
-              {items?.map((item: any, key: any) => {
-                return (
-                  <ItemA
-                    editor={editor}
-                    item={item}
-                    key={`bubbleMenu-image-${key}`}
-                  />
-                );
-              })}
-
-          </div>
-        )
-        : (
-          <></>
-        )}
+      {items?.length ? (
+        <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
+          {items?.map((item: any, key: any) => {
+            return <ItemA editor={editor} item={item} key={`bubbleMenu-image-${key}`} />;
+          })}
+        </div>
+      ) : (
+        <></>
+      )}
     </BubbleMenu>
   );
 }
@@ -130,7 +121,6 @@ function RichTextBubbleImageGif() {
 
   const items = useMemo(() => {
     return getBubbleImageGif(editor, t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editor, t, lang]);
 
   if (!editable) {
@@ -144,25 +134,15 @@ function RichTextBubbleImageGif() {
       pluginKey={'RichTextBubbleImageGif'}
       shouldShow={shouldShow}
     >
-      {items?.length
-        ? (
-
-            <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
-              {items?.map((item: any, key: any) => {
-                return (
-                  <ItemA
-                    editor={editor}
-                    item={item}
-                    key={`bubbleMenu-image-gif-${key}`}
-                  />
-                );
-              })}
-
-            </div>
-        )
-        : (
-          <></>
-        )}
+      {items?.length ? (
+        <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
+          {items?.map((item: any, key: any) => {
+            return <ItemA editor={editor} item={item} key={`bubbleMenu-image-gif-${key}`} />;
+          })}
+        </div>
+      ) : (
+        <></>
+      )}
     </BubbleMenu>
   );
 }
@@ -189,7 +169,6 @@ function RichTextBubbleVideo() {
 
   const items = useMemo(() => {
     return getBubbleVideo(editor, t);
-
   }, [editor, t]);
 
   if (!editable) {
@@ -203,25 +182,15 @@ function RichTextBubbleVideo() {
       pluginKey={'RichTextBubbleVideo'}
       shouldShow={shouldShow}
     >
-      {items?.length
-        ? (
-
-            <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
-              {items?.map((item: any, key: any) => {
-                return (
-                  <ItemA
-                    editor={editor}
-                    item={item}
-                    key={`bubbleMenu-video-${key}`}
-                  />
-                );
-              })}
-
-            </div>
-        )
-        : (
-          <></>
-        )}
+      {items?.length ? (
+        <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
+          {items?.map((item: any, key: any) => {
+            return <ItemA editor={editor} item={item} key={`bubbleMenu-video-${key}`} />;
+          })}
+        </div>
+      ) : (
+        <></>
+      )}
     </BubbleMenu>
   );
 }

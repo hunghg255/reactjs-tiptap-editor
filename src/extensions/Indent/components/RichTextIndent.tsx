@@ -6,10 +6,7 @@ import { useButtonProps } from '@/hooks/useButtonProps';
 export function RichTextIndent() {
   const buttonProps = useButtonProps(Indent.name);
 
-  const {
-    indent,
-    outdent
-  } = buttonProps?.componentProps ?? {};
+  const { indent, outdent } = buttonProps?.componentProps ?? {};
 
   const { editorDisabled } = useToggleActive();
 
@@ -35,23 +32,23 @@ export function RichTextIndent() {
 
   return (
     <>
-    <ActionButton
-      action={onActionIndent}
-      disabled={editorDisabled}
-      icon={indent?.icon}
-      shortcutKeys={indent?.shortcutKeys}
-      tooltip={indent?.tooltip}
-      // tooltipOptions={indent?.tooltipOptions}
-    />
+      <ActionButton
+        action={onActionIndent}
+        disabled={editorDisabled}
+        icon={indent?.icon}
+        shortcutKeys={indent?.shortcutKeys}
+        tooltip={indent?.tooltip}
+        // tooltipOptions={indent?.tooltipOptions}
+      />
 
-    <ActionButton
-      action={onActionOutdent}
-      disabled={editorDisabled}
-      icon={outdent?.icon}
-      shortcutKeys={outdent?.shortcutKeys}
-      tooltip={outdent?.tooltip}
-      // tooltipOptions={tooltipOptions}
-    />
+      <ActionButton
+        action={onActionOutdent}
+        disabled={editorDisabled}
+        icon={outdent?.icon}
+        shortcutKeys={outdent?.shortcutKeys}
+        tooltip={outdent?.tooltip}
+        // tooltipOptions={tooltipOptions}
+      />
     </>
   );
 }

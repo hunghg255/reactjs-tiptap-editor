@@ -1,6 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
-
 import { Plus } from 'lucide-react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 
 import { Button, Input, Popover, PopoverContent, PopoverTrigger, Separator } from '@/components';
@@ -10,24 +9,18 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useLocale } from '@/locales';
 
 export interface ColorPickerProps {
-  disabled?: boolean
-  colors?: string[]
-  children: React.ReactNode
-  onChange?: (color: string | undefined) => void
-  value?: string
-  highlight?: boolean
+  disabled?: boolean;
+  colors?: string[];
+  children: React.ReactNode;
+  onChange?: (color: string | undefined) => void;
+  value?: string;
+  highlight?: boolean;
 }
 
 function ColorPicker(props: ColorPickerProps) {
   const { t } = useLocale();
 
-  const {
-    disabled = false,
-    value,
-    onChange,
-    colors = DEFAULT_COLORS_LIST,
-    highlight
-  } = props;
+  const { disabled = false, value, onChange, colors = DEFAULT_COLORS_LIST, highlight } = props;
   const [open, setOpen] = useState(false);
 
   const chunkedColors = useMemo(() => {
@@ -39,7 +32,10 @@ function ColorPicker(props: ColorPickerProps) {
     return chunked;
   }, [colors]);
 
-  const [recentColorsStore, setRecentColorsStore] = useLocalStorage<string[]>(highlight ? 'richtext-recent-highlight' : 'richtext-recent-colors', []);
+  const [recentColorsStore, setRecentColorsStore] = useLocalStorage<string[]>(
+    highlight ? 'richtext-recent-highlight' : 'richtext-recent-colors',
+    []
+  );
 
   const setRecentColor = (color: string) => {
     const newRecentColors = [...recentColorsStore];
@@ -71,78 +67,71 @@ function ColorPicker(props: ColorPickerProps) {
   }
 
   return (
-    <Popover modal
-      onOpenChange={setOpen}
-      open={open}
-    >
-      <PopoverTrigger asChild
-        className="!richtext-p-0"
-        disabled={disabled}
-      >
+    <Popover modal onOpenChange={setOpen} open={open}>
+      <PopoverTrigger asChild className='!richtext-p-0' disabled={disabled}>
         {props?.children}
       </PopoverTrigger>
 
-      <PopoverContent align="start"
-        className="richtext-size-full !richtext-p-2"
+      <PopoverContent
+        align='start'
+        className='richtext-size-full !richtext-p-2'
         hideWhenDetached
-        side="bottom"
+        side='bottom'
       >
-        <div className="richtext-flex richtext-flex-col">
-
+        <div className='richtext-flex richtext-flex-col'>
           <div
-            className="rd-1 richtext-flex richtext-cursor-pointer richtext-items-center richtext-gap-[4px] richtext-p-1 hover:richtext-bg-accent"
+            className='rd-1 richtext-flex richtext-cursor-pointer richtext-items-center richtext-gap-[4px] richtext-p-1 hover:richtext-bg-accent'
             onClick={() => {
               setColor(undefined);
             }}
           >
             <NoFill />
 
-            <span className="richtext-ml-1 richtext-text-sm">
+            <span className='richtext-ml-1 richtext-text-sm'>
               {t(highlight ? 'editor.nofill' : 'editor.default')}
             </span>
           </div>
 
           {chunkedColors.map((items: string[], index: number) => {
             return (
-              <span className="richtext-relative richtext-flex richtext-h-auto richtext-w-full richtext-p-0 last:richtext-pb-2"
+              <span
+                className='richtext-relative richtext-flex richtext-h-auto richtext-w-full richtext-p-0 last:richtext-pb-2'
                 key={`color-row-${index}`}
               >
                 {items.map((item: string, idx) => {
                   return (
                     <span
-                      className="richtext-inline-block richtext-size-6 richtext-flex-[0_0_auto] richtext-cursor-pointer richtext-rounded-sm !richtext-border richtext-border-solid !richtext-border-transparent richtext-p-0.5 hover:!richtext-border-border"
+                      className='richtext-inline-block richtext-size-6 richtext-flex-[0_0_auto] richtext-cursor-pointer richtext-rounded-sm !richtext-border richtext-border-solid !richtext-border-transparent richtext-p-0.5 hover:!richtext-border-border'
                       key={`sub-color-${idx}`}
                       onClick={() => setColor(item)}
                     >
                       <span
-                        className="richtext-relative richtext-block richtext-size-[18px] richtext-rounded-[2px]"
+                        className='richtext-relative richtext-block richtext-size-[18px] richtext-rounded-[2px]'
                         style={{
                           backgroundColor: item,
                         }}
                       >
-                        {item === value
-                          ? (
-                            <svg
-                              className="richtext-absolute -richtext-top-px richtext-left-px richtext-block richtext-size-3"
-                              viewBox="0 0 18 18"
-                              style={{
-                                fill: 'rgb(255, 255, 255)',
-                              }}
-                            >
-                              <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path>
-                            </svg>
-                          )
-                          : (
-                            <svg
-                              viewBox="0 0 18 18"
-                              style={{
-                                fill: 'rgb(255, 255, 255)',
-                                display: 'none',
-                              }}
-                            >
-                              <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path>
-                            </svg>
-                          )}
+                        {item === value ? (
+                          <svg
+                            className='richtext-absolute -richtext-top-px richtext-left-px richtext-block richtext-size-3'
+                            viewBox='0 0 18 18'
+                            style={{
+                              fill: 'rgb(255, 255, 255)',
+                            }}
+                          >
+                            <path d='M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z'></path>
+                          </svg>
+                        ) : (
+                          <svg
+                            viewBox='0 0 18 18'
+                            style={{
+                              fill: 'rgb(255, 255, 255)',
+                              display: 'none',
+                            }}
+                          >
+                            <path d='M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z'></path>
+                          </svg>
+                        )}
                       </span>
                     </span>
                   );
@@ -152,32 +141,30 @@ function ColorPicker(props: ColorPickerProps) {
           })}
 
           <div>
-            <div className="richtext-my-1 richtext-text-sm">
-              {t('editor.recent')}
-            </div>
+            <div className='richtext-my-1 richtext-text-sm'>{t('editor.recent')}</div>
 
-            <span className="richtext-relative richtext-flex richtext-h-auto richtext-w-full richtext-flex-wrap richtext-p-0 last:richtext-pb-2">
+            <span className='richtext-relative richtext-flex richtext-h-auto richtext-w-full richtext-flex-wrap richtext-p-0 last:richtext-pb-2'>
               {recentColorsStore?.map((item, index) => {
                 return (
                   <span
-                    className="richtext-inline-block richtext-size-6 richtext-flex-[0_0_auto] richtext-cursor-pointer richtext-rounded-sm !richtext-border richtext-border-transparent richtext-p-0.5 hover:richtext-border-border hover:richtext-shadow-sm"
+                    className='richtext-inline-block richtext-size-6 richtext-flex-[0_0_auto] richtext-cursor-pointer richtext-rounded-sm !richtext-border richtext-border-transparent richtext-p-0.5 hover:richtext-border-border hover:richtext-shadow-sm'
                     key={`sub-color-recent-${index}`}
                     onClick={() => setColor(item)}
                   >
                     <span
-                      className="richtext-relative richtext-block richtext-size-[18px] richtext-rounded-[2px] richtext-border-transparent"
+                      className='richtext-relative richtext-block richtext-size-[18px] richtext-rounded-[2px] richtext-border-transparent'
                       style={{
                         backgroundColor: item,
                       }}
                     >
                       <svg
-                        viewBox="0 0 18 18"
+                        viewBox='0 0 18 18'
                         style={{
                           fill: 'rgb(255, 255, 255)',
                           display: 'none',
                         }}
                       >
-                        <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path>
+                        <path d='M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z'></path>
                       </svg>
                     </span>
                   </span>
@@ -194,7 +181,7 @@ function ColorPicker(props: ColorPickerProps) {
 }
 
 interface AddMoreColorProps {
-  setColor: (color: string) => void
+  setColor: (color: string) => void;
 }
 
 function AddMoreColor({ setColor }: AddMoreColorProps) {
@@ -202,28 +189,21 @@ function AddMoreColor({ setColor }: AddMoreColorProps) {
   const [openColorMore, setOpenColorMore] = useState(false);
   const [colorSelected, setColorSelected] = useState('#000000');
 
-  const onValueChange = useCallback(
-    (value: any) => {
-      setColorSelected(value);
-    },
-    [],
-  );
+  const onValueChange = useCallback((value: any) => {
+    setColorSelected(value);
+  }, []);
 
   return (
-    <Popover onOpenChange={setOpenColorMore}
-      open={openColorMore}
-    >
+    <Popover onOpenChange={setOpenColorMore} open={openColorMore}>
       <PopoverTrigger asChild>
-        <div
-          className="richtext-p-1.5 richtext-text-sm hover:richtext-cursor-pointer hover:richtext-bg-accent"
-        >
+        <div className='richtext-p-1.5 richtext-text-sm hover:richtext-cursor-pointer hover:richtext-bg-accent'>
           {t('editor.color.more')}
           ...
         </div>
       </PopoverTrigger>
 
       <PopoverContent>
-        <div className="richtext-flex richtext-flex-col richtext-items-center richtext-justify-center">
+        <div className='richtext-flex richtext-flex-col richtext-items-center richtext-justify-center'>
           <HexColorPicker
             color={colorSelected}
             onChange={(color) => {
@@ -232,8 +212,8 @@ function AddMoreColor({ setColor }: AddMoreColorProps) {
           />
 
           <Input
-            className="richtext-mt-[8px] richtext-w-full"
-            type="text"
+            className='richtext-mt-[8px] richtext-w-full'
+            type='text'
             value={colorSelected.replace('#', '')}
             onChange={(e) => {
               e.preventDefault();
@@ -244,10 +224,10 @@ function AddMoreColor({ setColor }: AddMoreColorProps) {
           />
         </div>
 
-        <Separator className="richtext-my-[10px]" />
+        <Separator className='richtext-my-[10px]' />
 
         <Button
-          className="richtext-w-full"
+          className='richtext-w-full'
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             e.preventDefault();
             e.stopPropagation();

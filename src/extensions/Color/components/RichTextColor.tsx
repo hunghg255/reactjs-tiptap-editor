@@ -15,7 +15,7 @@ export function RichTextColor() {
     isActive = undefined,
     defaultColor = undefined,
     colors,
-    action
+    action,
   } = buttonProps?.componentProps ?? {};
 
   const { disabled, dataState } = useActive(isActive);
@@ -40,24 +40,19 @@ export function RichTextColor() {
   }
 
   return (
-    <ColorPicker
-      colors={colors}
-      disabled={disabled}
-      onChange={onChange}
-      value={selectedColor}
-    >
+    <ColorPicker colors={colors} disabled={disabled} onChange={onChange} value={selectedColor}>
       <ActionButton
         disabled={disabled}
         tooltip={tooltip}
-      // tooltipOptions={tooltipOptions}
+        // tooltipOptions={tooltipOptions}
       >
-        <span className="richtext-flex richtext-items-center richtext-justify-center richtext-gap-[4px] richtext-text-sm">
+        <span className='richtext-flex richtext-items-center richtext-justify-center richtext-gap-[4px] richtext-text-sm'>
           <IconColorFill fill={dataState} />
 
-          <IconComponent className="!richtext-h-3 !richtext-w-3 richtext-text-zinc-500"
-            name="MenuDown"
+          <IconComponent
+            className='!richtext-h-3 !richtext-w-3 richtext-text-zinc-500'
+            name='MenuDown'
           />
-
         </span>
       </ActionButton>
     </ColorPicker>

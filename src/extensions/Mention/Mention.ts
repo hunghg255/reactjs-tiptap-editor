@@ -9,7 +9,7 @@ export const Mention = /* @__PURE__ */ Extension.create<MentionOptions>({
 
   addExtensions() {
     const config: any = {
-      ...this.options
+      ...this.options,
     };
 
     if (this.options?.suggestion) {
@@ -28,11 +28,13 @@ export const Mention = /* @__PURE__ */ Extension.create<MentionOptions>({
       });
     }
 
-    return [BulitInMention.configure({
-      HTMLAttributes: {
-        class: 'mention',
-      },
-      ...config,
-    })];
+    return [
+      BulitInMention.configure({
+        HTMLAttributes: {
+          class: 'mention',
+        },
+        ...config,
+      }),
+    ];
   },
 });

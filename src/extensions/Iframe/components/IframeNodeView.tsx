@@ -1,8 +1,7 @@
-import { useCallback, useState } from 'react';
-
 import { NodeViewWrapper } from '@tiptap/react';
 import clsx from 'clsx';
 import { Resizable } from 're-resizable';
+import { useCallback, useState } from 'react';
 
 import { Button, Input } from '@/components/ui';
 import { Iframe } from '@/extensions/Iframe/Iframe';
@@ -39,25 +38,23 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
     (size: any) => {
       updateAttributes({ width: size.width, height: size.height });
     },
-    [updateAttributes],
+    [updateAttributes]
   );
 
   return (
     <NodeViewWrapper>
       {!src && (
-        <div className="richtext-mx-auto richtext-my-[12px] richtext-flex richtext-max-w-[600px] richtext-items-center richtext-justify-center richtext-gap-[10px] richtext-rounded-[12px] richtext-border richtext-border-solid richtext-border-border richtext-p-[10px]">
+        <div className='richtext-mx-auto richtext-my-[12px] richtext-flex richtext-max-w-[600px] richtext-items-center richtext-justify-center richtext-gap-[10px] richtext-rounded-[12px] richtext-border richtext-border-solid richtext-border-border richtext-p-[10px]'>
           <Input
             autoFocus
-            className="richtext-flex-1"
+            className='richtext-flex-1'
             onInput={(e: any) => setOriginalLink(e.target.value)}
-            placeholder="Enter link"
-            type="url"
+            placeholder='Enter link'
+            type='url'
             value={originalLink}
           />
 
-          <Button className="richtext-w-[60px]"
-            onClick={handleConfirm}
-          >
+          <Button className='richtext-w-[60px]' onClick={handleConfirm}>
             OK
           </Button>
         </div>
@@ -65,7 +62,10 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
 
       {src && (
         <Resizable
-          size={{ width: Number.parseInt(width), height: Number.parseInt(height) }}
+          size={{
+            width: Number.parseInt(width),
+            height: Number.parseInt(height),
+          }}
           onResizeStop={(e, direction, ref, d) => {
             onResize({
               width: Number.parseInt(width) + d.width,
@@ -74,14 +74,11 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
           }}
         >
           <div className={clsx(styles.wrap, 'render-wrapper')}>
-            <div className={styles.innerWrap}
+            <div
+              className={styles.innerWrap}
               style={{ pointerEvents: !isEditable ? 'auto' : 'none' }}
             >
-              <iframe
-                className="richtext-my-[12px] "
-                src={src}
-              >
-              </iframe>
+              <iframe className='richtext-my-[12px]' src={src}></iframe>
             </div>
           </div>
         </Resizable>

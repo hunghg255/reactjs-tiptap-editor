@@ -81,7 +81,7 @@ import {
   Loader2 as Loader,
   X,
   ExternalLink,
-  NotebookPen
+  NotebookPen,
 } from 'lucide-react';
 
 import {
@@ -224,5 +224,5 @@ export const icons = {
   X,
   Html,
   ExternalLink,
-  Callout: NotebookPen
+  Callout: NotebookPen,
 } as any;

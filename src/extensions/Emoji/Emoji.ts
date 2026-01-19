@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import TiptapEmoji, { type EmojiOptions } from '@tiptap/extension-emoji';
 import { Extension } from '@tiptap/react';
 
@@ -41,7 +40,7 @@ export const Emoji = /* @__PURE__ */ Extension.create<EmojiOptions>({
 
   addExtensions() {
     const config: any = {
-      ...this.options
+      ...this.options,
     };
 
     if (this.options?.suggestion) {
@@ -51,8 +50,10 @@ export const Emoji = /* @__PURE__ */ Extension.create<EmojiOptions>({
       };
     }
 
-    return [TiptapEmoji.configure({
-      ...config,
-    })];
+    return [
+      TiptapEmoji.configure({
+        ...config,
+      }),
+    ];
   },
 });

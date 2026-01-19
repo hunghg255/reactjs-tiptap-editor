@@ -22,7 +22,6 @@ or
 pnpm install react-image-crop
 ```
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -108,39 +107,35 @@ const App = () => {
 ```ts
 interface IImageOptions extends GeneralOptions<IImageOptions> {
   /** Function for uploading files */
-  upload?: (file: File) => Promise<string>
+  upload?: (file: File) => Promise<string>;
 
-  HTMLAttributes?: any
+  HTMLAttributes?: any;
 
-  multiple?: boolean
-  acceptMimes?: string[]
-  maxSize?: number
+  multiple?: boolean;
+  acceptMimes?: string[];
+  maxSize?: number;
 
   /** The source URL of the image */
-  resourceImage: 'upload' | 'link' | 'both'
-  defaultInline?: boolean,
+  resourceImage: 'upload' | 'link' | 'both';
+  defaultInline?: boolean;
 
-  enableAlt?: boolean,
+  enableAlt?: boolean;
 
-  onError?: (error: {
-    type: 'size' | 'type' | 'upload';
-    message: string;
-    file?: File;
-  }) => void;
+  onError?: (error: { type: 'size' | 'type' | 'upload'; message: string; file?: File }) => void;
 }
 ```
 
-| Property         | Type                                                                                    | Description                                                                                                           | Required | Default |
-| ---------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
-| `upload`         | `(file: File) => Promise<string>`                                                       | Custom image upload function that receives a `File` and returns a Promise with the image URL, suitable for uploading to cloud or local servers. | No       | None    |
-| `HTMLAttributes` | `any`                                                                                   | HTML attributes passed to the `<img>` tag, such as `className`, `style`, `alt`, etc.                                | No       | None    |
-| `multiple`       | `boolean`                                                                               | Whether to allow selecting and uploading multiple images simultaneously.                                              | No       | `true`  |
+| Property         | Type                                                                                    | Description                                                                                                                                                                                                              | Required | Default                                                                    |
+| ---------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | -------------------------------------------------------------------------- |
+| `upload`         | `(file: File) => Promise<string>`                                                       | Custom image upload function that receives a `File` and returns a Promise with the image URL, suitable for uploading to cloud or local servers.                                                                          | No       | None                                                                       |
+| `HTMLAttributes` | `any`                                                                                   | HTML attributes passed to the `<img>` tag, such as `className`, `style`, `alt`, etc.                                                                                                                                     | No       | None                                                                       |
+| `multiple`       | `boolean`                                                                               | Whether to allow selecting and uploading multiple images simultaneously.                                                                                                                                                 | No       | `true`                                                                     |
 | `acceptMimes`    | `string[]`                                                                              | List of allowed image MIME types or file extension restrictions, such as `['image/jpeg', 'image/png']`, `['image/*']`, or `['.png', '.jpg']`, etc. Supports MIME type wildcards and precise file extension restrictions. | No       | Common image types `['image/jpeg', 'image/gif', 'image/png', 'image/jpg']` |
-| `maxSize`        | `number`                                                                                | Maximum size limit for a single image (in bytes), triggers `onError` when exceeded.                                  | No       | `5MB`   |
-| `resourceImage`  | `'upload' \| 'link' \| 'both'`                                                          | Image source method: - `'upload'`: Upload only - `'link'`: Link only - `'both'`: Both supported                     | Yes      | `both`  |
-| `defaultInline`  | `boolean`                                                                               | Whether to insert images as inline elements by default.                                                               | No       | `false` |
-| `enableAlt`      | `boolean`                                                                               | Whether to enable alt text editing for images.                                                               | No       | `true` |
-| `onError`        | `(error: { type: 'size' \| 'type' \| 'upload'; message: string; file?: File }) => void` | Callback function for upload or validation failures. Contains error type (size, type, upload), error message, and corresponding file. | No       | None    |
+| `maxSize`        | `number`                                                                                | Maximum size limit for a single image (in bytes), triggers `onError` when exceeded.                                                                                                                                      | No       | `5MB`                                                                      |
+| `resourceImage`  | `'upload' \| 'link' \| 'both'`                                                          | Image source method: - `'upload'`: Upload only - `'link'`: Link only - `'both'`: Both supported                                                                                                                          | Yes      | `both`                                                                     |
+| `defaultInline`  | `boolean`                                                                               | Whether to insert images as inline elements by default.                                                                                                                                                                  | No       | `false`                                                                    |
+| `enableAlt`      | `boolean`                                                                               | Whether to enable alt text editing for images.                                                                                                                                                                           | No       | `true`                                                                     |
+| `onError`        | `(error: { type: 'size' \| 'type' \| 'upload'; message: string; file?: File }) => void` | Callback function for upload or validation failures. Contains error type (size, type, upload), error message, and corresponding file.                                                                                    | No       | None                                                                       |
 
 ### resourceImage Type Description
 
@@ -158,10 +153,24 @@ Supports three format types:
 
 ```ts
 [
-  '.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg', '.svgz', '.xbm',
-  '.tiff', '.ico', '.jfif', '.heic', '.heif', '.avif', '.bmp',
-  '.apng', '.pjpeg'
-]
+  '.png',
+  '.jpg',
+  '.jpeg',
+  '.webp',
+  '.gif',
+  '.svg',
+  '.svgz',
+  '.xbm',
+  '.tiff',
+  '.ico',
+  '.jfif',
+  '.heic',
+  '.heif',
+  '.avif',
+  '.bmp',
+  '.apng',
+  '.pjpeg',
+];
 ```
 
 ### onError Example
@@ -182,5 +191,5 @@ onError: ({ type, message, file }) => {
       console.error(`Upload failed: ${message}`);
       break;
   }
-}
+};
 ```

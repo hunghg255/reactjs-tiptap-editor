@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 const APPEND_ORDER = 'data-rc-order';
 const APPEND_PRIORITY = 'data-rc-priority';
 const MARK_KEY = 'rc-util-key';
@@ -33,15 +32,15 @@ export default function contains(root: Node | null | undefined, n?: Node) {
 }
 
 interface Options {
-  attachTo?: ContainerType
-  csp?: { nonce?: string }
-  prepend?: Prepend
+  attachTo?: ContainerType;
+  csp?: { nonce?: string };
+  prepend?: Prepend;
   /**
    * Config the `priority` of `prependQueue`. Default is `0`.
    * It's useful if you need to insert style before other style.
    */
-  priority?: number
-  mark?: string
+  priority?: number;
+  mark?: string;
 }
 
 function getMark({ mark }: Options = {}) {
@@ -73,7 +72,7 @@ function getOrder(prepend?: Prepend): AppendType {
  */
 function findStyles(container: ContainerType) {
   return [...(containerCache.get(container) || container).children].filter(
-    node => node.tagName === 'STYLE',
+    (node) => node.tagName === 'STYLE'
   ) as HTMLStyleElement[];
 }
 
@@ -132,7 +131,7 @@ export function injectCSS(css: string, option: Options = {}) {
 function findExistNode(key: string, option: Options = {}) {
   const container = getContainer(option);
 
-  return findStyles(container).find(node => node.getAttribute(getMark(option)) === key);
+  return findStyles(container).find((node) => node.getAttribute(getMark(option)) === key);
 }
 
 export function removeCSS(key: string, option: Options = {}) {

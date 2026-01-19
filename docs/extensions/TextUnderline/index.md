@@ -8,12 +8,11 @@ next:
 
 # UnderLine
 
- The UnderLine extension allows you to underline text in your editor.
+The UnderLine extension allows you to underline text in your editor.
 
- - Based on TipTap's underline extension. [@tiptap/extension-underline](https://tiptap.dev/docs/editor/extensions/marks/underline)
+- Based on TipTap's underline extension. [@tiptap/extension-underline](https://tiptap.dev/docs/editor/extensions/marks/underline)
 
 ## Usage
-
 
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'

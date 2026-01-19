@@ -9,7 +9,9 @@ export function useExtension(extensionName: string) {
     if (!editor) {
       return null;
     }
-    const extension = editor.extensionManager.extensions.find(extension => extension.name === extensionName);
+    const extension = editor.extensionManager.extensions.find(
+      (extension) => extension.name === extensionName
+    );
 
     return extension;
   }, [editor, extensionName]);

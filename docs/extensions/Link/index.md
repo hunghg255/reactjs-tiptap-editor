@@ -8,12 +8,11 @@ next:
 
 # Link
 
- Link is a node extension that allows you to add a horizontal rule to your editor.
+Link is a node extension that allows you to add a horizontal rule to your editor.
 
 - Based on TipTap's Link extension. [@tiptap/extension-link](https://tiptap.dev/docs/editor/extensions/marks/link)
 
 ## Usage
-
 
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'

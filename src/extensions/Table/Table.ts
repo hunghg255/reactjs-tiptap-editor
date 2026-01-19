@@ -1,4 +1,12 @@
-import { Table as TiptapTable, TableRow, TableCell, TableHeader, type TableCellOptions, type TableRowOptions,type TableHeaderOptions  } from '@tiptap/extension-table';
+import {
+  Table as TiptapTable,
+  TableRow,
+  TableCell,
+  TableHeader,
+  type TableCellOptions,
+  type TableRowOptions,
+  type TableHeaderOptions,
+} from '@tiptap/extension-table';
 
 import type { GeneralOptions } from '@/types';
 
@@ -6,26 +14,25 @@ import type { TableCellBackgroundOptions } from './TableCellBackground';
 import { TableCellBackground } from './TableCellBackground';
 
 export interface TableOptions extends GeneralOptions<TableOptions> {
-  HTMLAttributes: Record<string, any>
-  resizable: boolean
-  handleWidth: number
-  cellMinWidth: number
-  lastColumnResizable: boolean
-  allowTableNodeSelection: boolean
+  HTMLAttributes: Record<string, any>;
+  resizable: boolean;
+  handleWidth: number;
+  cellMinWidth: number;
+  lastColumnResizable: boolean;
+  allowTableNodeSelection: boolean;
   /** options for table rows */
-  tableRow: Partial<TableRowOptions>
+  tableRow: Partial<TableRowOptions>;
   /** options for table headers */
-  tableHeader: Partial<TableHeaderOptions>
+  tableHeader: Partial<TableHeaderOptions>;
   /** options for table cells */
-  tableCell: Partial<TableCellOptions>
+  tableCell: Partial<TableCellOptions>;
   /** options for table cell background */
-  tableCellBackground: Partial<TableCellBackgroundOptions>
+  tableCellBackground: Partial<TableCellBackgroundOptions>;
 }
 
 export * from '@/extensions/Table/components/RichTextTable';
 
 export const Table = /* @__PURE__ */ TiptapTable.extend<TableOptions>({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {

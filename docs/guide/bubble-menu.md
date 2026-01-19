@@ -12,7 +12,6 @@ The bubble menu, as its name suggests, is a context menu that appears when you s
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -140,20 +139,20 @@ The bubble menu will be automatically enabled when you import the correct plugin
 
 The system provides the following default bubble menus:
 
-| Component Name  | Functionality                                                                                | Extension |
-|:---------------:|----------------------------------------------------------------------------------------------|---------------------|
-| RichTextBubbleText  | Provides text-related editing operations like bold, italic, underline, etc.                  | text          |
-| RichTextBubbleLink  | Provides link-related operations like add, edit, delete links                                | link          |
-| RichTextBubbleImage | Provides image-related operations like resizing, alignment, etc.                             | image         |
-| RichTextBubbleVideo | Provides video-related operations like playback control, size adjustment, etc.               | video         |
-| RichTextBubbleTable | Provides table-related operations like adding/deleting rows and columns, merging cells, etc. | table         |
-| RichTextBubbleIframe     | Provides iframe-related  operations like size, link , etc.  | iframe          |
-| RichTextBubbleColumns   | Provides multi-column layout operations like adjusting column numbers, widths, etc.          | column        |
-| RichTextBubbleImageGif   | Provides general content-related operations like copy, paste, delete, image gif etc.                   | imageGif  |
-| RichTextBubbleDrawer   | Provides drawer-related operations like size, link , etc.  | drawer          |
-| RichTextBubbleExcalidraw   | Provides excalidraw-related operations like size, link , etc.  | excalidraw          |
-| RichTextBubbleMermaid   | Provides mermaid-related operations like size, link , etc.  | mermaid          |
-| RichTextBubbleTwitter   | Provides twitter-related operations like size, link , etc.  | twitter          |
-| RichTextBubbleMenuDragHandle  | Provides a drag handle to move the bubble menu around the editor area.                       | N/A           |
-| RichTextBubbleCallout  | Provides callout-related operations like style, content, etc.  | callout           |
-| SlashCommandList  | Provides a list of slash commands for quick access to various editor functionalities.  | slashcommand           |
+|        Component Name        | Functionality                                                                                | Extension    |
+| :--------------------------: | -------------------------------------------------------------------------------------------- | ------------ |
+|      RichTextBubbleText      | Provides text-related editing operations like bold, italic, underline, etc.                  | text         |
+|      RichTextBubbleLink      | Provides link-related operations like add, edit, delete links                                | link         |
+|     RichTextBubbleImage      | Provides image-related operations like resizing, alignment, etc.                             | image        |
+|     RichTextBubbleVideo      | Provides video-related operations like playback control, size adjustment, etc.               | video        |
+|     RichTextBubbleTable      | Provides table-related operations like adding/deleting rows and columns, merging cells, etc. | table        |
+|     RichTextBubbleIframe     | Provides iframe-related operations like size, link , etc.                                    | iframe       |
+|    RichTextBubbleColumns     | Provides multi-column layout operations like adjusting column numbers, widths, etc.          | column       |
+|    RichTextBubbleImageGif    | Provides general content-related operations like copy, paste, delete, image gif etc.         | imageGif     |
+|     RichTextBubbleDrawer     | Provides drawer-related operations like size, link , etc.                                    | drawer       |
+|   RichTextBubbleExcalidraw   | Provides excalidraw-related operations like size, link , etc.                                | excalidraw   |
+|    RichTextBubbleMermaid     | Provides mermaid-related operations like size, link , etc.                                   | mermaid      |
+|    RichTextBubbleTwitter     | Provides twitter-related operations like size, link , etc.                                   | twitter      |
+| RichTextBubbleMenuDragHandle | Provides a drag handle to move the bubble menu around the editor area.                       | N/A          |
+|    RichTextBubbleCallout     | Provides callout-related operations like style, content, etc.                                | callout      |
+|       SlashCommandList       | Provides a list of slash commands for quick access to various editor functionalities.        | slashcommand |

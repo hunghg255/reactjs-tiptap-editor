@@ -6,9 +6,9 @@ import { IndentProps, createIndentCommand } from '@/utils/indent';
 export * from './components/RichTextIndent';
 
 export interface IndentOptions extends GeneralOptions<IndentOptions> {
-  types: string[]
-  minIndent: number
-  maxIndent: number
+  types: string[];
+  minIndent: number;
+  maxIndent: number;
 }
 
 declare module '@tiptap/core' {
@@ -17,18 +17,17 @@ declare module '@tiptap/core' {
       /**
        * Set the indent attribute
        */
-      indent: () => ReturnType
+      indent: () => ReturnType;
       /**
        * Set the outdent attribute
        */
-      outdent: () => ReturnType
-    }
+      outdent: () => ReturnType;
+    };
   }
 }
 
 export const Indent = /* @__PURE__ */ Extension.create<IndentOptions>({
   name: 'richtextIndentOutdent',
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
@@ -53,9 +52,9 @@ export const Indent = /* @__PURE__ */ Extension.create<IndentOptions>({
               },
               shortcutKeys: extension.options.shortcutKeys?.[1] ?? ['Shift', 'Tab'],
               icon: 'IndentDecrease',
-              tooltip: t('editor.outdent.tooltip')
-            }
-          }
+              tooltip: t('editor.outdent.tooltip'),
+            },
+          },
         };
       },
     };
@@ -101,7 +100,7 @@ export const Indent = /* @__PURE__ */ Extension.create<IndentOptions>({
 
   addKeyboardShortcuts() {
     return {
-      'Tab': () => this.editor.commands.indent(),
+      Tab: () => this.editor.commands.indent(),
       'Shift-Tab': () => this.editor.commands.outdent(),
     };
   },

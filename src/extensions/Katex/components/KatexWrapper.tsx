@@ -1,7 +1,6 @@
-import { useMemo } from 'react';
-
 import { NodeViewWrapper } from '@tiptap/react';
 import katexLib from 'katex';
+import { useMemo } from 'react';
 
 import { safeJSONParse } from '@/utils/json';
 
@@ -11,7 +10,7 @@ export function KatexNodeView({ node }: any) {
   const formatText = useMemo(() => {
     try {
       return katexLib.renderToString(decodeURIComponent(text || ''), {
-        macros: safeJSONParse(decodeURIComponent(macros || ''))
+        macros: safeJSONParse(decodeURIComponent(macros || '')),
       });
     } catch {
       return text;
@@ -20,24 +19,17 @@ export function KatexNodeView({ node }: any) {
 
   const content = useMemo(
     () =>
-      text.trim()
-        ? (
-          <span contentEditable={false}
-            dangerouslySetInnerHTML={{ __html: formatText }}
-          >
-          </span>
-        )
-        : (
-          <span contentEditable={false}>
-            Not enter a formula
-          </span>
-        ),
-    [text, formatText],
+      text.trim() ? (
+        <span contentEditable={false} dangerouslySetInnerHTML={{ __html: formatText }}></span>
+      ) : (
+        <span contentEditable={false}>Not enter a formula</span>
+      ),
+    [text, formatText]
   );
 
   return (
     <NodeViewWrapper
-      as="span"
+      as='span'
       style={{
         display: 'inline-block',
       }}

@@ -28,7 +28,6 @@ yarn add mammoth
 
 :::
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 

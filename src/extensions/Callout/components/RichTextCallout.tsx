@@ -2,8 +2,20 @@ import { useState } from 'react';
 
 import { ActionButton } from '@/components';
 import { Button, Input, Label } from '@/components/ui';
-import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Callout } from '@/extensions/Callout/Callout';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
@@ -41,7 +53,11 @@ export function RichTextCallout() {
   const handleInsert = () => {
     if (!editor) return;
 
-    editor.chain().focus().setCallout({ type: calloutType, title: calloutTitle, body: calloutBody }).run();
+    editor
+      .chain()
+      .focus()
+      .setCallout({ type: calloutType, title: calloutTitle, body: calloutBody })
+      .run();
     setOpen(false);
     setCalloutType('note');
     setCalloutTitle('');
@@ -58,9 +74,7 @@ export function RichTextCallout() {
   }
 
   return (
-    <Dialog onOpenChange={setOpen}
-      open={open}
-    >
+    <Dialog onOpenChange={setOpen} open={open}>
       <DialogTrigger asChild>
         <ActionButton
           action={onAction}
@@ -74,28 +88,20 @@ export function RichTextCallout() {
       </DialogTrigger>
 
       <DialogContent>
-        <DialogTitle>
-          {t('editor.callout.dialog.title')}
-        </DialogTitle>
+        <DialogTitle>{t('editor.callout.dialog.title')}</DialogTitle>
 
-        <div className="richtext-space-y-4 richtext-py-4">
-          <div className="richtext-space-y-2">
-            <Label>
-              {t('editor.callout.dialog.type')}
-            </Label>
+        <div className='richtext-space-y-4 richtext-py-4'>
+          <div className='richtext-space-y-2'>
+            <Label>{t('editor.callout.dialog.type')}</Label>
 
-            <Select onValueChange={setCalloutType}
-              value={calloutType}
-            >
+            <Select onValueChange={setCalloutType} value={calloutType}>
               <SelectTrigger>
                 <SelectValue placeholder={t('editor.callout.dialog.type.placeholder')} />
               </SelectTrigger>
 
               <SelectContent>
-                {CALLOUT_TYPES.map(type => (
-                  <SelectItem key={type.value}
-                    value={type.value}
-                  >
+                {CALLOUT_TYPES.map((type) => (
+                  <SelectItem key={type.value} value={type.value}>
                     {t(`editor.callout.type.${type.value}`)}
                   </SelectItem>
                 ))}
@@ -103,25 +109,21 @@ export function RichTextCallout() {
             </Select>
           </div>
 
-          <div className="richtext-space-y-2">
-            <Label>
-              {t('editor.callout.dialog.title.label')}
-            </Label>
+          <div className='richtext-space-y-2'>
+            <Label>{t('editor.callout.dialog.title.label')}</Label>
 
             <Input
-              onChange={e => setCalloutTitle(e.target.value)}
+              onChange={(e) => setCalloutTitle(e.target.value)}
               placeholder={t('editor.callout.dialog.title.placeholder')}
               value={calloutTitle}
             />
           </div>
 
-          <div className="richtext-space-y-2">
-            <Label>
-              {t('editor.callout.dialog.body.label')}
-            </Label>
+          <div className='richtext-space-y-2'>
+            <Label>{t('editor.callout.dialog.body.label')}</Label>
 
             <Input
-              onChange={e => setCalloutBody(e.target.value)}
+              onChange={(e) => setCalloutBody(e.target.value)}
               placeholder={t('editor.callout.dialog.body.placeholder')}
               value={calloutBody}
             />
@@ -129,15 +131,11 @@ export function RichTextCallout() {
         </div>
 
         <DialogFooter>
-          <Button onClick={() => setOpen(false)}
-            variant="outline"
-          >
+          <Button onClick={() => setOpen(false)} variant='outline'>
             {t('editor.callout.dialog.button.cancel')}
           </Button>
 
-          <Button onClick={handleInsert}>
-            {t('editor.callout.dialog.button.apply')}
-          </Button>
+          <Button onClick={handleInsert}>{t('editor.callout.dialog.button.apply')}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -17,31 +17,31 @@ interface TwitterOptions {
    * @default true
    * @example false
    */
-  addPasteHandler: boolean
+  addPasteHandler: boolean;
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  HTMLAttributes: Record<string, any>
+  HTMLAttributes: Record<string, any>;
 
   /**
    * Controls if the twitter node should be inline or not.
    * @default false
    * @example true
    */
-  inline: boolean
+  inline: boolean;
 
   /**
    * The origin of the tweet.
    * @default ''
    * @example 'https://tiptap.dev'
    */
-  origin: string
+  origin: string;
 }
 
 /**
  * The options for setting a tweet.
  */
 interface SetTweetOptions {
-  src: string
+  src: string;
 }
 
 declare module '@tiptap/core' {
@@ -52,9 +52,9 @@ declare module '@tiptap/core' {
        * @param options The tweet attributes
        * @example editor.commands.setTweet({ src: 'https://x.com/seanpk/status/1800145949580517852' })
        */
-      setTweet: (options: SetTweetOptions) => ReturnType
-      updateTweet: (options: SetTweetOptions) => ReturnType
-    }
+      setTweet: (options: SetTweetOptions) => ReturnType;
+      updateTweet: (options: SetTweetOptions) => ReturnType;
+    };
   }
 }
 
@@ -88,7 +88,9 @@ export const Twitter = /* @__PURE__ */ Node.create<TwitterOptions>({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(NodeViewTweet, { attrs: this.options.HTMLAttributes });
+    return ReactNodeViewRenderer(NodeViewTweet, {
+      attrs: this.options.HTMLAttributes,
+    });
   },
 
   inline() {
@@ -119,23 +121,25 @@ export const Twitter = /* @__PURE__ */ Node.create<TwitterOptions>({
     return {
       setTweet:
         (options: SetTweetOptions) =>
-          ({ commands }) => {
-            if (!isValidTwitterUrl(options.src)) {
-              return false;
-            }
+        ({ commands }) => {
+          if (!isValidTwitterUrl(options.src)) {
+            return false;
+          }
 
-            return commands.insertContent({
-              type: this.name,
-              attrs: options,
-            });
-          },
-      updateTweet: (options: SetTweetOptions) => ({ commands }: any) => {
-        if (!isValidTwitterUrl(options.src)) {
-          return false;
-        }
+          return commands.insertContent({
+            type: this.name,
+            attrs: options,
+          });
+        },
+      updateTweet:
+        (options: SetTweetOptions) =>
+        ({ commands }: any) => {
+          if (!isValidTwitterUrl(options.src)) {
+            return false;
+          }
 
-        return commands.updateAttributes(this.name, { src: options.src });
-      },
+          return commands.updateAttributes(this.name, { src: options.src });
+        },
     };
   },
 

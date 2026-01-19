@@ -1,17 +1,11 @@
-import type {
-  ToastProps,
-} from '@/components/ui/toast';
+import type { ToastProps } from '@/components/ui/toast';
 
 interface ValidateFileOptions {
   acceptMimes: string[];
   maxSize: number;
   t: any;
   toast: (props: ToastProps) => void;
-  onError?: (error: {
-    type: 'size' | 'type' | 'upload';
-    message: string;
-    file?: File;
-  }) => void;
+  onError?: (error: { type: 'size' | 'type' | 'upload'; message: string; file?: File }) => void;
 }
 
 function isAcceptedMime(file: File, acceptMimes: string[]): boolean {
@@ -57,9 +51,7 @@ export function validateFiles(
   const { acceptMimes, maxSize, t, toast } = options;
   const validFiles: File[] = [];
 
-  const filesArray = Array.isArray(files)
-    ? files
-    : Object.values(files);
+  const filesArray = Array.isArray(files) ? files : Object.values(files);
 
   filesArray.forEach((file) => {
     // Validate file type
@@ -67,13 +59,17 @@ export function validateFiles(
       if (options.onError) {
         options.onError({
           type: 'type',
-          message: t('editor.upload.fileTypeNotSupported', { fileName: file.name }),
+          message: t('editor.upload.fileTypeNotSupported', {
+            fileName: file.name,
+          }),
           file,
         });
       } else {
         toast({
           variant: 'default',
-          title: t('editor.upload.fileTypeNotSupported', { fileName: file.name }),
+          title: t('editor.upload.fileTypeNotSupported', {
+            fileName: file.name,
+          }),
         });
       }
       return;
@@ -85,13 +81,19 @@ export function validateFiles(
       if (options.onError) {
         options.onError({
           type: 'size',
-          message: t('editor.upload.fileSizeTooBig', { fileName: file.name, size: maxSizeInMB }),
+          message: t('editor.upload.fileSizeTooBig', {
+            fileName: file.name,
+            size: maxSizeInMB,
+          }),
           file,
         });
       } else {
         toast({
           variant: 'default',
-          title: t('editor.upload.fileSizeTooBig', { fileName: file.name, size: maxSizeInMB }),
+          title: t('editor.upload.fileSizeTooBig', {
+            fileName: file.name,
+            size: maxSizeInMB,
+          }),
         });
       }
       return;

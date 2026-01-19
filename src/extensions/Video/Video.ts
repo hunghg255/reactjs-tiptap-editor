@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Node } from '@tiptap/core';
 
 import { VIDEO_SIZE } from '@/constants';
-import type { GeneralOptions,VideoAlignment } from '@/types';
+import type { GeneralOptions, VideoAlignment } from '@/types';
 import { getCssUnitWithDefault } from '@/utils/utils';
 
 export * from '@/extensions/Video/components/RichTextVideo';
@@ -16,28 +15,28 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
    *
    * @default true
    */
-  allowFullscreen: boolean
+  allowFullscreen: boolean;
   /**
    * Indicates whether to display the frameborder
    *
    * @default false
    */
-  frameborder: boolean
+  frameborder: boolean;
   /**
    * Width of the video, can be a number or string
    *
    * @default VIDEO_SIZE['size-medium']
    */
-  width: number | string
+  width: number | string;
   /** HTML attributes object for passing additional attributes */
   HTMLAttributes: {
-    [key: string]: any
-  }
+    [key: string]: any;
+  };
   /** Function for uploading files */
-  upload?: (file: File) => Promise<string>
+  upload?: (file: File) => Promise<string>;
 
   /** The source URL of the video */
-  resourceVideo: 'upload' | 'link' | 'both',
+  resourceVideo: 'upload' | 'link' | 'both';
 
   /**
    * List of allowed video hosting providers
@@ -45,7 +44,7 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
    *
    * @default ['.']
    */
-  videoProviders?: string[]
+  videoProviders?: string[];
 }
 
 /**
@@ -53,9 +52,9 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
  */
 interface SetVideoOptions {
   /** The source URL of the video */
-  src: string
+  src: string;
   /** The width of the video */
-  width: string | number
+  width: string | number;
 
   align: VideoAlignment;
 }
@@ -66,12 +65,12 @@ declare module '@tiptap/core' {
       /**
        * Add an video
        */
-      setVideo: (options: Partial<SetVideoOptions>) => ReturnType
+      setVideo: (options: Partial<SetVideoOptions>) => ReturnType;
       /**
        * Update an video
        */
-      updateVideo: (options: Partial<SetVideoOptions>) => ReturnType
-    }
+      updateVideo: (options: Partial<SetVideoOptions>) => ReturnType;
+    };
   }
 }
 
@@ -82,7 +81,6 @@ function linkConvert(src: string) {
     .replace('watch?v=', 'embed/');
 
   // Convert YouTube Shorts
-  // eslint-disable-next-line unicorn/better-regex
   const youtubeShortsMatch = src.match(/^https:\/\/www\.youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/);
   if (youtubeShortsMatch) {
     const videoId = youtubeShortsMatch[1];
@@ -90,7 +88,6 @@ function linkConvert(src: string) {
   }
 
   // Convert vimeo links
-  // eslint-disable-next-line unicorn/better-regex
   const vimeoMatch = src.match(/^https:\/\/vimeo\.com\/(\d+)(?:\/([a-zA-Z0-9]+))?/);
   if (vimeoMatch) {
     const videoId = vimeoMatch[1];
@@ -198,7 +195,7 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
-    const { width = '100%' ,align = 'center' } = HTMLAttributes ?? {};
+    const { width = '100%', align = 'center' } = HTMLAttributes ?? {};
 
     const iframeHTMLAttributes = {
       ...HTMLAttributes,
@@ -212,12 +209,7 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
 
     const iframeDOM = ['iframe', iframeHTMLAttributes];
     const sizesDOM = ['div', { style: responsiveSizesStyle }];
-    const responsiveDOM = [
-      'div',
-      { style: responsiveStyle },
-      sizesDOM,
-      iframeDOM,
-    ];
+    const responsiveDOM = ['div', { style: responsiveStyle }, sizesDOM, iframeDOM];
     const positionDiv = ['div', { style: positionStyle }, responsiveDOM];
 
     const divAttrs = {
@@ -232,19 +224,18 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
   addCommands() {
     return {
       setVideo:
-        options =>
-          ({ commands }) => {
-            return commands.insertContent({
-              type: this.name,
-              attrs: options,
-            });
-          },
+        (options) =>
+        ({ commands }) => {
+          return commands.insertContent({
+            type: this.name,
+            attrs: options,
+          });
+        },
       updateVideo:
-        options =>
-          ({ commands }) => {
-            return commands.updateAttributes(this.name, options);
-          },
+        (options) =>
+        ({ commands }) => {
+          return commands.updateAttributes(this.name, options);
+        },
     };
   },
-
 });

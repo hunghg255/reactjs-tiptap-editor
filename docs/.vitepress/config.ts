@@ -14,7 +14,7 @@ export default defineConfig({
     root: getLocaleConfig('en'),
   },
   vite: {
-    plugins: [llmstxt()]
+    plugins: [llmstxt()],
   },
   themeConfig: {
     search: {
@@ -49,8 +49,8 @@ export default defineConfig({
   markdown: {
     config(md) {
       md.use(copyOrDownloadAsMarkdownButtons);
-    }
-  }
+    },
+  },
   // markdown: {
   //   codeTransformers: [
   //     {

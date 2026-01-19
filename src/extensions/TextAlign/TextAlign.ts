@@ -16,63 +16,63 @@ export interface TextAlignOptions extends TiptapTextAlignOptions, GeneralOptions
    *
    * @default ['left', 'center', 'right', 'justify']
    */
-  alignments: Alignments[]
+  alignments: Alignments[];
 }
-export const TextAlign = /* @__PURE__ */ TiptapTextAlign.extend<TextAlignOptions>({
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-expect-error
-  addOptions() {
-    return {
-      ...this.parent?.(),
-      types: ['heading', 'paragraph', 'list_item', 'title'],
-      button({
-        editor,
-        extension,
-        t,
-      }: {
-        editor: Editor
-        extension: Extension
-        t: (...args: any[]) => string
-      }) {
-        const alignments = (extension.options?.alignments as Alignments[]) || [];
+export const TextAlign =
+  /* @__PURE__ */ TiptapTextAlign.extend<TextAlignOptions>({
+    //@ts-expect-error
+    addOptions() {
+      return {
+        ...this.parent?.(),
+        types: ['heading', 'paragraph', 'list_item', 'title'],
+        button({
+          editor,
+          extension,
+          t,
+        }: {
+          editor: Editor;
+          extension: Extension;
+          t: (...args: any[]) => string;
+        }) {
+          const alignments = (extension.options?.alignments as Alignments[]) || [];
 
-        const shortcutKeysMap = {
-          left: extension.options.shortcutKeys?.[0] ?? ['mod', 'Shift', 'L'],
-          center: extension.options.shortcutKeys?.[1] ?? ['mod', 'Shift', 'E'],
-          right: extension.options.shortcutKeys?.[2] ?? ['mod', 'Shift', 'R'],
-          justify: extension.options.shortcutKeys?.[3] ?? ['mod', 'Shift', 'J'],
-        };
-        const iconMap = {
-          left: 'AlignLeft',
-          center: 'AlignCenter',
-          right: 'AlignRight',
-          justify: 'AlignJustify',
-        };
-        const items = alignments.map(k => {
-          return {
-            title: t(`editor.textalign.${k}.tooltip`),
-            icon: iconMap[k],
-            shortcutKeys: shortcutKeysMap[k],
-            isActive: () => editor.isActive({ textAlign: k }) || false,
-            action: () => editor.commands?.setTextAlign?.(k),
-            disabled: !editor?.can?.()?.setTextAlign?.(k),
+          const shortcutKeysMap = {
+            left: extension.options.shortcutKeys?.[0] ?? ['mod', 'Shift', 'L'],
+            center: extension.options.shortcutKeys?.[1] ?? ['mod', 'Shift', 'E'],
+            right: extension.options.shortcutKeys?.[2] ?? ['mod', 'Shift', 'R'],
+            justify: extension.options.shortcutKeys?.[3] ?? ['mod', 'Shift', 'J'],
           };
-        });
+          const iconMap = {
+            left: 'AlignLeft',
+            center: 'AlignCenter',
+            right: 'AlignRight',
+            justify: 'AlignJustify',
+          };
+          const items = alignments.map((k) => {
+            return {
+              title: t(`editor.textalign.${k}.tooltip`),
+              icon: iconMap[k],
+              shortcutKeys: shortcutKeysMap[k],
+              isActive: () => editor.isActive({ textAlign: k }) || false,
+              action: () => editor.commands?.setTextAlign?.(k),
+              disabled: !editor?.can?.()?.setTextAlign?.(k),
+            };
+          });
 
-        // const disabled = items.filter(k => k.disabled).length === items.length;
-        return {
-          componentProps: {
-            icon: 'AlignJustify',
-            tooltip: t('editor.textalign.tooltip'),
-            items,
-            isActive: () => {
-              const find: any = items?.find((k: any) => k.isActive());
+          // const disabled = items.filter(k => k.disabled).length === items.length;
+          return {
+            componentProps: {
+              icon: 'AlignJustify',
+              tooltip: t('editor.textalign.tooltip'),
+              items,
+              isActive: () => {
+                const find: any = items?.find((k: any) => k.isActive());
 
-              return find;
-            }
-          },
-        };
-      },
-    };
-  },
-});
+                return find;
+              },
+            },
+          };
+        },
+      };
+    },
+  });

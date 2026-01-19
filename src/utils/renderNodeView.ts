@@ -3,7 +3,6 @@ import { ReactRenderer } from '@tiptap/react';
 import { updatePosition } from '@/utils/updatePosition';
 
 export function renderNodeViewClosure(node: any) {
-
   return () => {
     let reactRenderer: any;
 

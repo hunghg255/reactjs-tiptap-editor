@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/prefer-add-event-listener */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /**
  * 获取文件名
  *
@@ -36,19 +34,23 @@ export function normalizeFileSize(size: any) {
 export type FileType = 'image' | 'audio' | 'video' | 'pdf' | 'word' | 'excel' | 'ppt' | 'file';
 
 export function normalizeFileType(fileType: any): FileType {
-  if (!fileType)
-    return 'file';
+  if (!fileType) return 'file';
 
-  if (fileType === 'application/pdf')
-    return 'pdf';
+  if (fileType === 'application/pdf') return 'pdf';
 
-  if (fileType.startsWith('application/') && ['.document', 'word'].some(type => fileType.includes(type)))
+  if (
+    fileType.startsWith('application/') &&
+    ['.document', 'word'].some((type) => fileType.includes(type))
+  )
     return 'word';
 
-  if (fileType.startsWith('application/') && ['presentation'].some(type => fileType.includes(type)))
+  if (
+    fileType.startsWith('application/') &&
+    ['presentation'].some((type) => fileType.includes(type))
+  )
     return 'excel';
 
-  if (fileType.startsWith('application/') && ['sheet'].some(type => fileType.includes(type)))
+  if (fileType.startsWith('application/') && ['sheet'].some((type) => fileType.includes(type)))
     return 'ppt';
 
   if (fileType.startsWith('image')) {
@@ -66,7 +68,7 @@ export function normalizeFileType(fileType: any): FileType {
   return 'file';
 }
 
-export function readImageAsBase64(file: File): Promise<{ alt: string, src: string }> {
+export function readImageAsBase64(file: File): Promise<{ alt: string; src: string }> {
   return new Promise((resolve) => {
     const reader = new FileReader();
     reader.addEventListener(
@@ -77,18 +79,21 @@ export function readImageAsBase64(file: File): Promise<{ alt: string, src: strin
           src: reader.result as string,
         });
       },
-      false,
+      false
     );
     reader.readAsDataURL(file);
   });
 }
 
-export function getImageWidthHeight(url: string): Promise<{ width: number | string, height: number | string }> {
+export function getImageWidthHeight(
+  url: string
+): Promise<{ width: number | string; height: number | string }> {
   return new Promise((resolve) => {
     const img = document.createElement('img');
     img.addEventListener('load', () => {
       resolve({ width: img.width, height: img.height });
     });
+    // oxlint-disable-next-line unicorn/prefer-add-event-listener
     img.onerror = () => {
       resolve({ width: 'auto', height: 'auto' });
     };

@@ -1,6 +1,5 @@
-import { Fragment, useMemo } from 'react';
-
 import { BubbleMenu } from '@tiptap/react/menus';
+import { Fragment, useMemo } from 'react';
 
 import { Separator } from '@/components';
 import { getBubbleDrawer } from '@/components/Bubble/formatBubble';
@@ -21,19 +20,18 @@ function ItemA({ item, disabled, editor }: any) {
 
   return (
     <Fragment>
-      {item.type === 'divider'
-        ? (
-          <Separator className="!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]"
-            orientation="vertical"
-          />
-        )
-        : (
-          <Comp
-            {...item.componentProps}
-            disabled={disabled || item?.componentProps?.disabled}
-            editor={editor}
-          />
-        )}
+      {item.type === 'divider' ? (
+        <Separator
+          className='!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]'
+          orientation='vertical'
+        />
+      ) : (
+        <Comp
+          {...item.componentProps}
+          disabled={disabled || item?.componentProps?.disabled}
+          editor={editor}
+        />
+      )}
     </Fragment>
   );
 }
@@ -48,7 +46,6 @@ export function RichTextBubbleDrawer() {
   const extension = useExtension(Drawer.name);
 
   const shouldShow = ({ editor }: any) => {
-
     const { selection } = editor.view.state;
     const { $from, to } = selection;
     let isDrawer = false;
@@ -65,7 +62,6 @@ export function RichTextBubbleDrawer() {
 
   const items = useMemo(() => {
     return getBubbleDrawer(editor, t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editor, lang, t]);
 
   if (!editable) {
@@ -79,34 +75,26 @@ export function RichTextBubbleDrawer() {
       pluginKey={'RichTextBubbleDrawer'}
       shouldShow={shouldShow}
     >
-      {items?.length
-        ? (
-          <div className="richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md  !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none">
-              {items?.map((item: any, key: any) => {
-                if (item.type === 'edit' && attrs?.src) {
-                  return (
-                    <EditDrawerBlock
-                      attrs={attrs}
-                      editor={editor}
-                      extension={extension}
-                      key={`bubbleMenu-drawer-${key}`}
-                    />
-                  );
-                }
+      {items?.length ? (
+        <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
+          {items?.map((item: any, key: any) => {
+            if (item.type === 'edit' && attrs?.src) {
+              return (
+                <EditDrawerBlock
+                  attrs={attrs}
+                  editor={editor}
+                  extension={extension}
+                  key={`bubbleMenu-drawer-${key}`}
+                />
+              );
+            }
 
-                return (
-                  <ItemA
-                    editor={editor}
-                    item={item}
-                    key={`bubbleMenu-drawer-${key}`}
-                  />
-                );
-              })}
-          </div>
-        )
-        : (
-          <></>
-        )}
+            return <ItemA editor={editor} item={item} key={`bubbleMenu-drawer-${key}`} />;
+          })}
+        </div>
+      ) : (
+        <></>
+      )}
     </BubbleMenu>
   );
 }

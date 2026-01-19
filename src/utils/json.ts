@@ -1,6 +1,5 @@
 export function safeJSONParse(str: any, defaultValue = {}) {
-  if (typeof str === 'object')
-    return str;
+  if (typeof str === 'object') return str;
 
   try {
     return JSON.parse(str);

@@ -2,15 +2,12 @@ import { createSignal, useSetSignal, useSignalValue } from 'reactjs-signal';
 
 const editableEditorSignal = createSignal<boolean>(false);
 
-function useEditableEditor () {
+function useEditableEditor() {
   return useSignalValue(editableEditorSignal);
 }
 
-function useStoreEditableEditor () {
+function useStoreEditableEditor() {
   return useSetSignal(editableEditorSignal);
 }
 
-export {
-  useStoreEditableEditor,
-  useEditableEditor,
-};
+export { useStoreEditableEditor, useEditableEditor };

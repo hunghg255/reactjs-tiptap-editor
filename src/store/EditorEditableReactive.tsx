@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react';
 
-import { useStoreEditableEditor, } from '@/store/store';
+import { useStoreEditableEditor } from '@/store/store';
 
-export function EditorEditableReactive ({ editor }: any) {
+export function EditorEditableReactive({ editor }: any) {
   const setEditable = useStoreEditableEditor();
 
   useEffect(() => {

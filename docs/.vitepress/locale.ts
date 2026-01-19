@@ -1,7 +1,8 @@
 import type { DefaultTheme, HeadConfig, LocaleConfig } from 'vitepress';
 
-import { createTranslate } from './i18n/utils';
 import { version } from '../../package.json';
+
+import { createTranslate } from './i18n/utils';
 
 const docsLink = 'https://reactjs-tiptap-editor.vercel.app';
 const githubRepo = 'hunghg255/reactjs-tiptap-editor';
@@ -9,8 +10,14 @@ const githubLink: 'https://github.com/hunghg255/reactjs-tiptap-editor' = `https:
 
 const VERSIONS: (DefaultTheme.NavItemWithLink | DefaultTheme.NavItemChildren)[] = [
   { text: `v${version} (current)`, link: '/' },
-  { text: 'Release Notes', link: 'https://github.com/hunghg255/reactjs-tiptap-editor/releases' },
-  { text: 'Contributing', link: 'https://github.com/hunghg255/reactjs-tiptap-editor/blob/main/CONTRIBUTING.md' },
+  {
+    text: 'Release Notes',
+    link: 'https://github.com/hunghg255/reactjs-tiptap-editor/releases',
+  },
+  {
+    text: 'Contributing',
+    link: 'https://github.com/hunghg255/reactjs-tiptap-editor/blob/main/CONTRIBUTING.md',
+  },
 ];
 
 export function getLocaleConfig(lang: string) {
@@ -19,7 +26,7 @@ export function getLocaleConfig(lang: string) {
   const urlPrefix = lang && lang !== 'en' ? `/${lang}` : '';
   const title = t('React Tiptap Editor');
   const description = t(
-    'A modern WYSIWYG rich text editor based on tiptap and shadcn ui for React',
+    'A modern WYSIWYG rich text editor based on tiptap and shadcn ui for React'
   );
 
   const head: HeadConfig[] = [
@@ -30,7 +37,14 @@ export function getLocaleConfig(lang: string) {
     ['meta', { property: 'twitter:card', content: 'summary_large_image' }],
     ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }],
     ['meta', { name: 'theme-color', content: '#914796' }],
-    ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' }],
+    [
+      'link',
+      {
+        rel: 'apple-touch-icon',
+        href: '/apple-touch-icon.png',
+        sizes: '180x180',
+      },
+    ],
   ];
 
   const nav: DefaultTheme.NavItem[] = [
@@ -48,7 +62,7 @@ export function getLocaleConfig(lang: string) {
       text: t('Playground'),
       link: 'https://reactjs-tiptap-editor-playground.vercel.app/',
     },
-     {
+    {
       text: 'llmstxt',
       link: 'https://reactjs-tiptap-editor.vercel.app/llms-full.txt',
     },
@@ -114,7 +128,7 @@ export function getLocaleConfig(lang: string) {
         { text: 'History', link: '/extensions/History/index.md' },
         {
           text: 'HorizontalRule',
-          link: '/extensions/HorizontalRule/index.md'
+          link: '/extensions/HorizontalRule/index.md',
         },
         { text: 'Iframe', link: '/extensions/Iframe/index.md' },
         { text: 'Image', link: '/extensions/Image/index.md' },
@@ -131,7 +145,7 @@ export function getLocaleConfig(lang: string) {
         { text: 'OrderedList', link: '/extensions/OrderedList/index.md' },
         {
           text: 'SearchAndReplace',
-          link: '/extensions/SearchAndReplace/index.md'
+          link: '/extensions/SearchAndReplace/index.md',
         },
         { text: 'SlashCommand', link: '/extensions/SlashCommand/index.md' },
         { text: 'Strike', link: '/extensions/Strike/index.md' },
@@ -141,8 +155,8 @@ export function getLocaleConfig(lang: string) {
         { text: 'TextDirection', link: '/extensions/TextDirection/index.md' },
         { text: 'TextUnderline', link: '/extensions/TextUnderline/index.md' },
         { text: 'Twitter', link: '/extensions/Twitter/index.md' },
-        { text: 'Video', link: '/extensions/Video/index.md' }
-      ]
+        { text: 'Video', link: '/extensions/Video/index.md' },
+      ],
     },
   ];
 
@@ -152,7 +166,10 @@ export function getLocaleConfig(lang: string) {
     sidebar,
     socialLinks: [
       { icon: 'github', link: githubLink },
-      { icon: 'npm', link: 'https://www.npmjs.com/package/reactjs-tiptap-editor' },
+      {
+        icon: 'npm',
+        link: 'https://www.npmjs.com/package/reactjs-tiptap-editor',
+      },
     ],
     footer: {
       message: t('Made with ❤️'),

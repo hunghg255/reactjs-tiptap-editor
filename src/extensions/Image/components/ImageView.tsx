@@ -1,15 +1,12 @@
-/* eslint-disable no-unsafe-optional-chaining */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-
 import { NodeViewWrapper } from '@tiptap/react';
 import { clamp, isNumber, throttle } from 'lodash-es';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { IMAGE_MAX_SIZE, IMAGE_MIN_SIZE, IMAGE_THROTTLE_WAIT_TIME } from '@/constants';
 
 interface Size {
-  width: number
-  height: number
+  width: number;
+  height: number;
 }
 
 const ResizeDirection = {
@@ -57,13 +54,11 @@ function ImageView(props: any) {
     const height = isNumber(h) ? `${h}px` : h;
     const transformStyles: any = [];
 
-    if (flipX)
-      transformStyles.push('rotateX(180deg)');
-    if (flipY)
-      transformStyles.push('rotateY(180deg)');
+    if (flipX) transformStyles.push('rotateX(180deg)');
+    if (flipY) transformStyles.push('rotateY(180deg)');
     const transform = transformStyles.join(' ');
 
-    const floatStyle = inlineFloat ? { float: align }: {};
+    const floatStyle = inlineFloat ? { float: align } : {};
 
     return {
       src: src || undefined,
@@ -109,7 +104,7 @@ function ImageView(props: any) {
         };
       });
     }, IMAGE_THROTTLE_WAIT_TIME),
-    [props?.editor],
+    [props?.editor]
   );
 
   function onMouseDown(e: MouseEvent, dir: string) {
@@ -170,7 +165,7 @@ function ImageView(props: any) {
         height,
       });
     }, IMAGE_THROTTLE_WAIT_TIME),
-    [resizing, resizerState, maxSize, props.updateAttributes],
+    [resizing, resizerState, maxSize, props.updateAttributes]
   );
 
   const onMouseUp = useCallback(
@@ -192,7 +187,7 @@ function ImageView(props: any) {
 
       selectImage();
     },
-    [resizing, selectImage],
+    [resizing, selectImage]
   );
 
   const onEvents = useCallback(() => {
@@ -232,10 +227,10 @@ function ImageView(props: any) {
   return (
     <NodeViewWrapper
       as={inline ? 'span' : 'div'}
-      className="image-view"
+      className='image-view'
       style={{
         float: inlineFloat ? align : undefined,
-        margin: inlineFloat ? align === 'left' ? '1em 1em 1em 0' : '1em 0 1em 1em' : undefined,
+        margin: inlineFloat ? (align === 'left' ? '1em 1em 1em 0' : '1em 0 1em 1em') : undefined,
         display: inline ? 'inline' : 'block',
         textAlign: inlineFloat ? undefined : align,
         width: imgAttrs.style?.width ?? 'auto',
@@ -244,7 +239,7 @@ function ImageView(props: any) {
     >
       <div
         data-drag-handle
-        draggable="true"
+        draggable='true'
         style={imageMaxStyle}
         className={`image-view__body ${props?.selected ? 'image-view__body--focused' : ''} ${
           resizing ? 'image-view__body--resizing' : ''
@@ -252,8 +247,8 @@ function ImageView(props: any) {
       >
         <img
           alt={imgAttrs.alt}
-          className="image-view__body__image block"
-          height="auto"
+          className='image-view__body__image block'
+          height='auto'
           onClick={selectImage}
           onLoad={onImageLoad}
           src={imgAttrs.src}
@@ -261,15 +256,14 @@ function ImageView(props: any) {
         />
 
         {props?.editor.view.editable && (props?.selected || resizing) && (
-          <div className="image-resizer">
+          <div className='image-resizer'>
             {resizeDirections?.map((direction) => {
               return (
                 <span
                   className={`image-resizer__handler image-resizer__handler--${direction}`}
                   key={`image-dir-${direction}`}
                   onMouseDown={(e: any) => onMouseDown(e, direction)}
-                >
-                </span>
+                ></span>
               );
             })}
           </div>

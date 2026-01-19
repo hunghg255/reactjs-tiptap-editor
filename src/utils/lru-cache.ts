@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { safeJSONStringify } from './json';
 import { getStorage, setStorage } from './storage';
 

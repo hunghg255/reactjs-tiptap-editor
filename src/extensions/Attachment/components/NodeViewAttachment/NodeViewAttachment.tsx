@@ -1,10 +1,6 @@
-/* eslint-disable no-constant-binary-expression */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { useCallback, useEffect, useRef, useState } from 'react';
-
 import { NodeViewWrapper } from '@tiptap/react';
 import clsx from 'clsx';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ActionButton } from '@/components';
 import { useLocale } from '@/locales';
@@ -29,13 +25,12 @@ export function NodeViewAttachment({ editor, node, updateAttributes, deleteNode,
     if (!isEditable || url) return;
 
     $upload.current.click();
-  }, [ url, isEditable]);
+  }, [url, isEditable]);
 
   const handleFile = useCallback(
     async (e: any) => {
       const file = e.target.files && e.target.files[0];
-      if (!file)
-        return;
+      if (!file) return;
 
       const fileInfo = {
         fileName: extractFilename(file.name),
@@ -54,13 +49,15 @@ export function NodeViewAttachment({ editor, node, updateAttributes, deleteNode,
         updateAttributes({ ...fileInfo, url });
         setLoading(false);
       } catch (error: any) {
-        updateAttributes({ error: `File upload fail: ${error && error.message}` || 'Unknown error' });
+        updateAttributes({
+          error: `File upload fail: ${error && error.message}`,
+        });
         setLoading(false);
 
         $upload.current.value = '';
       }
     },
-    [setLoading, updateAttributes],
+    [setLoading, updateAttributes]
   );
 
   useEffect(() => {
@@ -76,27 +73,15 @@ export function NodeViewAttachment({ editor, node, updateAttributes, deleteNode,
     return (
       <NodeViewWrapper>
         <div className={clsx(styles.wrap, 'render-wrapper')}>
-          <p onClick={selectFile}
-            style={{ cursor: 'pointer' }}
-          >
-            {loading
-              ? (
-                <span>
-                  {t('editor.attachment.uploading')}
-                </span>
-              )
-              : (
-                <span>
-                  {t('editor.attachment.please_upload')}
-                </span>
-              )}
+          <p onClick={selectFile} style={{ cursor: 'pointer' }}>
+            {loading ? (
+              <span>{t('editor.attachment.uploading')}</span>
+            ) : (
+              <span>{t('editor.attachment.please_upload')}</span>
+            )}
           </p>
 
-          <input hidden
-            onChange={handleFile}
-            ref={$upload}
-            type="file"
-          />
+          <input hidden onChange={handleFile} ref={$upload} type='file' />
         </div>
       </NodeViewWrapper>
     );
@@ -105,32 +90,18 @@ export function NodeViewAttachment({ editor, node, updateAttributes, deleteNode,
   if (url) {
     return (
       <NodeViewWrapper>
-        <div className={clsx(styles.wrap, 'render-wrapper')}
-          onClick={selectFile}
-        >
-          <div className="richtext-flex richtext-items-center richtext-gap-[4px]">
-            <span>
-              {getFileTypeIcon(fileType)}
-            </span>
+        <div className={clsx(styles.wrap, 'render-wrapper')} onClick={selectFile}>
+          <div className='richtext-flex richtext-items-center richtext-gap-[4px]'>
+            <span>{getFileTypeIcon(fileType)}</span>
 
             <span>
-              {fileName}
-              .
-              {fileExt}
+              {fileName}.{fileExt}
             </span>
 
-            <span>
-              (
-              {normalizeFileSize(fileSize)}
-              )
-            </span>
+            <span>({normalizeFileSize(fileSize)})</span>
           </div>
 
-          <ActionButton
-            action={onDeleteAttachment}
-            icon="Trash2"
-            tooltip={t('editor.delete')}
-          />
+          <ActionButton action={onDeleteAttachment} icon='Trash2' tooltip={t('editor.delete')} />
         </div>
       </NodeViewWrapper>
     );
@@ -139,12 +110,8 @@ export function NodeViewAttachment({ editor, node, updateAttributes, deleteNode,
   if (error !== 'null') {
     return (
       <NodeViewWrapper>
-        <div className={clsx(styles.wrap, 'render-wrapper')}
-          onClick={selectFile}
-        >
-          <p>
-            {error}
-          </p>
+        <div className={clsx(styles.wrap, 'render-wrapper')} onClick={selectFile}>
+          <p>{error}</p>
         </div>
       </NodeViewWrapper>
     );

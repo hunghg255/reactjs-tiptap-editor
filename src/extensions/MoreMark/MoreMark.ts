@@ -16,18 +16,17 @@ export interface MoreMarkOptions extends GeneralOptions<MoreMarkOptions> {
    *
    * @default true
    */
-  subscript: Partial<TiptapSubscriptOptions> | false
+  subscript: Partial<TiptapSubscriptOptions> | false;
   /**
    * // options for Superscript Extension
    *
    * @default true
    */
-  superscript: Partial<TiptapSuperscriptOptions> | false
+  superscript: Partial<TiptapSuperscriptOptions> | false;
 }
 
 export const MoreMark = /* @__PURE__ */ Extension.create<MoreMarkOptions>({
   name: 'moreMark',
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
@@ -70,10 +69,10 @@ export const MoreMark = /* @__PURE__ */ Extension.create<MoreMarkOptions>({
             disabled: !editor.isEditable,
             items,
             isActive: () => {
-                const find: any = items?.find((k: any) => k.isActive());
+              const find: any = items?.find((k: any) => k.isActive());
 
-                return find;
-              }
+              return find;
+            },
           },
         };
       },

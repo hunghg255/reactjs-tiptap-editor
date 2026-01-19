@@ -1,31 +1,30 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { CommandProps } from '@tiptap/core';
 import { mergeAttributes } from '@tiptap/core';
 import TiptapImage from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
-export * from '@/extensions/Mermaid/components/RichTextMermaid';
 import { NodeViewMermaid } from '@/extensions/Mermaid/components/NodeViewMermaid/NodeViewMermaid';
 import type { GeneralOptions } from '@/types';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     mermaid: {
-      setMermaid: (options: any, replace?: any) => ReturnType
-      setAlignImageMermaid: (align: 'left' | 'center' | 'right') => ReturnType
-    }
+      setMermaid: (options: any, replace?: any) => ReturnType;
+      setAlignImageMermaid: (align: 'left' | 'center' | 'right') => ReturnType;
+    };
   }
 }
 
+export * from '@/extensions/Mermaid/components/RichTextMermaid';
+
 export interface MermaidOptions extends GeneralOptions<MermaidOptions> {
   /** Function for uploading files */
-  upload?: (file: File) => Promise<string>
+  upload?: (file: File) => Promise<string>;
 }
 
 export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
   name: 'mermaid',
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
@@ -91,7 +90,7 @@ export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
       },
       align: {
         default: 'center',
-        parseHTML: element => element.getAttribute('align'),
+        parseHTML: (element) => element.getAttribute('align'),
         renderHTML: (attributes) => {
           return {
             align: attributes.align,
@@ -109,28 +108,25 @@ export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
   addCommands() {
     return {
       setMermaid:
-          (
-            options: { src: string, alt?: string },
-            replace?: boolean,
-          ) =>
-            ({ commands, editor }: CommandProps) => {
-              if (replace) {
-                return commands.insertContent({
-                  type: this.name,
-                  attrs: options,
-                });
-              }
-              return commands.insertContentAt(editor.state.selection.anchor, {
-                type: this.name,
-                attrs: options,
-              });
-            },
+        (options: { src: string; alt?: string }, replace?: boolean) =>
+        ({ commands, editor }: CommandProps) => {
+          if (replace) {
+            return commands.insertContent({
+              type: this.name,
+              attrs: options,
+            });
+          }
+          return commands.insertContentAt(editor.state.selection.anchor, {
+            type: this.name,
+            attrs: options,
+          });
+        },
 
       setAlignImageMermaid:
-            (align: any) =>
-              ({ commands }: any) => {
-                return commands.updateAttributes(this.name, { align });
-              },
+        (align: any) =>
+        ({ commands }: any) => {
+          return commands.updateAttributes(this.name, { align });
+        },
     };
   },
 
@@ -149,7 +145,7 @@ export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
         mergeAttributes(
           // @ts-ignore
           this.options.HTMLAttributes,
-          HTMLAttributes,
+          HTMLAttributes
         ),
       ],
     ];

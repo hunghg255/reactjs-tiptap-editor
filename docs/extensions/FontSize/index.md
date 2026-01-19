@@ -12,7 +12,6 @@ The Font Size extension allows you to change the font size of your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -86,7 +85,7 @@ const App = () => {
 Type: `(string | { value: string; name: string })[]`
 
 ```js
-import { DEFAULT_FONT_SIZE_LIST, FontSize } from 'reactjs-tiptap-editor/fontsize'
+import { DEFAULT_FONT_SIZE_LIST, FontSize } from 'reactjs-tiptap-editor/fontsize';
 
 FontSize.configure({
   fontSizes: [
@@ -97,7 +96,7 @@ FontSize.configure({
     //   2. { name: 'xxx', value: 'xxx' }
 
     '10px',
-    { name: '200 pixel', value: '200px' }
-  ]
-})
+    { name: '200 pixel', value: '200px' },
+  ],
+});
 ```

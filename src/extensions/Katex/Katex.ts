@@ -6,12 +6,12 @@ import { KatexNodeView } from '@/extensions/Katex/components/KatexWrapper';
 export * from '@/extensions/Katex/components/RichTextKatex';
 
 export interface IKatexAttrs {
-  text?: string
-  macros?: string
+  text?: string;
+  macros?: string;
 }
 
 interface IKatexOptions {
-  HTMLAttributes: Record<string, any>
+  HTMLAttributes: Record<string, any>;
 }
 
 function getDatasetAttribute(attribute: string) {
@@ -23,8 +23,8 @@ function getDatasetAttribute(attribute: string) {
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     katex: {
-      setKatex: (arg?: IKatexAttrs) => ReturnType
-    }
+      setKatex: (arg?: IKatexAttrs) => ReturnType;
+    };
   }
 }
 
@@ -75,19 +75,22 @@ export const Katex = /* @__PURE__ */ Node.create<IKatexOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['span', mergeAttributes((this.options && this.options.HTMLAttributes) || {}, HTMLAttributes)];
+    return [
+      'span',
+      mergeAttributes((this.options && this.options.HTMLAttributes) || {}, HTMLAttributes),
+    ];
   },
 
   addCommands() {
     return {
       setKatex:
-        options =>
-          ({ commands }) => {
-            return commands.insertContent({
-              type: this.name,
-              attrs: options,
-            });
-          },
+        (options) =>
+        ({ commands }) => {
+          return commands.insertContent({
+            type: this.name,
+            attrs: options,
+          });
+        },
     };
   },
 

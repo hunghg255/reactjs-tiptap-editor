@@ -13,10 +13,10 @@ const names = computed(() => [props.fn, ...(info.value?.alias || [])]);
 
 const commits = computed(() => {
   const related = allCommits.filter(
-    (c) => c.version || c.functions?.some((i: any) => names.value.includes(i)),
+    (c) => c.version || c.functions?.some((i: any) => names.value.includes(i))
   );
 
-  return  related.filter((i, idx) => {
+  return related.filter((i, idx) => {
     if (i.version && (!related[idx + 1] || related[idx + 1]?.version)) return false;
     return true;
   });

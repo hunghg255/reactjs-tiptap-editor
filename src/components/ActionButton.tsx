@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/display-name */
-import React from 'react';
-
 import { Slot } from '@radix-ui/react-slot';
 import type { TooltipContentProps } from '@radix-ui/react-tooltip';
+import React from 'react';
 
 import { Toggle, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components';
 import { cn } from '@/lib/utils';
@@ -12,37 +9,37 @@ import { getShortcutKeys } from '@/utils/plateform';
 
 export interface ActionButtonProps {
   /* Icon name to display */
-  icon?: string
+  icon?: string;
   /* Button title */
-  title?: string
+  title?: string;
   /* Tooltip text */
-  tooltip?: string
+  tooltip?: string;
   /* Whether the button is disabled */
-  disabled?: boolean
+  disabled?: boolean;
   /* Keyboard shortcut keys */
-  shortcutKeys?: string[]
+  shortcutKeys?: string[];
   /* Custom CSS class */
-  customClass?: string
+  customClass?: string;
   /* Loading state */
-  loading?: boolean
+  loading?: boolean;
   /* Tooltip options */
-  tooltipOptions?: TooltipContentProps
+  tooltipOptions?: TooltipContentProps;
   /* Button color */
-  color?: string
+  color?: string;
   /* Click action handler */
-  action?: ButtonViewReturnComponentProps['action']
+  action?: ButtonViewReturnComponentProps['action'];
   /* Active state checker */
-  isActive?: ButtonViewReturnComponentProps['isActive']
+  isActive?: ButtonViewReturnComponentProps['isActive'];
   /* Child components */
-  children?: React.ReactNode
+  children?: React.ReactNode;
   /* Whether to render as child */
-  asChild?: boolean
+  asChild?: boolean;
   /* Whether it's an upload button */
-  upload?: boolean
+  upload?: boolean;
   /* Initial displayed color */
-  initialDisplayedColor?: string
+  initialDisplayedColor?: string;
 
-  dataState?: boolean
+  dataState?: boolean;
 }
 
 const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonProps>>(
@@ -82,39 +79,31 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
       <Tooltip>
         <TooltipTrigger asChild>
           <Comp
-            className={cn('richtext-w-[32px] richtext-h-[32px]', customClass)}
+            className={cn('richtext-h-[32px] richtext-w-[32px]', customClass)}
             data-state={dataState ? 'on' : 'off'} // active background control
             disabled={disabled} // disable button control
             onClick={onClickHandler}
             ref={ref}
-            size="sm"
+            size='sm'
             {...(rest as Omit<typeof rest, 'loading'>)}
           >
-            {Icon && <Icon className="richtext-size-4" />}
+            {Icon && <Icon className='richtext-size-4' />}
             {children}
           </Comp>
         </TooltipTrigger>
 
         {tooltip && (
-          <TooltipContent {...tooltipOptions}
-            className='richtext-tooltip'
-          >
-            <div className="richtext-flex richtext-max-w-24 richtext-flex-col richtext-items-center richtext-text-center">
-              <div>
-                {tooltip}
-              </div>
+          <TooltipContent {...tooltipOptions} className='richtext-tooltip'>
+            <div className='richtext-flex richtext-max-w-24 richtext-flex-col richtext-items-center richtext-text-center'>
+              <div>{tooltip}</div>
 
-              {!!shortcutKeys?.length && <span>
-                {getShortcutKeys(shortcutKeys)}
-              </span>}
+              {!!shortcutKeys?.length && <span>{getShortcutKeys(shortcutKeys)}</span>}
             </div>
           </TooltipContent>
         )}
       </Tooltip>
     );
-  },
+  }
 );
 
-export {
-  ActionButton,
-};
+export { ActionButton };

@@ -2,16 +2,21 @@ import type React from 'react';
 import { useState } from 'react';
 
 import { ActionButton, Popover, PopoverContent, PopoverTrigger } from '@/components';
-import { EmojiPicker, EmojiPickerContent, EmojiPickerFooter, EmojiPickerSearch } from '@/components/ui/emoji-picker';
+import {
+  EmojiPicker,
+  EmojiPickerContent,
+  EmojiPickerFooter,
+  EmojiPickerSearch,
+} from '@/components/ui/emoji-picker';
 import { Emoji } from '@/extensions/Emoji/Emoji';
 import { useActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 
 interface IProps {
-  showClear?: boolean
-  onSelectEmoji: (arg: string) => void
-  children: React.ReactNode
-  disabled?: boolean
+  showClear?: boolean;
+  onSelectEmoji: (arg: string) => void;
+  children: React.ReactNode;
+  disabled?: boolean;
 }
 
 function EmojiPickerWrap({ onSelectEmoji, children, disabled }: IProps) {
@@ -24,17 +29,12 @@ function EmojiPickerWrap({ onSelectEmoji, children, disabled }: IProps) {
   };
 
   return (
-    <Popover onOpenChange={onOpenChange}
-      open={isOpen}
+    <Popover onOpenChange={onOpenChange} open={isOpen}>
+      <PopoverTrigger asChild>{children}</PopoverTrigger>
 
-    >
-      <PopoverTrigger asChild>
-        {children}
-      </PopoverTrigger>
-
-      <PopoverContent className="!richtext-w-fit !richtext-p-0">
+      <PopoverContent className='!richtext-w-fit !richtext-p-0'>
         <EmojiPicker
-          className="!richtext-h-[342px]"
+          className='!richtext-h-[342px]'
           onEmojiSelect={({ emoji }) => {
             onSelectEmoji(emoji);
 
@@ -57,7 +57,7 @@ export function RichTextEmoji() {
     icon = undefined,
     tooltip = undefined,
     isActive = undefined,
-    action
+    action,
   } = buttonProps?.componentProps ?? {};
 
   const { disabled } = useActive(isActive);
@@ -73,15 +73,12 @@ export function RichTextEmoji() {
   };
 
   return (
-    <EmojiPickerWrap
-      disabled={disabled}
-      onSelectEmoji={onAction}
-    >
+    <EmojiPickerWrap disabled={disabled} onSelectEmoji={onAction}>
       <ActionButton
         icon={icon}
         tooltip={tooltip}
         disabled={disabled}
-      // tooltipOptions={tooltipOptions}
+        // tooltipOptions={tooltipOptions}
       />
     </EmojiPickerWrap>
   );

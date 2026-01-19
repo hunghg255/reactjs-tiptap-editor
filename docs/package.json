@@ -1,8 +1,8 @@
 {
   "name": "@reactjs-tiptap-editor/docs",
-  "type": "module",
   "version": "1.0.17",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
@@ -15,7 +15,6 @@
     "@shikijs/transformers": "^1.13.0",
     "@shikijs/vitepress-twoslash": "^1.13.0",
     "@vitejs/plugin-vue-jsx": "^4.0.1",
-    "prettier": "^2.8.8",
     "sharp": "^0.33.4",
     "shiki": "^1.13.0",
     "unocss": "^0.62.1",

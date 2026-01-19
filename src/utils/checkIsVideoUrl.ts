@@ -11,11 +11,9 @@ export function checkIsVideoUrl(url: string, allowedProviders?: string[]): boole
     return true;
   }
 
-  return allowedProviders.some(provider => {
+  return allowedProviders.some((provider) => {
     if (provider.includes('*')) {
-      const pattern = provider
-        .replace(/\./g, String.raw`\.`)
-        .replace(/\*/g, '.*');
+      const pattern = provider.replace(/\./g, String.raw`\.`).replace(/\*/g, '.*');
       return new RegExp(`^${pattern}$`).test(urlObj.hostname);
     }
 

@@ -8,23 +8,23 @@ import ImageGifView from '@/extensions/ImageGif/components/ImageGifView';
 export * from '@/extensions/ImageGif/components/RichTextImageGif';
 
 export interface SetImageAttrsOptions {
-  src?: string
+  src?: string;
   /** The alternative text for the image. */
-  alt?: string
+  alt?: string;
   /** The title of the image. */
-  title?: string
+  title?: string;
   /** The width of the image. */
-  width?: number | string | null
+  width?: number | string | null;
   /** The alignment of the image. */
-  align?: 'left' | 'center' | 'right'
+  align?: 'left' | 'center' | 'right';
 }
 
 interface ImageGifOptions extends ImageOptions {
-  provider: 'giphy' | 'tenor'
+  provider: 'giphy' | 'tenor';
   /**
    * The key for the gif https://giphy.com/ or https://tenor.com/
    */
-  API_KEY: string
+  API_KEY: string;
 }
 
 declare module '@tiptap/core' {
@@ -33,22 +33,21 @@ declare module '@tiptap/core' {
       /**
        * Add an image gif
        */
-      setImageGif: (options: Partial<SetImageAttrsOptions>) => ReturnType
+      setImageGif: (options: Partial<SetImageAttrsOptions>) => ReturnType;
       /**
        * Update an image gif
        */
-      updateImageGif: (options: Partial<SetImageAttrsOptions>) => ReturnType
+      updateImageGif: (options: Partial<SetImageAttrsOptions>) => ReturnType;
       /**
        * Set image alignment
        */
-      setAlignImageGif: (align: 'left' | 'center' | 'right') => ReturnType
-    }
+      setAlignImageGif: (align: 'left' | 'center' | 'right') => ReturnType;
+    };
   }
 }
 
 export const ImageGif = /* @__PURE__ */ TiptapImage.extend<ImageGifOptions>({
   name: 'imageGif',
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
@@ -76,7 +75,7 @@ export const ImageGif = /* @__PURE__ */ TiptapImage.extend<ImageGifOptions>({
             icon: 'GifIcon',
             tooltip: t('editor.imageGif.tooltip'),
             apiKey,
-            provider
+            provider,
           },
         };
       },
@@ -99,7 +98,7 @@ export const ImageGif = /* @__PURE__ */ TiptapImage.extend<ImageGifOptions>({
       },
       align: {
         default: 'center',
-        parseHTML: element => element.getAttribute('align'),
+        parseHTML: (element) => element.getAttribute('align'),
         renderHTML: (attributes) => {
           return {
             align: attributes.align,
@@ -115,22 +114,24 @@ export const ImageGif = /* @__PURE__ */ TiptapImage.extend<ImageGifOptions>({
   addCommands() {
     return {
       ...this.parent?.(),
-      setImageGif: (options: any) => ({ commands }: any) => {
-        return commands.insertContent({
-          type: this.name,
-          attrs: options,
-        });
-      },
+      setImageGif:
+        (options: any) =>
+        ({ commands }: any) => {
+          return commands.insertContent({
+            type: this.name,
+            attrs: options,
+          });
+        },
       updateImageGif:
         (options: any) =>
-          ({ commands }: any) => {
-            return commands.updateAttributes(this.name, options);
-          },
+        ({ commands }: any) => {
+          return commands.updateAttributes(this.name, options);
+        },
       setAlignImageGif:
-          (align: any) =>
-            ({ commands }: any) => {
-              return commands.updateAttributes(this.name, { align });
-            },
+        (align: any) =>
+        ({ commands }: any) => {
+          return commands.updateAttributes(this.name, { align });
+        },
     };
   },
   renderHTML({ HTMLAttributes }) {
@@ -151,7 +152,7 @@ export const ImageGif = /* @__PURE__ */ TiptapImage.extend<ImageGifOptions>({
             height: 'auto',
           },
           this.options.HTMLAttributes,
-          HTMLAttributes,
+          HTMLAttributes
         ),
       ],
     ];

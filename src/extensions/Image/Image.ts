@@ -8,21 +8,21 @@ import type { GeneralOptions } from '@/types';
 export * from '@/extensions/Image/components/RichTextImage';
 
 export interface SetImageAttrsOptions {
-  src?: string
+  src?: string;
   /** The alternative text for the image. */
-  alt?: string
+  alt?: string;
   /** The caption of the image. */
-  caption?: string
+  caption?: string;
   /** The width of the image. */
-  width?: number | string | null
+  width?: number | string | null;
   /** The alignment of the image. */
-  align?: 'left' | 'center' | 'right'
+  align?: 'left' | 'center' | 'right';
   /** Whether the image is inline. */
-  inline?: boolean
+  inline?: boolean;
   /** image FlipX */
-  flipX?: boolean
+  flipX?: boolean;
   /** image FlipY */
-  flipY?: boolean
+  flipY?: boolean;
 }
 
 const DEFAULT_OPTIONS: any = {
@@ -40,42 +40,38 @@ declare module '@tiptap/core' {
       /**
        * Add an image
        */
-      setImageInline: (options: Partial<SetImageAttrsOptions>) => ReturnType
+      setImageInline: (options: Partial<SetImageAttrsOptions>) => ReturnType;
       /**
        * Update an image
        */
-      updateImage: (options: Partial<SetImageAttrsOptions>) => ReturnType
+      updateImage: (options: Partial<SetImageAttrsOptions>) => ReturnType;
       /**
        * Set image alignment
        */
-      setAlignImage: (align: 'left' | 'center' | 'right') => ReturnType
-    }
+      setAlignImage: (align: 'left' | 'center' | 'right') => ReturnType;
+    };
   }
 }
 
 export interface IImageOptions extends GeneralOptions<IImageOptions> {
   /** Function for uploading files */
-  upload?: (file: File) => Promise<string>
+  upload?: (file: File) => Promise<string>;
 
-  HTMLAttributes?: any
+  HTMLAttributes?: any;
 
-  multiple?: boolean
-  acceptMimes?: string[]
-  maxSize?: number
+  multiple?: boolean;
+  acceptMimes?: string[];
+  maxSize?: number;
 
   /** The source URL of the image */
-  resourceImage: 'upload' | 'link' | 'both'
-  defaultInline?: boolean,
+  resourceImage: 'upload' | 'link' | 'both';
+  defaultInline?: boolean;
 
   // Enable alternative text input
-  enableAlt?: boolean
+  enableAlt?: boolean;
 
   /** Function to handle errors during file validation */
-  onError?: (error: {
-    type: 'size' | 'type' | 'upload';
-    message: string;
-    file?: File;
-  }) => void;
+  onError?: (error: { type: 'size' | 'type' | 'upload'; message: string; file?: File }) => void;
 }
 
 export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
@@ -95,9 +91,9 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
         extension,
         t,
       }: {
-        editor: any
-        extension: any
-        t: (key: string) => string
+        editor: any;
+        extension: any;
+        t: (key: string) => string;
       }) => ({
         componentProps: {
           action: () => {
@@ -135,7 +131,7 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
       },
       align: {
         default: 'center',
-        parseHTML: element => element.getAttribute('align'),
+        parseHTML: (element) => element.getAttribute('align'),
         renderHTML: (attributes) => {
           return {
             align: attributes.align,
@@ -144,7 +140,7 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
       },
       inline: {
         default: false,
-        parseHTML: element => Boolean(element.getAttribute('inline')),
+        parseHTML: (element) => Boolean(element.getAttribute('inline')),
         renderHTML: (attributes) => {
           return {
             inline: attributes.inline,
@@ -153,13 +149,13 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
       },
       alt: {
         default: '',
-        parseHTML: element => element.getAttribute('alt'),
+        parseHTML: (element) => element.getAttribute('alt'),
         renderHTML: (attributes) => {
           return {
             alt: attributes.alt,
           };
         },
-      }
+      },
     };
   },
 
@@ -169,40 +165,47 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
   addCommands() {
     return {
       ...this.parent?.(),
-      setImageInline: (options: any) => ({ commands }: any) => {
-        return commands.insertContent({
-          type: this.name,
-          attrs: {
-            ...options,
-            inline: options.inline ?? this.options.defaultInline,
-          },
-        });
-      },
-      updateImage:
-        options =>
-          ({ commands }) => {
-            return commands.updateAttributes(this.name, options);
-          },
-      setAlignImage:
-          align =>
-            ({ commands }) => {
-              return commands.updateAttributes(this.name, { align });
+      setImageInline:
+        (options: any) =>
+        ({ commands }: any) => {
+          return commands.insertContent({
+            type: this.name,
+            attrs: {
+              ...options,
+              inline: options.inline ?? this.options.defaultInline,
             },
+          });
+        },
+      updateImage:
+        (options) =>
+        ({ commands }) => {
+          return commands.updateAttributes(this.name, options);
+        },
+      setAlignImage:
+        (align) =>
+        ({ commands }) => {
+          return commands.updateAttributes(this.name, { align });
+        },
     };
   },
   renderHTML({ HTMLAttributes }) {
     const { flipX, flipY, align, inline } = HTMLAttributes;
     const inlineFloat = inline && (align === 'left' || align === 'right');
 
-    const transformStyle
-      = flipX || flipY ? `transform: rotateX(${flipX ? '180' : '0'}deg) rotateY(${flipY ? '180' : '0'}deg);` : '';
+    const transformStyle =
+      flipX || flipY
+        ? `transform: rotateX(${flipX ? '180' : '0'}deg) rotateY(${flipY ? '180' : '0'}deg);`
+        : '';
 
     const textAlignStyle = inlineFloat ? '' : `text-align: ${align};`;
 
     const floatStyle = inlineFloat ? `float: ${align};` : '';
 
-    const marginStyle
-      = inlineFloat ? (align === 'left' ? 'margin: 1em 1em 1em 0;' : 'margin: 1em 0 1em 1em;') : '';
+    const marginStyle = inlineFloat
+      ? align === 'left'
+        ? 'margin: 1em 1em 1em 0;'
+        : 'margin: 1em 0 1em 1em;'
+      : '';
 
     const style = `${floatStyle}${marginStyle}${transformStyle}`;
 
@@ -220,7 +223,7 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
             style,
           },
           this.options.HTMLAttributes,
-          HTMLAttributes,
+          HTMLAttributes
         ),
       ],
     ];

@@ -1,6 +1,17 @@
 import { useMemo, useRef, useState } from 'react';
 
-import { Button, Checkbox, IconComponent, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger, useToast } from '@/components';
+import {
+  Button,
+  Checkbox,
+  IconComponent,
+  Input,
+  Label,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+  useToast,
+} from '@/components';
 import { useListener } from '@/components/ReactBus';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { ImageCropper } from '@/extensions/Image/components/ImageCropper';
@@ -13,7 +24,7 @@ import { useEditorInstance } from '@/store/editor';
 import { EVENTS } from '@/utils/customEvents/events.constant';
 import { validateFiles } from '@/utils/validateFile';
 
-export function RenderDialogUploadImage () {
+export function RenderDialogUploadImage() {
   const { t } = useLocale();
   const { toast } = useToast();
 
@@ -86,7 +97,7 @@ export function RenderDialogUploadImage () {
 
         const srcs = await Promise.all(uploadPromises);
         // Insert all images (you might want to adjust this based on your editor's capabilities)
-        srcs.forEach(src => {
+        srcs.forEach((src) => {
           editor.chain().focus().setImageInline({ src, inline: imageInline, alt }).run();
         });
       } else {
@@ -144,37 +155,27 @@ export function RenderDialogUploadImage () {
   }
 
   return (
-    <Dialog
-      onOpenChange={setOpen}
-      open={open}
-    >
+    <Dialog onOpenChange={setOpen} open={open}>
       <DialogContent>
-        <DialogTitle>
-          {t('editor.image.dialog.title')}
-        </DialogTitle>
+        <DialogTitle>{t('editor.image.dialog.title')}</DialogTitle>
 
         <Tabs
-          activationMode="manual"
+          activationMode='manual'
           defaultValue={
             uploadOptions.resourceImage === 'both' || uploadOptions.resourceImage === 'upload'
               ? 'upload'
               : 'link'
           }
         >
+          {uploadOptions.resourceImage === 'both' && (
+            <TabsList className='richtext-grid richtext-w-full richtext-grid-cols-2'>
+              <TabsTrigger value='upload'>{t('editor.image.dialog.tab.upload')}</TabsTrigger>
 
-          {(uploadOptions.resourceImage === 'both') && (
-            <TabsList className="richtext-grid richtext-w-full richtext-grid-cols-2">
-              <TabsTrigger value="upload">
-                {t('editor.image.dialog.tab.upload')}
-              </TabsTrigger>
-
-              <TabsTrigger value="link">
-                {t('editor.image.dialog.tab.url')}
-              </TabsTrigger>
+              <TabsTrigger value='link'>{t('editor.image.dialog.tab.url')}</TabsTrigger>
             </TabsList>
           )}
 
-          <div className="richtext-my-[10px] richtext-flex richtext-items-center richtext-gap-[4px]">
+          <div className='richtext-my-[10px] richtext-flex richtext-items-center richtext-gap-[4px]'>
             <Checkbox
               checked={imageInline}
               onCheckedChange={(v) => {
@@ -182,43 +183,30 @@ export function RenderDialogUploadImage () {
               }}
             />
 
-            <Label>
-              {t('editor.link.dialog.inline')}
-            </Label>
+            <Label>{t('editor.link.dialog.inline')}</Label>
           </div>
 
-          {
-            uploadOptions.enableAlt && (
-              <div className="richtext-my-[10px] ">
-                <Label className="mb-[6px]">
-                  {t('editor.imageUpload.alt')}
-                </Label>
+          {uploadOptions.enableAlt && (
+            <div className='richtext-my-[10px]'>
+              <Label className='mb-[6px]'>{t('editor.imageUpload.alt')}</Label>
 
-                <Input
-                  onChange={(e) => setAlt(e.target.value)}
-                  required
-                  type="text"
-                  value={alt}
-                />
-              </div>
-            )
-          }
+              <Input onChange={(e) => setAlt(e.target.value)} required type='text' value={alt} />
+            </div>
+          )}
 
-          <TabsContent value="upload">
-            <div className="richtext-flex richtext-items-center richtext-gap-[10px]">
-              <Button className="richtext-mt-1 richtext-w-full"
+          <TabsContent value='upload'>
+            <div className='richtext-flex richtext-items-center richtext-gap-[10px]'>
+              <Button
+                className='richtext-mt-1 richtext-w-full'
                 disabled={isUploading}
                 onClick={handleClick}
-                size="sm"
+                size='sm'
               >
                 {isUploading ? (
                   <>
                     {t('editor.imageUpload.uploading')}
 
-                    <IconComponent
-                      className="richtext-ml-1 richtext-animate-spin"
-                      name="Loader"
-                    />
+                    <IconComponent className='richtext-ml-1 richtext-animate-spin' name='Loader' />
                   </>
                 ) : (
                   t('editor.image.dialog.tab.upload')
@@ -243,25 +231,23 @@ export function RenderDialogUploadImage () {
               onChange={handleFile}
               ref={fileInput}
               style={{ display: 'none' }}
-              type="file"
+              type='file'
             />
           </TabsContent>
 
-          <TabsContent value="link">
+          <TabsContent value='link'>
             <form onSubmit={handleLink}>
-              <div className="richtext-flex richtext-items-center richtext-gap-2">
+              <div className='richtext-flex richtext-items-center richtext-gap-2'>
                 <Input
                   autoFocus
-                  onChange={e => setLink(e.target.value)}
+                  onChange={(e) => setLink(e.target.value)}
                   placeholder={t('editor.image.dialog.placeholder')}
                   required
-                  type="url"
+                  type='url'
                   value={link}
                 />
 
-                <Button type="submit">
-                  {t('editor.image.dialog.button.apply')}
-                </Button>
+                <Button type='submit'>{t('editor.image.dialog.button.apply')}</Button>
               </div>
             </form>
           </TabsContent>

@@ -1,11 +1,3 @@
-import React, { useCallback, useEffect, useRef } from 'react';
-
-import { NodeViewWrapper } from '@tiptap/react';
-import clsx from 'clsx';
-
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { IconComponent } from '@/components';
-
 import 'prism-code-editor-lightweight/prism/languages/bash';
 import 'prism-code-editor-lightweight/prism/languages/css';
 import 'prism-code-editor-lightweight/prism/languages/css-extras';
@@ -48,6 +40,8 @@ import 'prism-code-editor-lightweight/prism/languages/regex';
 import 'prism-code-editor-lightweight/prism/languages/php';
 import 'prism-code-editor-lightweight/prism/languages/markdown';
 
+import { NodeViewWrapper } from '@tiptap/react';
+import clsx from 'clsx';
 import { createEditor, type PrismEditor } from 'prism-code-editor-lightweight';
 import { defaultCommands, editHistory } from 'prism-code-editor-lightweight/commands';
 import { cursorPosition } from 'prism-code-editor-lightweight/cursor';
@@ -55,14 +49,23 @@ import { indentGuides } from 'prism-code-editor-lightweight/guides';
 import { highlightBracketPairs } from 'prism-code-editor-lightweight/highlight-brackets';
 import { matchBrackets } from 'prism-code-editor-lightweight/match-brackets';
 import { matchTags } from 'prism-code-editor-lightweight/match-tags';
+import React, { useCallback, useEffect, useRef } from 'react';
 
+import { IconComponent } from '@/components';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 // import { useEditableEditor } from '@/store/editableEditor';
-
 import { useEditableEditor } from '@/store/store';
 import { deleteNode } from '@/utils/delete-node';
 
-import styles from './index.module.scss';
 import { CodeBlock } from '../../CodeBlock';
+
+import styles from './index.module.scss';
 
 const languages = [
   { value: 'plaintext', label: 'plaintext' },
@@ -141,7 +144,10 @@ export function NodeViewCodeBlock(props: any) {
   const validateAndUpdateLanguage = (attrs: any) => {
     const validatedAttrs = { ...attrs };
 
-    if (validatedAttrs.language && !languages.some(lang => lang.value === validatedAttrs.language)) {
+    if (
+      validatedAttrs.language &&
+      !languages.some((lang) => lang.value === validatedAttrs.language)
+    ) {
       validatedAttrs.language = 'plaintext';
       props.updateAttributes({
         language: 'plaintext',
@@ -150,9 +156,12 @@ export function NodeViewCodeBlock(props: any) {
     return validatedAttrs;
   };
 
-  const handleContainerClick = useCallback((e: React.MouseEvent) => {
-    focusEditor(e);
-  }, [focusEditor]);
+  const handleContainerClick = useCallback(
+    (e: React.MouseEvent) => {
+      focusEditor(e);
+    },
+    [focusEditor]
+  );
 
   useEffect(() => {
     if (containerRef.current) {
@@ -209,12 +218,14 @@ export function NodeViewCodeBlock(props: any) {
       <div
         onClick={handleContainerClick}
         ref={containerRef}
-        className={clsx('richtext-node-container richtext-hover-shadow richtext-select-outline richtext-node-code-block !richtext-my-[10px]', {
-          [styles.blockInfoEditable]: !isEditable,
-        })}
+        className={clsx(
+          'richtext-node-container richtext-hover-shadow richtext-select-outline richtext-node-code-block !richtext-my-[10px]',
+          {
+            [styles.blockInfoEditable]: !isEditable,
+          }
+        )}
       >
-        <div className="richtext-code-block-toolbar">
-
+        <div className='richtext-code-block-toolbar'>
           <div>
             <Select
               defaultValue={props.node.attrs.language}
@@ -226,71 +237,60 @@ export function NodeViewCodeBlock(props: any) {
                 focusEditor();
               }}
             >
-              <SelectTrigger className="richtext-h-7 richtext-w-[160px] richtext-border-none richtext-text-sm richtext-outline-none hover:richtext-bg-[#5a5d5e4f]">
-                <SelectValue placeholder="Select language" />
+              <SelectTrigger className='richtext-h-7 richtext-w-[160px] richtext-border-none richtext-text-sm richtext-outline-none hover:richtext-bg-[#5a5d5e4f]'>
+                <SelectValue placeholder='Select language' />
               </SelectTrigger>
 
-              <SelectContent
-                onCloseAutoFocus={(e) => e.preventDefault()}
-              >
-                {
-                  languages?.map((lang) => {
-                    return (
-                      <SelectItem
-                        key={lang.value}
-                        value={lang.value}
-                      >
-                        {lang.label}
-                      </SelectItem>
-                    );
-                  }
-                  )
-                }
+              <SelectContent onCloseAutoFocus={(e) => e.preventDefault()}>
+                {languages?.map((lang) => {
+                  return (
+                    <SelectItem key={lang.value} value={lang.value}>
+                      {lang.label}
+                    </SelectItem>
+                  );
+                })}
               </SelectContent>
             </Select>
           </div>
 
-          <div className="toolbar-divider"></div>
+          <div className='toolbar-divider'></div>
 
           <div
-            className="richtext-flex richtext-size-7 richtext-cursor-pointer richtext-items-center richtext-justify-center richtext-rounded-sm hover:richtext-bg-[#5a5d5e4f]"
+            className='richtext-flex richtext-size-7 richtext-cursor-pointer richtext-items-center richtext-justify-center richtext-rounded-sm hover:richtext-bg-[#5a5d5e4f]'
             onClick={copyCode}
           >
-            <IconComponent className="richtext-size-4"
-              name="Copy"
-            >
-            </IconComponent>
+            <IconComponent className='richtext-size-4' name='Copy'></IconComponent>
           </div>
 
-          <div className="toolbar-divider"></div>
+          <div className='toolbar-divider'></div>
 
           <div
             onClick={toggleLineNumbers}
-            className={clsx('richtext-flex richtext-size-7 richtext-cursor-pointer richtext-items-center richtext-justify-center richtext-rounded-sm hover:richtext-bg-[#5a5d5e4f]', {
-              'richtext-bg-[#5a5d5e4f]': props?.node.attrs.lineNumbers
-            })}
+            className={clsx(
+              'richtext-flex richtext-size-7 richtext-cursor-pointer richtext-items-center richtext-justify-center richtext-rounded-sm hover:richtext-bg-[#5a5d5e4f]',
+              {
+                'richtext-bg-[#5a5d5e4f]': props?.node.attrs.lineNumbers,
+              }
+            )}
           >
-            <IconComponent className="richtext-size-4"
-              name="List"
-            >
-            </IconComponent>
+            <IconComponent className='richtext-size-4' name='List'></IconComponent>
           </div>
 
-          <div className="toolbar-divider"></div>
+          <div className='toolbar-divider'></div>
 
           <div
             onClick={toggleWordWrap}
-            className={clsx('richtext-flex richtext-size-7 richtext-cursor-pointer richtext-items-center richtext-justify-center richtext-rounded-sm hover:richtext-bg-[#5a5d5e4f]', {
-              'richtext-bg-[#5a5d5e4f]': props?.node.attrs.wordWrap
-            })}
+            className={clsx(
+              'richtext-flex richtext-size-7 richtext-cursor-pointer richtext-items-center richtext-justify-center richtext-rounded-sm hover:richtext-bg-[#5a5d5e4f]',
+              {
+                'richtext-bg-[#5a5d5e4f]': props?.node.attrs.wordWrap,
+              }
+            )}
           >
-            <IconComponent className="richtext-size-4"
-              name="WrapText"
-            >
-            </IconComponent>
+            <IconComponent className='richtext-size-4' name='WrapText'></IconComponent>
           </div>
 
-          <div className="toolbar-divider"></div>
+          <div className='toolbar-divider'></div>
 
           <div>
             <Select
@@ -303,41 +303,29 @@ export function NodeViewCodeBlock(props: any) {
                 focusEditor();
               }}
             >
-              <SelectTrigger className="richtext-h-7 richtext-w-[60px] richtext-border-none richtext-text-sm richtext-outline-none hover:richtext-bg-[#5a5d5e4f]">
-                <IconComponent className="richtext-size-4"
-                  name="IndentIncrease"
-                />
+              <SelectTrigger className='richtext-h-7 richtext-w-[60px] richtext-border-none richtext-text-sm richtext-outline-none hover:richtext-bg-[#5a5d5e4f]'>
+                <IconComponent className='richtext-size-4' name='IndentIncrease' />
               </SelectTrigger>
 
-              <SelectContent
-                onCloseAutoFocus={(e) => e.preventDefault()}
-              >
-                {
-                  tabSizes?.map((size) => {
-                    return (
-                      <SelectItem
-                        key={size}
-                        value={size as any}
-                      >
-                        {size}
-                      </SelectItem>
-                    );
-                  })
-                }
+              <SelectContent onCloseAutoFocus={(e) => e.preventDefault()}>
+                {tabSizes?.map((size) => {
+                  return (
+                    <SelectItem key={size} value={size as any}>
+                      {size}
+                    </SelectItem>
+                  );
+                })}
               </SelectContent>
             </Select>
           </div>
 
-          <div className="toolbar-divider"></div>
+          <div className='toolbar-divider'></div>
 
           <div
-            className="richtext-flex richtext-size-7 richtext-cursor-pointer richtext-items-center richtext-justify-center richtext-rounded-sm hover:richtext-bg-[#5a5d5e4f]"
+            className='richtext-flex richtext-size-7 richtext-cursor-pointer richtext-items-center richtext-justify-center richtext-rounded-sm hover:richtext-bg-[#5a5d5e4f]'
             onClick={deleteMe}
           >
-            <IconComponent className="richtext-size-4"
-              name="Trash2"
-            >
-            </IconComponent>
+            <IconComponent className='richtext-size-4' name='Trash2'></IconComponent>
           </div>
         </div>
       </div>

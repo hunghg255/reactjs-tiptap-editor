@@ -11,14 +11,14 @@ import { isMobile } from '@/utils/is-mobile';
 const createArray = (length: number) => Array.from({ length }).map((_, index) => index + 1);
 
 interface IPropsCreateTablePopover {
-  createTable: any
-  children: any
-  dataState?: any
+  createTable: any;
+  children: any;
+  dataState?: any;
 }
 
 interface GridSize {
-  rows: number
-  cols: number
+  rows: number;
+  cols: number;
 }
 
 function CreateTablePopover(props: IPropsCreateTablePopover) {
@@ -81,29 +81,17 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
   }
 
   return (
-    <Popover
-    modal
-    onOpenChange={setOpen}
-    open={open}
-    >
-      <PopoverTrigger
-      asChild
-      data-state={props?.dataState ? 'on' : 'off'}
-      >
+    <Popover modal onOpenChange={setOpen} open={open}>
+      <PopoverTrigger asChild data-state={props?.dataState ? 'on' : 'off'}>
         {props?.children}
       </PopoverTrigger>
 
-      <PopoverContent align="start"
-        className="richtext-w-full !richtext-p-2"
-        side="bottom"
-      >
-        <div className="table-grid-size-editor richtext-p-0">
-          <div className="richtext-flex richtext-flex-col richtext-flex-wrap richtext-justify-between richtext-gap-1">
+      <PopoverContent align='start' className='richtext-w-full !richtext-p-2' side='bottom'>
+        <div className='table-grid-size-editor richtext-p-0'>
+          <div className='richtext-flex richtext-flex-col richtext-flex-wrap richtext-justify-between richtext-gap-1'>
             {createArray(tableGridSize?.rows)?.map((row: any) => {
               return (
-                <div className="richtext-flex richtext-gap-1"
-                  key={`richtext-table-row-${row}`}
-                >
+                <div className='richtext-flex richtext-gap-1' key={`richtext-table-row-${row}`}>
                   {createArray(tableGridSize?.cols)?.map((col: any) => {
                     return (
                       <div
@@ -111,12 +99,12 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
                         onMouseDown={() => onMouseDown(row, col)}
                         onMouseOver={() => selectTableGridSize(row, col)}
                         className={`richtext-cursor-pointer richtext-border-border ${
-                          col <= selectedTableGridSize.cols
-                          && row <= selectedTableGridSize.rows
-                          && 'tableCellActive !richtext-bg-foreground'
+                          col <= selectedTableGridSize.cols &&
+                          row <= selectedTableGridSize.rows &&
+                          'tableCellActive !richtext-bg-foreground'
                         }`}
                       >
-                        <div className="richtext-box-border richtext-size-4 richtext-rounded-[2px] !richtext-border richtext-border-solid !richtext-border-border richtext-p-1"></div>
+                        <div className='richtext-box-border richtext-size-4 richtext-rounded-[2px] !richtext-border richtext-border-solid !richtext-border-border richtext-p-1'></div>
                       </div>
                     );
                   })}
@@ -125,10 +113,8 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
             })}
           </div>
 
-          <div className="richtext-mt-2 richtext-text-center richtext-text-sm richtext-text-foreground">
-            {selectedTableGridSize.rows}
-            x
-            {selectedTableGridSize.cols}
+          <div className='richtext-mt-2 richtext-text-center richtext-text-sm richtext-text-foreground'>
+            {selectedTableGridSize.rows}x{selectedTableGridSize.cols}
           </div>
         </div>
       </PopoverContent>

@@ -12,9 +12,9 @@ export function useListener(fn: (event: any) => void, events: string[]) {
   const bus = useBus();
 
   React.useEffect(() => {
-    events.map(e => bus.on(e, fn));
+    events.map((e) => bus.on(e, fn));
     return () => {
-      events.map(e => bus.off(e, fn));
+      events.map((e) => bus.off(e, fn));
     };
   }, [bus, events, fn]);
 }
@@ -22,9 +22,5 @@ export function useListener(fn: (event: any) => void, events: string[]) {
 export const emit = iMitt.emit;
 
 export function ReactBusProvider({ children }: { children: React.ReactNode }) {
-  return (
-    <BusContext.Provider value={iMitt}>
-      {children}
-    </BusContext.Provider>
-  );
+  return <BusContext.Provider value={iMitt}>{children}</BusContext.Provider>;
 }

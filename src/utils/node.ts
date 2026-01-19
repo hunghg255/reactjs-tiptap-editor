@@ -45,8 +45,7 @@ export function getNodeAtPos(state: EditorState, pos: number): any {
 }
 
 export function isInCustomNode(state: EditorState, nodeName: string): boolean {
-  if (!state.schema.nodes[nodeName])
-    return false;
+  if (!state.schema.nodes[nodeName]) return false;
 
   const $head = state.selection.$head;
   for (let d = $head.depth; d > 0; d--) {
@@ -62,8 +61,7 @@ export function isInCodeBlock(state: EditorState): boolean {
 }
 
 export function isInTitle(state: EditorState): boolean {
-  if (state?.selection?.$head?.pos === 0)
-    return true;
+  if (state?.selection?.$head?.pos === 0) return true;
   return isInCustomNode(state, 'title');
 }
 

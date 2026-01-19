@@ -18,16 +18,16 @@ import type { ButtonViewReturnComponentProps } from '@/types';
 import { getShortcutKey } from '@/utils/plateform';
 
 export interface Item {
-  title: string
-  icon?: any
-  level?: number
-  isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>
-  action?: ButtonViewReturnComponentProps['action']
-  style?: React.CSSProperties
-  shortcutKeys?: string[]
-  disabled?: boolean
-  divider?: boolean
-  default?: boolean
+  title: string;
+  icon?: any;
+  level?: number;
+  isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>;
+  action?: ButtonViewReturnComponentProps['action'];
+  style?: React.CSSProperties;
+  shortcutKeys?: string[];
+  disabled?: boolean;
+  divider?: boolean;
+  default?: boolean;
 }
 
 export function RichTextHeading() {
@@ -53,42 +53,37 @@ export function RichTextHeading() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild
-        disabled={disabled}
-      >
+      <DropdownMenuTrigger asChild disabled={disabled}>
         <ActionMenuButton
           disabled={disabled}
           icon={icon}
           title={title}
           tooltip={tooltip}
-        // tooltipOptions={tooltipOptions}
+          // tooltipOptions={tooltipOptions}
         />
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="richtext-w-full">
+      <DropdownMenuContent className='richtext-w-full'>
         {items?.map((item: any, index: any) => {
-
           return (
             <Fragment key={`heading-k-${index}`}>
-              <DropdownMenuCheckboxItem
-                checked={title === item.title}
-                onClick={item.action}
-              >
-                <div className={cn('richtext-ml-1 richtext-h-full', {
-                  '': item.level === 'Paragraph',
-                  'heading-1': item.level === 1,
-                  'heading-2': item.level === 2,
-                  'heading-3': item.level === 3,
-                  'heading-4': item.level === 4,
-                  'heading-5': item.level === 5,
-                  'heading-6': item.level === 6,
-                })}
+              <DropdownMenuCheckboxItem checked={title === item.title} onClick={item.action}>
+                <div
+                  className={cn('richtext-ml-1 richtext-h-full', {
+                    '': item.level === 'Paragraph',
+                    'heading-1': item.level === 1,
+                    'heading-2': item.level === 2,
+                    'heading-3': item.level === 3,
+                    'heading-4': item.level === 4,
+                    'heading-5': item.level === 5,
+                    'heading-6': item.level === 6,
+                  })}
                 >
                   {item.title}
                 </div>
 
                 {!!item?.shortcutKeys?.length && (
-                  <DropdownMenuShortcut className="richtext-pl-4">
+                  <DropdownMenuShortcut className='richtext-pl-4'>
                     {item?.shortcutKeys?.map((item: any) => getShortcutKey(item)).join(' ')}
                   </DropdownMenuShortcut>
                 )}

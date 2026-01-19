@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { useEffect, useState, useRef } from 'react';
-
 import type { Mark } from '@tiptap/pm/model';
+import { useEffect, useState, useRef } from 'react';
 
 import { Button, IconComponent, Input, Label, Checkbox } from '@/components';
 import { Link } from '@/extensions/Link/Link';
@@ -92,51 +89,44 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
   }
 
   return (
-    <div className="richtext-flex richtext-flex-col richtext-gap-2">
-      <Label className="mb-[6px]">
-        {t('editor.link.dialog.text')}
-      </Label>
+    <div className='richtext-flex richtext-flex-col richtext-gap-2'>
+      <Label className='mb-[6px]'>{t('editor.link.dialog.text')}</Label>
 
-      <div className="richtext-mb-[10px] richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
-        <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
+      <div className='richtext-mb-[10px] richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5'>
+        <div className='richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center'>
           <Input
-            className="richtext-w-80"
+            className='richtext-w-80'
             onChange={(e) => setForm({ ...form, text: e.target.value })}
-            placeholder="Text"
+            placeholder='Text'
             ref={textInputRef}
             required
-            type="text"
+            type='text'
             value={form.text}
           />
         </div>
       </div>
 
-      <Label className="mb-[6px]">
-        {t('editor.link.dialog.link')}
-      </Label>
+      <Label className='mb-[6px]'>{t('editor.link.dialog.link')}</Label>
 
-      <div className="richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5">
-        <div className="richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center">
+      <div className='richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5'>
+        <div className='richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center'>
           <Input
-            className="richtext-pl-10"
+            className='richtext-pl-10'
             onChange={(e) => setForm({ ...form, link: e.target.value })}
             ref={linkInputRef}
             required
-            type="url"
+            type='url'
             value={form.link}
           />
 
-          <span className="richtext-absolute richtext-inset-y-0 richtext-start-0 richtext-flex richtext-items-center richtext-justify-center richtext-px-2">
-            <IconComponent
-              className="richtext-size-5 richtext-text-muted-foreground"
-              name="Link"
-            />
+          <span className='richtext-absolute richtext-inset-y-0 richtext-start-0 richtext-flex richtext-items-center richtext-justify-center richtext-px-2'>
+            <IconComponent className='richtext-size-5 richtext-text-muted-foreground' name='Link' />
           </span>
         </div>
       </div>
 
       {!props.target && (
-        <div className="richtext-flex richtext-items-center richtext-gap-1">
+        <div className='richtext-flex richtext-items-center richtext-gap-1'>
           <Checkbox
             checked={openInNewTab}
             onCheckedChange={(v) => {
@@ -144,26 +134,18 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
             }}
           />
 
-          <Label>
-            {t('editor.link.dialog.openInNewTab')}
-          </Label>
+          <Label>{t('editor.link.dialog.openInNewTab')}</Label>
         </div>
       )}
 
       <div className='richtext-mt-2 richtext-flex richtext-items-center richtext-justify-end richtext-gap-2'>
-        {
-          props?.onClose && <Button
-            onClick={props?.onClose}
-            type="button"
-                            >
+        {props?.onClose && (
+          <Button onClick={props?.onClose} type='button'>
             {t('editor.link.dialog.button.cancel')}
           </Button>
-        }
+        )}
 
-        <Button
-          onClick={handleSubmit}
-          type="button"
-        >
+        <Button onClick={handleSubmit} type='button'>
           {t('editor.link.dialog.button.apply')}
         </Button>
       </div>

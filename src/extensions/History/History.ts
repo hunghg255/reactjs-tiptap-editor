@@ -3,10 +3,9 @@ import { UndoRedo, type UndoRedoOptions } from '@tiptap/extensions';
 // import HistoryActionButton from '@/extensions/History/components/HistoryActionButton';
 import type { GeneralOptions } from '@/types';
 
-export interface HistoryOptions extends UndoRedoOptions, GeneralOptions<HistoryOptions> { }
+export interface HistoryOptions extends UndoRedoOptions, GeneralOptions<HistoryOptions> {}
 
 export const History = /* @__PURE__ */ UndoRedo.extend<HistoryOptions>({
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
@@ -33,8 +32,8 @@ export const History = /* @__PURE__ */ UndoRedo.extend<HistoryOptions>({
               isActive: () => editor.can().redo(),
               icon: 'Redo2',
               tooltip: t('editor.redo.tooltip'),
-            }
-          }
+            },
+          },
         };
       },
     };

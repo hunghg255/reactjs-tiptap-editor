@@ -12,7 +12,6 @@ next:
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -94,16 +93,7 @@ Specifies the size of the paper used when exporting to PDF.
 Supported values:
 
 ```ts
-type PaperSize =
-  | 'Legal'
-  | 'Letter'
-  | 'Tabloid'
-  | 'A0'
-  | 'A1'
-  | 'A2'
-  | 'A3'
-  | 'A4'
-  | 'A5';
+type PaperSize = 'Legal' | 'Letter' | 'Tabloid' | 'A0' | 'A1' | 'A2' | 'A3' | 'A4' | 'A5';
 ```
 
 ### margins

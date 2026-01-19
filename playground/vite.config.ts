@@ -1,20 +1,18 @@
-import * as path from 'node:path'
+import * as path from 'node:path';
 
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const isDev = mode !== 'production'
-  const isAnalyze = mode === 'analyze'
+  const isDev = mode !== 'production';
+  const isAnalyze = mode === 'analyze';
 
   return {
     define: {
-      'process.env': {}
+      'process.env': {},
     },
-    plugins: [
-      react(),
-    ],
+    plugins: [react()],
     optimizeDeps: {
       include: ['react'],
     },
@@ -41,5 +39,5 @@ export default defineConfig(({ mode }) => {
       host: '0.0.0.0',
       port: 8000,
     },
-  }
-})
+  };
+});

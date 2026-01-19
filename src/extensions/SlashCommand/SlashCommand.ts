@@ -51,7 +51,7 @@ export const SlashCommand = /* @__PURE__ */ Extension.create<any>({
         //   );
         // },
 
-        command: ({ editor, range, props }: { editor: Editor, range: Range, props: any }) => {
+        command: ({ editor, range, props }: { editor: Editor; range: Range; props: any }) => {
           const { view } = editor;
           props.action({ editor, range });
           view.focus();
@@ -109,5 +109,5 @@ export const SlashCommand = /* @__PURE__ */ Extension.create<any>({
         },
       }),
     ];
-  }
+  },
 });

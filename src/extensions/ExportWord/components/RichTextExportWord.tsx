@@ -1,8 +1,9 @@
+import { useState } from 'react';
+
 import { ActionButton } from '@/components';
 import { ExportWord } from '@/extensions/ExportWord/ExportWord';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
-import { useState } from 'react';
 
 export function RichTextExportWord() {
   const buttonProps = useButtonProps(ExportWord.name);

@@ -96,64 +96,57 @@ export function RenderDialogUploadVideo() {
   }
 
   return (
-    <Dialog onOpenChange={setOpen}
-      open={open}
-    >
+    <Dialog onOpenChange={setOpen} open={open}>
       <DialogContent>
-        <DialogTitle>
-          {t('editor.video.dialog.title')}
-        </DialogTitle>
+        <DialogTitle>{t('editor.video.dialog.title')}</DialogTitle>
 
         <Tabs
-          activationMode="manual"
+          activationMode='manual'
           defaultValue={
-            (uploadOptions?.resourceVideo === 'both' || uploadOptions?.resourceVideo === 'upload') ? 'upload' : 'link'
+            uploadOptions?.resourceVideo === 'both' || uploadOptions?.resourceVideo === 'upload'
+              ? 'upload'
+              : 'link'
           }
         >
-          <TabsList className="richtext-grid richtext-w-full richtext-grid-cols-2">
-            {(uploadOptions?.resourceVideo === 'both' || uploadOptions?.resourceVideo === 'upload') && (
-              <TabsTrigger value="upload">
-                {t('editor.video.dialog.tab.upload')}
-              </TabsTrigger>
+          <TabsList className='richtext-grid richtext-w-full richtext-grid-cols-2'>
+            {(uploadOptions?.resourceVideo === 'both' ||
+              uploadOptions?.resourceVideo === 'upload') && (
+              <TabsTrigger value='upload'>{t('editor.video.dialog.tab.upload')}</TabsTrigger>
             )}
 
-            {(uploadOptions?.resourceVideo === 'both' || uploadOptions?.resourceVideo === 'link') && (
-              <TabsTrigger value="link">
-                {t('editor.video.dialog.link')}
-              </TabsTrigger>
+            {(uploadOptions?.resourceVideo === 'both' ||
+              uploadOptions?.resourceVideo === 'link') && (
+              <TabsTrigger value='link'>{t('editor.video.dialog.link')}</TabsTrigger>
             )}
           </TabsList>
 
-          <TabsContent value="upload">
-            <div className="richtext-flex richtext-items-center richtext-gap-[10px]">
-              <Button className="richtext-mt-1 richtext-w-full"
-                onClick={handleClick}
-                size="sm"
-              >
+          <TabsContent value='upload'>
+            <div className='richtext-flex richtext-items-center richtext-gap-[10px]'>
+              <Button className='richtext-mt-1 richtext-w-full' onClick={handleClick} size='sm'>
                 {t('editor.video.dialog.tab.upload')}
               </Button>
             </div>
 
             <input
-              accept="video/*"
+              accept='video/*'
               multiple
               onChange={handleFile}
               ref={fileInput}
-              type="file"
+              type='file'
               style={{
                 display: 'none',
               }}
             />
           </TabsContent>
 
-          <TabsContent value="link">
-            <div >
-              <div className="richtext-flex richtext-items-center richtext-gap-2">
+          <TabsContent value='link'>
+            <div>
+              <div className='richtext-flex richtext-items-center richtext-gap-2'>
                 <Input
                   autoFocus
                   placeholder={t('editor.video.dialog.placeholder')}
                   required
-                  type="url"
+                  type='url'
                   value={link}
                   onBlur={(e) => {
                     const url = e.target.value;
@@ -170,17 +163,13 @@ export function RenderDialogUploadVideo() {
                   }}
                 />
 
-                <Button onClick={handleLink}
-                  type="button"
-                >
+                <Button onClick={handleLink} type='button'>
                   {t('editor.video.dialog.button.apply')}
                 </Button>
               </div>
             </div>
 
-            {error && <div className="richtext-my-[5px] richtext-text-red-500">
-              {error}
-            </div>}
+            {error && <div className='richtext-my-[5px] richtext-text-red-500'>{error}</div>}
           </TabsContent>
         </Tabs>
       </DialogContent>

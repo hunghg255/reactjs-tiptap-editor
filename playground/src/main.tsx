@@ -1,9 +1,8 @@
-import './global.css'
+import './global.css';
 
-import React from 'react'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-import ReactDOM from 'react-dom/client'
+import App from './App';
 
-import App from './App'
-
-ReactDOM.createRoot(document.querySelector('#root') as HTMLElement).render(<App />)
+ReactDOM.createRoot(document.querySelector('#root') as HTMLElement).render(<App />);

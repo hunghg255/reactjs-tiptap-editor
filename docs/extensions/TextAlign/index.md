@@ -8,12 +8,11 @@ next:
 
 # Text Align
 
- The Text Align extension allows you to align text in the editor.
+The Text Align extension allows you to align text in the editor.
 
 - Based on TipTap's task list extension. [@tiptap/extension-text-align](https://tiptap.dev/docs/editor/extensions/functionality/textalign)
 
 ## Usage
-
 
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'

@@ -1,12 +1,16 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useCallback, useEffect, useRef, useState } from 'react';
-
 // @ts-ignore
 import svg64 from 'svg64';
 
 import { ActionButton } from '@/components/ActionButton';
 import { Button } from '@/components/ui';
-import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Mermaid } from '@/extensions/Mermaid/Mermaid';
 import { useToggleActive } from '@/hooks/useActive';
@@ -17,16 +21,12 @@ import { shortId } from '@/utils/shortId';
 
 const defaultCode = 'graph TB\na-->b';
 
-export function RichTextMermaid () {
+export function RichTextMermaid() {
   const editor = useEditorInstance();
 
   const buttonProps = useButtonProps(Mermaid.name);
 
-  const {
-    tooltipOptions = {},
-    isActive = undefined,
-    upload
-  } = buttonProps?.componentProps ?? {};
+  const { tooltipOptions = {}, isActive = undefined, upload } = buttonProps?.componentProps ?? {};
 
   const { editorDisabled } = useToggleActive(isActive);
 
@@ -37,19 +37,15 @@ export function RichTextMermaid () {
   const [mermaidInstance, setMermaidInstance] = useState<any>(null);
   const [loading, toggleLoading] = useState(true);
 
-  const loadMermaid = useCallback(
-    (div: any) => {
-      if (!div)
-        return;
+  const loadMermaid = useCallback((div: any) => {
+    if (!div) return;
 
-      import('mermaid')
-        .then((res) => {
-          setMermaidInstance(res.default);
-        })
-        .finally(() => toggleLoading(false));
-    },
-    [],
-  );
+    import('mermaid')
+      .then((res) => {
+        setMermaidInstance(res.default);
+      })
+      .finally(() => toggleLoading(false));
+  }, []);
 
   const renderMermaid = async (value: any) => {
     try {
@@ -113,7 +109,7 @@ export function RichTextMermaid () {
             width,
             height,
           },
-          !!mermaidCode,
+          !!mermaidCode
         )
         .run();
     }
@@ -121,15 +117,12 @@ export function RichTextMermaid () {
   };
 
   return (
-    <Dialog
-      onOpenChange={toggleVisible}
-      open={visible}
-    >
+    <Dialog onOpenChange={toggleVisible} open={visible}>
       <DialogTrigger asChild>
         <ActionButton
           disabled={editorDisabled}
-          icon="Mermaid"
-          tooltip="Mermaid"
+          icon='Mermaid'
+          tooltip='Mermaid'
           tooltipOptions={tooltipOptions}
           action={() => {
             if (editorDisabled) {
@@ -140,48 +133,46 @@ export function RichTextMermaid () {
         />
       </DialogTrigger>
 
-      <DialogContent className="richtext-z-[99999] !richtext-max-w-[1300px]">
-        <DialogTitle>
-          Mermaid
-        </DialogTitle>
+      <DialogContent className='richtext-z-[99999] !richtext-max-w-[1300px]'>
+        <DialogTitle>Mermaid</DialogTitle>
 
-        <div
-          ref={loadMermaid}
-          style={{ height: '100%', border: '1px solid hsl(var(--border))' }}
-        >
-          {loading ?  <p>
-              Loading...
-          </p> : <>
-          <div className="richtext-flex richtext-gap-[10px] richtext-rounded-[10px] richtext-p-[10px]">
-            <Textarea
-              autoFocus
-              className="richtext-flex-1"
-              onChange={e => setMermaidCode(e.target.value)}
-              placeholder="Text"
-              required
-              rows={10}
-              value={mermaidCode}
-              style={{
-                color: 'hsl(var(--foreground))',
-              }}
-            />
+        <div ref={loadMermaid} style={{ height: '100%', border: '1px solid hsl(var(--border))' }}>
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <>
+              <div className='richtext-flex richtext-gap-[10px] richtext-rounded-[10px] richtext-p-[10px]'>
+                <Textarea
+                  autoFocus
+                  className='richtext-flex-1'
+                  onChange={(e) => setMermaidCode(e.target.value)}
+                  placeholder='Text'
+                  required
+                  rows={10}
+                  value={mermaidCode}
+                  style={{
+                    color: 'hsl(var(--foreground))',
+                  }}
+                />
 
-            <div
-              className="richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]"
-              dangerouslySetInnerHTML={{ __html: svgCode }}
-              ref={mermaidRef as any}
-              style={{ height: '100%', borderWidth: 1, minHeight: 500, background: '#fff' }}
-            />
-          </div>
-          </>}
+                <div
+                  className='richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]'
+                  dangerouslySetInnerHTML={{ __html: svgCode }}
+                  ref={mermaidRef as any}
+                  style={{
+                    height: '100%',
+                    borderWidth: 1,
+                    minHeight: 500,
+                    background: '#fff',
+                  }}
+                />
+              </div>
+            </>
+          )}
         </div>
 
         <DialogFooter>
-          <Button
-            disabled={!mermaidInstance}
-            onClick={setMermaid}
-            type="button"
-          >
+          <Button disabled={!mermaidInstance} onClick={setMermaid} type='button'>
             Save changes
           </Button>
         </DialogFooter>

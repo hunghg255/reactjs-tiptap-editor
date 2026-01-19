@@ -12,7 +12,6 @@ The Callout extension allows you to add callout boxes with different styles to y
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -78,7 +77,6 @@ const App = () => {
   );
 };
 ```
-
 
 ## Options
 

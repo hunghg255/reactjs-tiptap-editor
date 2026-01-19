@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 const colors = [
   '#47A1FF',
   '#59CB74',

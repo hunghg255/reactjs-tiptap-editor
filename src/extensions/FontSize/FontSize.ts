@@ -10,13 +10,13 @@ export * from './components/RichTextFontSize';
  * Represents the interface for font size options, extending GeneralOptions.
  */
 export interface FontSizeOptions extends GeneralOptions<FontSizeOptions> {
-  types: string[]
+  types: string[];
   /**
    * List of available font size values
    *
    * @default DEFAULT_FONT_SIZE_LIST
    */
-  fontSizes: (string | NameValueOption)[]
+  fontSizes: (string | NameValueOption)[];
 }
 
 declare module '@tiptap/core' {
@@ -27,18 +27,17 @@ declare module '@tiptap/core' {
        * CSS font-size
        * (https://developer.mozilla.org/en-US/docs/Web/CSS/font-size).
        */
-      setFontSize: (fontSize: string) => ReturnType
+      setFontSize: (fontSize: string) => ReturnType;
       /**
        * Unset the font size
        */
-      unsetFontSize: () => ReturnType
-    }
+      unsetFontSize: () => ReturnType;
+    };
   }
 }
 
 export const FontSize = /* @__PURE__ */ Extension.create<FontSizeOptions>({
   name: 'fontSize',
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
@@ -48,7 +47,7 @@ export const FontSize = /* @__PURE__ */ Extension.create<FontSizeOptions>({
       button({ editor, extension, t }) {
         const fontSizes = ensureNameValueOptions(extension.options?.fontSizes);
 
-        const items = fontSizes.map(k => ({
+        const items = fontSizes.map((k) => ({
           title: k.value === 'Default' ? t('editor.fontSize.default.tooltip') : String(k.name),
           isActive: () => {
             const { fontSize } = editor.getAttributes('textStyle');
@@ -89,7 +88,7 @@ export const FontSize = /* @__PURE__ */ Extension.create<FontSizeOptions>({
                 isActive: () => false,
               };
               return item;
-            }
+            },
           },
         };
       },
@@ -102,7 +101,7 @@ export const FontSize = /* @__PURE__ */ Extension.create<FontSizeOptions>({
         attributes: {
           fontSize: {
             default: null,
-            parseHTML: element => element.style.fontSize.replaceAll(/["']+/g, ''),
+            parseHTML: (element) => element.style.fontSize.replaceAll(/["']+/g, ''),
             renderHTML: (attributes) => {
               if (!attributes.fontSize) {
                 return {};
@@ -119,15 +118,15 @@ export const FontSize = /* @__PURE__ */ Extension.create<FontSizeOptions>({
   addCommands() {
     return {
       setFontSize:
-        fontSize =>
-          ({ chain }) => {
-            return chain().setMark('textStyle', { fontSize }).run();
-          },
+        (fontSize) =>
+        ({ chain }) => {
+          return chain().setMark('textStyle', { fontSize }).run();
+        },
       unsetFontSize:
         () =>
-          ({ chain }) => {
-            return chain().setMark('textStyle', { fontSize: null }).removeEmptyTextStyle().run();
-          },
+        ({ chain }) => {
+          return chain().setMark('textStyle', { fontSize: null }).removeEmptyTextStyle().run();
+        },
     };
   },
 });

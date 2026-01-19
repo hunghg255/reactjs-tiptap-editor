@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-
 import { useEffect } from 'react';
 
 import { THEME, useTheme } from '@/theme/theme';
@@ -20,21 +18,27 @@ export function ThemeColorReactive() {
       return;
     }
 
-    updateCSS(`
+    updateCSS(
+      `
       .reactjs-tiptap-editor, .reactjs-tiptap-editor *,
       .reactjs-tiptap-editor-theme, .reactjs-tiptap-editor-theme *,
       div[data-richtext-portal], div[data-richtext-portal] * {
-        ${Object.entries(themeObject).map(([key, value]) => {
-      if (typeof borderRadius === 'string' && key === 'radius') {
-        return `--${key}: ${borderRadius};`;
-      }
+        ${Object.entries(themeObject)
+          .map(([key, value]) => {
+            if (typeof borderRadius === 'string' && key === 'radius') {
+              return `--${key}: ${borderRadius};`;
+            }
 
-      return `--${key}: ${value};`;
-    }).join('\n')}
+            return `--${key}: ${value};`;
+          })
+          .join('\n')}
       }
-      `, 'richtext-theme', {
-      priority: 50
-    });
+      `,
+      'richtext-theme',
+      {
+        priority: 50,
+      }
+    );
 
     return () => {
       removeCSS('richtext-theme');

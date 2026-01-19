@@ -14,7 +14,6 @@ The Bold extension allows you to add bold text to your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -80,7 +79,6 @@ const App = () => {
   );
 };
 ```
-
 
 ## Options
 

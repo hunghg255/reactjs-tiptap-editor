@@ -15,16 +15,16 @@ import { useLocale } from '@/locales';
 import type { ButtonViewReturnComponentProps } from '@/types';
 
 export interface Item {
-  title: string
-  icon?: any
-  font?: string
-  isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>
-  action?: ButtonViewReturnComponentProps['action']
-  style?: React.CSSProperties
-  shortcutKeys?: string[]
-  disabled?: boolean
-  divider?: boolean
-  default?: boolean
+  title: string;
+  icon?: any;
+  font?: string;
+  isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>;
+  action?: ButtonViewReturnComponentProps['action'];
+  style?: React.CSSProperties;
+  shortcutKeys?: string[];
+  disabled?: boolean;
+  divider?: boolean;
+  default?: boolean;
 }
 
 export function RichTextFontFamily() {
@@ -42,7 +42,7 @@ export function RichTextFontFamily() {
   const { disabled, dataState } = useActive(isActive);
 
   const title = useMemo(() => {
-    return (dataState)?.font || t('editor.fontFamily.default.tooltip');
+    return dataState?.font || t('editor.fontFamily.default.tooltip');
   }, [dataState]);
 
   if (!buttonProps) {
@@ -51,31 +51,25 @@ export function RichTextFontFamily() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild
-        disabled={disabled}
-      >
+      <DropdownMenuTrigger asChild disabled={disabled}>
         <ActionMenuButton
           disabled={disabled}
           icon={icon}
           title={title?.length > 12 ? `${title?.slice(0, 12)}...` : title}
           tooltip={tooltip}
-        // tooltipOptions={tooltipOptions}
+          // tooltipOptions={tooltipOptions}
         />
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="richtext-w-full">
+      <DropdownMenuContent className='richtext-w-full'>
         {items?.map((item: any, index: any) => {
-          const style
-            = item.font === t('editor.fontFamily.default.tooltip') ? {} : { fontFamily: item.font };
+          const style =
+            item.font === t('editor.fontFamily.default.tooltip') ? {} : { fontFamily: item.font };
 
           return (
             <Fragment key={`font-family-${index}`}>
-              <DropdownMenuCheckboxItem checked={title === item.font}
-                onClick={item.action}
-              >
-                <div className="richtext-ml-1 richtext-h-full"
-                  style={style}
-                >
+              <DropdownMenuCheckboxItem checked={title === item.font} onClick={item.action}>
+                <div className='richtext-ml-1 richtext-h-full' style={style}>
                   {item.font}
                 </div>
               </DropdownMenuCheckboxItem>

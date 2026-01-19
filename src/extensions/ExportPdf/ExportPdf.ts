@@ -1,14 +1,13 @@
 import { Extension } from '@tiptap/core';
 
-import { printEditorContent } from '@/utils/pdf';
-
 import type { GeneralOptions, PaperSize, PageMargin } from '@/types';
+import { printEditorContent } from '@/utils/pdf';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     exportPdf: {
-      exportToPdf: () => ReturnType
-    }
+      exportToPdf: () => ReturnType;
+    };
   }
 }
 
@@ -27,7 +26,6 @@ export * from './components/RichTextExportPdf';
 
 export const ExportPdf = /* @__PURE__ */ Extension.create<ExportPdfOptions>({
   name: 'exportPdf',
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {
@@ -57,9 +55,9 @@ export const ExportPdf = /* @__PURE__ */ Extension.create<ExportPdfOptions>({
     return {
       exportToPdf:
         () =>
-          ({ editor }) => {
-            return printEditorContent(editor, this.options);
-          },
+        ({ editor }) => {
+          return printEditorContent(editor, this.options);
+        },
     };
   },
 });

@@ -1,20 +1,19 @@
 import { Node, mergeAttributes } from '@tiptap/core';
-
+import { Extension } from '@tiptap/core';
 import { TextSelection } from '@tiptap/pm/state';
 
 import { addOrDeleteCol, createColumns, gotoCol } from '@/utils/columns';
-import { Extension } from '@tiptap/core';
 
 const EXTENSION_PRIORITY_HIGHEST = 200;
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     columns: {
-      insertColumns: (attrs?: { cols: number }) => ReturnType
-      addColBefore: () => ReturnType
-      addColAfter: () => ReturnType
-      deleteCol: () => ReturnType
-    }
+      insertColumns: (attrs?: { cols: number }) => ReturnType;
+      addColBefore: () => ReturnType;
+      addColAfter: () => ReturnType;
+      deleteCol: () => ReturnType;
+    };
   }
 }
 
@@ -55,7 +54,7 @@ export const ColumnNode = /* @__PURE__ */ Node.create({
     return {
       index: {
         default: 0,
-        parseHTML: element => element.getAttribute('index'),
+        parseHTML: (element) => element.getAttribute('index'),
       },
     };
   },
@@ -94,7 +93,7 @@ export const MultipleColumnNode = /* @__PURE__ */ Node.create({
     return {
       cols: {
         default: 2,
-        parseHTML: element => element.getAttribute('cols'),
+        parseHTML: (element) => element.getAttribute('cols'),
       },
     };
   },
@@ -114,42 +113,42 @@ export const MultipleColumnNode = /* @__PURE__ */ Node.create({
   addCommands() {
     return {
       insertColumns:
-        attrs =>
-          ({ tr, dispatch, editor }) => {
-            const node = createColumns(editor.schema, (attrs && attrs.cols) || 3);
+        (attrs) =>
+        ({ tr, dispatch, editor }) => {
+          const node = createColumns(editor.schema, (attrs && attrs.cols) || 3);
 
-            if (dispatch) {
-              const offset = tr.selection.anchor + 1;
+          if (dispatch) {
+            const offset = tr.selection.anchor + 1;
 
-              tr.replaceSelectionWith(node)
-                .scrollIntoView()
-                .setSelection(TextSelection.near(tr.doc.resolve(offset)));
-            }
+            tr.replaceSelectionWith(node)
+              .scrollIntoView()
+              .setSelection(TextSelection.near(tr.doc.resolve(offset)));
+          }
 
-            return true;
-          },
+          return true;
+        },
       addColBefore:
         () =>
-          ({ dispatch, state }) => {
-            return addOrDeleteCol({ dispatch, state, type: 'addBefore' });
-          },
+        ({ dispatch, state }) => {
+          return addOrDeleteCol({ dispatch, state, type: 'addBefore' });
+        },
       addColAfter:
         () =>
-          ({ dispatch, state }) => {
-            return addOrDeleteCol({ dispatch, state, type: 'addAfter' });
-          },
+        ({ dispatch, state }) => {
+          return addOrDeleteCol({ dispatch, state, type: 'addAfter' });
+        },
       deleteCol:
         () =>
-          ({ dispatch, state }) => {
-            return addOrDeleteCol({ dispatch, state, type: 'delete' });
-          },
+        ({ dispatch, state }) => {
+          return addOrDeleteCol({ dispatch, state, type: 'delete' });
+        },
     };
   },
 
   addKeyboardShortcuts() {
     return {
       'Mod-Alt-G': () => this.editor.commands.insertColumns(),
-      'Tab': () => {
+      Tab: () => {
         return gotoCol({
           state: this.editor.state,
           dispatch: this.editor.view.dispatch,

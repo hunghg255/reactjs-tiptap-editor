@@ -1,7 +1,6 @@
 ---
 description: Drawer
 
-
 next:
   text: Emoji
   link: /extensions/Emoji/index.md
@@ -14,7 +13,6 @@ Drawer is a node extension that allows you to add an Drawer to your editor.
 - [Drawer](https://easydrawer.vercel.app/)
 
 ## Usage
-
 
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'

@@ -14,7 +14,6 @@ The Font Family extension allows you to change the font family of your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -90,7 +89,7 @@ Type: `(string | { value: string; name: string })[]`
 Set the font list, supporting two formats:
 
 ```js
-import { DEFAULT_FONT_FAMILY_LIST, FontFamily } from 'reactjs-tiptap-editor/fontfamily'
+import { DEFAULT_FONT_FAMILY_LIST, FontFamily } from 'reactjs-tiptap-editor/fontfamily';
 
 FontFamily.configure({
   fontFamilyList: [
@@ -105,7 +104,7 @@ FontFamily.configure({
     { name: '仿宋', value: '仿宋' },
     'Arial',
     'Tahoma',
-    'Verdana'
-  ]
-})
+    'Verdana',
+  ],
+});
 ```

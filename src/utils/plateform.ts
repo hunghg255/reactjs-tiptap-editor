@@ -38,11 +38,11 @@ export function isTouchDevice(): boolean {
     // This technique is taken from
     // https://hacks.mozilla.org/2013/04/detecting-touch-its-the-why-not-the-how/
     // (and https://stackoverflow.com/a/4819886/4543977)
-    isTouchDeviceResult
-      = (window && 'ontouchstart' in window)
-        || navigator.maxTouchPoints > 0
+    isTouchDeviceResult =
+      (window && 'ontouchstart' in window) ||
+      navigator.maxTouchPoints > 0 ||
       // @ts-expect-error: msMaxTouchPoints is IE-specific, so needs to be ignored
-        || navigator.msMaxTouchPoints > 0;
+      navigator.msMaxTouchPoints > 0;
   }
 
   return isTouchDeviceResult;

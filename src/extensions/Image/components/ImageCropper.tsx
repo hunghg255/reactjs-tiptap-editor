@@ -1,9 +1,5 @@
 import React, { useRef, useState, useMemo } from 'react';
-
-import ReactCrop, {
-  type Crop,
-  type PixelCrop,
-} from 'react-image-crop';
+import ReactCrop, { type Crop, type PixelCrop } from 'react-image-crop';
 
 import { IconComponent, useToast } from '@/components';
 import { Button } from '@/components/ui/button';
@@ -71,7 +67,7 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
         0,
         0,
         crop.width * scaleX,
-        crop.height * scaleY,
+        crop.height * scaleY
       );
     }
 
@@ -108,7 +104,15 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
     } finally {
       setIsCropping(false);
     }
-  }, [croppedImageUrl, editor, imageInline, isCropping, onClose, urlUpload?.file?.name, uploadOptions]);
+  }, [
+    croppedImageUrl,
+    editor,
+    imageInline,
+    isCropping,
+    onClose,
+    urlUpload?.file?.name,
+    uploadOptions,
+  ]);
 
   function handleClick(e: any) {
     e.preventDefault();
@@ -153,10 +157,11 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
 
   return (
     <>
-      <Button className="richtext-mt-1 richtext-w-full"
+      <Button
+        className='richtext-mt-1 richtext-w-full'
         disabled={disabled}
         onClick={handleClick}
-        size="sm"
+        size='sm'
       >
         {t('editor.image.dialog.tab.uploadCrop')}
       </Button>
@@ -174,23 +179,17 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
         <DialogTrigger />
 
         <DialogContent>
-          <DialogTitle>
-            {t('editor.image.dialog.tab.uploadCrop')}
-          </DialogTitle>
+          <DialogTitle>{t('editor.image.dialog.tab.uploadCrop')}</DialogTitle>
 
           <div>
             {urlUpload.src && (
               <ReactCrop
-                className="richtext-w-full"
+                className='richtext-w-full'
                 crop={crop}
-                onChange={c => setCrop(c)}
-                onComplete={c => onCropComplete(c)}
+                onChange={(c) => setCrop(c)}
+                onComplete={(c) => onCropComplete(c)}
               >
-                <img
-                  alt="Crop me"
-                  ref={imgRef}
-                  src={urlUpload.src}
-                />
+                <img alt='Crop me' ref={imgRef} src={urlUpload.src} />
               </ReactCrop>
             )}
           </div>
@@ -209,31 +208,21 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
             >
               {t('editor.imageUpload.cancel')}
 
-              <IconComponent className="richtext-ml-1"
-                name="Trash2"
-              />
+              <IconComponent className='richtext-ml-1' name='Trash2' />
             </Button>
 
-            <Button
-              className="richtext-w-fit"
-              disabled={isCropping || !crop}
-              onClick={onCrop}
-            >
+            <Button className='richtext-w-fit' disabled={isCropping || !crop} onClick={onCrop}>
               {isCropping ? (
                 <>
                   {t('editor.imageUpload.uploading')}
 
-                  <IconComponent className="richtext-ml-1 richtext-animate-spin"
-                    name="Loader"
-                  />
+                  <IconComponent className='richtext-ml-1 richtext-animate-spin' name='Loader' />
                 </>
               ) : (
                 <>
                   {t('editor.imageUpload.crop')}
 
-                  <IconComponent className="richtext-ml-1"
-                    name="Crop"
-                  />
+                  <IconComponent className='richtext-ml-1' name='Crop' />
                 </>
               )}
             </Button>
@@ -247,7 +236,7 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
         onChange={handleFile}
         ref={fileInput}
         style={{ display: 'none' }}
-        type="file"
+        type='file'
       />
     </>
   );

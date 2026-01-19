@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { NodeViewWrapper, type ReactNodeViewRendererOptions } from '@tiptap/react';
 import { Tweet } from 'react-tweet';
 
-export const TWITTER_REGEX_GLOBAL = /(https?:\/\/)?(www\.)?x\.com\/(\w{1,15})(\/status\/(\d+))?(\/\S*)?/g;
+export const TWITTER_REGEX_GLOBAL =
+  /(https?:\/\/)?(www\.)?x\.com\/(\w{1,15})(\/status\/(\d+))?(\/\S*)?/g;
 export const TWITTER_REGEX = /^https?:\/\/(www\.)?x\.com\/(\w{1,15})(\/status\/(\d+))?(\/\S*)?$/;
 
 export function isValidTwitterUrl(url: string) {
@@ -20,7 +20,7 @@ function NodeViewTweet({ node }: { node: Partial<ReactNodeViewRendererOptions> }
 
   return (
     <NodeViewWrapper>
-      <div data-twitter="">
+      <div data-twitter=''>
         <Tweet id={tweetId} />
       </div>
     </NodeViewWrapper>

@@ -9,9 +9,7 @@ export function renderCommandListDefault({ t }: any) {
     {
       name: 'format',
       title: t('editor.slash.format'),
-      commands: [
-
-      ],
+      commands: [],
     },
     {
       name: 'insert',
@@ -24,7 +22,10 @@ export function renderCommandListDefault({ t }: any) {
   HEADINGS.forEach((level: any) => {
     groups[0].commands.push({
       name: `heading${level}`,
-      label: level === 'Paragraph' ? t('editor.paragraph.tooltip') : t(`editor.heading.h${level}.tooltip`),
+      label:
+        level === 'Paragraph'
+          ? t('editor.paragraph.tooltip')
+          : t(`editor.heading.h${level}.tooltip`),
       aliases: [`h${level}`, 'bt', `bt${level}`],
       iconName: `Heading${level}`,
       isActive: (editor) => {
@@ -35,7 +36,9 @@ export function renderCommandListDefault({ t }: any) {
         return editor.isActive('heading', { level }) || false;
       },
       action: ({ editor, range }) => {
-        const currentActiveLevel: any = HEADINGS.find((lvl: any) => editor.isActive('heading', { level: lvl }));
+        const currentActiveLevel: any = HEADINGS.find((lvl: any) =>
+          editor.isActive('heading', { level: lvl })
+        );
 
         if (level === 'Paragraph') {
           if (currentActiveLevel !== undefined && currentActiveLevel !== 'Paragraph') {
@@ -114,7 +117,7 @@ export function renderCommandListDefault({ t }: any) {
     label: t('editor.codeblock.tooltip'),
     iconName: 'Code2',
     description: 'Code block with syntax highlighting',
-    shouldBeHidden: editor => editor.isActive('columns'),
+    shouldBeHidden: (editor) => editor.isActive('columns'),
     isActive: (editor) => editor.isActive('codeBlock'),
     action: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).setCodeBlock().run();
@@ -129,10 +132,10 @@ export function renderCommandListDefault({ t }: any) {
     iconName: 'ImageUp',
     description: 'Insert a image',
     aliases: ['image', 'tp', 'tupian'],
-    shouldBeHidden: editor => editor.isActive('columns'),
+    shouldBeHidden: (editor) => editor.isActive('columns'),
     action: ({ editor, range }: any) => {
       editor.chain().focus().deleteRange(range).run();
-      const EVENT_ID = EVENTS.UPLOAD_IMAGE((editor).id);
+      const EVENT_ID = EVENTS.UPLOAD_IMAGE(editor.id);
       emit(EVENT_ID, true);
     },
   });
@@ -144,10 +147,10 @@ export function renderCommandListDefault({ t }: any) {
     iconName: 'Video',
     description: 'Insert a video',
     aliases: ['video', 'sp', 'shipin'],
-    shouldBeHidden: editor => editor.isActive('columns'),
+    shouldBeHidden: (editor) => editor.isActive('columns'),
     action: ({ editor, range }: any) => {
       editor.chain().focus().deleteRange(range).run();
-      const EVENT_ID = EVENTS.UPLOAD_VIDEO((editor).id);
+      const EVENT_ID = EVENTS.UPLOAD_VIDEO(editor.id);
       emit(EVENT_ID, true);
     },
   });
@@ -159,7 +162,7 @@ export function renderCommandListDefault({ t }: any) {
     iconName: 'Table',
     description: 'Insert a table',
     aliases: ['table', 'bg', 'biaoge', 'biao'],
-    shouldBeHidden: editor => editor.isActive('columns'),
+    shouldBeHidden: (editor) => editor.isActive('columns'),
     action: ({ editor, range }) => {
       editor
         .chain()
@@ -197,23 +200,22 @@ export function renderCommandListDefault({ t }: any) {
 }
 
 export function useFilterCommandList(commandList: CommandList[], query: string) {
-  const withFilteredCommands = commandList.map(group => ({
+  const withFilteredCommands = commandList.map((group) => ({
     ...group,
-    commands: group.commands
-      .filter((item) => {
-        const labelNormalized = item.label.toLowerCase().trim();
-        const queryNormalized = query.toLowerCase().trim();
+    commands: group.commands.filter((item) => {
+      const labelNormalized = item.label.toLowerCase().trim();
+      const queryNormalized = query.toLowerCase().trim();
 
-        if (item.aliases) {
-          const aliases = item.aliases.map(alias => alias.toLowerCase().trim());
-          const labelMatch = labelNormalized.match(queryNormalized);
-          const aliasMatch = aliases.some(alias => alias.match(queryNormalized));
+      if (item.aliases) {
+        const aliases = item.aliases.map((alias) => alias.toLowerCase().trim());
+        const labelMatch = labelNormalized.match(queryNormalized);
+        const aliasMatch = aliases.some((alias) => alias.match(queryNormalized));
 
-          return labelMatch || aliasMatch;
-        }
+        return labelMatch || aliasMatch;
+      }
 
-        return labelNormalized.match(queryNormalized);
-      }),
+      return labelNormalized.match(queryNormalized);
+    }),
   }));
   // Remove empty groups
   const withoutEmptyGroups = withFilteredCommands.filter((group) => {

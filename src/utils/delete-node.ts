@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { Editor } from '@tiptap/core';
 
 export function deleteNode(nodeType: string, editor: Editor) {
@@ -13,7 +12,9 @@ export function deleteNode(nodeType: string, editor: Editor) {
         // @ts-ignore
         if (editor.dispatchTransaction)
           // @ts-ignore
-          editor.dispatchTransaction(state.tr.delete($pos.before(d), $pos.after(d)).scrollIntoView());
+          editor.dispatchTransaction(
+            state.tr.delete($pos.before(d), $pos.after(d)).scrollIntoView()
+          );
         done = true;
       }
     }

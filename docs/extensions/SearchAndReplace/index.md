@@ -12,7 +12,6 @@ next:
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 
@@ -81,12 +80,12 @@ const App = () => {
 
 ## Props
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `searchTerm` | `string` | Search Term | `''` |
-| `replaceTerm` | `string` | Replace Term | `''` |
-| `searchResultClass` | `string` | Search Result Class | `'search-result'` |
-| `searchResultCurrentClass` | `string` | Search Result Current Class | `'search-result-current'` |
-| `caseSensitive` | `boolean` | Case Sensitive | `false` |
-| `disableRegex` | `boolean` | Disable Regex | `false` |
-| `onChange` | `() => void` | On Change | `undefined` |
+| Prop                       | Type         | Description                 | Default                   |
+| -------------------------- | ------------ | --------------------------- | ------------------------- |
+| `searchTerm`               | `string`     | Search Term                 | `''`                      |
+| `replaceTerm`              | `string`     | Replace Term                | `''`                      |
+| `searchResultClass`        | `string`     | Search Result Class         | `'search-result'`         |
+| `searchResultCurrentClass` | `string`     | Search Result Current Class | `'search-result-current'` |
+| `caseSensitive`            | `boolean`    | Case Sensitive              | `false`                   |
+| `disableRegex`             | `boolean`    | Disable Regex               | `false`                   |
+| `onChange`                 | `() => void` | On Change                   | `undefined`               |

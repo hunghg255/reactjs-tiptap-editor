@@ -3,7 +3,12 @@ import type { Editor } from '@tiptap/react';
 
 import { ActionButton } from '@/components';
 import { BUBBLE_TEXT_LIST, IMAGE_SIZE, VIDEO_SIZE } from '@/constants';
-import type { ButtonViewParams, ButtonViewReturn, ExtensionNameKeys,VideoAlignment } from '@/types';
+import type {
+  ButtonViewParams,
+  ButtonViewReturn,
+  ExtensionNameKeys,
+  VideoAlignment,
+} from '@/types';
 
 /** Represents the size types for bubble images or videos */
 type BubbleImageOrVideoSizeType = 'size-small' | 'size-medium' | 'size-large';
@@ -42,17 +47,17 @@ export type NodeTypeMenu = Partial<Record<NodeTypeKey, BubbleAllType[]>>;
  */
 export interface BubbleMenuItem extends ButtonViewReturn {
   /** The type of the bubble item */
-  type: BubbleAllType
+  type: BubbleAllType;
 }
 
 /**
  * Represents a function to generate a bubble menu
  */
 /**
-   * Generates a bubble menu based on the provided options.
-   * @param {ButtonViewParams<T>} options - The options for generating the bubble menu.
-   * @returns {BubbleTypeMenu} The generated bubble menu.
-   */
+ * Generates a bubble menu based on the provided options.
+ * @param {ButtonViewParams<T>} options - The options for generating the bubble menu.
+ * @returns {BubbleTypeMenu} The generated bubble menu.
+ */
 type BubbleView<T = any> = (options: ButtonViewParams<T>) => BubbleTypeMenu;
 
 /**
@@ -62,11 +67,11 @@ type BubbleView<T = any> = (options: ButtonViewParams<T>) => BubbleTypeMenu;
  */
 export interface BubbleOptions<T> {
   /** The menu of bubble types for each node type. */
-  list: NodeTypeMenu
+  list: NodeTypeMenu;
   /** The default list of bubble types. */
-  defaultBubbleList: any
+  defaultBubbleList: any;
   /** The function to generate a bubble menu. */
-  button: BubbleView<T>
+  button: BubbleView<T>;
 }
 
 function imageSizeMenus(editor: Editor, t: any): BubbleMenuItem[] {
@@ -116,7 +121,7 @@ function imageAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
     center: 'AlignCenter',
     right: 'AlignRight',
   };
-  return types.map(k => ({
+  return types.map((k) => ({
     type: `image-${k}`,
     component: ActionButton,
     componentProps: {
@@ -136,7 +141,7 @@ function imageGifAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
     center: 'AlignCenter',
     right: 'AlignRight',
   };
-  return types.map(k => ({
+  return types.map((k) => ({
     type: `image-${k}`,
     component: ActionButton,
     componentProps: {
@@ -156,7 +161,7 @@ function imageMermaidAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
     center: 'AlignCenter',
     right: 'AlignRight',
   };
-  return types.map(k => ({
+  return types.map((k) => ({
     type: `image-${k}`,
     component: ActionButton,
     componentProps: {
@@ -176,7 +181,7 @@ function imageDrawerAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
     center: 'AlignCenter',
     right: 'AlignRight',
   };
-  return types.map(k => ({
+  return types.map((k) => ({
     type: `image-${k}`,
     component: ActionButton,
     componentProps: {
@@ -398,14 +403,17 @@ export function getBubbleVideo(editor: Editor, t: any): BubbleMenuItem[] {
 export function getBubbleText(editor: Editor, t: any) {
   return BUBBLE_TEXT_LIST.reduce((acc, type) => {
     if (type === 'divider' && acc.length > 0) {
-      return [...acc, {
-        type: 'divider',
-        component: undefined,
-        componentProps: {},
-      }];
+      return [
+        ...acc,
+        {
+          type: 'divider',
+          component: undefined,
+          componentProps: {},
+        },
+      ];
     }
 
-    const ext = editor.extensionManager.extensions.find(ext => ext.name === type);
+    const ext = editor.extensionManager.extensions.find((ext) => ext.name === type);
     if (ext) {
       if (!ext.configure().options.button) {
         return acc;

@@ -14,7 +14,6 @@ The Heading extension allows you to add a heading to your editor.
 
 ## Usage
 
-
 ```tsx
 import { RichTextProvider } from 'reactjs-tiptap-editor'
 

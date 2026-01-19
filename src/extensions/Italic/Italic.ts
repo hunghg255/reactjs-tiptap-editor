@@ -8,7 +8,6 @@ export * from './components/RichTextItalic';
 export interface ItalicOptions extends TiptapItalicOptions, GeneralOptions<ItalicOptions> {}
 
 export const Italic = /* @__PURE__ */ TiptapItalic.extend<ItalicOptions>({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
   addOptions() {
     return {

@@ -31,27 +31,26 @@ export function RichTextLineHeight() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild
-        disabled={editorDisabled}
-      >
+      <DropdownMenuTrigger asChild disabled={editorDisabled}>
         <ActionButton
-          customClass="!richtext-w-12 richtext-h-12"
+          customClass='!richtext-w-12 richtext-h-12'
           disabled={editorDisabled}
           icon={icon}
           tooltip={tooltip}
         >
-          <IconComponent className="richtext-ml-1 richtext-size-3 richtext-text-zinc-500"
-            name="MenuDown"
+          <IconComponent
+            className='richtext-ml-1 richtext-size-3 richtext-text-zinc-500'
+            name='MenuDown'
           />
         </ActionButton>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="richtext-min-w-24">
+      <DropdownMenuContent className='richtext-min-w-24'>
         {items?.map((item: any, index: any) => {
           return (
             <Fragment key={`line-height-${index}`}>
               <DropdownMenuCheckboxItem
-                checked={item.value === (dataState)?.value}
+                checked={item.value === dataState?.value}
                 onClick={() => item?.action()}
               >
                 {item.label}

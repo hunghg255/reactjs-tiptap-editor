@@ -31,7 +31,7 @@ jobs:
         with:
           surge_token: ${{ secrets.SURGE_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          dist: "playground/dist"
+          dist: 'playground/dist'
           failOnError: true
           teardown: 'true'
           build: |
@@ -39,5 +39,3 @@ jobs:
             pnpm run build:playground
       - name: Get the preview_url
         run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
-
-
