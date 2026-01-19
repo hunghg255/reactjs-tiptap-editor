@@ -1,0 +1,73 @@
+{
+  "editor.tabSize": 2,
+  "editor.rulers": [100],
+  "git.ignoreLimitWarning": true,
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "workbench.tree.indent": 14,
+  "workbench.tree.renderIndentGuides": "always",
+  "workbench.colorCustomizations": {
+    "tree.indentGuidesStroke": "#b7b7b7"
+  },
+
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  },
+
+   // OXC Formatter
+  "oxc.fmt.experimental": true,
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+
+   "[json]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[jsonc]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[scss]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.rulers": [
+      {
+        "column": 100,
+        "color": "#f8dc3e"
+      }
+    ]
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.rulers": [
+      {
+        "column": 100,
+        "color": "#3d90ea"
+      }
+    ]
+  },
+    "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.rulers": [
+      {
+        "column": 100,
+        "color": "#3d90ea"
+      }
+    ]
+  },
+  "oxc.fmt.configPath": ".oxfmtrc.json",
+  "editor.formatOnSave": true,
+}
