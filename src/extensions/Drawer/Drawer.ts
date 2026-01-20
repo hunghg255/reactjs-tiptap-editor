@@ -1,10 +1,11 @@
-import type { CommandProps } from '@tiptap/core';
 import { mergeAttributes } from '@tiptap/core';
 import TiptapImage from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import { NodeViewDrawer } from '@/extensions/Drawer/components/NodeViewDrawer/NodeViewDrawer';
+
 import type { GeneralOptions } from '@/types';
+import type { CommandProps } from '@tiptap/core';
 
 export * from '@/extensions/Drawer/components/RichTextDrawer';
 

@@ -1,7 +1,8 @@
-import type { Command } from '@tiptap/core';
 import { Extension } from '@tiptap/core';
-import type { Transaction } from '@tiptap/pm/state';
 import { CellSelection } from '@tiptap/pm/tables';
+
+import type { Command } from '@tiptap/core';
+import type { Transaction } from '@tiptap/pm/state';
 
 export interface TableCellBackgroundOptions {
   HTMLAttributes: Record<string, any>;

@@ -1,6 +1,6 @@
-import type { Editor } from '@tiptap/core';
-
 import { type ExportPdfOptions } from '@/extensions/ExportPdf';
+
+import type { Editor } from '@tiptap/core';
 
 function printHtml(content: string, exportPdfOptions: ExportPdfOptions) {
   const iframe: HTMLIFrameElement = document.createElement('iframe');

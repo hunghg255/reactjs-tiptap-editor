@@ -1,7 +1,7 @@
 import { Extension } from '@tiptap/core';
-import type { default as Mammoth } from 'mammoth';
 
 import type { GeneralOptions } from '@/types';
+import type { default as Mammoth } from 'mammoth';
 
 export * from '@/extensions/ImportWord/components/RichTextImportWord';
 

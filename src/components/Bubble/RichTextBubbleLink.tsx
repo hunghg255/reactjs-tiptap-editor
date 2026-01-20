@@ -1,4 +1,3 @@
-import type { Editor } from '@tiptap/react';
 import { BubbleMenu } from '@tiptap/react/menus';
 import { useCallback, useState } from 'react';
 
@@ -8,6 +7,8 @@ import { Link } from '@/extensions/Link/Link';
 import { useAttributes } from '@/hooks/useAttributes';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
+
+import type { Editor } from '@tiptap/react';
 
 export interface BubbleMenuLinkProps {
   editor: Editor;

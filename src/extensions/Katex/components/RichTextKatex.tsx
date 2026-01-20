@@ -10,7 +10,6 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
-import type { IKatexAttrs } from '@/extensions/Katex/Katex';
 import { Katex } from '@/extensions/Katex/Katex';
 import { useToggleActive } from '@/hooks/useActive';
 import { useAttributes } from '@/hooks/useAttributes';
@@ -18,6 +17,8 @@ import { useButtonProps } from '@/hooks/useButtonProps';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { safeJSONParse } from '@/utils/json';
+
+import type { IKatexAttrs } from '@/extensions/Katex/Katex';
 
 export function RichTextKatex() {
   const { t } = useLocale();

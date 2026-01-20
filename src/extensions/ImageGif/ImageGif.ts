@@ -1,9 +1,10 @@
 import { mergeAttributes } from '@tiptap/core';
-import type { ImageOptions } from '@tiptap/extension-image';
 import TiptapImage from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import ImageGifView from '@/extensions/ImageGif/components/ImageGifView';
+
+import type { ImageOptions } from '@tiptap/extension-image';
 
 export * from '@/extensions/ImageGif/components/RichTextImageGif';
 

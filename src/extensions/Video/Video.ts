@@ -1,8 +1,9 @@
 import { Node } from '@tiptap/core';
 
 import { VIDEO_SIZE } from '@/constants';
-import type { GeneralOptions, VideoAlignment } from '@/types';
 import { getCssUnitWithDefault } from '@/utils/utils';
+
+import type { GeneralOptions, VideoAlignment } from '@/types';
 
 export * from '@/extensions/Video/components/RichTextVideo';
 

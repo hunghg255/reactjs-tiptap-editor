@@ -1,4 +1,3 @@
-import type { Editor } from '@tiptap/react';
 import { BubbleMenu } from '@tiptap/react/menus';
 import { useCallback, useState } from 'react';
 
@@ -9,6 +8,8 @@ import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 import { deleteNode } from '@/utils/delete-node';
+
+import type { Editor } from '@tiptap/react';
 
 export function RichTextBubbleTwitter() {
   const { t } = useLocale();

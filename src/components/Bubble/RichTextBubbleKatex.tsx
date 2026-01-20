@@ -14,13 +14,14 @@ import {
 } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Katex } from '@/extensions/Katex';
-import type { IKatexAttrs } from '@/extensions/Katex';
 import { useAttributes } from '@/hooks/useAttributes';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 import { deleteNode } from '@/utils/delete-node';
 import { safeJSONParse } from '@/utils/json';
+
+import type { IKatexAttrs } from '@/extensions/Katex';
 
 function ModalEditKatex({ children, visible, toggleVisible }: any) {
   const { t } = useLocale();

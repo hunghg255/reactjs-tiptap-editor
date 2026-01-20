@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
-import styles from './ControlDrawer.module.scss';
 import {
   MingcuteDiamondSquareLine,
   HugeiconsCursorRectangleSelection01,
@@ -26,6 +25,8 @@ import {
   SolarUndoRightRoundBold,
   MaterialSymbolsDelete,
 } from './icon';
+
+import styles from './ControlDrawer.module.scss';
 
 const enum ShapeType {
   square = 0,

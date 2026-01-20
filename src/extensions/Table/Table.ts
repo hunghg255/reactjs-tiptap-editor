@@ -8,9 +8,9 @@ import {
   type TableHeaderOptions,
 } from '@tiptap/extension-table';
 
+import type { TableCellBackgroundOptions } from './TableCellBackground';
 import type { GeneralOptions } from '@/types';
 
-import type { TableCellBackgroundOptions } from './TableCellBackground';
 import { TableCellBackground } from './TableCellBackground';
 
 export interface TableOptions extends GeneralOptions<TableOptions> {

@@ -1,7 +1,8 @@
-import type { Command, Editor } from '@tiptap/core';
 import { isList } from '@tiptap/core';
-import type { Transaction } from '@tiptap/pm/state';
 import { AllSelection, TextSelection } from '@tiptap/pm/state';
+
+import type { Command, Editor } from '@tiptap/core';
+import type { Transaction } from '@tiptap/pm/state';
 
 export const enum IndentProps {
   max = 7,

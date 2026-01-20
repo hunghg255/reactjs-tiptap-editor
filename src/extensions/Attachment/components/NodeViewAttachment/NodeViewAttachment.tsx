@@ -8,6 +8,7 @@ import { useEditableEditor } from '@/store/store';
 import { extractFileExtension, extractFilename, normalizeFileSize } from '@/utils/file';
 
 import { getFileTypeIcon } from './FileIcon';
+
 import styles from './index.module.scss';
 
 export function NodeViewAttachment({ editor, node, updateAttributes, deleteNode, extension }: any) {

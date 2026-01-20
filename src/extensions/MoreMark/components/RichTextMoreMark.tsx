@@ -12,8 +12,9 @@ import {
 import { MoreMark } from '@/extensions/MoreMark/MoreMark';
 import { useActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
-import type { ButtonViewReturnComponentProps } from '@/types';
 import { getShortcutKeys } from '@/utils/plateform';
+
+import type { ButtonViewReturnComponentProps } from '@/types';
 
 export interface Item {
   title: string;

@@ -1,7 +1,8 @@
 import { Extension } from '@tiptap/core';
 
-import type { GeneralOptions } from '@/types';
 import { IndentProps, createIndentCommand } from '@/utils/indent';
+
+import type { GeneralOptions } from '@/types';
 
 export * from './components/RichTextIndent';
 

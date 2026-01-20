@@ -1,6 +1,5 @@
 import DragHandle from '@tiptap/extension-drag-handle-react';
 import { type NodeSelection } from '@tiptap/pm/state';
-import type { Editor } from '@tiptap/react';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import {
@@ -23,6 +22,8 @@ import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 import { IndentProps, setNodeIndentMarkup } from '@/utils/indent';
+
+import type { Editor } from '@tiptap/react';
 
 export function RichTextBubbleMenuDragHandle() {
   const editor = useEditorInstance() as any;

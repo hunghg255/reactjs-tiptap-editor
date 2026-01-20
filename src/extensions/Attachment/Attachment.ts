@@ -4,9 +4,10 @@ import { ReactNodeViewRenderer } from '@tiptap/react';
 import { ActionButton } from '@/components';
 import { getFileTypeIcon } from '@/extensions/Attachment/components/NodeViewAttachment/FileIcon';
 import { NodeViewAttachment } from '@/extensions/Attachment/components/NodeViewAttachment/NodeViewAttachment';
-import type { GeneralOptions } from '@/types';
 import { getDatasetAttribute } from '@/utils/dom-dataset';
 import { normalizeFileSize } from '@/utils/file';
+
+import type { GeneralOptions } from '@/types';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {

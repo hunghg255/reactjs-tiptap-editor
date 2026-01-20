@@ -1,4 +1,3 @@
-import type { Editor, Range } from '@tiptap/core';
 import { Extension } from '@tiptap/core';
 import { PluginKey } from '@tiptap/pm/state';
 import { ReactRenderer } from '@tiptap/react';
@@ -6,6 +5,8 @@ import { Suggestion } from '@tiptap/suggestion';
 
 import SlashCommandNodeView from '@/extensions/SlashCommand/components/SlashCommandNodeView';
 import { updatePosition } from '@/utils/updatePosition';
+
+import type { Editor, Range } from '@tiptap/core';
 
 export * from './components/SlashCommandList';
 export * from './renderCommandListDefault';

@@ -1,7 +1,8 @@
-import type { Editor } from '@tiptap/core';
 import clsx from 'clsx';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import scrollIntoView from 'scroll-into-view-if-needed';
+
+import type { Editor } from '@tiptap/core';
 
 interface IProps {
   editor: Editor;
@@ -43,7 +44,7 @@ export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => 
   useEffect(() => {
     if (Number.isNaN(selectedIndex + 1)) return;
     const el = $container.current.querySelector(`span:nth-of-type(${selectedIndex + 1})`);
-    el && scrollIntoView(el, { behavior: 'smooth', scrollMode: 'if-needed' });
+    if (el) scrollIntoView(el, { behavior: 'smooth', scrollMode: 'if-needed' });
   }, [selectedIndex]);
 
   useImperativeHandle(ref, () => ({

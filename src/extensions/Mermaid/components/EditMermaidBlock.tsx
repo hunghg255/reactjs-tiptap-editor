@@ -1,4 +1,3 @@
-import type { Editor } from '@tiptap/core';
 import { useCallback, useEffect, useRef, useState } from 'react';
 // @ts-ignore
 import svg64 from 'svg64';
@@ -15,6 +14,8 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { dataURLtoFile } from '@/utils/file';
 import { shortId } from '@/utils/shortId';
+
+import type { Editor } from '@tiptap/core';
 
 interface IProps {
   editor: Editor;

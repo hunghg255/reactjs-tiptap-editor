@@ -1,6 +1,5 @@
-import type { Editor } from '@tiptap/core';
-
 import type { NameValueOption } from '@/types';
+import type { Editor } from '@tiptap/core';
 
 export function clamp(val: number, min: number, max: number) {
   if (val < min) {

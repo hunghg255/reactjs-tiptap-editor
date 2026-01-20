@@ -1,14 +1,15 @@
 import { deleteSelection } from '@tiptap/pm/commands';
-import type { Editor } from '@tiptap/react';
 
 import { ActionButton } from '@/components';
 import { BUBBLE_TEXT_LIST, IMAGE_SIZE, VIDEO_SIZE } from '@/constants';
+
 import type {
   ButtonViewParams,
   ButtonViewReturn,
   ExtensionNameKeys,
   VideoAlignment,
 } from '@/types';
+import type { Editor } from '@tiptap/react';
 
 /** Represents the size types for bubble images or videos */
 type BubbleImageOrVideoSizeType = 'size-small' | 'size-medium' | 'size-large';

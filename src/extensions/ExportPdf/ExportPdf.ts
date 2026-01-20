@@ -1,7 +1,8 @@
 import { Extension } from '@tiptap/core';
 
-import type { GeneralOptions, PaperSize, PageMargin } from '@/types';
 import { printEditorContent } from '@/utils/pdf';
+
+import type { GeneralOptions, PaperSize, PageMargin } from '@/types';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {

@@ -1,7 +1,7 @@
-import type { StrikeOptions as TiptapStrikeOptions } from '@tiptap/extension-strike';
 import { Strike as TiptapStrike } from '@tiptap/extension-strike';
 
 import type { GeneralOptions } from '@/types';
+import type { StrikeOptions as TiptapStrikeOptions } from '@tiptap/extension-strike';
 
 export * from './components/RichTextStrike';
 

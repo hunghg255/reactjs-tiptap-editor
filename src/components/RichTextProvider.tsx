@@ -1,5 +1,3 @@
-import '../styles/index.scss';
-
 import { type Editor } from '@tiptap/core';
 import { EditorContext } from '@tiptap/react';
 import { useEffect, useId } from 'react';
@@ -11,6 +9,8 @@ import { RESET_CSS } from '@/constants/resetCSS';
 import { EditorEditableReactive } from '@/store/EditorEditableReactive';
 import { ThemeColorReactive } from '@/store/ThemeColorReactive';
 import { removeCSS, updateCSS } from '@/utils/dynamicCSS';
+
+import '../styles/index.scss';
 
 interface IProviderRichTextProps {
   editor: Editor;

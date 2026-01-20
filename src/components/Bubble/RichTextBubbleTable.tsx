@@ -1,4 +1,3 @@
-import type { Editor } from '@tiptap/core';
 import { isActive } from '@tiptap/core';
 import { BubbleMenu } from '@tiptap/react/menus';
 
@@ -7,6 +6,8 @@ import { Table } from '@/extensions/Table';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
+
+import type { Editor } from '@tiptap/core';
 
 interface RichTextBubbleTableProps {
   hiddenActions?: string[];

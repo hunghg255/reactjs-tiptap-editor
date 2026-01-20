@@ -1,5 +1,4 @@
 import { debounce } from 'lodash-es';
-import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ActionButton, Input, Popover, PopoverContent, PopoverTrigger } from '@/components';
@@ -13,6 +12,8 @@ import {
 import { ImageGif } from '@/extensions/ImageGif/ImageGif';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
+
+import type React from 'react';
 
 interface IProps {
   showClear?: boolean;

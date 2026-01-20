@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useState } from 'react';
 
 import { ActionButton, Popover, PopoverContent, PopoverTrigger } from '@/components';
@@ -11,6 +10,8 @@ import {
 import { Emoji } from '@/extensions/Emoji/Emoji';
 import { useActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
+
+import type React from 'react';
 
 interface IProps {
   showClear?: boolean;
