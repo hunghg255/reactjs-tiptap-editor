@@ -7,9 +7,10 @@ import {
   EmojiPicker as EmojiPickerPrimitive,
 } from 'frimousse';
 import { LoaderIcon, SearchIcon } from 'lucide-react';
-import type * as React from 'react';
 
 import { cn } from '@/lib/utils';
+
+import type * as React from 'react';
 
 function EmojiPicker({
   className,

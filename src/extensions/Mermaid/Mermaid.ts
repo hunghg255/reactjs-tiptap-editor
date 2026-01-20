@@ -1,10 +1,11 @@
-import type { CommandProps } from '@tiptap/core';
 import { mergeAttributes } from '@tiptap/core';
 import TiptapImage from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import { NodeViewMermaid } from '@/extensions/Mermaid/components/NodeViewMermaid/NodeViewMermaid';
+
 import type { GeneralOptions } from '@/types';
+import type { CommandProps } from '@tiptap/core';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {

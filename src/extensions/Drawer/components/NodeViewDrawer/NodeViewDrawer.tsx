@@ -78,9 +78,9 @@ export function NodeViewDrawer({ editor, node, updateAttributes, getPos, selecte
   }
 
   // https://github.com/scrumpy/tiptap/issues/361#issuecomment-540299541
-  function selectImage() {
+  const selectImage = useCallback(() => {
     editor.commands.setNodeSelection(getPos());
-  }
+  }, []);
 
   const getMaxSize = useCallback(
     throttle(() => {

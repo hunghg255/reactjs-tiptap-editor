@@ -46,7 +46,7 @@ function EmojiNodeView(props: IPropsEmojiNodeVIew, ref: any) {
   useEffect(() => {
     if (Number.isNaN(selectedIndex + 1)) return;
     const el = $container.current.querySelector(`span:nth-of-type(${selectedIndex + 1})`);
-    el && scrollIntoView(el, { behavior: 'smooth', scrollMode: 'if-needed' });
+    if (el) scrollIntoView(el, { behavior: 'smooth', scrollMode: 'if-needed' });
   }, [selectedIndex]);
 
   useImperativeHandle(ref, () => ({

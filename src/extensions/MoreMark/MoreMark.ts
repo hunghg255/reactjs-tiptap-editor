@@ -1,12 +1,12 @@
 import { Extension } from '@tiptap/core';
-import type { Extensions } from '@tiptap/core';
-import type { SubscriptExtensionOptions as TiptapSubscriptOptions } from '@tiptap/extension-subscript';
 import { Subscript as TiptapSubscript } from '@tiptap/extension-subscript';
-import type { SuperscriptExtensionOptions as TiptapSuperscriptOptions } from '@tiptap/extension-superscript';
 import { Superscript as TiptapSuperscript } from '@tiptap/extension-superscript';
 
 import type { Item } from '@/extensions/MoreMark/components/RichTextMoreMark';
 import type { GeneralOptions } from '@/types';
+import type { Extensions } from '@tiptap/core';
+import type { SubscriptExtensionOptions as TiptapSubscriptOptions } from '@tiptap/extension-subscript';
+import type { SuperscriptExtensionOptions as TiptapSuperscriptOptions } from '@tiptap/extension-superscript';
 
 export * from './components/RichTextMoreMark';
 

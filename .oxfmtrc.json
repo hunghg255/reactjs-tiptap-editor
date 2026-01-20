@@ -9,13 +9,15 @@
   "semi": true,
   "experimentalSortImports": {
     "groups": [
-      ["side-effect"],
       ["builtin"],
-      ["external", "external-type"],
-      ["internal", "internal-type"],
+      ["external"],
+      ["internal"],
+      ["side-effect"],
+      ["external-type"],
+      ["internal-type"],
       ["parent", "parent-type"],
       ["sibling", "sibling-type"],
-      ["index", "index-type"]
+      ["index", "style", "index-type", "import"]
     ]
   },
   "experimentalTailwindcss": {

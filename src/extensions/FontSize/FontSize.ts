@@ -1,8 +1,9 @@
 import { Extension } from '@tiptap/core';
 
 import { DEFAULT_FONT_SIZE_LIST } from '@/constants';
-import type { GeneralOptions, NameValueOption } from '@/types';
 import { ensureNameValueOptions } from '@/utils/utils';
+
+import type { GeneralOptions, NameValueOption } from '@/types';
 
 export * from './components/RichTextFontSize';
 

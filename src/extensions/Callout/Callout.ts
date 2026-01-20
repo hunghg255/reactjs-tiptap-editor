@@ -3,6 +3,7 @@ import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import { ActionButton } from '@/components';
 import { NodeViewCallout } from '@/extensions/Callout/components/NodeViewCallout/NodeViewCallout';
+
 import type { GeneralOptions } from '@/types';
 
 declare module '@tiptap/core' {

@@ -1,11 +1,3 @@
-import 'reactjs-tiptap-editor/style.css';
-import 'prism-code-editor-lightweight/layout.css';
-import 'prism-code-editor-lightweight/themes/github-dark.css';
-import 'katex/dist/katex.min.css';
-import 'easydrawer/styles.css';
-import '@excalidraw/excalidraw/index.css';
-import 'katex/contrib/mhchem';
-
 // Base Kit
 import { Document } from '@tiptap/extension-document';
 import { HardBreak } from '@tiptap/extension-hard-break';
@@ -95,6 +87,14 @@ import { Twitter, RichTextTwitter } from 'reactjs-tiptap-editor/twitter';
 import { Video, RichTextVideo } from 'reactjs-tiptap-editor/video';
 
 import { EMOJI_LIST } from '@/emojis';
+
+import 'reactjs-tiptap-editor/style.css';
+import 'prism-code-editor-lightweight/layout.css';
+import 'prism-code-editor-lightweight/themes/github-dark.css';
+import 'katex/dist/katex.min.css';
+import 'easydrawer/styles.css';
+import '@excalidraw/excalidraw/index.css';
+import 'katex/contrib/mhchem';
 
 // const ydoc = new Y.Doc()
 

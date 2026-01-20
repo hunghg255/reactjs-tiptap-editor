@@ -3,6 +3,7 @@ import TiptapImage from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import ImageView from '@/extensions/Image/components/ImageView';
+
 import type { GeneralOptions } from '@/types';
 
 export * from '@/extensions/Image/components/RichTextImage';

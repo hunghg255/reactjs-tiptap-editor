@@ -1,8 +1,8 @@
-import type { Editor, Extension } from '@tiptap/core';
-import type { TextAlignOptions as TiptapTextAlignOptions } from '@tiptap/extension-text-align';
 import TiptapTextAlign from '@tiptap/extension-text-align';
 
 import type { GeneralOptions } from '@/types';
+import type { Editor, Extension } from '@tiptap/core';
+import type { TextAlignOptions as TiptapTextAlignOptions } from '@tiptap/extension-text-align';
 
 export * from '@/extensions/TextAlign/components/RichTextAlign';
 

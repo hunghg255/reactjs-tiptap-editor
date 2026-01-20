@@ -1,9 +1,10 @@
 import { mergeAttributes } from '@tiptap/core';
-import type { HorizontalRuleOptions as TiptapHorizontalRuleOptions } from '@tiptap/extension-horizontal-rule';
 import { HorizontalRule as TiptapHorizontalRule } from '@tiptap/extension-horizontal-rule';
 
 import { ActionButton } from '@/components';
+
 import type { GeneralOptions } from '@/types';
+import type { HorizontalRuleOptions as TiptapHorizontalRuleOptions } from '@tiptap/extension-horizontal-rule';
 export * from './components/RichTextHorizontalRule';
 
 export interface HorizontalRuleOptions

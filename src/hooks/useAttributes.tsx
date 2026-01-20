@@ -1,6 +1,7 @@
-import type { Editor } from '@tiptap/core';
 import deepEqual from 'deep-equal';
 import { useEffect, useRef, useState } from 'react';
+
+import type { Editor } from '@tiptap/core';
 
 type MapFn<T, R> = (arg: T) => R;
 

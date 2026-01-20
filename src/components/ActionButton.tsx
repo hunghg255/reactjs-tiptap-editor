@@ -1,11 +1,12 @@
 import { Slot } from '@radix-ui/react-slot';
-import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 import React from 'react';
 
 import { Toggle, Tooltip, TooltipContent, TooltipTrigger, icons } from '@/components';
 import { cn } from '@/lib/utils';
-import type { ButtonViewReturnComponentProps } from '@/types';
 import { getShortcutKeys } from '@/utils/plateform';
+
+import type { ButtonViewReturnComponentProps } from '@/types';
+import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 export interface ActionButtonProps {
   /* Icon name to display */

@@ -4,8 +4,9 @@ import {
 } from '@tiptap/extension-text-style';
 
 import { DEFAULT_FONT_FAMILY_LIST } from '@/constants';
-import type { GeneralOptions, NameValueOption } from '@/types';
 import { ensureNameValueOptions } from '@/utils/utils';
+
+import type { GeneralOptions, NameValueOption } from '@/types';
 
 export * from './components/RichTextFontFamily';
 

@@ -1,8 +1,8 @@
 import { mergeAttributes } from '@tiptap/core';
-import type { LinkOptions as TiptapLinkOptions } from '@tiptap/extension-link';
 import { Link as TiptapLink } from '@tiptap/extension-link';
 
 import type { GeneralOptions } from '@/types';
+import type { LinkOptions as TiptapLinkOptions } from '@tiptap/extension-link';
 
 export * from '@/extensions/Link/components/RichTextLink';
 

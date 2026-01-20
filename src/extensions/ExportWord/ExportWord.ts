@@ -2,8 +2,9 @@ import { Extension } from '@tiptap/core';
 import { Packer, WidthType } from 'docx';
 import { DocxSerializer, defaultMarks, defaultNodes } from 'prosemirror-docx';
 
-import type { GeneralOptions } from '@/types';
 import { downloadFromBlob } from '@/utils/download';
+
+import type { GeneralOptions } from '@/types';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {

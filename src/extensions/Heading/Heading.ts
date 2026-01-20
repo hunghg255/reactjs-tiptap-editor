@@ -1,8 +1,9 @@
-import type { HeadingOptions as TiptapHeadingOptions } from '@tiptap/extension-heading';
 import { Heading as TiptapHeading } from '@tiptap/extension-heading';
 
 import { HEADINGS } from '@/constants';
+
 import type { GeneralOptions } from '@/types';
+import type { HeadingOptions as TiptapHeadingOptions } from '@tiptap/extension-heading';
 
 export * from '@/extensions/Heading/components/RichTextHeading';
 

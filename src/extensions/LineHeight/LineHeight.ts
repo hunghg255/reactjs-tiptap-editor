@@ -4,6 +4,7 @@ import {
 } from '@tiptap/extension-text-style';
 
 import { DEFAULT_LINE_HEIGHT_LIST } from '@/constants';
+
 import type { GeneralOptions } from '@/types';
 
 export * from './components/RichTextLightHeight';

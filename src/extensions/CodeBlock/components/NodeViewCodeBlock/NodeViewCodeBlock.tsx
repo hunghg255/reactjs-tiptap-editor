@@ -1,3 +1,26 @@
+import { NodeViewWrapper } from '@tiptap/react';
+import clsx from 'clsx';
+import { createEditor, type PrismEditor } from 'prism-code-editor-lightweight';
+import { defaultCommands, editHistory } from 'prism-code-editor-lightweight/commands';
+import { cursorPosition } from 'prism-code-editor-lightweight/cursor';
+import { indentGuides } from 'prism-code-editor-lightweight/guides';
+import { highlightBracketPairs } from 'prism-code-editor-lightweight/highlight-brackets';
+import { matchBrackets } from 'prism-code-editor-lightweight/match-brackets';
+import { matchTags } from 'prism-code-editor-lightweight/match-tags';
+import React, { useCallback, useEffect, useRef } from 'react';
+
+import { IconComponent } from '@/components';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+// import { useEditableEditor } from '@/store/editableEditor';
+import { useEditableEditor } from '@/store/store';
+import { deleteNode } from '@/utils/delete-node';
+
 import 'prism-code-editor-lightweight/prism/languages/bash';
 import 'prism-code-editor-lightweight/prism/languages/css';
 import 'prism-code-editor-lightweight/prism/languages/css-extras';
@@ -39,29 +62,6 @@ import 'prism-code-editor-lightweight/prism/languages/yaml';
 import 'prism-code-editor-lightweight/prism/languages/regex';
 import 'prism-code-editor-lightweight/prism/languages/php';
 import 'prism-code-editor-lightweight/prism/languages/markdown';
-
-import { NodeViewWrapper } from '@tiptap/react';
-import clsx from 'clsx';
-import { createEditor, type PrismEditor } from 'prism-code-editor-lightweight';
-import { defaultCommands, editHistory } from 'prism-code-editor-lightweight/commands';
-import { cursorPosition } from 'prism-code-editor-lightweight/cursor';
-import { indentGuides } from 'prism-code-editor-lightweight/guides';
-import { highlightBracketPairs } from 'prism-code-editor-lightweight/highlight-brackets';
-import { matchBrackets } from 'prism-code-editor-lightweight/match-brackets';
-import { matchTags } from 'prism-code-editor-lightweight/match-tags';
-import React, { useCallback, useEffect, useRef } from 'react';
-
-import { IconComponent } from '@/components';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-// import { useEditableEditor } from '@/store/editableEditor';
-import { useEditableEditor } from '@/store/store';
-import { deleteNode } from '@/utils/delete-node';
 
 import { CodeBlock } from '../../CodeBlock';
 

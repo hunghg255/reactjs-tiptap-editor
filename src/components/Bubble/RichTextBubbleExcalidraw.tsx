@@ -4,7 +4,6 @@ import { useCallback, useEffect } from 'react';
 import { ActionButton } from '@/components/ActionButton';
 import { emit } from '@/components/ReactBus';
 import { SizeSetter } from '@/components/SizeSetter/SizeSetter';
-import type { IExcalidrawAttrs } from '@/extensions/Excalidraw';
 import { Excalidraw } from '@/extensions/Excalidraw';
 import { useAttributes } from '@/hooks/useAttributes';
 import { useLocale } from '@/locales';
@@ -13,6 +12,8 @@ import { useEditableEditor } from '@/store/store';
 import { EVENTS } from '@/utils/customEvents/events.constant';
 import { deleteNode } from '@/utils/delete-node';
 import { getEditorContainerDOMSize } from '@/utils/editor-container-size';
+
+import type { IExcalidrawAttrs } from '@/extensions/Excalidraw';
 
 export function RichTextBubbleExcalidraw() {
   const editable = useEditableEditor();

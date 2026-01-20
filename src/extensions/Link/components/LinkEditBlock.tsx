@@ -1,10 +1,11 @@
-import type { Mark } from '@tiptap/pm/model';
 import { useEffect, useState, useRef } from 'react';
 
 import { Button, IconComponent, Input, Label, Checkbox } from '@/components';
 import { Link } from '@/extensions/Link/Link';
 import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
+
+import type { Mark } from '@tiptap/pm/model';
 
 interface IPropsLinkEditBlock {
   editor: any;

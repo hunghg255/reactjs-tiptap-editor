@@ -14,8 +14,9 @@ import { useActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/locales';
-import type { ButtonViewReturnComponentProps } from '@/types';
 import { getShortcutKey } from '@/utils/plateform';
+
+import type { ButtonViewReturnComponentProps } from '@/types';
 
 export interface Item {
   title: string;
