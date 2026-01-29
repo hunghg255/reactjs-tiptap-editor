@@ -24,7 +24,7 @@ themeActions.setTheme('light'); // or 'dark';
 themeActions.setColor('default'); //  "red" | "blue" | "green" | "orange" | "rose" | "violet" | "yellow"
 
 // Set radius
-themeActions.setRadius('0.5rem'); // any valid CSS border-radius value
+themeActions.setBorderRadius('0.5rem'); // any valid CSS border-radius value
 
 // Usage in a React component
 const { theme, color, borderRadius } = useTheme();
