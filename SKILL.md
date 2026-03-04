@@ -1,6 +1,7 @@
-# reactjs-tiptap-editor
-
-A modern WYSIWYG rich-text editor for React, built on [Tiptap](https://tiptap.dev) and [Shadcn UI](https://ui.shadcn.com/) components.
+---
+name: reactjs-tiptap-editor
+description: A modern WYSIWYG rich-text editor for React, built on [Tiptap](https://tiptap.dev) and [Shadcn UI](https://ui.shadcn.com/) components.
+---
 
 ## Overview
 
@@ -14,18 +15,18 @@ A modern WYSIWYG rich-text editor for React, built on [Tiptap](https://tiptap.de
 
 ## Tech Stack
 
-| Layer         | Technology                                  |
-| ------------- | ------------------------------------------- |
-| Framework     | React 19+                                   |
-| Editor Core   | Tiptap 3.x (`@tiptap/core`, `@tiptap/react`) |
-| UI Components | Radix UI primitives, Shadcn UI patterns     |
+| Layer         | Technology                                       |
+| ------------- | ------------------------------------------------ |
+| Framework     | React 19+                                        |
+| Editor Core   | Tiptap 3.x (`@tiptap/core`, `@tiptap/react`)     |
+| UI Components | Radix UI primitives, Shadcn UI patterns          |
 | Styling       | Tailwind CSS 3, SCSS, `class-variance-authority` |
-| Icons         | Lucide React, Radix Icons                   |
-| Build Tool    | Vite                                        |
-| Package Mgr   | pnpm (workspace monorepo)                   |
-| Linting       | oxlint, oxfmt                               |
-| TypeScript    | 5.x                                         |
-| Node          | >= 18.0.0                                   |
+| Icons         | Lucide React, Radix Icons                        |
+| Build Tool    | Vite                                             |
+| Package Mgr   | pnpm (workspace monorepo)                        |
+| Linting       | oxlint, oxfmt                                    |
+| TypeScript    | 5.x                                              |
+| Node          | >= 18.0.0                                        |
 
 ## Installation
 
@@ -61,7 +62,15 @@ import Image from 'reactjs-tiptap-editor/image';
 import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [
-  Document, Text, Paragraph, Dropcursor, Gapcursor, HardBreak, ListItem, TextStyle, TrailingNode,
+  Document,
+  Text,
+  Paragraph,
+  Dropcursor,
+  Gapcursor,
+  HardBreak,
+  ListItem,
+  TextStyle,
+  TrailingNode,
   Placeholder.configure({ placeholder: "Press '/' for commands" }),
   Bold,
   Italic,
@@ -88,20 +97,20 @@ The main wrapper component that provides editor context, toolbar, and bubble men
 ```ts
 interface IProviderRichTextProps {
   editor: Editor | null; // Tiptap Editor instance
-  dark?: boolean;        // Enable dark mode
+  dark?: boolean; // Enable dark mode
   children: React.ReactNode;
 }
 ```
 
 ### Exports
 
-| Export Path                        | Description                        |
-| ---------------------------------- | ---------------------------------- |
-| `reactjs-tiptap-editor`           | `RichTextProvider` (main export)   |
-| `reactjs-tiptap-editor/style.css` | Required stylesheet                |
-| `reactjs-tiptap-editor/bubble`    | Bubble menu components             |
-| `reactjs-tiptap-editor/theme`     | Theme utilities and hooks          |
-| `reactjs-tiptap-editor/locale-bundle` | Locale/i18n bundle             |
+| Export Path                           | Description                      |
+| ------------------------------------- | -------------------------------- |
+| `reactjs-tiptap-editor`               | `RichTextProvider` (main export) |
+| `reactjs-tiptap-editor/style.css`     | Required stylesheet              |
+| `reactjs-tiptap-editor/bubble`        | Bubble menu components           |
+| `reactjs-tiptap-editor/theme`         | Theme utilities and hooks        |
+| `reactjs-tiptap-editor/locale-bundle` | Locale/i18n bundle               |
 
 ## Extensions
 
@@ -109,78 +118,78 @@ Extensions are imported individually for tree-shaking. Each provides toolbar but
 
 ### Text Formatting
 
-| Extension       | Import Path          | Description                        |
-| --------------- | -------------------- | ---------------------------------- |
-| Bold            | `./bold`             | Bold text formatting               |
-| Italic          | `./italic`           | Italic text formatting             |
-| TextUnderline   | `./textunderline`    | Underline text formatting          |
-| Strike          | `./strike`           | Strikethrough text                 |
-| Code            | `./code`             | Inline code formatting             |
-| Color           | `./color`            | Text color picker                  |
-| Highlight       | `./highlight`        | Text highlight/background color    |
-| FontFamily      | `./fontfamily`       | Font family selector               |
-| FontSize        | `./fontsize`         | Font size control                  |
-| MoreMark        | `./moremark`         | Superscript, subscript, and more   |
+| Extension     | Import Path       | Description                      |
+| ------------- | ----------------- | -------------------------------- |
+| Bold          | `./bold`          | Bold text formatting             |
+| Italic        | `./italic`        | Italic text formatting           |
+| TextUnderline | `./textunderline` | Underline text formatting        |
+| Strike        | `./strike`        | Strikethrough text               |
+| Code          | `./code`          | Inline code formatting           |
+| Color         | `./color`         | Text color picker                |
+| Highlight     | `./highlight`     | Text highlight/background color  |
+| FontFamily    | `./fontfamily`    | Font family selector             |
+| FontSize      | `./fontsize`      | Font size control                |
+| MoreMark      | `./moremark`      | Superscript, subscript, and more |
 
 ### Structure & Layout
 
-| Extension       | Import Path          | Description                        |
-| --------------- | -------------------- | ---------------------------------- |
-| Heading         | `./heading`          | H1–H6 headings                    |
-| Blockquote      | `./blockquote`       | Block quotations                   |
-| HorizontalRule  | `./horizontalrule`   | Horizontal divider line            |
-| Column          | `./column`           | Multi-column layout                |
-| TextAlign       | `./textalign`        | Text alignment (left/center/right) |
-| TextDirection   | `./textdirection`    | RTL/LTR text direction             |
-| LineHeight      | `./lineheight`       | Line height control                |
-| Indent          | `./indent`           | Text indentation                   |
-| Callout         | `./callout`          | Callout/admonition blocks          |
+| Extension      | Import Path        | Description                        |
+| -------------- | ------------------ | ---------------------------------- |
+| Heading        | `./heading`        | H1–H6 headings                     |
+| Blockquote     | `./blockquote`     | Block quotations                   |
+| HorizontalRule | `./horizontalrule` | Horizontal divider line            |
+| Column         | `./column`         | Multi-column layout                |
+| TextAlign      | `./textalign`      | Text alignment (left/center/right) |
+| TextDirection  | `./textdirection`  | RTL/LTR text direction             |
+| LineHeight     | `./lineheight`     | Line height control                |
+| Indent         | `./indent`         | Text indentation                   |
+| Callout        | `./callout`        | Callout/admonition blocks          |
 
 ### Lists
 
-| Extension       | Import Path          | Description                        |
-| --------------- | -------------------- | ---------------------------------- |
-| BulletList      | `./bulletlist`       | Unordered bullet lists             |
-| OrderedList     | `./orderedlist`      | Numbered ordered lists             |
-| TaskList        | `./tasklist`         | Checkbox task lists                |
+| Extension   | Import Path     | Description            |
+| ----------- | --------------- | ---------------------- |
+| BulletList  | `./bulletlist`  | Unordered bullet lists |
+| OrderedList | `./orderedlist` | Numbered ordered lists |
+| TaskList    | `./tasklist`    | Checkbox task lists    |
 
 ### Rich Content
 
-| Extension       | Import Path          | Description                        |
-| --------------- | -------------------- | ---------------------------------- |
-| Image           | `./image`            | Image upload and embedding         |
-| ImageGif        | `./imagegif`         | GIF image support                  |
-| Video           | `./video`            | Video embedding                    |
-| Link            | `./link`             | Hyperlink insertion                |
-| Table           | `./table`            | Table with cell controls           |
-| Attachment      | `./attachment`       | File attachment support            |
-| Iframe          | `./iframe`           | Embedded iframe content            |
-| Emoji           | `./emoji`            | Emoji picker                       |
-| Mention         | `./mention`          | @mention functionality             |
-| Twitter         | `./twitter`          | Embedded tweets                    |
+| Extension  | Import Path    | Description                |
+| ---------- | -------------- | -------------------------- |
+| Image      | `./image`      | Image upload and embedding |
+| ImageGif   | `./imagegif`   | GIF image support          |
+| Video      | `./video`      | Video embedding            |
+| Link       | `./link`       | Hyperlink insertion        |
+| Table      | `./table`      | Table with cell controls   |
+| Attachment | `./attachment` | File attachment support    |
+| Iframe     | `./iframe`     | Embedded iframe content    |
+| Emoji      | `./emoji`      | Emoji picker               |
+| Mention    | `./mention`    | @mention functionality     |
+| Twitter    | `./twitter`    | Embedded tweets            |
 
 ### Code & Technical
 
-| Extension       | Import Path          | Description                        |
-| --------------- | -------------------- | ---------------------------------- |
-| CodeBlock       | `./codeblock`        | Syntax-highlighted code blocks     |
-| CodeView        | `./codeview`         | Source HTML code view              |
-| Katex           | `./katex`            | LaTeX math equations (KaTeX)       |
-| Mermaid         | `./mermaid`          | Mermaid diagrams                   |
-| Excalidraw      | `./excalidraw`       | Excalidraw whiteboard drawings     |
-| Drawer          | `./drawer`           | Freehand drawing canvas            |
+| Extension  | Import Path    | Description                    |
+| ---------- | -------------- | ------------------------------ |
+| CodeBlock  | `./codeblock`  | Syntax-highlighted code blocks |
+| CodeView   | `./codeview`   | Source HTML code view          |
+| Katex      | `./katex`      | LaTeX math equations (KaTeX)   |
+| Mermaid    | `./mermaid`    | Mermaid diagrams               |
+| Excalidraw | `./excalidraw` | Excalidraw whiteboard drawings |
+| Drawer     | `./drawer`     | Freehand drawing canvas        |
 
 ### Tools & Utilities
 
-| Extension       | Import Path            | Description                      |
-| --------------- | ---------------------- | -------------------------------- |
-| SearchAndReplace| `./searchandreplace`   | Find and replace in editor       |
-| SlashCommand    | `./slashcommand`       | Slash `/` command menu           |
-| History         | `./history`            | Undo/redo support                |
-| Clear           | `./clear`              | Clear formatting                 |
-| ImportWord      | `./importword`         | Import from Word (.docx)         |
-| ExportWord      | `./exportword`         | Export to Word (.docx)           |
-| ExportPdf       | `./exportpdf`          | Export to PDF                    |
+| Extension        | Import Path          | Description                |
+| ---------------- | -------------------- | -------------------------- |
+| SearchAndReplace | `./searchandreplace` | Find and replace in editor |
+| SlashCommand     | `./slashcommand`     | Slash `/` command menu     |
+| History          | `./history`          | Undo/redo support          |
+| Clear            | `./clear`            | Clear formatting           |
+| ImportWord       | `./importword`       | Import from Word (.docx)   |
+| ExportWord       | `./exportword`       | Export to Word (.docx)     |
+| ExportPdf        | `./exportpdf`        | Export to PDF              |
 
 ## Bubble Menus
 
@@ -225,14 +234,14 @@ themeActions.setBorderRadius(8);
 
 Supports multiple languages out of the box:
 
-| Language              | Code    |
-| --------------------- | ------- |
-| English               | `en`    |
-| Vietnamese            | `vi`    |
-| Finnish               | `fi`    |
-| Hungarian             | `hu`    |
-| Portuguese (Brazil)   | `pt-br` |
-| Chinese (Simplified)  | `zh-cn` |
+| Language             | Code    |
+| -------------------- | ------- |
+| English              | `en`    |
+| Vietnamese           | `vi`    |
+| Finnish              | `fi`    |
+| Hungarian            | `hu`    |
+| Portuguese (Brazil)  | `pt-br` |
+| Chinese (Simplified) | `zh-cn` |
 
 ```tsx
 import { useLocale, localeActions } from 'reactjs-tiptap-editor/locale-bundle';
@@ -241,7 +250,9 @@ import { useLocale, localeActions } from 'reactjs-tiptap-editor/locale-bundle';
 localeActions.setLang('zh-cn');
 
 // Add custom translations
-localeActions.setMessage({ /* custom messages */ });
+localeActions.setMessage({
+  /* custom messages */
+});
 ```
 
 ## Project Structure
