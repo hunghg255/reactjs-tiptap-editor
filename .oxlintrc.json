@@ -7,7 +7,7 @@
   "env": {
     "builtin": true
   },
-  "ignorePatterns": ["dist"],
+  "ignorePatterns": ["dist/**", "lib/**", ".claude/**", ".agents/**", "*.min.js"],
   "overrides": [
     {
       "files": ["**/*.{ts,tsx}"],
