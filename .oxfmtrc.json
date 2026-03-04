@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "ignorePatterns": ["dist/**", "*.min.js"],
+  "ignorePatterns": ["dist/**", "lib/**", ".claude/**", ".agents/**", "*.min.js"],
   "singleQuote": true,
   "jsxSingleQuote": true,
   "printWidth": 100,
