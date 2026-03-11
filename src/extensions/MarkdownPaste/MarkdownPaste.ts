@@ -111,8 +111,6 @@ export const MarkdownPaste = Extension.create<MarkdownPasteOptions>({
             // Fix table formatting — collapse blank lines between pipe-delimited rows
             const text = fixMarkdownTables(rawText);
 
-            console.log('[MarkdownPaste] text after table fix:', text);
-
             // Usage: https://marked.js.org/#usage
             // marked.parse() synchronously converts a markdown string to HTML.
             let converted = marked.parse(text, {
@@ -120,7 +118,6 @@ export const MarkdownPaste = Extension.create<MarkdownPasteOptions>({
               breaks: true,
             }) as string;
 
-            console.log('[MarkdownPaste] marked output:', converted);
 
             // Strip <thead> and <tbody> wrappers — TipTap's table schema only
             // understands <table>, <tr>, <th>, and <td>. The wrapper tags are
@@ -129,10 +126,8 @@ export const MarkdownPaste = Extension.create<MarkdownPasteOptions>({
 
             // Check if table HTML is present
             const hasTable = /<table/.test(converted);
-            console.log('[MarkdownPaste] contains table:', hasTable);
             if (hasTable) {
               const tableMatch = converted.match(/<table[\s\S]*?<\/table>/);
-              console.log('[MarkdownPaste] table HTML:', tableMatch?.[0]);
             }
 
             editor.commands.insertContent(converted, {
