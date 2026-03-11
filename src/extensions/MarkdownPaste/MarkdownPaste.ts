@@ -77,14 +77,29 @@ export const MarkdownPaste = Extension.create<MarkdownPasteOptions>({
               breaks: true,
             }) as string;
 
+            console.log('[MarkdownPaste] raw marked output:', converted);
+
             // Strip <thead> and <tbody> wrappers — TipTap's table schema only
             // understands <table>, <tr>, <th>, and <td>. The wrapper tags are
             // unknown nodes that get dropped during ProseMirror parsing.
             converted = converted.replace(/<\/?(thead|tbody)>/g, '');
 
-            editor.commands.insertContent(converted, {
+            console.log('[MarkdownPaste] after thead/tbody strip:', converted);
+
+            // Check if table HTML is present
+            const hasTable = /<table/.test(converted);
+            console.log('[MarkdownPaste] contains table:', hasTable);
+            if (hasTable) {
+              // Log just the table portion
+              const tableMatch = converted.match(/<table[\s\S]*?<\/table>/);
+              console.log('[MarkdownPaste] table HTML:', tableMatch?.[0]);
+            }
+
+            const result = editor.commands.insertContent(converted, {
               parseOptions: { preserveWhitespace: false },
             });
+
+            console.log('[MarkdownPaste] insertContent result:', result);
 
             return true;
           },
