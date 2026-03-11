@@ -69,6 +69,7 @@ import { Katex, RichTextKatex } from 'reactjs-tiptap-editor/katex';
 import { LineHeight, RichTextLineHeight } from 'reactjs-tiptap-editor/lineheight';
 import { Link, RichTextLink } from 'reactjs-tiptap-editor/link';
 import { localeActions, useLocale } from 'reactjs-tiptap-editor/locale-bundle';
+import { MarkdownPaste } from 'reactjs-tiptap-editor/markdownpaste';
 import { Mention } from 'reactjs-tiptap-editor/mention';
 import { Mermaid, RichTextMermaid } from 'reactjs-tiptap-editor/mermaid';
 import { MoreMark, RichTextMoreMark } from 'reactjs-tiptap-editor/moremark';
@@ -330,6 +331,7 @@ const extensions = [
   SlashCommand,
   CodeView,
   Callout,
+  MarkdownPaste,
   //  Collaboration.configure({
   //   document: hocuspocusProvider.document,
   // }),
