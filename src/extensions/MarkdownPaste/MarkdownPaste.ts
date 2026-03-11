@@ -41,6 +41,44 @@ function looksLikeMarkdown(text: string): boolean {
   return false;
 }
 
+/**
+ * Pre-processes markdown text to fix table formatting.
+ * When copying from many sources, blank lines get inserted between table rows,
+ * which prevents marked's GFM table parser from recognizing them.
+ * This collapses blank lines between pipe-delimited rows into a contiguous block.
+ */
+function fixMarkdownTables(text: string): string {
+  const lines = text.split('\n');
+  const result: string[] = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    // Check if this is a blank line sitting between two table rows
+    if (trimmed === '' && result.length > 0) {
+      // Look ahead to find the next non-empty line
+      let nextNonEmpty = i + 1;
+      while (nextNonEmpty < lines.length && lines[nextNonEmpty].trim() === '') {
+        nextNonEmpty++;
+      }
+
+      const prevLine = result[result.length - 1].trim();
+      const nextLine = nextNonEmpty < lines.length ? lines[nextNonEmpty].trim() : '';
+
+      // If both the previous and next non-empty lines look like table rows, skip this blank line
+      if (prevLine.startsWith('|') && prevLine.endsWith('|') &&
+          nextLine.startsWith('|') && nextLine.endsWith('|')) {
+        continue;
+      }
+    }
+
+    result.push(line);
+  }
+
+  return result.join('\n');
+}
+
 export interface MarkdownPasteOptions {
   enabled: boolean;
 }
@@ -67,8 +105,13 @@ export const MarkdownPaste = Extension.create<MarkdownPasteOptions>({
             const clipboardData = event.clipboardData;
             if (!clipboardData) return false;
 
-            const text = clipboardData.getData('text/plain');
-            if (!text || !looksLikeMarkdown(text)) return false;
+            const rawText = clipboardData.getData('text/plain');
+            if (!rawText || !looksLikeMarkdown(rawText)) return false;
+
+            // Fix table formatting — collapse blank lines between pipe-delimited rows
+            const text = fixMarkdownTables(rawText);
+
+            console.log('[MarkdownPaste] text after table fix:', text);
 
             // Usage: https://marked.js.org/#usage
             // marked.parse() synchronously converts a markdown string to HTML.
@@ -77,29 +120,24 @@ export const MarkdownPaste = Extension.create<MarkdownPasteOptions>({
               breaks: true,
             }) as string;
 
-            console.log('[MarkdownPaste] raw marked output:', converted);
+            console.log('[MarkdownPaste] marked output:', converted);
 
             // Strip <thead> and <tbody> wrappers — TipTap's table schema only
             // understands <table>, <tr>, <th>, and <td>. The wrapper tags are
             // unknown nodes that get dropped during ProseMirror parsing.
             converted = converted.replace(/<\/?(thead|tbody)>/g, '');
 
-            console.log('[MarkdownPaste] after thead/tbody strip:', converted);
-
             // Check if table HTML is present
             const hasTable = /<table/.test(converted);
             console.log('[MarkdownPaste] contains table:', hasTable);
             if (hasTable) {
-              // Log just the table portion
               const tableMatch = converted.match(/<table[\s\S]*?<\/table>/);
               console.log('[MarkdownPaste] table HTML:', tableMatch?.[0]);
             }
 
-            const result = editor.commands.insertContent(converted, {
+            editor.commands.insertContent(converted, {
               parseOptions: { preserveWhitespace: false },
             });
-
-            console.log('[MarkdownPaste] insertContent result:', result);
 
             return true;
           },
