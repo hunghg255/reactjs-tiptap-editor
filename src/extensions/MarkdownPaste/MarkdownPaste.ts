@@ -72,10 +72,15 @@ export const MarkdownPaste = Extension.create<MarkdownPasteOptions>({
 
             // Usage: https://marked.js.org/#usage
             // marked.parse() synchronously converts a markdown string to HTML.
-            const converted = marked.parse(text, {
+            let converted = marked.parse(text, {
               gfm: true,
               breaks: true,
             }) as string;
+
+            // Strip <thead> and <tbody> wrappers — TipTap's table schema only
+            // understands <table>, <tr>, <th>, and <td>. The wrapper tags are
+            // unknown nodes that get dropped during ProseMirror parsing.
+            converted = converted.replace(/<\/?(thead|tbody)>/g, '');
 
             editor.commands.insertContent(converted, {
               parseOptions: { preserveWhitespace: false },
