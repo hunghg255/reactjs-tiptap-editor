@@ -67,12 +67,19 @@ export const MarkdownPaste = Extension.create<MarkdownPasteOptions>({
             const clipboardData = event.clipboardData;
             if (!clipboardData) return false;
 
+            const html = clipboardData.getData('text/html');
+            const text = clipboardData.getData('text/plain');
+
+            // Debug logging — remove these once it's working
+            console.log('[MarkdownPaste] paste event fired');
+            console.log('[MarkdownPaste] has html:', !!html?.trim());
+            console.log('[MarkdownPaste] text:', text?.substring(0, 100));
+            console.log('[MarkdownPaste] looksLikeMarkdown:', text ? looksLikeMarkdown(text) : false);
+
             // If the clipboard already has HTML, the source provides rich
             // formatting — let TipTap's default HTML paste handle it.
-            const html = clipboardData.getData('text/html');
             if (html && html.trim().length > 0) return false;
 
-            const text = clipboardData.getData('text/plain');
             if (!text || !looksLikeMarkdown(text)) return false;
 
             // Usage: https://marked.js.org/#usage
