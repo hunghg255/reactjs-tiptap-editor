@@ -185,6 +185,9 @@
       ],
       "./callout": [
         "./lib/extensions/Callout/index.d.ts"
+      ],
+      "./markdownpaste": [
+        "./lib/extensions/MarkdownPaste/index.d.ts"
       ]
     }
   },
@@ -685,6 +688,16 @@
         "types": "./lib/extensions/Callout/index.d.ts",
         "default": "./lib/Callout.js"
       }
+    },
+    "./markdownpaste": {
+      "require": {
+        "types": "./lib/extensions/MarkdownPaste/index.d.ts",
+        "default": "./lib/MarkdownPaste.cjs"
+      },
+      "import": {
+        "types": "./lib/extensions/MarkdownPaste/index.d.ts",
+        "default": "./lib/MarkdownPaste.js"
+      }
     }
   },
   "scripts": {
@@ -774,6 +787,7 @@
     "katex": "^0.16.33",
     "lodash-es": "^4.17.23",
     "lucide-react": "^0.427.0",
+    "marked": "^15.0.0",
     "mermaid": "^11.12.3",
     "prism-code-editor-lightweight": "^0.0.3",
     "prosemirror-docx": "^0.2.1",
