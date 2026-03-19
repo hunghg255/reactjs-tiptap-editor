@@ -15,7 +15,7 @@ import {
 } from '@/components';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ImageCropper } from '@/extensions/Image/components/ImageCropper';
-import { Image } from '@/extensions/Image/Image';
+import { DEFAULT_OPTIONS, Image } from '@/extensions/Image/Image';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 import { useExtension } from '@/hooks/useExtension';
@@ -50,7 +50,7 @@ export function RichTextImage() {
   const uploadOptions = useMemo(() => {
     const uploadOptions = extension?.options;
 
-    return uploadOptions;
+    return uploadOptions || DEFAULT_OPTIONS;
   }, [extension]);
 
   async function handleFile(event: any) {

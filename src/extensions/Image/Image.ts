@@ -26,7 +26,7 @@ export interface SetImageAttrsOptions {
   flipY?: boolean;
 }
 
-const DEFAULT_OPTIONS: any = {
+export const DEFAULT_OPTIONS: any = {
   acceptMimes: ['image/jpeg', 'image/gif', 'image/png', 'image/jpg'],
   maxSize: 1024 * 1024 * 5, // 5MB
   multiple: true,
