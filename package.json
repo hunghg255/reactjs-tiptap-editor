@@ -1,6 +1,6 @@
 {
   "name": "reactjs-tiptap-editor",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "A modern WYSIWYG rich text editor based on tiptap and shadcn ui for React",
   "keywords": [
     "editor",
