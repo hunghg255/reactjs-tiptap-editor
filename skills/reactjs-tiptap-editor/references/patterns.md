@@ -27,8 +27,6 @@ import { SlashCommand, SlashCommandList } from 'reactjs-tiptap-editor/slashcomma
 import { RichTextBubbleText, RichTextBubbleTable, RichTextBubbleLink, RichTextBubbleImage } from 'reactjs-tiptap-editor/bubble'
 
 import 'reactjs-tiptap-editor/style.css'
-import 'prism-code-editor-lightweight/layout.css'
-import 'prism-code-editor-lightweight/themes/github-dark.css'
 
 const extensions = [
   Document, Text, Dropcursor, Gapcursor, HardBreak,

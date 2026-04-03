@@ -11,6 +11,16 @@ import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extens
 // import { HocuspocusProvider } from '@hocuspocus/provider'
 // import * as Y from 'yjs'
 import { EditorContent, useEditor } from '@tiptap/react';
+// const hocuspocusProvider = new HocuspocusProvider({
+//   url: 'ws://0.0.0.0:8080',
+//   name: 'github.com/hunghg255',
+//   document: ydoc,
+// })
+import css from 'highlight.js/lib/languages/css';
+import js from 'highlight.js/lib/languages/javascript';
+import ts from 'highlight.js/lib/languages/typescript';
+import html from 'highlight.js/lib/languages/xml';
+import { all, createLowlight } from 'lowlight';
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { RichTextProvider } from 'reactjs-tiptap-editor';
 import { Attachment, RichTextAttachment } from 'reactjs-tiptap-editor/attachment';
@@ -33,6 +43,7 @@ import {
   RichTextBubbleText,
   RichTextBubbleTwitter,
   RichTextBubbleMenuDragHandle,
+  RichTextBubbleCodeBlock,
 } from 'reactjs-tiptap-editor/bubble';
 import { BulletList, RichTextBulletList } from 'reactjs-tiptap-editor/bulletlist';
 import { Callout, RichTextCallout } from 'reactjs-tiptap-editor/callout';
@@ -90,20 +101,21 @@ import { Video, RichTextVideo } from 'reactjs-tiptap-editor/video';
 import { EMOJI_LIST } from '@/emojis';
 
 import 'reactjs-tiptap-editor/style.css';
-import 'prism-code-editor-lightweight/layout.css';
-import 'prism-code-editor-lightweight/themes/github-dark.css';
+// const ydoc = new Y.Doc()
 import 'katex/dist/katex.min.css';
 import 'easydrawer/styles.css';
 import '@excalidraw/excalidraw/index.css';
 import 'katex/contrib/mhchem';
 
-// const ydoc = new Y.Doc()
+// create a lowlight instance with all languages loaded
+const lowlight = createLowlight();
 
-// const hocuspocusProvider = new HocuspocusProvider({
-//   url: 'ws://0.0.0.0:8080',
-//   name: 'github.com/hunghg255',
-//   document: ydoc,
-// })
+// This is only an example, all supported languages are already loaded above
+// but you can also register only specific languages to reduce bundle-size
+lowlight.register('html', html);
+lowlight.register('css', css);
+lowlight.register('js', js);
+lowlight.register('ts', ts);
 
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
@@ -245,7 +257,9 @@ const extensions = [
   Blockquote,
   HorizontalRule,
   Code,
-  CodeBlock,
+  CodeBlock.configure({
+    lowlight,
+  }),
 
   Column,
   ColumnNode,
@@ -343,7 +357,7 @@ const extensions = [
   // }),
 ];
 
-const DEFAULT = `<div class="callout" dir="auto" type="note" title="1" body="1"></div><div class="callout" dir="auto" type="tip" title="2" body="2"></div><div class="callout" dir="auto" type="important" title="3" body="3"></div><div class="callout" dir="auto" type="warning" title="4" body="4"></div><div class="callout" dir="auto" type="caution" title="5" body="5"></div><p dir="auto"><span dir="auto" data-name="smiley" data-type="emoji">😃</span> </p>`;
+const DEFAULT = `<pre dir="auto"><code class="language-js">const a = 2;</code></pre><p dir="auto"></p>`;
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout;
@@ -649,6 +663,7 @@ function App() {
             <RichTextBubbleTable />
             <RichTextBubbleText />
             <RichTextBubbleTwitter />
+            <RichTextBubbleCodeBlock />
 
             <RichTextBubbleMenuDragHandle />
 
