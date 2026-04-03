@@ -16,7 +16,7 @@ import { ExtensionName, RichTextExtensionName } from 'reactjs-tiptap-editor/<low
 | Callout | `reactjs-tiptap-editor/callout` | `RichTextCallout` | |
 | Clear | `reactjs-tiptap-editor/clear` | `RichTextClear` | Clears editor content |
 | Code | `reactjs-tiptap-editor/code` | `RichTextCode` | Inline code, shortcut: `mod+E` |
-| CodeBlock | `reactjs-tiptap-editor/codeblock` | `RichTextCodeBlock` | Needs `prism-code-editor-lightweight` + extra CSS |
+| CodeBlock | `reactjs-tiptap-editor/codeblock` | `RichTextCodeBlock` | Needs `lowlight` + extra CSS |
 | CodeView | `reactjs-tiptap-editor/codeview` | `RichTextCodeView` | View raw HTML |
 | Color | `reactjs-tiptap-editor/color` | `RichTextColor` | Text color |
 | Column | `reactjs-tiptap-editor/column` | `RichTextColumn` | Multi-column layout |
@@ -56,11 +56,6 @@ import { ExtensionName, RichTextExtensionName } from 'reactjs-tiptap-editor/<low
 | Video | `reactjs-tiptap-editor/video` | `RichTextVideo` | |
 
 ## CodeBlock Extra Setup
-
-```tsx
-import 'prism-code-editor-lightweight/layout.css'
-import 'prism-code-editor-lightweight/themes/github-dark.css'
-```
 
 Trigger: type ` ``` ` then press Enter.
 

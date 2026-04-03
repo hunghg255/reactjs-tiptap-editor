@@ -11,3 +11,4 @@ export * from './RichTextBubbleTable';
 export * from './RichTextBubbleText';
 export * from './RichTextBubbleTwitter';
 export * from './RichTextBubbleMenuDragHandle';
+export * from './RichTextBubbleCodeBlock';

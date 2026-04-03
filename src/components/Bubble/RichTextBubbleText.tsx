@@ -150,6 +150,11 @@ export function RichTextBubbleText({ buttonBubble }: RichTextBubbleTextProps) {
     const { selection } = editor.view.state;
     const { $from, to } = selection;
 
+    // not show code block bubble when selection is in code block
+    if (editor.isActive('codeBlock')) {
+      return false;
+    }
+
     // check content select length is not empty
     if ($from.pos === to) {
       return false;

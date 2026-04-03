@@ -45,9 +45,12 @@ import {
   RichTextBubbleText,
   RichTextBubbleTwitter,
   RichTextBubbleCallout
+  RichTextBubbleCodeBlock,
 
   // Drag Handle
   RichTextBubbleMenuDragHandle
+
+  // ... other bubble menu components
 } from 'reactjs-tiptap-editor/bubble';
 
 
@@ -106,6 +109,8 @@ const RichTextBubbleMenu = () => {
 
       <RichTextBubbleMenuDragHandle />
 
+      <RichTextBubbleCodeBlock />
+
       <SlashCommandList /> {/* Optional: If you want to use Slash Command inside Bubble Menu */}
     </div>
   )
@@ -155,4 +160,6 @@ The system provides the following default bubble menus:
 |    RichTextBubbleTwitter     | Provides twitter-related operations like size, link , etc.                                   | twitter      |
 | RichTextBubbleMenuDragHandle | Provides a drag handle to move the bubble menu around the editor area.                       | N/A          |
 |    RichTextBubbleCallout     | Provides callout-related operations like style, content, etc.                                | callout      |
+|     RichTextBubbleKatex      | Provides KaTeX-related operations like size, link , etc.                                     | katex        |
+|   RichTextBubbleCodeBlock    | Provides code block-related operations like language selection, copy, delete, etc.           | codeBlock    |
 |       SlashCommandList       | Provides a list of slash commands for quick access to various editor functionalities.        | slashcommand |

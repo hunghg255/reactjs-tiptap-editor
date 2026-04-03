@@ -489,8 +489,6 @@ CSS imports remain mostly the same:
 
 ```tsx
 import 'reactjs-tiptap-editor/style.css';
-import 'prism-code-editor-lightweight/layout.css';
-import 'prism-code-editor-lightweight/themes/github-dark.css';
 
 // Optional: For specific extensions
 import 'katex/dist/katex.min.css';
