@@ -86,17 +86,17 @@
   code {
     @apply richtext-rounded-sm richtext-bg-neutral-900 richtext-font-mono richtext-text-white richtext-caret-white richtext-shadow-lg;
 
-    // &::selection {
-    //   @apply richtext-bg-white/30;
-    // }
+    &::selection {
+      @apply richtext-bg-white/30;
+    }
   }
 
   pre {
-    @apply richtext-my-12 richtext-rounded !richtext-border richtext-border-black richtext-border-border richtext-bg-neutral-700 richtext-p-4 richtext-text-white richtext-caret-white dark:richtext-bg-neutral-900;
+    @apply richtext-my-1 richtext-rounded !richtext-border richtext-border-black richtext-border-border richtext-bg-neutral-700 richtext-p-4 richtext-text-white richtext-caret-white dark:richtext-bg-neutral-900;
 
-    // *::selection {
-    //   @apply richtext-bg-white/20;
-    // }
+    *::selection {
+      @apply richtext-bg-white/20;
+    }
 
     code {
       @apply richtext-bg-inherit richtext-p-0 richtext-text-inherit richtext-shadow-none;

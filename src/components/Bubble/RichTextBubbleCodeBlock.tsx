@@ -1,5 +1,5 @@
 import { BubbleMenu } from '@tiptap/react/menus';
-import { Check, Trash2 } from 'lucide-react';
+import { Check, Copy, Trash2 } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
 
 import { ActionButton } from '@/components/ActionButton';
@@ -21,6 +21,7 @@ const MAP_LANGUAGE_LABEL: Record<string, string> = {
   css: 'CSS',
   html: 'HTML',
   python: 'Python',
+  bash: 'Bash',
 };
 
 function SelectLanguages({ listLanguages }: { listLanguages: string[] }) {
@@ -125,6 +126,26 @@ export function RichTextBubbleCodeBlock() {
 
   const deleteMe = useCallback(() => deleteNode(CodeBlock.name, editor), [editor]);
 
+  const getCodeContent = () => {
+    const { from } = editor.state.selection;
+    const resolvedPos = editor.state.doc.resolve(from);
+
+    // Leo lên tìm node codeBlock
+    for (let depth = resolvedPos.depth; depth >= 0; depth--) {
+      const node = resolvedPos.node(depth);
+      if (node.type.name === 'codeBlock') {
+        return node.textContent;
+      }
+    }
+    return '';
+  };
+
+  // Dùng trong button copy
+  const handleCopy = () => {
+    const code = getCodeContent();
+    navigator.clipboard.writeText(code);
+  };
+
   if (!editable) {
     return <></>;
   }
@@ -132,13 +153,33 @@ export function RichTextBubbleCodeBlock() {
   return (
     <BubbleMenu
       editor={editor}
-      options={{ placement: 'top-start', strategy: 'fixed', offset: 25, flip: true }}
+      options={{ placement: 'bottom', offset: 8, flip: true }}
       pluginKey={'RichTextBubbleCodeBlock'}
       shouldShow={shouldShow}
+      getReferencedVirtualElement={() => {
+        const { from } = editor.state.selection;
+        const node = editor.view.domAtPos(from).node as any;
+
+        const el = node.parentElement;
+
+        if (!el) return null;
+
+        // Floating UI cần VirtualElement: object có getBoundingClientRect là function
+        return {
+          getBoundingClientRect: () => el.getBoundingClientRect(),
+        };
+      }}
     >
       <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
         <SelectLanguages listLanguages={listLanguages} />
 
+        <Separator
+          className='!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]'
+          orientation='vertical'
+        />
+        <ActionButton action={handleCopy} tooltip='Copy'>
+          <Copy size={16} />
+        </ActionButton>
         <Separator
           className='!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]'
           orientation='vertical'

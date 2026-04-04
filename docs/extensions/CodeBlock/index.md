@@ -13,6 +13,12 @@ next:
 - The `CodeBlock` extension is built on top of the `code-block-lowlight` extension, which uses the `lowlight` library for syntax highlighting. You can customize the languages supported by registering them with `lowlight`.
 - The `RichTextBubbleCodeBlock` component provides a bubble menu for the `CodeBlock` extension, allowing users to easily delete code blocks.
 
+## Installation
+
+```bash
+npm install highlight.js lowlight
+```
+
 ## Usage
 
 ```tsx
@@ -34,19 +40,26 @@ import { RichTextBubbleCodeBlock } from 'reactjs-tiptap-editor/bubble';
 import { CodeBlock, RichTextCodeBlock } from 'reactjs-tiptap-editor/codeblock'; // [!code ++]
 // ... other extensions
 
+// Lowlight, Highlight.js
+import { createLowlight } from 'lowlight';
+import css from 'highlight.js/lib/languages/css';
+import js from 'highlight.js/lib/languages/javascript';
+import ts from 'highlight.js/lib/languages/typescript';
+import html from 'highlight.js/lib/languages/xml';
+
 // Import CSS
 import 'reactjs-tiptap-editor/style.css';
 
 // Optional: Import lowlight languages
 // create a lowlight instance with all languages loaded
-// const lowlight = createLowlight();
 
-// // This is only an example, all supported languages are already loaded above
-// // but you can also register only specific languages to reduce bundle-size
-// lowlight.register('html', html);
-// lowlight.register('css', css);
-// lowlight.register('js', js);
-// lowlight.register('ts', ts);
+//This is only an example, all supported languages are already loaded above
+// but you can also register only specific languages to reduce bundle-size
+const lowlight = createLowlight();
+lowlight.register('html', html);
+lowlight.register('css', css);
+lowlight.register('js', js);
+lowlight.register('ts', ts);
 
 const extensions = [
   // Base Extensions
