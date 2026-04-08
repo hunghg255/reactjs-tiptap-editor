@@ -161,12 +161,17 @@ export function RichTextBubbleMenuDragHandle() {
       pluginKey={'RichTextBubbleMenuDragHandle'}
     >
       <div className='richtext-flex richtext-items-center richtext-gap-0.5'>
-        <ActionButton action={handleAdd} disabled={!editable} icon='Plus' tooltip='Insert block' />
+        <ActionButton
+          action={handleAdd}
+          disabled={!editable}
+          icon='Plus'
+          tooltip={t('editor.draghandle.insertBlock')}
+        />
 
         <ActionButton
           disabled={!editable}
           icon='Grip'
-          tooltip='Click for options, Hold for drag'
+          tooltip={t('editor.draghandle.grip')}
           action={(e) => {
             e.preventDefault();
             e.stopPropagation();

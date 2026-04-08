@@ -12,6 +12,8 @@ const locale = {
   'editor.settings': 'Cài đặt',
   'editor.table_of_content': 'Mục lục',
   'editor.draghandle.tooltip': 'Sửa đổi',
+  'editor.draghandle.insertBlock': 'Chèn khối',
+  'editor.draghandle.grip': 'Nhấn để mở menu, giữ để kéo',
   'editor.copyToClipboard': 'CopyToClipboard',
   'editor.slash': "Nhấn '/' để biết lệnh",
   'editor.slash.empty': 'Không có kết quả',
