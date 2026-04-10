@@ -12,6 +12,8 @@ const locale = {
   'editor.settings': 'Settings',
   'editor.table_of_content': 'Table of Content',
   'editor.draghandle.tooltip': 'Modify',
+  'editor.draghandle.insertBlock': 'Insert block',
+  'editor.draghandle.grip': 'Click for options, hold to drag',
   'editor.copyToClipboard': 'CopyToClipboard',
   'editor.slash': "Press '/' for commands",
   'editor.slash.empty': 'No Result',

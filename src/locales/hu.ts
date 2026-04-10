@@ -12,6 +12,8 @@ const locale = {
   'editor.settings': 'Beállítások',
   'editor.table_of_content': 'Tartalomjegyzék',
   'editor.draghandle.tooltip': 'Módosítás',
+  'editor.draghandle.insertBlock': 'Blokk beszúrása',
+  'editor.draghandle.grip': 'Kattintson a menühöz, tartsa nyomva az áthúzáshoz',
   'editor.copyToClipboard': 'Másolás vágólapra',
   'editor.slash': "Nyomja meg a '/' gombot a parancsokhoz",
   'editor.slash.empty': 'Nincs találat',

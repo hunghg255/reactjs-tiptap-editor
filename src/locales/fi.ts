@@ -12,6 +12,8 @@ const locale = {
   'editor.settings': 'Asetukset',
   'editor.table_of_content': 'Sisällysluettelo',
   'editor.draghandle.tooltip': 'Muokkaa',
+  'editor.draghandle.insertBlock': 'Lisää lohko',
+  'editor.draghandle.grip': 'Napsauta valikkoon, pidä pohjassa siirtääksesi',
   'editor.copyToClipboard': 'Kopioi leikepöydälle',
   'editor.slash': "Paina '/' nähdäksesi komennot",
   'editor.slash.empty': 'Ei tuloksia',
