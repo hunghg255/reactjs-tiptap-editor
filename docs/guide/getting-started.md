@@ -18,6 +18,10 @@ npm install reactjs-tiptap-editor@latest
 pnpm install reactjs-tiptap-editor@latest
 ```
 
+```sh [bun]
+bun add reactjs-tiptap-editor@latest
+```
+
 ```sh [yarn]
 yarn add reactjs-tiptap-editor@latest
 ```
