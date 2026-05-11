@@ -9,6 +9,7 @@ import hu_HU from './hu';
 import pt_BR from './pt-br';
 import vi from './vi';
 import zh_CN from './zh-cn';
+import ja from './ja';
 
 const LANG = {
   currentLang: DEFAULT_LANG_VALUE,
@@ -19,6 +20,7 @@ const LANG = {
     zh_CN,
     pt_BR,
     fi,
+    ja,
   },
 };
 
@@ -111,4 +113,4 @@ const localeActions = {
 };
 
 export { localeActions, useLocale };
-export { en, hu_HU, vi, zh_CN, pt_BR, fi };
+export { en, hu_HU, vi, zh_CN, pt_BR, fi, ja };

@@ -36,6 +36,7 @@ Currently, the editor supports the following languages:
 | Brazilian Portuguese | pt_BR  |                                                                                  |
 | Hungarian            | hu_HU  |                                                                                  |
 | Finnish              | fi     |                                                                                  |
+| Japanese             | ja     |                                                                                  |
 
 ## Adding a New Language
 

@@ -427,6 +427,9 @@ const Header = ({ editor, theme, setTheme }) => {
         <button type='button' onClick={() => localeActions.setLang('hu_HU')}>
           Hungarian
         </button>
+        <button type='button' onClick={() => localeActions.setLang('ja')}>
+          日本語
+        </button>
         <button type='button' onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
           {theme === 'dark' ? 'Light' : 'Dark'}
         </button>
