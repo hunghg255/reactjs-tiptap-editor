@@ -142,7 +142,7 @@ const locale = {
   'editor.previous.dialog.text': '前へ',
   'editor.next.dialog.text': '次へ',
   no_result_found: '結果が見つかりません',
-  'Smileys & People': 'スマイルと人々',
+  'Smileys & People': '顔文字と人',
   'Animals & Nature': '動物と自然',
   'Food & Drink': '食べ物と飲み物',
   Activity: 'アクティビティ',
