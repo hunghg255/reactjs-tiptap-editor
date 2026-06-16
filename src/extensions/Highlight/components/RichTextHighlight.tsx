@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ActionButton, ColorPicker } from '@/components';
 import { IconComponent } from '@/components/icons';
@@ -19,12 +19,16 @@ export function RichTextHighlight() {
     shortcutKeys,
   } = buttonProps?.componentProps ?? {};
 
-  const { editorDisabled } = useActive(isActive);
+  const { disabled, dataState } = useActive(isActive);
 
   const [selectedColor, setSelectedColor] = useState<any>(defaultColor);
 
+  useEffect(() => {
+    setSelectedColor(dataState);
+  }, [dataState]);
+
   function onChange(color: any) {
-    if (editorDisabled) return;
+    if (disabled) return;
 
     if (action) {
       action?.(color);
@@ -39,19 +43,19 @@ export function RichTextHighlight() {
   return (
     <ColorPicker
       colors={colors}
-      disabled={editorDisabled}
+      disabled={disabled}
       highlight
       onChange={onChange}
       value={selectedColor}
     >
       <ActionButton
-        disabled={editorDisabled}
+        disabled={disabled}
         tooltip={tooltip}
         // tooltipOptions={tooltipOptions}
         shortcutKeys={shortcutKeys}
       >
         <span className='richtext-flex richtext-items-center richtext-justify-center richtext-gap-[4px] richtext-text-sm'>
-          <IconHighlightFill fill={selectedColor} />
+          <IconHighlightFill fill={dataState} />
 
           <IconComponent
             className='!richtext-h-3 !richtext-w-3 richtext-text-zinc-500'
