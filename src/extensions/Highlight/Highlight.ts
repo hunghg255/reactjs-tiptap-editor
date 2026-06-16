@@ -47,7 +47,11 @@ export const Highlight =
               }
               editor.chain().focus().unsetHighlight().run();
             },
-            isActive: () => editor.isActive('highlight') || false,
+            isActive: () => {
+              const { color } = editor.getAttributes('highlight');
+
+              return color;
+            },
             disabled: false,
             shortcutKeys: extension.options.shortcutKeys ?? ['⇧', 'mod', 'H'],
             tooltip: t('editor.highlight.tooltip'),
