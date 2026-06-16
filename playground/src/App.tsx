@@ -65,6 +65,7 @@ import { ExportPdf, RichTextExportPdf } from 'reactjs-tiptap-editor/exportpdf';
 import { ExportWord, RichTextExportWord } from 'reactjs-tiptap-editor/exportword';
 import { FontFamily, RichTextFontFamily } from 'reactjs-tiptap-editor/fontfamily';
 import { FontSize, RichTextFontSize } from 'reactjs-tiptap-editor/fontsize';
+import { FormatPainter, RichTextFormatPainter } from 'reactjs-tiptap-editor/formatpainter';
 import { Heading, RichTextHeading } from 'reactjs-tiptap-editor/heading';
 import { Highlight, RichTextHighlight } from 'reactjs-tiptap-editor/highlight';
 // build extensions
@@ -209,6 +210,7 @@ const extensions = [
   FontFamily,
   Heading,
   FontSize,
+  FormatPainter,
   Bold,
   Italic,
   TextUnderline,
@@ -560,6 +562,7 @@ const RichTextToolbar = () => {
       <RichTextRedo />
       <RichTextSearchAndReplace />
       <RichTextClear />
+      <RichTextFormatPainter />
       <RichTextFontFamily />
       <RichTextHeading />
       <RichTextFontSize />

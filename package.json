@@ -99,6 +99,9 @@
       "./fontsize": [
         "./lib/extensions/FontSize/index.d.ts"
       ],
+      "./formatpainter": [
+        "./lib/extensions/FormatPainter/index.d.ts"
+      ],
       "./heading": [
         "./lib/extensions/Heading/index.d.ts"
       ],
@@ -397,6 +400,16 @@
       "import": {
         "types": "./lib/extensions/FontSize/index.d.ts",
         "default": "./lib/FontSize.js"
+      }
+    },
+    "./formatpainter": {
+      "require": {
+        "types": "./lib/extensions/FormatPainter/index.d.ts",
+        "default": "./lib/FormatPainter.cjs"
+      },
+      "import": {
+        "types": "./lib/extensions/FormatPainter/index.d.ts",
+        "default": "./lib/FormatPainter.js"
       }
     },
     "./heading": {

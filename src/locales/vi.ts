@@ -6,7 +6,7 @@ const locale = {
   'editor.default': 'Mặc định',
   'editor.recent': 'Đã sử dụng gần đây',
   'editor.nofill': 'Không tô',
-  'editor.format': 'Format Painter',
+  'editor.format': 'Sao chép định dạng',
   'editor.delete': 'Xóa',
   'editor.edit': 'Chỉnh sửa',
   'editor.settings': 'Cài đặt',
