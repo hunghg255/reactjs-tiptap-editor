@@ -1,14 +1,16 @@
 ---
-description: FontSize
+description: FormatPainter
 
 next:
-  text: FormatPainter
-  link: /extensions/FormatPainter/index.md
+  text: Heading
+  link: /extensions/Heading/index.md
 ---
 
-# Font Size
+# Format Painter
 
-The Font Size extension allows you to change the font size of your editor.
+The Format Painter extension allows you to copy text marks from one selection and apply them to another selection.
+
+This is a custom extension built on top of Tiptap and ProseMirror. It copies inline text marks such as bold, italic, underline, text color, highlight, font family, and font size. Link marks are skipped to avoid copying link targets unexpectedly.
 
 ## Usage
 
@@ -25,7 +27,7 @@ import { TextStyle } from '@tiptap/extension-text-style';
 import { ListItem } from '@tiptap/extension-list';
 
 // Extension
-import { FontSize, RichTextFontSize } from 'reactjs-tiptap-editor/fontsize'; // [!code ++]
+import { FormatPainter, RichTextFormatPainter } from 'reactjs-tiptap-editor/formatpainter'; // [!code ++]
 // ... other extensions
 
 
@@ -49,12 +51,12 @@ const extensions = [
 
   ...
   // Import Extensions Here
-  FontSize// [!code ++]
+  FormatPainter// [!code ++]
 ];
 
 const RichTextToolbar = () => {
   return (
-    <RichTextFontSize /> {/* [!code ++] */}
+    <RichTextFormatPainter /> {/* [!code ++] */}
   )
 }
 
@@ -78,25 +80,29 @@ const App = () => {
 };
 ```
 
-## Options
+## Behavior
 
-### fontSizes
+1. Select text that already has the formatting you want to copy.
+2. Click the format painter button.
+3. Select the target text.
+4. The copied marks are applied to the target selection and the format painter turns off automatically.
 
-Type: `(string | { value: string; name: string })[]`
+Press `Escape` or click the button again to cancel the format painter state.
 
-```js
-import { DEFAULT_FONT_SIZE_LIST, FontSize } from 'reactjs-tiptap-editor/fontsize';
+## Commands
 
-FontSize.configure({
-  fontSizes: [
-    // Use default font size list
-    ...DEFAULT_FONT_SIZE_LIST,
-    // Two formats
-    //   1. string
-    //   2. { name: 'xxx', value: 'xxx' }
+### setPainter
 
-    '10px',
-    { name: '200 pixel', value: '200px' },
-  ],
-});
+Copies the current selection marks and enables format painter mode.
+
+```ts
+editor.commands.setPainter()
+```
+
+### unsetPainter
+
+Cancels format painter mode.
+
+```ts
+editor.commands.unsetPainter()
 ```

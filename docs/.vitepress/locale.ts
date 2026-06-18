@@ -123,6 +123,7 @@ export function getLocaleConfig(lang: string) {
         { text: 'ExportWord', link: '/extensions/ExportWord/index.md' },
         { text: 'FontFamily', link: '/extensions/FontFamily/index.md' },
         { text: 'FontSize', link: '/extensions/FontSize/index.md' },
+        { text: 'FormatPainter', link: '/extensions/FormatPainter/index.md' },
         { text: 'Heading', link: '/extensions/Heading/index.md' },
         { text: 'Highlight', link: '/extensions/Highlight/index.md' },
         { text: 'History', link: '/extensions/History/index.md' },
