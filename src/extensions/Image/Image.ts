@@ -35,6 +35,18 @@ export const DEFAULT_OPTIONS: any = {
   enableAlt: true,
 };
 
+function parseBooleanHTMLAttribute(value: string | boolean | null | undefined): boolean | null {
+  if (value === null || value === undefined) {
+    return null;
+  }
+
+  return value === true || value === '' || value === 'true';
+}
+
+function getBooleanHTMLAttribute(value: string | boolean | null | undefined): boolean {
+  return parseBooleanHTMLAttribute(value) ?? false;
+}
+
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     imageUpload: {
@@ -141,10 +153,10 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
       },
       inline: {
         default: false,
-        parseHTML: (element) => Boolean(element.getAttribute('inline')),
+        parseHTML: (element) => parseBooleanHTMLAttribute(element.getAttribute('inline')),
         renderHTML: (attributes) => {
           return {
-            inline: attributes.inline,
+            inline: attributes.inline ? 'true' : null,
           };
         },
       },
@@ -191,14 +203,24 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
   },
   renderHTML({ HTMLAttributes }) {
     const { flipX, flipY, align, inline } = HTMLAttributes;
-    const inlineFloat = inline && (align === 'left' || align === 'right');
+    const isInline = getBooleanHTMLAttribute(inline);
+    const inlineFloat = isInline && (align === 'left' || align === 'right');
 
     const transformStyle =
       flipX || flipY
         ? `transform: rotateX(${flipX ? '180' : '0'}deg) rotateY(${flipY ? '180' : '0'}deg);`
         : '';
 
-    const textAlignStyle = inlineFloat ? '' : `text-align: ${align};`;
+    const textAlignStyle =
+      !isInline && align === 'center'
+        ? 'margin: 0 auto;'
+        : !isInline && align === 'right'
+          ? 'margin-left: auto;'
+          : !isInline
+            ? 'margin-right: auto;'
+            : '';
+
+    const displayStyle = isInline ? '' : 'display: block;';
 
     const floatStyle = inlineFloat ? `float: ${align};` : '';
 
@@ -208,12 +230,15 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
         : 'margin: 1em 0 1em 1em;'
       : '';
 
-    const style = `${floatStyle}${marginStyle}${transformStyle}`;
+    const style = `${displayStyle}${textAlignStyle}${floatStyle}${marginStyle}${transformStyle}`;
+    const imageHTMLAttributes = {
+      ...HTMLAttributes,
+      inline: isInline ? 'true' : null,
+    };
 
     return [
-      inline ? 'span' : 'div',
+      'span',
       {
-        style: textAlignStyle,
         class: 'image',
       },
       [
@@ -221,10 +246,10 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
         mergeAttributes(
           {
             height: 'auto',
-            style,
+            style: style || null,
           },
           this.options.HTMLAttributes,
-          HTMLAttributes
+          imageHTMLAttributes
         ),
       ],
     ];
@@ -232,9 +257,9 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
   parseHTML() {
     return [
       {
-        tag: 'span.image img',
-        getAttrs: (img) => {
-          const element = img?.parentElement;
+        tag: 'span.image',
+        getAttrs: (element) => {
+          const img = element.querySelector('img');
 
           const width = img?.getAttribute('width');
 
@@ -246,8 +271,8 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
             alt: img?.getAttribute('alt'),
             caption: img?.getAttribute('caption'),
             width: width ? Number.parseInt(width, 10) : null,
-            align: img?.getAttribute('align') || element?.style?.textAlign || null,
-            inline: img?.getAttribute('inline') || false,
+            align: img?.getAttribute('align') || element.style.textAlign || null,
+            inline: getBooleanHTMLAttribute(img?.getAttribute('inline')),
             flipX: flipX === 'true',
             flipY: flipY === 'true',
           };
@@ -268,7 +293,7 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
             caption: img?.getAttribute('caption'),
             width: width ? Number.parseInt(width, 10) : null,
             align: img?.getAttribute('align') || element.style.textAlign || null,
-            inline: img?.getAttribute('inline') || false,
+            inline: getBooleanHTMLAttribute(img?.getAttribute('inline')),
             flipX: flipX === 'true',
             flipY: flipY === 'true',
           };
