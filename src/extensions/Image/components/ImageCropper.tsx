@@ -16,7 +16,7 @@ import { useLocale } from '@/locales';
 import { dataURLtoFile, readImageAsBase64 } from '@/utils/file';
 import { validateFiles } from '@/utils/validateFile';
 
-export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: any) {
+export function ImageCropper({ editor, imageInline, onClose, onOpenChange, disabled, alt }: any) {
   const { t } = useLocale();
   const { toast } = useToast();
 
@@ -74,6 +74,27 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
     return canvas.toDataURL('image/png', 1.0);
   }
 
+  const resetFileInput = React.useCallback(() => {
+    if (fileInput.current) {
+      fileInput.current.value = '';
+    }
+  }, []);
+
+  const handleDialogOpenChange = React.useCallback(
+    (open: boolean) => {
+      setDialogOpen(open);
+      onOpenChange?.(open);
+
+      if (!open) {
+        setCrop(undefined);
+        setCroppedImageUrl('');
+        setUrlUpload({ src: '', file: null });
+        resetFileInput();
+      }
+    },
+    [onOpenChange, resetFileInput]
+  );
+
   const onCrop = React.useCallback(async () => {
     if (isCropping) return;
 
@@ -90,14 +111,7 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
 
       editor.chain().focus().setImageInline({ src, inline: imageInline, alt }).run();
 
-      setDialogOpen(false);
-
-      setUrlUpload({
-        src: '',
-        file: null,
-      });
-
-      resetFileInput();
+      handleDialogOpenChange(false);
       onClose();
     } catch (error) {
       console.error('Error cropping image', error);
@@ -105,8 +119,10 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
       setIsCropping(false);
     }
   }, [
+    alt,
     croppedImageUrl,
     editor,
+    handleDialogOpenChange,
     imageInline,
     isCropping,
     onClose,
@@ -142,17 +158,11 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
     const file = validFiles[0];
     const base64 = await readImageAsBase64(file);
 
-    setDialogOpen(true);
+    handleDialogOpenChange(true);
     setUrlUpload({
       src: base64.src,
       file,
     });
-  };
-
-  const resetFileInput = () => {
-    if (fileInput.current) {
-      fileInput.current.value = '';
-    }
   };
 
   return (
@@ -166,16 +176,7 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
         {t('editor.image.dialog.tab.uploadCrop')}
       </Button>
 
-      <Dialog
-        open={dialogOpen}
-        onOpenChange={(open) => {
-          setDialogOpen(open);
-          if (!open) {
-            setUrlUpload({ src: '', file: null });
-            resetFileInput();
-          }
-        }}
-      >
+      <Dialog open={dialogOpen} onOpenChange={handleDialogOpenChange}>
         <DialogTrigger />
 
         <DialogContent>
@@ -198,12 +199,7 @@ export function ImageCropper({ editor, imageInline, onClose, disabled, alt }: an
             <Button
               disabled={isCropping}
               onClick={() => {
-                setDialogOpen(false);
-                setUrlUpload({
-                  src: '',
-                  file: null,
-                });
-                resetFileInput();
+                handleDialogOpenChange(false);
               }}
             >
               {t('editor.imageUpload.cancel')}
