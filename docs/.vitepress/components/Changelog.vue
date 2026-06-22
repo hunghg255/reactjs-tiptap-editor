@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import changelog from '/virtual-changelog';
 import { computed } from 'vue';
-import { renderCommitMessage } from '../theme/utils';
+
 import extensions from '../../../scripts/extensions.json';
+import { renderCommitMessage } from '../theme/utils';
 
 const props = defineProps<{ fn: string }>();
 const info = computed(() => extensions.find((i) => i.name === props.fn)) as any;

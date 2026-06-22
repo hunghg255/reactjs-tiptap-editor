@@ -11,20 +11,20 @@ import { marked } from 'marked';
  */
 function looksLikeMarkdown(text: string): boolean {
   const patterns = [
-    /^#{1,6}\s+/m,           // Headings: ## Heading
-    /^\s*[-*+]\s+/m,         // Unordered lists: - item
-    /^\s*\d+\.\s+/m,         // Ordered lists: 1. item
-    /^\s*>\s+/m,             // Blockquotes: > quote
-    /\*\*.+?\*\*/,           // Bold: **text**
-    /\*.+?\*/,               // Italic: *text*
-    /`[^`]+`/,               // Inline code: `code`
-    /^```/m,                 // Code blocks: ```
-    /^\s*---\s*$/m,          // Horizontal rules: ---
-    /^\s*\*\*\*\s*$/m,       // Horizontal rules: ***
-    /\[.+?\]\(.+?\)/,        // Links: [text](url)
-    /!\[.*?\]\(.+?\)/,       // Images: ![alt](url)
-    /^\s*[-*]\s+\[[ x]\]/m,  // Task lists: - [ ] or - [x]
-    /\|.+\|.+\|/,            // Tables: |col|col|
+    /^#{1,6}\s+/m, // Headings: ## Heading
+    /^\s*[-*+]\s+/m, // Unordered lists: - item
+    /^\s*\d+\.\s+/m, // Ordered lists: 1. item
+    /^\s*>\s+/m, // Blockquotes: > quote
+    /\*\*.+?\*\*/, // Bold: **text**
+    /\*.+?\*/, // Italic: *text*
+    /`[^`]+`/, // Inline code: `code`
+    /^```/m, // Code blocks: ```
+    /^\s*---\s*$/m, // Horizontal rules: ---
+    /^\s*\*\*\*\s*$/m, // Horizontal rules: ***
+    /\[.+?\]\(.+?\)/, // Links: [text](url)
+    /!\[.*?\]\(.+?\)/, // Images: ![alt](url)
+    /^\s*[-*]\s+\[[ x]\]/m, // Task lists: - [ ] or - [x]
+    /\|.+\|.+\|/, // Tables: |col|col|
   ];
 
   let matches = 0;
@@ -67,8 +67,12 @@ function fixMarkdownTables(text: string): string {
       const nextLine = nextNonEmpty < lines.length ? lines[nextNonEmpty].trim() : '';
 
       // If both the previous and next non-empty lines look like table rows, skip this blank line
-      if (prevLine.startsWith('|') && prevLine.endsWith('|') &&
-          nextLine.startsWith('|') && nextLine.endsWith('|')) {
+      if (
+        prevLine.startsWith('|') &&
+        prevLine.endsWith('|') &&
+        nextLine.startsWith('|') &&
+        nextLine.endsWith('|')
+      ) {
         continue;
       }
     }

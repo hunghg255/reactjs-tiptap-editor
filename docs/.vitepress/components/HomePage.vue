@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { VPTeamMembers } from 'vitepress/theme';
 import { computed } from 'vue';
+
 import { useTranslate } from '../i18n/composable';
 
 const t = useTranslate();

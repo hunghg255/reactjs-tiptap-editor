@@ -14,7 +14,7 @@ const extensions = [...baseExtensions, History];
 
 function Toolbar() {
   return (
-    <div className="flex flex-wrap items-center gap-2 border-b">
+    <div className='flex flex-wrap items-center gap-2 border-b'>
       <RichTextUndo />
       <RichTextRedo />
     </div>

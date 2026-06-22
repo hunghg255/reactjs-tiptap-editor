@@ -1,7 +1,7 @@
+import { type ActionButtonProps } from './components';
+
 import type { Editor as CoreEditor, Extension, JSONContent } from '@tiptap/core';
 import type { Editor } from '@tiptap/react';
-
-import { type ActionButtonProps } from './components';
 
 export type { Editor, JSONContent } from '@tiptap/core';
 

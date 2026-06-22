@@ -52,11 +52,11 @@ export function NodeViewCallout({ node }: any) {
         className={clsx(
           'richtext-relative richtext-my-4 richtext-rounded-lg richtext-border richtext-p-4',
           {
-            'richtext-bg-[#1f6feb1f] richtext-border-[#1f6feb]': type === 'note',
-            'richtext-bg-[#2386361f] richtext-border-[#238636]': type === 'tip',
-            'richtext-bg-[#ab7df81f] richtext-border-[#ab7df8]': type === 'important',
-            'richtext-bg-[#d299221f] richtext-border-[#d29922]': type === 'warning',
-            'richtext-bg-[#f851491f] richtext-border-[#f85149]': type === 'caution',
+            'richtext-border-[#1f6feb] richtext-bg-[#1f6feb1f]': type === 'note',
+            'richtext-border-[#238636] richtext-bg-[#2386361f]': type === 'tip',
+            'richtext-border-[#ab7df8] richtext-bg-[#ab7df81f]': type === 'important',
+            'richtext-border-[#d29922] richtext-bg-[#d299221f]': type === 'warning',
+            'richtext-border-[#f85149] richtext-bg-[#f851491f]': type === 'caution',
           }
         )}
       >

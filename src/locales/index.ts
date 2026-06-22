@@ -6,10 +6,10 @@ import { DEFAULT_LANG_VALUE } from '@/constants';
 import en from './en';
 import fi from './fi';
 import hu_HU from './hu';
+import ja from './ja';
 import pt_BR from './pt-br';
 import vi from './vi';
 import zh_CN from './zh-cn';
-import ja from './ja';
 
 const LANG = {
   currentLang: DEFAULT_LANG_VALUE,

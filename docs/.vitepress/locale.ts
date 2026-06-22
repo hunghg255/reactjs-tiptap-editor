@@ -1,8 +1,8 @@
-import type { DefaultTheme, HeadConfig, LocaleConfig } from 'vitepress';
-
 import { version } from '../../package.json';
 
 import { createTranslate } from './i18n/utils';
+
+import type { DefaultTheme, HeadConfig, LocaleConfig } from 'vitepress';
 
 const docsLink = 'https://reactjs-tiptap-editor.vercel.app';
 const githubRepo = 'hunghg255/reactjs-tiptap-editor';

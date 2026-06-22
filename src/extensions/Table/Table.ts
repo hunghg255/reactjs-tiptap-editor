@@ -8,10 +8,10 @@ import {
   type TableHeaderOptions,
 } from '@tiptap/extension-table';
 
+import { TableCellBackground } from './TableCellBackground';
+
 import type { TableCellBackgroundOptions } from './TableCellBackground';
 import type { GeneralOptions } from '@/types';
-
-import { TableCellBackground } from './TableCellBackground';
 
 export interface TableOptions extends GeneralOptions<TableOptions> {
   HTMLAttributes: Record<string, any>;

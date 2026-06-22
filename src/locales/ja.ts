@@ -15,7 +15,7 @@ const locale = {
   'editor.draghandle.insertBlock': 'ブロックを挿入',
   'editor.draghandle.grip': 'クリックでオプション、長押しでドラッグ',
   'editor.copyToClipboard': 'クリップボードにコピー',
-  'editor.slash': "「/」でコマンドを表示",
+  'editor.slash': '「/」でコマンドを表示',
   'editor.slash.empty': '該当なし',
   'editor.slash.format': '書式',
   'editor.slash.insert': '挿入',

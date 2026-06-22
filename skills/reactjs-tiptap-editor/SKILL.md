@@ -44,6 +44,7 @@ Reactjs Tiptap Editor Progress:
 ## Step 1: Understand the Integration Target
 
 Ask:
+
 - Is the app using Vite, Next.js, Remix, or another React setup?
 - Is there already a `useEditor` instance, `EditorContent`, or Tiptap extension array?
 - Does the user need a runnable component, a patch in an existing file, or an explanation?
@@ -66,6 +67,7 @@ If a requested feature is not in the references, inspect the local repo docs/sou
 ## Step 3: Plan the Minimal Implementation
 
 Ask:
+
 - Which extension nodes/marks are required for the user's visible UI?
 - Is each `RichText*` toolbar component backed by the matching extension in `extensions`?
 - Does any selected feature require extra package installs or CSS imports?
@@ -102,12 +104,14 @@ When editing an existing repo, follow existing file boundaries and naming. Avoid
 ## Output Style
 
 For implementation answers:
+
 - Show package installs only when dependencies are missing or feature-specific.
 - Provide complete imports for code snippets.
 - Mention any required extra CSS import.
 - State which extensions and toolbar/bubble components were paired.
 
 For reviews:
+
 - Lead with bugs/risks and file references.
 - Separate "must fix" from optional cleanup.
 

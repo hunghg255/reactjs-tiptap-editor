@@ -15,6 +15,7 @@ Use this before delivering generated code or reviewing a user's integration.
 ## Feature Pairing
 
 Ask:
+
 - Does `RichTextImage` pair with `Image`?
 - Does `RichTextBubbleImage` pair with `Image`?
 - Does `SlashCommandList` pair with `SlashCommand`?

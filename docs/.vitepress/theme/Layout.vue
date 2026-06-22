@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useData } from 'vitepress';
-import DefaultTheme from 'vitepress/theme';
-import { nextTick, provide } from 'vue';
 import {
   NolebaseEnhancedReadabilitiesMenu,
   NolebaseEnhancedReadabilitiesScreenMenu,
 } from '@nolebase/vitepress-plugin-enhanced-readabilities/client';
 import { NolebaseHighlightTargetedHeading } from '@nolebase/vitepress-plugin-highlight-targeted-heading/client';
+import { useData } from 'vitepress';
+import DefaultTheme from 'vitepress/theme';
+import { nextTick, provide } from 'vue';
 
 import '@nolebase/vitepress-plugin-enhanced-readabilities/client/style.css';
 import '@nolebase/vitepress-plugin-enhanced-mark/client/style.css';
