@@ -45,7 +45,8 @@ function ImageView(props: any) {
   });
 
   const { align, inline } = props?.node?.attrs;
-  const isInline = inline === true || inline === 'true';
+  const isBlockNode = props?.node?.type?.name === 'imageBlock';
+  const isInline = !isBlockNode && (inline === true || inline === 'true');
   const inlineFloat = isInline && (align === 'left' || align === 'right');
 
   const imgAttrs = useMemo(() => {
@@ -227,7 +228,7 @@ function ImageView(props: any) {
 
   return (
     <NodeViewWrapper
-      as='span'
+      as={isBlockNode ? 'div' : 'span'}
       className='image-view'
       style={{
         float: inlineFloat ? align : undefined,
