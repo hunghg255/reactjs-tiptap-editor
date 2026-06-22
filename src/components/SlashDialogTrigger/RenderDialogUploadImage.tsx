@@ -39,6 +39,7 @@ export function RenderDialogUploadImage() {
   const { editorDisabled } = useToggleActive();
 
   const [open, setOpen] = useState(false);
+  const [isCropDialogOpen, setIsCropDialogOpen] = useState(false);
 
   const EVENT_ID = EVENTS.UPLOAD_IMAGE((editor as any).id);
 
@@ -155,8 +156,16 @@ export function RenderDialogUploadImage() {
   }
 
   return (
-    <Dialog onOpenChange={setOpen} open={open}>
-      <DialogContent>
+    <Dialog
+      onOpenChange={(open) => {
+        setOpen(open);
+        if (!open) {
+          setIsCropDialogOpen(false);
+        }
+      }}
+      open={open}
+    >
+      <DialogContent className={isCropDialogOpen ? 'richtext-hidden' : undefined}>
         <DialogTitle>{t('editor.image.dialog.title')}</DialogTitle>
 
         <Tabs
@@ -219,8 +228,12 @@ export function RenderDialogUploadImage() {
                 editor={editor}
                 imageInline={imageInline}
                 onClose={() => {
+                  setOpen(false);
+                  setIsCropDialogOpen(false);
                   setAlt('');
+                  setImageInline(defaultInline);
                 }}
+                onOpenChange={setIsCropDialogOpen}
               />
             </div>
 

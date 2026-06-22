@@ -25,6 +25,7 @@ export type ExtensionNameKeys =
   | 'strike'
   | 'color'
   | 'highlight'
+  | 'painter'
   | 'heading'
   | 'textAlign'
   | 'bulletList'

@@ -36,6 +36,7 @@ Load this before adding imports, toolbar buttons, bubble menus, or extension arr
 | Export Word      | `reactjs-tiptap-editor/exportword`       | `ExportWord`, `RichTextExportWord`                             |
 | Font family      | `reactjs-tiptap-editor/fontfamily`       | `FontFamily`, `RichTextFontFamily`                             |
 | Font size        | `reactjs-tiptap-editor/fontsize`         | `FontSize`, `RichTextFontSize`                                 |
+| Format painter   | `reactjs-tiptap-editor/formatpainter`    | `FormatPainter`, `RichTextFormatPainter`                       |
 | Heading          | `reactjs-tiptap-editor/heading`          | `Heading`, `RichTextHeading`                                   |
 | Highlight        | `reactjs-tiptap-editor/highlight`        | `Highlight`, `RichTextHighlight`                               |
 | History          | `reactjs-tiptap-editor/history`          | `History`, `RichTextUndo`, `RichTextRedo`                      |

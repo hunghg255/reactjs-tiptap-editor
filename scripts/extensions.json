@@ -90,6 +90,13 @@
     "alias": ["FontSize"]
   },
   {
+    "name": "FormatPainter.ts",
+    "package": "FormatPainter",
+    "alias": [
+      "FormatPainter"
+    ]
+  },
+  {
     "name": "Heading.ts",
     "package": "Heading",
     "alias": ["Heading"]

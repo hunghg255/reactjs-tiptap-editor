@@ -35,6 +35,7 @@ export function RichTextImage() {
   const { editorDisabled } = useToggleActive();
 
   const [open, setOpen] = useState(false);
+  const [isCropDialogOpen, setIsCropDialogOpen] = useState(false);
 
   const [isUploading, setIsUploading] = useState(false);
   const extension = useExtension(Image.name);
@@ -147,7 +148,15 @@ export function RichTextImage() {
   }
 
   return (
-    <Dialog onOpenChange={setOpen} open={open}>
+    <Dialog
+      onOpenChange={(open) => {
+        setOpen(open);
+        if (!open) {
+          setIsCropDialogOpen(false);
+        }
+      }}
+      open={open}
+    >
       <DialogTrigger asChild>
         <ActionButton
           disabled={editorDisabled}
@@ -160,7 +169,7 @@ export function RichTextImage() {
         />
       </DialogTrigger>
 
-      <DialogContent>
+      <DialogContent className={isCropDialogOpen ? 'richtext-hidden' : undefined}>
         <DialogTitle>{t('editor.image.dialog.title')}</DialogTitle>
 
         <Tabs
@@ -223,8 +232,12 @@ export function RichTextImage() {
                 editor={editor}
                 imageInline={imageInline}
                 onClose={() => {
+                  setOpen(false);
+                  setIsCropDialogOpen(false);
                   setAlt('');
+                  setImageInline(defaultInline);
                 }}
+                onOpenChange={setIsCropDialogOpen}
               />
             </div>
 

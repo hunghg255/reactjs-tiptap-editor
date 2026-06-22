@@ -6,7 +6,7 @@ const locale = {
   'editor.default': 'Padrão',
   'editor.recent': 'Usado recentemente',
   'editor.nofill': 'Sem preenchimento',
-  'editor.format': 'Format Painter',
+  'editor.format': 'Pincel de formatação',
   'editor.delete': 'Deletar',
   'editor.edit': 'Editar',
   'editor.settings': 'Configurações',
