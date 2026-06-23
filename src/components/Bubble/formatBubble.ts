@@ -2,6 +2,7 @@ import { deleteSelection } from '@tiptap/pm/commands';
 
 import { ActionButton } from '@/components';
 import { BUBBLE_TEXT_LIST, IMAGE_SIZE, VIDEO_SIZE } from '@/constants';
+import { Image, ImageBlock } from '@/extensions/Image';
 
 import type {
   ButtonViewParams,
@@ -75,6 +76,18 @@ export interface BubbleOptions<T> {
   button: BubbleView<T>;
 }
 
+function getActiveImageNodeName(editor: Editor) {
+  return editor.isActive(ImageBlock.name) ? ImageBlock.name : Image.name;
+}
+
+function getActiveImageAttributes(editor: Editor) {
+  return editor.getAttributes(getActiveImageNodeName(editor));
+}
+
+function isActiveImage(editor: Editor, attrs?: Record<string, any>) {
+  return editor.isActive(Image.name, attrs) || editor.isActive(ImageBlock.name, attrs);
+}
+
 function imageSizeMenus(editor: Editor, t: any): BubbleMenuItem[] {
   const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large'];
   const icons: NonNullable<ButtonViewReturn['componentProps']['icon']>[] = [
@@ -90,7 +103,7 @@ function imageSizeMenus(editor: Editor, t: any): BubbleMenuItem[] {
       tooltip: t(`editor.${size.replace('-', '.')}.tooltip` as any),
       icon: icons[i],
       action: () => editor.commands.updateImage({ width: IMAGE_SIZE[size] }),
-      isActive: () => editor.isActive('image', { width: IMAGE_SIZE[size] }),
+      isActive: () => isActiveImage(editor, { width: IMAGE_SIZE[size] }),
     },
   }));
 }
@@ -129,7 +142,7 @@ function imageAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
       tooltip: t(`editor.textalign.${k}.tooltip`),
       icon: iconMap[k],
       action: () => editor.commands?.setAlignImage?.(k),
-      isActive: () => editor.isActive({ align: k }) || false,
+      isActive: () => isActiveImage(editor, { align: k }) || false,
       disabled: false,
     },
   }));
@@ -246,7 +259,7 @@ export function getBubbleImage(editor: Editor, t: any): BubbleMenuItem[] {
         tooltip: t('editor.tooltip.flipX'),
         icon: 'FlipX',
         action: () => {
-          const image = editor.getAttributes('image');
+          const image = getActiveImageAttributes(editor);
           const { flipX } = image as any;
           editor
             .chain()
@@ -266,7 +279,7 @@ export function getBubbleImage(editor: Editor, t: any): BubbleMenuItem[] {
         tooltip: t('editor.tooltip.flipY'),
         icon: 'FlipY',
         action: () => {
-          const image = editor.getAttributes('image');
+          const image = getActiveImageAttributes(editor);
           const { flipY } = image as any;
           editor
             .chain()

@@ -109,7 +109,8 @@ export function createImageUpload({
           }
 
           const imageSrc = typeof src === 'object' ? result : src;
-          const node = schema.nodes.image?.create({
+          const imageNodeName = defaultInline ? 'image' : 'imageBlock';
+          const node = (schema.nodes[imageNodeName] || schema.nodes.image)?.create({
             src: imageSrc,
             inline: defaultInline,
           });

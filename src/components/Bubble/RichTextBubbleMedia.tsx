@@ -7,7 +7,7 @@ import {
   getBubbleImageGif,
   getBubbleVideo,
 } from '@/components/Bubble/formatBubble';
-import { Image } from '@/extensions/Image';
+import { Image, ImageBlock } from '@/extensions/Image';
 import { ImageGif } from '@/extensions/ImageGif';
 import { Video } from '@/extensions/Video';
 import { useLocale } from '@/locales';
@@ -40,7 +40,7 @@ function ItemA({ item, disabled, editor }: any) {
 }
 
 function isImageNode(node: any) {
-  return node.type.name === Image.name;
+  return node.type.name === Image.name || node.type.name === ImageBlock.name;
 }
 
 function isImageGifNode(node: any) {

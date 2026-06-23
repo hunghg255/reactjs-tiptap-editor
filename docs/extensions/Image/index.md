@@ -97,6 +97,19 @@ const App = () => {
 };
 ```
 
+## Inline and block images
+
+`Image.configure()` now registers both image node types used by the editor:
+
+- `image`: the legacy inline node, kept for existing ProseMirror JSON compatibility.
+- `imageBlock`: a block-level node used when `defaultInline` is `false` or when `setImageInline({ inline: false })` / `setImageBlock()` inserts an image.
+
+Existing HTML is still accepted:
+
+- `<div class="image"><img ... /></div>` is parsed as `imageBlock`.
+- `<span class="image"><img inline="true" ... /></span>` is parsed as the inline `image` node.
+- Old JSON with `type: "image"` continues to load. If you want to migrate stored JSON, use `migrateImageJSONToImageBlock(json)` before saving the migrated document.
+
 ## Image Gif
 
 - ImageGif is a node extension that allows you to add an ImageGif to your editor.
