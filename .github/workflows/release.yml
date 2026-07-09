@@ -34,7 +34,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install
-        run: pnpm install
+        run: pnpm install --frozen-lockfile --config.minimum-release-age=0
 
       - run: npx changeloggithub@latest
         env:
