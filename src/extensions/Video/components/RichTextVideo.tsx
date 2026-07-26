@@ -1,13 +1,15 @@
-import { useMemo, useRef, useState } from 'react';
+import { type ChangeEvent, useMemo, useRef, useState } from 'react';
 
 import {
   ActionButton,
   Button,
+  IconComponent,
   Input,
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
+  useToast,
 } from '@/components';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Video } from '@/extensions/Video/Video';
@@ -20,6 +22,7 @@ import { checkIsVideoUrl } from '@/utils/checkIsVideoUrl';
 
 export function RichTextVideo() {
   const { t } = useLocale();
+  const { toast } = useToast();
 
   const editor = useEditorInstance();
   const buttonProps = useButtonProps(Video.name);
@@ -34,6 +37,7 @@ export function RichTextVideo() {
   const [error, setError] = useState<string>('');
 
   const [open, setOpen] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const extension = useExtension(Video.name);
 
   const uploadOptions = useMemo(() => {
@@ -42,29 +46,50 @@ export function RichTextVideo() {
     return uploadOptions;
   }, [extension]);
 
-  async function handleFile(event: any) {
-    const files = event?.target?.files;
-    if (!editor || editor.isDestroyed || files.length === 0) {
+  async function handleFile(event: ChangeEvent<HTMLInputElement>) {
+    const files = event.target.files;
+    if (!editor || editor.isDestroyed || !files?.length || isUploading) {
+      event.target.value = '';
       return;
     }
     const file = files[0];
 
-    let src = '';
-    if (uploadOptions.upload) {
-      src = await uploadOptions.upload(file);
-    } else {
-      src = URL.createObjectURL(file);
-    }
+    setIsUploading(true);
+    try {
+      let src = '';
+      if (uploadOptions.upload) {
+        src = await uploadOptions.upload(file);
+      } else {
+        src = URL.createObjectURL(file);
+      }
 
-    editor
-      .chain()
-      .focus()
-      .setVideo({
-        src,
-        width: '100%',
-      })
-      .run();
-    setOpen(false);
+      editor
+        .chain()
+        .focus()
+        .setVideo({
+          src,
+          width: '100%',
+        })
+        .run();
+      setOpen(false);
+    } catch (error) {
+      console.error('Error uploading video', error);
+      if (uploadOptions.onError) {
+        uploadOptions.onError({
+          type: 'upload',
+          message: t('editor.upload.error'),
+          file,
+        });
+      } else {
+        toast({
+          variant: 'destructive',
+          title: t('editor.upload.error'),
+        });
+      }
+    } finally {
+      setIsUploading(false);
+      event.target.value = '';
+    }
   }
   function handleLink(e: any) {
     e.preventDefault();
@@ -130,8 +155,21 @@ export function RichTextVideo() {
 
           <TabsContent value='upload'>
             <div className='richtext-flex richtext-items-center richtext-gap-[10px]'>
-              <Button className='richtext-mt-1 richtext-w-full' onClick={handleClick} size='sm'>
-                {t('editor.video.dialog.tab.upload')}
+              <Button
+                className='richtext-mt-1 richtext-w-full'
+                disabled={isUploading}
+                onClick={handleClick}
+                size='sm'
+              >
+                {isUploading ? (
+                  <>
+                    {t('editor.video.dialog.uploading')}
+
+                    <IconComponent className='richtext-ml-1 richtext-animate-spin' name='Loader' />
+                  </>
+                ) : (
+                  t('editor.video.dialog.tab.upload')
+                )}
               </Button>
             </div>
 

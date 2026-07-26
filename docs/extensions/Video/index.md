@@ -45,7 +45,28 @@ const extensions = [
 
   ...
   // Import Extensions Here
-  Video// [!code ++]
+  Video.configure({// [!code ++]
+    resourceVideo: 'both',// [!code ++]
+    upload: async (file) => {// [!code ++]
+      const formData = new FormData();// [!code ++]
+      formData.append('file', file);// [!code ++]
+// [!code ++]
+      const response = await fetch('/api/videos', {// [!code ++]
+        method: 'POST',// [!code ++]
+        body: formData,// [!code ++]
+      });// [!code ++]
+// [!code ++]
+      if (!response.ok) {// [!code ++]
+        throw new Error('Video upload failed');// [!code ++]
+      }// [!code ++]
+// [!code ++]
+      const { url } = await response.json();// [!code ++]
+      return url;// [!code ++]
+    },// [!code ++]
+    onError: ({ message, file }) => {// [!code ++]
+      console.error(message, file?.name);// [!code ++]
+    },// [!code ++]
+  })// [!code ++]
 ];
 
 const RichTextToolbar = () => {
@@ -103,7 +124,41 @@ interface VideoOptions extends GeneralOptions<VideoOptions> {
   /** Function for uploading files */
   upload?: (file: File) => Promise<string>;
 
+  /** Callback invoked when a video upload fails */
+  onError?: (error: { type: 'upload'; message: string; file?: File }) => void;
+
   /** The source URL of the video */
   resourceVideo: 'upload' | 'link' | 'both';
+
+  /**
+   * List of allowed video hosting providers.
+   * Use ['.'] to allow any URL.
+   *
+   * @default ['.']
+   */
+  videoProviders?: string[];
 }
 ```
+
+## Options
+
+| Option            | Type                                                                | Description                                                                         | Required | Default                       |
+| ----------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------- | ----------------------------- |
+| `allowFullscreen` | `boolean`                                                           | Allows embedded videos to enter fullscreen mode.                                    | No       | `true`                        |
+| `frameborder`     | `boolean`                                                           | Displays a border around the embedded video frame.                                  | No       | `false`                       |
+| `width`           | `number \| string`                                                  | Sets the default video width.                                                       | No       | `VIDEO_SIZE.size-medium`      |
+| `HTMLAttributes`  | `Record<string, any>`                                               | Adds HTML attributes to the video wrapper.                                          | No       | `{ class: 'iframe-wrapper' }` |
+| `upload`          | `(file: File) => Promise<string>`                                   | Uploads a local video and resolves with the URL inserted into the editor.           | No       | None                          |
+| `onError`         | `(error: { type: 'upload'; message: string; file?: File }) => void` | Handles upload failures. When omitted, the editor displays its default error toast. | No       | None                          |
+| `resourceVideo`   | `'upload' \| 'link' \| 'both'`                                      | Controls whether users can add videos by local upload, URL, or both.                | No       | `'both'`                      |
+| `videoProviders`  | `string[]`                                                          | Restricts linked videos to matching providers. Use `['.']` to accept any URL.       | No       | `['.']`                       |
+
+## Upload behavior
+
+While the `upload` promise is pending, both the toolbar dialog and the slash-command dialog stay
+open, disable the upload button, and show a localized loading indicator. When the promise resolves,
+the returned URL is inserted into the editor and the dialog closes.
+
+If the promise rejects, no video is inserted. The dialog remains open so the user can retry the same
+file. Configure `onError` to provide custom error handling; otherwise, the editor shows its default
+upload error toast.

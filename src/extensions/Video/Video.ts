@@ -36,6 +36,9 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
   /** Function for uploading files */
   upload?: (file: File) => Promise<string>;
 
+  /** Callback invoked when a video upload fails */
+  onError?: (error: { type: 'upload'; message: string; file?: File }) => void;
+
   /** The source URL of the video */
   resourceVideo: 'upload' | 'link' | 'both';
 
