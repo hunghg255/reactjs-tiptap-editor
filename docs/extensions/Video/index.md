@@ -49,23 +49,9 @@ const extensions = [
     resourceVideo: 'both',// [!code ++]
     acceptMimes: ['video/mp4', 'video/webm'],// [!code ++]
     maxSize: 100 * 1024 * 1024,// [!code ++]
-    multiple: false,// [!code ++]
-    upload: async (file) => {// [!code ++]
-      const formData = new FormData();// [!code ++]
-      formData.append('file', file);// [!code ++]
-// [!code ++]
-      const response = await fetch('/api/videos', {// [!code ++]
-        method: 'POST',// [!code ++]
-        body: formData,// [!code ++]
-      });// [!code ++]
-// [!code ++]
-      if (!response.ok) {// [!code ++]
-        throw new Error('Video upload failed');// [!code ++]
-      }// [!code ++]
-// [!code ++]
-      const { url } = await response.json();// [!code ++]
-      return url;// [!code ++]
-    },// [!code ++]
+    multiple: true,// [!code ++]
+    uploadConcurrency: 3,// [!code ++]
+    upload: (file, { onProgress } = {}) => uploadVideo(file, onProgress),// [!code ++]
     onError: ({ message, file }) => {// [!code ++]
       console.error(message, file?.name);// [!code ++]
     },// [!code ++]
@@ -98,9 +84,51 @@ const App = () => {
 };
 ```
 
+`fetch` does not expose upload byte progress. Use `XMLHttpRequest`, Axios, or a storage SDK that
+reports transferred bytes when you need a real progress bar:
+
+```ts
+function uploadVideo(
+  file: File,
+  onProgress?: (progress: { loaded: number; total: number }) => void
+) {
+  return new Promise<string>((resolve, reject) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const request = new XMLHttpRequest();
+    request.open('POST', '/api/videos');
+    request.upload.addEventListener('progress', (event) => {
+      if (event.lengthComputable) {
+        onProgress?.({ loaded: event.loaded, total: event.total });
+      }
+    });
+    request.addEventListener('load', () => {
+      if (request.status < 200 || request.status >= 300) {
+        reject(new Error('Video upload failed'));
+        return;
+      }
+
+      resolve(JSON.parse(request.responseText).url);
+    });
+    request.addEventListener('error', () => reject(new Error('Video upload failed')));
+    request.send(formData);
+  });
+}
+```
+
 ## Props
 
 ```ts
+interface VideoUploadProgress {
+  loaded: number;
+  total: number;
+}
+
+interface VideoUploadContext {
+  onProgress?: (progress: VideoUploadProgress) => void;
+}
+
 interface VideoOptions extends GeneralOptions<VideoOptions> {
   /**
    * Indicates whether fullscreen play is allowed
@@ -125,10 +153,13 @@ interface VideoOptions extends GeneralOptions<VideoOptions> {
     [key: string]: any;
   };
   /** Function for uploading files */
-  upload?: (file: File) => Promise<string>;
+  upload?: (file: File, context?: VideoUploadContext) => Promise<string>;
 
   /** Whether multiple videos can be selected and uploaded at once */
   multiple?: boolean;
+
+  /** Maximum number of videos uploaded concurrently */
+  uploadConcurrency?: number;
 
   /** Accepted video MIME types or file extensions */
   acceptMimes?: string[];
@@ -154,29 +185,34 @@ interface VideoOptions extends GeneralOptions<VideoOptions> {
 
 ## Options
 
-| Option            | Type                                                                                    | Description                                                                                        | Required | Default                       |
-| ----------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------- | ----------------------------- |
-| `allowFullscreen` | `boolean`                                                                               | Allows embedded videos to enter fullscreen mode.                                                   | No       | `true`                        |
-| `frameborder`     | `boolean`                                                                               | Displays a border around the embedded video frame.                                                 | No       | `false`                       |
-| `width`           | `number \| string`                                                                      | Sets the default video width.                                                                      | No       | `VIDEO_SIZE.size-medium`      |
-| `HTMLAttributes`  | `Record<string, any>`                                                                   | Adds HTML attributes to the video wrapper.                                                         | No       | `{ class: 'iframe-wrapper' }` |
-| `upload`          | `(file: File) => Promise<string>`                                                       | Uploads a local video and resolves with the URL inserted into the editor.                          | No       | None                          |
-| `multiple`        | `boolean`                                                                               | Allows selecting and uploading multiple videos.                                                    | No       | `true`                        |
-| `acceptMimes`     | `string[]`                                                                              | Restricts local files by MIME type or extension; wildcard values such as `video/*` are supported.  | No       | `['video/*']`                 |
-| `maxSize`         | `number`                                                                                | Maximum size of each local video in bytes. No size limit is applied when omitted.                  | No       | None                          |
-| `onError`         | `(error: { type: 'size' \| 'type' \| 'upload'; message: string; file?: File }) => void` | Handles validation and upload failures. When omitted, the editor displays its default error toast. | No       | None                          |
-| `resourceVideo`   | `'upload' \| 'link' \| 'both'`                                                          | Controls whether users can add videos by local upload, URL, or both.                               | No       | `'both'`                      |
-| `videoProviders`  | `string[]`                                                                              | Restricts linked videos to matching providers. Use `['.']` to accept any URL.                      | No       | `['.']`                       |
+| Option              | Type                                                                                    | Description                                                                                        | Required | Default                       |
+| ------------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------- | ----------------------------- |
+| `allowFullscreen`   | `boolean`                                                                               | Allows embedded videos to enter fullscreen mode.                                                   | No       | `true`                        |
+| `frameborder`       | `boolean`                                                                               | Displays a border around the embedded video frame.                                                 | No       | `false`                       |
+| `width`             | `number \| string`                                                                      | Sets the default video width.                                                                      | No       | `VIDEO_SIZE.size-medium`      |
+| `HTMLAttributes`    | `Record<string, any>`                                                                   | Adds HTML attributes to the video wrapper.                                                         | No       | `{ class: 'iframe-wrapper' }` |
+| `upload`            | `(file: File, context?: VideoUploadContext) => Promise<string>`                         | Uploads a local video, optionally reports byte progress, and resolves with its URL.                | No       | None                          |
+| `multiple`          | `boolean`                                                                               | Allows selecting and uploading multiple videos.                                                    | No       | `true`                        |
+| `uploadConcurrency` | `number`                                                                                | Limits the number of videos uploaded at the same time. Values below `1` are treated as `1`.        | No       | `3`                           |
+| `acceptMimes`       | `string[]`                                                                              | Restricts local files by MIME type or extension; wildcard values such as `video/*` are supported.  | No       | `['video/*']`                 |
+| `maxSize`           | `number`                                                                                | Maximum size of each local video in bytes. No size limit is applied when omitted.                  | No       | None                          |
+| `onError`           | `(error: { type: 'size' \| 'type' \| 'upload'; message: string; file?: File }) => void` | Handles validation and upload failures. When omitted, the editor displays its default error toast. | No       | None                          |
+| `resourceVideo`     | `'upload' \| 'link' \| 'both'`                                                          | Controls whether users can add videos by local upload, URL, or both.                               | No       | `'both'`                      |
+| `videoProviders`    | `string[]`                                                                              | Restricts linked videos to matching providers. Use `['.']` to accept any URL.                      | No       | `['.']`                       |
 
 ## Upload behavior
 
 While the `upload` promise is pending, both the toolbar dialog and the slash-command dialog stay
-open, disable the upload button, and show a localized loading indicator. When the promise resolves,
-the returned URL is inserted into the editor and the dialog closes.
+open and disable the upload button. Call `context.onProgress({ loaded, total })` to show real,
+byte-weighted total progress and per-file progress. If an existing upload function ignores the
+optional second argument, it remains compatible and the editor shows an indeterminate spinner.
 
-If the promise rejects, no video is inserted. The dialog remains open so the user can retry the same
-file. Configure `onError` to provide custom error handling; otherwise, the editor shows its default
-upload error toast.
+When all uploads resolve, their URLs are inserted in selection order and the dialog closes. A file
+that reaches 100% before its upload promise resolves is shown as processing.
+
+If one upload rejects, other successful videos are still inserted. The failed file remains marked in
+the open dialog so the user can select it again. Configure `onError` to provide custom error handling;
+otherwise, the editor shows its default upload error toast.
 
 `acceptMimes` and `maxSize` validate every selected file before uploading. With `multiple: true`, all
-valid files upload in parallel and are inserted in selection order after every upload succeeds.
+valid files are queued and up to `uploadConcurrency` files upload at once.

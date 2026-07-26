@@ -1,29 +1,19 @@
-import { type ChangeEvent, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 
-import {
-  Button,
-  IconComponent,
-  Input,
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-  useToast,
-} from '@/components';
+import { Button, Input, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
 import { useListener } from '@/components/ReactBus';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
-import { DEFAULT_VIDEO_OPTIONS, Video } from '@/extensions/Video/Video';
+import { VideoUploadTab } from '@/extensions/Video/components/VideoUploadTab';
+import { Video } from '@/extensions/Video/Video';
 import { useToggleActive } from '@/hooks/useActive';
 import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { checkIsVideoUrl } from '@/utils/checkIsVideoUrl';
 import { EVENTS } from '@/utils/customEvents/events.constant';
-import { validateFiles } from '@/utils/validateFile';
 
 export function RenderDialogUploadVideo() {
   const { t } = useLocale();
-  const { toast } = useToast();
 
   const editor = useEditorInstance();
   // const buttonProps = useButtonProps(Video.name);
@@ -36,7 +26,6 @@ export function RenderDialogUploadVideo() {
   const { editorDisabled } = useToggleActive();
 
   const [link, setLink] = useState<string>('');
-  const fileInput = useRef<HTMLInputElement>(null);
 
   const [error, setError] = useState<string>('');
 
@@ -54,73 +43,6 @@ export function RenderDialogUploadVideo() {
     return uploadOptions;
   }, [extension]);
 
-  async function handleFile(event: ChangeEvent<HTMLInputElement>) {
-    const files = event.target.files;
-    if (!editor || editor.isDestroyed || !files?.length || isUploading) {
-      event.target.value = '';
-      return;
-    }
-    const validFiles = validateFiles(Array.from(files), {
-      acceptMimes: uploadOptions.acceptMimes ?? DEFAULT_VIDEO_OPTIONS.acceptMimes,
-      maxSize: uploadOptions.maxSize ?? Number.POSITIVE_INFINITY,
-      t,
-      toast,
-      onError: uploadOptions.onError,
-    });
-
-    if (validFiles.length === 0) {
-      event.target.value = '';
-      return;
-    }
-
-    const filesToUpload =
-      (uploadOptions.multiple ?? DEFAULT_VIDEO_OPTIONS.multiple)
-        ? validFiles
-        : validFiles.slice(0, 1);
-
-    setIsUploading(true);
-    try {
-      const srcs = await Promise.all(
-        filesToUpload.map((file) => {
-          return uploadOptions.upload
-            ? uploadOptions.upload(file)
-            : Promise.resolve(URL.createObjectURL(file));
-        })
-      );
-
-      if (editor.isDestroyed) {
-        return;
-      }
-
-      srcs.forEach((src) => {
-        editor
-          .chain()
-          .focus()
-          .setVideo({
-            src,
-            width: '100%',
-          })
-          .run();
-      });
-      setOpen(false);
-    } catch (error) {
-      console.error('Error uploading video', error);
-      if (uploadOptions.onError) {
-        uploadOptions.onError({
-          type: 'upload',
-          message: t('editor.upload.error'),
-        });
-      } else {
-        toast({
-          variant: 'destructive',
-          title: t('editor.upload.error'),
-        });
-      }
-    } finally {
-      setIsUploading(false);
-      event.target.value = '';
-    }
-  }
   function handleLink(e: any) {
     e.preventDefault();
     e.stopPropagation();
@@ -139,11 +61,6 @@ export function RenderDialogUploadVideo() {
       .run();
     setOpen(false);
     setLink('');
-  }
-
-  function handleClick(e: any) {
-    e.preventDefault();
-    fileInput.current?.click();
   }
 
   if (editorDisabled) {
@@ -185,37 +102,11 @@ export function RenderDialogUploadVideo() {
           </TabsList>
 
           <TabsContent value='upload'>
-            <div className='richtext-flex richtext-items-center richtext-gap-[10px]'>
-              <Button
-                className='richtext-mt-1 richtext-w-full'
-                disabled={isUploading}
-                onClick={handleClick}
-                size='sm'
-              >
-                {isUploading ? (
-                  <>
-                    {t('editor.video.dialog.uploading')}
-
-                    <IconComponent className='richtext-ml-1 richtext-animate-spin' name='Loader' />
-                  </>
-                ) : (
-                  t('editor.video.dialog.tab.upload')
-                )}
-              </Button>
-            </div>
-
-            <input
-              accept={
-                (uploadOptions.acceptMimes ?? DEFAULT_VIDEO_OPTIONS.acceptMimes).join(',') ||
-                'video/*'
-              }
-              multiple={uploadOptions.multiple ?? DEFAULT_VIDEO_OPTIONS.multiple}
-              onChange={handleFile}
-              ref={fileInput}
-              type='file'
-              style={{
-                display: 'none',
-              }}
+            <VideoUploadTab
+              editor={editor}
+              onUploadComplete={() => setOpen(false)}
+              onUploadingChange={setIsUploading}
+              uploadOptions={uploadOptions}
             />
           </TabsContent>
 

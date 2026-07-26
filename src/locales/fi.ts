@@ -93,6 +93,7 @@ const locale = {
   'editor.video.tooltip': 'Video',
   'editor.video.dialog.tab.upload': 'Lataa',
   'editor.video.dialog.uploading': 'Ladataan',
+  'editor.video.dialog.processing': 'Käsitellään',
   'editor.video.dialog.title': 'Upota tai lataa video',
   'editor.video.dialog.link': 'Linkki',
   'editor.video.dialog.placeholder': 'Linkki',

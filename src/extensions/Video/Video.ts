@@ -7,6 +7,18 @@ import type { GeneralOptions, VideoAlignment } from '@/types';
 
 export * from '@/extensions/Video/components/RichTextVideo';
 
+export interface VideoUploadProgress {
+  /** Number of bytes uploaded so far */
+  loaded: number;
+  /** Total number of bytes to upload */
+  total: number;
+}
+
+export interface VideoUploadContext {
+  /** Reports upload byte progress. Omit calls when progress is unavailable. */
+  onProgress?: (progress: VideoUploadProgress) => void;
+}
+
 /**
  * Represents the interface for video options, extending GeneralOptions.
  */
@@ -34,10 +46,13 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
     [key: string]: any;
   };
   /** Function for uploading files */
-  upload?: (file: File) => Promise<string>;
+  upload?: (file: File, context?: VideoUploadContext) => Promise<string>;
 
   /** Whether multiple videos can be selected and uploaded at once */
   multiple?: boolean;
+
+  /** Maximum number of videos uploaded concurrently */
+  uploadConcurrency?: number;
 
   /** Accepted video MIME types or file extensions */
   acceptMimes?: string[];
@@ -64,8 +79,12 @@ export const DEFAULT_VIDEO_OPTIONS = {
   acceptMimes: ['video/*'],
   multiple: true,
   resourceVideo: 'both',
+  uploadConcurrency: 3,
   videoProviders: ['.'],
-} satisfies Pick<VideoOptions, 'acceptMimes' | 'multiple' | 'resourceVideo' | 'videoProviders'>;
+} satisfies Pick<
+  VideoOptions,
+  'acceptMimes' | 'multiple' | 'resourceVideo' | 'uploadConcurrency' | 'videoProviders'
+>;
 
 /**
  * Represents the type for setting video options
