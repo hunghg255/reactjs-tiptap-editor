@@ -12,13 +12,14 @@ import {
   useToast,
 } from '@/components';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Video } from '@/extensions/Video/Video';
+import { DEFAULT_VIDEO_OPTIONS, Video } from '@/extensions/Video/Video';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { checkIsVideoUrl } from '@/utils/checkIsVideoUrl';
+import { validateFiles } from '@/utils/validateFile';
 
 export function RichTextVideo() {
   const { t } = useLocale();
@@ -52,25 +53,48 @@ export function RichTextVideo() {
       event.target.value = '';
       return;
     }
-    const file = files[0];
+    const validFiles = validateFiles(Array.from(files), {
+      acceptMimes: uploadOptions.acceptMimes ?? DEFAULT_VIDEO_OPTIONS.acceptMimes,
+      maxSize: uploadOptions.maxSize ?? Number.POSITIVE_INFINITY,
+      t,
+      toast,
+      onError: uploadOptions.onError,
+    });
+
+    if (validFiles.length === 0) {
+      event.target.value = '';
+      return;
+    }
+
+    const filesToUpload =
+      (uploadOptions.multiple ?? DEFAULT_VIDEO_OPTIONS.multiple)
+        ? validFiles
+        : validFiles.slice(0, 1);
 
     setIsUploading(true);
     try {
-      let src = '';
-      if (uploadOptions.upload) {
-        src = await uploadOptions.upload(file);
-      } else {
-        src = URL.createObjectURL(file);
+      const srcs = await Promise.all(
+        filesToUpload.map((file) => {
+          return uploadOptions.upload
+            ? uploadOptions.upload(file)
+            : Promise.resolve(URL.createObjectURL(file));
+        })
+      );
+
+      if (editor.isDestroyed) {
+        return;
       }
 
-      editor
-        .chain()
-        .focus()
-        .setVideo({
-          src,
-          width: '100%',
-        })
-        .run();
+      srcs.forEach((src) => {
+        editor
+          .chain()
+          .focus()
+          .setVideo({
+            src,
+            width: '100%',
+          })
+          .run();
+      });
       setOpen(false);
     } catch (error) {
       console.error('Error uploading video', error);
@@ -78,7 +102,6 @@ export function RichTextVideo() {
         uploadOptions.onError({
           type: 'upload',
           message: t('editor.upload.error'),
-          file,
         });
       } else {
         toast({
@@ -117,7 +140,16 @@ export function RichTextVideo() {
   }
 
   return (
-    <Dialog onOpenChange={setOpen} open={open}>
+    <Dialog
+      onOpenChange={(nextOpen) => {
+        if (isUploading && !nextOpen) {
+          return;
+        }
+
+        setOpen(nextOpen);
+      }}
+      open={open}
+    >
       <DialogTrigger asChild>
         <ActionButton
           disabled={editorDisabled}
@@ -174,8 +206,11 @@ export function RichTextVideo() {
             </div>
 
             <input
-              accept='video/*'
-              multiple
+              accept={
+                (uploadOptions.acceptMimes ?? DEFAULT_VIDEO_OPTIONS.acceptMimes).join(',') ||
+                'video/*'
+              }
+              multiple={uploadOptions.multiple ?? DEFAULT_VIDEO_OPTIONS.multiple}
               onChange={handleFile}
               ref={fileInput}
               type='file'

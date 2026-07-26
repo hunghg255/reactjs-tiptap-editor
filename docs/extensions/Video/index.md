@@ -47,6 +47,9 @@ const extensions = [
   // Import Extensions Here
   Video.configure({// [!code ++]
     resourceVideo: 'both',// [!code ++]
+    acceptMimes: ['video/mp4', 'video/webm'],// [!code ++]
+    maxSize: 100 * 1024 * 1024,// [!code ++]
+    multiple: false,// [!code ++]
     upload: async (file) => {// [!code ++]
       const formData = new FormData();// [!code ++]
       formData.append('file', file);// [!code ++]
@@ -124,8 +127,17 @@ interface VideoOptions extends GeneralOptions<VideoOptions> {
   /** Function for uploading files */
   upload?: (file: File) => Promise<string>;
 
-  /** Callback invoked when a video upload fails */
-  onError?: (error: { type: 'upload'; message: string; file?: File }) => void;
+  /** Whether multiple videos can be selected and uploaded at once */
+  multiple?: boolean;
+
+  /** Accepted video MIME types or file extensions */
+  acceptMimes?: string[];
+
+  /** Maximum size of a single video in bytes. No limit is applied when omitted. */
+  maxSize?: number;
+
+  /** Callback invoked when video validation or upload fails */
+  onError?: (error: { type: 'size' | 'type' | 'upload'; message: string; file?: File }) => void;
 
   /** The source URL of the video */
   resourceVideo: 'upload' | 'link' | 'both';
@@ -142,16 +154,19 @@ interface VideoOptions extends GeneralOptions<VideoOptions> {
 
 ## Options
 
-| Option            | Type                                                                | Description                                                                         | Required | Default                       |
-| ----------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------- | ----------------------------- |
-| `allowFullscreen` | `boolean`                                                           | Allows embedded videos to enter fullscreen mode.                                    | No       | `true`                        |
-| `frameborder`     | `boolean`                                                           | Displays a border around the embedded video frame.                                  | No       | `false`                       |
-| `width`           | `number \| string`                                                  | Sets the default video width.                                                       | No       | `VIDEO_SIZE.size-medium`      |
-| `HTMLAttributes`  | `Record<string, any>`                                               | Adds HTML attributes to the video wrapper.                                          | No       | `{ class: 'iframe-wrapper' }` |
-| `upload`          | `(file: File) => Promise<string>`                                   | Uploads a local video and resolves with the URL inserted into the editor.           | No       | None                          |
-| `onError`         | `(error: { type: 'upload'; message: string; file?: File }) => void` | Handles upload failures. When omitted, the editor displays its default error toast. | No       | None                          |
-| `resourceVideo`   | `'upload' \| 'link' \| 'both'`                                      | Controls whether users can add videos by local upload, URL, or both.                | No       | `'both'`                      |
-| `videoProviders`  | `string[]`                                                          | Restricts linked videos to matching providers. Use `['.']` to accept any URL.       | No       | `['.']`                       |
+| Option            | Type                                                                                    | Description                                                                                        | Required | Default                       |
+| ----------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------- | ----------------------------- |
+| `allowFullscreen` | `boolean`                                                                               | Allows embedded videos to enter fullscreen mode.                                                   | No       | `true`                        |
+| `frameborder`     | `boolean`                                                                               | Displays a border around the embedded video frame.                                                 | No       | `false`                       |
+| `width`           | `number \| string`                                                                      | Sets the default video width.                                                                      | No       | `VIDEO_SIZE.size-medium`      |
+| `HTMLAttributes`  | `Record<string, any>`                                                                   | Adds HTML attributes to the video wrapper.                                                         | No       | `{ class: 'iframe-wrapper' }` |
+| `upload`          | `(file: File) => Promise<string>`                                                       | Uploads a local video and resolves with the URL inserted into the editor.                          | No       | None                          |
+| `multiple`        | `boolean`                                                                               | Allows selecting and uploading multiple videos.                                                    | No       | `true`                        |
+| `acceptMimes`     | `string[]`                                                                              | Restricts local files by MIME type or extension; wildcard values such as `video/*` are supported.  | No       | `['video/*']`                 |
+| `maxSize`         | `number`                                                                                | Maximum size of each local video in bytes. No size limit is applied when omitted.                  | No       | None                          |
+| `onError`         | `(error: { type: 'size' \| 'type' \| 'upload'; message: string; file?: File }) => void` | Handles validation and upload failures. When omitted, the editor displays its default error toast. | No       | None                          |
+| `resourceVideo`   | `'upload' \| 'link' \| 'both'`                                                          | Controls whether users can add videos by local upload, URL, or both.                               | No       | `'both'`                      |
+| `videoProviders`  | `string[]`                                                                              | Restricts linked videos to matching providers. Use `['.']` to accept any URL.                      | No       | `['.']`                       |
 
 ## Upload behavior
 
@@ -162,3 +177,6 @@ the returned URL is inserted into the editor and the dialog closes.
 If the promise rejects, no video is inserted. The dialog remains open so the user can retry the same
 file. Configure `onError` to provide custom error handling; otherwise, the editor shows its default
 upload error toast.
+
+`acceptMimes` and `maxSize` validate every selected file before uploading. With `multiple: true`, all
+valid files upload in parallel and are inserted in selection order after every upload succeeds.

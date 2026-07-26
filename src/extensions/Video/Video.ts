@@ -36,8 +36,17 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
   /** Function for uploading files */
   upload?: (file: File) => Promise<string>;
 
-  /** Callback invoked when a video upload fails */
-  onError?: (error: { type: 'upload'; message: string; file?: File }) => void;
+  /** Whether multiple videos can be selected and uploaded at once */
+  multiple?: boolean;
+
+  /** Accepted video MIME types or file extensions */
+  acceptMimes?: string[];
+
+  /** Maximum size of a single video in bytes. No limit is applied when omitted. */
+  maxSize?: number;
+
+  /** Callback invoked when video validation or upload fails */
+  onError?: (error: { type: 'size' | 'type' | 'upload'; message: string; file?: File }) => void;
 
   /** The source URL of the video */
   resourceVideo: 'upload' | 'link' | 'both';
@@ -50,6 +59,13 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
    */
   videoProviders?: string[];
 }
+
+export const DEFAULT_VIDEO_OPTIONS = {
+  acceptMimes: ['video/*'],
+  multiple: true,
+  resourceVideo: 'both',
+  videoProviders: ['.'],
+} satisfies Pick<VideoOptions, 'acceptMimes' | 'multiple' | 'resourceVideo' | 'videoProviders'>;
 
 /**
  * Represents the type for setting video options
@@ -133,8 +149,8 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
       spacer: false,
       allowFullscreen: true,
       upload: undefined,
+      ...DEFAULT_VIDEO_OPTIONS,
       frameborder: false,
-      resourceVideo: 'both',
       width: VIDEO_SIZE['size-medium'],
       HTMLAttributes: {
         class: 'iframe-wrapper',
@@ -151,7 +167,7 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
             disabled: !editor.can().setVideo?.({}),
             icon: 'Video',
             tooltip: t('editor.video.tooltip'),
-            videoProviders: ['.'],
+            videoProviders: DEFAULT_VIDEO_OPTIONS.videoProviders,
             editor,
           },
         };
