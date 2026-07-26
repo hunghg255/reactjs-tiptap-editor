@@ -54,6 +54,13 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
   /** Maximum number of videos uploaded concurrently */
   uploadConcurrency?: number;
 
+  /**
+   * Whether to display overall and per-file upload progress
+   *
+   * @default true
+   */
+  showUploadProgress?: boolean;
+
   /** Accepted video MIME types or file extensions */
   acceptMimes?: string[];
 
@@ -79,11 +86,17 @@ export const DEFAULT_VIDEO_OPTIONS = {
   acceptMimes: ['video/*'],
   multiple: true,
   resourceVideo: 'both',
+  showUploadProgress: true,
   uploadConcurrency: 3,
   videoProviders: ['.'],
 } satisfies Pick<
   VideoOptions,
-  'acceptMimes' | 'multiple' | 'resourceVideo' | 'uploadConcurrency' | 'videoProviders'
+  | 'acceptMimes'
+  | 'multiple'
+  | 'resourceVideo'
+  | 'showUploadProgress'
+  | 'uploadConcurrency'
+  | 'videoProviders'
 >;
 
 /**

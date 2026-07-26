@@ -58,6 +58,8 @@ export function VideoUploadTab({
   const fileInput = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadItems, setUploadItems] = useState<UploadItem[]>([]);
+  const showUploadProgress =
+    uploadOptions.showUploadProgress ?? DEFAULT_VIDEO_OPTIONS.showUploadProgress;
 
   const successfulCount = useMemo(
     () => uploadItems.filter(({ status }) => status === 'success').length,
@@ -163,15 +165,17 @@ export function VideoUploadTab({
         try {
           const src = uploadOptions.upload
             ? await uploadOptions.upload(file, {
-                onProgress: (progress) => {
-                  const normalized = normalizeProgress(progress, file);
-                  uploadTotal = normalized.total;
-                  updateUploadItem(index, {
-                    ...normalized,
-                    progressReported: true,
-                    status: normalized.loaded >= normalized.total ? 'processing' : 'uploading',
-                  });
-                },
+                onProgress: showUploadProgress
+                  ? (progress) => {
+                      const normalized = normalizeProgress(progress, file);
+                      uploadTotal = normalized.total;
+                      updateUploadItem(index, {
+                        ...normalized,
+                        progressReported: true,
+                        status: normalized.loaded >= normalized.total ? 'processing' : 'uploading',
+                      });
+                    }
+                  : undefined,
               })
             : URL.createObjectURL(file);
 
@@ -231,9 +235,9 @@ export function VideoUploadTab({
           {isUploading ? (
             <>
               {t('editor.video.dialog.uploading')}
-              {hasMeasuredProgress ? ` ${totalProgress}%` : ''}
+              {showUploadProgress && hasMeasuredProgress ? ` ${totalProgress}%` : ''}
 
-              {!hasMeasuredProgress && (
+              {(!showUploadProgress || !hasMeasuredProgress) && (
                 <IconComponent className='richtext-ml-1 richtext-animate-spin' name='Loader' />
               )}
             </>
@@ -243,7 +247,7 @@ export function VideoUploadTab({
         </Button>
       </div>
 
-      {uploadItems.length > 0 && (
+      {showUploadProgress && uploadItems.length > 0 && (
         <div className='richtext-mt-3 richtext-space-y-3' aria-live='polite'>
           <div className='richtext-flex richtext-items-center richtext-justify-between richtext-text-xs richtext-text-muted-foreground'>
             <span>
