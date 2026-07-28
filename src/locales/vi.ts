@@ -93,6 +93,7 @@ const locale = {
   'editor.video.tooltip': 'Video',
   'editor.video.dialog.tab.upload': 'Tải lên',
   'editor.video.dialog.uploading': 'Đang tải lên',
+  'editor.video.dialog.processing': 'Đang xử lý',
   'editor.video.dialog.title': 'Nhúng hoặc tải lên video',
   'editor.video.dialog.link': 'Liên kết',
   'editor.video.dialog.placeholder': 'Liên kết',

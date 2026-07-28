@@ -93,6 +93,7 @@ const locale = {
   'editor.video.tooltip': 'Videó',
   'editor.video.dialog.tab.upload': 'Feltöltés',
   'editor.video.dialog.uploading': 'Feltöltés alatt',
+  'editor.video.dialog.processing': 'Feldolgozás',
   'editor.video.dialog.title': 'Videó beágyazása vagy feltöltése',
   'editor.video.dialog.link': 'Link',
   'editor.video.dialog.placeholder': 'Link',

@@ -1,8 +1,9 @@
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { Button, Input, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
 import { useListener } from '@/components/ReactBus';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { VideoUploadTab } from '@/extensions/Video/components/VideoUploadTab';
 import { Video } from '@/extensions/Video/Video';
 import { useToggleActive } from '@/hooks/useActive';
 import { useExtension } from '@/hooks/useExtension';
@@ -25,11 +26,11 @@ export function RenderDialogUploadVideo() {
   const { editorDisabled } = useToggleActive();
 
   const [link, setLink] = useState<string>('');
-  const fileInput = useRef<HTMLInputElement>(null);
 
   const [error, setError] = useState<string>('');
 
   const [open, setOpen] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const extension = useExtension(Video.name);
 
   const EVENT_ID = EVENTS.UPLOAD_VIDEO((editor as any).id);
@@ -42,30 +43,6 @@ export function RenderDialogUploadVideo() {
     return uploadOptions;
   }, [extension]);
 
-  async function handleFile(event: any) {
-    const files = event?.target?.files;
-    if (!editor || editor.isDestroyed || files.length === 0) {
-      return;
-    }
-    const file = files[0];
-
-    let src = '';
-    if (uploadOptions.upload) {
-      src = await uploadOptions.upload(file);
-    } else {
-      src = URL.createObjectURL(file);
-    }
-
-    editor
-      .chain()
-      .focus()
-      .setVideo({
-        src,
-        width: '100%',
-      })
-      .run();
-    setOpen(false);
-  }
   function handleLink(e: any) {
     e.preventDefault();
     e.stopPropagation();
@@ -86,17 +63,21 @@ export function RenderDialogUploadVideo() {
     setLink('');
   }
 
-  function handleClick(e: any) {
-    e.preventDefault();
-    fileInput.current?.click();
-  }
-
   if (editorDisabled) {
     return <></>;
   }
 
   return (
-    <Dialog onOpenChange={setOpen} open={open}>
+    <Dialog
+      onOpenChange={(nextOpen) => {
+        if (isUploading && !nextOpen) {
+          return;
+        }
+
+        setOpen(nextOpen);
+      }}
+      open={open}
+    >
       <DialogContent>
         <DialogTitle>{t('editor.video.dialog.title')}</DialogTitle>
 
@@ -121,21 +102,11 @@ export function RenderDialogUploadVideo() {
           </TabsList>
 
           <TabsContent value='upload'>
-            <div className='richtext-flex richtext-items-center richtext-gap-[10px]'>
-              <Button className='richtext-mt-1 richtext-w-full' onClick={handleClick} size='sm'>
-                {t('editor.video.dialog.tab.upload')}
-              </Button>
-            </div>
-
-            <input
-              accept='video/*'
-              multiple
-              onChange={handleFile}
-              ref={fileInput}
-              type='file'
-              style={{
-                display: 'none',
-              }}
+            <VideoUploadTab
+              editor={editor}
+              onUploadComplete={() => setOpen(false)}
+              onUploadingChange={setIsUploading}
+              uploadOptions={uploadOptions}
             />
           </TabsContent>
 

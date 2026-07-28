@@ -93,6 +93,7 @@ const locale = {
   'editor.video.tooltip': 'Video',
   'editor.video.dialog.tab.upload': 'Upload',
   'editor.video.dialog.uploading': 'Uploading',
+  'editor.video.dialog.processing': 'Processing',
   'editor.video.dialog.title': 'Embed or upload a video',
   'editor.video.dialog.link': 'Link',
   'editor.video.dialog.placeholder': 'Link',

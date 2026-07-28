@@ -93,6 +93,7 @@ const locale = {
   'editor.video.tooltip': '動画',
   'editor.video.dialog.tab.upload': 'アップロード',
   'editor.video.dialog.uploading': 'アップロード中',
+  'editor.video.dialog.processing': '処理中',
   'editor.video.dialog.title': '動画を埋め込むかアップロード',
   'editor.video.dialog.link': 'リンク',
   'editor.video.dialog.placeholder': 'リンク',

@@ -7,6 +7,18 @@ import type { GeneralOptions, VideoAlignment } from '@/types';
 
 export * from '@/extensions/Video/components/RichTextVideo';
 
+export interface VideoUploadProgress {
+  /** Number of bytes uploaded so far */
+  loaded: number;
+  /** Total number of bytes to upload */
+  total: number;
+}
+
+export interface VideoUploadContext {
+  /** Reports upload byte progress. Omit calls when progress is unavailable. */
+  onProgress?: (progress: VideoUploadProgress) => void;
+}
+
 /**
  * Represents the interface for video options, extending GeneralOptions.
  */
@@ -34,7 +46,29 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
     [key: string]: any;
   };
   /** Function for uploading files */
-  upload?: (file: File) => Promise<string>;
+  upload?: (file: File, context?: VideoUploadContext) => Promise<string>;
+
+  /** Whether multiple videos can be selected and uploaded at once */
+  multiple?: boolean;
+
+  /** Maximum number of videos uploaded concurrently */
+  uploadConcurrency?: number;
+
+  /**
+   * Whether to display overall and per-file upload progress
+   *
+   * @default true
+   */
+  showUploadProgress?: boolean;
+
+  /** Accepted video MIME types or file extensions */
+  acceptMimes?: string[];
+
+  /** Maximum size of a single video in bytes. No limit is applied when omitted. */
+  maxSize?: number;
+
+  /** Callback invoked when video validation or upload fails */
+  onError?: (error: { type: 'size' | 'type' | 'upload'; message: string; file?: File }) => void;
 
   /** The source URL of the video */
   resourceVideo: 'upload' | 'link' | 'both';
@@ -47,6 +81,23 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
    */
   videoProviders?: string[];
 }
+
+export const DEFAULT_VIDEO_OPTIONS = {
+  acceptMimes: ['video/*'],
+  multiple: true,
+  resourceVideo: 'both',
+  showUploadProgress: true,
+  uploadConcurrency: 3,
+  videoProviders: ['.'],
+} satisfies Pick<
+  VideoOptions,
+  | 'acceptMimes'
+  | 'multiple'
+  | 'resourceVideo'
+  | 'showUploadProgress'
+  | 'uploadConcurrency'
+  | 'videoProviders'
+>;
 
 /**
  * Represents the type for setting video options
@@ -130,8 +181,8 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
       spacer: false,
       allowFullscreen: true,
       upload: undefined,
+      ...DEFAULT_VIDEO_OPTIONS,
       frameborder: false,
-      resourceVideo: 'both',
       width: VIDEO_SIZE['size-medium'],
       HTMLAttributes: {
         class: 'iframe-wrapper',
@@ -148,7 +199,7 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
             disabled: !editor.can().setVideo?.({}),
             icon: 'Video',
             tooltip: t('editor.video.tooltip'),
-            videoProviders: ['.'],
+            videoProviders: DEFAULT_VIDEO_OPTIONS.videoProviders,
             editor,
           },
         };

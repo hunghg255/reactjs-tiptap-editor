@@ -93,6 +93,7 @@ const locale = {
   'editor.video.dialog.tab.upload': '上传',
   'editor.image.dialog.tab.uploadCrop': '上传并裁剪',
   'editor.video.dialog.uploading': '上传中',
+  'editor.video.dialog.processing': '处理中',
   'editor.video.dialog.title': '嵌入或上传视频',
   'editor.video.dialog.link': '链接',
   'editor.video.dialog.placeholder': '链接',
