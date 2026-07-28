@@ -49,6 +49,15 @@ function getBooleanHTMLAttribute(value: string | boolean | null | undefined): bo
   return parseBooleanHTMLAttribute(value) ?? false;
 }
 
+function parseImageWidth(width: string | null): number | string | null {
+  if (!width) {
+    return null;
+  }
+
+  const normalizedWidth = width.trim();
+  return normalizedWidth.endsWith('%') ? normalizedWidth : Number.parseInt(normalizedWidth, 10);
+}
+
 function getImageElement(element: HTMLElement): HTMLImageElement | null {
   if (element.matches('img')) {
     return element as HTMLImageElement;
@@ -73,7 +82,7 @@ function getImageAttrsFromElement(element: HTMLElement, inlineFallback = false) 
     src: img.getAttribute('src'),
     alt: img.getAttribute('alt'),
     caption: img.getAttribute('caption'),
-    width: width ? Number.parseInt(width, 10) : null,
+    width: parseImageWidth(width),
     align: img.getAttribute('align') || element.style.textAlign || null,
     inline,
     flipX: flipX === 'true',
@@ -233,7 +242,7 @@ export const ImageBlock = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
         default: null,
         parseHTML: (element) => {
           const width = element.style.width || element.getAttribute('width') || null;
-          return !width ? null : Number.parseInt(width, 10);
+          return parseImageWidth(width);
         },
         renderHTML: (attributes) => {
           return {
@@ -411,7 +420,7 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
         default: null,
         parseHTML: (element) => {
           const width = element.style.width || element.getAttribute('width') || null;
-          return !width ? null : Number.parseInt(width, 10);
+          return parseImageWidth(width);
         },
         renderHTML: (attributes) => {
           return {
