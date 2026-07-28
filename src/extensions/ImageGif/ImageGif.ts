@@ -88,8 +88,8 @@ export const ImageGif = /* @__PURE__ */ TiptapImage.extend<ImageGifOptions>({
       width: {
         default: null,
         parseHTML: (element) => {
-          const width = element.style.width || element.getAttribute('width') || '10';
-          return width === undefined ? null : Number.parseInt(`${width}`, 10);
+          const width = element.style.width || element.getAttribute('width');
+          return width ? Number.parseInt(width, 10) : null;
         },
         renderHTML: (attributes) => {
           return {
