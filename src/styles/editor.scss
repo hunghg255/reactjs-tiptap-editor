@@ -199,6 +199,8 @@
         z-index: 2;
         box-sizing: border-box;
         display: block;
+        touch-action: none;
+        user-select: none;
         width: 12px;
         height: 12px;
         border: 1px solid #fff;
