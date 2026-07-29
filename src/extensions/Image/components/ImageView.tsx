@@ -1,6 +1,6 @@
 import { NodeViewWrapper } from '@tiptap/react';
 import { clamp, isNumber, throttle } from 'lodash-es';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { IMAGE_MAX_SIZE, IMAGE_MIN_SIZE, IMAGE_THROTTLE_WAIT_TIME } from '@/constants';
 
@@ -17,6 +17,8 @@ const ResizeDirection = {
 };
 
 function ImageView(props: any) {
+  const { updateAttributes } = props;
+
   const [maxSize, setMaxSize] = useState<Size>({
     width: IMAGE_MAX_SIZE,
     height: IMAGE_MAX_SIZE,
@@ -36,13 +38,12 @@ function ImageView(props: any) {
 
   const [resizing, setResizing] = useState<boolean>(false);
 
-  const [resizerState, setResizerState] = useState({
-    x: 0,
-    y: 0,
-    w: 0,
-    h: 0,
-    dir: '',
-  });
+  const resizeSession = useRef<{
+    pointerId: number;
+    x: number;
+    width: number;
+    direction: string;
+  } | null>(null);
 
   const { align, inline } = props?.node?.attrs;
   const isBlockNode = props?.node?.type?.name === 'imageBlock';
@@ -109,10 +110,13 @@ function ImageView(props: any) {
     [props?.editor]
   );
 
-  function onMouseDown(e: MouseEvent, dir: string) {
+  function onPointerDown(e: React.PointerEvent<HTMLSpanElement>, dir: string) {
+    if (!e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0)) {
+      return;
+    }
+
     e.preventDefault();
     e.stopPropagation();
-
     const originalWidth = originalSize.width;
     const originalHeight = originalSize.height;
     const aspectRatio = originalWidth / originalHeight;
@@ -134,85 +138,74 @@ function ImageView(props: any) {
       width = width > maxWidth ? maxWidth : width;
     }
 
-    setResizing(true);
-
-    setResizerState({
+    resizeSession.current = {
+      pointerId: e.pointerId,
       x: e.clientX,
-      y: e.clientY,
-      w: width,
-      h: height,
-      dir,
-    });
+      width,
+      direction: dir,
+    };
+    e.currentTarget.setPointerCapture(e.pointerId);
+    setResizing(true);
   }
 
-  const onMouseMove = useCallback(
-    throttle((e: MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
+  const resizeToPointer = useMemo(
+    () =>
+      throttle((clientX: number, pointerId: number) => {
+        const session = resizeSession.current;
+        if (!session || session.pointerId !== pointerId) {
+          return;
+        }
 
-      if (!resizing) {
-        return;
-      }
+        const dx = (clientX - session.x) * (/l/.test(session.direction) ? -1 : 1);
+        const width = clamp(session.width + dx, IMAGE_MIN_SIZE, maxSize.width);
 
-      const { x, w, dir } = resizerState;
-
-      const dx = (e.clientX - x) * (/l/.test(dir) ? -1 : 1);
-      // const dy = (e.clientY - y) * (/t/.test(dir) ? -1 : 1)
-
-      const width = clamp(w + dx, IMAGE_MIN_SIZE, maxSize.width);
-      const height = null;
-
-      props.updateAttributes({
-        width,
-        height,
-      });
-    }, IMAGE_THROTTLE_WAIT_TIME),
-    [resizing, resizerState, maxSize, props.updateAttributes]
+        updateAttributes({
+          width,
+          height: null,
+        });
+      }, IMAGE_THROTTLE_WAIT_TIME),
+    [maxSize.width, updateAttributes]
   );
 
-  const onMouseUp = useCallback(
-    (e: MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (!resizing) {
-        return;
-      }
-
-      setResizerState({
-        x: 0,
-        y: 0,
-        w: 0,
-        h: 0,
-        dir: '',
-      });
-      setResizing(false);
-
-      selectImage();
-    },
-    [resizing, selectImage]
-  );
-
-  const onEvents = useCallback(() => {
-    document?.addEventListener('mousemove', onMouseMove, true);
-    document?.addEventListener('mouseup', onMouseUp, true);
-  }, [onMouseMove, onMouseUp]);
-
-  const offEvents = useCallback(() => {
-    document?.removeEventListener('mousemove', onMouseMove, true);
-    document?.removeEventListener('mouseup', onMouseUp, true);
-  }, [onMouseMove, onMouseUp]);
-
-  useEffect(() => {
-    if (resizing) {
-      onEvents();
-    } else {
-      offEvents();
+  function onPointerMove(e: React.PointerEvent<HTMLSpanElement>) {
+    if (resizeSession.current?.pointerId !== e.pointerId) {
+      return;
     }
 
+    e.preventDefault();
+    e.stopPropagation();
+    resizeToPointer(e.clientX, e.pointerId);
+  }
+
+  function finishResize(e: React.PointerEvent<HTMLSpanElement>, updateFinalPosition: boolean) {
+    if (resizeSession.current?.pointerId !== e.pointerId) {
+      return;
+    }
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (updateFinalPosition) {
+      resizeToPointer(e.clientX, e.pointerId);
+      resizeToPointer.flush();
+    } else {
+      resizeToPointer.cancel();
+    }
+
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+
+    resizeSession.current = null;
+    setResizing(false);
+    selectImage();
+  }
+
+  useEffect(() => {
     return () => {
-      offEvents();
+      resizeToPointer.cancel();
     };
-  }, [resizing, onEvents, offEvents]);
+  }, [resizeToPointer]);
 
   const resizeOb: ResizeObserver = useMemo(() => {
     return new ResizeObserver(() => getMaxSize());
@@ -264,7 +257,10 @@ function ImageView(props: any) {
                 <span
                   className={`image-resizer__handler image-resizer__handler--${direction}`}
                   key={`image-dir-${direction}`}
-                  onMouseDown={(e: any) => onMouseDown(e, direction)}
+                  onPointerCancel={(e) => finishResize(e, false)}
+                  onPointerDown={(e) => onPointerDown(e, direction)}
+                  onPointerMove={onPointerMove}
+                  onPointerUp={(e) => finishResize(e, true)}
                 ></span>
               );
             })}
