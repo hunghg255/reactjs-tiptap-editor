@@ -100,6 +100,5 @@ Import from `reactjs-tiptap-editor/bubble`:
 ## Feature-Specific Package/CSS Notes
 
 - Image crop UI: install `react-image-crop` and import `react-image-crop/dist/ReactCrop.css`.
-- CodeBlock syntax highlighting: install `highlight.js` and `lowlight`, then configure `CodeBlock.configure({ lowlight })`.
 - ImageGif with Giphy: configure `ImageGif.configure({ provider: 'giphy', API_KEY })`.
 - Always import `reactjs-tiptap-editor/style.css`.

@@ -1,13 +1,12 @@
-import CodeBlockLowlight, {
-  type CodeBlockLowlightOptions,
-} from '@tiptap/extension-code-block-lowlight';
 export * from '@/extensions/CodeBlock/components/RichTextCodeBlock';
+import CodeBlockRangi, {
+  CodeBlockRangiOptions,
+} from '@/extensions/CodeBlock/extension-code-block-rangi/src';
 import { type GeneralOptions } from '@/types';
 
-export interface CodeBlockOptions
-  extends CodeBlockLowlightOptions, GeneralOptions<CodeBlockOptions> {}
+export interface CodeBlockOptions extends CodeBlockRangiOptions, GeneralOptions<CodeBlockOptions> {}
 
-export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
+export const CodeBlock = CodeBlockRangi.extend<CodeBlockOptions>({
   //@ts-expect-error
   addOptions() {
     return {

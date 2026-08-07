@@ -129,29 +129,10 @@ const extensions = [
 ];
 ```
 
-## CodeBlock With Lowlight
-
-```bash
-pnpm add highlight.js lowlight
-```
-
-```tsx
-import { createLowlight } from 'lowlight';
-import css from 'highlight.js/lib/languages/css';
-import js from 'highlight.js/lib/languages/javascript';
-import ts from 'highlight.js/lib/languages/typescript';
-import html from 'highlight.js/lib/languages/xml';
+````tsx
 import { CodeBlock, RichTextCodeBlock } from 'reactjs-tiptap-editor/codeblock';
 import { RichTextBubbleCodeBlock } from 'reactjs-tiptap-editor/bubble';
 
-const lowlight = createLowlight();
-lowlight.register('html', html);
-lowlight.register('css', css);
-lowlight.register('js', js);
-lowlight.register('ts', ts);
-
-const extensions = [...baseExtensions, CodeBlock.configure({ lowlight })];
-```
 
 ## Export PDF
 
@@ -170,7 +151,7 @@ const extensions = [
     },
   }),
 ];
-```
+````
 
 ## Export Word
 

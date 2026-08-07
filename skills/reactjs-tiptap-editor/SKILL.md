@@ -1,6 +1,6 @@
 ---
 name: reactjs-tiptap-editor
-description: "Build, integrate, configure, debug, migrate, and review React rich-text editors using reactjs-tiptap-editor. Use for React Tiptap WYSIWYG editor setup, RichTextProvider, EditorContent, toolbar buttons, bubble menus, slash command, image upload, video upload, mentions, i18n, theme, export PDF/Word, CodeBlock lowlight, extension imports, and package usage. Triggers: 'use reactjs-tiptap-editor', 'add rich text editor', 'setup Tiptap editor', 'add toolbar', 'add image upload', 'configure slash command', 'customize editor theme', 'debug editor extension'."
+description: "Build, integrate, configure, debug, migrate, and review React rich-text editors using reactjs-tiptap-editor. Use for React Tiptap WYSIWYG editor setup, RichTextProvider, EditorContent, toolbar buttons, bubble menus, slash command, image upload, video upload, mentions, i18n, theme, export PDF/Word, extension imports, and package usage. Triggers: 'use reactjs-tiptap-editor', 'add rich text editor', 'setup Tiptap editor', 'add toolbar', 'add image upload', 'configure slash command', 'customize editor theme', 'debug editor extension'."
 ---
 
 IRON LAW: NEVER INVENT IMPORT PATHS, EXTENSION NAMES, OR OPTIONS. VERIFY THEM AGAINST THIS SKILL'S REFERENCES OR THE REPO BEFORE CODING.
@@ -59,7 +59,7 @@ Load only the references needed for the request:
 
 - `references/quickstart.md`: base install, imports, provider structure, editor lifecycle.
 - `references/extension-map.md`: extension import paths, toolbar components, bubble components, extra CSS/package notes.
-- `references/feature-recipes.md`: upload callbacks, slash command, mention, i18n, theme, export, CodeBlock/lowlight, bubble menu.
+- `references/feature-recipes.md`: upload callbacks, slash command, mention, i18n, theme, export, bubble menu.
 - `references/review-checklist.md`: verification checklist for generated or reviewed code.
 
 If a requested feature is not in the references, inspect the local repo docs/source before answering.

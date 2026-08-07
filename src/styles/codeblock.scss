@@ -1,0 +1,126 @@
+:root {
+  --shj-bg: #161b22;
+  --shj-fg: #c9d1d9;
+  --shj-numbers: #8b949e; /* falls back to --shj-cmnt */
+
+  --shj-kwd: #ff7b72;
+  --shj-deleted: #ff7b72;
+  --shj-err: #ff7b72;
+  --shj-class: #ffa657;
+  --shj-cmnt: #8b949e;
+  --shj-num: #79c0ff;
+  --shj-bool: #79c0ff;
+  --shj-type: #79c0ff;
+  --shj-oper: #79c0ff;
+  --shj-section: #79c0ff;
+  --shj-var: #79c0ff;
+  --shj-str: #a5d6ff;
+  --shj-esc: #a5d6ff;
+  --shj-func: #d2a8ff;
+  --shj-insert: #98c379;
+}
+
+.shj {
+  white-space: pre;
+  box-sizing: border-box;
+  max-width: min(100%, 100vw);
+  font:
+    normal 18px Consolas,
+    'Courier New',
+    Monaco,
+    'Andale Mono',
+    'Ubuntu Mono',
+    monospace;
+  line-height: 24px;
+  color-scheme: light dark;
+  background: light-dark(#fff, #1a1a1c);
+  color: light-dark(#112, #f8f8f2);
+  box-shadow: 0 0 5px #0001;
+  text-shadow: none;
+}
+.shj-inline {
+  display: inline-block;
+  margin: 0;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+.shj-oneline,
+.shj-multiline {
+  margin: 10px 0;
+  border-radius: 10px;
+}
+.shj-oneline {
+  padding: 12px 10px;
+}
+.shj-multiline {
+  padding: 30px 20px;
+}
+
+.shj-scroll {
+  display: flex;
+  overflow: auto;
+}
+.shj-numbers {
+  padding-left: 5px;
+  padding-right: 10px;
+  text-align: right;
+  opacity: 0.5;
+  user-select: none;
+  color: light-dark(#999, #7d828b);
+}
+.shj-code {
+  flex: 1;
+  outline: none;
+}
+
+.shj-deleted {
+  color: light-dark(#f44, #ff5261);
+}
+.shj-err {
+  color: light-dark(#e16, #ff5261);
+}
+.shj-var {
+  color: light-dark(#f44, #ff5261);
+}
+.shj-section {
+  color: light-dark(#84f, #ff7cc6);
+}
+.shj-kwd {
+  color: light-dark(#e16, #ff7cc6);
+}
+.shj-class {
+  color: light-dark(#f60, #eab07c);
+}
+.shj-insert {
+  color: light-dark(#7d8, #71d58a);
+}
+.shj-type {
+  color: light-dark(#5af, #71d58a);
+}
+.shj-func {
+  color: light-dark(#84f, #71d58a);
+}
+.shj-bool {
+  color: light-dark(#3bf, #71d58a);
+}
+.shj-num {
+  color: light-dark(#f60, #b581fd);
+}
+.shj-oper {
+  color: light-dark(#5af, #80c6ff);
+}
+.shj-str {
+  color: light-dark(#7d8, #4dacfa);
+}
+.shj-cmnt {
+  color: light-dark(#999, #7d828b);
+  font-style: italic;
+}
+
+/* the badge the inline-style mode gives a one-line HTTP request */
+.shj-lang-http.shj-oneline .shj-kwd {
+  background: #25f;
+  color: #fff;
+  padding: 5px 7px;
+  border-radius: 5px;
+}

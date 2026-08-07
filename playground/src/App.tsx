@@ -16,11 +16,6 @@ import { EditorContent, useEditor } from '@tiptap/react';
 //   name: 'github.com/hunghg255',
 //   document: ydoc,
 // })
-import css from 'highlight.js/lib/languages/css';
-import js from 'highlight.js/lib/languages/javascript';
-import ts from 'highlight.js/lib/languages/typescript';
-import html from 'highlight.js/lib/languages/xml';
-import { all, createLowlight } from 'lowlight';
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { RichTextProvider } from 'reactjs-tiptap-editor';
 import { Attachment, RichTextAttachment } from 'reactjs-tiptap-editor/attachment';
@@ -108,15 +103,8 @@ import 'easydrawer/styles.css';
 import '@excalidraw/excalidraw/index.css';
 import 'katex/contrib/mhchem';
 
-// create a lowlight instance with all languages loaded
-const lowlight = createLowlight();
-
 // This is only an example, all supported languages are already loaded above
 // but you can also register only specific languages to reduce bundle-size
-lowlight.register('html', html);
-lowlight.register('css', css);
-lowlight.register('js', js);
-lowlight.register('ts', ts);
 
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
@@ -259,9 +247,7 @@ const extensions = [
   Blockquote,
   HorizontalRule,
   Code,
-  CodeBlock.configure({
-    lowlight,
-  }),
+  CodeBlock,
 
   Column,
   ColumnNode,
@@ -359,7 +345,8 @@ const extensions = [
   // }),
 ];
 
-const DEFAULT = `<pre dir="auto"><code class="language-js">const a = 2;</code></pre><p dir="auto"></p>`;
+const DEFAULT = `<pre class="shj" dir="auto"><code class="language-js">const a = 2;\
+</code></pre><p dir="auto"></p>`;
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout;

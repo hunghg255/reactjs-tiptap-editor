@@ -142,7 +142,6 @@ export default defineConfig(async ({ mode }) => {
           'easydrawer',
           'frimousse',
           'mammoth',
-          'lowlight',
         ],
       },
     },
