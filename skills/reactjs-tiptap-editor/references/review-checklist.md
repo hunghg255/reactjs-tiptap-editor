@@ -26,7 +26,6 @@ Ask:
 ## Dependency/CSS Checks
 
 - Image UI: `react-image-crop` installed and `react-image-crop/dist/ReactCrop.css` imported.
-- CodeBlock lowlight: `highlight.js` and `lowlight` installed and `CodeBlock.configure({ lowlight })` used if syntax highlighting is needed.
 - Giphy GIF search: `ImageGif.configure({ provider: 'giphy', API_KEY })` gets an API key from app config.
 - Main editor CSS: `reactjs-tiptap-editor/style.css` imported once.
 

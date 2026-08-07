@@ -6,13 +6,59 @@ import { ActionButton } from '@/components/ActionButton';
 import { IconComponent } from '@/components/icons';
 import { Popover, PopoverContent, PopoverTrigger, Separator } from '@/components/ui';
 import { CodeBlock } from '@/extensions/CodeBlock';
-import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 import { deleteNode } from '@/utils/delete-node';
 
 import type { Editor } from '@tiptap/react';
+
+const LIST_LANG = [
+  'asm',
+  'astro',
+  'bash',
+  'c',
+  'cpp',
+  'cs',
+  'css',
+  'csv',
+  'dart',
+  'diff',
+  'docker',
+  'go',
+  'graphql',
+  'html',
+  'http',
+  'ini',
+  'java',
+  'js',
+  'json',
+  'jsx',
+  'kt',
+  'less',
+  'log',
+  'lua',
+  'make',
+  'md',
+  'php',
+  'pl',
+  'plain',
+  'ps1',
+  'py',
+  'rb',
+  'rs',
+  'scss',
+  'sql',
+  'svelte',
+  'swift',
+  'toml',
+  'ts',
+  'tsx',
+  'uri',
+  'vue',
+  'xml',
+  'yaml',
+];
 
 const MAP_LANGUAGE_LABEL: Record<string, string> = {
   plaintext: 'Plain Text',
@@ -22,6 +68,45 @@ const MAP_LANGUAGE_LABEL: Record<string, string> = {
   html: 'HTML',
   python: 'Python',
   bash: 'Bash',
+  asm: 'Assembly',
+  astro: 'Astro',
+  c: 'C',
+  cpp: 'C++',
+  cs: 'C#',
+  csv: 'CSV',
+  dart: 'Dart',
+  diff: 'Diff',
+  docker: 'Dockerfile',
+  go: 'Go',
+  graphql: 'GraphQL',
+  http: 'HTTP',
+  ini: 'INI',
+  java: 'Java',
+  json: 'JSON',
+  jsx: 'JSX',
+  kt: 'Kotlin',
+  less: 'Less',
+  log: 'Log',
+  lua: 'Lua',
+  make: 'Makefile',
+  md: 'Markdown',
+  php: 'PHP',
+  pl: 'Perl',
+  plain: 'Plain Text',
+  ps1: 'PowerShell',
+  py: 'Python',
+  rb: 'Ruby',
+  rs: 'Rust',
+  scss: 'SCSS',
+  sql: 'SQL',
+  svelte: 'Svelte',
+  swift: 'Swift',
+  toml: 'TOML',
+  tsx: 'TSX',
+  uri: 'URI/URL',
+  vue: 'Vue.js',
+  xml: 'XML',
+  yaml: 'YAML',
 };
 
 function SelectLanguages({ listLanguages }: { listLanguages: string[] }) {
@@ -78,7 +163,7 @@ function SelectLanguages({ listLanguages }: { listLanguages: string[] }) {
 
       <PopoverContent
         align='start'
-        className='!richtext-w-[initial] !richtext-p-[4px]'
+        className='richtext-max-h-[200px] !richtext-w-[initial] richtext-overflow-auto !richtext-p-[4px]'
         hideWhenDetached
         side='bottom'
       >
@@ -94,7 +179,7 @@ function SelectLanguages({ listLanguages }: { listLanguages: string[] }) {
               }}
             >
               <div className='!richtext-min-w-[20px]'>
-                {currentLanguageActive === item.value && <Check size={16} />}
+                {currentLanguageActive === item.label && <Check size={16} />}
               </div>
 
               <div className='richtext-flex richtext-items-center richtext-gap-1'>{item.label}</div>
@@ -110,19 +195,10 @@ export function RichTextBubbleCodeBlock() {
   const editable = useEditableEditor();
   const editor = useEditorInstance();
 
-  const extension = useExtension(CodeBlock.name);
-
   const shouldShow = useCallback(({ editor }: { editor: Editor }) => {
     const isActive = editor.isActive(CodeBlock.name);
     return isActive;
   }, []);
-
-  const listLanguages = useMemo(() => {
-    if (!extension) return [];
-    return (
-      extension.options?.lowlight?.listLanguages?.() || ['plaintext', 'html', 'css', 'js', 'ts']
-    );
-  }, [extension]);
 
   const deleteMe = useCallback(() => deleteNode(CodeBlock.name, editor), [editor]);
 
@@ -171,7 +247,7 @@ export function RichTextBubbleCodeBlock() {
       }}
     >
       <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
-        <SelectLanguages listLanguages={listLanguages} />
+        <SelectLanguages listLanguages={LIST_LANG} />
 
         <Separator
           className='!richtext-mx-1 !richtext-my-2 !richtext-h-[16px]'
