@@ -16,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 import { Callout } from '@/extensions/Callout/Callout';
 import { useToggleActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
@@ -122,7 +123,7 @@ export function RichTextCallout() {
           <div className='richtext-space-y-2'>
             <Label>{t('editor.callout.dialog.body.label')}</Label>
 
-            <Input
+            <Textarea
               onChange={(e) => setCalloutBody(e.target.value)}
               placeholder={t('editor.callout.dialog.body.placeholder')}
               value={calloutBody}
