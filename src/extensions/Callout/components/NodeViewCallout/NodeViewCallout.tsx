@@ -74,7 +74,14 @@ export function NodeViewCallout({ node }: any) {
           <span className='richtext-font-semibold'>{title}</span>
         </div>
 
-        {body && <p className='richtext-pl-[28px]'>{body}</p>}
+        {body && (
+          <p
+            className='richtext-whitespace-pre-wrap richtext-pl-[28px]'
+            dangerouslySetInnerHTML={{
+              __html: body,
+            }}
+          />
+        )}
       </div>
     </NodeViewWrapper>
   );
