@@ -1,13 +1,6 @@
-import deepEqual from 'deep-equal';
-import { useEffect, useRef, useState } from 'react';
+import { useEditorState } from '@tiptap/react';
 
 import type { Editor } from '@tiptap/core';
-
-type MapFn<T, R> = (arg: T) => R;
-
-function mapSelf<T>(d: T): T {
-  return d;
-}
 
 export function useAttributes<T, R = T>(
   editor: Editor,
@@ -15,38 +8,21 @@ export function useAttributes<T, R = T>(
   defaultValue?: T,
   map?: (arg: T) => R
 ) {
-  const mapFn = (map || mapSelf) as MapFn<T, R>;
-  const [value, setValue] = useState<R>(mapFn(defaultValue as any));
-  const prevValueCache = useRef<R>(value);
-
-  useEffect(() => {
-    const listener = () => {
-      const attrs = {
+  return useEditorState({
+    editor,
+    selector: () => {
+      const attrs: Record<string, unknown> = {
         ...defaultValue,
         ...editor.getAttributes(attrbute),
-      } as any;
-      Object.keys(attrs).forEach((key) => {
+      };
+
+      for (const key of Object.keys(attrs)) {
         if (attrs[key] === null || attrs[key] === undefined) {
-          // @ts-ignore
-          attrs[key] = defaultValue ? defaultValue[key] : null;
+          attrs[key] = defaultValue ? (defaultValue as Record<string, unknown>)[key] : null;
         }
-      });
-      const nextAttrs = mapFn(attrs);
-      if (deepEqual(prevValueCache.current, nextAttrs)) {
-        return;
       }
-      setValue(nextAttrs);
-      prevValueCache.current = nextAttrs;
-    };
 
-    editor.on('selectionUpdate', listener);
-    editor.on('transaction', listener);
-
-    return () => {
-      editor.off('selectionUpdate', listener);
-      editor.off('transaction', listener);
-    };
-  }, [editor, defaultValue, attrbute, mapFn]);
-
-  return value;
+      return map ? map(attrs as T) : (attrs as R);
+    },
+  });
 }

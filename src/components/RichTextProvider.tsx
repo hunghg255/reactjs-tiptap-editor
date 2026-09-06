@@ -1,6 +1,6 @@
 import { type Editor } from '@tiptap/core';
 import { EditorContext } from '@tiptap/react';
-import { useEffect, useId } from 'react';
+import { useEffect, useId, useMemo } from 'react';
 
 import { TooltipProvider } from '@/components';
 import { ReactBusProvider } from '@/components/ReactBus';
@@ -20,6 +20,7 @@ interface IProviderRichTextProps {
 
 export function RichTextProvider({ editor, children }: IProviderRichTextProps) {
   const id = useId();
+  const contextValue = useMemo(() => ({ editor }), [editor]);
 
   useEffect(() => {
     updateCSS(RESET_CSS, 'react-tiptap-reset');
@@ -41,7 +42,7 @@ export function RichTextProvider({ editor, children }: IProviderRichTextProps) {
   return (
     <div className='reactjs-tiptap-editor'>
       <ReactBusProvider>
-        <EditorContext.Provider value={{ editor }}>
+        <EditorContext.Provider value={contextValue}>
           <TooltipProvider delayDuration={0} disableHoverableContent>
             {children}
           </TooltipProvider>

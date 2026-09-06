@@ -1,4 +1,5 @@
 import { TextSelection } from '@tiptap/pm/state';
+import { useEditorState } from '@tiptap/react';
 import { BubbleMenu } from '@tiptap/react/menus';
 import { Check } from 'lucide-react';
 import { useMemo, useState } from 'react';
@@ -45,10 +46,11 @@ function ParagraphFormat() {
     return renderCommandListDefault({ t })?.[0]?.commands;
   }, [t]);
 
-  const label = useMemo(() => {
-    const label = items?.find((item) => item?.isActive?.(editor))?.label;
-    return label;
-  }, [editor.state.selection.ranges, open, editor, items, t]);
+  const activeItems = useEditorState({
+    editor,
+    selector: () => items?.map((item) => !!item?.isActive?.(editor)),
+  });
+  const label = items?.find((_, index) => activeItems?.[index])?.label;
 
   return (
     <Popover modal onOpenChange={setOpen} open={open}>
@@ -72,8 +74,8 @@ function ParagraphFormat() {
         hideWhenDetached
         side='bottom'
       >
-        {items?.map((item) => {
-          const isActive = item?.isActive?.(editor);
+        {items?.map((item, index) => {
+          const isActive = activeItems?.[index];
 
           return (
             <div

@@ -47,7 +47,7 @@ export function useTiptapEditor(providedEditor?: Editor | null): {
 }
 
 function useEditorInstance() {
-  const editor = useTiptapEditor().editor;
+  const { editor } = useCurrentEditor();
   return editor as Editor;
 }
 

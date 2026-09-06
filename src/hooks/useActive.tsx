@@ -1,113 +1,42 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEditorState } from '@tiptap/react';
+import { useReducer } from 'react';
 
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 
-// isActive (can action) => false => disable true
-//                       => true => disable false
 const fnActiveDefault = () => false;
 
-export function useActive(isActive = fnActiveDefault) {
+export function useActive(isActive: () => any = fnActiveDefault) {
   const editable = useEditableEditor();
-
-  const [dataState, setDataState] = useState<any>(() => {
-    const r = isActive();
-
-    return typeof r === 'boolean' ? !r : r;
-  });
   const editor = useEditorInstance();
-
-  useEffect(() => {
-    if (!editor || !isActive) return;
-
-    const listener = () => {
-      const r = isActive();
-
-      setDataState(typeof r === 'boolean' ? !r : r);
-    };
-
-    listener();
-
-    editor.on('selectionUpdate', listener);
-    editor.on('transaction', listener);
-
-    return () => {
-      editor.off('selectionUpdate', listener);
-      editor.off('transaction', listener);
-    };
-  }, [editor, isActive]);
-
-  const disabled = useMemo(() => {
-    if (!editable || !editor) return true;
-
-    if (typeof dataState === 'boolean') {
-      return dataState;
-    }
-
-    return false;
-  }, [editable, editor, dataState]);
-
-  const editorDisabled = useMemo(() => {
-    return !editable || !editor;
-  }, [editable, editor]);
+  const dataState = useEditorState({
+    editor,
+    selector: () => {
+      const value = isActive();
+      return typeof value === 'boolean' ? !value : value;
+    },
+  });
+  const editorDisabled = !editable || !editor;
 
   return {
-    disabled, // can not action, opacity < 1
-    dataState, // true => show background, false => no background
+    disabled: editorDisabled || (typeof dataState === 'boolean' && dataState),
+    dataState,
     editorDisabled,
   };
 }
 
-/**
- * export type Mark =
-  | "bold"
-  | "italic"
-  | "strike"
-  | "code"
-  | "underline"
-  | "superscript"
-  | "subscript"
- */
-// isActive (can action) => false => disable false
-//                       => true => disable false
 export function useToggleActive(isActive = fnActiveDefault) {
   const editable = useEditableEditor();
-
-  const [v, setUpdate] = useState({});
-
-  const [dataState, setDataState] = useState(isActive());
   const editor = useEditorInstance();
-
-  useEffect(() => {
-    if (!editor || !isActive) return;
-
-    const listener = () => {
-      setDataState(isActive());
-    };
-
-    listener();
-
-    editor.on('selectionUpdate', listener);
-
-    return () => {
-      editor.off('selectionUpdate', listener);
-    };
-  }, [v, editor, isActive]);
-
-  const disabled = useMemo(() => {
-    if (!editable || !editor) return true;
-
-    return false;
-  }, [editable, editor]);
-
-  const editorDisabled = useMemo(() => {
-    return !editable || !editor;
-  }, [editable, editor]);
+  // Keep the manual refresh API for actions that only change extension storage.
+  const [, update] = useReducer((value: number) => value + 1, 0);
+  const dataState = useEditorState({ editor, selector: () => isActive() });
+  const editorDisabled = !editable || !editor;
 
   return {
-    disabled, // can not action, opacity < 1
-    dataState, // true => show background, false => no background
+    disabled: editorDisabled,
+    dataState,
     editorDisabled,
-    update: () => setUpdate({}), // force update
+    update,
   };
 }

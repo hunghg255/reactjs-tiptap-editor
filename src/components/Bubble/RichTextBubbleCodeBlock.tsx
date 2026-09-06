@@ -1,3 +1,4 @@
+import { useEditorState } from '@tiptap/react';
 import { BubbleMenu } from '@tiptap/react/menus';
 import { Check, Copy, Trash2 } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
@@ -115,16 +116,19 @@ function SelectLanguages({ listLanguages }: { listLanguages: string[] }) {
 
   const editor = useEditorInstance();
 
-  const currentLanguageActive = useMemo(() => {
-    const { selection } = editor.state;
-    const node = selection.$from.parent;
+  const currentLanguageActive = useEditorState({
+    editor,
+    selector: ({ editor }) => {
+      const { selection } = editor.state;
+      const node = selection.$from.parent;
 
-    // Check if the current node is a codeBlock and get its language attribute
-    if (node.type.name === 'codeBlock') {
-      const currentLanguage = node.attrs.language || 'plaintext';
-      return MAP_LANGUAGE_LABEL[currentLanguage] || currentLanguage;
-    }
-  }, [editor.state, listLanguages]);
+      // Check if the current node is a codeBlock and get its language attribute
+      if (node.type.name === 'codeBlock') {
+        const currentLanguage = node.attrs.language || 'plaintext';
+        return MAP_LANGUAGE_LABEL[currentLanguage] || currentLanguage;
+      }
+    },
+  });
 
   const list = useMemo(() => {
     let listLanguagesFormat = listLanguages || [];
