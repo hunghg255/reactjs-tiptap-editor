@@ -3,6 +3,8 @@ import { type Node as PMNode } from '@tiptap/pm/model';
 import { Plugin, PluginKey, type EditorState, type Transaction } from '@tiptap/pm/state';
 import { Decoration, DecorationSet } from '@tiptap/pm/view';
 
+import type { ButtonViewParams } from '@/types';
+
 export * from '@/extensions/SearchAndReplace/components/RichTextSearchAndReplace';
 
 declare module '@tiptap/core' {
@@ -25,7 +27,10 @@ interface TextNodesWithPosition {
   pos: number;
 }
 
-const updateView = (state: EditorState, dispatch: any) => dispatch(state.tr);
+const updateView = (
+  state: EditorState,
+  dispatch: ((tr: import('@tiptap/pm/state').Transaction) => void) | undefined
+) => dispatch?.(state.tr);
 
 function getRegex(s: string, disableRegex: boolean, caseSensitive: boolean): RegExp {
   return RegExp(
@@ -213,7 +218,7 @@ export const SearchAndReplace = Extension.create<SearchAndReplaceOptions, Search
       onChange: () => {
         return;
       },
-      button: ({ editor, t }: any) => ({
+      button: ({ editor, t }: ButtonViewParams<SearchAndReplaceOptions>) => ({
         // component: RichTextSearchAndReplace,
         componentProps: {
           action: () => {

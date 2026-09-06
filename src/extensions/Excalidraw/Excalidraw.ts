@@ -1,4 +1,5 @@
 import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core';
+import { NodeSelection } from '@tiptap/pm/state';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import NodeViewExcalidraw from '@/extensions/Excalidraw/components/NodeViewExcalidraw/NodeViewExcalidraw';
@@ -10,10 +11,10 @@ const DEFAULT_MIND_DATA = { elements: [] };
 
 export interface IExcalidrawAttrs {
   defaultShowPicker?: boolean;
-  createUser?: any;
+  createUser?: unknown;
   width?: number | string;
   height?: number;
-  data?: Record<string, unknown>;
+  data?: import('@excalidraw/excalidraw/types').ExcalidrawInitialDataState;
 }
 
 declare module '@tiptap/core' {
@@ -76,7 +77,7 @@ export const Excalidraw = /* @__PURE__ */ Node.create({
     ];
   },
 
-  renderHTML({ HTMLAttributes, node }: any) {
+  renderHTML({ HTMLAttributes, node }) {
     return [
       'div',
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, nodeAttrsToDataset(node)),
@@ -91,8 +92,7 @@ export const Excalidraw = /* @__PURE__ */ Node.create({
           options = options || {};
           options.data = options.data || DEFAULT_MIND_DATA;
 
-          // @ts-ignore
-          if (tr.selection?.node?.type?.name == this.name) {
+          if (tr.selection instanceof NodeSelection && tr.selection.node.type.name === this.name) {
             return commands.updateAttributes(this.name, options);
           }
 

@@ -1,4 +1,5 @@
 import { Node, mergeAttributes, nodeInputRule } from '@tiptap/core';
+import { NodeSelection } from '@tiptap/pm/state';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import IframeNodeView from '@/extensions/Iframe/components/IframeNodeView';
@@ -36,8 +37,8 @@ export const Iframe = /* @__PURE__ */ Node.create({
         extension,
         t,
       }: {
-        editor: any;
-        extension: any;
+        editor: import('@tiptap/core').Editor;
+        extension: { options: { upload?: (file: File) => Promise<string> } };
         t: (key: string) => string;
       }) => ({
         componentProps: {
@@ -95,8 +96,7 @@ export const Iframe = /* @__PURE__ */ Node.create({
       setIframe:
         (options) =>
         ({ tr, commands, chain }) => {
-          // @ts-ignore
-          if (tr.selection?.node?.type?.name == this.name) {
+          if (tr.selection instanceof NodeSelection && tr.selection.node.type.name === this.name) {
             return commands.updateAttributes(this.name, options);
           }
 

@@ -1,5 +1,7 @@
 import { safeJSONParse } from '@/utils/json';
 
+import type { Node } from '@tiptap/pm/model';
+
 /**
  * @param json
  */
@@ -45,8 +47,7 @@ export function jsonToDOMDataset(json: Record<string, unknown>) {
 export function getDatasetAttribute(attribute: string, transformToJSON = false) {
   return (element: HTMLElement) => {
     const dataKey = attribute.startsWith('data-') ? attribute : `data-${attribute}`;
-    // @ts-ignore
-    let value = decodeURIComponent(element.getAttribute(dataKey));
+    let value = decodeURIComponent(element.getAttribute(dataKey) ?? 'null');
 
     if (value == null || (typeof value === 'string' && value === 'null')) {
       try {
@@ -56,19 +57,24 @@ export function getDatasetAttribute(attribute: string, transformToJSON = false) 
         if (texts && texts.length > 0) {
           const params = texts
             .map((str) => str.trim())
-            .reduce((accu, item) => {
-              const i = item.indexOf('=');
-              const arr = [item.slice(0, i), item.slice(i + 1).slice(1, -1)];
-              // @ts-expect-error
-              accu[arr[0]] = arr[1];
-              return accu;
-            }, {});
+            .reduce(
+              (accu, item) => {
+                const i = item.indexOf('=');
+                const arr = [item.slice(0, i), item.slice(i + 1).slice(1, -1)];
+                accu[arr[0]] = arr[1];
+                return accu;
+              },
+              {} as Record<string, string>
+            );
 
-          // @ts-expect-error
           value = (params[attribute.toLowerCase()] || '').replaceAll('&quot;', '"');
         }
-      } catch (e: any) {
-        console.error('Error getDatasetAttribute ', e.message, element);
+      } catch (e) {
+        console.error(
+          'Error getDatasetAttribute ',
+          e instanceof Error ? e.message : String(e),
+          element
+        );
       }
     }
 
@@ -95,25 +101,28 @@ export function getDatasetAttribute(attribute: string, transformToJSON = false) 
  * @returns
  */
 export function nodeAttrsToDataset(node: Node) {
-  const { attrs } = node as any;
+  const { attrs } = node;
 
-  return Object.keys(attrs).reduce((accu, key) => {
-    const value = attrs[key];
+  return Object.keys(attrs).reduce(
+    (accu, key) => {
+      const value = attrs[key];
 
-    if (value == null) {
+      if (value == null) {
+        return accu;
+      }
+
+      let encodeValue = '';
+
+      if (typeof value === 'object') {
+        encodeValue = jsonToStr(value);
+      } else {
+        encodeValue = value;
+      }
+
+      accu[key] = encodeValue;
+
       return accu;
-    }
-
-    let encodeValue = '';
-
-    if (typeof value === 'object') {
-      encodeValue = jsonToStr(value);
-    } else {
-      encodeValue = value;
-    }
-
-    accu[key] = encodeValue;
-
-    return accu;
-  }, Object.create(null));
+    },
+    {} as Record<string, string>
+  );
 }

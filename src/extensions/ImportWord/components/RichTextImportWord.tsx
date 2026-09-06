@@ -15,7 +15,13 @@ import { hasExtension } from '@/utils/utils';
 export function RichTextImportWord() {
   const editor = useEditorInstance();
 
-  const buttonProps = useButtonProps(ImportWord.name);
+  const buttonProps = useButtonProps<
+    import('@/types').ButtonViewReturnComponentProps & {
+      limit?: number;
+      convert?: (file: File) => Promise<string>;
+      mammothOptions?: Parameters<typeof mammoth.convertToHtml>[1];
+    }
+  >(ImportWord.name);
 
   const {
     icon = undefined,
@@ -40,8 +46,8 @@ export function RichTextImportWord() {
     fileInput.current?.click();
   }
 
-  function handleFileChange(event: any) {
-    const file = event.target.files[0];
+  function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.currentTarget.files?.[0];
     if (!file) {
       return;
     }
@@ -70,7 +76,7 @@ export function RichTextImportWord() {
         const files: File[] = [];
         // convert base64 image to blob file
         for (const img of images) {
-          const originalSrc = img.getAttribute('src');
+          const originalSrc = img.getAttribute('src') ?? '';
           const blob = base64ToBlob(originalSrc, 'image/jpeg');
           const file = blobToFile(blob, 'image.jpeg');
           files.push(file);

@@ -4,7 +4,7 @@ interface HttpRequestHeadersInterfaceMock {
 
 interface HttpRequestInterfaceMock {
   headers: HttpRequestHeadersInterfaceMock;
-  [id: string]: any;
+  [id: string]: unknown;
 }
 
 export interface IsMobileOptions {

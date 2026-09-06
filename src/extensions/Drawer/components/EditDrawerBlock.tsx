@@ -1,6 +1,5 @@
 import { makeDropdownToolbar, Editor as Editor4 } from 'easydrawer';
 import { useEffect, useRef, useState } from 'react';
-// @ts-ignore
 import svg64 from 'svg64';
 
 import { ActionButton } from '@/components/ActionButton';
@@ -16,22 +15,33 @@ import ControlDrawer from '@/extensions/Drawer/components/ControlDrawer/ControlD
 import { dataURLtoFile } from '@/utils/file';
 import { shortId } from '@/utils/shortId';
 
+import type { DrawingTool, ShapeWidget } from '@/extensions/Drawer/types';
+import type { Color4, PenTool } from 'easydrawer';
+
 let clear = false;
 
-export function EditDrawerBlock({ editor, attrs, extension }: any) {
+export function EditDrawerBlock({
+  editor,
+  attrs,
+  extension,
+}: {
+  editor: import('@tiptap/core').Editor;
+  attrs: { alt: string; align: 'left' | 'center' | 'right' };
+  extension?: { options: { upload?: (file: File) => Promise<string> } } | null;
+}) {
   const [visible, toggleVisible] = useState(false);
   const refEditor = useRef<Editor4 | null>(null);
-  const refWidget = useRef<any>(null);
+  const refWidget = useRef<ReturnType<typeof makeDropdownToolbar> | null>(null);
   const { alt, align } = attrs;
   const upload = extension?.options.upload;
 
   const mermaidInit = () => {
     const init = async () => {
-      const parentElement = document.querySelector('#easydrawer');
+      const parentElement = document.querySelector<HTMLElement>('#easydrawer');
 
       if (!parentElement) return;
 
-      refEditor.current = new Editor4(parentElement as any, {
+      refEditor.current = new Editor4(parentElement, {
         wheelEventsEnabled: false,
         disableZoom: true,
       });
@@ -85,9 +95,9 @@ export function EditDrawerBlock({ editor, attrs, extension }: any) {
     toggleVisible(false);
   };
 
-  const setColorPen = (color: string) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[2] as any;
-    const shapeWidget = refWidget.current.getWidgetById('pen-1');
+  const setColorPen = (color: Color4) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[2] as PenTool;
+    const shapeWidget = refWidget.current?.getWidgetById('pen-1');
 
     if (penTool && shapeWidget) {
       penTool.setColor(color);
@@ -96,8 +106,8 @@ export function EditDrawerBlock({ editor, attrs, extension }: any) {
   };
 
   const setThicknessPen = (thickness: number) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[2] as any;
-    const shapeWidget = refWidget.current.getWidgetById('pen-1');
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[2] as PenTool;
+    const shapeWidget = refWidget.current?.getWidgetById('pen-1');
 
     if (penTool && shapeWidget) {
       penTool.setThickness(thickness);
@@ -105,10 +115,10 @@ export function EditDrawerBlock({ editor, attrs, extension }: any) {
     }
   };
 
-  const setColorHighlight = (color: string) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[3] as any;
+  const setColorHighlight = (color: Color4) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[3] as PenTool;
 
-    const shapeWidget = refWidget.current.getWidgetById('pen-2');
+    const shapeWidget = refWidget.current?.getWidgetById('pen-2');
 
     if (penTool && shapeWidget) {
       penTool.setColor(color);
@@ -116,17 +126,17 @@ export function EditDrawerBlock({ editor, attrs, extension }: any) {
     }
   };
 
-  const changeShape = (type: any) => {
-    const shapeWidget = refWidget.current.getWidgetById('shape');
+  const changeShape = (type: number) => {
+    const shapeWidget = refWidget.current?.getWidgetById('shape') as ShapeWidget | undefined;
 
     if (shapeWidget) {
       shapeWidget.setShapeType(type);
     }
   };
 
-  const changeColorShape = (color: string) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as any;
-    const shapeWidget = refWidget.current.getWidgetById('shape');
+  const changeColorShape = (color: Color4) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as DrawingTool;
+    const shapeWidget = refWidget.current?.getWidgetById('shape') as ShapeWidget | undefined;
 
     if (penTool && shapeWidget) {
       penTool.setColor(color);
@@ -134,9 +144,9 @@ export function EditDrawerBlock({ editor, attrs, extension }: any) {
     }
   };
 
-  const onThicknessChange = (v: any) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as any;
-    const shapeWidget = refWidget.current.getWidgetById('shape');
+  const onThicknessChange = (v: number) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as DrawingTool;
+    const shapeWidget = refWidget.current?.getWidgetById('shape') as ShapeWidget | undefined;
 
     if (penTool && shapeWidget) {
       penTool.setThickness(v);
@@ -144,9 +154,9 @@ export function EditDrawerBlock({ editor, attrs, extension }: any) {
     }
   };
 
-  const changeBorderColorShape = (color: string) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as any;
-    const shapeWidget = refWidget.current.getWidgetById('shape');
+  const changeBorderColorShape = (color: Color4) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as DrawingTool;
+    const shapeWidget = refWidget.current?.getWidgetById('shape') as ShapeWidget | undefined;
 
     if (penTool && shapeWidget) {
       penTool.setBorderColor(color);

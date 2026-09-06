@@ -32,7 +32,7 @@ export const TextAlign =
         }: {
           editor: Editor;
           extension: Extension;
-          t: (...args: any[]) => string;
+          t: (path: string) => string;
         }) {
           const alignments = (extension.options?.alignments as Alignments[]) || [];
 
@@ -66,7 +66,7 @@ export const TextAlign =
               tooltip: t('editor.textalign.tooltip'),
               items,
               isActive: () => {
-                const find: any = items?.find((k: any) => k.isActive());
+                const find = items?.find((k) => k.isActive());
 
                 return find;
               },

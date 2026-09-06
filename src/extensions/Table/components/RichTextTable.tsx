@@ -25,7 +25,9 @@ export function RichTextTable() {
     return <></>;
   }
 
-  function createTable(options: any) {
+  function createTable(
+    options: Parameters<import('@tiptap/core').Editor['commands']['insertTable']>[0]
+  ) {
     editor
       .chain()
       .focus()

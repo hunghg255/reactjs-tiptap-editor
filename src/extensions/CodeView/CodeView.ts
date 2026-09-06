@@ -26,7 +26,7 @@ export const CodeView = /* @__PURE__ */ Extension.create<CodeViewOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      button({ editor, t }: { editor: Editor; t: (...args: any[]) => string }) {
+      button({ editor, t }: { editor: Editor; t: (path: string) => string }) {
         return {
           componentProps: {
             action: () => {

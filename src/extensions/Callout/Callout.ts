@@ -4,6 +4,7 @@ import { ReactNodeViewRenderer } from '@tiptap/react';
 import { ActionButton } from '@/components';
 import { NodeViewCallout } from '@/extensions/Callout/components/NodeViewCallout/NodeViewCallout';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions } from '@/types';
 
 declare module '@tiptap/core' {
@@ -15,11 +16,11 @@ declare module '@tiptap/core' {
 }
 
 export interface CalloutOptions extends GeneralOptions<CalloutOptions> {
-  HTMLAttributes: Record<string, any>;
+  HTMLAttributes: Record<string, unknown>;
 }
 
 function getDatasetAttribute(attribute: string) {
-  return (element: any) => {
+  return (element: HTMLElement) => {
     return element.getAttribute(attribute);
   };
 }
@@ -41,7 +42,7 @@ export const Callout = /* @__PURE__ */ Node.create<CalloutOptions>({
       HTMLAttributes: {
         class: 'callout',
       },
-      button: ({ editor, t }: any) => ({
+      button: ({ editor, t }: ButtonViewParams<CalloutOptions>) => ({
         component: ActionButton,
         componentProps: {
           action: () => {

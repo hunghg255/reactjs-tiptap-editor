@@ -38,7 +38,7 @@ export const Link = /* @__PURE__ */ TiptapLink.extend<LinkOptions>({
       button: ({ editor, t }) => {
         return {
           componentProps: {
-            action: (value) => {
+            action: (value: { link: string; text: string; openInNewTab?: boolean }) => {
               const { link, text, openInNewTab } = value;
 
               if (!link) {

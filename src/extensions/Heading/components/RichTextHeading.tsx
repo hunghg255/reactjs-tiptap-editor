@@ -20,8 +20,8 @@ import type { ButtonViewReturnComponentProps } from '@/types';
 
 export interface Item {
   title: string;
-  icon?: any;
-  level?: number;
+  icon?: string;
+  level?: number | 'Paragraph';
   isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>;
   action?: ButtonViewReturnComponentProps['action'];
   style?: React.CSSProperties;
@@ -33,7 +33,12 @@ export interface Item {
 
 export function RichTextHeading() {
   const { t } = useLocale();
-  const buttonProps = useButtonProps(Heading.name);
+  const buttonProps = useButtonProps<{
+    icon?: string;
+    tooltip?: string;
+    items?: Item[];
+    isActive?: () => Item | boolean;
+  }>(Heading.name);
 
   const {
     icon = undefined,
@@ -45,7 +50,10 @@ export function RichTextHeading() {
   const { disabled, dataState } = useActive(isActive);
 
   const title = useMemo(() => {
-    return (dataState as any)?.title || t('editor.paragraph.tooltip');
+    return (
+      (typeof dataState === 'object' ? dataState?.title : undefined) ||
+      t('editor.paragraph.tooltip')
+    );
   }, [dataState]);
 
   if (!buttonProps) {
@@ -65,7 +73,7 @@ export function RichTextHeading() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className='richtext-w-full'>
-        {items?.map((item: any, index: any) => {
+        {items?.map((item, index) => {
           return (
             <Fragment key={`heading-k-${index}`}>
               <DropdownMenuCheckboxItem checked={title === item.title} onClick={item.action}>
@@ -85,7 +93,7 @@ export function RichTextHeading() {
 
                 {!!item?.shortcutKeys?.length && (
                   <DropdownMenuShortcut className='richtext-pl-4'>
-                    {item?.shortcutKeys?.map((item: any) => getShortcutKey(item)).join(' ')}
+                    {item?.shortcutKeys?.map((item) => getShortcutKey(item)).join(' ')}
                   </DropdownMenuShortcut>
                 )}
               </DropdownMenuCheckboxItem>

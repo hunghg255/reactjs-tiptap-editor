@@ -2,6 +2,7 @@ import { Bold as TiptapBold } from '@tiptap/extension-bold';
 
 import { ActionButton } from '@/components';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions } from '@/types';
 import type { BoldOptions as TiptapImageOptions } from '@tiptap/extension-bold';
 
@@ -14,7 +15,7 @@ export const Bold = /* @__PURE__ */ TiptapBold.extend<BoldOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({ editor, t, extension }: any) => ({
+      button: ({ editor, t, extension }: ButtonViewParams<BoldOptions>) => ({
         component: ActionButton,
         componentProps: {
           action: () => editor.commands.toggleBold(),

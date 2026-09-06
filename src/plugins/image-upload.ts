@@ -4,7 +4,7 @@ import { Decoration, DecorationSet } from '@tiptap/pm/view';
 import type { EditorState } from '@tiptap/pm/state';
 import type { EditorView } from '@tiptap/pm/view';
 
-const uploadKey = new PluginKey('customPluginImageUpload');
+const uploadKey = new PluginKey<DecorationSet>('customPluginImageUpload');
 
 interface UploadAction {
   add?: Array<{ id: string; pos: number; src: string }>;
@@ -12,13 +12,13 @@ interface UploadAction {
 }
 
 export function UploadImagesPlugin() {
-  return new Plugin({
+  return new Plugin<DecorationSet>({
     key: uploadKey,
     state: {
       init() {
         return DecorationSet.empty;
       },
-      apply(tr: any, set: any) {
+      apply(tr, set) {
         set = set.map(tr.mapping, tr.doc);
         const action = tr.getMeta(uploadKey) as UploadAction;
 
@@ -30,7 +30,7 @@ export function UploadImagesPlugin() {
           }
         } else if (action?.remove) {
           for (const id of action.remove) {
-            set = set.remove(set.find(undefined, undefined, (spec: any) => spec.id === id));
+            set = set.remove(set.find(undefined, undefined, (spec) => spec.id === id));
           }
         }
 
@@ -58,7 +58,8 @@ function createPlaceholder(src: string): HTMLElement {
 }
 
 function findPlaceholder(state: EditorState, id: string): number | null {
-  const decos = uploadKey.getState(state) as DecorationSet;
+  const decos = uploadKey.getState(state);
+  if (!decos) return null;
   const found = decos.find(undefined, undefined, (spec) => spec.id === id);
   return found.length > 0 ? found[0]?.from : null;
 }

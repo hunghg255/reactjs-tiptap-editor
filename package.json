@@ -728,6 +728,7 @@
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "type-check": "tsc",
+    "test:types": "tsc -p tests/tsconfig.json",
     "verify-commit": "verify-commit-msg",
     "prepare": "git-scm-hooks",
     "release": "bumpp -r",

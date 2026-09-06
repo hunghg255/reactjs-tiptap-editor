@@ -1,9 +1,10 @@
 import { mergeAttributes } from '@tiptap/core';
-import TiptapImage from '@tiptap/extension-image';
+import TiptapImage, { type ImageOptions as TiptapImageOptions } from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import { NodeViewDrawer } from '@/extensions/Drawer/components/NodeViewDrawer/NodeViewDrawer';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions } from '@/types';
 import type { CommandProps } from '@tiptap/core';
 
@@ -12,13 +13,16 @@ export * from '@/extensions/Drawer/components/RichTextDrawer';
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     drawer: {
-      setDrawer: (options: any, replace?: any) => ReturnType;
+      setDrawer: (
+        options: { src: string; alt?: string; type?: string; width?: number; height?: number },
+        replace?: boolean
+      ) => ReturnType;
       setAlignImageDrawer: (align: 'left' | 'center' | 'right') => ReturnType;
     };
   }
 }
 
-export interface DrawerOptions extends GeneralOptions<DrawerOptions> {
+export interface DrawerOptions extends TiptapImageOptions, GeneralOptions<DrawerOptions> {
   /** Function for uploading files */
   upload?: (file: File) => Promise<string>;
 }
@@ -40,7 +44,7 @@ export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
       HTMLAttributes: {
         class: 'drawer',
       },
-      button: ({ t, extension }: any) => ({
+      button: ({ t, extension }: ButtonViewParams<DrawerOptions>) => ({
         componentProps: {
           action: () => {
             return true;
@@ -61,7 +65,7 @@ export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
       width: {
         default: null,
         parseHTML: (element) => {
-          const img = element.querySelector('img') as any;
+          const img = element.querySelector('img');
 
           const width = img?.getAttribute('width');
 
@@ -76,7 +80,7 @@ export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
       height: {
         default: null,
         parseHTML: (element) => {
-          const img = element.querySelector('img') as any;
+          const img = element.querySelector('img');
 
           const height = img?.getAttribute('height');
 
@@ -104,11 +108,13 @@ export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
     return ReactNodeViewRenderer(NodeViewDrawer);
   },
 
-  // @ts-ignore
   addCommands() {
     return {
       setDrawer:
-        (options: { src: string; alt?: string }, replace?: boolean) =>
+        (
+          options: { src: string; alt?: string; type?: string; width?: number; height?: number },
+          replace?: boolean
+        ) =>
         ({ commands, editor }: CommandProps) => {
           if (replace) {
             return commands.insertContent({
@@ -123,8 +129,8 @@ export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
         },
 
       setAlignImageDrawer:
-        (align: any) =>
-        ({ commands }: any) => {
+        (align: 'left' | 'center' | 'right') =>
+        ({ commands }) => {
           return commands.updateAttributes(this.name, { align });
         },
     };
@@ -140,14 +146,7 @@ export const Drawer = /* @__PURE__ */ TiptapImage.extend<DrawerOptions>({
         style,
         class: 'imageDrawer',
       },
-      [
-        'img',
-        mergeAttributes(
-          // @ts-ignore
-          this.options.HTMLAttributes,
-          HTMLAttributes
-        ),
-      ],
+      ['img', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)],
     ];
   },
   parseHTML() {

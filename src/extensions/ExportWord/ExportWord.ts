@@ -4,18 +4,19 @@ import { DocxSerializer, defaultMarks, defaultNodes } from 'prosemirror-docx';
 
 import { downloadFromBlob } from '@/utils/download';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions } from '@/types';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     exportWord: {
-      exportToWord: (docState: any) => ReturnType;
+      exportToWord: (docState: import('@tiptap/pm/model').Node) => ReturnType;
     };
   }
 }
 interface ExportWordOptions extends GeneralOptions<ExportWordOptions> {}
 
-const nodeSerializer = {
+const nodeSerializer: import('prosemirror-docx').NodeSerializer = {
   ...defaultNodes,
   hardBreak: defaultNodes.hard_break,
   codeBlock: defaultNodes.code_block,
@@ -24,12 +25,12 @@ const nodeSerializer = {
   bulletList: defaultNodes.bullet_list,
   horizontalRule: defaultNodes.horizontal_rule,
   // Requirement Buffer on browser
-  image(state: any, node: any) {
+  image(state, node) {
     // No image
     state.renderInline(node);
     state.closeBlock(node);
   },
-  table(state: any, node: any) {
+  table(state, node) {
     state.table(node, {
       tableOptions: {
         width: {
@@ -52,7 +53,7 @@ export const ExportWord = /* @__PURE__ */ Extension.create<ExportWordOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({ editor, t }: any) => ({
+      button: ({ editor, t }: ButtonViewParams<ExportWordOptions>) => ({
         componentProps: {
           icon: 'ExportWord',
           action: () => {
@@ -65,24 +66,25 @@ export const ExportWord = /* @__PURE__ */ Extension.create<ExportWordOptions>({
       }),
     };
   },
-  // @ts-expect-error
   addCommands() {
     return {
-      exportToWord: (docState) => async () => {
+      exportToWord: (docState) => () => {
         try {
-          const opts: any = {
-            getImageBuffer: async (src: string) => {
-              const response = await fetch(src);
-              const arrayBuffer = await response.arrayBuffer();
-              return new Uint8Array(arrayBuffer);
+          const opts: Parameters<DocxSerializer['serialize']>[1] = {
+            getImageBuffer: () => {
+              throw new Error('Image export is disabled by the image serializer.');
             },
           };
 
-          const wordDocument = docxSerializer.serialize(docState as any, opts);
-
-          Packer.toBlob(wordDocument).then((blob: any) =>
-            downloadFromBlob(new Blob([blob]), 'richtext-export-document.docx')
+          const wordDocument = docxSerializer.serialize(
+            // prosemirror-docx bundles an older structurally compatible ProseMirror Node.
+            docState as unknown as Parameters<DocxSerializer['serialize']>[0],
+            opts
           );
+
+          void Packer.toBlob(wordDocument)
+            .then((blob) => downloadFromBlob(blob, 'richtext-export-document.docx'))
+            .catch((error: unknown) => console.error('Error exporting to Word:', error));
           return true;
         } catch (error) {
           console.error('Error exporting to Word:', error);

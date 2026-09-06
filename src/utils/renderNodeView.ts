@@ -2,52 +2,48 @@ import { ReactRenderer } from '@tiptap/react';
 
 import { updatePosition } from '@/utils/updatePosition';
 
-export function renderNodeViewClosure(node: any) {
+import type {
+  SuggestionOptions,
+  SuggestionProps,
+  SuggestionKeyDownProps,
+} from '@tiptap/suggestion';
+import type { ComponentType } from 'react';
+
+export interface SuggestionHandle {
+  onKeyDown: (props: SuggestionKeyDownProps) => boolean;
+}
+
+export function renderNodeViewClosure<T, TSelected = T>(
+  node: ComponentType<SuggestionProps<T, TSelected>>
+): NonNullable<SuggestionOptions<T, TSelected>['render']> {
   return () => {
-    let reactRenderer: any;
-
+    let renderer: ReactRenderer<SuggestionHandle, SuggestionProps<T, TSelected>> | undefined;
+    const destroy = () => {
+      renderer?.destroy();
+      renderer?.element.remove();
+      renderer = undefined;
+    };
     return {
-      onStart: (props: any) => {
-        if (!props.clientRect) {
-          return;
-        }
-
-        reactRenderer = new ReactRenderer(node, {
-          props,
-          editor: props.editor,
-        });
-
-        reactRenderer.element.style.position = 'absolute';
-
-        document.body.appendChild(reactRenderer.element);
-
-        updatePosition(props.editor, reactRenderer.element);
+      onStart(props) {
+        if (!props.clientRect) return;
+        renderer = new ReactRenderer(node, { props, editor: props.editor });
+        renderer.element.style.position = 'absolute';
+        document.body.appendChild(renderer.element);
+        updatePosition(props.editor, renderer.element);
       },
-
-      onUpdate(props: any) {
-        reactRenderer.updateProps(props);
-
-        if (!props.clientRect) {
-          return;
-        }
-        updatePosition(props.editor, reactRenderer.element);
+      onUpdate(props) {
+        if (!renderer) return;
+        renderer.updateProps(props);
+        if (props.clientRect) updatePosition(props.editor, renderer.element);
       },
-
-      onKeyDown(props: any) {
+      onKeyDown(props) {
         if (props.event.key === 'Escape') {
-          reactRenderer.destroy();
-          reactRenderer.element.remove();
-
+          destroy();
           return true;
         }
-
-        return reactRenderer.ref?.onKeyDown(props);
+        return renderer?.ref?.onKeyDown(props) ?? false;
       },
-
-      onExit() {
-        reactRenderer.destroy();
-        reactRenderer.element.remove();
-      },
+      onExit: destroy,
     };
   };
 }

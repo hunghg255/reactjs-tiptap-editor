@@ -109,6 +109,11 @@
         "es2020": true,
         "browser": true
       }
+    },
+    {
+      "files": ["src/**/*.{ts,tsx}"],
+      "plugins": ["typescript"],
+      "rules": { "@typescript-eslint/no-explicit-any": "error" }
     }
   ]
 }

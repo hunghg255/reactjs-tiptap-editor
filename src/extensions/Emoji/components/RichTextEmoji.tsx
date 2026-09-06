@@ -67,7 +67,7 @@ export function RichTextEmoji() {
     return <></>;
   }
 
-  const onAction = (emoji: any) => {
+  const onAction = (emoji: string) => {
     if (disabled) return;
 
     if (action) action(emoji);

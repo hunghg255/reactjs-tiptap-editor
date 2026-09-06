@@ -33,7 +33,7 @@ export function RenderDialogUploadVideo() {
   const [isUploading, setIsUploading] = useState(false);
   const extension = useExtension(Video.name);
 
-  const EVENT_ID = EVENTS.UPLOAD_VIDEO((editor as any).id);
+  const EVENT_ID = EVENTS.UPLOAD_VIDEO(editor.id);
 
   useListener(setOpen, [EVENT_ID]);
 
@@ -43,7 +43,7 @@ export function RenderDialogUploadVideo() {
     return uploadOptions;
   }, [extension]);
 
-  function handleLink(e: any) {
+  function handleLink(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -120,7 +120,7 @@ export function RenderDialogUploadVideo() {
                   type='url'
                   value={link}
                   onBlur={(e) => {
-                    const url = e.target.value;
+                    const url = e.currentTarget.value;
                     const videoProviders = uploadOptions.videoProviders || ['.'];
 
                     if (url && !checkIsVideoUrl(url, videoProviders)) {
@@ -130,7 +130,7 @@ export function RenderDialogUploadVideo() {
                     }
                   }}
                   onChange={(e) => {
-                    setLink(e.target.value);
+                    setLink(e.currentTarget.value);
                   }}
                 />
 

@@ -8,7 +8,7 @@ import { useLocale } from '@/locales';
 import type { Mark } from '@tiptap/pm/model';
 
 interface IPropsLinkEditBlock {
-  editor: any;
+  editor: import('@tiptap/core').Editor;
   onSetLink: (link: string, text?: string, openInNewTab?: boolean) => void;
   open?: boolean;
   target?: string;
@@ -82,7 +82,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
     };
   }, [props.editor, extension, props.open]);
 
-  function handleSubmit(event: any) {
+  function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     event.stopPropagation();
     props?.onSetLink(form.link, form.text, openInNewTab);
@@ -97,7 +97,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
         <div className='richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center'>
           <Input
             className='richtext-w-80'
-            onChange={(e) => setForm({ ...form, text: e.target.value })}
+            onChange={(e) => setForm({ ...form, text: e.currentTarget.value })}
             placeholder='Text'
             ref={textInputRef}
             required
@@ -113,7 +113,7 @@ function LinkEditBlock(props: IPropsLinkEditBlock) {
         <div className='richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center'>
           <Input
             className='richtext-pl-10'
-            onChange={(e) => setForm({ ...form, link: e.target.value })}
+            onChange={(e) => setForm({ ...form, link: e.currentTarget.value })}
             ref={linkInputRef}
             required
             type='url'

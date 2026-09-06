@@ -1,16 +1,20 @@
 import { mergeAttributes } from '@tiptap/core';
-import TiptapImage from '@tiptap/extension-image';
+import TiptapImage, { type ImageOptions as TiptapImageOptions } from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import { NodeViewMermaid } from '@/extensions/Mermaid/components/NodeViewMermaid/NodeViewMermaid';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions } from '@/types';
 import type { CommandProps } from '@tiptap/core';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     mermaid: {
-      setMermaid: (options: any, replace?: any) => ReturnType;
+      setMermaid: (
+        options: { src: string; alt?: string; type?: string; width?: number; height?: number },
+        replace?: boolean
+      ) => ReturnType;
       setAlignImageMermaid: (align: 'left' | 'center' | 'right') => ReturnType;
     };
   }
@@ -18,7 +22,7 @@ declare module '@tiptap/core' {
 
 export * from '@/extensions/Mermaid/components/RichTextMermaid';
 
-export interface MermaidOptions extends GeneralOptions<MermaidOptions> {
+export interface MermaidOptions extends TiptapImageOptions, GeneralOptions<MermaidOptions> {
   /** Function for uploading files */
   upload?: (file: File) => Promise<string>;
 }
@@ -40,7 +44,7 @@ export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
       HTMLAttributes: {
         class: 'mermaid',
       },
-      button: ({ editor, t, extension }: any) => ({
+      button: ({ editor, t, extension }: ButtonViewParams<MermaidOptions>) => ({
         componentProps: {
           action: () => {
             return true;
@@ -62,7 +66,7 @@ export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
       width: {
         default: null,
         parseHTML: (element) => {
-          const img = element.querySelector('img') as any;
+          const img = element.querySelector('img');
 
           const width = img?.getAttribute('width');
 
@@ -77,7 +81,7 @@ export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
       height: {
         default: null,
         parseHTML: (element) => {
-          const img = element.querySelector('img') as any;
+          const img = element.querySelector('img');
 
           const height = img?.getAttribute('height');
 
@@ -105,11 +109,13 @@ export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
     return ReactNodeViewRenderer(NodeViewMermaid);
   },
 
-  // @ts-ignore
   addCommands() {
     return {
       setMermaid:
-        (options: { src: string; alt?: string }, replace?: boolean) =>
+        (
+          options: { src: string; alt?: string; type?: string; width?: number; height?: number },
+          replace?: boolean
+        ) =>
         ({ commands, editor }: CommandProps) => {
           if (replace) {
             return commands.insertContent({
@@ -124,8 +130,8 @@ export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
         },
 
       setAlignImageMermaid:
-        (align: any) =>
-        ({ commands }: any) => {
+        (align: 'left' | 'center' | 'right') =>
+        ({ commands }) => {
           return commands.updateAttributes(this.name, { align });
         },
     };
@@ -141,14 +147,7 @@ export const Mermaid = /* @__PURE__ */ TiptapImage.extend<MermaidOptions>({
         style,
         class: 'imageMermaid',
       },
-      [
-        'img',
-        mergeAttributes(
-          // @ts-ignore
-          this.options.HTMLAttributes,
-          HTMLAttributes
-        ),
-      ],
+      ['img', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)],
     ];
   },
   parseHTML() {

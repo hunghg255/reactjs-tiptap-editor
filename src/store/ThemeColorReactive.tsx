@@ -10,8 +10,8 @@ export function ThemeColorReactive() {
     const themeValue = theme || 'light';
     const colorValue = color || 'default';
 
-    //@ts-ignore
-    let themeObject = THEME[themeValue][colorValue];
+    const themes: Record<string, Record<string, Record<string, string>>> = THEME;
+    let themeObject = themes[themeValue]?.[colorValue];
 
     if (!themeObject) {
       themeObject = THEME['light']['default'];

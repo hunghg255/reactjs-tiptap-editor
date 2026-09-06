@@ -5,7 +5,7 @@ import { Twitter } from '@/extensions/Twitter/Twitter';
 import { useLocale } from '@/locales';
 
 interface IPropsFormEditLinkTwitter {
-  editor: any;
+  editor: import('@tiptap/core').Editor;
   onSetLink: (src: string) => void;
 }
 
@@ -24,7 +24,7 @@ function FormEditLinkTwitter(props: IPropsFormEditLinkTwitter) {
     }
   }, [props?.editor]);
 
-  function handleSubmit(event: any) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     event.stopPropagation();
     props?.onSetLink(src);
@@ -38,7 +38,7 @@ function FormEditLinkTwitter(props: IPropsFormEditLinkTwitter) {
         <div className='richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center'>
           <Input
             className='richtext-w-80'
-            onChange={(e) => setSrc(e.target.value)}
+            onChange={(e) => setSrc(e.currentTarget.value)}
             placeholder='Text'
             required
             type='text'

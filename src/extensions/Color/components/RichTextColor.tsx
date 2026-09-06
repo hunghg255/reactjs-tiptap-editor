@@ -8,7 +8,14 @@ import { useActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 
 export function RichTextColor() {
-  const buttonProps = useButtonProps(Color.name);
+  const buttonProps = useButtonProps<{
+    shortcutKeys?: string[];
+    tooltip?: string;
+    isActive?: () => string | undefined;
+    defaultColor?: string;
+    colors?: string[];
+    action?: (color: string | undefined) => void;
+  }>(Color.name);
 
   const {
     tooltip = undefined,
@@ -20,13 +27,13 @@ export function RichTextColor() {
 
   const { disabled, dataState } = useActive(isActive);
 
-  const [selectedColor, setSelectedColor] = useState<any>(defaultColor);
+  const [selectedColor, setSelectedColor] = useState<string | undefined>(defaultColor);
 
   useEffect(() => {
-    setSelectedColor(dataState);
+    setSelectedColor(typeof dataState === 'string' ? dataState : undefined);
   }, [dataState]);
 
-  function onChange(color: any) {
+  function onChange(color: string | undefined) {
     if (disabled) return;
 
     if (action) {
@@ -47,7 +54,7 @@ export function RichTextColor() {
         // tooltipOptions={tooltipOptions}
       >
         <span className='richtext-flex richtext-items-center richtext-justify-center richtext-gap-[4px] richtext-text-sm'>
-          <IconColorFill fill={dataState} />
+          <IconColorFill fill={typeof dataState === 'string' ? dataState : undefined} />
 
           <IconComponent
             className='!richtext-h-3 !richtext-w-3 richtext-text-zinc-500'

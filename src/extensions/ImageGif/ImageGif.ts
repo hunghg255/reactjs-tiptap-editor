@@ -4,6 +4,7 @@ import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import ImageGifView from '@/extensions/ImageGif/components/ImageGifView';
 
+import type { ButtonViewParams } from '@/types';
 import type { ImageOptions } from '@tiptap/extension-image';
 
 export * from '@/extensions/ImageGif/components/RichTextImageGif';
@@ -62,7 +63,7 @@ export const ImageGif = /* @__PURE__ */ TiptapImage.extend<ImageGifOptions>({
       draggable: false,
       selectable: true,
       atom: true,
-      button: ({ editor, extension, t }: any) => {
+      button: ({ editor, extension, t }: ButtonViewParams<ImageGifOptions>) => {
         const provider = extension?.options?.provider || '';
         const apiKey = extension?.options?.API_KEY || '';
 
@@ -116,21 +117,21 @@ export const ImageGif = /* @__PURE__ */ TiptapImage.extend<ImageGifOptions>({
     return {
       ...this.parent?.(),
       setImageGif:
-        (options: any) =>
-        ({ commands }: any) => {
+        (options: Partial<SetImageAttrsOptions>) =>
+        ({ commands }) => {
           return commands.insertContent({
             type: this.name,
             attrs: options,
           });
         },
       updateImageGif:
-        (options: any) =>
-        ({ commands }: any) => {
+        (options: Partial<SetImageAttrsOptions>) =>
+        ({ commands }) => {
           return commands.updateAttributes(this.name, options);
         },
       setAlignImageGif:
-        (align: any) =>
-        ({ commands }: any) => {
+        (align: 'left' | 'center' | 'right') =>
+        ({ commands }) => {
           return commands.updateAttributes(this.name, { align });
         },
     };

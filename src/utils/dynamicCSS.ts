@@ -15,16 +15,15 @@ export default function contains(root: Node | null | undefined, n?: Node) {
 
   // Use native if support
   if (root.contains) {
-    return root.contains(n as any);
+    return root.contains(n ?? null);
   }
 
   // `document.contains` not support with IE11
-  let node = n;
+  let node: Node | null | undefined = n;
   while (node) {
     if (node === root) {
       return true;
     }
-    // @ts-ignore
     node = node.parentNode;
   }
 
@@ -94,15 +93,14 @@ export function injectCSS(css: string, option: Options = {}) {
   styleNode.innerHTML = css;
 
   const container = getContainer(option);
-  const { firstChild } = container as any;
+  const { firstChild } = container;
 
   if (prepend) {
     // If is queue `prepend`, it will prepend first style and then append rest style
     if (isPrependQueue) {
       const existStyle = findStyles(container).filter((node) => {
         // Ignore style which not injected by rc-util with prepend
-        // @ts-ignore
-        if (!['prepend', 'prependQueue'].includes(node.getAttribute(APPEND_ORDER))) {
+        if (!['prepend', 'prependQueue'].includes(node.getAttribute(APPEND_ORDER) ?? '')) {
           return false;
         }
 
@@ -112,15 +110,14 @@ export function injectCSS(css: string, option: Options = {}) {
       });
 
       if (existStyle.length > 0) {
-        // @ts-ignore
-        container.insertBefore(styleNode, existStyle.at(-1).nextSibling);
+        container.insertBefore(styleNode, existStyle[existStyle.length - 1].nextSibling);
 
         return styleNode;
       }
     }
 
     // Use `insertBefore` as `prepend`
-    firstChild.before(styleNode);
+    container.insertBefore(styleNode, firstChild);
   } else {
     container.append(styleNode);
   }
@@ -152,8 +149,7 @@ function syncRealContainer(container: ContainerType, option: Options) {
   if (!cachedRealContainer || !contains(document, cachedRealContainer)) {
     const placeholderStyle = injectCSS('', option);
     const { parentNode } = placeholderStyle;
-    // @ts-ignore
-    containerCache.set(container, parentNode);
+    if (parentNode) containerCache.set(container, parentNode);
     placeholderStyle.remove();
   }
 }

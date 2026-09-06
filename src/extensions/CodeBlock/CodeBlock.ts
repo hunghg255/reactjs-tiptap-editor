@@ -1,3 +1,4 @@
+import type { ButtonViewParams } from '@/types';
 export * from '@/extensions/CodeBlock/components/RichTextCodeBlock';
 import CodeBlockRangi, {
   CodeBlockRangiOptions,
@@ -11,7 +12,7 @@ export const CodeBlock = CodeBlockRangi.extend<CodeBlockOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({ editor, t }: any) => {
+      button: ({ editor, t }: ButtonViewParams<CodeBlockOptions>) => {
         return {
           componentProps: {
             action: () => editor.chain().focus().setCodeBlock({ language: 'plaintext' }).run(),

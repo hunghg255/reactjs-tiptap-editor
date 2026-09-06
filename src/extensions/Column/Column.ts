@@ -1,3 +1,7 @@
+import type { ButtonViewParams, ButtonView } from '@/types';
+export interface ColumnOptions {
+  button: ButtonView<ColumnOptions>;
+}
 import { Node, mergeAttributes } from '@tiptap/core';
 import { Extension } from '@tiptap/core';
 import { TextSelection } from '@tiptap/pm/state';
@@ -19,12 +23,12 @@ declare module '@tiptap/core' {
 
 export * from './components/RichTextColumn';
 
-export const Column = Extension.create<any>({
+export const Column = Extension.create<ColumnOptions>({
   name: 'richtextColumnExtension',
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({ editor, t }: any) => ({
+      button: ({ editor, t }: ButtonViewParams<ColumnOptions>) => ({
         componentProps: {
           action: () => {
             editor.chain().focus().insertColumns({ cols: 2 }).run();

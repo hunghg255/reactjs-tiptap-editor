@@ -23,25 +23,27 @@ import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 import { IndentProps, setNodeIndentMarkup } from '@/utils/indent';
 
+import type {} from '@tiptap/extension-paragraph';
+import type { Node } from '@tiptap/pm/model';
 import type { Editor } from '@tiptap/react';
 
 export function RichTextBubbleMenuDragHandle() {
-  const editor = useEditorInstance() as any;
+  const editor = useEditorInstance();
   const editable = useEditableEditor();
 
   const { t } = useLocale();
-  const [currentNode, setCurrentNode] = useState<any>(null);
+  const [currentNode, setCurrentNode] = useState<import('@tiptap/pm/model').Node | null>(null);
   const [currentNodePos, setCurrentNodePos] = useState(-1);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const hasTextAlignExtension = editor?.extensionManager?.extensions?.some(
-    (ext: any) => ext?.name === TextAlign.name
+    (ext) => ext?.name === TextAlign.name
   );
   const hasIndentExtension = editor?.extensionManager?.extensions?.some(
-    (ext: any) => ext?.name === Indent.name
+    (ext) => ext?.name === Indent.name
   );
   const hasClearExtension = editor?.extensionManager?.extensions?.some(
-    (ext: any) => ext?.name === Clear.name
+    (ext) => ext?.name === Clear.name
   );
 
   function resetTextFormatting() {
@@ -102,7 +104,7 @@ export function RichTextBubbleMenuDragHandle() {
     []
   );
 
-  const handleAdd = (e: any) => {
+  const handleAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     if (currentNodePos !== -1) {
@@ -113,7 +115,7 @@ export function RichTextBubbleMenuDragHandle() {
       const focusPos = currentNodeIsEmptyParagraph ? currentNodePos + 2 : insertPos + 2;
       editor
         .chain()
-        .command(({ dispatch, tr, state }: any) => {
+        .command(({ dispatch, tr, state }) => {
           if (dispatch) {
             if (currentNodeIsEmptyParagraph) {
               tr.insertText('/', currentNodePos, currentNodePos + 1);
@@ -146,7 +148,7 @@ export function RichTextBubbleMenuDragHandle() {
     };
   }, [menuOpen]);
 
-  const handleMenuOpenChange = (open: any) => {
+  const handleMenuOpenChange = (open: boolean) => {
     if (!editable) {
       return;
     }
@@ -157,7 +159,7 @@ export function RichTextBubbleMenuDragHandle() {
     <DragHandle
       className='richtext-transition-all richtext-duration-200 richtext-ease-out'
       editor={editor}
-      onNodeChange={handleNodeChange as any}
+      onNodeChange={handleNodeChange}
       pluginKey={'RichTextBubbleMenuDragHandle'}
     >
       <div className='richtext-flex richtext-items-center richtext-gap-0.5'>

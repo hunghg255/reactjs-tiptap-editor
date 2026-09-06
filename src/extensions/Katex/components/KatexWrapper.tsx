@@ -4,13 +4,17 @@ import { useMemo } from 'react';
 
 import { safeJSONParse } from '@/utils/json';
 
-export function KatexNodeView({ node }: any) {
+import type { NodeViewProps } from '@tiptap/react';
+
+export function KatexNodeView({ node }: NodeViewProps) {
   const { text, macros } = node.attrs;
 
   const formatText = useMemo(() => {
     try {
       return katexLib.renderToString(decodeURIComponent(text || ''), {
-        macros: safeJSONParse(decodeURIComponent(macros || '')),
+        macros: safeJSONParse<NonNullable<import('katex').KatexOptions['macros']>>(
+          decodeURIComponent(macros || '')
+        ),
       });
     } catch {
       return text;

@@ -10,9 +10,16 @@ import { extractFileExtension, extractFilename, normalizeFileSize } from '@/util
 import { getFileTypeIcon } from './FileIcon';
 
 import styles from './index.module.scss';
+import type { NodeViewProps } from '@tiptap/react';
 
-export function NodeViewAttachment({ editor, node, updateAttributes, deleteNode, extension }: any) {
-  const $upload: any = useRef<HTMLInputElement>(null);
+export function NodeViewAttachment({
+  editor,
+  node,
+  updateAttributes,
+  deleteNode,
+  extension,
+}: NodeViewProps) {
+  const $upload = useRef<HTMLInputElement>(null);
 
   const isEditable = useEditableEditor();
 
@@ -25,12 +32,12 @@ export function NodeViewAttachment({ editor, node, updateAttributes, deleteNode,
   const selectFile = useCallback(() => {
     if (!isEditable || url) return;
 
-    $upload.current.click();
+    $upload.current?.click();
   }, [url, isEditable]);
 
   const handleFile = useCallback(
-    async (e: any) => {
-      const file = e.target.files && e.target.files[0];
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files && e.currentTarget.files?.[0];
       if (!file) return;
 
       const fileInfo = {
@@ -49,13 +56,13 @@ export function NodeViewAttachment({ editor, node, updateAttributes, deleteNode,
         const url = await upload(file);
         updateAttributes({ ...fileInfo, url });
         setLoading(false);
-      } catch (error: any) {
+      } catch (error) {
         updateAttributes({
-          error: `File upload fail: ${error && error.message}`,
+          error: `File upload fail: ${error instanceof Error && error.message}`,
         });
         setLoading(false);
 
-        $upload.current.value = '';
+        if ($upload.current) $upload.current.value = '';
       }
     },
     [setLoading, updateAttributes]

@@ -1,5 +1,6 @@
 import { Blockquote as TiptapBlockquote } from '@tiptap/extension-blockquote';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions } from '@/types';
 import type { BlockquoteOptions as TiptapBlockquoteOptions } from '@tiptap/extension-blockquote';
 
@@ -17,7 +18,7 @@ export const Blockquote =
         HTMLAttributes: {
           class: 'blockquote',
         },
-        button: ({ editor, t, extension }: any) => ({
+        button: ({ editor, t, extension }: ButtonViewParams<BlockquoteOptions>) => ({
           componentProps: {
             action: () => editor.commands.toggleBlockquote(),
             isActive: () => editor.isActive('blockquote'),

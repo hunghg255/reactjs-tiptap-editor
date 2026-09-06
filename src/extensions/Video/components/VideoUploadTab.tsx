@@ -115,7 +115,7 @@ export function VideoUploadTab({
   }
 
   async function handleFile(event: ChangeEvent<HTMLInputElement>) {
-    const files = event.target.files;
+    const files = Array.from(event.currentTarget.files ?? []);
     if (!editor || editor.isDestroyed || !files?.length || isUploading) {
       event.target.value = '';
       return;

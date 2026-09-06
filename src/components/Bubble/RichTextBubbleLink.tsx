@@ -20,7 +20,7 @@ export function RichTextBubbleLink() {
   const editor = useEditorInstance();
 
   const [showEdit, setShowEdit] = useState(false);
-  const attrs = useAttributes<any>(editor, Link.name);
+  const attrs = useAttributes<{ href: string; target: string }>(editor, Link.name);
   const link = attrs?.href;
 
   const shouldShow = useCallback(({ editor }: { editor: Editor }) => {

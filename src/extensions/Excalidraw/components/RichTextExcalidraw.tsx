@@ -18,6 +18,13 @@ import { EVENTS } from '@/utils/customEvents/events.constant';
 
 import { Excalidraw as ExcalidrawExtension } from '../Excalidraw';
 
+import type { IExcalidrawAttrs } from '../Excalidraw';
+import type {
+  ExcalidrawProps,
+  ExcalidrawImperativeAPI,
+  ExcalidrawInitialDataState,
+} from '@excalidraw/excalidraw/types';
+
 export function RichTextExcalidraw() {
   const editor = useEditorInstance();
 
@@ -33,24 +40,26 @@ export function RichTextExcalidraw() {
     return extension?.options || {};
   }, [extension]);
 
-  const [Excalidraw, setExcalidraw] = useState<any>(null);
-  const [data, setData] = useState({});
-  const [initialData, setInitialData] = useState({
+  const [Excalidraw, setExcalidraw] = useState<
+    typeof import('@excalidraw/excalidraw').Excalidraw | null
+  >(null);
+  const [data, setData] = useState<ExcalidrawInitialDataState>({});
+  const [initialData, setInitialData] = useState<ExcalidrawInitialDataState>({
     elements: [],
     appState: { isLoading: false },
-    files: null,
+    files: {},
   });
   const [visible, toggleVisible] = useState(false);
   const [loading, toggleLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   const renderEditor = useCallback(
-    (div: any) => {
+    (div: HTMLDivElement | null) => {
       if (!div) return;
 
       import('@excalidraw/excalidraw')
         .then((res) => {
-          setExcalidraw(res.Excalidraw);
+          setExcalidraw(() => res.Excalidraw);
         })
         .catch(setError)
         .finally(() => toggleLoading(false));
@@ -58,19 +67,22 @@ export function RichTextExcalidraw() {
     [toggleLoading]
   );
 
-  const renderExcalidraw: any = useCallback((app: any) => {
+  const renderExcalidraw = useCallback((app: ExcalidrawImperativeAPI) => {
     setTimeout(() => {
       app.refresh();
     });
   }, []);
 
-  const onChange = useCallback((elements: any, appState: any, files: any) => {
-    setData({
-      elements,
-      appState: { isLoading: false },
-      files,
-    });
-  }, []);
+  const onChange = useCallback<NonNullable<ExcalidrawProps['onChange']>>(
+    (elements, appState, files) => {
+      setData({
+        elements,
+        appState: { isLoading: false },
+        files,
+      });
+    },
+    []
+  );
 
   const save = useCallback(() => {
     if (!Excalidraw) {
@@ -82,12 +94,12 @@ export function RichTextExcalidraw() {
     toggleVisible(false);
   }, [Excalidraw, editor, data, toggleVisible]);
 
-  const handler = (data: any) => {
+  const handler = (data: IExcalidrawAttrs) => {
     toggleVisible(true);
     if (data?.data) setInitialData(data?.data);
   };
 
-  const EVENT_ID = EVENTS.EXCALIDRAW((editor as any).id);
+  const EVENT_ID = EVENTS.EXCALIDRAW(editor.id);
 
   useListener(handler, [EVENT_ID]);
 
@@ -121,7 +133,7 @@ export function RichTextExcalidraw() {
         <div style={{ height: '100%', borderWidth: 1 }}>
           {loading && <p>Loading...</p>}
 
-          {error && <p>{(error && error.message) || 'Error'}</p>}
+          {error && <p>{(error instanceof Error && error.message) || 'Error'}</p>}
 
           <div ref={renderEditor} style={{ width: '100%', height: 600 }}>
             {!loading && !error && Excalidraw ? (
@@ -129,7 +141,7 @@ export function RichTextExcalidraw() {
                 initialData={initialData}
                 langCode='en'
                 onChange={onChange}
-                ref={renderExcalidraw}
+                excalidrawAPI={renderExcalidraw}
                 {...excalidrawOptions.excalidrawProps}
               />
             ) : null}

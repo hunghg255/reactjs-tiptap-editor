@@ -1,3 +1,8 @@
+interface Item {
+  value: string;
+  label: string;
+  action: () => void;
+}
 import { Fragment } from 'react';
 
 import {
@@ -14,7 +19,12 @@ import { useActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 
 export function RichTextLineHeight() {
-  const buttonProps = useButtonProps(LineHeight.name);
+  const buttonProps = useButtonProps<{
+    icon?: string;
+    tooltip?: string;
+    items?: Item[];
+    isActive?: () => Item | boolean;
+  }>(LineHeight.name);
 
   const {
     tooltip = undefined,
@@ -46,11 +56,13 @@ export function RichTextLineHeight() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className='richtext-min-w-24'>
-        {items?.map((item: any, index: any) => {
+        {items?.map((item, index) => {
           return (
             <Fragment key={`line-height-${index}`}>
               <DropdownMenuCheckboxItem
-                checked={item.value === dataState?.value}
+                checked={
+                  item.value === (typeof dataState === 'object' ? dataState?.value : undefined)
+                }
                 onClick={() => item?.action()}
               >
                 {item.label}

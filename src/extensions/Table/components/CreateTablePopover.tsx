@@ -11,9 +11,9 @@ import { isMobile } from '@/utils/is-mobile';
 const createArray = (length: number) => Array.from({ length }).map((_, index) => index + 1);
 
 interface IPropsCreateTablePopover {
-  createTable: any;
-  children: any;
-  dataState?: any;
+  createTable: (options: { rows: number; cols: number; withHeaderRow: boolean }) => void;
+  children: React.ReactNode;
+  dataState?: boolean;
 }
 
 interface GridSize {
@@ -190,10 +190,10 @@ function CreateTablePopover(props: IPropsCreateTablePopover) {
             onPointerUp={onPointerUp}
             style={{ touchAction: 'none' }}
           >
-            {createArray(tableGridSize?.rows)?.map((row: any) => {
+            {createArray(tableGridSize?.rows)?.map((row) => {
               return (
                 <div className='richtext-flex richtext-gap-1' key={`richtext-table-row-${row}`}>
-                  {createArray(tableGridSize?.cols)?.map((col: any) => {
+                  {createArray(tableGridSize?.cols)?.map((col) => {
                     return (
                       <div
                         data-cols={col}

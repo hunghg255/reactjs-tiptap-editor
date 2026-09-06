@@ -17,11 +17,11 @@ export function SlashCommandList({ commandList }: SlashCommandListProps) {
   useEffect(() => {
     if (!commandList?.length) {
       const defaultCommands = renderCommandListDefault({ t });
-      setSignalCommandListValue(defaultCommands as any);
+      setSignalCommandListValue(defaultCommands);
       return;
     }
 
-    setSignalCommandListValue(commandList as any);
+    setSignalCommandListValue(commandList);
   }, [t, commandList]);
 
   return <></>;

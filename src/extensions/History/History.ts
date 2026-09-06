@@ -1,5 +1,6 @@
 import { UndoRedo, type UndoRedoOptions } from '@tiptap/extensions';
 
+import type { ButtonViewParams } from '@/types';
 // import HistoryActionButton from '@/extensions/History/components/HistoryActionButton';
 import type { GeneralOptions } from '@/types';
 
@@ -12,7 +13,7 @@ export const History = /* @__PURE__ */ UndoRedo.extend<HistoryOptions>({
       ...this.parent?.(),
       depth: 100,
       newGroupDelay: 500,
-      button: ({ editor, t, extension }: any) => {
+      button: ({ editor, t, extension }: ButtonViewParams<HistoryOptions>) => {
         return {
           componentProps: {
             undo: {

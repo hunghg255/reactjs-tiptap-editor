@@ -5,7 +5,9 @@ import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { isFunction } from '@/utils/utils';
 
-export function useButtonProps(extensionName: string) {
+import type { ButtonViewReturnComponentProps, ButtonViewReturn } from '@/types';
+
+export function useButtonProps<P = ButtonViewReturnComponentProps>(extensionName: string) {
   const editor = useEditorInstance();
   const extension = useExtension(extensionName);
   const { t } = useLocale();
@@ -27,6 +29,6 @@ export function useButtonProps(extensionName: string) {
       t,
     });
 
-    return buttonProps;
+    return buttonProps as ButtonViewReturn<P>;
   }, [editor, extension, t]);
 }

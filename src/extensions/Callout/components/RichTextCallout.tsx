@@ -114,7 +114,7 @@ export function RichTextCallout() {
             <Label>{t('editor.callout.dialog.title.label')}</Label>
 
             <Input
-              onChange={(e) => setCalloutTitle(e.target.value)}
+              onChange={(e) => setCalloutTitle(e.currentTarget.value)}
               placeholder={t('editor.callout.dialog.title.placeholder')}
               value={calloutTitle}
             />
@@ -124,7 +124,7 @@ export function RichTextCallout() {
             <Label>{t('editor.callout.dialog.body.label')}</Label>
 
             <Textarea
-              onChange={(e) => setCalloutBody(e.target.value)}
+              onChange={(e) => setCalloutBody(e.currentTarget.value)}
               placeholder={t('editor.callout.dialog.body.placeholder')}
               value={calloutBody}
             />

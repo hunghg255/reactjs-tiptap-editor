@@ -21,6 +21,8 @@ import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 
+import type { Editor } from '@tiptap/react';
+
 interface RichTextBubbleTextProps {
   buttonBubble?: React.ReactNode;
 }
@@ -85,7 +87,7 @@ function ParagraphFormat() {
                 e.preventDefault();
                 item.action({
                   editor,
-                  range: editor.state.selection.ranges as any,
+                  range: { from: editor.state.selection.from, to: editor.state.selection.to },
                 });
                 setOpen(false);
               }}
@@ -148,7 +150,7 @@ export function RichTextBubbleText({ buttonBubble }: RichTextBubbleTextProps) {
   const editor = useEditorInstance();
   const editable = useEditableEditor();
 
-  const shouldShow = ({ editor }: any) => {
+  const shouldShow = ({ editor }: { editor: Editor }) => {
     const { selection } = editor.view.state;
     const { $from, to } = selection;
 

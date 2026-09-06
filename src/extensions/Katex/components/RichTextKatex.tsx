@@ -64,7 +64,7 @@ export function RichTextKatex() {
   const formatText = useMemo(() => {
     try {
       return katexLib.renderToString(currentValue, {
-        macros: safeJSONParse(currentMacros),
+        macros: safeJSONParse<NonNullable<import('katex').KatexOptions['macros']>>(currentMacros),
       });
     } catch {
       return currentValue;
@@ -105,7 +105,7 @@ export function RichTextKatex() {
               <Textarea
                 autoFocus
                 className='richtext-mb-[10px]'
-                onChange={(e) => setCurrentValue(e.target.value)}
+                onChange={(e) => setCurrentValue(e.currentTarget.value)}
                 placeholder='Text'
                 required
                 rows={10}
@@ -123,7 +123,7 @@ export function RichTextKatex() {
                 rows={10}
                 value={currentMacros}
                 onChange={(e) => {
-                  setCurrentMacros(e.target.value);
+                  setCurrentMacros(e.currentTarget.value);
                 }}
                 style={{
                   color: 'hsl(var(--foreground))',

@@ -28,7 +28,7 @@ export interface ActionButtonProps {
   /* Button color */
   color?: string;
   /* Click action handler */
-  action?: ButtonViewReturnComponentProps['action'];
+  action?: React.MouseEventHandler<HTMLButtonElement>;
   /* Active state checker */
   isActive?: ButtonViewReturnComponentProps['isActive'];
   /* Child components */

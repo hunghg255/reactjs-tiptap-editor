@@ -3,6 +3,8 @@ import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import { KatexNodeView } from '@/extensions/Katex/components/KatexWrapper';
 
+import type { ButtonViewParams } from '@/types';
+
 export * from '@/extensions/Katex/components/RichTextKatex';
 
 export interface IKatexAttrs {
@@ -11,11 +13,11 @@ export interface IKatexAttrs {
 }
 
 interface IKatexOptions {
-  HTMLAttributes: Record<string, any>;
+  HTMLAttributes: Record<string, unknown>;
 }
 
 function getDatasetAttribute(attribute: string) {
-  return (element: any) => {
+  return (element: HTMLElement) => {
     return element.getAttribute(attribute);
   };
 }
@@ -41,7 +43,7 @@ export const Katex = /* @__PURE__ */ Node.create<IKatexOptions>({
       HTMLAttributes: {
         class: 'katex',
       },
-      button: ({ t }: any) => {
+      button: ({ t }: ButtonViewParams<IKatexOptions>) => {
         return {
           componentProps: {
             action: () => {

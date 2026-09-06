@@ -5,8 +5,8 @@ import type { Command } from '@tiptap/core';
 import type { Transaction } from '@tiptap/pm/state';
 
 export interface TableCellBackgroundOptions {
-  HTMLAttributes: Record<string, any>;
-  types?: any;
+  HTMLAttributes: Record<string, unknown>;
+  types?: string[];
 }
 
 declare module '@tiptap/core' {
@@ -92,7 +92,7 @@ export const TableCellBackground = Extension.create<TableCellBackgroundOptions>(
   addGlobalAttributes() {
     return [
       {
-        types: this.options.types,
+        types: this.options.types ?? [],
         attributes: {
           backgroundColor: {
             parseHTML: (element) => {

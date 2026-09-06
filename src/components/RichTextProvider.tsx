@@ -31,7 +31,6 @@ export function RichTextProvider({ editor, children }: IProviderRichTextProps) {
   }, []);
 
   useEffect(() => {
-    //@ts-expect-error
     if (editor) editor.id = id;
   }, [id, editor]);
 

@@ -1,5 +1,6 @@
 import TiptapUnderline from '@tiptap/extension-underline';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions } from '@/types';
 import type { UnderlineOptions as TiptapUnderlineOptions } from '@tiptap/extension-underline';
 
@@ -14,7 +15,7 @@ export const TextUnderline =
     addOptions() {
       return {
         ...this.parent?.(),
-        button({ editor, t, extension }: any) {
+        button({ editor, t, extension }: ButtonViewParams<UnderlineOptions>) {
           return {
             componentProps: {
               action: () => editor.commands.toggleUnderline(),

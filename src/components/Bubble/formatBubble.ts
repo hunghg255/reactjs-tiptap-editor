@@ -60,7 +60,7 @@ export interface BubbleMenuItem extends ButtonViewReturn {
  * @param {ButtonViewParams<T>} options - The options for generating the bubble menu.
  * @returns {BubbleTypeMenu} The generated bubble menu.
  */
-type BubbleView<T = any> = (options: ButtonViewParams<T>) => BubbleTypeMenu;
+type BubbleView<T = unknown> = (options: ButtonViewParams<T>) => BubbleTypeMenu;
 
 /**
  * Represents the options for configuring bubbles.
@@ -71,7 +71,7 @@ export interface BubbleOptions<T> {
   /** The menu of bubble types for each node type. */
   list: NodeTypeMenu;
   /** The default list of bubble types. */
-  defaultBubbleList: any;
+  defaultBubbleList: NodeTypeMenu;
   /** The function to generate a bubble menu. */
   button: BubbleView<T>;
 }
@@ -84,11 +84,11 @@ function getActiveImageAttributes(editor: Editor) {
   return editor.getAttributes(getActiveImageNodeName(editor));
 }
 
-function isActiveImage(editor: Editor, attrs?: Record<string, any>) {
+function isActiveImage(editor: Editor, attrs?: Record<string, unknown>) {
   return editor.isActive(Image.name, attrs) || editor.isActive(ImageBlock.name, attrs);
 }
 
-function imageSizeMenus(editor: Editor, t: any): BubbleMenuItem[] {
+function imageSizeMenus(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large'];
   const icons: NonNullable<ButtonViewReturn['componentProps']['icon']>[] = [
     'SizeS',
@@ -100,7 +100,7 @@ function imageSizeMenus(editor: Editor, t: any): BubbleMenuItem[] {
     type: `image-${size}`,
     component: ActionButton,
     componentProps: {
-      tooltip: t(`editor.${size.replace('-', '.')}.tooltip` as any),
+      tooltip: t(`editor.${size.replace('-', '.')}.tooltip`),
       icon: icons[i],
       action: () => editor.commands.updateImage({ width: IMAGE_SIZE[size] }),
       isActive: () => isActiveImage(editor, { width: IMAGE_SIZE[size] }),
@@ -108,7 +108,7 @@ function imageSizeMenus(editor: Editor, t: any): BubbleMenuItem[] {
   }));
 }
 
-function imageGifSizeMenus(editor: Editor, t: any): BubbleMenuItem[] {
+function imageGifSizeMenus(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large'];
   const icons: NonNullable<ButtonViewReturn['componentProps']['icon']>[] = [
     'SizeS',
@@ -120,7 +120,7 @@ function imageGifSizeMenus(editor: Editor, t: any): BubbleMenuItem[] {
     type: `image-${size}`,
     component: ActionButton,
     componentProps: {
-      tooltip: t(`editor.${size.replace('-', '.')}.tooltip` as any),
+      tooltip: t(`editor.${size.replace('-', '.')}.tooltip`),
       icon: icons[i],
       action: () => editor.commands.updateImageGif({ width: IMAGE_SIZE[size] }),
       isActive: () => editor.isActive('image', { width: IMAGE_SIZE[size] }),
@@ -128,9 +128,9 @@ function imageGifSizeMenus(editor: Editor, t: any): BubbleMenuItem[] {
   }));
 }
 
-function imageAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
+function imageAlignMenus(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   const types: ImageAlignments[] = ['left', 'center', 'right'];
-  const iconMap: any = {
+  const iconMap: Record<ImageAlignments, string> = {
     left: 'AlignLeft',
     center: 'AlignCenter',
     right: 'AlignRight',
@@ -148,9 +148,9 @@ function imageAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
   }));
 }
 
-function imageGifAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
+function imageGifAlignMenus(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   const types: ImageAlignments[] = ['left', 'center', 'right'];
-  const iconMap: any = {
+  const iconMap: Record<ImageAlignments, string> = {
     left: 'AlignLeft',
     center: 'AlignCenter',
     right: 'AlignRight',
@@ -168,9 +168,9 @@ function imageGifAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
   }));
 }
 
-function imageMermaidAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
+function imageMermaidAlignMenus(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   const types: ImageAlignments[] = ['left', 'center', 'right'];
-  const iconMap: any = {
+  const iconMap: Record<ImageAlignments, string> = {
     left: 'AlignLeft',
     center: 'AlignCenter',
     right: 'AlignRight',
@@ -188,9 +188,9 @@ function imageMermaidAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
   }));
 }
 
-function imageDrawerAlignMenus(editor: Editor, t: any): BubbleMenuItem[] {
+function imageDrawerAlignMenus(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   const types: ImageAlignments[] = ['left', 'center', 'right'];
-  const iconMap: any = {
+  const iconMap: Record<ImageAlignments, string> = {
     left: 'AlignLeft',
     center: 'AlignCenter',
     right: 'AlignRight',
@@ -230,7 +230,7 @@ function videoAlignMenus(editor: Editor): BubbleMenuItem[] {
   }));
 }
 
-function videoSizeMenus(editor: Editor, t: any): BubbleMenuItem[] {
+function videoSizeMenus(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   const types: BubbleImageOrVideoSizeType[] = ['size-small', 'size-medium', 'size-large'];
   const icons: NonNullable<ButtonViewReturn['componentProps']['icon']>[] = [
     'SizeS',
@@ -242,14 +242,14 @@ function videoSizeMenus(editor: Editor, t: any): BubbleMenuItem[] {
     type: `video-${size}`,
     component: ActionButton,
     componentProps: {
-      tooltip: t(`editor.${size.replace('-', '.')}.tooltip` as any),
+      tooltip: t(`editor.${size.replace('-', '.')}.tooltip`),
       icon: icons[i],
       action: () => editor.commands.updateVideo({ width: VIDEO_SIZE[size] }),
       isActive: () => editor.isActive('video', { width: VIDEO_SIZE[size] }),
     },
   }));
 }
-export function getBubbleImage(editor: Editor, t: any): BubbleMenuItem[] {
+export function getBubbleImage(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   return [
     {
       type: 'flipX',
@@ -260,7 +260,7 @@ export function getBubbleImage(editor: Editor, t: any): BubbleMenuItem[] {
         icon: 'FlipX',
         action: () => {
           const image = getActiveImageAttributes(editor);
-          const { flipX } = image as any;
+          const { flipX } = image;
           editor
             .chain()
             .focus(undefined, { scrollIntoView: false })
@@ -280,7 +280,7 @@ export function getBubbleImage(editor: Editor, t: any): BubbleMenuItem[] {
         icon: 'FlipY',
         action: () => {
           const image = getActiveImageAttributes(editor);
-          const { flipY } = image as any;
+          const { flipY } = image;
           editor
             .chain()
             .focus(undefined, { scrollIntoView: false })
@@ -309,7 +309,7 @@ export function getBubbleImage(editor: Editor, t: any): BubbleMenuItem[] {
   ];
 }
 
-export function getBubbleImageGif(editor: Editor, t: any): BubbleMenuItem[] {
+export function getBubbleImageGif(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   return [
     ...imageGifSizeMenus(editor, t),
     ...imageGifAlignMenus(editor, t),
@@ -329,7 +329,7 @@ export function getBubbleImageGif(editor: Editor, t: any): BubbleMenuItem[] {
   ];
 }
 
-export function getBubbleMermaid(editor: Editor, t: any): BubbleMenuItem[] {
+export function getBubbleMermaid(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   return [
     ...imageMermaidAlignMenus(editor, t),
     {
@@ -360,7 +360,7 @@ export function getBubbleMermaid(editor: Editor, t: any): BubbleMenuItem[] {
   ];
 }
 
-export function getBubbleDrawer(editor: Editor, t: any): BubbleMenuItem[] {
+export function getBubbleDrawer(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   return [
     ...imageDrawerAlignMenus(editor, t),
     {
@@ -391,7 +391,7 @@ export function getBubbleDrawer(editor: Editor, t: any): BubbleMenuItem[] {
   ];
 }
 
-export function getBubbleVideo(editor: Editor, t: any): BubbleMenuItem[] {
+export function getBubbleVideo(editor: Editor, t: (path: string) => string): BubbleMenuItem[] {
   return [
     ...videoSizeMenus(editor, t),
     ...videoAlignMenus(editor),
@@ -414,7 +414,7 @@ export function getBubbleVideo(editor: Editor, t: any): BubbleMenuItem[] {
 /**
  * Bubble menu text list
  */
-export function getBubbleText(editor: Editor, t: any) {
+export function getBubbleText(editor: Editor, t: (path: string) => string) {
   return BUBBLE_TEXT_LIST.reduce((acc, type) => {
     if (type === 'divider' && acc.length > 0) {
       return [

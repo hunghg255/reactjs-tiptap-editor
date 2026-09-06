@@ -2,6 +2,8 @@ import { Node, mergeAttributes, nodePasteRule } from '@tiptap/core';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import NodeViewTweet from '@/extensions/Twitter/components/NodeViewTweet';
+
+import type { ButtonViewParams } from '@/types';
 export * from '@/extensions/Twitter/components/RichTextTwitter';
 
 const TWITTER_REGEX_GLOBAL = /(https?:\/\/)?(www\.)?x\.com\/(\w{1,15})(\/status\/(\d+))?(\/\S*)?/g;
@@ -20,7 +22,7 @@ interface TwitterOptions {
   addPasteHandler: boolean;
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  HTMLAttributes: Record<string, any>;
+  HTMLAttributes: Record<string, string>;
 
   /**
    * Controls if the twitter node should be inline or not.
@@ -72,7 +74,7 @@ export const Twitter = /* @__PURE__ */ Node.create<TwitterOptions>({
       HTMLAttributes: {},
       inline: false,
       origin: '',
-      button: ({ editor, t }: any) => ({
+      button: ({ editor, t }: ButtonViewParams<TwitterOptions>) => ({
         componentProps: {
           action: (src: string) => {
             editor.commands.setTweet({ src });
@@ -133,7 +135,7 @@ export const Twitter = /* @__PURE__ */ Node.create<TwitterOptions>({
         },
       updateTweet:
         (options: SetTweetOptions) =>
-        ({ commands }: any) => {
+        ({ commands }) => {
           if (!isValidTwitterUrl(options.src)) {
             return false;
           }

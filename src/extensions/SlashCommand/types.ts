@@ -11,7 +11,7 @@ export interface Command {
   label: string;
   description?: string;
   aliases?: string[];
-  iconName?: any;
+  iconName?: string;
   iconUrl?: string;
   action: ({ editor, range }: { editor: Editor; range: Range }) => void;
   shouldBeHidden?: (editor: Editor) => boolean;

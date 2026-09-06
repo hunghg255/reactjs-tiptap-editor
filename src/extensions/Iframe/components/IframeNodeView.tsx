@@ -9,8 +9,9 @@ import { getServiceSrc } from '@/extensions/Iframe/utils';
 import { useEditableEditor } from '@/store/store';
 
 import styles from './index.module.scss';
+import type { NodeViewProps } from '@tiptap/react';
 
-function IframeNodeView({ editor, node, updateAttributes }: any) {
+function IframeNodeView({ editor, node, updateAttributes }: NodeViewProps) {
   const isEditable = useEditableEditor();
 
   const { src, width, height } = node.attrs;
@@ -27,7 +28,7 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
     editor
       .chain()
       .updateAttributes(Iframe.name, {
-        src: urlFormat?.src || originalLink,
+        src: (typeof urlFormat === 'string' ? urlFormat : urlFormat.src) || originalLink,
       })
       .setNodeSelection(editor.state.selection.from)
       .focus()
@@ -35,7 +36,7 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
   }
 
   const onResize = useCallback(
-    (size: any) => {
+    (size: { width: number | string; height: number | string }) => {
       updateAttributes({ width: size.width, height: size.height });
     },
     [updateAttributes]
@@ -48,7 +49,7 @@ function IframeNodeView({ editor, node, updateAttributes }: any) {
           <Input
             autoFocus
             className='richtext-flex-1'
-            onInput={(e: any) => setOriginalLink(e.target.value)}
+            onInput={(e) => setOriginalLink(e.currentTarget.value)}
             placeholder='Enter link'
             type='url'
             value={originalLink}

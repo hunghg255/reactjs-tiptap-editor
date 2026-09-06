@@ -7,6 +7,7 @@ import { NodeViewAttachment } from '@/extensions/Attachment/components/NodeViewA
 import { getDatasetAttribute } from '@/utils/dom-dataset';
 import { normalizeFileSize } from '@/utils/file';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions } from '@/types';
 
 declare module '@tiptap/core' {
@@ -40,7 +41,7 @@ export const Attachment = /* @__PURE__ */ Node.create<AttachmentOptions>({
       HTMLAttributes: {
         class: 'attachment',
       },
-      button: ({ editor, t }: any) => ({
+      button: ({ editor, t }: ButtonViewParams<AttachmentOptions>) => ({
         component: ActionButton,
         componentProps: {
           action: () => editor.chain().focus().setAttachment().run(),

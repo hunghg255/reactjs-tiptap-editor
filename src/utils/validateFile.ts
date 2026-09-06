@@ -3,7 +3,7 @@ import type { ToastProps } from '@/components/ui/toast';
 interface ValidateFileOptions {
   acceptMimes: string[];
   maxSize: number;
-  t: any;
+  t: (path: string, params?: Record<string, string | number>) => string;
   toast: (props: ToastProps) => void;
   onError?: (error: { type: 'size' | 'type' | 'upload'; message: string; file?: File }) => void;
 }

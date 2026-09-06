@@ -2,13 +2,21 @@ import React from 'react';
 
 import mitt from '@/utils/mitt';
 
-const iMitt = mitt();
+type EditorEvents = { [key: `UPLOAD_IMAGE-${string}`]: boolean } & {
+  [key: `UPLOAD_VIDEO-${string}`]: boolean;
+} & {
+  [key: `EXCALIDRAW-${string}`]: import('@/extensions/Excalidraw/Excalidraw').IExcalidrawAttrs;
+};
+const iMitt = mitt<EditorEvents>();
 
 export const BusContext = React.createContext(iMitt);
 
 export const useBus = () => React.useContext(BusContext);
 
-export function useListener(fn: (event: any) => void, events: string[]) {
+export function useListener<K extends keyof EditorEvents>(
+  fn: (event: EditorEvents[K]) => void,
+  events: K[]
+) {
   const bus = useBus();
 
   React.useEffect(() => {

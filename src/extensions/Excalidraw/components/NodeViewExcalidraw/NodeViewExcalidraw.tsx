@@ -9,6 +9,7 @@ import { useEditableEditor } from '@/store/store';
 import { clamp } from '@/utils/utils';
 
 import styles from './index.module.scss';
+import type { NodeViewProps } from '@tiptap/react';
 
 const MIN_ZOOM = 10;
 const MAX_ZOOM = 200;
@@ -16,15 +17,15 @@ const ZOOM_STEP = 15;
 
 const INHERIT_SIZE_STYLE = { width: '100%', height: '100%', maxWidth: '100%' };
 
-function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
-  const exportToSvgRef: any = useRef(null);
+function NodeViewExcalidraw({ editor, node, updateAttributes }: NodeViewProps) {
+  const exportToSvgRef = useRef<typeof import('@excalidraw/excalidraw').exportToSvg | null>(null);
   const isEditable = useEditableEditor();
   const isActive = editor.isActive(Excalidraw.name);
   // const { width: maxWidth } = getEditorContainerDOMSize(editor)
   const { data, width, height } = node.attrs;
   const [Svg, setSvg] = useState<SVGElement | null>(null);
   const [loading, toggleLoading] = useState(true);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<Error | null>(null);
   const [zoom, setZoomState] = useState(100);
 
   const setZoom = useCallback((type: 'minus' | 'plus') => {
@@ -80,7 +81,7 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
     };
   }, [data, loading, error]);
 
-  const onResize = (size: any) => {
+  const onResize = (size: { width: number | string; height: number | string }) => {
     updateAttributes({ width: size.width, height: size.height });
   };
 
@@ -109,7 +110,7 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: any) {
         >
           {error && (
             <div style={INHERIT_SIZE_STYLE}>
-              <p>{error.message || error}</p>
+              <p>{error.message || 'Error'}</p>
             </div>
           )}
 

@@ -1,7 +1,9 @@
 import { computePosition, flip, shift } from '@floating-ui/dom';
 import { posToDOMRect } from '@tiptap/react';
 
-export function updatePosition(editor: any, element: any) {
+import type { Editor } from '@tiptap/core';
+
+export function updatePosition(editor: Editor, element: HTMLElement) {
   const virtualElement = {
     getBoundingClientRect: () =>
       posToDOMRect(editor.view, editor.state.selection.from, editor.state.selection.to),

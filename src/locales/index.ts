@@ -25,13 +25,13 @@ const LANG = {
 };
 
 // // Define message key types based on the 'en' locale
-type MessageKeysType = keyof typeof en;
+type MessageKeysType = keyof typeof en | (string & {});
 type LanguageType = keyof typeof LANG.message | (string & {});
 
 // Proxy for reactive language state
 interface LangState {
   currentLang: LanguageType;
-  message: typeof LANG.message;
+  message: Record<string, Partial<Record<MessageKeysType, string>>>;
 }
 
 const langSignal = createSignal<LangState>({
@@ -61,9 +61,8 @@ function useLocale() {
   const setLang = useSetSignal(langSignal);
 
   const t = useCallback(
-    (path: MessageKeysType, params?: Record<string, string | number>) => {
+    (path: MessageKeysType, params?: Record<string, string | number>): string => {
       try {
-        //@ts-expect-error
         const messageObj = message[currentLang] || {};
         let template = messageObj[path] || path;
 

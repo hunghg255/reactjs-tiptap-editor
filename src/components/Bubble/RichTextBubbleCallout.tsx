@@ -137,7 +137,7 @@ export function RichTextBubbleCallout() {
                 <Label>{t('editor.callout.dialog.title.label')}</Label>
 
                 <Input
-                  onChange={(e) => setCalloutTitle(e.target.value)}
+                  onChange={(e) => setCalloutTitle(e.currentTarget.value)}
                   placeholder={t('editor.callout.dialog.title.placeholder')}
                   type='text'
                   value={calloutTitle}
@@ -148,7 +148,7 @@ export function RichTextBubbleCallout() {
                 <Label>{t('editor.callout.dialog.body.label')}</Label>
 
                 <Input
-                  onChange={(e) => setCalloutBody(e.target.value)}
+                  onChange={(e) => setCalloutBody(e.currentTarget.value)}
                   placeholder={t('editor.callout.dialog.body.placeholder')}
                   type='text'
                   value={calloutBody}

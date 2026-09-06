@@ -4,6 +4,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { IMAGE_MAX_SIZE, IMAGE_MIN_SIZE, IMAGE_THROTTLE_WAIT_TIME } from '@/constants';
 
+import type { NodeViewProps } from '@tiptap/react';
+
 interface Size {
   width: number;
   height: number;
@@ -16,7 +18,7 @@ const ResizeDirection = {
   BOTTOM_RIGHT: 'br',
 };
 
-function ImageGifView(props: any) {
+function ImageGifView(props: NodeViewProps) {
   const { updateAttributes } = props;
 
   const [maxSize, setMaxSize] = useState<Size>({
@@ -70,17 +72,18 @@ function ImageGifView(props: any) {
     return { width: width === '100%' ? width : undefined };
   }, [imgAttrs]);
 
-  function onImageLoad(e: Record<string, any>) {
+  function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     setOriginalSize({
-      width: e.target.width,
-      height: e.target.height,
+      width: e.currentTarget.width,
+      height: e.currentTarget.height,
     });
   }
 
   // https://github.com/scrumpy/tiptap/issues/361#issuecomment-540299541
   function selectImage() {
     const { editor, getPos } = props;
-    editor.commands.setNodeSelection(getPos());
+    const pos = getPos();
+    if (pos !== undefined) editor.commands.setNodeSelection(pos);
   }
 
   const getMaxSize = useCallback(

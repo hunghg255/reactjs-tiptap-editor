@@ -112,7 +112,10 @@ import { Twitter } from '@/components/icons/Twitter';
 
 import ImportWord from './ImportWord';
 
-export const icons = {
+export const icons: Record<
+  string,
+  React.ComponentType<{ className?: string; onClick?: React.MouseEventHandler<SVGElement> }>
+> = {
   Bold,
   LoaderCircle,
   Italic,
@@ -225,4 +228,4 @@ export const icons = {
   Html,
   ExternalLink,
   Callout: NotebookPen,
-} as any;
+};

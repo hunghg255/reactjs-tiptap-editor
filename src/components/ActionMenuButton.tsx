@@ -9,7 +9,7 @@ import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 
 export interface ActionMenuButtonProps {
   /** Icon name to display */
-  icon?: any;
+  icon?: string;
   /** Button title text */
   title?: string;
   /** Tooltip text */
@@ -23,7 +23,7 @@ export interface ActionMenuButtonProps {
   /** Button color */
   color?: string;
   /** Click action handler */
-  action?: ButtonViewReturnComponentProps['action'];
+  action?: React.MouseEventHandler<HTMLButtonElement>;
   /** Active state checker */
   isActive?: ButtonViewReturnComponentProps['isActive'];
   /** Whether to render as child */
@@ -33,7 +33,7 @@ export interface ActionMenuButtonProps {
 
 const ActionMenuButton = React.forwardRef<HTMLButtonElement, ActionMenuButtonProps>(
   ({ asChild = false, tooltip, ...props }, ref) => {
-    const Icon = icons[props.icon];
+    const Icon = icons[props.icon ?? ''];
     const Comp = asChild ? Slot : Button;
 
     return (

@@ -2,6 +2,8 @@ import { NodeViewWrapper } from '@tiptap/react';
 import clsx from 'clsx';
 import { AlertCircle, Info, Lightbulb, OctagonAlert, TriangleAlert } from 'lucide-react';
 
+import type { NodeViewProps } from '@tiptap/react';
+
 const CALLOUT_TYPES = [
   {
     value: 'note',
@@ -40,7 +42,7 @@ const CALLOUT_TYPES = [
   },
 ] as const;
 
-export function NodeViewCallout({ node }: any) {
+export function NodeViewCallout({ node }: NodeViewProps) {
   const { type = 'note', title = '', body = '' } = node.attrs;
 
   const currentType = CALLOUT_TYPES.find((t) => t.value === type) || CALLOUT_TYPES[0];

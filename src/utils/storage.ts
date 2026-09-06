@@ -1,4 +1,4 @@
-export function getStorage(key: any, defaultValue = null) {
+export function getStorage(key: string, defaultValue: unknown = null): unknown {
   // oxlint-disable-next-line unicorn/error-message
   if (typeof window === 'undefined') throw new Error();
 
@@ -11,6 +11,6 @@ export function getStorage(key: any, defaultValue = null) {
   }
 }
 
-export function setStorage(key: any, value: any) {
+export function setStorage(key: string, value: unknown) {
   window.localStorage.setItem(key, `${value}`);
 }

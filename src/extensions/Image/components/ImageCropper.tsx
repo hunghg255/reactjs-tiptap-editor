@@ -16,7 +16,21 @@ import { useLocale } from '@/locales';
 import { dataURLtoFile, readImageAsBase64 } from '@/utils/file';
 import { validateFiles } from '@/utils/validateFile';
 
-export function ImageCropper({ editor, imageInline, onClose, onOpenChange, disabled, alt }: any) {
+export function ImageCropper({
+  editor,
+  imageInline,
+  onClose,
+  onOpenChange,
+  disabled,
+  alt,
+}: {
+  editor: import('@tiptap/core').Editor;
+  imageInline?: boolean;
+  onClose?: () => void;
+  onOpenChange?: (open: boolean) => void;
+  disabled?: boolean;
+  alt?: string;
+}) {
   const { t } = useLocale();
   const { toast } = useToast();
 
@@ -28,7 +42,7 @@ export function ImageCropper({ editor, imageInline, onClose, onOpenChange, disab
   const [crop, setCrop] = React.useState<Crop>();
   const [croppedImageUrl, setCroppedImageUrl] = React.useState<string>('');
   const fileInput = useRef<HTMLInputElement>(null);
-  const [urlUpload, setUrlUpload] = useState<any>({
+  const [urlUpload, setUrlUpload] = useState<{ src: string; file: File | null }>({
     src: '',
     file: null,
   });
@@ -112,7 +126,7 @@ export function ImageCropper({ editor, imageInline, onClose, onOpenChange, disab
       editor.chain().focus().setImageInline({ src, inline: imageInline, alt }).run();
 
       handleDialogOpenChange(false);
-      onClose();
+      onClose?.();
     } catch (error) {
       console.error('Error cropping image', error);
     } finally {
@@ -130,13 +144,13 @@ export function ImageCropper({ editor, imageInline, onClose, onOpenChange, disab
     uploadOptions,
   ]);
 
-  function handleClick(e: any) {
+  function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     fileInput.current?.click();
   }
 
-  const handleFile = async (event: any) => {
-    const files = event?.target?.files;
+  const handleFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.currentTarget.files ?? []);
     if (!editor || editor.isDestroyed || files.length === 0) {
       event.target.value = '';
       return;

@@ -1,6 +1,5 @@
 import { makeDropdownToolbar, Editor as Editor4 } from 'easydrawer';
 import { useEffect, useRef, useState } from 'react';
-// @ts-ignore
 import svg64 from 'svg64';
 
 import { ActionButton } from '@/components/ActionButton';
@@ -20,12 +19,17 @@ import { useEditorInstance } from '@/store/editor';
 import { dataURLtoFile } from '@/utils/file';
 import { shortId } from '@/utils/shortId';
 
+import type { DrawingTool, ShapeWidget } from '@/extensions/Drawer/types';
+import type { Color4, PenTool } from 'easydrawer';
+
 let clear = false;
 
 export function RichTextDrawer() {
   const editor = useEditorInstance();
 
-  const buttonProps = useButtonProps(Drawer.name);
+  const buttonProps = useButtonProps<
+    import('@/types').ButtonViewReturnComponentProps & { upload?: (file: File) => Promise<string> }
+  >(Drawer.name);
 
   const { isActive = undefined, upload } = buttonProps?.componentProps ?? {};
 
@@ -33,15 +37,15 @@ export function RichTextDrawer() {
 
   const [visible, toggleVisible] = useState(false);
   const refEditor = useRef<Editor4 | null>(null);
-  const refWidget = useRef<any>(null);
+  const refWidget = useRef<ReturnType<typeof makeDropdownToolbar> | null>(null);
 
   const drawInit = () => {
     const init = async () => {
-      const parentElement = document.querySelector('#easydrawer');
+      const parentElement = document.querySelector<HTMLElement>('#easydrawer');
 
       if (!parentElement) return;
 
-      refEditor.current = new Editor4(parentElement as any, {
+      refEditor.current = new Editor4(parentElement, {
         wheelEventsEnabled: false,
         disableZoom: true,
       });
@@ -93,9 +97,9 @@ export function RichTextDrawer() {
     toggleVisible(false);
   };
 
-  const setColorPen = (color: string) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[2] as any;
-    const shapeWidget = refWidget.current.getWidgetById('pen-1');
+  const setColorPen = (color: Color4) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[2] as PenTool;
+    const shapeWidget = refWidget.current?.getWidgetById('pen-1');
 
     if (penTool && shapeWidget) {
       penTool.setColor(color);
@@ -104,8 +108,8 @@ export function RichTextDrawer() {
   };
 
   const setThicknessPen = (thickness: number) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[2] as any;
-    const shapeWidget = refWidget.current.getWidgetById('pen-1');
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[2] as PenTool;
+    const shapeWidget = refWidget.current?.getWidgetById('pen-1');
 
     if (penTool && shapeWidget) {
       penTool.setThickness(thickness);
@@ -113,10 +117,10 @@ export function RichTextDrawer() {
     }
   };
 
-  const setColorHighlight = (color: string) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[3] as any;
+  const setColorHighlight = (color: Color4) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[3] as PenTool;
 
-    const shapeWidget = refWidget.current.getWidgetById('pen-2');
+    const shapeWidget = refWidget.current?.getWidgetById('pen-2');
 
     if (penTool && shapeWidget) {
       penTool.setColor(color);
@@ -124,17 +128,17 @@ export function RichTextDrawer() {
     }
   };
 
-  const changeShape = (type: any) => {
-    const shapeWidget = refWidget.current.getWidgetById('shape');
+  const changeShape = (type: number) => {
+    const shapeWidget = refWidget.current?.getWidgetById('shape') as ShapeWidget | undefined;
 
     if (shapeWidget) {
       shapeWidget.setShapeType(type);
     }
   };
 
-  const changeColorShape = (color: string) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as any;
-    const shapeWidget = refWidget.current.getWidgetById('shape');
+  const changeColorShape = (color: Color4) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as DrawingTool;
+    const shapeWidget = refWidget.current?.getWidgetById('shape') as ShapeWidget | undefined;
 
     if (penTool && shapeWidget) {
       penTool.setColor(color);
@@ -142,9 +146,9 @@ export function RichTextDrawer() {
     }
   };
 
-  const onThicknessChange = (v: any) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as any;
-    const shapeWidget = refWidget.current.getWidgetById('shape');
+  const onThicknessChange = (v: number) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as DrawingTool;
+    const shapeWidget = refWidget.current?.getWidgetById('shape') as ShapeWidget | undefined;
 
     if (penTool && shapeWidget) {
       penTool.setThickness(v);
@@ -152,9 +156,9 @@ export function RichTextDrawer() {
     }
   };
 
-  const changeBorderColorShape = (color: string) => {
-    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as any;
-    const shapeWidget = refWidget.current.getWidgetById('shape');
+  const changeBorderColorShape = (color: Color4) => {
+    const penTool = refEditor.current!.toolController.getPrimaryTools()[5] as DrawingTool;
+    const shapeWidget = refWidget.current?.getWidgetById('shape') as ShapeWidget | undefined;
 
     if (penTool && shapeWidget) {
       penTool.setBorderColor(color);

@@ -156,7 +156,7 @@ export function RichTextSearchAndReplace() {
           <Input
             autoFocus
             className='richtext-w-full'
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.currentTarget.value)}
             placeholder='Text'
             required
             type='text'
@@ -182,7 +182,7 @@ export function RichTextSearchAndReplace() {
           <div className='richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center'>
             <Input
               className='richtext-w-80'
-              onChange={(e) => setReplaceTerm(e.target.value)}
+              onChange={(e) => setReplaceTerm(e.currentTarget.value)}
               placeholder='Text'
               required
               type='text'

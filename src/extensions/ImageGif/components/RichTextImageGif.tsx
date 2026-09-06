@@ -142,7 +142,9 @@ function ImageGifWrap({ selectImage, apiKey, provider, children }: IProps) {
 }
 
 export function RichTextImageGif() {
-  const buttonProps = useButtonProps(ImageGif.name);
+  const buttonProps = useButtonProps<
+    import('@/types').ButtonViewReturnComponentProps & { apiKey?: string; provider?: string }
+  >(ImageGif.name);
 
   const { action, icon, tooltip, apiKey, provider } = buttonProps?.componentProps ?? {};
 
@@ -157,7 +159,7 @@ export function RichTextImageGif() {
   };
 
   return (
-    <ImageGifWrap apiKey={apiKey} provider={provider} selectImage={selectImage}>
+    <ImageGifWrap apiKey={apiKey ?? ''} provider={provider ?? 'giphy'} selectImage={selectImage}>
       <ActionButton disabled={editorDisabled} icon={icon} tooltip={tooltip} />
     </ImageGifWrap>
   );

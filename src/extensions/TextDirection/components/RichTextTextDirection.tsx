@@ -19,8 +19,9 @@ import type { ButtonViewReturnComponentProps } from '@/types';
 
 export interface Item {
   title: string;
+  dir?: string;
   value?: string;
-  icon?: any;
+  icon?: string;
   isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>;
   action?: ButtonViewReturnComponentProps['action'];
   style?: React.CSSProperties;
@@ -31,7 +32,12 @@ export interface Item {
 }
 
 export function RichTextTextDirection() {
-  const buttonProps = useButtonProps(TextDirection.name);
+  const buttonProps = useButtonProps<{
+    icon?: string;
+    tooltip?: string;
+    items?: Item[];
+    isActive?: () => Item | boolean;
+  }>(TextDirection.name);
   const [open, setOpen] = React.useState(false);
 
   const {
@@ -44,7 +50,7 @@ export function RichTextTextDirection() {
   const { editorDisabled, dataState } = useActive(isActive);
 
   const currentDir = useMemo(() => {
-    return dataState?.dir || 'unset';
+    return (typeof dataState === 'object' ? dataState?.dir : undefined) || 'unset';
   }, [dataState]);
 
   if (!buttonProps) {
@@ -73,14 +79,14 @@ export function RichTextTextDirection() {
         side='bottom'
         hideWhenDetached
       >
-        {items?.map((item: any, index: any) => {
+        {items?.map((item, index) => {
           return (
             <Tooltip key={`text-direction-${index}`}>
               <TooltipTrigger data-state={currentDir === item.value ? 'on' : 'off'} asChild>
                 <Toggle
                   className='richtext-size-7 richtext-p-1'
                   onClick={() => {
-                    item?.action();
+                    item?.action?.();
                     setOpen(false);
                   }}
                   size='sm'
@@ -93,9 +99,7 @@ export function RichTextTextDirection() {
                 <span>{item.title}</span>
 
                 {!!item.shortcutKeys?.length && (
-                  <span>
-                    {item.shortcutKeys?.map((item: any) => getShortcutKey(item)).join(' ')}
-                  </span>
+                  <span>{item.shortcutKeys?.map((item) => getShortcutKey(item)).join(' ')}</span>
                 )}
               </TooltipContent>
             </Tooltip>

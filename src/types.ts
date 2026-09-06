@@ -51,13 +51,13 @@ export type ExtensionNameKeys =
 /**
  * Represents the general options for Tiptap extensions.
  */
-export interface GeneralOptions<T> {
+export interface GeneralOptions<T, P = ButtonViewReturnComponentProps> {
   /** Enabled divider */
   divider: boolean;
   /** Enabled spacer */
   spacer: boolean;
   /** Button view function */
-  button: ButtonView<T>;
+  button: ButtonView<T, P>;
   /** Show on Toolbar */
   toolbar?: boolean;
   /** Shortcut keys override */
@@ -67,16 +67,25 @@ export interface GeneralOptions<T> {
 /**
  * Represents the props for the ButtonView component.
  */
-export interface ButtonViewReturnComponentProps {
+export interface ButtonViewReturnComponentProps<TValue = unknown> {
   /** Method triggered when action is performed */
-  action?: (value?: any) => void;
+  action?: (value?: TValue) => void;
   /** Whether it is in the active state */
   isActive?: () => boolean;
   /** Button icon */
-  icon?: any;
+  icon?: string;
   /** Text displayed on hover */
   tooltip?: string;
-  [x: string]: any;
+  disabled?: boolean;
+  shortcutKeys?: string[];
+  tooltipOptions?: import('@radix-ui/react-tooltip').TooltipContentProps;
+  color?: string;
+  target?: string;
+  undo?: ButtonViewReturnComponentProps;
+  redo?: ButtonViewReturnComponentProps;
+  indent?: ButtonViewReturnComponentProps;
+  outdent?: ButtonViewReturnComponentProps;
+  [x: string]: unknown;
 }
 
 /**
@@ -84,18 +93,18 @@ export interface ButtonViewReturnComponentProps {
  */
 export interface ButtonViewReturnComponentSlots {
   /** Dialog slot */
-  dialog: () => any;
-  [x: string]: () => any;
+  dialog: () => React.ReactNode;
+  [x: string]: () => React.ReactNode;
 }
 
 /**
  * Represents the return value for the ButtonView component.
  */
-export interface ButtonViewReturn {
+export interface ButtonViewReturn<P = ButtonViewReturnComponentProps> {
   /** Component */
-  component: unknown;
+  component?: React.ElementType<P>;
   /** Component props */
-  componentProps: ButtonViewReturnComponentProps;
+  componentProps: P;
   /** Component slots */
   componentSlots?: ButtonViewReturnComponentSlots;
 }
@@ -103,7 +112,7 @@ export interface ButtonViewReturn {
 /**
  * Represents the parameters for the ButtonView function.
  */
-export interface ButtonViewParams<T = any> {
+export interface ButtonViewParams<T = unknown> {
   /** Editor object */
   editor: Editor;
   /** Extension object */
@@ -115,9 +124,9 @@ export interface ButtonViewParams<T = any> {
 /**
  * Represents the ButtonView function.
  */
-export type ButtonView<T = any> = (
+export type ButtonView<T = unknown, P = ButtonViewReturnComponentProps> = (
   options: ButtonViewParams<T>
-) => ButtonViewReturn | ButtonViewReturn[];
+) => ButtonViewReturn<P> | ButtonViewReturn<P>[];
 
 /**
  * Represents the BubbleMenuRenderProps.
@@ -249,10 +258,10 @@ export interface BubbleMenuProps {
 /**
  * Represents the ToolbarItemProps.
  */
-export interface ToolbarItemProps {
+export interface ToolbarItemProps<P = ButtonViewReturnComponentProps> {
   button: {
-    component: React.ComponentType<any>;
-    componentProps: Record<string, any>;
+    component: React.ComponentType<P>;
+    componentProps: P;
   };
   divider: boolean;
   spacer: boolean;
@@ -268,7 +277,7 @@ export interface ToolbarProps {
   render?: (
     props: ToolbarRenderProps,
     toolbarItems: ToolbarItemProps[],
-    dom: any[],
+    dom: React.ReactNode[],
     containerDom: (innerContent: React.ReactNode) => React.ReactNode
   ) => React.ReactNode;
   tooltipSide?: 'top' | 'bottom';
@@ -324,3 +333,10 @@ export type PageMargin =
   | '90pt'
   | '108pt'
   | '144pt';
+
+/** Identifier assigned by RichTextProvider for editor-scoped events. */
+declare module '@tiptap/core' {
+  interface Editor {
+    id?: string;
+  }
+}

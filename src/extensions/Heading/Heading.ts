@@ -4,6 +4,7 @@ import { HEADINGS } from '@/constants';
 
 import type { GeneralOptions } from '@/types';
 import type { HeadingOptions as TiptapHeadingOptions } from '@tiptap/extension-heading';
+import type {} from '@tiptap/extension-paragraph';
 
 export * from '@/extensions/Heading/components/RichTextHeading';
 
@@ -14,17 +15,17 @@ export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      levels: HEADINGS,
+      levels: HEADINGS.filter((level) => level !== 'Paragraph'),
       button({ editor, extension, t }) {
-        const levels = extension.options?.levels || [];
+        const levels = ['Paragraph' as const, ...(extension.options?.levels || [])];
 
-        const items: any[] = levels.map((level: any) => {
+        const items = levels.map((level) => {
           const isDefault = level === 'Paragraph';
 
           return {
             action: () => {
               if (isDefault) {
-                const currentActiveLevel: any = levels.find((lvl: any) =>
+                const currentActiveLevel = levels.find((lvl) =>
                   editor.isActive('heading', { level: lvl })
                 );
                 if (currentActiveLevel && currentActiveLevel !== 'Paragraph') {
@@ -41,17 +42,22 @@ export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
 
               return editor.isActive('heading', { level }) || false;
             },
-            disabled: !editor.can().toggleHeading({ level }),
+            disabled:
+              level === 'Paragraph'
+                ? !editor.can().setParagraph()
+                : !editor.can().toggleHeading({ level }),
             title: isDefault
               ? t('editor.paragraph.tooltip')
               : t(`editor.heading.h${level}.tooltip`),
             level,
-            shortcutKeys: extension.options.shortcutKeys?.[level] ?? ['alt', 'mod', `${level}`],
+            shortcutKeys: (level === 'Paragraph'
+              ? undefined
+              : extension.options.shortcutKeys?.[level]) ?? ['alt', 'mod', `${level}`],
             default: isDefault,
           };
         });
 
-        const disabled = items.filter((k: any) => k.disabled).length === items.length;
+        const disabled = items.filter((k) => k.disabled).length === items.length;
 
         return {
           // component: HeadingButton,
@@ -61,7 +67,7 @@ export const Heading = /* @__PURE__ */ TiptapHeading.extend<HeadingOptions>({
             items,
             icon: 'MenuDown',
             isActive: () => {
-              const find: any = items?.find((k: any) => k.isActive());
+              const find = items?.find((k) => k.isActive());
 
               if (find && !find.default) {
                 return find;

@@ -1,3 +1,5 @@
+import { NodeSelection } from '@tiptap/pm/state';
+
 import type { Editor } from '@tiptap/core';
 
 export function deleteNode(nodeType: string, editor: Editor) {
@@ -9,18 +11,12 @@ export function deleteNode(nodeType: string, editor: Editor) {
     for (let d = $pos.depth; d > 0; d--) {
       const node = $pos.node(d);
       if (node.type.name === nodeType) {
-        // @ts-ignore
-        if (editor.dispatchTransaction)
-          // @ts-ignore
-          editor.dispatchTransaction(
-            state.tr.delete($pos.before(d), $pos.after(d)).scrollIntoView()
-          );
+        editor.view.dispatch(state.tr.delete($pos.before(d), $pos.after(d)).scrollIntoView());
         done = true;
       }
     }
   } else {
-    // @ts-ignore
-    const node = state.selection.node;
+    const node = state.selection instanceof NodeSelection ? state.selection.node : null;
     if (node && node.type.name === nodeType) {
       editor.chain().deleteSelection().run();
       done = true;
@@ -34,10 +30,7 @@ export function deleteNode(nodeType: string, editor: Editor) {
       const node = state.tr.doc.nodeAt(pos);
 
       if (node && node.type.name === nodeType) {
-        // @ts-ignore
-        if (editor.dispatchTransaction)
-          // @ts-ignore
-          editor.dispatchTransaction(state.tr.delete(pos, pos + node.nodeSize));
+        editor.view.dispatch(state.tr.delete(pos, pos + node.nodeSize));
         done = true;
       }
     }

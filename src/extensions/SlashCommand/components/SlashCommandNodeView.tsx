@@ -13,7 +13,14 @@ import { cn } from '@/lib/utils';
 import { useLocale } from '@/locales';
 import { useSignalCommandList } from '@/store/commandList';
 
-function SlashCommandNodeView(props: any, ref: any) {
+import type { Command } from '../types';
+import type { SuggestionHandle } from '@/utils/renderNodeView';
+import type { SuggestionProps } from '@tiptap/suggestion';
+
+function SlashCommandNodeView(
+  props: SuggestionProps<Command>,
+  ref: React.ForwardedRef<SuggestionHandle>
+) {
   const [commandList] = useSignalCommandList();
 
   const [selectedCommandIndex, setSelectedCommandIndex] = useState(0);
@@ -46,7 +53,7 @@ function SlashCommandNodeView(props: any, ref: any) {
     }
   }, [selectedCommandIndex, selectedGroupIndex]);
 
-  function onKeyDown({ event }: any) {
+  function onKeyDown({ event }: { event: KeyboardEvent }) {
     if (event.key === 'ArrowUp') {
       upHandler();
       return true;
@@ -121,7 +128,11 @@ function SlashCommandNodeView(props: any, ref: any) {
   function createCommandClickHandler(groupIndex: number, commandIndex: number) {
     selectItem(groupIndex, commandIndex);
   }
-  function setActiveItemRef(groupIndex: number, commandIndex: number, el: any) {
+  function setActiveItemRef(
+    groupIndex: number,
+    commandIndex: number,
+    el: HTMLButtonElement | null
+  ) {
     activeItemRefs.current[groupIndex * 1000 + commandIndex] = el;
   }
 
@@ -133,14 +144,14 @@ function SlashCommandNodeView(props: any, ref: any) {
     >
       {commandQuery?.length ? (
         <div className='richtext-grid richtext-min-w-48 richtext-grid-cols-1 richtext-gap-0.5'>
-          {commandQuery?.map((group: any, groupIndex: any) => {
+          {commandQuery?.map((group, groupIndex) => {
             return (
               <Fragment key={`slash-${group.title}`}>
                 <Label className='richtext-mx-[4px] richtext-mb-[4px] richtext-mt-[8px] !richtext-text-[0.65rem] richtext-uppercase'>
                   {group.title}
                 </Label>
 
-                {group.commands.map((command: any, commandIndex: any) => {
+                {group.commands.map((command, commandIndex) => {
                   return (
                     <button
                       key={`command-${commandIndex}`}

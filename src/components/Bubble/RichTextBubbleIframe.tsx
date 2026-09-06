@@ -42,7 +42,7 @@ export function RichTextBubbleIframe() {
   const [formUrl, setFormUrl] = useState('');
 
   const handleCancel = useCallback(
-    (e: any) => {
+    (e: React.SyntheticEvent) => {
       e?.preventDefault?.();
 
       toggleVisible(false);
@@ -51,11 +51,11 @@ export function RichTextBubbleIframe() {
   );
 
   useEffect(() => {
-    if (visible) setFormUrl(src as any);
+    if (visible) setFormUrl(src ?? '');
   }, [visible, src]);
 
   const handleOk = useCallback(
-    (e: any) => {
+    (e: React.SyntheticEvent) => {
       e?.preventDefault?.();
 
       const urlFormat = getServiceSrc(formUrl);
@@ -63,7 +63,7 @@ export function RichTextBubbleIframe() {
       editor
         .chain()
         .updateAttributes(Iframe.name, {
-          src: urlFormat?.src || formUrl,
+          src: (typeof urlFormat === 'string' ? urlFormat : urlFormat.src) || formUrl,
         })
         .setNodeSelection(editor.state.selection.from)
         .focus()
@@ -78,7 +78,7 @@ export function RichTextBubbleIframe() {
   }, [src]);
 
   const setSize = useCallback(
-    (size: any) => {
+    (size: { width: number | string; height: number | string }) => {
       editor
         .chain()
         .updateAttributes(Iframe.name, size)
@@ -120,7 +120,7 @@ export function RichTextBubbleIframe() {
 
               <Input
                 autoFocus
-                onInput={(e: any) => setFormUrl(e.target.value)}
+                onInput={(e) => setFormUrl(e.currentTarget.value)}
                 placeholder='Enter link'
                 type='url'
                 value={formUrl}
@@ -138,7 +138,7 @@ export function RichTextBubbleIframe() {
             </DialogContent>
           </Dialog>
 
-          <SizeSetter height={height as any} onOk={setSize} width={width as any}>
+          <SizeSetter height={height} onOk={setSize} width={width}>
             <ActionButton icon='Settings' tooltip={t('editor.settings')} />
           </SizeSetter>
 

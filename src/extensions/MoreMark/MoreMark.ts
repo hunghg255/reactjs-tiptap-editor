@@ -69,7 +69,7 @@ export const MoreMark = /* @__PURE__ */ Extension.create<MoreMarkOptions>({
             disabled: !editor.isEditable,
             items,
             isActive: () => {
-              const find: any = items?.find((k: any) => k.isActive());
+              const find = items?.find((k) => k.isActive());
 
               return find;
             },

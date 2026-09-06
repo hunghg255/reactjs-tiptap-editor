@@ -1,10 +1,27 @@
+interface EmbedResult {
+  validLink: boolean;
+  validId: boolean;
+  matchedUrl: string;
+  originalLink: string;
+  src: string;
+}
 /**
  * Embed service link
  * @id source id
  * @exmplae example link
  * @src source src, used in iframe
  */
-export const EmbedServiceLink: any = {
+export const EmbedServiceLink: Record<
+  string,
+  {
+    example: string;
+    src: string;
+    srcPrefix: string;
+    linkRule: (string | RegExp)[];
+    idRule?: string;
+    tips?: string;
+  }
+> = {
   youtube: {
     example: 'https://www.youtube.com/watch?v=I4sMhHbHYXM',
     src: 'https://www.youtube.com/embed/I4sMhHbHYXM',
@@ -104,7 +121,7 @@ export const EmbedServiceLink: any = {
   },
 };
 
-function getYoutubeSrc(result: any) {
+function getYoutubeSrc(result: EmbedResult) {
   const link = EmbedServiceLink.youtube;
   const url = result.matchedUrl;
   result.validLink = true;
@@ -120,12 +137,12 @@ function getYoutubeSrc(result: any) {
   return result;
 }
 
-function getYoukuSrc(result: any) {
+function getYoukuSrc(result: EmbedResult) {
   const link = EmbedServiceLink.youku;
   const url = result.matchedUrl;
 
   const idRule = link.idRule;
-  const regex = new RegExp(idRule);
+  const regex = new RegExp(idRule ?? '');
   const match = url.match(regex);
   if (match && match.length > 0) {
     const id = match[0].slice(3);
@@ -139,7 +156,7 @@ function getYoukuSrc(result: any) {
   return result;
 }
 
-function getBilibiliSrc(result: any) {
+function getBilibiliSrc(result: EmbedResult) {
   const link = EmbedServiceLink.bilibili;
   const url = result.matchedUrl;
 
@@ -154,7 +171,7 @@ function getBilibiliSrc(result: any) {
   return result;
 }
 
-function getQQVideoSrc(result: any) {
+function getQQVideoSrc(result: EmbedResult) {
   const link = EmbedServiceLink.qqvideo;
   const url = result.matchedUrl;
 
@@ -169,21 +186,21 @@ function getQQVideoSrc(result: any) {
   return result;
 }
 
-function getAMapSrc(originalLink: any, result: any) {
+function getAMapSrc(originalLink: string, result: EmbedResult) {
   result.src = originalLink;
   result.validId = true;
 
   return result;
 }
 
-function getBaiduMapSrc(originalLink: any, result: any) {
+function getBaiduMapSrc(originalLink: string, result: EmbedResult) {
   result.src = originalLink;
   result.validId = true;
 
   return result;
 }
 
-function getGoogleMapSrc(originalLink: any, result: any) {
+function getGoogleMapSrc(originalLink: string, result: EmbedResult) {
   result.src = originalLink;
   result.validId = true;
   result.originalLink = originalLink;
@@ -191,7 +208,7 @@ function getGoogleMapSrc(originalLink: any, result: any) {
   return result;
 }
 
-function getModaoSrc(result: any) {
+function getModaoSrc(result: EmbedResult) {
   result.src = result.matchedUrl;
   result.validId = true;
   result.originalLink = result.src;
@@ -199,7 +216,7 @@ function getModaoSrc(result: any) {
   return result;
 }
 
-function getLanhuSrc(result: any) {
+function getLanhuSrc(result: EmbedResult) {
   result.src = result.matchedUrl;
   result.validId = true;
   result.originalLink = result.src;
@@ -207,7 +224,7 @@ function getLanhuSrc(result: any) {
   return result;
 }
 
-function getFigmaSrc(result: any) {
+function getFigmaSrc(result: EmbedResult) {
   const link = EmbedServiceLink.figma;
   result.src = `${link.srcPrefix}=${encodeURIComponent(result.matchedUrl)}`;
   result.validId = true;
@@ -216,7 +233,7 @@ function getFigmaSrc(result: any) {
   return result;
 }
 
-function getCanvaSrc(originalLink: any, result: any) {
+function getCanvaSrc(originalLink: string, result: EmbedResult) {
   result.src = `${result.matchedUrl}?embed`;
   result.validId = true;
   result.originalLink = originalLink;
@@ -224,7 +241,7 @@ function getCanvaSrc(originalLink: any, result: any) {
   return result;
 }
 
-function getProcessonSrc(originalLink: any, result: any) {
+function getProcessonSrc(originalLink: string, result: EmbedResult) {
   result.src = `${result.matchedUrl}`;
   result.validId = true;
   result.originalLink = originalLink;
@@ -232,7 +249,7 @@ function getProcessonSrc(originalLink: any, result: any) {
   return result;
 }
 
-function getCodepenSrc(result: any) {
+function getCodepenSrc(result: EmbedResult) {
   result.src = `${result.matchedUrl}`;
   result.validId = true;
   result.originalLink = result.src;
@@ -240,7 +257,7 @@ function getCodepenSrc(result: any) {
   return result;
 }
 
-function getJinshujuSrc(originalLink: any, result: any) {
+function getJinshujuSrc(originalLink: string, result: EmbedResult) {
   result.src = `${result.matchedUrl}?background=white&banner=show&embedded=true`;
   result.validId = true;
   result.originalLink = originalLink;
@@ -248,7 +265,7 @@ function getJinshujuSrc(originalLink: any, result: any) {
   return result;
 }
 
-function getCommonSrc(originalLink: any, result: any) {
+function getCommonSrc(originalLink: string, result: EmbedResult) {
   result.src = `${result.matchedUrl}`;
   result.validId = true;
   result.originalLink = originalLink;
@@ -256,7 +273,11 @@ function getCommonSrc(originalLink: any, result: any) {
   return result;
 }
 
-function getMatchedUrl(service: any, originalLink: any, result: any) {
+function getMatchedUrl(
+  service: keyof typeof EmbedServiceLink,
+  originalLink: string,
+  result: EmbedResult
+) {
   if (service === 'googlemaps') {
     result.validLink = true;
     result.matchedUrl = originalLink;
@@ -355,7 +376,7 @@ function formatUrl(url: string) {
   return service;
 }
 
-export function getServiceSrc(originalLink: any) {
+export function getServiceSrc(originalLink: string) {
   let result = {
     validLink: false,
     validId: false,

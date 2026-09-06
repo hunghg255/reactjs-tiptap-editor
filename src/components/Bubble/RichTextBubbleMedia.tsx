@@ -14,7 +14,18 @@ import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 
-function ItemA({ item, disabled, editor }: any) {
+import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
+import type { Editor } from '@tiptap/react';
+
+function ItemA({
+  item,
+  disabled,
+  editor,
+}: {
+  item: import('./formatBubble').BubbleMenuItem;
+  disabled?: boolean;
+  editor: Editor;
+}) {
   const Comp = item.component;
 
   if (!Comp) {
@@ -31,7 +42,7 @@ function ItemA({ item, disabled, editor }: any) {
       ) : (
         <Comp
           {...item.componentProps}
-          disabled={disabled || item?.componentdisabled}
+          disabled={disabled || item?.componentProps.disabled}
           editor={editor}
         />
       )}
@@ -39,15 +50,15 @@ function ItemA({ item, disabled, editor }: any) {
   );
 }
 
-function isImageNode(node: any) {
+function isImageNode(node: ProseMirrorNode) {
   return node.type.name === Image.name || node.type.name === ImageBlock.name;
 }
 
-function isImageGifNode(node: any) {
+function isImageGifNode(node: ProseMirrorNode) {
   return node.type.name === ImageGif.name;
 }
 
-function isVideoNode(node: any) {
+function isVideoNode(node: ProseMirrorNode) {
   return node.type.name === Video.name;
 }
 
@@ -56,12 +67,12 @@ function RichTextBubbleImage() {
   const editable = useEditableEditor();
   const editor = useEditorInstance();
 
-  const shouldShow = ({ editor }: any) => {
+  const shouldShow = ({ editor }: { editor: Editor }) => {
     const { selection } = editor.view.state;
     const { $from, to } = selection;
     let isImage = false;
 
-    editor.view.state.doc.nodesBetween($from.pos, to, (node: any) => {
+    editor.view.state.doc.nodesBetween($from.pos, to, (node: ProseMirrorNode) => {
       if (isImageNode(node)) {
         isImage = true;
         return false; // Stop iteration if an image is found
@@ -88,7 +99,7 @@ function RichTextBubbleImage() {
     >
       {items?.length ? (
         <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
-          {items?.map((item: any, key: any) => {
+          {items?.map((item, key) => {
             return <ItemA editor={editor} item={item} key={`bubbleMenu-image-${key}`} />;
           })}
         </div>
@@ -104,12 +115,12 @@ function RichTextBubbleImageGif() {
   const editable = useEditableEditor();
   const editor = useEditorInstance();
 
-  const shouldShow = ({ editor }: any) => {
+  const shouldShow = ({ editor }: { editor: Editor }) => {
     const { selection } = editor.view.state;
     const { $from, to } = selection;
     let isImage = false;
 
-    editor.view.state.doc.nodesBetween($from.pos, to, (node: any) => {
+    editor.view.state.doc.nodesBetween($from.pos, to, (node: ProseMirrorNode) => {
       if (isImageGifNode(node)) {
         isImage = true;
         return false; // Stop iteration if an image is found
@@ -136,7 +147,7 @@ function RichTextBubbleImageGif() {
     >
       {items?.length ? (
         <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
-          {items?.map((item: any, key: any) => {
+          {items?.map((item, key) => {
             return <ItemA editor={editor} item={item} key={`bubbleMenu-image-gif-${key}`} />;
           })}
         </div>
@@ -152,12 +163,12 @@ function RichTextBubbleVideo() {
   const editable = useEditableEditor();
   const editor = useEditorInstance();
 
-  const shouldShow = ({ editor }: any) => {
+  const shouldShow = ({ editor }: { editor: Editor }) => {
     const { selection } = editor.view.state;
     const { $from, to } = selection;
     let isVideo = false;
 
-    editor.view.state.doc.nodesBetween($from.pos, to, (node: any) => {
+    editor.view.state.doc.nodesBetween($from.pos, to, (node: ProseMirrorNode) => {
       if (isVideoNode(node)) {
         isVideo = true;
         return false;
@@ -184,7 +195,7 @@ function RichTextBubbleVideo() {
     >
       {items?.length ? (
         <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
-          {items?.map((item: any, key: any) => {
+          {items?.map((item, key) => {
             return <ItemA editor={editor} item={item} key={`bubbleMenu-video-${key}`} />;
           })}
         </div>

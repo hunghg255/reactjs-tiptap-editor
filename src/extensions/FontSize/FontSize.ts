@@ -80,7 +80,7 @@ export const FontSize = /* @__PURE__ */ Extension.create<FontSizeOptions>({
             maxHeight: 280,
             icon: 'MenuDown',
             isActive: () => {
-              const find: any = (items || []).find((k: any) => k.isActive());
+              const find = (items || []).find((k) => k.isActive());
               if (find && !find.default) {
                 return find;
               }

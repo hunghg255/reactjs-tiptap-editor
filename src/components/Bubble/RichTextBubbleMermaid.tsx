@@ -11,7 +11,18 @@ import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 
-function ItemA({ item, disabled, editor }: any) {
+import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
+import type { Editor } from '@tiptap/react';
+
+function ItemA({
+  item,
+  disabled,
+  editor,
+}: {
+  item: import('./formatBubble').BubbleMenuItem;
+  disabled?: boolean;
+  editor: Editor;
+}) {
   const Comp = item.component;
 
   if (!Comp) {
@@ -36,7 +47,7 @@ function ItemA({ item, disabled, editor }: any) {
   );
 }
 
-function isMermaidNode(node: any) {
+function isMermaidNode(node: ProseMirrorNode) {
   return node.type.name === Mermaid.name;
 }
 
@@ -45,16 +56,19 @@ export function RichTextBubbleMermaid() {
   const editable = useEditableEditor();
   const editor = useEditorInstance();
 
-  const attrs = useAttributes<any>(editor, Mermaid.name);
+  const attrs = useAttributes<{ src: string; alt: string; align: 'left' | 'center' | 'right' }>(
+    editor,
+    Mermaid.name
+  );
 
   const extension = useExtension(Mermaid.name);
 
-  const shouldShow = ({ editor }: any) => {
+  const shouldShow = ({ editor }: { editor: Editor }) => {
     const { selection } = editor.view.state;
     const { $from, to } = selection;
     let isMermaid = false;
 
-    editor.view.state.doc.nodesBetween($from.pos, to, (node: any) => {
+    editor.view.state.doc.nodesBetween($from.pos, to, (node: ProseMirrorNode) => {
       if (isMermaidNode(node)) {
         isMermaid = true;
         return false; // Stop iteration if an mermaid is found
@@ -81,7 +95,7 @@ export function RichTextBubbleMermaid() {
     >
       {items?.length ? (
         <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
-          {items?.map((item: any, key: any) => {
+          {items?.map((item, key) => {
             if (item.type === 'edit' && attrs?.src) {
               return (
                 <EditMermaidBlock

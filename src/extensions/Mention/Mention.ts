@@ -8,7 +8,7 @@ export const Mention = /* @__PURE__ */ Extension.create<MentionOptions>({
   name: 'richTextMentionWrapper',
 
   addExtensions() {
-    const config: any = {
+    const config: Partial<MentionOptions> = {
       ...this.options,
     };
 

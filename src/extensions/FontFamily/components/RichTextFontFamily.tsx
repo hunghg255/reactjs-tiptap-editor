@@ -17,7 +17,7 @@ import type { ButtonViewReturnComponentProps } from '@/types';
 
 export interface Item {
   title: string;
-  icon?: any;
+  icon?: string;
   font?: string;
   isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>;
   action?: ButtonViewReturnComponentProps['action'];
@@ -31,7 +31,12 @@ export interface Item {
 export function RichTextFontFamily() {
   const { t } = useLocale();
 
-  const buttonProps = useButtonProps(FontFamily.name);
+  const buttonProps = useButtonProps<{
+    icon?: string;
+    tooltip?: string;
+    items?: Item[];
+    isActive?: () => Item | boolean;
+  }>(FontFamily.name);
 
   const {
     icon = undefined,
@@ -43,7 +48,10 @@ export function RichTextFontFamily() {
   const { disabled, dataState } = useActive(isActive);
 
   const title = useMemo(() => {
-    return dataState?.font || t('editor.fontFamily.default.tooltip');
+    return (
+      (typeof dataState === 'object' ? dataState?.font : undefined) ||
+      t('editor.fontFamily.default.tooltip')
+    );
   }, [dataState]);
 
   if (!buttonProps) {
@@ -63,7 +71,7 @@ export function RichTextFontFamily() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className='richtext-w-full'>
-        {items?.map((item: any, index: any) => {
+        {items?.map((item, index) => {
           const style =
             item.font === t('editor.fontFamily.default.tooltip') ? {} : { fontFamily: item.font };
 

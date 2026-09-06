@@ -19,7 +19,8 @@ import type { ButtonViewReturnComponentProps } from '@/types';
 
 export interface Item {
   title: string;
-  icon?: any;
+  dir?: string;
+  icon?: string;
   isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>;
   action?: ButtonViewReturnComponentProps['action'];
   style?: React.CSSProperties;
@@ -31,7 +32,12 @@ export interface Item {
 
 export function RichTextAlign() {
   const [open, setOpen] = React.useState(false);
-  const buttonProps = useButtonProps(TextAlign.name);
+  const buttonProps = useButtonProps<{
+    icon?: string;
+    tooltip?: string;
+    items?: Item[];
+    isActive?: () => Item | boolean;
+  }>(TextAlign.name);
 
   const {
     icon = undefined,
@@ -43,7 +49,7 @@ export function RichTextAlign() {
   const { disabled, dataState } = useActive(isActive);
 
   const currentAlign = useMemo(() => {
-    return dataState?.title || '';
+    return (typeof dataState === 'object' ? dataState?.title : undefined) || '';
   }, [dataState]);
 
   const hasAlign = useMemo(() => {
@@ -81,7 +87,7 @@ export function RichTextAlign() {
         className='richtext-flex richtext-w-full richtext-min-w-4 richtext-flex-row richtext-gap-1 !richtext-p-[4px]'
         side='bottom'
       >
-        {items?.map((item: any, index: any) => {
+        {items?.map((item, index) => {
           return (
             <Tooltip key={`text-align-${index}`}>
               <TooltipTrigger asChild>
@@ -90,7 +96,7 @@ export function RichTextAlign() {
                   data-state={currentAlign === item.title ? 'on' : 'off'}
                   size='sm'
                   onClick={() => {
-                    item?.action();
+                    item?.action?.();
                     setOpen(false);
                   }}
                 >
@@ -102,9 +108,7 @@ export function RichTextAlign() {
                 <span>{item.title}</span>
 
                 {!!item.shortcutKeys?.length && (
-                  <span>
-                    {item.shortcutKeys?.map((item: any) => getShortcutKey(item)).join(' ')}
-                  </span>
+                  <span>{item.shortcutKeys?.map((item) => getShortcutKey(item)).join(' ')}</span>
                 )}
               </TooltipContent>
             </Tooltip>

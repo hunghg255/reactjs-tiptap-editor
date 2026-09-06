@@ -38,7 +38,7 @@ export function RichTextLink() {
         disabled={editorDisabled}
       >
         <ActionButton dataState={dataState} disabled={editorDisabled} tooltip={tooltip}>
-          <IconComponent name={icon} />
+          <IconComponent name={icon ?? ''} />
         </ActionButton>
       </PopoverTrigger>
 

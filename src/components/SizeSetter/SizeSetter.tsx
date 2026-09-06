@@ -3,20 +3,20 @@ import { useEffect, useState } from 'react';
 import { Button, Input, Label, Popover, PopoverContent, PopoverTrigger } from '@/components/ui';
 import { useLocale } from '@/locales';
 
-interface ISize {
+export interface ISize {
   width: number | string;
   height: number | string;
 }
 
 interface IProps {
-  width: number | string;
+  width?: number | string;
   maxWidth?: number | string;
-  height: number | string;
+  height?: number | string;
   onOk: (arg: ISize) => void;
   children: React.ReactNode;
 }
 
-export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, children }: any) => {
+export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, children }) => {
   const { t } = useLocale();
 
   const [form, setForm] = useState({
@@ -27,13 +27,13 @@ export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, ch
 
   useEffect(() => {
     setForm({
-      width,
-      height,
-      maxWidth,
+      width: width === undefined ? '' : String(width),
+      height: height === undefined ? '' : String(height),
+      maxWidth: maxWidth === undefined ? '' : String(maxWidth),
     });
   }, [height, maxWidth, width]);
 
-  function handleSubmit(event: any) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     event.stopPropagation();
     onOk(form);
@@ -50,7 +50,7 @@ export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, ch
           <div className='richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5'>
             <div className='richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center'>
               <Input
-                onChange={(e) => setForm({ ...form, width: e.target.value })}
+                onChange={(e) => setForm({ ...form, width: e.currentTarget.value })}
                 required
                 type='number'
                 value={form.width}
@@ -63,7 +63,7 @@ export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, ch
           <div className='richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5'>
             <div className='richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center'>
               <Input
-                onChange={(e) => setForm({ ...form, maxWidth: e.target.value })}
+                onChange={(e) => setForm({ ...form, maxWidth: e.currentTarget.value })}
                 required
                 type='number'
                 value={form.maxWidth}
@@ -76,7 +76,7 @@ export const SizeSetter: React.FC<IProps> = ({ width, maxWidth, height, onOk, ch
           <div className='richtext-flex richtext-w-full richtext-max-w-sm richtext-items-center richtext-gap-1.5'>
             <div className='richtext-relative richtext-w-full richtext-max-w-sm richtext-items-center'>
               <Input
-                onChange={(e) => setForm({ ...form, height: e.target.value })}
+                onChange={(e) => setForm({ ...form, height: e.currentTarget.value })}
                 required
                 type='number'
                 value={form.height}

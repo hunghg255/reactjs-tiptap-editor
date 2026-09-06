@@ -18,7 +18,7 @@ import type { ButtonViewReturnComponentProps } from '@/types';
 
 export interface Item {
   title: string;
-  icon?: any;
+  icon?: string;
   isActive: NonNullable<ButtonViewReturnComponentProps['isActive']>;
   action?: ButtonViewReturnComponentProps['action'];
   style?: React.CSSProperties;
@@ -29,7 +29,12 @@ export interface Item {
 }
 
 export function RichTextMoreMark() {
-  const buttonProps = useButtonProps(MoreMark.name);
+  const buttonProps = useButtonProps<{
+    icon?: string;
+    tooltip?: string;
+    items?: Item[];
+    isActive?: () => Item | boolean;
+  }>(MoreMark.name);
 
   const {
     icon = undefined,
@@ -41,7 +46,7 @@ export function RichTextMoreMark() {
   const { disabled, dataState } = useActive(isActive);
 
   const titleActive = useMemo(() => {
-    return (dataState as any)?.title || '';
+    return (typeof dataState === 'object' ? dataState?.title : undefined) || '';
   }, [dataState]);
 
   if (!buttonProps) {
@@ -62,7 +67,7 @@ export function RichTextMoreMark() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className='w-full'>
-        {items?.map((item: any, index: any) => {
+        {items?.map((item, index) => {
           return (
             <DropdownMenuCheckboxItem
               checked={titleActive === item.title}
@@ -70,7 +75,7 @@ export function RichTextMoreMark() {
               key={`more-mark-${index}`}
               onClick={item.action}
             >
-              <IconComponent name={item?.icon} />
+              <IconComponent name={item?.icon ?? ''} />
 
               <span className='richtext-ml-1'>{item.title}</span>
 

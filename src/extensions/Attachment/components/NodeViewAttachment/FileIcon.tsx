@@ -13,7 +13,7 @@ import ExportWord from '@/components/icons/ExportWord';
 import { FileIconString } from '@/extensions/Attachment/components/NodeViewAttachment/FileIconString';
 import { normalizeFileType } from '@/utils/file';
 
-function iconToProseMirror(typeIcon: any) {
+function iconToProseMirror(typeIcon: import('@/utils/file').FileType) {
   // Render SVG as a static string
   const svgString = FileIconString[typeIcon];
 
@@ -22,22 +22,26 @@ function iconToProseMirror(typeIcon: any) {
   const svgDocument = parser.parseFromString(svgString, 'image/svg+xml');
   const svgElement = svgDocument.documentElement;
 
-  const iconToReturn = [
+  const iconToReturn: [
+    string,
+    Record<string, string>,
+    ...import('@tiptap/pm/model').DOMOutputSpec[],
+  ] = [
     'svg',
     {
-      ...Array.from(svgElement.attributes).reduce((acc: any, attr: any) => {
+      ...Array.from(svgElement.attributes).reduce((acc: Record<string, string>, attr: Attr) => {
         acc[attr.name] = attr.value;
         return acc;
       }, {}),
     },
   ];
 
-  Array.from(svgElement.childNodes).forEach((child: any) => {
-    if (child.nodeType === 1) {
+  Array.from(svgElement.childNodes).forEach((child) => {
+    if (child instanceof Element) {
       // Element node
-      const childElement = [
+      const childElement: [string, Record<string, string>, ...string[]] = [
         child.tagName.toLowerCase(),
-        Array.from(child.attributes).reduce((acc: any, attr: any) => {
+        Array.from(child.attributes).reduce((acc: Record<string, string>, attr: Attr) => {
           acc[attr.name] = attr.value;
           return acc;
         }, {}),
@@ -66,7 +70,15 @@ const icons = {
   ppt: <LucideTableProperties />,
 };
 
-export function getFileTypeIcon(fileType: string, forProseMirror = false) {
+export function getFileTypeIcon(
+  fileType: string,
+  forProseMirror: true
+): import('@tiptap/pm/model').DOMOutputSpec;
+export function getFileTypeIcon(fileType: string, forProseMirror?: false): React.ReactElement;
+export function getFileTypeIcon(
+  fileType: string,
+  forProseMirror = false
+): React.ReactElement | import('@tiptap/pm/model').DOMOutputSpec {
   const type = normalizeFileType(fileType);
 
   const icon = icons[type] || <></>;

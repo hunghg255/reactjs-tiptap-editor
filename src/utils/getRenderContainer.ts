@@ -8,10 +8,10 @@ export function getRenderContainer(editor: Editor, nodeType: string) {
     },
   } = editor;
 
-  const elements = document.querySelectorAll('.has-focus');
+  const elements = document.querySelectorAll<HTMLElement>('.has-focus');
   const elementCount = elements.length;
   const innermostNode = elements[elementCount - 1];
-  const element = innermostNode as any;
+  const element = innermostNode;
 
   if (
     (element && element.dataset.type && element.dataset.type === nodeType) ||
@@ -21,7 +21,7 @@ export function getRenderContainer(editor: Editor, nodeType: string) {
   }
 
   const node = view.domAtPos(from).node as HTMLElement;
-  let container: any = node;
+  let container: HTMLElement | null = node;
 
   if (!container.tagName) {
     container = node.parentElement;

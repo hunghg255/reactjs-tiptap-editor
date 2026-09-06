@@ -44,7 +44,7 @@ export function RichTextVideo() {
     return uploadOptions;
   }, [extension]);
 
-  function handleLink(e: any) {
+  function handleLink(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -129,7 +129,7 @@ export function RichTextVideo() {
                   type='url'
                   value={link}
                   onBlur={(e) => {
-                    const url = e.target.value;
+                    const url = e.currentTarget.value;
                     const videoProviders = uploadOptions.videoProviders || ['.'];
 
                     if (url && !checkIsVideoUrl(url, videoProviders)) {
@@ -139,7 +139,7 @@ export function RichTextVideo() {
                     }
                   }}
                   onChange={(e) => {
-                    setLink(e.target.value);
+                    setLink(e.currentTarget.value);
                   }}
                 />
 

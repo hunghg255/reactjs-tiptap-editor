@@ -4,7 +4,7 @@ import { EVENTS } from '@/utils/customEvents/events.constant';
 
 import type { CommandList } from './types';
 
-export function renderCommandListDefault({ t }: any) {
+export function renderCommandListDefault({ t }: { t: (path: string) => string }) {
   const groups: CommandList[] = [
     {
       name: 'format',
@@ -19,7 +19,7 @@ export function renderCommandListDefault({ t }: any) {
   ];
 
   // heading
-  HEADINGS.forEach((level: any) => {
+  HEADINGS.forEach((level) => {
     groups[0].commands.push({
       name: `heading${level}`,
       label:
@@ -36,7 +36,7 @@ export function renderCommandListDefault({ t }: any) {
         return editor.isActive('heading', { level }) || false;
       },
       action: ({ editor, range }) => {
-        const currentActiveLevel: any = HEADINGS.find((lvl: any) =>
+        const currentActiveLevel = HEADINGS.find((lvl) =>
           editor.isActive('heading', { level: lvl })
         );
 
@@ -133,7 +133,7 @@ export function renderCommandListDefault({ t }: any) {
     description: 'Insert a image',
     aliases: ['image', 'tp', 'tupian'],
     shouldBeHidden: (editor) => editor.isActive('columns'),
-    action: ({ editor, range }: any) => {
+    action: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).run();
       const EVENT_ID = EVENTS.UPLOAD_IMAGE(editor.id);
       emit(EVENT_ID, true);
@@ -148,7 +148,7 @@ export function renderCommandListDefault({ t }: any) {
     description: 'Insert a video',
     aliases: ['video', 'sp', 'shipin'],
     shouldBeHidden: (editor) => editor.isActive('columns'),
-    action: ({ editor, range }: any) => {
+    action: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).run();
       const EVENT_ID = EVENTS.UPLOAD_VIDEO(editor.id);
       emit(EVENT_ID, true);

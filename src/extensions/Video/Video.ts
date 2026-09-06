@@ -3,6 +3,7 @@ import { Node } from '@tiptap/core';
 import { VIDEO_SIZE } from '@/constants';
 import { getCssUnitWithDefault } from '@/utils/utils';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions, VideoAlignment } from '@/types';
 
 export * from '@/extensions/Video/components/RichTextVideo';
@@ -43,7 +44,7 @@ export interface VideoOptions extends GeneralOptions<VideoOptions> {
   width: number | string;
   /** HTML attributes object for passing additional attributes */
   HTMLAttributes: {
-    [key: string]: any;
+    [key: string]: unknown;
   };
   /** Function for uploading files */
   upload?: (file: File, context?: VideoUploadContext) => Promise<string>;
@@ -174,7 +175,6 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
   atom: true,
   draggable: true,
 
-  //@ts-expect-error
   addOptions() {
     return {
       divider: false,
@@ -188,7 +188,7 @@ export const Video = /* @__PURE__ */ Node.create<VideoOptions>({
         class: 'iframe-wrapper',
         // style: 'display: flex;justify-content: center;',
       },
-      button: ({ editor, t }: any) => {
+      button: ({ editor, t }: ButtonViewParams<VideoOptions>) => {
         return {
           componentProps: {
             action: () => {

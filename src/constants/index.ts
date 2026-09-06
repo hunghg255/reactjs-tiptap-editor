@@ -156,7 +156,7 @@ export enum VIDEO_SIZE {
 export const DEFAULT_LINE_HEIGHT_LIST = ['Default', '1.5', '2', '2.5', '3', '3.5', '4'];
 
 /** display in menus */
-export const NODE_TYPE_MENU: any = {
+export const NODE_TYPE_MENU = {
   image: [
     'divider',
     'image-size-small',
@@ -203,4 +203,12 @@ export const BUBBLE_TEXT_LIST = [
   'textAlign',
 ];
 
-export const HEADINGS = ['Paragraph', 1, 2, 3, 4, 5, 6];
+export const HEADINGS: (import('@tiptap/extension-heading').Level | 'Paragraph')[] = [
+  'Paragraph',
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+];

@@ -189,7 +189,7 @@ function AddMoreColor({ setColor }: AddMoreColorProps) {
   const [openColorMore, setOpenColorMore] = useState(false);
   const [colorSelected, setColorSelected] = useState('#000000');
 
-  const onValueChange = useCallback((value: any) => {
+  const onValueChange = useCallback((value: string) => {
     setColorSelected(value);
   }, []);
 
@@ -219,7 +219,7 @@ function AddMoreColor({ setColor }: AddMoreColorProps) {
               e.preventDefault();
               e.stopPropagation();
 
-              onValueChange(`#${e.target.value}`);
+              onValueChange(`#${e.currentTarget.value}`);
             }}
           />
         </div>

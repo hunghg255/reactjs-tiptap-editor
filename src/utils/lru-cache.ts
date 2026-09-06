@@ -7,7 +7,7 @@ class Node {
   public prev: Node | null;
   public next: Node | null;
 
-  constructor(key: any, value: any) {
+  constructor(key: string, value: string | number) {
     this.key = key;
     this.value = value;
     this.prev = null;
@@ -22,7 +22,7 @@ export class LRUCache {
   private tail: Node;
   private store: Record<string, Node>;
 
-  constructor(capacity: any) {
+  constructor(capacity: number) {
     this.capacity = capacity || 20;
     this.usedCapacity = 0;
     this.store = {};
@@ -33,12 +33,12 @@ export class LRUCache {
     this.tail.prev = this.head;
   }
 
-  private removeNode(node: any) {
-    node.prev.next = node.next;
-    node.next.prev = node.prev;
+  private removeNode(node: Node) {
+    if (node.prev) node.prev.next = node.next;
+    if (node.next) node.next.prev = node.prev;
   }
 
-  private addToHead(node: any) {
+  private addToHead(node: Node) {
     node.prev = this.head;
     node.next = this.head.next;
     // @ts-expect-error
@@ -46,18 +46,18 @@ export class LRUCache {
     this.head.next = node;
   }
 
-  private moveToHead(node: any) {
+  private moveToHead(node: Node) {
     this.removeNode(node);
     this.addToHead(node);
   }
 
   private removeTail() {
-    const node = this.tail.prev;
+    const node = this.tail.prev!;
     this.removeNode(node);
     return node;
   }
 
-  get(key: any) {
+  get(key: string) {
     if (key in this.store) {
       const node = this.store[key];
       this.moveToHead(node);
@@ -67,7 +67,7 @@ export class LRUCache {
     return -1;
   }
 
-  put(key: any, value: any) {
+  put(key: string, value: string | number) {
     if (key in this.store) {
       const node = this.store[key];
       node.value = value;
@@ -79,7 +79,7 @@ export class LRUCache {
       this.usedCapacity += 1;
 
       if (this.usedCapacity > this.capacity) {
-        const tailNode = this.removeTail() as any;
+        const tailNode = this.removeTail();
         delete this.store[tailNode.key];
         this.usedCapacity -= 1;
       }
@@ -88,7 +88,7 @@ export class LRUCache {
 
   keys() {
     const res = [];
-    let node = this.head as any;
+    let node: Node | null = this.head;
 
     while (node) {
       res.push(node.key);
@@ -100,7 +100,7 @@ export class LRUCache {
 
   values() {
     const res = [];
-    let node = this.head as any;
+    let node: Node | null = this.head;
 
     while (node) {
       res.push(node.value);
@@ -115,23 +115,26 @@ export class LRUCache {
   }
 }
 
-export function createKeysLocalStorageLRUCache(storageKey: any, capacity: any) {
+export function createKeysLocalStorageLRUCache(storageKey: string, capacity: number) {
   const lruCache = new LRUCache(capacity);
 
   const manager = {
     syncFromStorage() {
-      const data = getStorage(storageKey) || [];
+      const stored = getStorage(storageKey);
+      const data = Array.isArray(stored)
+        ? stored.filter((key): key is string => typeof key === 'string')
+        : [];
       data
         .slice()
         .reverse()
-        .forEach((key: any) => {
+        .forEach((key) => {
           lruCache.put(key, key);
         });
     },
     syncToStorage() {
       setStorage(storageKey, safeJSONStringify(lruCache.keys()));
     },
-    put(key: any) {
+    put(key: string) {
       lruCache.put(key, key);
       this.syncToStorage();
     },

@@ -6,6 +6,7 @@ import {
 import { DEFAULT_FONT_FAMILY_LIST } from '@/constants';
 import { ensureNameValueOptions } from '@/utils/utils';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions, NameValueOption } from '@/types';
 
 export * from './components/RichTextFontFamily';
@@ -25,7 +26,7 @@ export const FontFamily =
       return {
         ...this.parent?.(),
         fontFamilyList: DEFAULT_FONT_FAMILY_LIST,
-        button({ editor, extension, t }: any) {
+        button({ editor, extension, t }: ButtonViewParams<FontFamilyOptions>) {
           const fontFamilyList = ensureNameValueOptions(extension?.options?.fontFamilyList || []);
 
           const items = fontFamilyList.map((font) => ({
@@ -50,7 +51,7 @@ export const FontFamily =
               disabled: false,
               items,
               isActive: () => {
-                const find: any = items?.find((k: any) => k.isActive());
+                const find = items?.find((k) => k.isActive());
 
                 if (find && !find.default) {
                   return find;

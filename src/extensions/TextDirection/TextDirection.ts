@@ -16,18 +16,18 @@ const TextDirection = /* @__PURE__ */ Extension.create({
         extension,
         t,
       }: {
-        editor: any;
-        extension: Extension;
-        t: (...args: any[]) => string;
+        editor: import('@tiptap/core').Editor;
+        extension: Extension<{ directions: ('auto' | 'ltr' | 'rtl' | 'unset')[] }>;
+        t: (path: string) => string;
       }) {
-        const directions = (extension.options?.directions as any[]) || [];
+        const directions = extension.options?.directions || [];
 
         const iconMap = {
           auto: 'TextDirection',
           ltr: 'LeftToRight',
           rtl: 'RightToLeft',
           unset: 'X',
-        } as any;
+        } as const;
 
         const items = directions.map((k) => ({
           title: t(`editor.textDirection.${k}.tooltip`),

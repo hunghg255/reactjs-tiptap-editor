@@ -41,7 +41,7 @@ export function RichTextTwitter() {
           tooltip={tooltip}
           tooltipOptions={tooltipOptions}
         >
-          <IconComponent name={icon} />
+          <IconComponent name={icon ?? ''} />
         </ActionButton>
       </PopoverTrigger>
 

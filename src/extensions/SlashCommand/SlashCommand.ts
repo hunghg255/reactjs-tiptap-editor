@@ -1,17 +1,17 @@
 import { Extension } from '@tiptap/core';
 import { PluginKey } from '@tiptap/pm/state';
-import { ReactRenderer } from '@tiptap/react';
 import { Suggestion } from '@tiptap/suggestion';
 
 import SlashCommandNodeView from '@/extensions/SlashCommand/components/SlashCommandNodeView';
-import { updatePosition } from '@/utils/updatePosition';
+import { renderNodeViewClosure } from '@/utils/renderNodeView';
 
+import type { Command } from './types';
 import type { Editor, Range } from '@tiptap/core';
 
 export * from './components/SlashCommandList';
 export * from './renderCommandListDefault';
 
-export const SlashCommand = /* @__PURE__ */ Extension.create<any>({
+export const SlashCommand = /* @__PURE__ */ Extension.create({
   name: 'richtextSlashCommand',
   priority: 200,
 
@@ -25,7 +25,7 @@ export const SlashCommand = /* @__PURE__ */ Extension.create<any>({
 
   addProseMirrorPlugins() {
     return [
-      Suggestion({
+      Suggestion<Command>({
         pluginKey: new PluginKey('richtextSlashCommandPlugin'),
         editor: this.editor,
         char: '/',
@@ -52,62 +52,13 @@ export const SlashCommand = /* @__PURE__ */ Extension.create<any>({
         //   );
         // },
 
-        command: ({ editor, range, props }: { editor: Editor; range: Range; props: any }) => {
+        command: ({ editor, range, props }: { editor: Editor; range: Range; props: Command }) => {
           const { view } = editor;
           props.action({ editor, range });
           view.focus();
         },
 
-        render: () => {
-          let reactRenderer: any;
-
-          return {
-            onStart: (props: any) => {
-              if (!props.clientRect) {
-                return;
-              }
-
-              reactRenderer = new ReactRenderer(SlashCommandNodeView, {
-                props,
-                editor: props.editor,
-              });
-
-              reactRenderer.element.style.position = 'absolute';
-
-              document.body.appendChild(reactRenderer.element);
-
-              updatePosition(props.editor, reactRenderer.element);
-            },
-
-            onUpdate(props) {
-              reactRenderer.updateProps(props);
-
-              if (!props.clientRect) {
-                return;
-              }
-              updatePosition(props.editor, reactRenderer.element);
-            },
-
-            onKeyDown(props) {
-              if (props.event.key === 'Escape') {
-                reactRenderer.destroy();
-                reactRenderer.element.remove();
-
-                return true;
-              }
-
-              return reactRenderer.ref?.onKeyDown(props);
-            },
-
-            onExit() {
-              if (!reactRenderer) {
-                return;
-              }
-              reactRenderer.destroy();
-              reactRenderer.element.remove();
-            },
-          };
-        },
+        render: renderNodeViewClosure(SlashCommandNodeView),
       }),
     ];
   },

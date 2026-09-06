@@ -238,7 +238,7 @@ export function RichTextBubbleCodeBlock() {
       shouldShow={shouldShow}
       getReferencedVirtualElement={() => {
         const { from } = editor.state.selection;
-        const node = editor.view.domAtPos(from).node as any;
+        const node = editor.view.domAtPos(from).node;
 
         const el = node.parentElement;
 

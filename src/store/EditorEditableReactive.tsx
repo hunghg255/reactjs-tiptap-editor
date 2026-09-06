@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useStoreEditableEditor } from '@/store/store';
 
-export function EditorEditableReactive({ editor }: any) {
+export function EditorEditableReactive({ editor }: { editor: import('@tiptap/core').Editor }) {
   const setEditable = useStoreEditableEditor();
 
   useEffect(() => {

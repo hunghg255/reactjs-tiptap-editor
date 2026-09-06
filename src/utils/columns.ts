@@ -4,7 +4,14 @@ import { type EditorState, TextSelection } from '@tiptap/pm/state';
 
 import { ColumnNode, MultipleColumnNode } from '@/extensions/Column';
 
-export function createColumn(colType: any, index: any, colContent = null) {
+import type { CommandProps, JSONContent } from '@tiptap/core';
+import type { NodeType, Schema, Fragment } from '@tiptap/pm/model';
+
+export function createColumn(
+  colType: NodeType,
+  index: number,
+  colContent: Fragment | Node | readonly Node[] | null = null
+) {
   if (colContent) {
     return colType.createChecked({ index }, colContent);
   }
@@ -12,7 +19,7 @@ export function createColumn(colType: any, index: any, colContent = null) {
   return colType.createAndFill({ index });
 }
 
-export function getColumnsNodeTypes(schema: any) {
+export function getColumnsNodeTypes(schema: Schema): { columns: NodeType; column: NodeType } {
   if (schema.cached.columnsNodeTypes) {
     return schema.cached.columnsNodeTypes;
   }
@@ -27,7 +34,11 @@ export function getColumnsNodeTypes(schema: any) {
   return roles;
 }
 
-export function createColumns(schema: any, colsCount: any, colContent = null) {
+export function createColumns(
+  schema: Schema,
+  colsCount: number,
+  colContent: Fragment | Node | readonly Node[] | null = null
+) {
   const types = getColumnsNodeTypes(schema);
   const cols = [];
 
@@ -35,7 +46,6 @@ export function createColumns(schema: any, colsCount: any, colContent = null) {
     const col = createColumn(types.column, index, colContent);
 
     if (col) {
-      // @ts-ignore
       cols.push(col);
     }
   }
@@ -49,7 +59,7 @@ export function addOrDeleteCol({
   type,
 }: {
   state: EditorState;
-  dispatch: any;
+  dispatch: CommandProps['dispatch'];
   type: 'addBefore' | 'addAfter' | 'delete';
 }) {
   const maybeColumns = findParentNode((node: Node) => node.type.name === MultipleColumnNode.name)(
@@ -62,7 +72,10 @@ export function addOrDeleteCol({
   if (dispatch && maybeColumns && maybeColumn) {
     const cols = maybeColumns.node;
     const colIndex = maybeColumn.node.attrs.index;
-    const colsJSON = cols.toJSON();
+    const colsJSON = cols.toJSON() as JSONContent & {
+      attrs: { cols: number };
+      content: (JSONContent & { attrs: { index: number } })[];
+    };
 
     let nextIndex = colIndex;
 
@@ -86,8 +99,8 @@ export function addOrDeleteCol({
 
     colsJSON.attrs.cols = colsJSON.content.length;
 
-    colsJSON.content.forEach((colJSON: any, index: any) => {
-      colJSON.attrs.index = index;
+    colsJSON.content.forEach((colJSON, index) => {
+      colJSON.attrs = { ...colJSON.attrs, index };
     });
 
     const nextCols = Node.fromJSON(state.schema, colsJSON);
@@ -119,7 +132,7 @@ export function gotoCol({
   type,
 }: {
   state: EditorState;
-  dispatch: any;
+  dispatch: CommandProps['dispatch'];
   type: 'before' | 'after';
 }) {
   const maybeColumns = findParentNode((node: Node) => node.type.name === MultipleColumnNode.name)(

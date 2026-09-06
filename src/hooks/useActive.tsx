@@ -6,7 +6,7 @@ import { useEditableEditor } from '@/store/store';
 
 const fnActiveDefault = () => false;
 
-export function useActive(isActive: () => any = fnActiveDefault) {
+export function useActive<T = boolean>(isActive: () => T | boolean = fnActiveDefault) {
   const editable = useEditableEditor();
   const editor = useEditorInstance();
   const dataState = useEditorState({

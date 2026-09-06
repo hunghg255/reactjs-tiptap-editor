@@ -54,8 +54,8 @@ export function RichTextImage() {
     return uploadOptions || DEFAULT_OPTIONS;
   }, [extension]);
 
-  async function handleFile(event: any) {
-    const files = event?.target?.files;
+  async function handleFile(event: React.ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(event.currentTarget.files ?? []);
     if (!editor || editor.isDestroyed || files.length === 0 || isUploading) {
       event.target.value = '';
       return;
@@ -127,7 +127,7 @@ export function RichTextImage() {
     }
   }
 
-  function handleLink(e: any) {
+  function handleLink(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -138,7 +138,7 @@ export function RichTextImage() {
     setAlt('');
   }
 
-  function handleClick(e: any) {
+  function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     fileInput.current?.click();
   }
@@ -203,7 +203,12 @@ export function RichTextImage() {
             <div className='richtext-my-[10px]'>
               <Label className='mb-[6px]'>{t('editor.imageUpload.alt')}</Label>
 
-              <Input onChange={(e) => setAlt(e.target.value)} required type='text' value={alt} />
+              <Input
+                onChange={(e) => setAlt(e.currentTarget.value)}
+                required
+                type='text'
+                value={alt}
+              />
             </div>
           )}
 
@@ -257,7 +262,7 @@ export function RichTextImage() {
               <div className='richtext-flex richtext-items-center richtext-gap-2'>
                 <Input
                   autoFocus
-                  onChange={(e) => setLink(e.target.value)}
+                  onChange={(e) => setLink(e.currentTarget.value)}
                   placeholder={t('editor.image.dialog.placeholder')}
                   required
                   type='url'

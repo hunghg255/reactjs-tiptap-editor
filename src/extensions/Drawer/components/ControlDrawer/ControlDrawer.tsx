@@ -27,6 +27,7 @@ import {
 } from './icon';
 
 import styles from './ControlDrawer.module.scss';
+import type { ControlDrawerProps } from '@/extensions/Drawer/types';
 
 const enum ShapeType {
   square = 0,
@@ -71,7 +72,7 @@ const COLOR = [
   Color4.fromHex('#AADC99'),
 ];
 
-function ColorPickerHighlight({ onChange }: any) {
+function ColorPickerHighlight({ onChange }: { onChange: (color: Color4) => void }) {
   const [selected, setSelected] = useState(Color4.blackHighlight);
 
   return (
@@ -93,7 +94,7 @@ function ColorPickerHighlight({ onChange }: any) {
   );
 }
 
-function ColorPicker({ onChange }: any) {
+function ColorPicker({ onChange }: { onChange: (color: Color4) => void }) {
   const [selected, setSelected] = useState(Color4.black);
 
   return (
@@ -133,13 +134,16 @@ function ColorPicker({ onChange }: any) {
   );
 }
 
-function PencilOption({ setColorPen, setThicknessPen }: any) {
+function PencilOption({
+  setColorPen,
+  setThicknessPen,
+}: Pick<ControlDrawerProps, 'setColorPen' | 'setThicknessPen'>) {
   const [thickness, setThickness] = useState(2);
 
   return (
     <div className={styles.options}>
       <div>
-        <ColorPicker onChange={(color: any) => setColorPen(color)} />
+        <ColorPicker onChange={(color) => setColorPen(color)} />
       </div>
 
       <div className={styles.line}></div>
@@ -152,8 +156,8 @@ function PencilOption({ setColorPen, setThicknessPen }: any) {
           type='range'
           value={thickness}
           onChange={(e) => {
-            setThicknessPen(Number.parseFloat(e.target.value));
-            setThickness(Number.parseFloat(e.target.value));
+            setThicknessPen(Number.parseFloat(e.currentTarget.value));
+            setThickness(Number.parseFloat(e.currentTarget.value));
           }}
         />
       </div>
@@ -161,25 +165,29 @@ function PencilOption({ setColorPen, setThicknessPen }: any) {
   );
 }
 
-function HighlightOption({ setColorHighlight }: any) {
+function HighlightOption({ setColorHighlight }: Pick<ControlDrawerProps, 'setColorHighlight'>) {
   return (
     <div className={styles.options}>
-      <ColorPickerHighlight onChange={(color: any) => setColorHighlight(color)} />
+      <ColorPickerHighlight onChange={(color) => setColorHighlight(color)} />
     </div>
   );
 }
 
-function ShapeOption({ changeColorShape, changeBorderColorShape, onThicknessChange }: any) {
+function ShapeOption({
+  changeColorShape,
+  changeBorderColorShape,
+  onThicknessChange,
+}: Pick<ControlDrawerProps, 'changeColorShape' | 'changeBorderColorShape' | 'onThicknessChange'>) {
   return (
     <div className={styles.options}>
       <div>
-        <ColorPicker onChange={(color: any) => changeColorShape(color)} />
+        <ColorPicker onChange={(color) => changeColorShape(color)} />
       </div>
 
       <div className={styles.line}></div>
 
       <div>
-        <ColorPicker onChange={(color: any) => changeBorderColorShape(color)} />
+        <ColorPicker onChange={(color) => changeBorderColorShape(color)} />
       </div>
 
       <div className={styles.line}></div>
@@ -193,7 +201,7 @@ function ShapeOption({ changeColorShape, changeBorderColorShape, onThicknessChan
           type='range'
           // value={thickness}
           onChange={(e) => {
-            onThicknessChange(Number.parseFloat(e.target.value));
+            onThicknessChange(Number.parseFloat(e.currentTarget.value));
           }}
         />
       </div>
@@ -201,7 +209,7 @@ function ShapeOption({ changeColorShape, changeBorderColorShape, onThicknessChan
   );
 }
 
-function ControlDrawer(props: any) {
+function ControlDrawer(props: ControlDrawerProps) {
   const {
     setColorPen,
     refEditor,
@@ -573,7 +581,6 @@ function ControlDrawer(props: any) {
             <ShapeOption
               changeBorderColorShape={changeBorderColorShape}
               changeColorShape={changeColorShape}
-              changeShape={changeShape}
               onThicknessChange={onThicknessChange}
             />
           )}

@@ -23,7 +23,15 @@ import { safeJSONParse } from '@/utils/json';
 
 import type { IKatexAttrs } from '@/extensions/Katex';
 
-function ModalEditKatex({ children, visible, toggleVisible }: any) {
+function ModalEditKatex({
+  children,
+  visible,
+  toggleVisible,
+}: {
+  children: React.ReactNode;
+  visible: boolean;
+  toggleVisible: (visible: boolean) => void;
+}) {
   const { t } = useLocale();
 
   const editor = useEditorInstance();
@@ -63,7 +71,9 @@ function ModalEditKatex({ children, visible, toggleVisible }: any) {
   const formatText = useMemo(() => {
     try {
       return katexLib.renderToString(currentValue, {
-        macros: safeJSONParse(currentMacros || ''),
+        macros: safeJSONParse<NonNullable<import('katex').KatexOptions['macros']>>(
+          currentMacros || ''
+        ),
       });
     } catch {
       return currentValue;
@@ -93,7 +103,7 @@ function ModalEditKatex({ children, visible, toggleVisible }: any) {
               <Textarea
                 autoFocus
                 className='richtext-mb-[10px]'
-                onChange={(e) => setCurrentValue(e.target.value)}
+                onChange={(e) => setCurrentValue(e.currentTarget.value)}
                 placeholder='Text'
                 required
                 rows={10}
@@ -106,7 +116,7 @@ function ModalEditKatex({ children, visible, toggleVisible }: any) {
               <Label className='mb-[6px]'>Macros</Label>
 
               <Textarea
-                onChange={(e) => setCurrentMacros(e.target.value)}
+                onChange={(e) => setCurrentMacros(e.currentTarget.value)}
                 placeholder='Macros'
                 rows={10}
                 value={currentMacros}

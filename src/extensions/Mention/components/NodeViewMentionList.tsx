@@ -13,15 +13,15 @@ interface IProps {
       src: string;
     };
   }>;
-  command: any;
+  command: (item: IProps['items'][number]) => void;
   onClose?: () => void;
 }
 
 export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => {
-  const $container: any = useRef<HTMLDivElement>(null);
+  const $container = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const selectItem = (index: any) => {
+  const selectItem = (index: number) => {
     const userName = props.items[index];
     if (!userName) return;
     props.command(userName);
@@ -43,12 +43,12 @@ export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => 
 
   useEffect(() => {
     if (Number.isNaN(selectedIndex + 1)) return;
-    const el = $container.current.querySelector(`span:nth-of-type(${selectedIndex + 1})`);
+    const el = $container.current?.querySelector(`span:nth-of-type(${selectedIndex + 1})`);
     if (el) scrollIntoView(el, { behavior: 'smooth', scrollMode: 'if-needed' });
   }, [selectedIndex]);
 
   useImperativeHandle(ref, () => ({
-    onKeyDown: ({ event }: any) => {
+    onKeyDown: ({ event }: { event: KeyboardEvent }) => {
       if (event.key === 'ArrowUp') {
         upHandler();
         return true;

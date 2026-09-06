@@ -27,7 +27,12 @@ export interface Item {
 
 export function RichTextFontSize() {
   const { t } = useLocale();
-  const buttonProps = useButtonProps(FontSize.name);
+  const buttonProps = useButtonProps<{
+    icon?: string;
+    tooltip?: string;
+    items?: Item[];
+    isActive?: () => Item | boolean;
+  }>(FontSize.name);
 
   const {
     icon = undefined,
@@ -39,7 +44,10 @@ export function RichTextFontSize() {
   const { disabled, dataState } = useActive(isActive);
 
   const title = useMemo(() => {
-    return (dataState as any)?.title || t('editor.fontSize.default.tooltip');
+    return (
+      (typeof dataState === 'object' ? dataState?.title : undefined) ||
+      t('editor.fontSize.default.tooltip')
+    );
   }, [dataState]);
 
   if (!buttonProps) {
@@ -59,7 +67,7 @@ export function RichTextFontSize() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className='richtext-max-h-96 richtext-w-32 richtext-overflow-y-auto'>
-        {items?.map((item: any, index: any) => {
+        {items?.map((item, index) => {
           return (
             <Fragment key={`font-size-${index}`}>
               <DropdownMenuCheckboxItem checked={title === item.title} onClick={item.action}>

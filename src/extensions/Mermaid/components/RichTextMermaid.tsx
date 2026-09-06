@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-// @ts-ignore
 import svg64 from 'svg64';
 
 import { ActionButton } from '@/components/ActionButton';
@@ -24,7 +23,9 @@ const defaultCode = 'graph TB\na-->b';
 export function RichTextMermaid() {
   const editor = useEditorInstance();
 
-  const buttonProps = useButtonProps(Mermaid.name);
+  const buttonProps = useButtonProps<
+    import('@/types').ButtonViewReturnComponentProps & { upload?: (file: File) => Promise<string> }
+  >(Mermaid.name);
 
   const { tooltipOptions = {}, isActive = undefined, upload } = buttonProps?.componentProps ?? {};
 
@@ -33,11 +34,11 @@ export function RichTextMermaid() {
   const [mermaidCode, setMermaidCode] = useState(defaultCode);
   const [svgCode, setSvgCode] = useState('');
   const [visible, toggleVisible] = useState(false);
-  const mermaidRef = useRef<HTMLElement | null>(null);
-  const [mermaidInstance, setMermaidInstance] = useState<any>(null);
+  const mermaidRef = useRef<HTMLDivElement | null>(null);
+  const [mermaidInstance, setMermaidInstance] = useState<import('mermaid').Mermaid | null>(null);
   const [loading, toggleLoading] = useState(true);
 
-  const loadMermaid = useCallback((div: any) => {
+  const loadMermaid = useCallback((div: HTMLDivElement | null) => {
     if (!div) return;
 
     import('mermaid')
@@ -47,9 +48,9 @@ export function RichTextMermaid() {
       .finally(() => toggleLoading(false));
   }, []);
 
-  const renderMermaid = async (value: any) => {
+  const renderMermaid = async (value: string) => {
     try {
-      const { svg } = await mermaidInstance.render('mermaid-svg', value);
+      const { svg } = await mermaidInstance!.render('mermaid-svg', value);
       setSvgCode(svg);
     } catch {
       setSvgCode('');
@@ -57,7 +58,7 @@ export function RichTextMermaid() {
   };
 
   const mermaidInit = () => {
-    mermaidInstance.initialize({
+    mermaidInstance?.initialize({
       darkMode: false,
       startOnLoad: false,
       // fontFamily:'',
@@ -145,7 +146,7 @@ export function RichTextMermaid() {
                 <Textarea
                   autoFocus
                   className='richtext-flex-1'
-                  onChange={(e) => setMermaidCode(e.target.value)}
+                  onChange={(e) => setMermaidCode(e.currentTarget.value)}
                   placeholder='Text'
                   required
                   rows={10}
@@ -158,7 +159,7 @@ export function RichTextMermaid() {
                 <div
                   className='richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]'
                   dangerouslySetInnerHTML={{ __html: svgCode }}
-                  ref={mermaidRef as any}
+                  ref={mermaidRef}
                   style={{
                     height: '100%',
                     borderWidth: 1,

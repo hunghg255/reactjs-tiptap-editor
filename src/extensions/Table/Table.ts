@@ -11,10 +11,11 @@ import {
 import { TableCellBackground } from './TableCellBackground';
 
 import type { TableCellBackgroundOptions } from './TableCellBackground';
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions } from '@/types';
 
 export interface TableOptions extends GeneralOptions<TableOptions> {
-  HTMLAttributes: Record<string, any>;
+  HTMLAttributes: Record<string, unknown>;
   resizable: boolean;
   handleWidth: number;
   cellMinWidth: number;
@@ -48,7 +49,7 @@ export const Table = /* @__PURE__ */ TiptapTable.extend<TableOptions>({
       lastColumnResizable: true,
       allowTableNodeSelection: false,
 
-      button: ({ editor, t }: any) => ({
+      button: ({ editor, t }: ButtonViewParams<TableOptions>) => ({
         componentProps: {
           isActive: () => editor.isActive('table'),
           icon: 'Table',

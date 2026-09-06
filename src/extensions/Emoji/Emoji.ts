@@ -20,11 +20,11 @@ export const Emoji = /* @__PURE__ */ Extension.create<EmojiOptions>({
       ...this.parent?.(),
       HTMLAttributes: {},
 
-      button: ({ editor, t }: any) => {
+      button: ({ editor, t }: import('@/types').ButtonViewParams<EmojiOptions>) => {
         return {
           componentProps: {
             editor,
-            action: (emoji: any) => {
+            action: (emoji: string) => {
               const { selection } = editor.state;
               const { $anchor } = selection;
               editor.chain().focus().insertContentAt($anchor.pos, emoji).run();
@@ -39,7 +39,7 @@ export const Emoji = /* @__PURE__ */ Extension.create<EmojiOptions>({
   },
 
   addExtensions() {
-    const config: any = {
+    const config: EmojiOptions = {
       ...this.options,
     };
 

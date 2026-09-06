@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-// @ts-ignore
 import svg64 from 'svg64';
 
 import { ActionButton } from '@/components/ActionButton';
@@ -19,8 +18,8 @@ import type { Editor } from '@tiptap/core';
 
 interface IProps {
   editor: Editor;
-  attrs?: any;
-  extension?: any;
+  attrs: { alt?: string; align: 'left' | 'center' | 'right' };
+  extension?: { options: { upload?: (file: File) => Promise<string> } } | null;
 }
 
 const defaultCode = 'graph TB\na-->b';
@@ -30,12 +29,12 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
   const [mermaidCode, setMermaidCode] = useState(decodeURIComponent(alt ?? defaultCode));
   const [svgCode, setSvgCode] = useState('');
   const [visible, toggleVisible] = useState(false);
-  const mermaidRef = useRef<HTMLElement | null>(null);
-  const [mermaidInstance, setMermaidInstance] = useState<any>(null);
+  const mermaidRef = useRef<HTMLDivElement | null>(null);
+  const [mermaidInstance, setMermaidInstance] = useState<import('mermaid').Mermaid | null>(null);
 
   const upload = extension?.options.upload;
 
-  const loadMermaid = useCallback((div: any) => {
+  const loadMermaid = useCallback((div: HTMLDivElement | null) => {
     if (!div) return;
 
     import('mermaid').then((res) => {
@@ -43,9 +42,9 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
     });
   }, []);
 
-  const renderMermaid = async (value: any) => {
+  const renderMermaid = async (value: string) => {
     try {
-      const { svg } = await mermaidInstance.render('mermaid-svg', value);
+      const { svg } = await mermaidInstance!.render('mermaid-svg', value);
       setSvgCode(svg);
     } catch {
       setSvgCode('');
@@ -53,7 +52,7 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
   };
 
   const mermaidInit = () => {
-    mermaidInstance.initialize({
+    mermaidInstance?.initialize({
       darkMode: false,
       startOnLoad: false,
       // fontFamily:'',
@@ -128,7 +127,7 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
               autoFocus
               className='richtext-flex-1'
               defaultValue={defaultCode}
-              onChange={(e) => setMermaidCode(e.target.value)}
+              onChange={(e) => setMermaidCode(e.currentTarget.value)}
               placeholder='Text'
               required
               rows={10}
@@ -141,7 +140,7 @@ export const EditMermaidBlock: React.FC<IProps> = ({ editor, attrs, extension })
             <div
               className='richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]'
               dangerouslySetInnerHTML={{ __html: svgCode }}
-              ref={mermaidRef as any}
+              ref={mermaidRef}
               style={{
                 height: '100%',
                 border: '1px solid hsl(var(--border))',

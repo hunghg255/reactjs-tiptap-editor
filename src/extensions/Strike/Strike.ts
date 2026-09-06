@@ -1,5 +1,6 @@
 import { Strike as TiptapStrike } from '@tiptap/extension-strike';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions } from '@/types';
 import type { StrikeOptions as TiptapStrikeOptions } from '@tiptap/extension-strike';
 
@@ -12,7 +13,7 @@ export const Strike = /* @__PURE__ */ TiptapStrike.extend<StrikeOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      button: ({ editor, t, extension }: any) => ({
+      button: ({ editor, t, extension }: ButtonViewParams<StrikeOptions>) => ({
         componentProps: {
           action: () => editor.commands.toggleStrike(),
           isActive: () => editor.isActive('strike') || false,

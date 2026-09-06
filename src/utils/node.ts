@@ -22,7 +22,7 @@ export function isListNode(node: Node): boolean {
   return isBulletListNode(node) || isOrderedListNode(node) || isTodoListNode(node);
 }
 
-export function getCurrentNode(state: EditorState): any {
+export function getCurrentNode(state: EditorState): Node | null {
   const $head = state.selection.$head;
   let node = null;
 
@@ -33,7 +33,7 @@ export function getCurrentNode(state: EditorState): any {
   return node;
 }
 
-export function getNodeAtPos(state: EditorState, pos: number): any {
+export function getNodeAtPos(state: EditorState, pos: number): Node | null {
   const $head = state.doc.resolve(pos);
   let node = null;
 
@@ -71,11 +71,11 @@ export function isInCallout(state: EditorState): boolean {
 
 export function findNode(editor: Editor, name: string) {
   const content = editor.getJSON();
-  const queue = [content];
+  const queue: import('@tiptap/core').JSONContent[] = [content];
   const res = [];
 
   while (queue.length > 0) {
-    const node = queue.shift() as any;
+    const node = queue.shift()!;
 
     if (node.type === name) {
       res.push(node);

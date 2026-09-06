@@ -8,7 +8,7 @@
  * @param {string} src The URL to extract filename from
  * @returns {string}
  */
-export function extractFilename(src: any) {
+export function extractFilename(src: string) {
   return src.replace(/^.*\/|\..+$/g, '');
 }
 
@@ -17,11 +17,11 @@ export function extractFilename(src: any) {
  * @param {string} fileName The file name to extract extension from
  * @returns  {string}
  */
-export function extractFileExtension(fileName: any) {
+export function extractFileExtension(fileName: string) {
   return fileName.split('.').pop();
 }
 
-export function normalizeFileSize(size: any) {
+export function normalizeFileSize(size: number) {
   if (size < 1024) {
     return `${size} Byte`;
   }
@@ -33,7 +33,7 @@ export function normalizeFileSize(size: any) {
 
 export type FileType = 'image' | 'audio' | 'video' | 'pdf' | 'word' | 'excel' | 'ppt' | 'file';
 
-export function normalizeFileType(fileType: any): FileType {
+export function normalizeFileType(fileType: string | null | undefined): FileType {
   if (!fileType) return 'file';
 
   if (fileType === 'application/pdf') return 'pdf';

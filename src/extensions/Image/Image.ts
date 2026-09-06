@@ -1,10 +1,11 @@
 import { mergeAttributes } from '@tiptap/core';
 import TiptapImage from '@tiptap/extension-image';
+import { NodeSelection, type EditorState } from '@tiptap/pm/state';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import ImageView from '@/extensions/Image/components/ImageView';
 
-import type { GeneralOptions, JSONContent } from '@/types';
+import type { ButtonViewParams, GeneralOptions, JSONContent } from '@/types';
 
 export * from '@/extensions/Image/components/RichTextImage';
 
@@ -28,11 +29,11 @@ export interface SetImageAttrsOptions {
   flipY?: boolean;
 }
 
-export const DEFAULT_OPTIONS: any = {
+export const DEFAULT_OPTIONS = {
   acceptMimes: ['image/jpeg', 'image/gif', 'image/png', 'image/jpg'],
   maxSize: 1024 * 1024 * 5, // 5MB
   multiple: true,
-  resourceImage: 'both',
+  resourceImage: 'both' as const,
   defaultInline: false,
   enableAlt: true,
 };
@@ -96,8 +97,9 @@ function getTransformStyle(flipX: boolean, flipY: boolean): string {
     : '';
 }
 
-function getActiveImageNodeName(state: any, fallbackName: string): string {
-  const selectedNodeName = state.selection?.node?.type?.name;
+function getActiveImageNodeName(state: EditorState, fallbackName: string): string {
+  const selectedNodeName =
+    state.selection instanceof NodeSelection ? state.selection.node.type.name : undefined;
 
   if (selectedNodeName === IMAGE_BLOCK_NAME) {
     return IMAGE_BLOCK_NAME;
@@ -106,7 +108,7 @@ function getActiveImageNodeName(state: any, fallbackName: string): string {
   return fallbackName;
 }
 
-function getImageInsertNodeName(state: any, inline: boolean, fallbackName: string): string {
+function getImageInsertNodeName(state: EditorState, inline: boolean, fallbackName: string): string {
   if (!inline && state.schema.nodes[IMAGE_BLOCK_NAME]) {
     return IMAGE_BLOCK_NAME;
   }
@@ -183,7 +185,8 @@ export interface IImageOptions extends GeneralOptions<IImageOptions> {
   /** Function for uploading files */
   upload?: (file: File) => Promise<string>;
 
-  HTMLAttributes?: any;
+  HTMLAttributes: Record<string, unknown>;
+  allowBase64?: boolean;
 
   multiple?: boolean;
   acceptMimes?: string[];
@@ -200,8 +203,12 @@ export interface IImageOptions extends GeneralOptions<IImageOptions> {
   onError?: (error: { type: 'size' | 'type' | 'upload'; message: string; file?: File }) => void;
 }
 
-function getImageOptions(extension: any) {
+function getImageOptions(extension: { parent?: () => Partial<IImageOptions> }) {
   return {
+    divider: false,
+    spacer: false,
+    button: () => ({ componentProps: {} }),
+    HTMLAttributes: {},
     ...DEFAULT_OPTIONS,
     ...extension.parent?.(),
     upload: () => Promise.reject('Image Upload Function'),
@@ -344,7 +351,7 @@ export const ImageBlock = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
         },
       },
       {
-        tag: (this.options as any).allowBase64 ? 'img[src]' : 'img[src]:not([src^="data:"])',
+        tag: this.options.allowBase64 ? 'img[src]' : 'img[src]:not([src^="data:"])',
         getAttrs: (element) => {
           const attrs = getImageAttrsFromElement(element as HTMLElement, false);
 
@@ -372,15 +379,7 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
   addOptions() {
     return {
       ...getImageOptions(this),
-      button: ({
-        editor,
-        extension,
-        t,
-      }: {
-        editor: any;
-        extension: any;
-        t: (key: string) => string;
-      }) => ({
+      button: ({ editor, extension, t }: ButtonViewParams<IImageOptions>) => ({
         componentProps: {
           action: () => {
             return true;
@@ -465,9 +464,9 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
     return {
       ...this.parent?.(),
       setImageInline:
-        (options: any) =>
-        ({ commands, state }: any) => {
-          const inline = options.inline ?? this.options.defaultInline;
+        (options: Partial<SetImageAttrsOptions>) =>
+        ({ commands, state }) => {
+          const inline = options.inline ?? this.options.defaultInline ?? false;
           const nodeName = getImageInsertNodeName(state, inline, this.name);
 
           return commands.insertContent({
@@ -479,8 +478,8 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
           });
         },
       setImageBlock:
-        (options: any) =>
-        ({ commands, state }: any) => {
+        (options: Partial<SetImageAttrsOptions>) =>
+        ({ commands, state }) => {
           const nodeName = getImageInsertNodeName(state, false, this.name);
 
           return commands.insertContent({
@@ -570,7 +569,7 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
         },
       },
       {
-        tag: (this.options as any).allowBase64 ? 'img[src]' : 'img[src]:not([src^="data:"])',
+        tag: this.options.allowBase64 ? 'img[src]' : 'img[src]:not([src^="data:"])',
         getAttrs: (element) => {
           const attrs = getImageAttrsFromElement(element as HTMLElement, false);
 
@@ -608,7 +607,7 @@ export const Image = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
   //     validateFn: validateFile,
   //     onUpload: this.options.upload as any,
   //     // postUpload: this.options.postUpload,
-  //     defaultInline: this.options.defaultInline,
+  //     defaultInline: this.options.defaultInline ?? false,
   //   });
 
   //   return [

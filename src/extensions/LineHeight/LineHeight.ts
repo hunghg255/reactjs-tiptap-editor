@@ -5,6 +5,7 @@ import {
 
 import { DEFAULT_LINE_HEIGHT_LIST } from '@/constants';
 
+import type { ButtonViewParams } from '@/types';
 import type { GeneralOptions } from '@/types';
 
 export * from './components/RichTextLightHeight';
@@ -20,8 +21,8 @@ export const LineHeight =
       return {
         ...this.parent?.(),
         lineHeights: DEFAULT_LINE_HEIGHT_LIST,
-        button({ editor, extension, t }: any) {
-          const items = extension?.options?.lineHeights?.map((item: any) => {
+        button({ editor, extension, t }: ButtonViewParams<LineHeightOptions>) {
+          const items = extension?.options?.lineHeights?.map((item) => {
             return {
               label: item === 'Default' ? t('editor.default') : String(item),
               value: item,
@@ -50,7 +51,7 @@ export const LineHeight =
               items,
               icon: 'LineHeight',
               isActive: () => {
-                const find: any = (items || []).find((k: any) => k.isActive() && !k.default);
+                const find = (items || []).find((k) => k.isActive() && !k.default);
                 if (find && !find.default) {
                   return find;
                 }

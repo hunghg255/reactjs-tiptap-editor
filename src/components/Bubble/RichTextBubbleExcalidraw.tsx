@@ -30,7 +30,7 @@ export function RichTextBubbleExcalidraw() {
   const { defaultShowPicker, createUser, width, height } = attrs;
 
   const setSize = useCallback(
-    (size: any) => {
+    (size: { width: number | string; height: number | string }) => {
       editor
         .chain()
         .updateAttributes(Excalidraw.name, size)
@@ -42,7 +42,7 @@ export function RichTextBubbleExcalidraw() {
   );
 
   const openEditLinkModal = useCallback(() => {
-    const EVENT_ID = EVENTS.EXCALIDRAW((editor as any).id);
+    const EVENT_ID = EVENTS.EXCALIDRAW(editor.id);
     emit(EVENT_ID, attrs);
   }, [editor, attrs]);
 
@@ -70,7 +70,7 @@ export function RichTextBubbleExcalidraw() {
       <div className='richtext-flex richtext-items-center richtext-gap-2 richtext-rounded-md !richtext-border !richtext-border-solid !richtext-border-border richtext-bg-popover richtext-p-1 richtext-text-popover-foreground richtext-shadow-md richtext-outline-none'>
         <ActionButton action={openEditLinkModal} icon='Pencil' tooltip={t('editor.edit')} />
 
-        <SizeSetter height={height as any} maxWidth={maxWidth} onOk={setSize} width={width as any}>
+        <SizeSetter height={height} maxWidth={maxWidth} onOk={setSize} width={width}>
           <ActionButton icon='Settings' tooltip={t('editor.settings')} />
         </SizeSetter>
 

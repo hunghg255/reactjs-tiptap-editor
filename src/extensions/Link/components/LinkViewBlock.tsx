@@ -4,10 +4,10 @@ import { ActionButton } from '@/components';
 import { useLocale } from '@/locales';
 
 interface IPropsLinkViewBlock {
-  editor: any;
+  editor: import('@tiptap/core').Editor;
   link: string;
-  onClear?: any;
-  onEdit?: any;
+  onClear?: () => void;
+  onEdit?: () => void;
 }
 
 function LinkViewBlock(props: IPropsLinkViewBlock) {
@@ -30,7 +30,7 @@ function LinkViewBlock(props: IPropsLinkViewBlock) {
         tooltip={t('editor.link.edit.tooltip')}
         tooltipOptions={{ sideOffset: 15 }}
         action={() => {
-          props?.onEdit();
+          props?.onEdit?.();
         }}
       />
 
@@ -39,7 +39,7 @@ function LinkViewBlock(props: IPropsLinkViewBlock) {
         tooltip={t('editor.link.unlink.tooltip')}
         tooltipOptions={{ sideOffset: 15 }}
         action={() => {
-          props?.onClear();
+          props?.onClear?.();
         }}
       />
     </div>
