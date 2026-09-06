@@ -1,6 +1,6 @@
 {
   "name": "@reactjs-tiptap-editor/docs",
-  "version": "1.0.33",
+  "version": "1.0.34",
   "private": true,
   "type": "module",
   "scripts": {
