@@ -7,6 +7,7 @@ import { useMemo, useState } from 'react';
 import { ActionButton } from '@/components';
 import { IconComponent } from '@/components/icons';
 import { Popover, PopoverContent, PopoverTrigger, Separator } from '@/components/ui';
+import { aiPluginKey } from '@/extensions/AI/state';
 import { RichTextBold } from '@/extensions/Bold';
 import { RichTextCode } from '@/extensions/Code';
 import { RichTextColor } from '@/extensions/Color';
@@ -20,6 +21,8 @@ import { RichTextUnderline } from '@/extensions/TextUnderline';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
+
+import { RichTextAIImprove } from './RichTextAIImprove';
 
 import type { Editor } from '@tiptap/react';
 
@@ -120,6 +123,7 @@ function ParagraphFormat() {
 function DefaultButtonBubble() {
   return (
     <>
+      <RichTextAIImprove />
       <ParagraphFormat />
 
       <Separator
@@ -151,6 +155,7 @@ export function RichTextBubbleText({ buttonBubble }: RichTextBubbleTextProps) {
   const editable = useEditableEditor();
 
   const shouldShow = ({ editor }: { editor: Editor }) => {
+    if (aiPluginKey.getState(editor.state)) return false;
     const { selection } = editor.view.state;
     const { $from, to } = selection;
 

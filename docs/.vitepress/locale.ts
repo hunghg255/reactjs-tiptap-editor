@@ -105,6 +105,7 @@ export function getLocaleConfig(lang: string) {
     {
       text: t('Extensions'),
       items: [
+        { text: 'AI', link: '/extensions/AI/index.md' },
         { text: 'Attachment', link: '/extensions/Attachment/index.md' },
         { text: 'Blockquote', link: '/extensions/Blockquote/index.md' },
         { text: 'Bold', link: '/extensions/Bold/index.md' },

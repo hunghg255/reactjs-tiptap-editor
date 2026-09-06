@@ -191,6 +191,9 @@
       ],
       "./markdownpaste": [
         "./lib/extensions/MarkdownPaste/index.d.ts"
+      ],
+      "./ai": [
+        "./lib/extensions/AI/index.d.ts"
       ]
     }
   },
@@ -710,6 +713,16 @@
       "import": {
         "types": "./lib/extensions/MarkdownPaste/index.d.ts",
         "default": "./lib/MarkdownPaste.js"
+      }
+    },
+    "./ai": {
+      "require": {
+        "types": "./lib/extensions/AI/index.d.ts",
+        "default": "./lib/AI.cjs"
+      },
+      "import": {
+        "types": "./lib/extensions/AI/index.d.ts",
+        "default": "./lib/AI.js"
       }
     }
   },

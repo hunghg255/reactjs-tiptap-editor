@@ -29,7 +29,35 @@ function SlashCommandNodeView(
 
   const { t } = useLocale();
 
-  const commandQuery = useFilterCommandList(commandList, props.query);
+  const hasAI = props.editor.extensionManager.extensions.some(
+    (extension) => extension.name === 'ai'
+  );
+  const groups = hasAI
+    ? [
+        {
+          name: 'ai',
+          title: 'AI',
+          commands: [
+            {
+              name: 'askAI',
+              label: 'Ask AI',
+              iconName: 'Sparkles',
+              aliases: ['ai', 'write', 'generate'],
+              action: ({ editor, range }: Parameters<Command['action']>[0]) => {
+                editor.chain().deleteRange(range).openAI().run();
+              },
+            },
+          ],
+        },
+        ...commandList,
+      ]
+    : commandList;
+  const commandQuery = useFilterCommandList(groups, props.query);
+
+  useEffect(() => {
+    setSelectedCommandIndex(0);
+    setSelectedGroupIndex(0);
+  }, [props.query]);
 
   const activeItemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -97,7 +125,8 @@ function SlashCommandNodeView(
     if (commandQuery.length === 0) {
       return false;
     }
-    const commands = commandQuery[selectedGroupIndex].commands;
+    const commands = commandQuery[selectedGroupIndex]?.commands;
+    if (!commands) return;
     let newCommandIndex = selectedCommandIndex + 1;
     let newGroupIndex = selectedGroupIndex;
 
@@ -121,8 +150,8 @@ function SlashCommandNodeView(
   }
 
   function selectItem(groupIndex: number, commandIndex: number) {
-    const command = commandQuery[groupIndex].commands[commandIndex];
-    props?.command(command);
+    const command = commandQuery[groupIndex]?.commands[commandIndex];
+    if (command) props.command(command);
   }
 
   function createCommandClickHandler(groupIndex: number, commandIndex: number) {

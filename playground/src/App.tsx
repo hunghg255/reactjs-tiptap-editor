@@ -18,6 +18,7 @@ import { EditorContent, useEditor } from '@tiptap/react';
 // })
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { AI } from 'reactjs-tiptap-editor/ai';
 import { Attachment, RichTextAttachment } from 'reactjs-tiptap-editor/attachment';
 import { Blockquote, RichTextBlockquote } from 'reactjs-tiptap-editor/blockquote';
 import { Bold, RichTextBold } from 'reactjs-tiptap-editor/bold';
@@ -82,7 +83,6 @@ import { Mermaid, RichTextMermaid } from 'reactjs-tiptap-editor/mermaid';
 import { MoreMark, RichTextMoreMark } from 'reactjs-tiptap-editor/moremark';
 import { OrderedList, RichTextOrderedList } from 'reactjs-tiptap-editor/orderedlist';
 import { SearchAndReplace, RichTextSearchAndReplace } from 'reactjs-tiptap-editor/searchandreplace';
-// Slash Command
 import { SlashCommand, SlashCommandList } from 'reactjs-tiptap-editor/slashcommand';
 import { Strike, RichTextStrike } from 'reactjs-tiptap-editor/strike';
 import { Table, RichTextTable } from 'reactjs-tiptap-editor/table';
@@ -329,6 +329,12 @@ const extensions = [
     //     },
     //   }
     // ]
+  }),
+  AI.configure({
+    protocol: import.meta.env.VITE_AI_PROTOCOL === 'anthropic' ? 'anthropic' : 'openai',
+    apiKey: import.meta.env.VITE_AI_API_KEY || '',
+    model: import.meta.env.VITE_AI_MODEL || '',
+    baseURL: import.meta.env.VITE_AI_BASE_URL || '',
   }),
   SlashCommand,
   CodeView,

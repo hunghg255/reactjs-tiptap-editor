@@ -208,13 +208,13 @@ export function useFilterCommandList(commandList: CommandList[], query: string) 
 
       if (item.aliases) {
         const aliases = item.aliases.map((alias) => alias.toLowerCase().trim());
-        const labelMatch = labelNormalized.match(queryNormalized);
-        const aliasMatch = aliases.some((alias) => alias.match(queryNormalized));
+        const labelMatch = labelNormalized.includes(queryNormalized);
+        const aliasMatch = aliases.some((alias) => alias.includes(queryNormalized));
 
         return labelMatch || aliasMatch;
       }
 
-      return labelNormalized.match(queryNormalized);
+      return labelNormalized.includes(queryNormalized);
     }),
   }));
   // Remove empty groups

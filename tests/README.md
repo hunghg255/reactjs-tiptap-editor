@@ -18,3 +18,15 @@ after document transformations. The benchmark measures paragraph edits outside
 code blocks (30 JavaScript lines per block), with five warmup transactions and 25
 samples. It measures Node transaction cost, excluding browser rendering, and does
 not impose a hardware-dependent timing threshold.
+
+# AI extension checks
+
+```sh
+pnpm exec esno --test tests/ai-client.test.ts
+pnpm exec vite --config tests/vite.config.ts
+```
+
+Open `http://127.0.0.1:5199/tests/ai-editor.html` for browser checks covering
+selection replacement, safe text insertion, Apply/Undo, Discard, read-only state,
+and invalidation after document edits. It also provides a mock slash-command demo
+without sending requests to a provider.
