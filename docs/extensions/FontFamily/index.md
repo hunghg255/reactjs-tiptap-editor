@@ -8,103 +8,56 @@ next:
 
 # Font Family
 
-The Font Family extension allows you to change the font family of your editor.
+Choose the font family used by selected text.
 
-- Based on TipTap's font family extension. [@tiptap/extension-font-family](https://tiptap.dev/docs/editor/extensions/functionality/fontfamily)
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). Install `@tiptap/extension-text-style` at the same version as your other Tiptap packages. This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { FontFamily, RichTextFontFamily } from 'reactjs-tiptap-editor/fontfamily';
 import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { FontFamily, RichTextFontFamily } from 'reactjs-tiptap-editor/fontfamily'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, TextStyle, FontFamily];
 
-  ...
-  // Import Extensions Here
-  FontFamily// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextFontFamily /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function FontFamilyExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextFontFamily />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
 
-## Options
+## How to use
 
-### fontFamilyList
+Register `TextStyle`. `fontFamilyList` controls the choices in the dropdown, but does not download fonts. Load web fonts in your application CSS, or choose fonts available on the reader’s device.
 
-Type: `(string | { value: string; name: string })[]`
+## Configuration
 
-Set the font list, supporting two formats:
-
-```js
-import { DEFAULT_FONT_FAMILY_LIST, FontFamily } from 'reactjs-tiptap-editor/fontfamily';
+```ts
+import { FontFamily } from 'reactjs-tiptap-editor/fontfamily';
 
 FontFamily.configure({
-  fontFamilyList: [
-    // Use default font list
-    ...DEFAULT_FONT_FAMILY_LIST,
-    // Two formats
-    //   1. string
-    //   2. { name: 'xxx', value: 'xxx' }
-
-    '黑体',
-    '楷体',
-    { name: '仿宋', value: '仿宋' },
-    'Arial',
-    'Tahoma',
-    'Verdana',
-  ],
+  fontFamilyList: ['Arial', 'Georgia', { name: 'Monospace', value: 'monospace' }],
 });
 ```
+
+Use this configured extension in place of the unconfigured one in `extensions`.

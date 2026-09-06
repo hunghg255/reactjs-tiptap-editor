@@ -8,74 +8,45 @@ next:
 
 # Twitter
 
-Twitter is a node extension that allows you to add an Twitter to your editor.
+Embed a Twitter/X post in the document.
 
-- [react-tweet](https://www.npmjs.com/package/react-tweet)
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Twitter, RichTextTwitter } from 'reactjs-tiptap-editor/twitter'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Twitter, RichTextTwitter } from 'reactjs-tiptap-editor/twitter';
+import { RichTextBubbleTwitter } from 'reactjs-tiptap-editor/bubble';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Twitter];
 
-  ...
-  // Import Extensions Here
-  Twitter// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextTwitter /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function TwitterExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextTwitter />
+      <RichTextBubbleTwitter />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Open the toolbar dialog and enter a supported post URL. Displaying the post depends on its availability and the embed service. Mount `RichTextBubbleTwitter` for contextual actions; a saved editor node does not archive the remote post.

@@ -8,86 +8,45 @@ next:
 
 # Emoji
 
-The Document extension allows you to add a emoji to your editor.
+Insert emoji using a picker or suggestions.
 
-## Usage
+## Setup
+
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Emoji, RichTextEmoji } from 'reactjs-tiptap-editor/emoji'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Emoji, RichTextEmoji } from 'reactjs-tiptap-editor/emoji';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Emoji];
 
-  ...
-  // Import Extensions Here
-  Emoji.configure({
-    suggestion: {
-      char: ':',
-      items: async ({ query,  }: any) => {
-        const lowerCaseQuery = query?.toLowerCase();
-
-        return EMOJI_LIST.filter(({ name }) =>
-          name.toLowerCase().includes(lowerCaseQuery)
-        );
-      },
-    },
-  }),
-];
-
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextEmoji /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function EmojiExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextEmoji />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Open the toolbar picker and choose an emoji. The extension supplies its emoji data and suggestion UI; no upload endpoint or separate toolbar provider is needed.
 
 - Copy Emoji List here: https://github.com/hunghg255/reactjs-tiptap-editor-demo/blob/master/src/components/Editor/emojis.ts

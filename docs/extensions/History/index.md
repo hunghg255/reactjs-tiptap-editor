@@ -8,79 +8,47 @@ next:
 
 # History
 
-The History extension allows you to undo and redo changes in your editor.
+Undo and redo editing transactions.
 
-- Based on TipTap's highlight extension. [@tiptap/extension-history](https://www.npmjs.com/package/@tiptap/extension-history)
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { History, RichTextHistory } from 'reactjs-tiptap-editor/history'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { History, RichTextUndo, RichTextRedo } from 'reactjs-tiptap-editor/history';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, History];
 
-  ...
-  // Import Extensions Here
-  History// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
-      <RichTextHistory /> {/* [!code ++] */}
-    </div>
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function HistoryExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextUndo />
+      <RichTextRedo />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Register `History` once. It extends Tiptap 3’s `UndoRedo` extension, so do not also register `UndoRedo` or StarterKit’s undo history. The buttons become available when there is a change to undo or redo. Defaults are `depth: 100` and `newGroupDelay: 500` (milliseconds).
 
 ## Options
 
@@ -89,4 +57,4 @@ const App = () => {
 Type: `string[][]`\
 Default: `[['mod', 'Z'], ['shift', 'mod', 'Z']]`
 
-Keyboard shortcuts for the extension.
+Shortcut labels shown by the controls. See [keyboard shortcut configuration](/guide/toolbar#keyboard-shortcuts) to change actual key bindings.

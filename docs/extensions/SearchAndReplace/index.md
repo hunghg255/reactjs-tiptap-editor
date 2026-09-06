@@ -8,75 +8,46 @@ next:
 
 # Search And Replace
 
-- Search and Replace Extension for Tiptap Editor.
+Find text in the document and replace individual matches or all matches.
 
-## Usage
+## Setup
+
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { SearchAndReplace, RichTextSearchAndReplace } from 'reactjs-tiptap-editor/searchandreplace'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { SearchAndReplace, RichTextSearchAndReplace } from 'reactjs-tiptap-editor/searchandreplace';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, SearchAndReplace];
 
-  ...
-  // Import Extensions Here
-  SearchAndReplace// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextSearchAndReplace /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function SearchAndReplaceExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextSearchAndReplace />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Open the toolbar dialog, enter a search term, and use the match navigation before replacing. Register [History](/extensions/History/) if users should be able to undo replacements.
 
 ## Props
 

@@ -8,75 +8,46 @@ next:
 
 # Italic
 
-- Based on TipTap's Italic extension. [@tiptap/extension-italic](https://tiptap.dev/docs/editor/extensions/marks/italic)
+Apply italic emphasis to selected text.
 
-## Usage
+## Setup
+
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Italic, RichTextItalic } from 'reactjs-tiptap-editor/italic'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Italic, RichTextItalic } from 'reactjs-tiptap-editor/italic';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Italic];
 
-  ...
-  // Import Extensions Here
-  Italic// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextItalic /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function ItalicExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextItalic />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Select text and click **Italic**, or enable it before typing. The command is `editor.chain().focus().toggleItalic().run()`.
 
 ## Options
 
@@ -85,4 +56,4 @@ const App = () => {
 Type: `string[]`\
 Default: `['mod', 'I']`
 
-Keyboard shortcuts for the extension.
+Shortcut labels shown by the controls. See [keyboard shortcut configuration](/guide/toolbar#keyboard-shortcuts) to change actual key bindings.

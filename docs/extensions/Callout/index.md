@@ -1,88 +1,66 @@
 ---
 description: Callout
-
-next:
-  text: Callout
-  link: /extensions/Callout/index.md
 ---
 
 # Callout
 
-The Callout extension allows you to add callout boxes with different styles to your editor.
+Group text in a visually distinct callout box.
 
-## Usage
+## Setup
+
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Callout, RichTextCallout } from 'reactjs-tiptap-editor/callout'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Callout, RichTextCallout } from 'reactjs-tiptap-editor/callout';
+import { RichTextBubbleCallout } from 'reactjs-tiptap-editor/bubble';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Callout];
 
-  ...
-  // Import Extensions Here
-  Callout// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextCallout /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function CalloutExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextCallout />
+      <RichTextBubbleCallout />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
 
-## Options
+## How to use
 
-### shortcutKeys
+Open the toolbar dialog, choose a callout type, enter its title and body, and apply it. Mount `RichTextBubbleCallout` for contextual editing. The callout is an atomic node with `type`, `title`, and `body` attributes, rather than a container of nested editor blocks.
 
-Type: `string[]`\
-Default: `['shift', 'mod', '8']`
+## Insert from code
 
-Keyboard shortcuts for the extension.
+With a non-null editor, you can insert a callout directly:
+
+```ts
+editor
+  .chain()
+  .focus()
+  .setCallout({
+    type: 'tip',
+    title: 'Save your work',
+    body: 'Use the Save button before leaving this page.',
+  })
+  .run();
+```
+
+The built-in dialog offers `note`, `tip`, `important`, `warning`, and `caution` types.

@@ -8,77 +8,46 @@ next:
 
 # More Mark
 
-MoreMark is a collection of marks that are not available in the default TipTap editor.
+Add subscript and superscript formatting for formulas, references, and annotations.
 
-- Based on TipTap's subscript [@tiptap/extension-subscript](https://tiptap.dev/docs/editor/extensions/marks/subscript) and superscript [@tiptap/extension-superscript](https://tiptap.dev/docs/editor/extensions/marks/superscript) extensions.
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { MoreMark, RichTextMoreMark } from 'reactjs-tiptap-editor/moremark'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { MoreMark, RichTextMoreMark } from 'reactjs-tiptap-editor/moremark';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, MoreMark];
 
-  ...
-  // Import Extensions Here
-  MoreMark// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextMoreMark /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function MoreMarkExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextMoreMark />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+The extension registers subscript and superscript marks for you. Select text and choose the desired mark from the menu. Disable one with `MoreMark.configure({ subscript: false })` or `{ superscript: false }`; avoid registering duplicate standalone marks.
 
 ## Options
 
@@ -87,4 +56,4 @@ const App = () => {
 Type: `string[][]`\
 Default: `[['mod', '.'], ['mod', ',']]`
 
-Keyboard shortcuts for the extension.
+Shortcut labels shown by the controls. See [keyboard shortcut configuration](/guide/toolbar#keyboard-shortcuts) to change actual key bindings.

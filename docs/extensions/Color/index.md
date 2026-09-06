@@ -8,184 +8,79 @@ next:
 
 # Color
 
-The Color extension allows you to add text color to your editor with support for custom colors, keyboard shortcuts, and synchronized color selection across toolbar and bubble menu.
+Apply a text color to the current selection.
 
-- Based on TipTap's Color extension. [@tiptap/extension-text-style](https://tiptap.dev/docs/editor/extensions/functionality/color)
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). Install `@tiptap/extension-text-style` at the same version as your other Tiptap packages. This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Color, RichTextColor } from 'reactjs-tiptap-editor/color';
 import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Color, RichTextColor } from 'reactjs-tiptap-editor/color'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, TextStyle, Color];
 
-  ...
-  // Import Extensions Here
-  Color// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextColor /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function ColorExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextColor />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
 
-## Options
+## How to use
 
-### colors
+Register `TextStyle` because color is stored as a text-style attribute. Select text and use the color picker. The commands are `editor.chain().focus().setColor("#2563eb").run()` and `editor.chain().focus().unsetColor().run()`.
 
-Type: `string[]`\
-Default: `undefined`
+## Configure the palette
 
-An array of color options to display in the color picker. If not provided, a default set of colors will be used.
+Use this configuration in place of `Color` in your extension array:
 
-```js
-import { COLORS_LIST } from 'reactjs-tiptap-editor';
-
-Color.configure({
-  colors: COLORS_LIST,
-  // or custom colors
-  colors: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'],
-});
-```
-
-### defaultColor
-
-Type: `string`\
-Default: `undefined`
-
-The default color to use when the extension is initialized. This color will be used when applying color via keyboard shortcut for the first time.
-
-```js
-import { DEFAULT_COLOR } from 'reactjs-tiptap-editor';
-
-Color.configure({
-  defaultColor: DEFAULT_COLOR,
-  // or
-  defaultColor: '#000000',
-});
-```
-
-### shortcutKeys
-
-Type: `string[]`\
-Default: `['⇧', 'mod', 'C']`
-
-Keyboard shortcuts for applying the color. Default is `Mod-Shift-C` (Ctrl-Shift-C on Windows/Linux, Cmd-Shift-C on Mac).
-
-```js
-Color.configure({
-  shortcutKeys: ['⇧', 'mod', 'C'],
-});
-```
-
-## Keyboard Shortcut Behavior
-
-The `Mod-Shift-C` keyboard shortcut has intelligent toggle behavior:
-
-1. **No color applied**: Applies the currently selected color
-2. **Same color already applied**: Removes the color (toggle off)
-3. **Different color applied**: Replaces with the currently selected color
-4. **"No Fill" selected**: Does nothing (prevents applying undefined color)
-
-## Color Selection Synchronization
-
-The extension maintains a shared color state across all instances:
-
-- Selecting a color in the toolbar updates the bubble menu
-- Selecting a color in the bubble menu updates the toolbar
-- Keyboard shortcut uses the last selected color
-- All color pickers show the same selected color
-
-## Examples
-
-### Basic Usage
-
-```tsx
+```ts
 import { Color } from 'reactjs-tiptap-editor/color';
 
-const extensions = [Color];
+Color.configure({
+  colors: ['#dc2626', '#16a34a', '#2563eb', '#262626'],
+  defaultColor: '#2563eb',
+});
 ```
 
-### With Custom Colors
+| Option         | Purpose                                  | Default                        |
+| -------------- | ---------------------------------------- | ------------------------------ |
+| `colors`       | Palette entries shown in the picker.     | Built-in palette when omitted. |
+| `defaultColor` | Initial color for the keyboard action.   | None.                          |
+| `shortcutKeys` | Shortcut label displayed by the control. | `['⇧', 'alt', 'C']`.           |
 
-```tsx
-import { Color, COLORS_LIST } from 'reactjs-tiptap-editor';
+The actual keyboard binding is **Alt-Shift-C**. It applies the last chosen color, or removes it if the whole selection already has that color. Without a chosen/default color, it removes an existing text color or leaves uncolored text unchanged.
 
-const extensions = [
-  Color.configure({
-    colors: [
-      ...COLORS_LIST,
-      '#FF69B4', // Hot Pink
-      '#8A2BE2', // Blue Violet
-    ],
-    defaultColor: '#000000',
-  }),
-];
-```
+Changing `shortcutKeys` changes the label, not the binding. See [custom keyboard shortcuts](/guide/toolbar#keyboard-shortcuts).
 
-### Programmatic Usage
+## Programmatic formatting
 
-```tsx
-// Apply color
-editor.chain().focus().setColor('#FF0000').run();
+With a registered Color extension and a non-null editor:
 
-// Remove color
+```ts
+editor.chain().focus().setColor('#2563eb').run();
 editor.chain().focus().unsetColor().run();
-
-// Check if color is active
-const isColorActive = editor.isActive('textStyle', { color: '#FF0000' });
-
-// Get current color
-const { color } = editor.getAttributes('textStyle');
+const currentColor = editor.getAttributes('textStyle').color;
 ```
+
+Color changes text foreground. For a colored background behind text, use [Highlight](/extensions/Highlight/).

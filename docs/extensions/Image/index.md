@@ -8,94 +8,48 @@ next:
 
 # Image
 
-- Based on TipTap's Image extension. [@tiptap/extension-image](https://tiptap.dev/docs/editor/extensions/nodes/image)
+Insert images from a URL or an application-provided upload service.
 
-## Usage
+## Setup
 
-- First Install `react-image-crop` package:
-
-```bash
-npm install react-image-crop
-# or
-yarn add react-image-crop
-or
-pnpm install react-image-crop
-```
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Image, RichTextImage } from 'reactjs-tiptap-editor/image'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Image, RichTextImage } from 'reactjs-tiptap-editor/image';
+import { RichTextBubbleImage } from 'reactjs-tiptap-editor/bubble';
 import 'reactjs-tiptap-editor/style.css';
-import 'react-image-crop/dist/ReactCrop.css'; // [!code ++]
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Image.configure({ resourceImage: 'link' })];
 
-  ...
-  // Import Extensions Here
-  Image.configure({// [!code ++]
-    upload: (file: File) => {// [!code ++]
-      return new Promise((resolve) => {// [!code ++]
-        setTimeout(() => {// [!code ++]
-          resolve(URL.createObjectURL(file))// [!code ++]
-        }, 500)// [!code ++]
-      })// [!code ++]
-    },// [!code ++]
-  }),// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextImage /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function ImageExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextImage />
+      <RichTextBubbleImage />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+The example starts in URL-only mode so it works without a backend. To enable local files, configure `resourceImage: "both"` or `"upload"` and provide `upload: (file: File) => Promise<string>`. Return a durable image URL; temporary `blob:` URLs will not survive a reload. Mount `RichTextBubbleImage` for image editing controls.
 
 ## Inline and block images
 
@@ -112,8 +66,7 @@ Existing HTML is still accepted:
 
 ## Image Gif
 
-- ImageGif is a node extension that allows you to add an ImageGif to your editor.
-- More: [ImageGif](/extensions/ImageGif/index.md)
+To search a GIF provider and insert a result, use the separate [ImageGif extension](/extensions/ImageGif/index.md).
 
 ## Props
 
@@ -145,7 +98,7 @@ interface IImageOptions extends GeneralOptions<IImageOptions> {
 | `multiple`       | `boolean`                                                                               | Whether to allow selecting and uploading multiple images simultaneously.                                                                                                                                                 | No       | `true`                                                                     |
 | `acceptMimes`    | `string[]`                                                                              | List of allowed image MIME types or file extension restrictions, such as `['image/jpeg', 'image/png']`, `['image/*']`, or `['.png', '.jpg']`, etc. Supports MIME type wildcards and precise file extension restrictions. | No       | Common image types `['image/jpeg', 'image/gif', 'image/png', 'image/jpg']` |
 | `maxSize`        | `number`                                                                                | Maximum size limit for a single image (in bytes), triggers `onError` when exceeded.                                                                                                                                      | No       | `5MB`                                                                      |
-| `resourceImage`  | `'upload' \| 'link' \| 'both'`                                                          | Image source method: - `'upload'`: Upload only - `'link'`: Link only - `'both'`: Both supported                                                                                                                          | Yes      | `both`                                                                     |
+| `resourceImage`  | `'upload' \| 'link' \| 'both'`                                                          | Image source method: - `'upload'`: Upload only - `'link'`: Link only - `'both'`: Both supported                                                                                                                          | No       | `both`                                                                     |
 | `defaultInline`  | `boolean`                                                                               | Whether to insert images as inline elements by default.                                                                                                                                                                  | No       | `false`                                                                    |
 | `enableAlt`      | `boolean`                                                                               | Whether to enable alt text editing for images.                                                                                                                                                                           | No       | `true`                                                                     |
 | `onError`        | `(error: { type: 'size' \| 'type' \| 'upload'; message: string; file?: File }) => void` | Callback function for upload or validation failures. Contains error type (size, type, upload), error message, and corresponding file.                                                                                    | No       | None                                                                       |
@@ -206,3 +159,26 @@ onError: ({ type, message, file }) => {
   }
 };
 ```
+
+## Upload a local image
+
+Replace the URL-only configuration in the setup example with this one. Implement `/api/images` in your application so it accepts a multipart `file` and returns a JSON object with a `url` string:
+
+```ts
+Image.configure({
+  resourceImage: 'both',
+  upload: async (file: File): Promise<string> => {
+    const body = new FormData();
+    body.append('file', file);
+    const response = await fetch('/api/images', { method: 'POST', body });
+    if (!response.ok) throw new Error('Image upload failed');
+    const data = await response.json();
+    if (typeof data.url !== 'string' || !data.url) {
+      throw new Error('Upload response must contain an image URL');
+    }
+    return data.url;
+  },
+});
+```
+
+The library handles the editor UI; your application supplies storage and the upload endpoint. Enforce accepted file types and size limits on that endpoint as well as in the client configuration.

@@ -8,77 +8,48 @@ next:
 
 # Format Painter
 
-The Format Painter extension allows you to copy text marks from one selection and apply them to another selection.
+Copy inline formatting from one selection to another.
 
-This is a custom extension built on top of Tiptap and ProseMirror. It copies inline text marks such as bold, italic, underline, text color, highlight, font family, and font size. Link marks are skipped to avoid copying link targets unexpectedly.
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { FormatPainter, RichTextFormatPainter } from 'reactjs-tiptap-editor/formatpainter'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { FormatPainter, RichTextFormatPainter } from 'reactjs-tiptap-editor/formatpainter';
+import { Bold, RichTextBold } from 'reactjs-tiptap-editor/bold';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Bold, FormatPainter];
 
-  ...
-  // Import Extensions Here
-  FormatPainter// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextFormatPainter /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function FormatPainterExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextBold />
+      <RichTextFormatPainter />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Register the mark extensions you want to copy, such as Bold, Italic, Color, or FontSize. The painter copies existing marks; it does not add those features by itself. The example includes Bold so you can format a source selection before copying it.
 
 ## Behavior
 
@@ -96,7 +67,7 @@ Press `Escape` or click the button again to cancel the format painter state.
 Copies the current selection marks and enables format painter mode.
 
 ```ts
-editor.commands.setPainter()
+editor.commands.setPainter();
 ```
 
 ### unsetPainter
@@ -104,5 +75,5 @@ editor.commands.setPainter()
 Cancels format painter mode.
 
 ```ts
-editor.commands.unsetPainter()
+editor.commands.unsetPainter();
 ```

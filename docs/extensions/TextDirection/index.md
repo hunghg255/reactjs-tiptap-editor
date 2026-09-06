@@ -8,85 +8,44 @@ next:
 
 # Text Direction
 
-The Text Direction extension allows you to change the text direction of your editor.
+Set the writing direction of text blocks for left-to-right or right-to-left content.
 
-## Usage
+## Setup
+
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { TextDirection, RichTextTextDirection } from 'reactjs-tiptap-editor/textdirection'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { TextDirection, RichTextTextDirection } from 'reactjs-tiptap-editor/textdirection';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, TextDirection];
 
-  ...
-  // Import Extensions Here
-  TextDirection// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextTextDirection /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function TextDirectionExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
+    textDirection: 'auto',
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextTextDirection />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
 
-## Configuration
+## How to use
 
-- Refer to the following example to configure the Text Direction extension. [tiptap-text-direction](https://tiptap.dev/docs/examples/basics/text-direction)
-
-- Require: set global `auto` direction in Editor options to enable command for auto text direction.
-
-```
-const editor = new Editor({
-  extensions: [StarterKit],
-  textDirection: 'auto', // or 'ltr', 'rtl'
-})
-```
+The example sets `textDirection: "auto"` on `useEditor` so the direction control can also restore automatic direction. Direction determines writing order; use [Text Align](/extensions/TextAlign/) to change alignment.

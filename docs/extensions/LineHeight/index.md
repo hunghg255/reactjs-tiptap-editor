@@ -8,94 +8,56 @@ next:
 
 # Line Height
 
-The Line Height extension allows you to change the line height of your text.
+Apply a line-height value through the text-style mark.
 
-## Usage
+## Setup
+
+Start with the packages in [Getting Started](/guide/getting-started). Install `@tiptap/extension-text-style` at the same version as your other Tiptap packages. This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { LineHeight, RichTextLineHeight } from 'reactjs-tiptap-editor/lineheight';
 import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { LineHeight, RichTextLineHeight } from 'reactjs-tiptap-editor/lineheight'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, TextStyle, LineHeight];
 
-  ...
-  // Import Extensions Here
-  LineHeight// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextLineHeight /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function LineHeightExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextLineHeight />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
 
-## Options
+## How to use
 
-### lineHeights
+Register `TextStyle`. Select text, then choose a value from the dropdown. `Default` removes the explicit line height. Configure the choices with `lineHeights`; the values are CSS line heights, such as `1.5` or `2`.
 
-Type: `string[]`\
-Default: `['100%', '115%', '150%', '200%', '250%', '300%']`
+## Configuration
 
-```js
-import { DEFAULT_LINE_HEIGHT_LIST, LineHeight } from 'reactjs-tiptap-editor/lineheight';
+```ts
+import { LineHeight } from 'reactjs-tiptap-editor/lineheight';
 
-FontSize.configure({
-  LineHeight: [
-    // Use default line height list
-    ...DEFAULT_LINE_HEIGHT_LIST,
-    '1',
-    '1.5',
-    '2',
-    '2.5',
-  ],
+LineHeight.configure({
+  lineHeights: ['Default', '1.5', '2', '2.5'],
 });
 ```
+
+Use this configured extension in place of the unconfigured one in `extensions`. The default choices are `Default`, `1.5`, `2`, `2.5`, `3`, `3.5`, and `4`.

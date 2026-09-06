@@ -8,74 +8,45 @@ next:
 
 # Link
 
-Link is a node extension that allows you to add a horizontal rule to your editor.
+Add or edit a hyperlink on text.
 
-- Based on TipTap's Link extension. [@tiptap/extension-link](https://tiptap.dev/docs/editor/extensions/marks/link)
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Link, RichTextLink } from 'reactjs-tiptap-editor/link'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Link, RichTextLink } from 'reactjs-tiptap-editor/link';
+import { RichTextBubbleLink } from 'reactjs-tiptap-editor/bubble';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Link];
 
-  ...
-  // Import Extensions Here
-  Link// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextLink /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function LinkExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextLink />
+      <RichTextBubbleLink />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Select the text to link, open the toolbar dialog, and enter a URL. Mount `RichTextBubbleLink` to edit a link after selecting it. Use `editor.chain().focus().setLink({ href: "https://example.com" }).run()` to apply a link to a selection, and `unsetLink()` to remove it.

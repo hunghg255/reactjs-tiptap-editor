@@ -8,78 +8,45 @@ next:
 
 # Mermaid
 
-Mermaid is a node extension that allows you to add an Mermaid to your editor.
+Create editable diagrams from Mermaid source text.
 
-- [Mermaid](https://mermaid.js.org/)
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Mermaid, RichTextMermaid } from 'reactjs-tiptap-editor/mermaid'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Mermaid, RichTextMermaid } from 'reactjs-tiptap-editor/mermaid';
+import { RichTextBubbleMermaid } from 'reactjs-tiptap-editor/bubble';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Mermaid];
 
-  ...
-  // Import Extensions Here
-  Mermaid.configure({// [!code ++]
-    upload: (file: any) => {// [!code ++]
-      // upload file to server return url
-    },// [!code ++]
-  }),// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextMermaid /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function MermaidExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextMermaid />
+      <RichTextBubbleMermaid />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Click the toolbar button, enter diagram source, and apply it to insert a diagram. Mount `RichTextBubbleMermaid` for contextual actions. Keep the Mermaid extension registered when reopening saved diagram nodes.

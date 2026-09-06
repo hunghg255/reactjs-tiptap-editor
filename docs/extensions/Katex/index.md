@@ -8,75 +8,46 @@ next:
 
 # Katex
 
-- Katex Extension for Tiptap Editor.
-- This extension allows you to add Katex math equations to your editor.
-- Supports inline and block math equations.
-- This extension is based on [katex](https://katex.org/).
+Insert mathematical expressions written in TeX syntax.
 
-## Usage
+## Setup
+
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Katex, RichTextKatex } from 'reactjs-tiptap-editor/katex'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Katex, RichTextKatex } from 'reactjs-tiptap-editor/katex';
+import { RichTextBubbleKatex } from 'reactjs-tiptap-editor/bubble';
 import 'reactjs-tiptap-editor/style.css';
+import 'katex/dist/katex.min.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Katex];
 
-  ...
-  // Import Extensions Here
-  Katex// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextKatex /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function KatexExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextKatex />
+      <RichTextBubbleKatex />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Load `katex/dist/katex.min.css` alongside the editor stylesheet. Open the toolbar dialog, enter an expression such as `E = mc^2`, and apply it. Mount `RichTextBubbleKatex` for contextual actions. Install `katex` directly in your app if your package manager cannot resolve the CSS import.

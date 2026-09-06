@@ -8,126 +8,86 @@ next:
 
 # Mention
 
-Mention is a node extension that allows you to add a Mention to your editor.
+Insert structured mentions using a trigger such as `@`.
 
-- Based on TipTap's Link extension. [@tiptap/extension-mention](https://tiptap.dev/docs/editor/extensions/nodes/mention)
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Mention } from 'reactjs-tiptap-editor/mention'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Mention } from 'reactjs-tiptap-editor/mention';
 import 'reactjs-tiptap-editor/style.css';
 
-// Mock Data for Mention
-const MOCK_USERS = [{
-    id: '0',
-    label: 'hunghg255',
-    avatar: {
-      src: 'https://avatars.githubusercontent.com/u/42096908?v=4'
-    }
-  },
-  {
-  id: '1',
-    label: 'benjamincanac',
-    avatar: {
-      src: 'https://avatars.githubusercontent.com/u/739984?v=4'
-    }
-  },
-  {
-    id: '2',
-    label: 'atinux',
-    avatar: {
-      src: 'https://avatars.githubusercontent.com/u/904724?v=4'
-    }
-  },
-  {
-    id: '3',
-    label: 'danielroe',
-    avatar: {
-      src: 'https://avatars.githubusercontent.com/u/28706372?v=4'
-    }
-  },
-  {
-    id: '4',
-    label: 'pi0',
-    avatar: {
-      src: 'https://avatars.githubusercontent.com/u/5158436?v=4'
-    }
-  }
+const users = [
+  { id: '1', label: 'Alex' },
+  { id: '2', label: 'Sam' },
 ];
 
 const extensions = [
-  // Base Extensions
   Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
   Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
-
-  ...
-  // Import Extensions Here
+  Text,
   Mention.configure({
-    // suggestion: {
-    //   char: '@',
-    //   items: async ({ query }: any) => {
-    //     return MOCK_USERS.filter(item => item.label.toLowerCase().startsWith(query.toLowerCase()));
-    //   },
-    // }
-    suggestions: [
-      {
-        char: '@',
-        items: async ({ query }: any) => {
-          return MOCK_USERS.filter(item => item.label.toLowerCase().startsWith(query.toLowerCase()));
-        },
-      },
-      {
-        char: '#',
-        items: async ({ query }: any) => {
-          return MOCK_USERS.filter(item => item.label.toLowerCase().startsWith(query.toLowerCase()));
-        },
-      }
-    ]
+    suggestion: {
+      char: '@',
+      items: ({ query }) =>
+        users.filter((user) => user.label.toLowerCase().startsWith(query.toLowerCase())),
+    },
   }),
 ];
 
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function MentionExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
+  if (!editor) return null;
+
   return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <EditorContent
-        editor={editor}
-      />
+    <RichTextProvider editor={editor}>
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Type `@` followed by a name to filter suggestions. Return objects with stable `id` and display `label` fields from `items`; an `avatar` is optional. The library supplies a suggestion renderer when you configure `suggestion` or `suggestions`. There is no separate mention toolbar button. For remote search, replace the filter with an async request returning the same shape.
+
+## Multiple triggers
+
+Use `suggestions` to provide separate sources for people and tags. Replace the single `suggestion` configuration with this setup:
+
+```ts
+import { Mention } from 'reactjs-tiptap-editor/mention';
+
+const people = [{ id: 'user-1', label: 'Alex' }];
+const tags = [{ id: 'tag-1', label: 'Documentation' }];
+
+Mention.configure({
+  suggestions: [
+    {
+      char: '@',
+      items: ({ query }) =>
+        people.filter((item) => item.label.toLowerCase().startsWith(query.toLowerCase())),
+    },
+    {
+      char: '#',
+      items: ({ query }) =>
+        tags.filter((item) => item.label.toLowerCase().startsWith(query.toLowerCase())),
+    },
+  ],
+});
+```
+
+Use the arrow keys to move through suggestions and Enter to insert one. The mention stores the selected identifier and label; it does not send a notification or update a user record automatically.

@@ -8,77 +8,47 @@ next:
 
 # Ordered List
 
-Ordered List extension allows you to create ordered lists in your editor.
+Organize paragraphs into a numbered list.
 
-- Based on TipTap's ordered-list [@tiptap/extension-ordered-list](https://tiptap.dev/docs/editor/extensions/nodes/ordered-list) extensions.
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). Install `@tiptap/extension-list` at the same version as your other Tiptap packages. This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { OrderedList, RichTextOrderedList } from 'reactjs-tiptap-editor/orderedlist';
 import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { OrderedList, RichTextOrderedList } from 'reactjs-tiptap-editor/orderedlist'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, ListItem, OrderedList];
 
-  ...
-  // Import Extensions Here
-  OrderedList// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextOrderedList /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function OrderedListExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextOrderedList />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Register `ListItem` alongside `OrderedList`. Select paragraphs and click the numbered-list button, or call `editor.chain().focus().toggleOrderedList().run()`.
 
 ## Options
 
@@ -87,4 +57,4 @@ const App = () => {
 Type: `string[]`\
 Default: `['mod', 'shift', '7']`
 
-Keyboard shortcuts for the extension.
+Shortcut labels shown by the controls. See [keyboard shortcut configuration](/guide/toolbar#keyboard-shortcuts) to change actual key bindings.

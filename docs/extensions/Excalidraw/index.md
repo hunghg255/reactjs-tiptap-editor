@@ -8,74 +8,46 @@ next:
 
 # Excalidraw
 
-The Excalidraw extension allows you to add an Excalidraw to your editor.
+Create and insert Excalidraw drawings.
 
-- Based on Excalidraw. [Excalidraw](https://excalidraw.com/)
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Excalidraw, RichTextExcalidraw } from 'reactjs-tiptap-editor/excalidraw'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Excalidraw, RichTextExcalidraw } from 'reactjs-tiptap-editor/excalidraw';
+import { RichTextBubbleExcalidraw } from 'reactjs-tiptap-editor/bubble';
 import 'reactjs-tiptap-editor/style.css';
+import '@excalidraw/excalidraw/index.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Excalidraw];
 
-  ...
-  // Import Extensions Here
-  Excalidraw// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextExcalidraw /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function ExcalidrawExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextExcalidraw />
+      <RichTextBubbleExcalidraw />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Load `@excalidraw/excalidraw/index.css` alongside the editor stylesheet. Open the toolbar dialog, create a drawing, and apply it. Mount `RichTextBubbleExcalidraw` for contextual actions. Install `@excalidraw/excalidraw` directly if needed to resolve its CSS import.

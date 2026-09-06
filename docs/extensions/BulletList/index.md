@@ -8,77 +8,47 @@ next:
 
 # BulletList
 
-The BulletList extension allows you to add bullet lists to your editor.
+Organize paragraphs into an unordered list.
 
-- Based on TipTap's Bold extension. [@tiptap/bullet-list](https://tiptap.dev/docs/editor/extensions/nodes/bullet-list)
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). Install `@tiptap/extension-list` at the same version as your other Tiptap packages. This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { BulletList, RichTextBulletList } from 'reactjs-tiptap-editor/bulletlist';
 import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { BulletList, RichTextBulletList } from 'reactjs-tiptap-editor/bulletlist'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, ListItem, BulletList];
 
-  ...
-  // Import Extensions Here
-  BulletList// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextBulletList /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function BulletListExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextBulletList />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Register `ListItem` alongside `BulletList`; it defines the content of each list entry. Place the cursor in a paragraph and click the list button. Use `editor.chain().focus().toggleBulletList().run()` from a custom control.
 
 ## Options
 
@@ -87,4 +57,4 @@ const App = () => {
 Type: `string[]`\
 Default: `['shift', 'mod', '8']`
 
-Keyboard shortcuts for the extension.
+Shortcut labels shown by the controls. See [keyboard shortcut configuration](/guide/toolbar#keyboard-shortcuts) to change actual key bindings.

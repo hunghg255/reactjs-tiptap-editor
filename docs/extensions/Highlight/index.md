@@ -8,77 +8,46 @@ next:
 
 # Highlight
 
-The Highlight extension allows you to highlight text in your editor with support for multiple colors, keyboard shortcuts, and synchronized color selection across toolbar and bubble menu.
+Apply a background highlight to selected text.
 
-- Based on TipTap's highlight extension. [@tiptap/extension-highlight](https://tiptap.dev/docs/editor/extensions/marks/highlight)
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Highlight, RichTextHighlight } from 'reactjs-tiptap-editor/highlight'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Highlight, RichTextHighlight } from 'reactjs-tiptap-editor/highlight';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Highlight];
 
-  ...
-  // Import Extensions Here
-  Highlight// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextHighlight /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function HighlightExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextHighlight />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
+
+## How to use
+
+Choose a color and select text to highlight. This extension enables multiple highlight colors by default. Set `Highlight.configure({ defaultColor: "#fef08a" })` to give the highlight shortcut an initial color. The commands are `setHighlight({ color: "#fef08a" })` and `unsetHighlight()`.
 
 ## Features
 
@@ -112,7 +81,7 @@ Highlight.configure({
 Type: `string[]`\
 Default: `['⇧', 'mod', 'H']`
 
-Keyboard shortcuts for applying the highlight. Default is `Mod-Shift-H` (Ctrl-Shift-H on Windows/Linux, Cmd-Shift-H on Mac).
+Shortcut label displayed by the control. The actual binding is `Mod-Shift-H` (Ctrl-Shift-H on Windows/Linux, Cmd-Shift-H on macOS). Changing this option does not rebind it; see [keyboard shortcuts](/guide/toolbar#keyboard-shortcuts).
 
 ```js
 Highlight.configure({
@@ -197,6 +166,6 @@ The highlight color picker includes:
 | Feature          | Highlight               | Color              |
 | ---------------- | ----------------------- | ------------------ |
 | Purpose          | Background highlighting | Text color         |
-| Default Shortcut | `Mod-Shift-H`           | `Mod-Shift-C`      |
+| Default Shortcut | `Mod-Shift-H`           | `Alt-Shift-C`      |
 | No Fill Behavior | Removes highlight       | Removes text color |
 | Visual Style     | Background color        | Foreground color   |

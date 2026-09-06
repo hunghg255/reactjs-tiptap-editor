@@ -6,66 +6,89 @@ next:
   link: /guide/custom-theme.md
 ---
 
-# Internationalization (i18n)
+# Internationalization
 
-The editor provides built-in internationalization support, with English as the default language.
+The library includes translations for its controls and dialogs. English (`en`) is the default. Changing the locale changes interface text; it does not translate document content.
 
-## Usage
+## Choose a language
 
-```javascript
-// Import the locale object
+Use `localeActions.setLang` during application initialization or in an event handler:
+
+```tsx
 import { localeActions, useLocale } from 'reactjs-tiptap-editor/locale-bundle';
-// Set the language to English
-localeActions.setLang('en');
-// End
 
-// Usage in a React component
-const { lang: currentLocale } = useLocale();
-console.log(currentLocale); // Outputs the current locale messages
+export function LanguagePicker() {
+  const { lang } = useLocale();
+
+  return (
+    <select
+      aria-label='Editor language'
+      value={lang}
+      onChange={(event) => localeActions.setLang(event.target.value)}
+    >
+      <option value='en'>English</option>
+      <option value='vi'>Tiếng Việt</option>
+      <option value='ja'>日本語</option>
+    </select>
+  );
+}
 ```
 
-## Supported Languages
+`useLocale()` returns `lang` (the language code) and `t` (a translation function). Call the hook inside a React component. Use `localeActions.setLang` to change the language by code.
 
-Currently, the editor supports the following languages:
+Locale state is shared across editor instances in the application. The library does not automatically persist a language choice across reloads; restore your application's preference when initializing the client.
 
-| Language             | Config | Version                                                                          |
-| -------------------- | ------ | -------------------------------------------------------------------------------- |
-| English              | en     | [v0.0.5](https://github.com/hunghg255/reactjs-tiptap-editor/releases/tag/v0.0.5) |
-| Vietnamese           | vi     |                                                                                  |
-| Simplified Chinese   | zh_CN  |                                                                                  |
-| Brazilian Portuguese | pt_BR  |                                                                                  |
-| Hungarian            | hu_HU  |                                                                                  |
-| Finnish              | fi     |                                                                                  |
-| Japanese             | ja     |                                                                                  |
+## Included languages
 
-## Adding a New Language
+| Language             | Code    |
+| -------------------- | ------- |
+| English              | `en`    |
+| Vietnamese           | `vi`    |
+| Simplified Chinese   | `zh_CN` |
+| Brazilian Portuguese | `pt_BR` |
+| Hungarian            | `hu_HU` |
+| Finnish              | `fi`    |
+| Japanese             | `ja`    |
 
-If the platform doesn't support your desired language, you can add a custom language, for example: `fr`.
+Use the exact code, including underscores and capitalization.
 
-```javascript
+## Override existing messages
+
+`setMessage` merges the supplied keys into the language's current messages. You can override a single label without copying the entire dictionary:
+
+```ts
 import { localeActions } from 'reactjs-tiptap-editor/locale-bundle';
-// Don't worry about which content to translate; setMessage supports TypeScript
-localeActions.setMessage('fr', {
-  'editor.remove': 'Supprimer',
-  // ...
-});
-```
 
-### Overriding Default Language
-
-To override part of the current language system, first choose a new language name, then import the default language data, and finally override the translations you want.
-
-```javascript
-import { localeActions } from 'reactjs-tiptap-editor/locale-bundle';
-import { en } from 'reactjs-tiptap-editor/locale-bundle';
 localeActions.setMessage('en', {
-  ...en,
   'editor.remove': 'Delete',
 });
 ```
 
-### Full List of Translation Keys
+## Add a language
 
-All translation keys used by the editor are located in the [English locale file](https://github.com/hunghg255/reactjs-tiptap-editor/blob/main/src/locales/en.ts).
+Start from the exported English dictionary, override the keys you have translated, then select the new language:
 
-Use this file as the source of truth when creating or extending a language. Simply copy the keys and translate them based on your target language.
+```ts
+import { en, localeActions } from 'reactjs-tiptap-editor/locale-bundle';
+
+localeActions.setMessage('fr', {
+  ...en,
+  'editor.remove': 'Supprimer',
+});
+localeActions.setLang('fr');
+```
+
+The English spread supplies untranslated labels. Without it, missing messages display their key; there is no automatic English fallback for missing keys in a custom language. Register messages before selecting a new code.
+
+## Use translations in custom controls
+
+```tsx
+import { useLocale } from 'reactjs-tiptap-editor/locale-bundle';
+
+export function RemoveLabel() {
+  const { t } = useLocale();
+  return <span>{t('editor.remove')}</span>;
+}
+```
+
+For messages containing placeholders such as `{count}`, pass a values object as the second argument to `t`. Preserve placeholder names when translating. The exported `en` object and TypeScript completion provide the available message keys.

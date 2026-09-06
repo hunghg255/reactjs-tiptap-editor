@@ -8,97 +8,68 @@ next:
 
 # Import Word
 
-- Import Word Extension for Tiptap Editor.
+Convert a Word `.docx` file into editor content.
 
-## Usage
+## Setup
 
-::: code-group
-
-```sh [npm]
-npm install mammoth
-```
-
-```sh [pnpm]
-pnpm install mammoth
-```
-
-```sh [yarn]
-yarn add mammoth
-```
-
-:::
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { ImportWord, RichTextImportWord } from 'reactjs-tiptap-editor/importword'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { ImportWord, RichTextImportWord } from 'reactjs-tiptap-editor/importword';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, ImportWord];
 
-  ...
-  // Import Extensions Here
-  ImportWord// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextImportWord /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function ImportWordExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextImportWord />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
 
-## Options
+## How to use
 
-### shortcutKeys
+Click the toolbar button and choose a `.docx` file. Import replaces the current document, so save existing work first. The default file-size limit is 10 MiB. Converted HTML is parsed by the active schema, so register the formatting, list, table, and image extensions you want to preserve. Word page layout is not guaranteed to survive conversion.
 
-Type: `string[]`\
-Default: `['alt', 'mod', 'S']`
+## Configuration
 
-Keyboard shortcuts for the extension.
+| Option           | Purpose                                                            | Default                      |
+| ---------------- | ------------------------------------------------------------------ | ---------------------------- |
+| `limit`          | Maximum `.docx` file size in bytes.                                | `10 * 1024 * 1024`.          |
+| `convert`        | Custom `(file: File) => Promise<string>` converter returning HTML. | Built-in Mammoth conversion. |
+| `mammothOptions` | Options passed to the built-in HTML converter.                     | Omitted.                     |
+| `upload`         | Upload embedded images extracted from the converted HTML.          | Omitted.                     |
+
+For example, replace `ImportWord` in your array with:
+
+```ts
+import { ImportWord } from 'reactjs-tiptap-editor/importword';
+
+ImportWord.configure({
+  limit: 5 * 1024 * 1024,
+});
+```
+
+### Embedded images
+
+Register the library's `Image` extension to preserve imported images. The ImportWord `upload` handler receives a `File[]` and must resolve to an array of `{ src: string }` objects in the same order. This differs from the Image extension's upload handler, which receives one file and returns one URL string.
+
+Without this handler, converted image sources remain in the HTML. The current upload processing expects base64 image sources from conversion; a custom `convert` implementation returning remote image URLs should handle image storage itself and omit this upload handler.

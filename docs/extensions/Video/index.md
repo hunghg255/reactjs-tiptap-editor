@@ -4,91 +4,24 @@ description: Video
 
 # Video
 
-The Video extension allows you to add a video to your editor.
+Insert linked or uploaded videos into the document.
 
-## Usage
+## Setup
+
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Video, RichTextVideo } from 'reactjs-tiptap-editor/video'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Video, RichTextVideo } from 'reactjs-tiptap-editor/video';
+import { RichTextBubbleVideo } from 'reactjs-tiptap-editor/bubble';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
-
-  ...
-  // Import Extensions Here
-  Video.configure({// [!code ++]
-    resourceVideo: 'both',// [!code ++]
-    acceptMimes: ['video/mp4', 'video/webm'],// [!code ++]
-    maxSize: 100 * 1024 * 1024,// [!code ++]
-    multiple: true,// [!code ++]
-    uploadConcurrency: 3,// [!code ++]
-    showUploadProgress: true,// [!code ++]
-    upload: (file, { onProgress } = {}) => uploadVideo(file, onProgress),// [!code ++]
-    onError: ({ message, file }) => {// [!code ++]
-      console.error(message, file?.name);// [!code ++]
-    },// [!code ++]
-  })// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextVideo /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
-    extensions,
-  });
-
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
-
-      <EditorContent
-        editor={editor}
-      />
-    </RichTextProvider>
-  );
-};
-```
-
-`fetch` does not expose upload byte progress. Use `XMLHttpRequest`, Axios, or a storage SDK that
-reports transferred bytes when you need a real progress bar:
-
-```ts
 function uploadVideo(
   file: File,
   onProgress?: (progress: { loaded: number; total: number }) => void
@@ -110,13 +43,61 @@ function uploadVideo(
         return;
       }
 
-      resolve(JSON.parse(request.responseText).url);
+      try {
+        const data = JSON.parse(request.responseText);
+        if (typeof data.url !== 'string' || !data.url) {
+          throw new Error('Upload response must contain a video URL');
+        }
+        resolve(data.url);
+      } catch (error) {
+        reject(error);
+      }
     });
     request.addEventListener('error', () => reject(new Error('Video upload failed')));
     request.send(formData);
   });
 }
+
+const extensions = [
+  Document,
+  Paragraph,
+  Text,
+  Video.configure({
+    resourceVideo: 'both',
+    acceptMimes: ['video/mp4', 'video/webm'],
+    maxSize: 100 * 1024 * 1024,
+    multiple: true,
+    uploadConcurrency: 3,
+    showUploadProgress: true,
+    upload: (file, { onProgress } = {}) => uploadVideo(file, onProgress),
+    onError: ({ message, file }) => {
+      console.error(message, file?.name);
+    },
+  }),
+];
+
+export default function VideoExample() {
+  const editor = useEditor({
+    extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
+  });
+
+  if (!editor) return null;
+
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextVideo />
+      <RichTextBubbleVideo />
+      <EditorContent editor={editor} />
+    </RichTextProvider>
+  );
+}
 ```
+
+## How to use
+
+The upload example calls your application’s `/api/videos` endpoint, which must return JSON containing a `url` string. For URL-only use without a backend, replace the configuration with `Video.configure({ resourceVideo: "link" })`. Mount `RichTextBubbleVideo` for contextual controls. A hosting provider must permit embedding for its player to work.
 
 ## Props
 
@@ -210,6 +191,8 @@ interface VideoOptions extends GeneralOptions<VideoOptions> {
 | `videoProviders`     | `string[]`                                                                              | Restricts linked videos to matching providers. Use `['.']` to accept any URL.                      | No       | `['.']`                       |
 
 ## Upload behavior
+
+The `XMLHttpRequest` example reports uploaded bytes through `onProgress`. A plain `fetch` upload does not provide that byte-progress callback.
 
 While the `upload` promise is pending, both the toolbar dialog and the slash-command dialog stay
 open and disable the upload button. Call `context.onProgress({ loaded, total })` to show real,

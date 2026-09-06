@@ -8,158 +8,97 @@ next:
 
 # Bubble Menu
 
-The bubble menu, as its name suggests, is a context menu that appears when you select content for editing. It provides quick access to editing operations, such as `Bold`, `Italic`, and `Code`, among others.
+Bubble menus provide actions near selected text or a selected node. They are separate React components: register the corresponding extensions, then mount the menus inside the same `RichTextProvider` as the document.
 
-## Usage
+Importing a menu does not mount it, and mounting a menu does not register its extension.
+
+## Add a text selection menu
+
+This example uses the packages from [Getting Started](/guide/getting-started). Select a word in the editor to show the menu:
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-import { SlashCommandList } from 'reactjs-tiptap-editor/slashcommand'; // [!code ++]
-
-// Extension
-import { History, RichTextUndo, RichTextRedo } from 'reactjs-tiptap-editor/history';
-// ... other extensions
-
-// Bubble Menu
-import {
-  RichTextBubbleColumns,
-  RichTextBubbleDrawer,
-  RichTextBubbleExcalidraw,
-  RichTextBubbleIframe,
-  RichTextBubbleKatex,
-  RichTextBubbleLink,
-  RichTextBubbleImage,
-  RichTextBubbleVideo,
-  RichTextBubbleImageGif,
-  RichTextBubbleMermaid,
-  RichTextBubbleTable,
-  RichTextBubbleText,
-  RichTextBubbleTwitter,
-  RichTextBubbleCallout
-  RichTextBubbleCodeBlock,
-
-  // Drag Handle
-  RichTextBubbleMenuDragHandle
-
-  // ... other bubble menu components
-} from 'reactjs-tiptap-editor/bubble';
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Bold, RichTextBold } from 'reactjs-tiptap-editor/bold';
+import { Italic, RichTextItalic } from 'reactjs-tiptap-editor/italic';
+import { RichTextBubbleText } from 'reactjs-tiptap-editor/bubble';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Bold, Italic];
 
-  ...
-  // Import Extensions Here
-  History,
-  ...,
-];
-
-const RichTextToolbar = () => {
-  return (
-    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
-      <RichTextUndo />
-      <RichTextRedo />
-    </div>
-  )
-}
-
-const RichTextBubbleMenu = () => {
-  return (
-    <div>
-      <RichTextBubbleColumns />
-      <RichTextBubbleDrawer />
-      <RichTextBubbleExcalidraw />
-      <RichTextBubbleIframe />
-      <RichTextBubbleKatex />
-      <RichTextBubbleLink />
-
-      <RichTextBubbleImage />
-      <RichTextBubbleVideo />
-      <RichTextBubbleImageGif />
-
-      <RichTextBubbleMermaid />
-      <RichTextBubbleTable />
-      <RichTextBubbleText />
-      <RichTextBubbleTwitter />
-      <RichTextBubbleCallout />
-
-      <RichTextBubbleMenuDragHandle />
-
-      <RichTextBubbleCodeBlock />
-
-      <SlashCommandList /> {/* Optional: If you want to use Slash Command inside Bubble Menu */}
-    </div>
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function BubbleMenuExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Select a few words to format them.</p>',
+    immediatelyRender: false,
   });
 
+  if (!editor) return null;
+
   return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
-
-      <RichTextBubbleMenu />
-
-      <EditorContent
-        editor={editor}
+    <RichTextProvider editor={editor}>
+      <RichTextBubbleText
+        buttonBubble={
+          <>
+            <RichTextBold />
+            <RichTextItalic />
+          </>
+        }
       />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
 
-## Note
+`buttonBubble` replaces the default text controls with your own React content. Each control still needs its corresponding extension. Omit the prop to use the library's default text menu; register the formatting and block features you intend to offer there.
 
-The bubble menu will be automatically enabled when you import the correct plugins.
+A regular toolbar and a bubble menu can coexist. Both operate on the same editor instance.
 
-The system provides the following default bubble menus:
+## Add a node menu
 
-|        Component Name        | Functionality                                                                                | Extension    |
-| :--------------------------: | -------------------------------------------------------------------------------------------- | ------------ |
-|      RichTextBubbleText      | Provides text-related editing operations like bold, italic, underline, etc.                  | text         |
-|      RichTextBubbleLink      | Provides link-related operations like add, edit, delete links                                | link         |
-|     RichTextBubbleImage      | Provides image-related operations like resizing, alignment, etc.                             | image        |
-|     RichTextBubbleVideo      | Provides video-related operations like playback control, size adjustment, etc.               | video        |
-|     RichTextBubbleTable      | Provides table-related operations like adding/deleting rows and columns, merging cells, etc. | table        |
-|     RichTextBubbleIframe     | Provides iframe-related operations like size, link , etc.                                    | iframe       |
-|    RichTextBubbleColumns     | Provides multi-column layout operations like adjusting column numbers, widths, etc.          | column       |
-|    RichTextBubbleImageGif    | Provides general content-related operations like copy, paste, delete, image gif etc.         | imageGif     |
-|     RichTextBubbleDrawer     | Provides drawer-related operations like size, link , etc.                                    | drawer       |
-|   RichTextBubbleExcalidraw   | Provides excalidraw-related operations like size, link , etc.                                | excalidraw   |
-|    RichTextBubbleMermaid     | Provides mermaid-related operations like size, link , etc.                                   | mermaid      |
-|    RichTextBubbleTwitter     | Provides twitter-related operations like size, link , etc.                                   | twitter      |
-| RichTextBubbleMenuDragHandle | Provides a drag handle to move the bubble menu around the editor area.                       | N/A          |
-|    RichTextBubbleCallout     | Provides callout-related operations like style, content, etc.                                | callout      |
-|     RichTextBubbleKatex      | Provides KaTeX-related operations like size, link , etc.                                     | katex        |
-|   RichTextBubbleCodeBlock    | Provides code block-related operations like language selection, copy, delete, etc.           | codeBlock    |
-|       SlashCommandList       | Provides a list of slash commands for quick access to various editor functionalities.        | slashcommand |
+For images, register `Image` in the existing extension array and mount `RichTextBubbleImage` under the provider. Select an inserted image to show its controls. Follow the same pattern for the other supported nodes:
+
+| Menu component             | Required feature                                        | Purpose                         |
+| -------------------------- | ------------------------------------------------------- | ------------------------------- |
+| `RichTextBubbleText`       | Text and the formatting extensions used by its controls | Format selected text.           |
+| `RichTextBubbleLink`       | [Link](/extensions/Link/)                               | Edit an existing link.          |
+| `RichTextBubbleImage`      | [Image](/extensions/Image/)                             | Edit a selected image.          |
+| `RichTextBubbleVideo`      | [Video](/extensions/Video/)                             | Edit a selected video.          |
+| `RichTextBubbleTable`      | [Table](/extensions/Table/)                             | Edit table structure and cells. |
+| `RichTextBubbleIframe`     | [Iframe](/extensions/Iframe/)                           | Edit an embedded frame.         |
+| `RichTextBubbleColumns`    | [Column and companion nodes](/extensions/Column/)       | Manage column layouts.          |
+| `RichTextBubbleImageGif`   | [ImageGif](/extensions/ImageGif/)                       | Edit a selected GIF.            |
+| `RichTextBubbleDrawer`     | [Drawer](/extensions/Drawer/)                           | Edit a drawing node.            |
+| `RichTextBubbleExcalidraw` | [Excalidraw](/extensions/Excalidraw/)                   | Edit an Excalidraw node.        |
+| `RichTextBubbleMermaid`    | [Mermaid](/extensions/Mermaid/)                         | Edit a diagram node.            |
+| `RichTextBubbleTwitter`    | [Twitter](/extensions/Twitter/)                         | Manage a post embed.            |
+| `RichTextBubbleCallout`    | [Callout](/extensions/Callout/)                         | Edit a callout.                 |
+| `RichTextBubbleKatex`      | [Katex](/extensions/Katex/)                             | Edit a mathematical expression. |
+| `RichTextBubbleCodeBlock`  | [CodeBlock](/extensions/CodeBlock/)                     | Access code-block actions.      |
+
+All menu components in this table are exported from `reactjs-tiptap-editor/bubble`. Mount each menu once per editor and only include the menus your editor needs.
+
+## Block drag handle
+
+`RichTextBubbleMenuDragHandle` provides a handle for moving document blocks and a block action menu. It does not move the bubble menu itself.
+
+```tsx
+import { RichTextBubbleMenuDragHandle } from 'reactjs-tiptap-editor/bubble';
+
+// Mount inside your existing RichTextProvider.
+<RichTextBubbleMenuDragHandle />;
+```
+
+## Slash commands
+
+`SlashCommandList` supplies the slash command list and is not a text-selection bubble menu. Mount it inside the provider and register `SlashCommand` to enable `/` commands. See [Slash Command](/extensions/SlashCommand/).
+
+## Troubleshooting
+
+If a menu does not appear, confirm that the editor is editable, its matching extension is registered, and the appropriate content is selected. A collapsed text cursor does not show the text-selection menu. Check clipping or stacking styles in your host layout if a menu appears behind another element.

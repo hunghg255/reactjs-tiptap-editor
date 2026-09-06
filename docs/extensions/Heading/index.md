@@ -8,98 +8,43 @@ next:
 
 # Heading
 
-The Heading extension allows you to add a heading to your editor.
+Turn a paragraph into a heading with a chosen level.
 
-- Based on TipTap's heading extension. [@tiptap/extension-heading](https://tiptap.dev/docs/editor/extensions/nodes/heading)
+## Setup
 
-## Usage
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { Heading, RichTextHeading } from 'reactjs-tiptap-editor/heading'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { Heading, RichTextHeading } from 'reactjs-tiptap-editor/heading';
 import 'reactjs-tiptap-editor/style.css';
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+const extensions = [Document, Paragraph, Text, Heading.configure({ levels: [1, 2, 3] })];
 
-  ...
-  // Import Extensions Here
-  Heading// [!code ++]
-];
-
-const RichTextToolbar = () => {
-  return (
-    <RichTextHeading /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function HeadingExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextHeading />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
 
-## Options
+## How to use
 
-### shortcutKeys
-
-Type: `string[][]`\
-Default: `['alt', 'mod', '${level}']`
-
-Keyboard shortcuts for the extension. To override shortcuts for different heading levels:
-
-```tsx
-Heading.configure({
-  shortcutKeys: [
-    ['alt', 'mod', '0'],
-    ['alt', 'mod', '1'],
-    ['alt', 'mod', '2'],
-    ['alt', 'mod', '3'],
-    ['alt', 'mod', '4'],
-    ['alt', 'mod', '5'],
-    ['alt', 'mod', '6'],
-    ...
-  ]
-});
-```
+Place the cursor in a paragraph and choose a level from the toolbar. `levels` controls the available heading levels; for example, `Heading.configure({ levels: [1, 2, 3] })`. Use `editor.chain().focus().toggleHeading({ level: 2 }).run()` for a custom action.

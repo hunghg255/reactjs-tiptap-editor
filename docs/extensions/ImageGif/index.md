@@ -8,77 +8,50 @@ next:
 
 # ImageGif
 
-ImageGif is a node extension that allows you to add an ImageGif to your editor.
+Search for animated GIFs and insert one into the document.
 
-## Usage
+## Setup
+
+Start with the packages in [Getting Started](/guide/getting-started). This complete example registers the feature and renders its UI. In an existing editor, merge the imports and extension entries into your setup, and place the controls inside your existing `RichTextProvider`.
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
+'use client';
 
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
-import { ListItem } from '@tiptap/extension-list';
-
-// Extension
-import { ImageGif, RichTextImageGif } from 'reactjs-tiptap-editor/imagegif'; // [!code ++]
-// ... other extensions
-
-
-// Import CSS
+import { EditorContent, useEditor } from '@tiptap/react';
+import { Document } from '@tiptap/extension-document';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Text } from '@tiptap/extension-text';
+import { RichTextProvider } from 'reactjs-tiptap-editor';
+import { ImageGif, RichTextImageGif } from 'reactjs-tiptap-editor/imagegif';
+import { RichTextBubbleImageGif } from 'reactjs-tiptap-editor/bubble';
 import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [
-  // Base Extensions
   Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
   Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
-
-  ...
-  // Import Extensions Here
-  ImageGif.configure({// [!code ++]
-    API_KEY: '', // [!code ++]
-    provider: 'tenor' // [!code ++] (tenor or giphy)
-  }),// [!code ++]
+  Text,
+  ImageGif.configure({ provider: 'giphy', API_KEY: 'YOUR_GIPHY_API_KEY' }),
 ];
 
-const RichTextToolbar = () => {
-  return (
-    <RichTextImageGif /> {/* [!code ++] */}
-  )
-}
-
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
+export default function ImageGifExample() {
+  const editor = useEditor({
     extensions,
+    content: '<p>Try this feature here.</p>',
+    immediatelyRender: false,
   });
 
-  return (
-    <RichTextProvider
-      editor={editor}
-    >
-      <RichTextToolbar />
+  if (!editor) return null;
 
-      <EditorContent
-        editor={editor}
-      />
+  return (
+    <RichTextProvider editor={editor}>
+      <RichTextImageGif />
+      <RichTextBubbleImageGif />
+      <EditorContent editor={editor} />
     </RichTextProvider>
   );
-};
+}
 ```
 
-- `API_KEY` - You can get it from [Giphy Developers](https://developers.giphy.com/) or [Tenor Developers](https://tenor.com/)
+## How to use
+
+Set `provider` to `"giphy"` (the default) or `"tenor"`, and supply that provider’s `API_KEY`. The placeholder in the example must be replaced for search to work. Click the GIF button, search, and choose a result. Mount `RichTextBubbleImageGif` for contextual editing.

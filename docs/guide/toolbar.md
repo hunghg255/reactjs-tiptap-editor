@@ -8,75 +8,98 @@ next:
 
 # Toolbar
 
-Toolbar is a component that is used to display buttons that are used to perform actions on the editor.
+A toolbar is a layout you compose from `RichText*` controls. Its button order follows your JSX. Each control reads the editor from `RichTextProvider`, so you do not pass an `editor` prop to individual buttons.
 
-## Usage
+Start with the working editor in [Getting Started](/guide/getting-started). To add headings and lists, install `@tiptap/extension-list` at the same version as your other Tiptap packages, then add these imports:
 
 ```tsx
-import { RichTextProvider } from 'reactjs-tiptap-editor'
-
-// Base Kit
-import { Document } from '@tiptap/extension-document'
-import { Text } from '@tiptap/extension-text'
-import { Paragraph } from '@tiptap/extension-paragraph'
-import { Dropcursor, Gapcursor, Placeholder, TrailingNode } from '@tiptap/extensions'
-import { HardBreak } from '@tiptap/extension-hard-break'
-import { TextStyle } from '@tiptap/extension-text-style';
 import { ListItem } from '@tiptap/extension-list';
+import { Heading, RichTextHeading } from 'reactjs-tiptap-editor/heading';
+import { BulletList, RichTextBulletList } from 'reactjs-tiptap-editor/bulletlist';
+```
 
-// Extension
-import { History, RichTextUndo, RichTextRedo } from 'reactjs-tiptap-editor/history';
-// ... other extensions
+Extend the existing `extensions` array with `Heading.configure({ levels: [1, 2, 3] })`, `ListItem`, and `BulletList`. Register each extension only once. Then replace the toolbar JSX with:
 
+```tsx
+<div
+  role='toolbar'
+  aria-label='Text formatting'
+  style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 4 }}
+>
+  <RichTextUndo />
+  <RichTextRedo />
+  <RichTextHeading />
+  <RichTextBold />
+  <RichTextItalic />
+  <RichTextBulletList />
+</div>
+```
 
-// Import CSS
-import 'reactjs-tiptap-editor/style.css';
+The other controls in this example come from Getting Started. Select text to apply inline formatting; place the cursor in a paragraph to turn it into a heading or list.
 
-const extensions = [
-  // Base Extensions
-  Document,
-  Text,
-  Dropcursor,
-  Gapcursor,
-  HardBreak,
-  Paragraph,
-  TrailingNode,
-  ListItem,
-  TextStyle,
-  Placeholder.configure({
-    placeholder: 'Press \'/\' for commands',
-  })
+## Extension options and button placement
 
-  ...
-  // Import Extensions Here
-  History
-];
+Configure behavior in the extension array, for example `Heading.configure({ levels: [1, 2, 3] })`. Render its control as `<RichTextHeading />` inside the provider. Removing that control only removes the toolbar entry; the registered extension still parses content and exposes commands.
 
-const RichTextToolbar = () => {
-  return (
-    <div className="flex items-center gap-2 flex-wrap border-b border-solid">
-      <RichTextUndo />
-      <RichTextRedo />
-    </div>
-  )
-}
+Some controls need companion extensions:
 
-const App = () => {
-   const editor = useEditor({
-    textDirection: 'auto', // global text direction
-    extensions,
+| Control                                                                         | Register                                                                                                                   |
+| ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `RichTextBulletList`, `RichTextOrderedList`                                     | Corresponding list extension plus `ListItem`.                                                                              |
+| `RichTextColor`, `RichTextFontFamily`, `RichTextFontSize`, `RichTextLineHeight` | Corresponding extension plus `TextStyle`.                                                                                  |
+| `RichTextTaskList`                                                              | `TaskList`; it includes `TaskItem`.                                                                                        |
+| `RichTextTable`                                                                 | `Table`; it includes row, cell, and header extensions.                                                                     |
+| `RichTextColumn`                                                                | `Column`, `ColumnNode`, `MultipleColumnNode`, and the document schema described on the [Column page](/extensions/Column/). |
+
+## Build a custom control
+
+You can call editor commands from an ordinary React button. This example reads the provider's context and subscribes to the state it displays:
+
+```tsx
+import { useCurrentEditor, useEditorState } from '@tiptap/react';
+
+export function CustomBoldButton() {
+  const { editor } = useCurrentEditor();
+  const state = useEditorState({
+    editor,
+    selector: ({ editor }) => ({
+      active: editor?.isActive('bold') ?? false,
+      enabled: Boolean(editor?.isEditable && editor.can().toggleBold()),
+    }),
   });
 
   return (
-    <RichTextProvider
-      editor={editor}
+    <button
+      type='button'
+      aria-pressed={state?.active ?? false}
+      disabled={!state?.enabled}
+      onClick={() => editor?.chain().focus().toggleBold().run()}
     >
-      <RichTextToolbar />
-
-      <EditorContent
-        editor={editor}
-      />
-    </RichTextProvider>
+      Bold
+    </button>
   );
-};
+}
 ```
+
+Register `Bold` and render `<CustomBoldButton />` inside `RichTextProvider`. `focus()` returns focus to the document before formatting. `type="button"` prevents accidental form submission.
+
+## Keyboard shortcuts
+
+A documented `shortcutKeys` option supplies shortcut labels to controls. Changing those labels does not generally register a new key binding. To change behavior, extend the extension's `addKeyboardShortcuts` method:
+
+```tsx
+import { Bold } from 'reactjs-tiptap-editor/bold';
+
+const CustomBold = Bold.extend({
+  addKeyboardShortcuts() {
+    return {
+      ...this.parent?.(),
+      'Mod-Shift-b': () => this.editor.commands.toggleBold(),
+    };
+  },
+}).configure({ shortcutKeys: ['mod', 'shift', 'B'] });
+```
+
+Use `CustomBold` in place of `Bold`. This example preserves inherited shortcuts and adds another one. `Mod` represents Command on macOS and Control on Windows/Linux.
+
+For controls that appear only around a selection, see [Bubble Menu](/guide/bubble-menu).
