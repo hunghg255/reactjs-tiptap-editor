@@ -1,6 +1,7 @@
 import { NodeViewWrapper } from '@tiptap/react';
-import clsx from 'clsx';
 import { AlertCircle, Info, Lightbulb, OctagonAlert, TriangleAlert } from 'lucide-react';
+
+import { cn } from '@/lib/utils';
 
 import type { NodeViewProps } from '@tiptap/react';
 
@@ -51,7 +52,7 @@ export function NodeViewCallout({ node }: NodeViewProps) {
   return (
     <NodeViewWrapper>
       <div
-        className={clsx(
+        className={cn(
           'richtext-relative richtext-my-4 richtext-rounded-lg richtext-border richtext-p-4',
           {
             'richtext-border-[#1f6feb] richtext-bg-[#1f6feb1f]': type === 'note',
@@ -63,7 +64,7 @@ export function NodeViewCallout({ node }: NodeViewProps) {
         )}
       >
         <div
-          className={clsx('richtext-mb-2 richtext-flex richtext-items-center richtext-gap-2', {
+          className={cn('richtext-mb-2 richtext-flex richtext-items-center richtext-gap-2', {
             'richtext-text-[#1f6feb]': type === 'note',
             'richtext-text-[#238636]': type === 'tip',
             'richtext-text-[#ab7df8]': type === 'important',

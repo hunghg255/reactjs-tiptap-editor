@@ -1,8 +1,8 @@
 import { NodeViewWrapper } from '@tiptap/react';
-import clsx from 'clsx';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ActionButton } from '@/components';
+import { cn } from '@/lib/utils';
 import { useLocale } from '@/locales';
 import { useEditableEditor } from '@/store/store';
 import { extractFileExtension, extractFilename, normalizeFileSize } from '@/utils/file';
@@ -80,7 +80,7 @@ export function NodeViewAttachment({
   if (isEditable && !url) {
     return (
       <NodeViewWrapper>
-        <div className={clsx(styles.wrap, 'render-wrapper')}>
+        <div className={cn(styles.wrap, 'render-wrapper')}>
           <p onClick={selectFile} style={{ cursor: 'pointer' }}>
             {loading ? (
               <span>{t('editor.attachment.uploading')}</span>
@@ -98,7 +98,7 @@ export function NodeViewAttachment({
   if (url) {
     return (
       <NodeViewWrapper>
-        <div className={clsx(styles.wrap, 'render-wrapper')} onClick={selectFile}>
+        <div className={cn(styles.wrap, 'render-wrapper')} onClick={selectFile}>
           <div className='richtext-flex richtext-items-center richtext-gap-[4px]'>
             <span>{getFileTypeIcon(fileType)}</span>
 
@@ -118,7 +118,7 @@ export function NodeViewAttachment({
   if (error !== 'null') {
     return (
       <NodeViewWrapper>
-        <div className={clsx(styles.wrap, 'render-wrapper')} onClick={selectFile}>
+        <div className={cn(styles.wrap, 'render-wrapper')} onClick={selectFile}>
           <p>{error}</p>
         </div>
       </NodeViewWrapper>

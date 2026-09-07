@@ -1,7 +1,7 @@
-import clsx from 'clsx';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import scrollIntoView from 'scroll-into-view-if-needed';
 
+import { cn } from '@/lib/utils';
 import { useLocale } from '@/locales';
 
 import type { SuggestionHandle } from '@/utils/renderNodeView';
@@ -84,7 +84,7 @@ function EmojiNodeView(props: IPropsEmojiNodeVIew, ref: React.ForwardedRef<Sugge
               <span
                 key={`emoji-list-code-${name}`}
                 onClick={() => selectItem(index)}
-                className={clsx(
+                className={cn(
                   'richtext-flex richtext-w-full richtext-items-center richtext-gap-3 richtext-rounded-sm !richtext-border-none !richtext-bg-transparent richtext-px-2 richtext-py-1.5 richtext-text-left richtext-text-sm richtext-text-foreground !richtext-outline-none richtext-transition-colors hover:!richtext-bg-accent',
                   {
                     'bg-item-active': index === selectedIndex,

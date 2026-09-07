@@ -1,10 +1,10 @@
 import { NodeViewWrapper } from '@tiptap/react';
-import clsx from 'clsx';
 import { Resizable } from 're-resizable';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ActionButton } from '@/components/ActionButton';
 import { Excalidraw } from '@/extensions/Excalidraw/Excalidraw';
+import { cn } from '@/lib/utils';
 import { useEditableEditor } from '@/store/store';
 import { clamp } from '@/utils/utils';
 
@@ -87,7 +87,7 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: NodeViewProps) {
 
   return (
     <NodeViewWrapper
-      className={clsx(styles.wrap, {
+      className={cn(styles.wrap, {
         [styles.active]: isActive,
         [styles.disabled]: !isEditable,
       })}
@@ -105,7 +105,7 @@ function NodeViewExcalidraw({ editor, node, updateAttributes }: NodeViewProps) {
         }}
       >
         <div
-          className={clsx(styles.renderWrap, 'render-wrapper')}
+          className={cn(styles.renderWrap, 'render-wrapper')}
           style={{ ...INHERIT_SIZE_STYLE, overflow: 'hidden' }}
         >
           {error && (

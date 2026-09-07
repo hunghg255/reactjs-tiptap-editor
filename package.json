@@ -743,7 +743,6 @@
     "type-check": "tsc",
     "test:types": "tsc -p tests/tsconfig.json",
     "verify-commit": "verify-commit-msg",
-    "prepare": "git-scm-hooks",
     "release": "bumpp -r",
     "gen-changelog": "esno ./scripts/genExtensions.ts && esno ./scripts/changelog.ts",
     "gen-contributors": "contributorkit"
@@ -807,7 +806,7 @@
     "@tiptap/suggestion": "^3.29.2",
     "@tiptap/y-tiptap": "^3.0.8",
     "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
+    "cn": "^0.2.6",
     "deep-equal": "^2.2.3",
     "docx": "^9.7.1",
     "easydrawer": "^0.0.15",
@@ -842,7 +841,6 @@
     "contributorkit": "^0.0.4",
     "esno": "^4.8.0",
     "execa": "^9.6.1",
-    "git-scm-hooks": "^0.2.0",
     "globby": "^14.1.0",
     "mammoth": "^1.12.0",
     "md5": "^2.3.0",
@@ -854,7 +852,6 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "sass": "^1.102.0",
-    "tailwind-merge": "^2.6.1",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3",
     "unplugin-dts": "1.0.0-beta.6",
@@ -879,9 +876,5 @@
       "esbuild": "0.25.12",
       "prosemirror-view": "1.41.1"
     }
-  },
-  "git-hooks": {
-    "pre-commit": "npm run lint:fix",
-    "commit-msg": "npm run verify-commit"
   }
 }

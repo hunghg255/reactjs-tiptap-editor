@@ -21,7 +21,7 @@
   "experimentalTailwindcss": {
     "config": "./tailwind.config.js",
     "attributes": ["class", "className"],
-    "functions": ["clsx", "cn"],
+    "functions": ["cn"],
     "preserveDuplicates": false,
     "preserveWhitespace": false
   }

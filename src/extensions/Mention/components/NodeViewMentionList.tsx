@@ -1,6 +1,7 @@
-import clsx from 'clsx';
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import scrollIntoView from 'scroll-into-view-if-needed';
+
+import { cn } from '@/lib/utils';
 
 import type { Editor } from '@tiptap/core';
 
@@ -80,7 +81,7 @@ export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => 
         {props.items.length > 0 ? (
           props.items.map((item, index) => (
             <span
-              className={clsx(
+              className={cn(
                 'richtext-flex richtext-w-full richtext-items-center richtext-gap-3 richtext-rounded-sm !richtext-border-none !richtext-bg-transparent richtext-px-2 richtext-py-1.5 richtext-text-left richtext-text-sm richtext-text-foreground !richtext-outline-none richtext-transition-colors hover:!richtext-bg-accent',
                 { 'bg-item-active': index === selectedIndex }
               )}
@@ -102,7 +103,7 @@ export const NodeViewMentionList: React.FC<IProps> = forwardRef((props, ref) => 
             </span>
           ))
         ) : (
-          <div className={clsx('itemUserEmpty, richtext-text-foreground')}>Empty</div>
+          <div className={cn('itemUserEmpty, richtext-text-foreground')}>Empty</div>
         )}
       </div>
     </div>

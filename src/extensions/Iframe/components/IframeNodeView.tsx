@@ -1,11 +1,11 @@
 import { NodeViewWrapper } from '@tiptap/react';
-import clsx from 'clsx';
 import { Resizable } from 're-resizable';
 import { useCallback, useState } from 'react';
 
 import { Button, Input } from '@/components/ui';
 import { Iframe } from '@/extensions/Iframe/Iframe';
 import { getServiceSrc } from '@/extensions/Iframe/utils';
+import { cn } from '@/lib/utils';
 import { useEditableEditor } from '@/store/store';
 
 import styles from './index.module.scss';
@@ -74,7 +74,7 @@ function IframeNodeView({ editor, node, updateAttributes }: NodeViewProps) {
             });
           }}
         >
-          <div className={clsx(styles.wrap, 'render-wrapper')}>
+          <div className={cn(styles.wrap, 'render-wrapper')}>
             <div
               className={styles.innerWrap}
               style={{ pointerEvents: !isEditable ? 'auto' : 'none' }}

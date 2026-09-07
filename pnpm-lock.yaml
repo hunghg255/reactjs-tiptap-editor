@@ -185,13 +185,13 @@ importers:
         version: 3.29.2(@floating-ui/dom@1.8.0)(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)
       '@tiptap/y-tiptap':
         specifier: ^3.0.8
-        version: 3.0.8(prosemirror-model@1.25.9)(prosemirror-state@1.4.4)(prosemirror-view@1.41.1)(y-protocols@1.0.7)(yjs@13.6.32)
+        version: 3.0.8(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.41.1)(y-protocols@1.0.7)(yjs@13.6.32)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
+      cn:
+        specifier: ^0.2.6
+        version: 0.2.6
       deep-equal:
         specifier: ^2.2.3
         version: 2.2.3
@@ -289,9 +289,6 @@ importers:
       execa:
         specifier: ^9.6.1
         version: 9.6.1
-      git-scm-hooks:
-        specifier: ^0.2.0
-        version: 0.2.0
       globby:
         specifier: ^14.1.0
         version: 14.1.0
@@ -325,9 +322,6 @@ importers:
       sass:
         specifier: ^1.102.0
         version: 1.102.0
-      tailwind-merge:
-        specifier: ^2.6.1
-        version: 2.6.1
       tailwindcss:
         specifier: ^3.4.19
         version: 3.4.19
@@ -4075,7 +4069,7 @@ packages:
     dependencies:
       '@tiptap/core': 3.29.2(@tiptap/pm@3.29.2)
       '@tiptap/pm': 3.29.2
-      '@tiptap/y-tiptap': 3.0.8(prosemirror-model@1.25.9)(prosemirror-state@1.4.4)(prosemirror-view@1.41.1)(y-protocols@1.0.7)(yjs@13.6.32)
+      '@tiptap/y-tiptap': 3.0.8(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.41.1)(y-protocols@1.0.7)(yjs@13.6.32)
     dev: false
 
   /@tiptap/extension-collaboration@3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)(@tiptap/y-tiptap@3.0.8)(yjs@13.6.32):
@@ -4088,7 +4082,7 @@ packages:
     dependencies:
       '@tiptap/core': 3.29.2(@tiptap/pm@3.29.2)
       '@tiptap/pm': 3.29.2
-      '@tiptap/y-tiptap': 3.0.8(prosemirror-model@1.25.9)(prosemirror-state@1.4.4)(prosemirror-view@1.41.1)(y-protocols@1.0.7)(yjs@13.6.32)
+      '@tiptap/y-tiptap': 3.0.8(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.41.1)(y-protocols@1.0.7)(yjs@13.6.32)
       yjs: 13.6.32
     dev: false
 
@@ -4130,7 +4124,7 @@ packages:
       '@tiptap/extension-collaboration': 3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)(@tiptap/y-tiptap@3.0.8)(yjs@13.6.32)
       '@tiptap/extension-node-range': 3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)
       '@tiptap/pm': 3.29.2
-      '@tiptap/y-tiptap': 3.0.8(prosemirror-model@1.25.9)(prosemirror-state@1.4.4)(prosemirror-view@1.41.1)(y-protocols@1.0.7)(yjs@13.6.32)
+      '@tiptap/y-tiptap': 3.0.8(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.41.1)(y-protocols@1.0.7)(yjs@13.6.32)
     dev: false
 
   /@tiptap/extension-emoji@3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)(@tiptap/suggestion@3.29.2)(emojibase@17.0.0):
@@ -4433,7 +4427,7 @@ packages:
       '@tiptap/pm': 3.29.2
     dev: false
 
-  /@tiptap/y-tiptap@3.0.8(prosemirror-model@1.25.9)(prosemirror-state@1.4.4)(prosemirror-view@1.41.1)(y-protocols@1.0.7)(yjs@13.6.32):
+  /@tiptap/y-tiptap@3.0.8(prosemirror-model@1.25.11)(prosemirror-state@1.4.4)(prosemirror-view@1.41.1)(y-protocols@1.0.7)(yjs@13.6.32):
     resolution: {integrity: sha512-+kndlSuoUK9sKVRuxbAHXNrbDvyydnG/Y0NFU9XXqaSkI9IRcrjpOf1RGd7NrC9jJXquDqZS96wOQf6eUpP9Dg==}
     engines: {node: '>=16.0.0', npm: '>=8.0.0'}
     peerDependencies:
@@ -4444,7 +4438,7 @@ packages:
       yjs: ^13.5.38
     dependencies:
       lib0: 0.2.117
-      prosemirror-model: 1.25.9
+      prosemirror-model: 1.25.11
       prosemirror-state: 1.4.4
       prosemirror-view: 1.41.1
       y-protocols: 1.0.7(yjs@13.6.32)
@@ -5845,6 +5839,12 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
+  /cn@0.2.6:
+    resolution: {integrity: sha512-+i4L0zUGgRcEnhsxueVrP7iBGxBx5iD0WOTYg1MwFEu2ZyCmH5Ov2V1cul2Ht5UchRQQgftCf4be/RxspuW6QQ==}
+    engines: {node: '>=20'}
+    hasBin: true
+    dev: false
+
   /color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
     engines: {node: '>=7.0.0'}
@@ -6967,14 +6967,6 @@ packages:
 
   /git-scm-hooks@0.0.11:
     resolution: {integrity: sha512-UfoScUT7qlLvIYS4pGWHtRJQe7438rhOErv5XvghMltL8kNDDFIQNmLrGdjZ+7FGbqGq3QDOYzcxPUXKXV2Zmg==}
-    hasBin: true
-    dependencies:
-      commander: 11.1.0
-      unreadconfig: 0.0.13
-    dev: true
-
-  /git-scm-hooks@0.2.0:
-    resolution: {integrity: sha512-PlHRatyetmJlPX8niISnHwQsMzwVLKEKzBgxAmzxKfVhh6aWB+DPPTTJxmTIAKTedgjPOMWJ5BtXd8RpCAHFKw==}
     hasBin: true
     dependencies:
       commander: 11.1.0
@@ -8945,12 +8937,6 @@ packages:
       orderedmap: 2.1.1
     dev: false
 
-  /prosemirror-model@1.25.9:
-    resolution: {integrity: sha512-pRTklkDDMMRopyoAcrr9wV/8g/RYgrLHBuJAb5hlEuYZRdm5yqmPjWId83fpBwPpSFqEdja0H7Dfd7z1X/npcA==}
-    dependencies:
-      orderedmap: 2.1.1
-    dev: false
-
   /prosemirror-schema-list@1.5.1:
     resolution: {integrity: sha512-927lFx/uwyQaGwJxLWCZRkjXG0p48KpMj6ueoYiu4JX05GGuGcgzAy62dfiV8eFZftgyBUvLx76RsMe20fJl+Q==}
     dependencies:
@@ -9791,10 +9777,6 @@ packages:
 
   /tabbable@6.4.0:
     resolution: {integrity: sha512-05PUHKSNE8ou2dwIxTngl4EzcnsCDZGJ/iCLtDflR/SHB/ny14rXc+qU5P4mG9JkusiV7EivzY9Mhm55AzAvCg==}
-    dev: true
-
-  /tailwind-merge@2.6.1:
-    resolution: {integrity: sha512-Oo6tHdpZsGpkKG88HJ8RR1rg/RdnEkQEfMoEk2x1XRI3F1AxeU+ijRXpiVUF4UbLfcxxRGw6TbUINKYdWVsQTQ==}
     dev: true
 
   /tailwindcss@3.4.19:
