@@ -1,9 +1,81 @@
 [
   {
+    "hash": "35d0cc47c3033e254d7ce90821b459d29f869dc9",
+    "date": "Mon Sep 7 00:10:56 2026 +0700",
+    "message": "chore: release v1.0.35",
+    "refs": "tag: v1.0.35, origin/main",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v1.0.35"
+  },
+  {
+    "hash": "c67cfb7e0c31a74693ea2b584ce4acec6545bf42",
+    "date": "Mon Sep 7 00:10:27 2026 +0700",
+    "message": "feat(ai): add AI writing extension with OpenAI and Anthropic support",
+    "refs": "",
+    "author_name": "hunghg255bot",
+    "author_email": "giahunghustbot@gmail.com",
+    "functions": [
+      "index.md",
+      "AI",
+      "AIPanel",
+      "client",
+      "index",
+      "state",
+      "types",
+      "SlashCommandNodeView",
+      "renderCommandListDefault"
+    ]
+  },
+  {
+    "hash": "2c6eedc98792fb072ddd18c028739e3f85e3ddc5",
+    "date": "Mon Sep 7 00:09:55 2026 +0700",
+    "message": "docs: update guides and extension examples for the composable API",
+    "refs": "",
+    "author_name": "hunghg255bot",
+    "author_email": "giahunghustbot@gmail.com",
+    "functions": [
+      "index.md"
+    ]
+  },
+  {
+    "hash": "747c5a52314b82b9cb5e9b6832504690f3d15d82",
+    "date": "Sun Sep 6 15:58:19 2026 +0700",
+    "message": "chore: release v1.0.34",
+    "refs": "tag: v1.0.34",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v1.0.34"
+  },
+  {
+    "hash": "cc0b638dd9ad9e5b79c410bab8f324252f351017",
+    "date": "Wed Aug 12 05:32:26 2026 +0700",
+    "message": "chore: release v1.0.33",
+    "refs": "tag: v1.0.33",
+    "body": "",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "version": "v1.0.33"
+  },
+  {
+    "hash": "3851d7538e1f65d11ef5204429099efeb47b2d05",
+    "date": "Wed Aug 12 05:30:47 2026 +0700",
+    "message": "fix(callout): preserve multiline body content",
+    "refs": "origin/fix/callout-multiline-body, fix/callout-multiline-body",
+    "author_name": "hunghg255",
+    "author_email": "giahunghust@gmail.com",
+    "functions": [
+      "NodeViewCallout",
+      "RichTextCallout"
+    ]
+  },
+  {
     "hash": "e6eb19a0e37f636fed9a19a814567a96020a429f",
     "date": "Fri Aug 7 11:07:15 2026 +0700",
     "message": "chore: release v1.0.32",
-    "refs": "HEAD -> main, tag: v1.0.32, origin/main",
+    "refs": "tag: v1.0.32",
     "body": "",
     "author_name": "hunghg255",
     "author_email": "giahunghust@gmail.com",
@@ -1782,84 +1854,6 @@
     "author_email": "loancv12@gmail.com",
     "functions": [
       "LinkEditBlock"
-    ]
-  },
-  {
-    "hash": "c1ff0b377f00a117b002fd1b5bec9964cbf94a05",
-    "date": "Wed Jun 25 15:44:18 2025 +0700",
-    "message": "fix: add the type is button",
-    "refs": "",
-    "author_name": "Loan Nguyen",
-    "author_email": "loancv12@gmail.com",
-    "functions": [
-      "LinkEditBlock"
-    ]
-  },
-  {
-    "hash": "ae751c2b2925d9e4e2028e92dddc7964617f3338",
-    "date": "Wed Jun 25 15:39:02 2025 +0700",
-    "message": "fix: fix bug reload the page when click the apply button in Link ext",
-    "refs": "",
-    "author_name": "Loan Nguyen",
-    "author_email": "loancv12@gmail.com",
-    "functions": [
-      "LinkEditBlock"
-    ]
-  },
-  {
-    "hash": "119aa7a7b464cd1ac8f6043fa3aa2febc8d45397",
-    "date": "Thu Jun 19 09:03:27 2025 +0700",
-    "message": "docs: update",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
-  },
-  {
-    "hash": "9b2c85b714b600c2df1a4db7a18e152e26b32cb4",
-    "date": "Thu Jun 19 07:11:28 2025 +0700",
-    "message": "chore: release v0.3.5",
-    "refs": "tag: v0.3.5",
-    "body": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "version": "v0.3.5"
-  },
-  {
-    "hash": "108811f5f738995d40fa2dcdb147e2f961f6fa5d",
-    "date": "Thu Jun 19 00:53:22 2025 +0300",
-    "message": "fixed vimeo video links embedding + youtube shorts",
-    "refs": "",
-    "author_name": "vk",
-    "author_email": "morcano91@gmail.com",
-    "functions": [
-      "Video"
-    ]
-  },
-  {
-    "hash": "57d8fdd6e64326d8d0082183c1803bda4904f405",
-    "date": "Wed Jun 4 17:12:59 2025 +0700",
-    "message": "docs: update",
-    "refs": "",
-    "author_name": "hunghg255",
-    "author_email": "giahunghust@gmail.com",
-    "functions": [
-      "extensions.json"
-    ]
-  },
-  {
-    "hash": "1ba77bd6302cda318dc63141bd27668ea0bd5153",
-    "date": "Wed May 28 22:33:34 2025 +0530",
-    "message": "fix: linting errors",
-    "refs": "",
-    "author_name": "Zeeshan Ahmad",
-    "author_email": "zeeshan",
-    "functions": [
-      "Table",
-      "TableCell",
-      "TableRow"
     ]
   }
 ]

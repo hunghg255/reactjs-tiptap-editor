@@ -1,9 +1,30 @@
 [
   {
-    "name": "Attachment.ts",
-    "package": "Attachment",
+    "name": "AI.ts",
+    "package": "AI",
     "alias": [
-      "Attachment"
+      "AI"
+    ]
+  },
+  {
+    "name": "AI.ts",
+    "package": "AI",
+    "alias": [
+      "client"
+    ]
+  },
+  {
+    "name": "AI.ts",
+    "package": "AI",
+    "alias": [
+      "state"
+    ]
+  },
+  {
+    "name": "AI.ts",
+    "package": "AI",
+    "alias": [
+      "types"
     ]
   },
   {
@@ -14,24 +35,17 @@
     ]
   },
   {
+    "name": "Attachment.ts",
+    "package": "Attachment",
+    "alias": [
+      "Attachment"
+    ]
+  },
+  {
     "name": "Bold.ts",
     "package": "Bold",
     "alias": [
       "Bold"
-    ]
-  },
-  {
-    "name": "BulletList.ts",
-    "package": "BulletList",
-    "alias": [
-      "BulletList"
-    ]
-  },
-  {
-    "name": "Code.ts",
-    "package": "Code",
-    "alias": [
-      "Code"
     ]
   },
   {
@@ -42,10 +56,10 @@
     ]
   },
   {
-    "name": "CodeBlock.ts",
-    "package": "CodeBlock",
+    "name": "BulletList.ts",
+    "package": "BulletList",
     "alias": [
-      "CodeBlock"
+      "BulletList"
     ]
   },
   {
@@ -56,17 +70,24 @@
     ]
   },
   {
+    "name": "Code.ts",
+    "package": "Code",
+    "alias": [
+      "Code"
+    ]
+  },
+  {
+    "name": "CodeBlock.ts",
+    "package": "CodeBlock",
+    "alias": [
+      "CodeBlock"
+    ]
+  },
+  {
     "name": "CodeView.ts",
     "package": "CodeView",
     "alias": [
       "CodeView"
-    ]
-  },
-  {
-    "name": "Column.ts",
-    "package": "Column",
-    "alias": [
-      "Column"
     ]
   },
   {
@@ -77,10 +98,24 @@
     ]
   },
   {
+    "name": "Column.ts",
+    "package": "Column",
+    "alias": [
+      "Column"
+    ]
+  },
+  {
     "name": "Drawer.ts",
     "package": "Drawer",
     "alias": [
       "Drawer"
+    ]
+  },
+  {
+    "name": "Drawer.ts",
+    "package": "Drawer",
+    "alias": [
+      "types"
     ]
   },
   {
@@ -98,13 +133,6 @@
     ]
   },
   {
-    "name": "ExportWord.ts",
-    "package": "ExportWord",
-    "alias": [
-      "ExportWord"
-    ]
-  },
-  {
     "name": "ExportPdf.ts",
     "package": "ExportPdf",
     "alias": [
@@ -112,10 +140,10 @@
     ]
   },
   {
-    "name": "FontSize.ts",
-    "package": "FontSize",
+    "name": "ExportWord.ts",
+    "package": "ExportWord",
     "alias": [
-      "FontSize"
+      "ExportWord"
     ]
   },
   {
@@ -126,10 +154,10 @@
     ]
   },
   {
-    "name": "Heading.ts",
-    "package": "Heading",
+    "name": "FontSize.ts",
+    "package": "FontSize",
     "alias": [
-      "Heading"
+      "FontSize"
     ]
   },
   {
@@ -140,6 +168,13 @@
     ]
   },
   {
+    "name": "Heading.ts",
+    "package": "Heading",
+    "alias": [
+      "Heading"
+    ]
+  },
+  {
     "name": "Highlight.ts",
     "package": "Highlight",
     "alias": [
@@ -147,17 +182,17 @@
     ]
   },
   {
-    "name": "History.ts",
-    "package": "History",
-    "alias": [
-      "History"
-    ]
-  },
-  {
     "name": "HorizontalRule.ts",
     "package": "HorizontalRule",
     "alias": [
       "HorizontalRule"
+    ]
+  },
+  {
+    "name": "History.ts",
+    "package": "History",
+    "alias": [
+      "History"
     ]
   },
   {
@@ -210,17 +245,17 @@
     ]
   },
   {
-    "name": "LineHeight.ts",
-    "package": "LineHeight",
-    "alias": [
-      "LineHeight"
-    ]
-  },
-  {
     "name": "Katex.ts",
     "package": "Katex",
     "alias": [
       "Katex"
+    ]
+  },
+  {
+    "name": "LineHeight.ts",
+    "package": "LineHeight",
+    "alias": [
+      "LineHeight"
     ]
   },
   {
@@ -245,17 +280,17 @@
     ]
   },
   {
+    "name": "Mermaid.ts",
+    "package": "Mermaid",
+    "alias": [
+      "Mermaid"
+    ]
+  },
+  {
     "name": "MoreMark.ts",
     "package": "MoreMark",
     "alias": [
       "MoreMark"
-    ]
-  },
-  {
-    "name": "SearchAndReplace.ts",
-    "package": "SearchAndReplace",
-    "alias": [
-      "SearchAndReplace"
     ]
   },
   {
@@ -266,10 +301,10 @@
     ]
   },
   {
-    "name": "Mermaid.ts",
-    "package": "Mermaid",
+    "name": "SearchAndReplace.ts",
+    "package": "SearchAndReplace",
     "alias": [
-      "Mermaid"
+      "SearchAndReplace"
     ]
   },
   {
@@ -315,13 +350,6 @@
     ]
   },
   {
-    "name": "TextAlign.ts",
-    "package": "TextAlign",
-    "alias": [
-      "TextAlign"
-    ]
-  },
-  {
     "name": "TaskList.ts",
     "package": "TaskList",
     "alias": [
@@ -329,10 +357,10 @@
     ]
   },
   {
-    "name": "TextDirection.ts",
-    "package": "TextDirection",
+    "name": "TextAlign.ts",
+    "package": "TextAlign",
     "alias": [
-      "TextDirection"
+      "TextAlign"
     ]
   },
   {
@@ -340,6 +368,13 @@
     "package": "TextUnderline",
     "alias": [
       "TextUnderline"
+    ]
+  },
+  {
+    "name": "TextDirection.ts",
+    "package": "TextDirection",
+    "alias": [
+      "TextDirection"
     ]
   },
   {
