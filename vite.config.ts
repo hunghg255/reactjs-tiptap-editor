@@ -1,4 +1,3 @@
-import fs from 'node:fs';
 import * as path from 'node:path';
 
 import react from '@vitejs/plugin-react';
@@ -9,8 +8,39 @@ import tailwind from 'tailwindcss';
 import dts from 'unplugin-dts/vite';
 import { defineConfig } from 'vite';
 
-// https://vitejs.dev/config/
-export default defineConfig(async ({ mode }) => {
+const externalPackages = [
+  'react',
+  'react-dom',
+  'katex',
+  'docx',
+  '@radix-ui/react-dropdown-menu',
+  '@radix-ui/react-icons',
+  '@radix-ui/react-label',
+  '@radix-ui/react-popover',
+  '@radix-ui/react-separator',
+  '@radix-ui/react-slot',
+  '@radix-ui/react-switch',
+  '@radix-ui/react-tabs',
+  '@radix-ui/react-toast',
+  '@radix-ui/react-toggle',
+  '@radix-ui/react-tooltip',
+  '@radix-ui/react-select',
+  '@radix-ui/react-checkbox',
+  'react-colorful',
+  'scroll-into-view-if-needed',
+  'lucide-react',
+  'prosemirror-docx',
+  're-resizable',
+  '@excalidraw/excalidraw',
+  '@radix-ui/react-dialog',
+  'react-image-crop',
+  'mermaid',
+  'easydrawer',
+  'frimousse',
+  'mammoth',
+];
+
+export default defineConfig(({ mode }) => {
   const isDev = mode !== 'production';
 
   const entry = [
@@ -20,46 +50,14 @@ export default defineConfig(async ({ mode }) => {
     path.resolve(__dirname, 'src/theme/theme.ts'),
   ];
 
-  const files = await globbySync('src/extensions/**/*.ts', {
-    ignore: ['src/**/*/index.ts', 'src/**/*.spec.ts'], // Exclude .spec.ts files
-  });
+  const extensionEntries = globbySync('src/extensions/*/*.ts', {
+    cwd: __dirname,
+    ignore: ['**/index.ts', '**/*.spec.ts', '**/*.test.ts'],
+  })
+    .filter((file) => path.basename(file, '.ts') === path.basename(path.dirname(file)))
+    .sort();
 
-  const exports = {};
-  const typeVersions = {};
-
-  files.forEach((v: any) => {
-    const vv = v.replace('src/', '');
-    const [, _name, i] = vv.split('/');
-
-    if (_name) {
-      entry.push(path.resolve(__dirname, `src/extensions/${_name}/${_name}.ts`));
-
-      exports[`./${_name.toLowerCase()}`] = {
-        require: {
-          types: `./lib/extensions/${_name}/index.d.ts`,
-          default: `./lib/${_name}.cjs`,
-        },
-        import: {
-          types: `./lib/extensions/${_name}/index.d.ts`,
-          default: `./lib/${_name}.js`,
-        },
-      };
-      typeVersions[`./${_name.toLowerCase()}`] = [`./lib/extensions/${_name}/index.d.ts`];
-    }
-  });
-
-  // const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
-  // packageJson.exports = {
-  //   ...packageJson.exports,
-  //   ...exports,
-  // }
-  // packageJson.typesVersions = {
-  //   "*": {
-  //     ...packageJson.typesVersions["*"],
-  //     ...typeVersions,
-  //   }
-  // }
-  // fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2))
+  entry.push(...extensionEntries.map((file) => path.resolve(__dirname, file)));
 
   return {
     plugins: [react(), dts()],
@@ -88,12 +86,13 @@ export default defineConfig(async ({ mode }) => {
       },
     },
     build: {
-      cssMinify: 'esbuild',
-      minify: 'esbuild',
+      cssMinify: isDev ? false : 'esbuild',
+      minify: isDev ? false : 'esbuild',
       outDir: 'lib',
       sourcemap: isDev,
       lib: {
         entry,
+        cssFileName: 'style',
         formats: ['es', 'cjs'],
         fileName: (format, entryName) => {
           if (format === 'es') return `${entryName}.js`;
@@ -102,47 +101,10 @@ export default defineConfig(async ({ mode }) => {
         },
       },
       rollupOptions: {
-        output: {
-          assetFileNames: (assetInfo) => {
-            if (assetInfo.name == 'reactjs-tiptap-editor.css') return 'style.css';
-            return assetInfo.name;
-          },
-        },
-        external: [
-          '@tiptap/pm/model',
-          '@tiptap/pm/state',
-          '@tiptap/pm/view',
-          'react',
-          'react-dom',
-          'react/jsx-runtime',
-          'katex',
-          'docx',
-          '@radix-ui/react-dropdown-menu',
-          '@radix-ui/react-icons',
-          '@radix-ui/react-label',
-          '@radix-ui/react-popover',
-          '@radix-ui/react-separator',
-          '@radix-ui/react-slot',
-          '@radix-ui/react-switch',
-          '@radix-ui/react-tabs',
-          '@radix-ui/react-toast',
-          '@radix-ui/react-toggle',
-          '@radix-ui/react-tooltip',
-          '@radix-ui/react-select',
-          '@radix-ui/react-checkbox',
-          'react-colorful',
-          'scroll-into-view-if-needed',
-          'lucide-react',
-          'prosemirror-docx',
-          're-resizable',
-          '@excalidraw/excalidraw',
-          '@radix-ui/react-dialog',
-          'react-image-crop',
-          'mermaid',
-          'easydrawer',
-          'frimousse',
-          'mammoth',
-        ],
+        // Keep Tiptap and React shared with the consuming application.
+        external: (id) =>
+          id.startsWith('@tiptap/') ||
+          externalPackages.some((pkg) => id === pkg || id.startsWith(`${pkg}/`)),
       },
     },
   };
