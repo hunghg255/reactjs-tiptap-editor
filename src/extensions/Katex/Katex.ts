@@ -3,7 +3,10 @@ import { ReactNodeViewRenderer } from '@tiptap/react';
 
 import { KatexNodeView } from '@/extensions/Katex/components/KatexWrapper';
 
+import type { KatexLoader } from './katex-loader';
 import type { ButtonViewParams } from '@/types';
+
+export type { KatexLoader } from './katex-loader';
 
 export * from '@/extensions/Katex/components/RichTextKatex';
 
@@ -14,6 +17,8 @@ export interface IKatexAttrs {
 
 interface IKatexOptions {
   HTMLAttributes: Record<string, unknown>;
+  /** Optional renderer loader, e.g. to register mhchem before rendering. */
+  loadKatex?: KatexLoader;
 }
 
 function getDatasetAttribute(attribute: string) {

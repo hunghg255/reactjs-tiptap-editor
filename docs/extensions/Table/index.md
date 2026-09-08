@@ -23,7 +23,7 @@ import { Paragraph } from '@tiptap/extension-paragraph';
 import { Text } from '@tiptap/extension-text';
 import { RichTextProvider } from 'reactjs-tiptap-editor';
 import { Table, RichTextTable } from 'reactjs-tiptap-editor/table';
-import { RichTextBubbleTable } from 'reactjs-tiptap-editor/bubble';
+import { RichTextBubbleTable } from 'reactjs-tiptap-editor/bubble/table';
 import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [Document, Paragraph, Text, Table];

@@ -1,44 +1,28 @@
 import { NodeViewWrapper } from '@tiptap/react';
-import katexLib from 'katex';
-import { useMemo } from 'react';
 
-import { safeJSONParse } from '@/utils/json';
+import { KatexPreview } from './KatexPreview';
 
 import type { NodeViewProps } from '@tiptap/react';
 
-export function KatexNodeView({ node }: NodeViewProps) {
-  const { text, macros } = node.attrs;
+function decode(value: unknown) {
+  const text = typeof value === 'string' ? value : '';
+  try {
+    return decodeURIComponent(text);
+  } catch {
+    return text;
+  }
+}
 
-  const formatText = useMemo(() => {
-    try {
-      return katexLib.renderToString(decodeURIComponent(text || ''), {
-        macros: safeJSONParse<NonNullable<import('katex').KatexOptions['macros']>>(
-          decodeURIComponent(macros || '')
-        ),
-      });
-    } catch {
-      return text;
-    }
-  }, [text, macros]);
-
-  const content = useMemo(
-    () =>
-      text.trim() ? (
-        <span contentEditable={false} dangerouslySetInnerHTML={{ __html: formatText }}></span>
+export function KatexNodeView({ node, extension }: NodeViewProps) {
+  const text = decode(node.attrs.text);
+  const macros = decode(node.attrs.macros);
+  return (
+    <NodeViewWrapper as='span' style={{ display: 'inline-block' }}>
+      {text.trim() ? (
+        <KatexPreview text={text} macros={macros} loader={extension.options.loadKatex} />
       ) : (
         <span contentEditable={false}>Not enter a formula</span>
-      ),
-    [text, formatText]
-  );
-
-  return (
-    <NodeViewWrapper
-      as='span'
-      style={{
-        display: 'inline-block',
-      }}
-    >
-      {content}
+      )}
     </NodeViewWrapper>
   );
 }

@@ -73,3 +73,8 @@ ImportWord.configure({
 Register the library's `Image` extension to preserve imported images. The ImportWord `upload` handler receives a `File[]` and must resolve to an array of `{ src: string }` objects in the same order. This differs from the Image extension's upload handler, which receives one file and returns one URL string.
 
 Without this handler, converted image sources remain in the HTML. The current upload processing expects base64 image sources from conversion; a custom `convert` implementation returning remote image URLs should handle image storage itself and omit this upload handler.
+
+
+## Loading behavior
+
+The built-in Mammoth converter loads after a valid file is selected. A custom `convert` callback bypasses the built-in converter. The first import may take longer while the conversion code loads.

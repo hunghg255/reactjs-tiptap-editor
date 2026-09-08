@@ -1,5 +1,21 @@
+import { RichTextBubbleImage } from 'reactjs-tiptap-editor/bubble/media';
+import { RichTextBubbleText } from 'reactjs-tiptap-editor/bubble/text';
+import { Katex } from 'reactjs-tiptap-editor/katex';
+import { localeActions, useLocale } from 'reactjs-tiptap-editor/locale';
+import vi from 'reactjs-tiptap-editor/locales/vi';
+
+export const deferredKatex = Katex.configure({
+  loadKatex: async () => (await import('katex')).default,
+});
+
 import '../src/extensions/Mermaid/Mermaid';
 import '../src/extensions/ImageGif/ImageGif';
+
+export function checkLocaleEntryPoints() {
+  localeActions.setMessage('vi', vi);
+  localeActions.setLang('vi');
+  return { useLocale, RichTextBubbleText, RichTextBubbleImage };
+}
 
 import type { ActionButtonProps } from '../src/components/ActionButton';
 import type { IImageOptions, SetImageAttrsOptions } from '../src/extensions/Image/Image';

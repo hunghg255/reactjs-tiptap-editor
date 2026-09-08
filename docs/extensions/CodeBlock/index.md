@@ -23,7 +23,7 @@ import { Paragraph } from '@tiptap/extension-paragraph';
 import { Text } from '@tiptap/extension-text';
 import { RichTextProvider } from 'reactjs-tiptap-editor';
 import { CodeBlock, RichTextCodeBlock } from 'reactjs-tiptap-editor/codeblock';
-import { RichTextBubbleCodeBlock } from 'reactjs-tiptap-editor/bubble';
+import { RichTextBubbleCodeBlock } from 'reactjs-tiptap-editor/bubble/codeblock';
 import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [Document, Paragraph, Text, CodeBlock];

@@ -23,7 +23,7 @@ import { Paragraph } from '@tiptap/extension-paragraph';
 import { Text } from '@tiptap/extension-text';
 import { RichTextProvider } from 'reactjs-tiptap-editor';
 import { Image, RichTextImage } from 'reactjs-tiptap-editor/image';
-import { RichTextBubbleImage } from 'reactjs-tiptap-editor/bubble';
+import { RichTextBubbleImage } from 'reactjs-tiptap-editor/bubble/media';
 import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [Document, Paragraph, Text, Image.configure({ resourceImage: 'link' })];

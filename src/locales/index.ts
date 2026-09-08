@@ -4,23 +4,11 @@ import { createSignal, getSignal, useSetSignal, useSignalValue } from 'reactjs-s
 import { DEFAULT_LANG_VALUE } from '@/constants';
 
 import en from './en';
-import fi from './fi';
-import hu_HU from './hu';
-import ja from './ja';
-import pt_BR from './pt-br';
-import vi from './vi';
-import zh_CN from './zh-cn';
 
 const LANG = {
   currentLang: DEFAULT_LANG_VALUE,
   message: {
     en,
-    hu_HU,
-    vi,
-    zh_CN,
-    pt_BR,
-    fi,
-    ja,
   },
 };
 
@@ -64,7 +52,7 @@ function useLocale() {
     (path: MessageKeysType, params?: Record<string, string | number>): string => {
       try {
         const messageObj = message[currentLang] || {};
-        let template = messageObj[path] || path;
+        let template = messageObj[path] || message.en?.[path] || path;
 
         if (params) {
           Object.entries(params).forEach(([key, value]) => {
@@ -112,4 +100,4 @@ const localeActions = {
 };
 
 export { localeActions, useLocale };
-export { en, hu_HU, vi, zh_CN, pt_BR, fi, ja };
+export { en };

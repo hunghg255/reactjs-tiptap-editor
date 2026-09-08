@@ -195,3 +195,14 @@ Keep the editor in a client component (`'use client'`) and use `immediatelyRende
 ## Add more features
 
 Continue with [Toolbar](/guide/toolbar), [Bubble Menu](/guide/bubble-menu), [Internationalization](/guide/internationalization), and [Custom Theme](/guide/custom-theme). Each extension page includes its setup and usage notes.
+
+
+## Bundle size and loading
+
+Import extensions from their feature subpaths and mount only the controls your editor needs. [Bubble Menu](/guide/bubble-menu#individual-imports) lists individual menu entrypoints. For translations, prefer `/locale` with the dictionaries you use; `/locale-bundle` registers every included language. See [Internationalization](/guide/internationalization).
+
+Word converters, upload dialogs provided by `RichTextProvider`, the Drawer canvas, and the Emoji picker load when used. KaTeX loads when a formula is displayed or its dialog opens; see [Katex](/extensions/Katex/#renderer-loading-and-chemistry) for custom loaders and chemistry support. No extra `React.lazy` wrapper is needed for these built-in loading boundaries.
+
+These boundaries reduce initial JavaScript when your production bundler preserves dynamic imports. They do not remove code needed by enabled features. Keep all emitted chunks available when deploying, and retain the editor and feature CSS imports. The full Emoji dictionary remains part of the Emoji extension, and the drag handle still includes collaboration-related dependencies through Tiptap.
+
+Measure your own production build with the extensions and content you actually use. Initial JavaScript, total emitted JavaScript, and the installed package size are different measurements; a smaller initial load can coexist with an unchanged total size.

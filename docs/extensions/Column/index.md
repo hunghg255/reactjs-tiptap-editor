@@ -28,7 +28,7 @@ import {
   MultipleColumnNode,
   RichTextColumn,
 } from 'reactjs-tiptap-editor/column';
-import { RichTextBubbleColumns } from 'reactjs-tiptap-editor/bubble';
+import { RichTextBubbleColumns } from 'reactjs-tiptap-editor/bubble/columns';
 import 'reactjs-tiptap-editor/style.css';
 
 const DocumentColumn = Document.extend({ content: '(block|columns)+' });

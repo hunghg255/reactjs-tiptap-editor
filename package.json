@@ -32,7 +32,11 @@
     "README.md"
   ],
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css",
+    "./lib/locale-bundle.js",
+    "./lib/locale-bundle.cjs"
+  ],
   "main": "./lib/index.cjs",
   "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -194,6 +198,57 @@
       ],
       "./ai": [
         "./lib/extensions/AI/index.d.ts"
+      ],
+      "locale": [
+        "./lib/locale.d.ts"
+      ],
+      "locales/*": [
+        "./lib/locales/*.d.ts"
+      ],
+      "bubble/text": [
+        "./lib/components/Bubble/RichTextBubbleText.d.ts"
+      ],
+      "bubble/callout": [
+        "./lib/components/Bubble/RichTextBubbleCallout.d.ts"
+      ],
+      "bubble/columns": [
+        "./lib/components/Bubble/RichTextBubbleColumns.d.ts"
+      ],
+      "bubble/drawer": [
+        "./lib/components/Bubble/RichTextBubbleDrawer.d.ts"
+      ],
+      "bubble/excalidraw": [
+        "./lib/components/Bubble/RichTextBubbleExcalidraw.d.ts"
+      ],
+      "bubble/iframe": [
+        "./lib/components/Bubble/RichTextBubbleIframe.d.ts"
+      ],
+      "bubble/katex": [
+        "./lib/components/Bubble/RichTextBubbleKatex.d.ts"
+      ],
+      "bubble/link": [
+        "./lib/components/Bubble/RichTextBubbleLink.d.ts"
+      ],
+      "bubble/media": [
+        "./lib/components/Bubble/RichTextBubbleMedia.d.ts"
+      ],
+      "bubble/mermaid": [
+        "./lib/components/Bubble/RichTextBubbleMermaid.d.ts"
+      ],
+      "bubble/table": [
+        "./lib/components/Bubble/RichTextBubbleTable.d.ts"
+      ],
+      "bubble/twitter": [
+        "./lib/components/Bubble/RichTextBubbleTwitter.d.ts"
+      ],
+      "bubble/drag-handle": [
+        "./lib/components/Bubble/RichTextBubbleMenuDragHandle.d.ts"
+      ],
+      "bubble/codeblock": [
+        "./lib/components/Bubble/RichTextBubbleCodeBlock.d.ts"
+      ],
+      "bubble/ai": [
+        "./lib/components/Bubble/RichTextAIImprove.d.ts"
       ]
     }
   },
@@ -724,6 +779,171 @@
         "types": "./lib/extensions/AI/index.d.ts",
         "default": "./lib/AI.js"
       }
+    },
+    "./locale": {
+      "import": {
+        "types": "./lib/locale.d.ts",
+        "default": "./lib/locale.js"
+      },
+      "require": {
+        "types": "./lib/locale.d.ts",
+        "default": "./lib/locale.cjs"
+      }
+    },
+    "./locales/*": {
+      "types": "./lib/locales/*.d.ts",
+      "import": "./lib/*.js",
+      "require": "./lib/*.cjs"
+    },
+    "./bubble/text": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleText.d.ts",
+        "default": "./lib/RichTextBubbleText.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleText.d.ts",
+        "default": "./lib/RichTextBubbleText.cjs"
+      }
+    },
+    "./bubble/callout": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleCallout.d.ts",
+        "default": "./lib/RichTextBubbleCallout.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleCallout.d.ts",
+        "default": "./lib/RichTextBubbleCallout.cjs"
+      }
+    },
+    "./bubble/columns": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleColumns.d.ts",
+        "default": "./lib/RichTextBubbleColumns.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleColumns.d.ts",
+        "default": "./lib/RichTextBubbleColumns.cjs"
+      }
+    },
+    "./bubble/drawer": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleDrawer.d.ts",
+        "default": "./lib/RichTextBubbleDrawer.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleDrawer.d.ts",
+        "default": "./lib/RichTextBubbleDrawer.cjs"
+      }
+    },
+    "./bubble/excalidraw": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleExcalidraw.d.ts",
+        "default": "./lib/RichTextBubbleExcalidraw.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleExcalidraw.d.ts",
+        "default": "./lib/RichTextBubbleExcalidraw.cjs"
+      }
+    },
+    "./bubble/iframe": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleIframe.d.ts",
+        "default": "./lib/RichTextBubbleIframe.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleIframe.d.ts",
+        "default": "./lib/RichTextBubbleIframe.cjs"
+      }
+    },
+    "./bubble/katex": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleKatex.d.ts",
+        "default": "./lib/RichTextBubbleKatex.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleKatex.d.ts",
+        "default": "./lib/RichTextBubbleKatex.cjs"
+      }
+    },
+    "./bubble/link": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleLink.d.ts",
+        "default": "./lib/RichTextBubbleLink.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleLink.d.ts",
+        "default": "./lib/RichTextBubbleLink.cjs"
+      }
+    },
+    "./bubble/media": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleMedia.d.ts",
+        "default": "./lib/RichTextBubbleMedia.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleMedia.d.ts",
+        "default": "./lib/RichTextBubbleMedia.cjs"
+      }
+    },
+    "./bubble/mermaid": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleMermaid.d.ts",
+        "default": "./lib/RichTextBubbleMermaid.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleMermaid.d.ts",
+        "default": "./lib/RichTextBubbleMermaid.cjs"
+      }
+    },
+    "./bubble/table": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleTable.d.ts",
+        "default": "./lib/RichTextBubbleTable.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleTable.d.ts",
+        "default": "./lib/RichTextBubbleTable.cjs"
+      }
+    },
+    "./bubble/twitter": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleTwitter.d.ts",
+        "default": "./lib/RichTextBubbleTwitter.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleTwitter.d.ts",
+        "default": "./lib/RichTextBubbleTwitter.cjs"
+      }
+    },
+    "./bubble/drag-handle": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleMenuDragHandle.d.ts",
+        "default": "./lib/RichTextBubbleMenuDragHandle.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleMenuDragHandle.d.ts",
+        "default": "./lib/RichTextBubbleMenuDragHandle.cjs"
+      }
+    },
+    "./bubble/codeblock": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextBubbleCodeBlock.d.ts",
+        "default": "./lib/RichTextBubbleCodeBlock.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextBubbleCodeBlock.d.ts",
+        "default": "./lib/RichTextBubbleCodeBlock.cjs"
+      }
+    },
+    "./bubble/ai": {
+      "import": {
+        "types": "./lib/components/Bubble/RichTextAIImprove.d.ts",
+        "default": "./lib/RichTextAIImprove.js"
+      },
+      "require": {
+        "types": "./lib/components/Bubble/RichTextAIImprove.d.ts",
+        "default": "./lib/RichTextAIImprove.cjs"
+      }
     }
   },
   "scripts": {
@@ -745,7 +965,8 @@
     "verify-commit": "verify-commit-msg",
     "release": "bumpp -r",
     "gen-changelog": "esno ./scripts/genExtensions.ts && esno ./scripts/changelog.ts",
-    "gen-contributors": "contributorkit"
+    "gen-contributors": "contributorkit",
+    "measure:bundle": "node scripts/measure-bundle.mjs"
   },
   "dependencies": {
     "@excalidraw/excalidraw": "^0.18.1",

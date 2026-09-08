@@ -94,14 +94,11 @@ import { themeActions, useTheme } from 'reactjs-tiptap-editor/theme';
 import { Twitter, RichTextTwitter } from 'reactjs-tiptap-editor/twitter';
 import { Video, RichTextVideo } from 'reactjs-tiptap-editor/video';
 
-import { EMOJI_LIST } from '@/emojis';
-
 import 'reactjs-tiptap-editor/style.css';
 // const ydoc = new Y.Doc()
 import 'katex/dist/katex.min.css';
 import 'easydrawer/styles.css';
 import '@excalidraw/excalidraw/index.css';
-import 'katex/contrib/mhchem';
 
 // This is only an example, all supported languages are already loaded above
 // but you can also register only specific languages to reduce bundle-size
@@ -207,6 +204,7 @@ const extensions = [
   Emoji.configure({
     suggestion: {
       items: async ({ query }: any) => {
+        const { EMOJI_LIST } = await import('@/emojis');
         const lowerCaseQuery = query?.toLowerCase();
 
         return EMOJI_LIST.filter(({ name }) => name.toLowerCase().includes(lowerCaseQuery));
@@ -272,7 +270,15 @@ const extensions = [
       });
     },
   }),
-  Katex,
+  Katex.configure({
+    loadKatex: async () => {
+      const [{ default: katex }] = await Promise.all([
+        import('katex'),
+        import('katex/contrib/mhchem'),
+      ]);
+      return katex;
+    },
+  }),
   Excalidraw,
   Mermaid.configure({
     upload: (file: any) => {
@@ -363,7 +369,15 @@ function debounce(func: any, wait: number) {
   };
 }
 
-const Header = ({ editor, theme, setTheme }) => {
+const Header = ({
+  editor,
+  theme,
+  setTheme,
+}: {
+  editor: import('@tiptap/core').Editor | null;
+  theme: string;
+  setTheme: (theme: string) => void;
+}) => {
   const [editorEditable, setEditorEditable] = useState(false);
   const currentLocale = useLocale();
   const currentTheme = useTheme();

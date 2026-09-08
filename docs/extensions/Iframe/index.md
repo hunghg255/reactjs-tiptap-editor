@@ -23,7 +23,7 @@ import { Paragraph } from '@tiptap/extension-paragraph';
 import { Text } from '@tiptap/extension-text';
 import { RichTextProvider } from 'reactjs-tiptap-editor';
 import { Iframe, RichTextIframe } from 'reactjs-tiptap-editor/iframe';
-import { RichTextBubbleIframe } from 'reactjs-tiptap-editor/bubble';
+import { RichTextBubbleIframe } from 'reactjs-tiptap-editor/bubble/iframe';
 import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [Document, Paragraph, Text, Iframe];

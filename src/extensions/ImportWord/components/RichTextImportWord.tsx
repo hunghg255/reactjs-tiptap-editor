@@ -1,4 +1,3 @@
-import mammoth from 'mammoth';
 import { useRef, useState } from 'react';
 
 import { ActionButton, useToast } from '@/components';
@@ -11,6 +10,8 @@ import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { base64ToBlob, blobToFile } from '@/utils/base64';
 import { hasExtension } from '@/utils/utils';
+
+import type mammoth from 'mammoth';
 
 export function RichTextImportWord() {
   const editor = useEditorInstance();
@@ -58,7 +59,7 @@ export function RichTextImportWord() {
       });
       return;
     }
-    importWord(file);
+    void importWord(file);
   }
 
   async function filerImage(html: string) {
@@ -109,13 +110,23 @@ export function RichTextImportWord() {
     try {
       if (convert) {
         const result = await convert(importFile);
-        handleResult(result);
+        await handleResult(result);
       } else {
-        const arrayBuffer = await importFile.arrayBuffer();
+        const [{ default: mammoth }, arrayBuffer] = await Promise.all([
+          import('mammoth'),
+          importFile.arrayBuffer(),
+        ]);
         // TODO: add messages
         const { value } = await mammoth.convertToHtml({ arrayBuffer }, mammothOptions);
-        handleResult(value);
+        await handleResult(value);
       }
+    } catch (error) {
+      console.error('Error importing Word:', error);
+      toast({
+        variant: 'destructive',
+        title: t('editor.importWord.tooltip'),
+        description: String(error),
+      });
     } finally {
       setLoading(false);
     }

@@ -1,6 +1,4 @@
 import { Extension } from '@tiptap/core';
-import { Packer, WidthType } from 'docx';
-import { DocxSerializer, defaultMarks, defaultNodes } from 'prosemirror-docx';
 
 import { downloadFromBlob } from '@/utils/download';
 
@@ -14,37 +12,9 @@ declare module '@tiptap/core' {
     };
   }
 }
-interface ExportWordOptions extends GeneralOptions<ExportWordOptions> {}
-
-const nodeSerializer: import('prosemirror-docx').NodeSerializer = {
-  ...defaultNodes,
-  hardBreak: defaultNodes.hard_break,
-  codeBlock: defaultNodes.code_block,
-  orderedList: defaultNodes.ordered_list,
-  listItem: defaultNodes.list_item,
-  bulletList: defaultNodes.bullet_list,
-  horizontalRule: defaultNodes.horizontal_rule,
-  // Requirement Buffer on browser
-  image(state, node) {
-    // No image
-    state.renderInline(node);
-    state.closeBlock(node);
-  },
-  table(state, node) {
-    state.table(node, {
-      tableOptions: {
-        width: {
-          size: 100,
-          type: WidthType.PERCENTAGE,
-        },
-      },
-    });
-  },
-};
+type ExportWordOptions = GeneralOptions<ExportWordOptions>;
 
 export * from './components/RichTextExportWord';
-
-const docxSerializer = /* @__PURE__ */ new DocxSerializer(nodeSerializer, defaultMarks);
 
 export const ExportWord = /* @__PURE__ */ Extension.create<ExportWordOptions>({
   name: 'exportWord',
@@ -68,29 +38,18 @@ export const ExportWord = /* @__PURE__ */ Extension.create<ExportWordOptions>({
   },
   addCommands() {
     return {
-      exportToWord: (docState) => () => {
-        try {
-          const opts: Parameters<DocxSerializer['serialize']>[1] = {
-            getImageBuffer: () => {
-              throw new Error('Image export is disabled by the image serializer.');
-            },
-          };
-
-          const wordDocument = docxSerializer.serialize(
-            // prosemirror-docx bundles an older structurally compatible ProseMirror Node.
-            docState as unknown as Parameters<DocxSerializer['serialize']>[0],
-            opts
-          );
-
-          void Packer.toBlob(wordDocument)
-            .then((blob) => downloadFromBlob(blob, 'richtext-export-document.docx'))
-            .catch((error: unknown) => console.error('Error exporting to Word:', error));
+      exportToWord:
+        (docState) =>
+        ({ dispatch }) => {
+          // Tiptap can() checks must not download files or load the serializer.
+          if (dispatch) {
+            void import('./createWordBlob')
+              .then(({ createWordBlob }) => createWordBlob(docState))
+              .then((blob) => downloadFromBlob(blob, 'richtext-export-document.docx'))
+              .catch((error: unknown) => console.error('Error exporting to Word:', error));
+          }
           return true;
-        } catch (error) {
-          console.error('Error exporting to Word:', error);
-          return false;
-        }
-      },
+        },
     };
   },
 });

@@ -1,0 +1,1074 @@
+{
+  "label": "baseline",
+  "measuredAt": "2026-09-08T00:54:13.360Z",
+  "node": "v24.15.0",
+  "methodology": "Production Vite build; decimal bytes; gzip summed per file; initial JS follows static imports only. Minimal fixtures retain EditorContent/useEditor with and without RichTextProvider; no editor extensions or CSS.",
+  "library": {
+    "js": {
+      "bytes": 778930,
+      "gzip": 222711
+    },
+    "cjs": {
+      "bytes": 570450,
+      "gzip": 195390
+    },
+    "css": {
+      "bytes": 83037,
+      "gzip": 13846
+    }
+  },
+  "playground": {
+    "initialJS": {
+      "bytes": 3770850,
+      "gzip": 1035608
+    },
+    "totalJS": {
+      "bytes": 11116559,
+      "gzip": 3487727
+    },
+    "css": {
+      "bytes": 321115,
+      "gzip": 54090
+    },
+    "initialPackagesBeforeMinification": {
+      "editor library": 788195,
+      "docx": 692769,
+      "katex": 675142,
+      "@tiptap/extension-emoji": 657817,
+      "react-dom": 561471,
+      "easydrawer": 388361,
+      "yjs": 260559,
+      "prosemirror-view": 240896,
+      "@tiptap/core": 214998,
+      "bluebird": 180783,
+      "@xmldom/xmldom": 147440,
+      "dingbat-to-unicode": 139229,
+      "mammoth": 138390,
+      "prosemirror-model": 124918,
+      "jszip": 97775,
+      "lib0": 97605,
+      "xmlbuilder": 92344,
+      "prosemirror-transform": 84041,
+      "prosemirror-tables": 71817,
+      "@tiptap/y-tiptap": 69985,
+      "lucide-react": 64185,
+      "underscore": 62872,
+      "linkifyjs": 59943,
+      "application": 59505,
+      "@radix-ui/react-select": 51502,
+      "bezier-js": 49844,
+      "@tiptap/extension-list": 46640,
+      "@tiptap/react": 46317,
+      "prosemirror-state": 36054,
+      "re-resizable": 35910,
+      "@floating-ui/core": 35830,
+      "@radix-ui/react-menu": 35056,
+      "@tiptap/extension-drag-handle": 32903,
+      "frimousse": 30502,
+      "@floating-ui/dom": 26665,
+      "lop": 26614,
+      "prosemirror-commands": 25224,
+      "@tiptap/extension-table": 24174,
+      "fast-equals": 23291,
+      "@tiptap/suggestion": 20610,
+      "react": 20310,
+      "@tiptap/extensions": 20204,
+      "@tiptap/extension-link": 19487,
+      "@radix-ui/react-tooltip": 18944,
+      "react-image-crop": 18177,
+      "@radix-ui/react-collection": 17688,
+      "prosemirror-history": 17132,
+      "prosemirror-docx": 16110,
+      "react-remove-scroll": 15131,
+      "@tiptap/extension-bubble-menu": 14781,
+      "emoji-regex": 14184,
+      "buffer-image-size": 13999,
+      "@radix-ui/react-dismissable-layer": 13860,
+      "@radix-ui/react-dialog": 11990,
+      "@tiptap/extension-floating-menu": 11641,
+      "scheduler": 11468,
+      "@tiptap/extension-code-block": 11204,
+      "@radix-ui/react-popper": 11079,
+      "@tiptap/extension-node-range": 10898,
+      "@radix-ui/react-dropdown-menu": 10487,
+      "@radix-ui/react-popover": 10128,
+      "@floating-ui/react-dom": 9961,
+      "@radix-ui/react-roving-focus": 9653,
+      "@floating-ui/utils": 9580,
+      "@radix-ui/react-checkbox": 9579,
+      "@tiptap/extension-text-style": 9463,
+      "@radix-ui/react-focus-scope": 8988,
+      "react-colorful": 8809,
+      "prosemirror-gapcursor": 8360,
+      "@tiptap/extension-mention": 7393,
+      "rope-sequence": 7265,
+      "prosemirror-schema-list": 7083,
+      "@tiptap/extension-collaboration": 6455,
+      "@radix-ui/react-presence": 6436,
+      "@radix-ui/react-tabs": 6343,
+      "prosemirror-dropcursor": 6118,
+      "use-sync-external-store": 6088,
+      "@radix-ui/react-slot": 6034,
+      "@tiptap/extension-image": 5506,
+      "aria-hidden": 5359,
+      "prosemirror-keymap": 4784,
+      "react-remove-scroll-bar": 4483,
+      "orderedmap": 4382,
+      "base64-js": 4257,
+      "@radix-ui/react-context": 4220,
+      "@radix-ui/react-use-controllable-state": 3518,
+      "use-callback-ref": 3388,
+      "@tiptap/extension-blockquote": 3060,
+      "compute-scroll-into-view": 2973,
+      "use-sidecar": 2908,
+      "@tiptap/extension-highlight": 2829,
+      "w3c-keyname": 2679,
+      "react-style-singleton": 2335,
+      "@tiptap/extension-bold": 2334,
+      "is-emoji-supported": 2327,
+      "@tiptap/extension-horizontal-rule": 2307,
+      "@tiptap/extension-heading": 2239,
+      "@tiptap/extension-italic": 2199,
+      "tslib": 2195,
+      "@tiptap/extension-paragraph": 2137,
+      "@tiptap/extension-text-align": 2112,
+      "@tiptap/extension-drag-handle-react": 2048,
+      "option": 2014,
+      "@tiptap/extension-code": 1998,
+      "@radix-ui/primitive": 1862,
+      "@tiptap/extension-hard-break": 1805,
+      "@tiptap/extension-underline": 1779,
+      "@tiptap/extension-strike": 1633,
+      "@radix-ui/react-focus-guards": 1343,
+      "@radix-ui/react-use-size": 1265,
+      "@radix-ui/react-separator": 1132,
+      "@radix-ui/react-compose-refs": 1107,
+      "@radix-ui/react-primitive": 1051,
+      "@radix-ui/react-toggle": 1051,
+      "@tiptap/extension-superscript": 998,
+      "@tiptap/extension-subscript": 982,
+      "@radix-ui/react-use-is-hydrated": 935,
+      "@radix-ui/react-use-effect-event": 886,
+      "@radix-ui/react-visually-hidden": 849,
+      "scroll-into-view-if-needed": 847,
+      "@radix-ui/react-label": 708,
+      "@radix-ui/react-portal": 695,
+      "@radix-ui/react-id": 529,
+      "@radix-ui/react-use-previous": 479,
+      "@radix-ui/react-use-callback-ref": 436,
+      "@radix-ui/react-direction": 373,
+      "@radix-ui/number": 266,
+      "@tiptap/extension-document": 243,
+      "@tiptap/extension-text": 229,
+      "get-nonce": 145,
+      "@radix-ui/react-use-layout-effect": 116,
+      "@excalidraw/excalidraw": 0
+    },
+    "chunks": [
+      {
+        "file": "assets/index-CFxzZ8wC.js",
+        "initial": true,
+        "bytes": 3770850,
+        "gzip": 1035608
+      },
+      {
+        "file": "assets/c4Diagram-5PPSVZJV-BRlPRvXA.js",
+        "initial": false,
+        "bytes": 69970,
+        "gzip": 19648
+      },
+      {
+        "file": "assets/swimlanesDiagram-ULZ7WXOC-CaIVZN3N.js",
+        "initial": false,
+        "bytes": 548,
+        "gzip": 369
+      },
+      {
+        "file": "assets/erDiagram-JOGREHBK-phLhehnx.js",
+        "initial": false,
+        "bytes": 27215,
+        "gzip": 9451
+      },
+      {
+        "file": "assets/gitGraphDiagram-DS77QQ5N-D9c5Zy8r.js",
+        "initial": false,
+        "bytes": 29935,
+        "gzip": 8873
+      },
+      {
+        "file": "assets/infoDiagram-6WML65LV-BDbbC7mc.js",
+        "initial": false,
+        "bytes": 587,
+        "gzip": 401
+      },
+      {
+        "file": "assets/quadrantDiagram-CIZ2JOQS-BY0Hin9r.js",
+        "initial": false,
+        "bytes": 34493,
+        "gzip": 10126
+      },
+      {
+        "file": "assets/requirementDiagram-LRYGKXZP-CVWAdse9.js",
+        "initial": false,
+        "bytes": 31208,
+        "gzip": 9819
+      },
+      {
+        "file": "assets/sequenceDiagram-SI44F4Z6-B1UmHe_Z.js",
+        "initial": false,
+        "bytes": 117446,
+        "gzip": 31272
+      },
+      {
+        "file": "assets/classDiagram-JCYQIIEL-BQCJp33s.js",
+        "initial": false,
+        "bytes": 467,
+        "gzip": 319
+      },
+      {
+        "file": "assets/classDiagram-v2-OCEON4UE-BQCJp33s.js",
+        "initial": false,
+        "bytes": 467,
+        "gzip": 319
+      },
+      {
+        "file": "assets/chunk-GF5L2VYU-Z6dq-Kfk.js",
+        "initial": false,
+        "bytes": 49300,
+        "gzip": 15776
+      },
+      {
+        "file": "assets/stateDiagram-OKZ733FA-DUOCW22Z.js",
+        "initial": false,
+        "bytes": 10420,
+        "gzip": 3650
+      },
+      {
+        "file": "assets/stateDiagram-v2-UEYNNEHI-C25rbZSZ.js",
+        "initial": false,
+        "bytes": 428,
+        "gzip": 302
+      },
+      {
+        "file": "assets/chunk-5RXB4S5H-CdBdQ9dd.js",
+        "initial": false,
+        "bytes": 38623,
+        "gzip": 12684
+      },
+      {
+        "file": "assets/journeyDiagram-NVQOT4AX-m6Da1FP6.js",
+        "initial": false,
+        "bytes": 23570,
+        "gzip": 8347
+      },
+      {
+        "file": "assets/chunk-2GRJ4B5K-BV9ZWwXE.js",
+        "initial": false,
+        "bytes": 1883,
+        "gzip": 828
+      },
+      {
+        "file": "assets/timeline-definition-Z64GVDOM-DuMNxJKT.js",
+        "initial": false,
+        "bytes": 31344,
+        "gzip": 10420
+      },
+      {
+        "file": "assets/arc-CHTE_uXC.js",
+        "initial": false,
+        "bytes": 3439,
+        "gzip": 1484
+      },
+      {
+        "file": "assets/chunk-XXDRQBXY-Bae6kbQK.js",
+        "initial": false,
+        "bytes": 235,
+        "gzip": 206
+      },
+      {
+        "file": "assets/kanban-definition-27J2QSJJ-DFfdf1PZ.js",
+        "initial": false,
+        "bytes": 20697,
+        "gzip": 7291
+      },
+      {
+        "file": "assets/diagram-LBJQPF4R-xRU7ymE8.js",
+        "initial": false,
+        "bytes": 4244,
+        "gzip": 1855
+      },
+      {
+        "file": "assets/diagram-UB23O5K3-J1RL9uM_.js",
+        "initial": false,
+        "bytes": 6227,
+        "gzip": 2679
+      },
+      {
+        "file": "assets/channel-BRHzUbue.js",
+        "initial": false,
+        "bytes": 115,
+        "gzip": 127
+      },
+      {
+        "file": "assets/chunk-5VM5RSS4-DLCMrKIE.js",
+        "initial": false,
+        "bytes": 366,
+        "gzip": 268
+      },
+      {
+        "file": "assets/diagram-7IWD3JNH-BrwLulmo.js",
+        "initial": false,
+        "bytes": 8474,
+        "gzip": 3763
+      },
+      {
+        "file": "assets/chunk-2Q5K7J3B-D5Y3e7Ud.js",
+        "initial": false,
+        "bytes": 193,
+        "gzip": 159
+      },
+      {
+        "file": "assets/diagram-B4RE2ZJO-CRpVY7jP.js",
+        "initial": false,
+        "bytes": 10818,
+        "gzip": 4167
+      },
+      {
+        "file": "assets/ishikawaDiagram-WSZJBQD7-D6IRXSka.js",
+        "initial": false,
+        "bytes": 17566,
+        "gzip": 6676
+      },
+      {
+        "file": "assets/chunk-KBJHAD2P-pHFYlwGw.js",
+        "initial": false,
+        "bytes": 532,
+        "gzip": 372
+      },
+      {
+        "file": "assets/chunk-JWPE2WC7-DMI1a_jY.js",
+        "initial": false,
+        "bytes": 297,
+        "gzip": 203
+      },
+      {
+        "file": "assets/init-Gi6I4Gst.js",
+        "initial": false,
+        "bytes": 147,
+        "gzip": 129
+      },
+      {
+        "file": "assets/cytoscape.esm-DTSO7Bv0.js",
+        "initial": false,
+        "bytes": 443722,
+        "gzip": 142364
+      },
+      {
+        "file": "assets/wardleyDiagram-T6FBY63Y-Dd8Fx2J9.js",
+        "initial": false,
+        "bytes": 26096,
+        "gzip": 6937
+      },
+      {
+        "file": "assets/cynefinDiagram-MW4NZA55-Bb-Nu21S.js",
+        "initial": false,
+        "bytes": 10097,
+        "gzip": 3630
+      },
+      {
+        "file": "assets/railroadDiagram-AXF67PYL-CXTGcizW.js",
+        "initial": false,
+        "bytes": 1606,
+        "gzip": 758
+      },
+      {
+        "file": "assets/chunk-6Q2QTUOP-ygWHBvKU.js",
+        "initial": false,
+        "bytes": 15755,
+        "gzip": 4423
+      },
+      {
+        "file": "assets/ebnfDiagram-BXEA7PRR-BHuow5_q.js",
+        "initial": false,
+        "bytes": 2005,
+        "gzip": 879
+      },
+      {
+        "file": "assets/abnfDiagram-N423BO3Z-tBUnSwl2.js",
+        "initial": false,
+        "bytes": 1809,
+        "gzip": 893
+      },
+      {
+        "file": "assets/pegDiagram-VL7TDLO6-CsRmY6Ki.js",
+        "initial": false,
+        "bytes": 1956,
+        "gzip": 924
+      },
+      {
+        "file": "assets/dagre-VZM6K2ZE-BizSM6r7.js",
+        "initial": false,
+        "bytes": 8903,
+        "gzip": 3399
+      },
+      {
+        "file": "assets/swimlanes-SLNWSIFB-BfBOofFH.js",
+        "initial": false,
+        "bytes": 120246,
+        "gzip": 43985
+      },
+      {
+        "file": "assets/ar-SA-G6X2FPQ2-DONwOIdT.js",
+        "initial": false,
+        "bytes": 25707,
+        "gzip": 9138
+      },
+      {
+        "file": "assets/az-AZ-76LH7QW2--B4A67q2.js",
+        "initial": false,
+        "bytes": 8646,
+        "gzip": 3586
+      },
+      {
+        "file": "assets/bg-BG-XCXSNQG7-CAAVz-f6.js",
+        "initial": false,
+        "bytes": 20803,
+        "gzip": 7389
+      },
+      {
+        "file": "assets/bn-BD-2XOGV67Q-DbxWGPpR.js",
+        "initial": false,
+        "bytes": 23639,
+        "gzip": 6710
+      },
+      {
+        "file": "assets/ca-ES-6MX7JW3Y-nKNImlqQ.js",
+        "initial": false,
+        "bytes": 19828,
+        "gzip": 7896
+      },
+      {
+        "file": "assets/cs-CZ-2BRQDIVT-CZ0UNxIs.js",
+        "initial": false,
+        "bytes": 19564,
+        "gzip": 8392
+      },
+      {
+        "file": "assets/da-DK-5WZEPLOC-CHS1W8Pc.js",
+        "initial": false,
+        "bytes": 14449,
+        "gzip": 6060
+      },
+      {
+        "file": "assets/de-DE-XR44H4JA-CJJ8Y4PW.js",
+        "initial": false,
+        "bytes": 23379,
+        "gzip": 8976
+      },
+      {
+        "file": "assets/el-GR-BZB4AONW-CQ3sZSoE.js",
+        "initial": false,
+        "bytes": 29710,
+        "gzip": 9623
+      },
+      {
+        "file": "assets/es-ES-U4NZUMDT-DQLGo4Lh.js",
+        "initial": false,
+        "bytes": 21391,
+        "gzip": 8468
+      },
+      {
+        "file": "assets/eu-ES-A7QVB2H4-CnxvTuLW.js",
+        "initial": false,
+        "bytes": 21240,
+        "gzip": 8218
+      },
+      {
+        "file": "assets/fa-IR-HGAKTJCU-CYH4vtNw.js",
+        "initial": false,
+        "bytes": 24281,
+        "gzip": 8468
+      },
+      {
+        "file": "assets/fi-FI-Z5N7JZ37-CGYMkJPL.js",
+        "initial": false,
+        "bytes": 18444,
+        "gzip": 7524
+      },
+      {
+        "file": "assets/fr-FR-RHASNOE6-DOWOQsyE.js",
+        "initial": false,
+        "bytes": 23480,
+        "gzip": 8882
+      },
+      {
+        "file": "assets/gl-ES-HMX3MZ6V-DavBcSI2.js",
+        "initial": false,
+        "bytes": 19425,
+        "gzip": 7746
+      },
+      {
+        "file": "assets/he-IL-6SHJWFNN-16Ftu4o0.js",
+        "initial": false,
+        "bytes": 20362,
+        "gzip": 7574
+      },
+      {
+        "file": "assets/hi-IN-IWLTKZ5I-D5hwXFWH.js",
+        "initial": false,
+        "bytes": 32391,
+        "gzip": 9170
+      },
+      {
+        "file": "assets/hu-HU-A5ZG7DT2-DO7PIqLF.js",
+        "initial": false,
+        "bytes": 18123,
+        "gzip": 7587
+      },
+      {
+        "file": "assets/id-ID-SAP4L64H-3M-D1UOJ.js",
+        "initial": false,
+        "bytes": 19718,
+        "gzip": 7688
+      },
+      {
+        "file": "assets/it-IT-JPQ66NNP-BLMkQaC9.js",
+        "initial": false,
+        "bytes": 22099,
+        "gzip": 8576
+      },
+      {
+        "file": "assets/ja-JP-DBVTYXUO-upN3JpZC.js",
+        "initial": false,
+        "bytes": 23443,
+        "gzip": 8826
+      },
+      {
+        "file": "assets/kaa-6HZHGXH3-C20yRMG6.js",
+        "initial": false,
+        "bytes": 10205,
+        "gzip": 4181
+      },
+      {
+        "file": "assets/kab-KAB-ZGHBKWFO-CEykohR4.js",
+        "initial": false,
+        "bytes": 18822,
+        "gzip": 7526
+      },
+      {
+        "file": "assets/kk-KZ-P5N5QNE5-CqQWc9fj.js",
+        "initial": false,
+        "bytes": 10162,
+        "gzip": 4201
+      },
+      {
+        "file": "assets/km-KH-HSX4SM5Z-D6S3HfYY.js",
+        "initial": false,
+        "bytes": 36685,
+        "gzip": 9315
+      },
+      {
+        "file": "assets/ko-KR-MTYHY66A-DAZBKHlU.js",
+        "initial": false,
+        "bytes": 23922,
+        "gzip": 9182
+      },
+      {
+        "file": "assets/ku-TR-6OUDTVRD-BJLf88IJ.js",
+        "initial": false,
+        "bytes": 29364,
+        "gzip": 9283
+      },
+      {
+        "file": "assets/lt-LT-XHIRWOB4-SjX1hKoc.js",
+        "initial": false,
+        "bytes": 12542,
+        "gzip": 5361
+      },
+      {
+        "file": "assets/lv-LV-5QDEKY6T-DO8bQeH5.js",
+        "initial": false,
+        "bytes": 19177,
+        "gzip": 7783
+      },
+      {
+        "file": "assets/mr-IN-CRQNXWMA-pGsMelYe.js",
+        "initial": false,
+        "bytes": 42285,
+        "gzip": 10710
+      },
+      {
+        "file": "assets/my-MM-5M5IBNSE-BPOGJ-Oq.js",
+        "initial": false,
+        "bytes": 17613,
+        "gzip": 5326
+      },
+      {
+        "file": "assets/nb-NO-T6EIAALU-BHrBMlih.js",
+        "initial": false,
+        "bytes": 20143,
+        "gzip": 8212
+      },
+      {
+        "file": "assets/nl-NL-IS3SIHDZ-BqsMQewR.js",
+        "initial": false,
+        "bytes": 16766,
+        "gzip": 6919
+      },
+      {
+        "file": "assets/nn-NO-6E72VCQL-Dy3ZvWch.js",
+        "initial": false,
+        "bytes": 15992,
+        "gzip": 6710
+      },
+      {
+        "file": "assets/oc-FR-POXYY2M6-CuWL9SGA.js",
+        "initial": false,
+        "bytes": 19878,
+        "gzip": 7819
+      },
+      {
+        "file": "assets/pa-IN-N4M65BXN-BcjyzaXa.js",
+        "initial": false,
+        "bytes": 28015,
+        "gzip": 7992
+      },
+      {
+        "file": "assets/pl-PL-T2D74RX3-FJboXle1.js",
+        "initial": false,
+        "bytes": 22515,
+        "gzip": 9218
+      },
+      {
+        "file": "assets/pt-BR-5N22H2LF-DMb0r5FG.js",
+        "initial": false,
+        "bytes": 21078,
+        "gzip": 8202
+      },
+      {
+        "file": "assets/pt-PT-UZXXM6DQ-4SArbQ9u.js",
+        "initial": false,
+        "bytes": 19690,
+        "gzip": 7783
+      },
+      {
+        "file": "assets/ro-RO-JPDTUUEW-C7EOYEOC.js",
+        "initial": false,
+        "bytes": 23185,
+        "gzip": 8933
+      },
+      {
+        "file": "assets/ru-RU-B4JR7IUQ-PfJIegjG.js",
+        "initial": false,
+        "bytes": 30783,
+        "gzip": 9909
+      },
+      {
+        "file": "assets/si-LK-N5RQ5JYF-d7t7xeR6.js",
+        "initial": false,
+        "bytes": 8620,
+        "gzip": 3366
+      },
+      {
+        "file": "assets/sk-SK-C5VTKIMK-BTKsNV0d.js",
+        "initial": false,
+        "bytes": 22353,
+        "gzip": 9092
+      },
+      {
+        "file": "assets/sl-SI-NN7IZMDC-DWHvbofu.js",
+        "initial": false,
+        "bytes": 21402,
+        "gzip": 8558
+      },
+      {
+        "file": "assets/sv-SE-XGPEYMSR-Dy-1zOat.js",
+        "initial": false,
+        "bytes": 21554,
+        "gzip": 8554
+      },
+      {
+        "file": "assets/ta-IN-2NMHFXQM-CR8I-tlV.js",
+        "initial": false,
+        "bytes": 35305,
+        "gzip": 8576
+      },
+      {
+        "file": "assets/th-TH-HPSO5L25-BMyFObjc.js",
+        "initial": false,
+        "bytes": 15559,
+        "gzip": 5196
+      },
+      {
+        "file": "assets/tr-TR-DEFEU3FU-ymjX_svb.js",
+        "initial": false,
+        "bytes": 19545,
+        "gzip": 7966
+      },
+      {
+        "file": "assets/uk-UA-QMV73CPH-B3I5ubWL.js",
+        "initial": false,
+        "bytes": 31682,
+        "gzip": 10134
+      },
+      {
+        "file": "assets/vi-VN-M7AON7JQ-CTvF5hsV.js",
+        "initial": false,
+        "bytes": 13898,
+        "gzip": 5789
+      },
+      {
+        "file": "assets/zh-CN-LNUGB5OW-B8X5GzFY.js",
+        "initial": false,
+        "bytes": 19093,
+        "gzip": 8893
+      },
+      {
+        "file": "assets/zh-HK-E62DVLB3-CwTWQah5.js",
+        "initial": false,
+        "bytes": 9120,
+        "gzip": 4092
+      },
+      {
+        "file": "assets/zh-TW-RAJ6MFWO-BceuPXLQ.js",
+        "initial": false,
+        "bytes": 19029,
+        "gzip": 8871
+      },
+      {
+        "file": "assets/roundRect-0PYZxl1G.js",
+        "initial": false,
+        "bytes": 3050,
+        "gzip": 1083
+      },
+      {
+        "file": "assets/subset-worker.chunk-BCoWwHou.js",
+        "initial": false,
+        "bytes": 425,
+        "gzip": 318
+      },
+      {
+        "file": "assets/image-blob-reduce.esm-D6s-rqMO.js",
+        "initial": false,
+        "bytes": 45933,
+        "gzip": 16776
+      },
+      {
+        "file": "assets/file-open-002ab408-DIuFHtCF.js",
+        "initial": false,
+        "bytes": 539,
+        "gzip": 333
+      },
+      {
+        "file": "assets/file-open-7c801643-684qeFg4.js",
+        "initial": false,
+        "bytes": 452,
+        "gzip": 317
+      },
+      {
+        "file": "assets/directory-open-4ed118d0-CunoC1EB.js",
+        "initial": false,
+        "bytes": 1553,
+        "gzip": 790
+      },
+      {
+        "file": "assets/directory-open-01563666-DWU9wJ6I.js",
+        "initial": false,
+        "bytes": 588,
+        "gzip": 364
+      },
+      {
+        "file": "assets/file-save-745eba88-Bb9F9Kg7.js",
+        "initial": false,
+        "bytes": 867,
+        "gzip": 500
+      },
+      {
+        "file": "assets/file-save-3189631c-C1wFhQhH.js",
+        "initial": false,
+        "bytes": 710,
+        "gzip": 463
+      },
+      {
+        "file": "assets/sizeCapture-X5ZJPWSS-DpD4FarU.js",
+        "initial": false,
+        "bytes": 998,
+        "gzip": 558
+      },
+      {
+        "file": "assets/ordinal-Cboi1Yqb.js",
+        "initial": false,
+        "bytes": 1189,
+        "gzip": 573
+      },
+      {
+        "file": "assets/xychartDiagram-ELKLHX3M-WSdCz_id.js",
+        "initial": false,
+        "bytes": 41943,
+        "gzip": 12043
+      },
+      {
+        "file": "assets/blockDiagram-VBNYF7ZC-CyPfE80T.js",
+        "initial": false,
+        "bytes": 74944,
+        "gzip": 21557
+      },
+      {
+        "file": "assets/vennDiagram-T6HMQDX7-DMYohblC.js",
+        "initial": false,
+        "bytes": 42369,
+        "gzip": 15797
+      },
+      {
+        "file": "assets/chunk-RYQCIY6F-DOvGz5wJ.js",
+        "initial": false,
+        "bytes": 7181,
+        "gzip": 2773
+      },
+      {
+        "file": "assets/pica-Dc-wyHcv.js",
+        "initial": false,
+        "bytes": 32419,
+        "gzip": 12868
+      },
+      {
+        "file": "assets/pieDiagram-7S7Q4E2Y-CjPotmxQ.js",
+        "initial": false,
+        "bytes": 6353,
+        "gzip": 2652
+      },
+      {
+        "file": "assets/mindmap-definition-FAOFIHXS-5et6SCbh.js",
+        "initial": false,
+        "bytes": 23634,
+        "gzip": 8000
+      },
+      {
+        "file": "assets/architectureDiagram-T3A2C74G-C1HwsGYa.js",
+        "initial": false,
+        "bytes": 152018,
+        "gzip": 43221
+      },
+      {
+        "file": "assets/cose-bilkent-JH36ORCC-7h0C5Jmx.js",
+        "initial": false,
+        "bytes": 81717,
+        "gzip": 22477
+      },
+      {
+        "file": "assets/defaultLocale-DX6XiGOO.js",
+        "initial": false,
+        "bytes": 4688,
+        "gzip": 2182
+      },
+      {
+        "file": "assets/sankeyDiagram-W5VNT64P-HKdT7xuZ.js",
+        "initial": false,
+        "bytes": 23390,
+        "gzip": 8578
+      },
+      {
+        "file": "assets/linear-CchKY635.js",
+        "initial": false,
+        "bytes": 5661,
+        "gzip": 2309
+      },
+      {
+        "file": "assets/diagram-Q27KOJAE-Cv6-oNmx.js",
+        "initial": false,
+        "bytes": 16071,
+        "gzip": 5730
+      },
+      {
+        "file": "assets/index-B9iIVKt3.js",
+        "initial": false,
+        "bytes": 31253,
+        "gzip": 10898
+      },
+      {
+        "file": "assets/map-Czzmt4hB.js",
+        "initial": false,
+        "bytes": 5070,
+        "gzip": 2072
+      },
+      {
+        "file": "assets/ganttDiagram-PKOTCBZU-BRQCU-s5.js",
+        "initial": false,
+        "bytes": 69717,
+        "gzip": 23565
+      },
+      {
+        "file": "assets/layout-DEXfKzaS.js",
+        "initial": false,
+        "bytes": 30997,
+        "gzip": 11186
+      },
+      {
+        "file": "assets/graph-C9eacEi8.js",
+        "initial": false,
+        "bytes": 23950,
+        "gzip": 8323
+      },
+      {
+        "file": "assets/mermaid.core-lVdc4rl0.js",
+        "initial": false,
+        "bytes": 629064,
+        "gzip": 150029
+      },
+      {
+        "file": "assets/flowDiagram-UKHOOZJN-CCs3jMMQ.js",
+        "initial": false,
+        "bytes": 61401,
+        "gzip": 19667
+      },
+      {
+        "file": "assets/subset-shared.chunk-B8xZXn2O.js",
+        "initial": false,
+        "bytes": 1823543,
+        "gzip": 736869
+      },
+      {
+        "file": "assets/percentages-BXMCSKIN-DYfTtTBq.js",
+        "initial": false,
+        "bytes": 1111639,
+        "gzip": 361815
+      },
+      {
+        "file": "assets/cynefin-VYW2F7L2-CfVQibkd.js",
+        "initial": false,
+        "bytes": 690830,
+        "gzip": 155109
+      }
+    ]
+  },
+  "minimal": {
+    "tiptapOnly": {
+      "initialJS": {
+        "bytes": 303929,
+        "gzip": 94480
+      },
+      "totalJS": {
+        "bytes": 303929,
+        "gzip": 94480
+      },
+      "css": {
+        "bytes": 0,
+        "gzip": 0
+      },
+      "initialPackagesBeforeMinification": {
+        "prosemirror-view": 240818,
+        "@tiptap/core": 173047,
+        "prosemirror-model": 124815,
+        "prosemirror-transform": 84033,
+        "prosemirror-state": 36023,
+        "prosemirror-commands": 25224,
+        "fast-equals": 23253,
+        "react": 20312,
+        "@tiptap/react": 17491,
+        "react-dom": 7906,
+        "prosemirror-schema-list": 7083,
+        "use-sync-external-store": 5991,
+        "prosemirror-keymap": 4784,
+        "orderedmap": 4382,
+        "w3c-keyname": 2629,
+        "application": 190
+      },
+      "chunks": [
+        {
+          "file": "assets/_virtual_bundle-audit-DP7nY1EZ.js",
+          "initial": true,
+          "bytes": 303929,
+          "gzip": 94480
+        }
+      ]
+    },
+    "withProvider": {
+      "initialJS": {
+        "bytes": 681158,
+        "gzip": 205998
+      },
+      "totalJS": {
+        "bytes": 681158,
+        "gzip": 205998
+      },
+      "css": {
+        "bytes": 0,
+        "gzip": 0
+      },
+      "initialPackagesBeforeMinification": {
+        "prosemirror-view": 240838,
+        "editor library": 227081,
+        "@tiptap/core": 203611,
+        "prosemirror-model": 124841,
+        "prosemirror-transform": 84033,
+        "lucide-react": 53268,
+        "@radix-ui/react-select": 47741,
+        "prosemirror-state": 36025,
+        "@tiptap/react": 32283,
+        "@radix-ui/react-menu": 31626,
+        "@floating-ui/core": 27062,
+        "@floating-ui/dom": 26088,
+        "prosemirror-commands": 25224,
+        "fast-equals": 23255,
+        "react": 20309,
+        "@radix-ui/react-tooltip": 18908,
+        "react-image-crop": 18117,
+        "@radix-ui/react-collection": 17688,
+        "react-remove-scroll": 15115,
+        "@radix-ui/react-dismissable-layer": 13860,
+        "@radix-ui/react-dialog": 11986,
+        "@radix-ui/react-popper": 11081,
+        "@floating-ui/react-dom": 9953,
+        "@radix-ui/react-roving-focus": 9651,
+        "@radix-ui/react-checkbox": 9537,
+        "@floating-ui/utils": 9382,
+        "@radix-ui/react-focus-scope": 8988,
+        "react-dom": 7906,
+        "@radix-ui/react-dropdown-menu": 7181,
+        "prosemirror-schema-list": 7083,
+        "@radix-ui/react-presence": 6436,
+        "@radix-ui/react-tabs": 6339,
+        "@radix-ui/react-slot": 6028,
+        "use-sync-external-store": 5991,
+        "@tiptap/extension-image": 5496,
+        "aria-hidden": 5359,
+        "prosemirror-keymap": 4784,
+        "react-remove-scroll-bar": 4479,
+        "orderedmap": 4382,
+        "@radix-ui/react-context": 4220,
+        "@radix-ui/react-use-controllable-state": 3512,
+        "use-callback-ref": 3384,
+        "use-sidecar": 2904,
+        "w3c-keyname": 2679,
+        "react-style-singleton": 2335,
+        "tslib": 2189,
+        "@radix-ui/primitive": 1862,
+        "@radix-ui/react-focus-guards": 1343,
+        "@radix-ui/react-use-size": 1265,
+        "@radix-ui/react-compose-refs": 1107,
+        "@radix-ui/react-primitive": 1051,
+        "@radix-ui/react-toggle": 1051,
+        "@radix-ui/react-use-is-hydrated": 929,
+        "@radix-ui/react-use-effect-event": 874,
+        "@radix-ui/react-visually-hidden": 849,
+        "@radix-ui/react-label": 706,
+        "@radix-ui/react-portal": 695,
+        "@radix-ui/react-id": 523,
+        "@radix-ui/react-use-callback-ref": 436,
+        "@radix-ui/react-direction": 373,
+        "@radix-ui/number": 262,
+        "application": 211,
+        "get-nonce": 145,
+        "@radix-ui/react-use-layout-effect": 116
+      },
+      "chunks": [
+        {
+          "file": "assets/_virtual_bundle-audit-Z6ZKfrNR.js",
+          "initial": true,
+          "bytes": 681158,
+          "gzip": 205998
+        }
+      ]
+    }
+  }
+}

@@ -108,7 +108,7 @@ They run immediately on the selected text and show a preview before Apply.
 **Ask AI** opens an empty prompt for custom instructions.
 
 For a custom `buttonBubble`, import `RichTextAIImprove` from
-`reactjs-tiptap-editor/bubble` and place it inside your toolbar.
+`reactjs-tiptap-editor/bubble/ai` and place it inside your toolbar.
 You can also run a preset programmatically with
 `editor.commands.openAI('Make the selected text more concise.')`.
 Calling `openAI()` without a prompt retains the manual input flow.

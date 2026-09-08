@@ -25,6 +25,8 @@
 
 [Documentation](https://reactjs-tiptap-editor.vercel.app/)
 
+For the current source API, see [Getting Started](./docs/guide/getting-started.md), [individual bubble imports](./docs/guide/bubble-menu.md), and [selective locale loading](./docs/guide/internationalization.md). Bundle measurements and before/after comparisons are in the [optimization report](./reports/bundle-size/REPORT-ROUND2.md).
+
 ## Deep wiki
 
 [Deep Wiki](https://deepwiki.com/hunghg255/reactjs-tiptap-editor)

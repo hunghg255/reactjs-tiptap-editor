@@ -12,7 +12,6 @@ import {
   TabsTrigger,
   useToast,
 } from '@/components';
-import { useListener } from '@/components/ReactBus';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { ImageCropper } from '@/extensions/Image/components/ImageCropper';
 import { DEFAULT_OPTIONS, Image } from '@/extensions/Image/Image';
@@ -21,10 +20,11 @@ import { useToggleActive } from '@/hooks/useActive';
 import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
-import { EVENTS } from '@/utils/customEvents/events.constant';
 import { validateFiles } from '@/utils/validateFile';
 
-export function RenderDialogUploadImage() {
+import type { UploadDialogProps } from './SlashDialogTrigger';
+
+export function RenderDialogUploadImage({ open, onOpenChange: setOpen }: UploadDialogProps) {
   const { t } = useLocale();
   const { toast } = useToast();
 
@@ -38,12 +38,7 @@ export function RenderDialogUploadImage() {
 
   const { editorDisabled } = useToggleActive();
 
-  const [open, setOpen] = useState(false);
   const [isCropDialogOpen, setIsCropDialogOpen] = useState(false);
-
-  const EVENT_ID = EVENTS.UPLOAD_IMAGE(editor.id);
-
-  useListener(setOpen, [EVENT_ID]);
 
   const [isUploading, setIsUploading] = useState(false);
   const extension = useExtension(Image.name);

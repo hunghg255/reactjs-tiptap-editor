@@ -48,3 +48,8 @@ export default function ExportWordExample() {
 ## How to use
 
 Click the toolbar button or call `editor.commands.exportToWord(editor.state.doc)`. The download uses `richtext-export-document.docx`. The current serializer excludes images and does not define mappings for every custom node or mark; test your document’s feature set before relying on Word export.
+
+
+## Loading behavior
+
+The Word serializer loads when export is requested. `exportToWord` returns a Tiptap command boolean immediately; it does not return a promise indicating that the download has finished. Serialization and download happen asynchronously, and failures are logged to the console. `editor.can().exportToWord(editor.state.doc)` does not load the serializer or start a download.

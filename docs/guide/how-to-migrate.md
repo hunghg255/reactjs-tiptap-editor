@@ -25,7 +25,7 @@ Keep a sample of your existing saved content and test it with the new extension 
 | Bubble menu render configuration   | Mount individual `RichTextBubble*` components.                       |
 | `disabled`                         | `editable` in `useEditor` or `editor.setEditable(...)`.              |
 | `dark`                             | `themeActions.setTheme('light' or 'dark')`.                          |
-| Legacy locale API                  | `localeActions` and `useLocale` from `/locale-bundle`.               |
+| Legacy locale API                  | `localeActions` and `useLocale` from `/locale`; register needed dictionaries.               |
 | `/multicolumn` imports             | `/column` with `Column`, `ColumnNode`, `MultipleColumnNode`.         |
 
 ## Replace the editor component
@@ -44,7 +44,7 @@ import { RichTextProvider } from 'reactjs-tiptap-editor';
 import { Bold, RichTextBold } from 'reactjs-tiptap-editor/bold';
 import { Italic, RichTextItalic } from 'reactjs-tiptap-editor/italic';
 import { History, RichTextUndo, RichTextRedo } from 'reactjs-tiptap-editor/history';
-import { RichTextBubbleText } from 'reactjs-tiptap-editor/bubble';
+import { RichTextBubbleText } from 'reactjs-tiptap-editor/bubble/text';
 import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [Document, Paragraph, Text, Bold, Italic, History];
@@ -153,9 +153,11 @@ Use actions during client initialization or in preference-change handlers:
 
 ```ts
 import { themeActions } from 'reactjs-tiptap-editor/theme';
-import { localeActions } from 'reactjs-tiptap-editor/locale-bundle';
+import { localeActions } from 'reactjs-tiptap-editor/locale';
+import vi from 'reactjs-tiptap-editor/locales/vi';
 
 themeActions.setTheme('dark');
+localeActions.setMessage('vi', vi);
 localeActions.setLang('vi');
 ```
 

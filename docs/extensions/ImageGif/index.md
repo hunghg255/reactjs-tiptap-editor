@@ -23,7 +23,7 @@ import { Paragraph } from '@tiptap/extension-paragraph';
 import { Text } from '@tiptap/extension-text';
 import { RichTextProvider } from 'reactjs-tiptap-editor';
 import { ImageGif, RichTextImageGif } from 'reactjs-tiptap-editor/imagegif';
-import { RichTextBubbleImageGif } from 'reactjs-tiptap-editor/bubble';
+import { RichTextBubbleImageGif } from 'reactjs-tiptap-editor/bubble/media';
 import 'reactjs-tiptap-editor/style.css';
 
 const extensions = [

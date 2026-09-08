@@ -46,6 +46,10 @@ export default defineConfig(({ mode }) => {
   const entry = [
     path.resolve(__dirname, 'src/index.ts'),
     path.resolve(__dirname, 'src/locale-bundle.ts'),
+    path.resolve(__dirname, 'src/locale.ts'),
+    ...globbySync('src/locales/*.ts', { cwd: __dirname, ignore: ['**/index.ts'] })
+      .sort()
+      .map((file) => path.resolve(__dirname, file)),
     path.resolve(__dirname, 'src/bubble.ts'),
     path.resolve(__dirname, 'src/theme/theme.ts'),
   ];
@@ -58,6 +62,11 @@ export default defineConfig(({ mode }) => {
     .sort();
 
   entry.push(...extensionEntries.map((file) => path.resolve(__dirname, file)));
+  entry.push(
+    ...globbySync('src/components/Bubble/RichText*.tsx', { cwd: __dirname })
+      .sort()
+      .map((file) => path.resolve(__dirname, file))
+  );
 
   return {
     plugins: [react(), dts()],
@@ -101,6 +110,17 @@ export default defineConfig(({ mode }) => {
         },
       },
       rollupOptions: {
+        output: {
+          interop: 'auto',
+          // Keep generic helpers out of feature chunks with heavy external imports.
+          manualChunks(id) {
+            if (
+              id === path.resolve(__dirname, 'src/hooks/useAttributes.tsx') ||
+              id === path.resolve(__dirname, 'src/utils/json.ts')
+            )
+              return 'editor-utils';
+          },
+        },
         // Keep Tiptap and React shared with the consuming application.
         external: (id) =>
           id.startsWith('@tiptap/') ||

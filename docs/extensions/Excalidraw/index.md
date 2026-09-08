@@ -23,7 +23,7 @@ import { Paragraph } from '@tiptap/extension-paragraph';
 import { Text } from '@tiptap/extension-text';
 import { RichTextProvider } from 'reactjs-tiptap-editor';
 import { Excalidraw, RichTextExcalidraw } from 'reactjs-tiptap-editor/excalidraw';
-import { RichTextBubbleExcalidraw } from 'reactjs-tiptap-editor/bubble';
+import { RichTextBubbleExcalidraw } from 'reactjs-tiptap-editor/bubble/excalidraw';
 import 'reactjs-tiptap-editor/style.css';
 import '@excalidraw/excalidraw/index.css';
 

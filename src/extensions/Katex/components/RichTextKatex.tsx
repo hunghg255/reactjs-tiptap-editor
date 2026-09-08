@@ -1,5 +1,4 @@
-import katexLib from 'katex';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { ActionButton, Button, Label } from '@/components';
 import {
@@ -10,18 +9,20 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
+import { KatexPreview } from '@/extensions/Katex/components/KatexPreview';
 import { Katex } from '@/extensions/Katex/Katex';
 import { useToggleActive } from '@/hooks/useActive';
 import { useAttributes } from '@/hooks/useAttributes';
 import { useButtonProps } from '@/hooks/useButtonProps';
+import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
-import { safeJSONParse } from '@/utils/json';
 
 import type { IKatexAttrs } from '@/extensions/Katex/Katex';
 
 export function RichTextKatex() {
   const { t } = useLocale();
+  const katexExtension = useExtension(Katex.name);
   const [visible, toggleVisible] = useState(false);
 
   const buttonProps = useButtonProps(Katex.name);
@@ -60,24 +61,6 @@ export function RichTextKatex() {
     setCurrentMacros('');
     toggleVisible(false);
   }, [editor, currentValue, currentMacros]);
-
-  const formatText = useMemo(() => {
-    try {
-      return katexLib.renderToString(currentValue, {
-        macros: safeJSONParse<NonNullable<import('katex').KatexOptions['macros']>>(currentMacros),
-      });
-    } catch {
-      return currentValue;
-    }
-  }, [currentMacros, currentValue]);
-
-  const previewContent = useMemo(() => {
-    if (`${currentValue}`.trim()) {
-      return formatText;
-    }
-
-    return null;
-  }, [currentValue, formatText]);
 
   return (
     <Dialog onOpenChange={toggleVisible} open={visible}>
@@ -133,14 +116,21 @@ export function RichTextKatex() {
 
             <div
               className='richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]'
-              dangerouslySetInnerHTML={{ __html: previewContent || '' }}
               style={{
                 height: '100%',
                 borderWidth: 1,
                 minHeight: 500,
                 background: '#fff',
               }}
-            />
+            >
+              {visible && (
+                <KatexPreview
+                  text={currentValue}
+                  macros={currentMacros}
+                  loader={katexExtension?.options.loadKatex}
+                />
+              )}
+            </div>
           </div>
         </div>
 

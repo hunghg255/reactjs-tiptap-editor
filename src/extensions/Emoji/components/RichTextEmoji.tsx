@@ -1,17 +1,14 @@
 import { useState } from 'react';
 
 import { ActionButton, Popover, PopoverContent, PopoverTrigger } from '@/components';
-import {
-  EmojiPicker,
-  EmojiPickerContent,
-  EmojiPickerFooter,
-  EmojiPickerSearch,
-} from '@/components/ui/emoji-picker';
+import { LazyContent } from '@/components/LazyContent';
 import { Emoji } from '@/extensions/Emoji/Emoji';
 import { useActive } from '@/hooks/useActive';
 import { useButtonProps } from '@/hooks/useButtonProps';
 
 import type React from 'react';
+
+const loadPicker = () => import('./EmojiPickerPanel');
 
 interface IProps {
   showClear?: boolean;
@@ -34,18 +31,17 @@ function EmojiPickerWrap({ onSelectEmoji, children, disabled }: IProps) {
       <PopoverTrigger asChild>{children}</PopoverTrigger>
 
       <PopoverContent className='!richtext-w-fit !richtext-p-0'>
-        <EmojiPicker
-          className='!richtext-h-[342px]'
-          onEmojiSelect={({ emoji }) => {
-            onSelectEmoji(emoji);
-
-            setIsOpen(false);
-          }}
-        >
-          <EmojiPickerSearch />
-          <EmojiPickerContent />
-          <EmojiPickerFooter />
-        </EmojiPicker>
+        {isOpen && (
+          <LazyContent
+            load={loadPicker}
+            componentProps={{
+              onSelectEmoji: (emoji: string) => {
+                onSelectEmoji(emoji);
+                setIsOpen(false);
+              },
+            }}
+          />
+        )}
       </PopoverContent>
     </Popover>
   );

@@ -2,9 +2,9 @@ import { type Editor } from '@tiptap/core';
 import { EditorContext } from '@tiptap/react';
 import { useEffect, useId, useMemo } from 'react';
 
-import { TooltipProvider } from '@/components';
 import { ReactBusProvider } from '@/components/ReactBus';
 import SlashDialogTrigger from '@/components/SlashDialogTrigger/SlashDialogTrigger';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { RESET_CSS } from '@/constants/resetCSS';
 import { EditorEditableReactive } from '@/store/EditorEditableReactive';
 import { ThemeColorReactive } from '@/store/ThemeColorReactive';
@@ -48,7 +48,7 @@ export function RichTextProvider({ editor, children }: IProviderRichTextProps) {
 
           <EditorEditableReactive editor={editor} />
 
-          <SlashDialogTrigger />
+          <SlashDialogTrigger editorId={id} />
           <ThemeColorReactive />
         </EditorContext.Provider>
       </ReactBusProvider>

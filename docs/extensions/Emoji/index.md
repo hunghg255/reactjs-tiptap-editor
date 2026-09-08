@@ -50,3 +50,8 @@ export default function EmojiExample() {
 Open the toolbar picker and choose an emoji. The extension supplies its emoji data and suggestion UI; no upload endpoint or separate toolbar provider is needed.
 
 - Copy Emoji List here: https://github.com/hunghg255/reactjs-tiptap-editor-demo/blob/master/src/components/Editor/emojis.ts
+
+
+## Loading behavior
+
+The toolbar picker UI loads when the popover first opens. The extension still includes its full emoji dictionary for schema behavior, shortcodes, and document round trips; deferring the picker does not remove that dictionary. If you provide a separate suggestion dataset, you can dynamically import it from an asynchronous `suggestion.items` callback.

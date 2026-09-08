@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 
 import { Button, Input, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components';
-import { useListener } from '@/components/ReactBus';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { VideoUploadTab } from '@/extensions/Video/components/VideoUploadTab';
 import { Video } from '@/extensions/Video/Video';
@@ -10,9 +9,10 @@ import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { checkIsVideoUrl } from '@/utils/checkIsVideoUrl';
-import { EVENTS } from '@/utils/customEvents/events.constant';
 
-export function RenderDialogUploadVideo() {
+import type { UploadDialogProps } from './SlashDialogTrigger';
+
+export function RenderDialogUploadVideo({ open, onOpenChange: setOpen }: UploadDialogProps) {
   const { t } = useLocale();
 
   const editor = useEditorInstance();
@@ -29,13 +29,8 @@ export function RenderDialogUploadVideo() {
 
   const [error, setError] = useState<string>('');
 
-  const [open, setOpen] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const extension = useExtension(Video.name);
-
-  const EVENT_ID = EVENTS.UPLOAD_VIDEO(editor.id);
-
-  useListener(setOpen, [EVENT_ID]);
 
   const uploadOptions = useMemo(() => {
     const uploadOptions = extension?.options ?? {};

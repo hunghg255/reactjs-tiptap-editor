@@ -1,0 +1,55 @@
+{
+  "methodology": "Production build of an isolated snapshot of the built library and playground; remove selected features in an in-memory transform only. Results diagnose dependency retention, not guaranteed savings while preserving all functionality. Initial JS follows static imports. Package contribution sizes are before minification.",
+  "results": [
+    {
+      "variant": "baseline",
+      "bytes": 2440288,
+      "gzip": 666209,
+      "packages": {
+        "katex": 674892,
+        "yjs": 260467,
+        "@tiptap/extension-emoji": 657817
+      }
+    },
+    {
+      "variant": "without-katex",
+      "bytes": 2401035,
+      "gzip": 655927,
+      "packages": {
+        "katex": 599483,
+        "yjs": 260467,
+        "@tiptap/extension-emoji": 657817
+      }
+    },
+    {
+      "variant": "without-emoji",
+      "bytes": 1857084,
+      "gzip": 570277,
+      "packages": {
+        "katex": 674892,
+        "yjs": 260467,
+        "@tiptap/extension-emoji": 0
+      }
+    },
+    {
+      "variant": "without-drag-handle",
+      "bytes": 2433692,
+      "gzip": 664427,
+      "packages": {
+        "katex": 674892,
+        "yjs": 260467,
+        "@tiptap/extension-emoji": 657817
+      }
+    },
+    {
+      "variant": "without-mhchem",
+      "bytes": 2406896,
+      "gzip": 657579,
+      "packages": {
+        "katex": 599483,
+        "yjs": 260467,
+        "@tiptap/extension-emoji": 657817
+      }
+    }
+  ]
+}

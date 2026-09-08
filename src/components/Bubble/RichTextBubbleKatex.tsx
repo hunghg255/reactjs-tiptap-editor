@@ -1,7 +1,6 @@
 import { BubbleMenu } from '@tiptap/react/menus';
-import katexLib from 'katex';
 import { Pencil, Trash2 } from 'lucide-react';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { ActionButton } from '@/components/ActionButton';
 import { Button, Label } from '@/components/ui';
@@ -14,12 +13,13 @@ import {
 } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Katex } from '@/extensions/Katex';
+import { KatexPreview } from '@/extensions/Katex/components/KatexPreview';
 import { useAttributes } from '@/hooks/useAttributes';
+import { useExtension } from '@/hooks/useExtension';
 import { useLocale } from '@/locales';
 import { useEditorInstance } from '@/store/editor';
 import { useEditableEditor } from '@/store/store';
 import { deleteNode } from '@/utils/delete-node';
-import { safeJSONParse } from '@/utils/json';
 
 import type { IKatexAttrs } from '@/extensions/Katex';
 
@@ -33,6 +33,7 @@ function ModalEditKatex({
   toggleVisible: (visible: boolean) => void;
 }) {
   const { t } = useLocale();
+  const katexExtension = useExtension(Katex.name);
 
   const editor = useEditorInstance();
 
@@ -52,7 +53,7 @@ function ModalEditKatex({
       setCurrentValue(decodeURIComponent(text || ''));
       setCurrentMacros(decodeURIComponent(macros || ''));
     }
-  }, [visible]);
+  }, [visible, text, macros]);
 
   const submit = useCallback(() => {
     editor
@@ -67,26 +68,6 @@ function ModalEditKatex({
     setCurrentMacros('');
     toggleVisible(false);
   }, [editor, currentValue, currentMacros, toggleVisible]);
-
-  const formatText = useMemo(() => {
-    try {
-      return katexLib.renderToString(currentValue, {
-        macros: safeJSONParse<NonNullable<import('katex').KatexOptions['macros']>>(
-          currentMacros || ''
-        ),
-      });
-    } catch {
-      return currentValue;
-    }
-  }, [currentValue, currentMacros]);
-
-  const previewContent = useMemo(() => {
-    if (`${currentValue}`.trim()) {
-      return formatText;
-    }
-
-    return null;
-  }, [currentValue, formatText]);
 
   return (
     <Dialog onOpenChange={toggleVisible} open={visible}>
@@ -128,14 +109,21 @@ function ModalEditKatex({
 
             <div
               className='richtext-flex richtext-flex-1 richtext-items-center richtext-justify-center richtext-rounded-[10px] richtext-p-[10px]'
-              dangerouslySetInnerHTML={{ __html: previewContent || '' }}
               style={{
                 height: '100%',
                 borderWidth: 1,
                 minHeight: 500,
                 background: '#fff',
               }}
-            />
+            >
+              {visible && (
+                <KatexPreview
+                  text={currentValue}
+                  macros={currentMacros}
+                  loader={katexExtension?.options.loadKatex}
+                />
+              )}
+            </div>
           </div>
         </div>
 
