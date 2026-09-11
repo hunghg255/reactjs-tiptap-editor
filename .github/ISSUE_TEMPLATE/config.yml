@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://reactjs-tiptap-editor.vercel.app/
+    about: Check the docs first — setup, extension options and examples.
+  - name: 💬 Questions & Discussions
+    url: https://github.com/hunghg255/reactjs-tiptap-editor/discussions
+    about: Ask usage questions or share ideas here instead of opening an issue.
