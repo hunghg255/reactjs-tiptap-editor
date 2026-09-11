@@ -91,6 +91,31 @@ function getImageAttrsFromElement(element: HTMLElement, inlineFallback = false) 
   };
 }
 
+/**
+ * Versions before 1.0.26 rendered block images as `<p><div class="image"><img inline="false"></div></p>`.
+ * The browser HTML parser closes the `<p>` before the `<div>`, leaving an empty
+ * paragraph on each side of the image. Those legacy wrappers are identified by the
+ * `inline="false"` attribute, which the current renderer no longer emits.
+ */
+function isLegacyBlockImageWrapper(element: Element | null): boolean {
+  return (
+    !!element &&
+    element.matches('div.image') &&
+    element.querySelector('img')?.getAttribute('inline') === 'false'
+  );
+}
+
+function isEmptyParagraphNextToLegacyBlockImage(element: HTMLElement): boolean {
+  if (element.childElementCount > 0 || element.textContent?.trim()) {
+    return false;
+  }
+
+  return (
+    isLegacyBlockImageWrapper(element.previousElementSibling) ||
+    isLegacyBlockImageWrapper(element.nextElementSibling)
+  );
+}
+
 function getTransformStyle(flipX: boolean, flipY: boolean): string {
   return flipX || flipY
     ? `transform: rotateX(${flipX ? '180' : '0'}deg) rotateY(${flipY ? '180' : '0'}deg);`
@@ -320,6 +345,14 @@ export const ImageBlock = /* @__PURE__ */ TiptapImage.extend<IImageOptions>({
   },
   parseHTML() {
     return [
+      {
+        // Drop the empty paragraphs the browser creates around legacy `<p><div class="image">` markup.
+        tag: 'p',
+        priority: 51,
+        ignore: true,
+        getAttrs: (element) =>
+          isEmptyParagraphNextToLegacyBlockImage(element as HTMLElement) ? null : false,
+      },
       {
         tag: 'div[class=image]',
         getAttrs: (element) => {

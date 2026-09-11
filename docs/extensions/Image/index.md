@@ -61,6 +61,7 @@ The example starts in URL-only mode so it works without a backend. To enable loc
 Existing HTML is still accepted:
 
 - `<div class="image"><img ... /></div>` is parsed as `imageBlock`.
+- `<p><div class="image"><img inline="false" ... /></div></p>` produced by versions before 1.0.26 is parsed as `imageBlock` without the empty paragraphs the browser adds around it, so the document no longer grows on each save/load.
 - `<span class="image"><img inline="true" ... /></span>` is parsed as the inline `image` node.
 - Old JSON with `type: "image"` continues to load. If you want to migrate stored JSON, use `migrateImageJSONToImageBlock(json)` before saving the migrated document.
 
