@@ -308,6 +308,13 @@
     ]
   },
   {
+    "name": "ShortMessage.ts",
+    "package": "ShortMessage",
+    "alias": [
+      "ShortMessage"
+    ]
+  },
+  {
     "name": "SlashCommand.ts",
     "package": "SlashCommand",
     "alias": [

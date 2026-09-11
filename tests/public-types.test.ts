@@ -3,6 +3,7 @@ import { RichTextBubbleText } from 'reactjs-tiptap-editor/bubble/text';
 import { Katex } from 'reactjs-tiptap-editor/katex';
 import { localeActions, useLocale } from 'reactjs-tiptap-editor/locale';
 import vi from 'reactjs-tiptap-editor/locales/vi';
+import { ShortMessage } from 'reactjs-tiptap-editor/shortmessage';
 
 export const deferredKatex = Katex.configure({
   loadKatex: async () => (await import('katex')).default,
@@ -19,6 +20,7 @@ export function checkLocaleEntryPoints() {
 
 import type { ActionButtonProps } from '../src/components/ActionButton';
 import type { IImageOptions, SetImageAttrsOptions } from '../src/extensions/Image/Image';
+import type { ShortMessageItem } from '../src/extensions/ShortMessage/ShortMessage';
 import type { ButtonViewReturnComponentProps, ToolbarItemProps } from '../src/types';
 import type { SuggestionHandle } from '../src/utils/renderNodeView';
 import type { Editor } from '@tiptap/core';
@@ -59,3 +61,11 @@ export const keyboardHandle: SuggestionHandle = {
 };
 // @ts-expect-error Suggestion handlers must return whether they handled the key.
 export const invalidKeyboardHandle: SuggestionHandle = { onKeyDown: () => 'handled' };
+
+export const shortMessage = ShortMessage.configure({
+  messages: [{ short: 'nsfw', long_content: 'Not safe forward' }],
+  shortcut: 'Mod-Shift-Space',
+  items: ({ query }) => [{ short: query, long_content: query.toUpperCase() }],
+});
+// @ts-expect-error Short message keys must be strings.
+export const invalidShortMessage: ShortMessageItem = { short: 1, long_content: 'text' };

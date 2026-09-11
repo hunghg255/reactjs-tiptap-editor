@@ -163,6 +163,9 @@
       "./searchandreplace": [
         "./lib/extensions/SearchAndReplace/index.d.ts"
       ],
+      "./shortmessage": [
+        "./lib/extensions/ShortMessage/index.d.ts"
+      ],
       "./slashcommand": [
         "./lib/extensions/SlashCommand/index.d.ts"
       ],
@@ -658,6 +661,16 @@
       "import": {
         "types": "./lib/extensions/SearchAndReplace/index.d.ts",
         "default": "./lib/SearchAndReplace.js"
+      }
+    },
+    "./shortmessage": {
+      "require": {
+        "types": "./lib/extensions/ShortMessage/index.d.ts",
+        "default": "./lib/ShortMessage.cjs"
+      },
+      "import": {
+        "types": "./lib/extensions/ShortMessage/index.d.ts",
+        "default": "./lib/ShortMessage.js"
       }
     },
     "./slashcommand": {

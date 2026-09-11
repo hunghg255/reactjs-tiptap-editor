@@ -149,6 +149,7 @@ export function getLocaleConfig(lang: string) {
           text: 'SearchAndReplace',
           link: '/extensions/SearchAndReplace/index.md',
         },
+        { text: 'ShortMessage', link: '/extensions/ShortMessage/index.md' },
         { text: 'SlashCommand', link: '/extensions/SlashCommand/index.md' },
         { text: 'Strike', link: '/extensions/Strike/index.md' },
         { text: 'Table', link: '/extensions/Table/index.md' },

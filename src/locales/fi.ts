@@ -17,6 +17,7 @@ const locale = {
   'editor.copyToClipboard': 'Kopioi leikepöydälle',
   'editor.slash': "Paina '/' nähdäksesi komennot",
   'editor.slash.empty': 'Ei tuloksia',
+  'editor.shortMessage.empty': 'Ei tuloksia',
   'editor.slash.format': 'Muotoile',
   'editor.slash.insert': 'Lisää',
   'editor.slash.embed': 'Upota palvelut',

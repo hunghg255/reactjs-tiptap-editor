@@ -2,8 +2,8 @@
 description: Search And Replace
 
 next:
-  text: SlashCommand
-  link: /extensions/SlashCommand/index.md
+  text: ShortMessage
+  link: /extensions/ShortMessage/index.md
 ---
 
 # Search And Replace

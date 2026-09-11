@@ -46,7 +46,8 @@ export type ExtensionNameKeys =
   | 'katex'
   | 'excalidraw'
   | 'mermaid'
-  | 'drawer';
+  | 'drawer'
+  | 'shortMessage';
 
 /**
  * Represents the general options for Tiptap extensions.

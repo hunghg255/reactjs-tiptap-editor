@@ -56,6 +56,7 @@ Load this before adding imports, toolbar buttons, bubble menus, or extension arr
 | More mark        | `reactjs-tiptap-editor/moremark`         | `MoreMark`, `RichTextMoreMark`                                 |
 | Ordered list     | `reactjs-tiptap-editor/orderedlist`      | `OrderedList`, `RichTextOrderedList`                           |
 | Search/replace   | `reactjs-tiptap-editor/searchandreplace` | `SearchAndReplace`, `RichTextSearchAndReplace`                 |
+| Short message    | `reactjs-tiptap-editor/shortmessage`     | `ShortMessage`                                                 |
 | Slash command    | `reactjs-tiptap-editor/slashcommand`     | `SlashCommand`, `SlashCommandList`                             |
 | Strike           | `reactjs-tiptap-editor/strike`           | `Strike`, `RichTextStrike`                                     |
 | Table            | `reactjs-tiptap-editor/table`            | `Table`, `RichTextTable`                                       |

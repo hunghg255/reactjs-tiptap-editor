@@ -83,6 +83,7 @@ import { Mermaid, RichTextMermaid } from 'reactjs-tiptap-editor/mermaid';
 import { MoreMark, RichTextMoreMark } from 'reactjs-tiptap-editor/moremark';
 import { OrderedList, RichTextOrderedList } from 'reactjs-tiptap-editor/orderedlist';
 import { SearchAndReplace, RichTextSearchAndReplace } from 'reactjs-tiptap-editor/searchandreplace';
+import { ShortMessage } from 'reactjs-tiptap-editor/shortmessage';
 import { SlashCommand, SlashCommandList } from 'reactjs-tiptap-editor/slashcommand';
 import { Strike, RichTextStrike } from 'reactjs-tiptap-editor/strike';
 import { Table, RichTextTable } from 'reactjs-tiptap-editor/table';
@@ -343,6 +344,15 @@ const extensions = [
     baseURL: import.meta.env.VITE_AI_BASE_URL || '',
   }),
   SlashCommand,
+  ShortMessage.configure({
+    shortcut: 'Shift-Space',
+    messages: [
+      { short: 'nsfw', long_content: 'Not safe forward' },
+      { short: 'brb', long_content: 'Be right back' },
+      { short: 'ty', long_content: 'Thank you for your time and consideration.' },
+      { short: 'sig', long_content: '<p>Best regards,<br><strong>Hung</strong></p>' },
+    ],
+  }),
   CodeView,
   Callout,
   MarkdownPaste,
