@@ -1,0 +1,105 @@
+name: ✨ Feature request
+description: Suggest a new extension, option or improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to do that is hard or impossible today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the API / behavior you'd like. Code examples are welcome.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: extension
+    attributes:
+      label: Related extension(s)
+      description: Which extension does this belong to? Choose "New extension" for something new.
+      multiple: true
+      options:
+        - New extension
+        - Core (RichTextProvider / EditorContent / Toolbar)
+        - Bubble menus
+        - Locale / i18n
+        - Theme / styles
+          - AI
+          - Attachment
+          - Blockquote
+          - Bold
+          - BulletList
+          - Callout
+          - Clear
+          - Code
+          - CodeBlock
+          - CodeView
+          - Color
+          - Column
+          - Drawer
+          - Emoji
+          - Excalidraw
+          - ExportPdf
+          - ExportWord
+          - FontFamily
+          - FontSize
+          - FormatPainter
+          - Heading
+          - Highlight
+          - History
+          - HorizontalRule
+          - Iframe
+          - Image
+          - ImageGif
+          - ImportWord
+          - Indent
+          - Italic
+          - Katex
+          - LineHeight
+          - Link
+          - MarkdownPaste
+          - Mention
+          - Mermaid
+          - MoreMark
+          - OrderedList
+          - SearchAndReplace
+          - ShortMessage
+          - SlashCommand
+          - Strike
+          - Table
+          - TaskList
+          - TextAlign
+          - TextDirection
+          - TextUnderline
+          - Twitter
+          - Video
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds you tried, or how other editors solve this.
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Links, screenshots, references.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Validations
+      options:
+        - label: I have searched existing issues and discussions and this is not a duplicate.
+          required: true
+        - label: I would like to submit a PR for this.

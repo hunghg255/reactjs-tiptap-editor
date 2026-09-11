@@ -1,0 +1,157 @@
+name: 🐛 Bug report
+description: Something is broken in reactjs-tiptap-editor
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! Please fill in every required field — issues without a reproduction are hard to act on and may be closed.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug description
+      description: What is happening? Include error messages or screenshots if any.
+      placeholder: Empty paragraphs are added around the image element when loading content...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: extension
+    attributes:
+      label: Affected extension(s)
+      description: Pick the extension(s) involved. Choose "Not sure" if you don't know.
+      multiple: true
+      options:
+        - Not sure
+        - Core (RichTextProvider / EditorContent / Toolbar)
+        - Bubble menus
+        - Locale / i18n
+        - Theme / styles
+        - Bundle size / lazy loading
+        - Types / TypeScript
+          - AI
+          - Attachment
+          - Blockquote
+          - Bold
+          - BulletList
+          - Callout
+          - Clear
+          - Code
+          - CodeBlock
+          - CodeView
+          - Color
+          - Column
+          - Drawer
+          - Emoji
+          - Excalidraw
+          - ExportPdf
+          - ExportWord
+          - FontFamily
+          - FontSize
+          - FormatPainter
+          - Heading
+          - Highlight
+          - History
+          - HorizontalRule
+          - Iframe
+          - Image
+          - ImageGif
+          - ImportWord
+          - Indent
+          - Italic
+          - Katex
+          - LineHeight
+          - Link
+          - MarkdownPaste
+          - Mention
+          - Mermaid
+          - MoreMark
+          - OrderedList
+          - SearchAndReplace
+          - ShortMessage
+          - SlashCommand
+          - Strike
+          - Table
+          - TaskList
+          - TextAlign
+          - TextDirection
+          - TextUnderline
+          - Twitter
+          - Video
+    validations:
+      required: true
+
+  - type: input
+    id: reproduction
+    attributes:
+      label: Reproduction link
+      description: A minimal repro on StackBlitz / CodeSandbox / a public repo. Fork the playground if that helps.
+      placeholder: https://stackblitz.com/edit/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Set content to '...'
+        2. Click '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Editor content that triggers the bug
+      description: The HTML / JSON passed to the editor, if relevant. Rendered as HTML.
+      render: html
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What actually happens, including the actual output HTML/JSON if it differs.
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: reactjs-tiptap-editor version
+      description: Run `npm ls reactjs-tiptap-editor`.
+      placeholder: 1.0.41
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Output of `npx envinfo --system --binaries --browsers --npmPackages react,react-dom,@tiptap/core,@tiptap/react`
+      render: shell
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Validations
+      options:
+        - label: I have searched existing issues and this is not a duplicate.
+          required: true
+        - label: I have reproduced this on the latest version of reactjs-tiptap-editor.
+          required: true
+        - label: I have read the documentation and this is not a usage question.
+          required: true
+        - label: I would like to submit a PR for this.
