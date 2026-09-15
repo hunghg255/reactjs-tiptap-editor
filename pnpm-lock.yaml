@@ -178,7 +178,7 @@ importers:
         specifier: ^3.29.2
         version: 3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)
       '@tiptap/markdown':
-        specifier: 3.29.2
+        specifier: ^3.29.2
         version: 3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)
       '@tiptap/pm':
         specifier: ^3.29.2
