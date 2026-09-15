@@ -87,6 +87,9 @@ importers:
       '@tiptap/extension-collaboration-caret':
         specifier: ^3.29.2
         version: 3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)(@tiptap/y-tiptap@3.0.8)
+      '@tiptap/extension-details':
+        specifier: ^3.29.2
+        version: 3.29.2(@tiptap/core@3.29.2)(@tiptap/extension-text-style@3.29.2)(@tiptap/pm@3.29.2)
       '@tiptap/extension-document':
         specifier: ^3.29.2
         version: 3.29.2(@tiptap/core@3.29.2)
@@ -150,6 +153,9 @@ importers:
       '@tiptap/extension-table':
         specifier: ^3.29.2
         version: 3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)
+      '@tiptap/extension-table-of-contents':
+        specifier: ^3.29.2
+        version: 3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)
       '@tiptap/extension-task-item':
         specifier: ^3.29.2
         version: 3.29.2(@tiptap/extension-list@3.29.2)
@@ -170,6 +176,9 @@ importers:
         version: 3.29.2(@tiptap/core@3.29.2)
       '@tiptap/extensions':
         specifier: ^3.29.2
+        version: 3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)
+      '@tiptap/markdown':
+        specifier: 3.29.2
         version: 3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2)
       '@tiptap/pm':
         specifier: ^3.29.2
@@ -4075,6 +4084,18 @@ packages:
       yjs: 13.6.32
     dev: false
 
+  /@tiptap/extension-details@3.29.2(@tiptap/core@3.29.2)(@tiptap/extension-text-style@3.29.2)(@tiptap/pm@3.29.2):
+    resolution: {integrity: sha512-W614IjlpwkAxIUp5I2ILIWWJu//tPsJuaDp52Xjso+EYF3iyH2EklOdFYebjlt1yKllXl1OVs7RCghgRm1bauQ==}
+    peerDependencies:
+      '@tiptap/core': 3.29.2
+      '@tiptap/extension-text-style': 3.29.2
+      '@tiptap/pm': 3.29.2
+    dependencies:
+      '@tiptap/core': 3.29.2(@tiptap/pm@3.29.2)
+      '@tiptap/extension-text-style': 3.29.2(@tiptap/core@3.29.2)
+      '@tiptap/pm': 3.29.2
+    dev: false
+
   /@tiptap/extension-document@3.29.2(@tiptap/core@3.29.2):
     resolution: {integrity: sha512-YUamvefLnsqu6124GavVTI7nqcFlQJ12ROB0oSwG69eSBZYNjg1tIs05LFrBxkwf4Xgqd6YzfJ9+FeG428RvzQ==}
     peerDependencies:
@@ -4292,6 +4313,17 @@ packages:
       '@tiptap/pm': 3.29.2
     dev: false
 
+  /@tiptap/extension-table-of-contents@3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2):
+    resolution: {integrity: sha512-3msus9/KrFNecu2wtfcmp8WEx23kjqdR/l8an82SMbIqwOfFJOU/8PQFPqNuD8hmJvRIx8n2Qj49zHATsqLpJQ==}
+    peerDependencies:
+      '@tiptap/core': 3.29.2
+      '@tiptap/pm': 3.29.2
+    dependencies:
+      '@tiptap/core': 3.29.2(@tiptap/pm@3.29.2)
+      '@tiptap/pm': 3.29.2
+      uuid: 14.0.2
+    dev: false
+
   /@tiptap/extension-table@3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2):
     resolution: {integrity: sha512-HY3JWD8i/F8W1oWw56DMqEMqxScIAZFRrhL3rUwiuowHG8LLDqDdQjBV3w1DY8lUZOtNY9grpuMtGlPUFrOVAA==}
     peerDependencies:
@@ -4358,6 +4390,17 @@ packages:
     dependencies:
       '@tiptap/core': 3.29.2(@tiptap/pm@3.29.2)
       '@tiptap/pm': 3.29.2
+    dev: false
+
+  /@tiptap/markdown@3.29.2(@tiptap/core@3.29.2)(@tiptap/pm@3.29.2):
+    resolution: {integrity: sha512-Knf9YqG3fxOyFuS3pe3eapDz0ya9eqPGzmyMSd5PuHNmR9/Ir6i5qk5+Md6bCPgDNjYskztNm7DoBXPfbXbO/w==}
+    peerDependencies:
+      '@tiptap/core': 3.29.2
+      '@tiptap/pm': 3.29.2
+    dependencies:
+      '@tiptap/core': 3.29.2(@tiptap/pm@3.29.2)
+      '@tiptap/pm': 3.29.2
+      marked: 17.0.6
     dev: false
 
   /@tiptap/pm@3.29.2:
@@ -7751,6 +7794,12 @@ packages:
     hasBin: true
     dev: false
 
+  /marked@17.0.6:
+    resolution: {integrity: sha512-gB0gkNafnonOw0obSTEGZTT86IuhILt2Wfx0mWH/1Au83kybTayroZ/V6nS25mN7u8ASy+5fMhgB3XPNrOZdmA==}
+    engines: {node: '>= 20'}
+    hasBin: true
+    dev: false
+
   /math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -10246,6 +10295,11 @@ packages:
 
   /uuid@11.1.0:
     resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
+    hasBin: true
+    dev: false
+
+  /uuid@14.0.2:
+    resolution: {integrity: sha512-xZe/16rV4aa+HGSOCiY2YeLT1OybRLrrkL/Rqaq7p7GMVXjFh+6wN4oMYgjFmnSnhY8t6Xpdl2l9qmnHYuMHwQ==}
     hasBin: true
     dev: false
 

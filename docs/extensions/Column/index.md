@@ -2,8 +2,8 @@
 description: MultiColumn
 
 next:
-  text: Drawer
-  link: /extensions/Drawer/index.md
+  text: Details
+  link: /extensions/Details/index.md
 ---
 
 # Column

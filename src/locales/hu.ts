@@ -157,6 +157,7 @@ const locale = {
   'editor.katex.tooltip': 'Matematikai formula',
   'editor.exportPdf.tooltip': 'PDF exportálása',
   'editor.exportWord.tooltip': 'Word exportálása',
+  'editor.exportMarkdown.tooltip': 'Markdown exportálása',
   'editor.importWord.tooltip': 'Word importálása',
   'editor.importWord.limitSize': 'A fájl mérete nem haladhatja meg',
   'editor.importWord.converting': 'Word dokumentum konvertálása, kérjük, várjon...',
@@ -196,6 +197,10 @@ const locale = {
   'editor.callout.type.important': 'Fontos',
   'editor.callout.type.warning': 'Figyelmeztetés',
   'editor.callout.type.caution': 'Óvatosan',
+  'editor.details.tooltip': 'Lenyitható blokk',
+  'editor.tableofcontents.tooltip': 'Tartalomjegyzék',
+  'editor.tableofcontents.title': 'Tartalomjegyzék',
+  'editor.tableofcontents.empty': 'Adj hozzá címsorokat a tartalomjegyzék létrehozásához',
 };
 
 export default locale;

@@ -157,6 +157,7 @@ const locale = {
   'editor.katex.tooltip': 'Math Formula',
   'editor.exportPdf.tooltip': 'Export PDF',
   'editor.exportWord.tooltip': 'Export Word',
+  'editor.exportMarkdown.tooltip': 'Export Markdown',
   'editor.importWord.tooltip': 'Import Word',
   'editor.importWord.limitSize': 'File size cannot exceed',
   'editor.importWord.converting': 'Converting Word document, please wait...',
@@ -196,6 +197,10 @@ const locale = {
   'editor.callout.type.important': 'Important',
   'editor.callout.type.warning': 'Warning',
   'editor.callout.type.caution': 'Caution',
+  'editor.details.tooltip': 'Toggle list',
+  'editor.tableofcontents.tooltip': 'Table of contents',
+  'editor.tableofcontents.title': 'Table of contents',
+  'editor.tableofcontents.empty': 'Add headings to build the table of contents',
 };
 
 export default locale;

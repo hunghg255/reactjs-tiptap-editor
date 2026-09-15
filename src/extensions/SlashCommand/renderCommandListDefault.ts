@@ -3,6 +3,7 @@ import { HEADINGS } from '@/constants';
 import { EVENTS } from '@/utils/customEvents/events.constant';
 
 import type { CommandList } from './types';
+import type { Editor } from '@tiptap/core';
 
 export function renderCommandListDefault({ t }: { t: (path: string) => string }) {
   const groups: CommandList[] = [
@@ -196,13 +197,43 @@ export function renderCommandListDefault({ t }: { t: (path: string) => string })
     },
   });
 
+  // details (toggle)
+  groups[1].commands.push({
+    name: 'details',
+    label: t('editor.details.tooltip'),
+    iconName: 'Details',
+    description: 'Insert a collapsible toggle block',
+    aliases: ['toggle', 'collapse', 'details', 'accordion'],
+    shouldBeHidden: (editor) => !editor.schema.nodes.details,
+    action: ({ editor, range }) => {
+      editor.chain().focus().deleteRange(range).setDetails().run();
+    },
+  });
+
+  // table of contents
+  groups[1].commands.push({
+    name: 'tableOfContents',
+    label: t('editor.tableofcontents.tooltip'),
+    iconName: 'TableOfContents',
+    description: 'Insert a live table of contents',
+    aliases: ['toc', 'outline', 'contents'],
+    shouldBeHidden: (editor) => !editor.schema.nodes.tableOfContentsNode,
+    action: ({ editor, range }) => {
+      editor.chain().focus().deleteRange(range).insertTableOfContents().run();
+    },
+  });
+
   return groups;
 }
 
-export function useFilterCommandList(commandList: CommandList[], query: string) {
+export function useFilterCommandList(commandList: CommandList[], query: string, editor?: Editor) {
   const withFilteredCommands = commandList.map((group) => ({
     ...group,
     commands: group.commands.filter((item) => {
+      if (editor && item.shouldBeHidden?.(editor)) {
+        return false;
+      }
+
       const labelNormalized = item.label.toLowerCase().trim();
       const queryNormalized = query.toLowerCase().trim();
 

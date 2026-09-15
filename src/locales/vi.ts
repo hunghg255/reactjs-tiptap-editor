@@ -157,6 +157,7 @@ const locale = {
   'editor.katex.tooltip': 'Công thức toán học',
   'editor.exportPdf.tooltip': 'Xuất PDF',
   'editor.exportWord.tooltip': 'Xuất Word',
+  'editor.exportMarkdown.tooltip': 'Xuất Markdown',
   'editor.importWord.tooltip': 'Nhập Word',
   'editor.importWord.limitSize': 'Kích thước tệp không được vượt quá',
   'editor.importWord.converting': 'Đang chuyển đổi tài liệu Word, vui lòng đợi...',
@@ -197,6 +198,10 @@ const locale = {
   'editor.callout.type.important': 'Quan trọng',
   'editor.callout.type.warning': 'Cảnh báo',
   'editor.callout.type.caution': 'Thận trọng',
+  'editor.details.tooltip': 'Khối thu gọn',
+  'editor.tableofcontents.tooltip': 'Mục lục',
+  'editor.tableofcontents.title': 'Mục lục',
+  'editor.tableofcontents.empty': 'Thêm tiêu đề để tạo mục lục',
 };
 
 export default locale;

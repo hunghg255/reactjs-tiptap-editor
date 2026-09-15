@@ -105,6 +105,13 @@
     ]
   },
   {
+    "name": "Details.ts",
+    "package": "Details",
+    "alias": [
+      "Details"
+    ]
+  },
+  {
     "name": "Drawer.ts",
     "package": "Drawer",
     "alias": [
@@ -144,6 +151,13 @@
     "package": "ExportWord",
     "alias": [
       "ExportWord"
+    ]
+  },
+  {
+    "name": "ExportMarkdown.ts",
+    "package": "ExportMarkdown",
+    "alias": [
+      "ExportMarkdown"
     ]
   },
   {
@@ -347,6 +361,13 @@
     "package": "Table",
     "alias": [
       "Table"
+    ]
+  },
+  {
+    "name": "TableOfContents.ts",
+    "package": "TableOfContents",
+    "alias": [
+      "TableOfContents"
     ]
   },
   {

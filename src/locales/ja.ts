@@ -157,6 +157,7 @@ const locale = {
   'editor.katex.tooltip': '数式（KaTeX）',
   'editor.exportPdf.tooltip': 'PDFに書き出す',
   'editor.exportWord.tooltip': 'Wordに書き出す',
+  'editor.exportMarkdown.tooltip': 'Markdown をエクスポート',
   'editor.importWord.tooltip': 'Wordを取り込む',
   'editor.importWord.limitSize': 'ファイルサイズは次の上限を超えられません',
   'editor.importWord.converting': 'Word文書を変換しています。しばらくお待ちください…',
@@ -196,6 +197,10 @@ const locale = {
   'editor.callout.type.important': '重要',
   'editor.callout.type.warning': '警告',
   'editor.callout.type.caution': '注意',
+  'editor.details.tooltip': 'トグルリスト',
+  'editor.tableofcontents.tooltip': '目次',
+  'editor.tableofcontents.title': '目次',
+  'editor.tableofcontents.empty': '見出しを追加すると目次が生成されます',
 };
 
 export default locale;

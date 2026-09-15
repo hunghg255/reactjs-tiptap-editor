@@ -52,7 +52,7 @@ function SlashCommandNodeView(
         ...commandList,
       ]
     : commandList;
-  const commandQuery = useFilterCommandList(groups, props.query);
+  const commandQuery = useFilterCommandList(groups, props.query, props.editor);
 
   useEffect(() => {
     setSelectedCommandIndex(0);

@@ -97,6 +97,9 @@
       "./exportword": [
         "./lib/extensions/ExportWord/index.d.ts"
       ],
+      "./exportmarkdown": [
+        "./lib/extensions/ExportMarkdown/index.d.ts"
+      ],
       "./fontfamily": [
         "./lib/extensions/FontFamily/index.d.ts"
       ],
@@ -195,6 +198,12 @@
       ],
       "./callout": [
         "./lib/extensions/Callout/index.d.ts"
+      ],
+      "./details": [
+        "./lib/extensions/Details/index.d.ts"
+      ],
+      "./tableofcontents": [
+        "./lib/extensions/TableOfContents/index.d.ts"
       ],
       "./markdownpaste": [
         "./lib/extensions/MarkdownPaste/index.d.ts"
@@ -441,6 +450,16 @@
       "import": {
         "types": "./lib/extensions/ExportWord/index.d.ts",
         "default": "./lib/ExportWord.js"
+      }
+    },
+    "./exportmarkdown": {
+      "require": {
+        "types": "./lib/extensions/ExportMarkdown/index.d.ts",
+        "default": "./lib/ExportMarkdown.cjs"
+      },
+      "import": {
+        "types": "./lib/extensions/ExportMarkdown/index.d.ts",
+        "default": "./lib/ExportMarkdown.js"
       }
     },
     "./fontfamily": {
@@ -773,6 +792,26 @@
         "default": "./lib/Callout.js"
       }
     },
+    "./details": {
+      "require": {
+        "types": "./lib/extensions/Details/index.d.ts",
+        "default": "./lib/Details.cjs"
+      },
+      "import": {
+        "types": "./lib/extensions/Details/index.d.ts",
+        "default": "./lib/Details.js"
+      }
+    },
+    "./tableofcontents": {
+      "require": {
+        "types": "./lib/extensions/TableOfContents/index.d.ts",
+        "default": "./lib/TableOfContents.cjs"
+      },
+      "import": {
+        "types": "./lib/extensions/TableOfContents/index.d.ts",
+        "default": "./lib/TableOfContents.js"
+      }
+    },
     "./markdownpaste": {
       "require": {
         "types": "./lib/extensions/MarkdownPaste/index.d.ts",
@@ -1006,6 +1045,7 @@
     "@tiptap/extension-code-block": "^3.29.2",
     "@tiptap/extension-collaboration": "^3.29.2",
     "@tiptap/extension-collaboration-caret": "^3.29.2",
+    "@tiptap/extension-details": "^3.29.2",
     "@tiptap/extension-document": "^3.29.2",
     "@tiptap/extension-drag-handle": "^3.29.2",
     "@tiptap/extension-drag-handle-react": "^3.29.2",
@@ -1027,6 +1067,7 @@
     "@tiptap/extension-subscript": "^3.29.2",
     "@tiptap/extension-superscript": "^3.29.2",
     "@tiptap/extension-table": "^3.29.2",
+    "@tiptap/extension-table-of-contents": "^3.29.2",
     "@tiptap/extension-task-item": "^3.29.2",
     "@tiptap/extension-task-list": "^3.29.2",
     "@tiptap/extension-text": "^3.29.2",
@@ -1034,6 +1075,7 @@
     "@tiptap/extension-text-style": "^3.29.2",
     "@tiptap/extension-underline": "^3.29.2",
     "@tiptap/extensions": "^3.29.2",
+    "@tiptap/markdown": "^3.29.2",
     "@tiptap/pm": "^3.29.2",
     "@tiptap/react": "^3.29.2",
     "@tiptap/suggestion": "^3.29.2",

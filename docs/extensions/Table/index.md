@@ -2,8 +2,8 @@
 description: Table
 
 next:
-  text: TaskList
-  link: /extensions/TaskList/index.md
+  text: TableOfContents
+  link: /extensions/TableOfContents/index.md
 ---
 
 # Table

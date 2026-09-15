@@ -157,6 +157,7 @@ const locale = {
   'editor.katex.tooltip': 'Matemaattinen kaava',
   'editor.exportPdf.tooltip': 'Vie PDF',
   'editor.exportWord.tooltip': 'Vie Word',
+  'editor.exportMarkdown.tooltip': 'Vie Markdown',
   'editor.importWord.tooltip': 'Tuo Word',
   'editor.importWord.limitSize': 'Tiedoston koko ei saa ylittää',
   'editor.importWord.converting': 'Muunnetaan Word-dokumenttia, odota...',
@@ -197,6 +198,10 @@ const locale = {
   'editor.callout.type.important': 'Tärkeä',
   'editor.callout.type.warning': 'Varoitus',
   'editor.callout.type.caution': 'Varovaisuus',
+  'editor.details.tooltip': 'Laajennettava lohko',
+  'editor.tableofcontents.tooltip': 'Sisällysluettelo',
+  'editor.tableofcontents.title': 'Sisällysluettelo',
+  'editor.tableofcontents.empty': 'Lisää otsikoita sisällysluettelon luomiseksi',
 };
 
 export default locale;

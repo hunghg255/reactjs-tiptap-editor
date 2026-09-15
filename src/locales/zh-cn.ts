@@ -157,6 +157,7 @@ const locale = {
   'editor.katex.tooltip': '数学公式',
   'editor.exportPdf.tooltip': '导出 PDF',
   'editor.exportWord.tooltip': '导出 Word',
+  'editor.exportMarkdown.tooltip': '导出 Markdown',
   'editor.importWord.tooltip': '导入 Word',
   'editor.importWord.limitSize': '文件大小不能超过',
   'editor.importWord.converting': '正在转换 Word 文档，请稍后...',
@@ -196,6 +197,10 @@ const locale = {
   'editor.callout.type.important': '重要',
   'editor.callout.type.warning': '警告',
   'editor.callout.type.caution': '注意',
+  'editor.details.tooltip': '折叠块',
+  'editor.tableofcontents.tooltip': '目录',
+  'editor.tableofcontents.title': '目录',
+  'editor.tableofcontents.empty': '添加标题以生成目录',
 };
 
 export default locale;

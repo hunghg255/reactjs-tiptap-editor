@@ -40,6 +40,7 @@ import {
   Link,
   List,
   ListOrdered,
+  ListCollapse,
   ListTodo,
   LoaderCircle,
   Maximize,
@@ -64,6 +65,7 @@ import {
   Superscript,
   Table,
   TableCellsMerge,
+  TableOfContents,
   TableCellsSplit,
   Trash,
   Trash2,
@@ -99,6 +101,7 @@ import { ColumnAddLeft } from '@/components/icons/ColumnAddLeft';
 import { ColumnAddRight } from '@/components/icons/ColumnAddRight';
 import { Direction } from '@/components/icons/Direction';
 import { Excalidraw } from '@/components/icons/Excalidraw';
+import ExportMarkdown from '@/components/icons/ExportMarkdown';
 import { ExportPdf } from '@/components/icons/ExportPdf';
 import ExportWord from '@/components/icons/ExportWord';
 import { GifIcon } from '@/components/icons/GIfIcon';
@@ -196,6 +199,7 @@ export const icons: Record<
   KatexIcon: Sigma,
   ExportPdf,
   ExportWord,
+  ExportMarkdown,
   ImportWord,
   ColumnAddLeft,
   ColumnAddRight,
@@ -226,4 +230,6 @@ export const icons: Record<
   Html,
   ExternalLink,
   Callout: NotebookPen,
+  Details: ListCollapse,
+  TableOfContents,
 };

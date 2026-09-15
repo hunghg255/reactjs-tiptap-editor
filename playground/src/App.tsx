@@ -54,9 +54,11 @@ import {
   MultipleColumnNode,
   RichTextColumn,
 } from 'reactjs-tiptap-editor/column';
+import { Details, RichTextDetails } from 'reactjs-tiptap-editor/details';
 import { Drawer, RichTextDrawer } from 'reactjs-tiptap-editor/drawer';
 import { Emoji, RichTextEmoji } from 'reactjs-tiptap-editor/emoji';
 import { Excalidraw, RichTextExcalidraw } from 'reactjs-tiptap-editor/excalidraw';
+import { ExportMarkdown, RichTextExportMarkdown } from 'reactjs-tiptap-editor/exportmarkdown';
 import { ExportPdf, RichTextExportPdf } from 'reactjs-tiptap-editor/exportpdf';
 import { ExportWord, RichTextExportWord } from 'reactjs-tiptap-editor/exportword';
 import { FontFamily, RichTextFontFamily } from 'reactjs-tiptap-editor/fontfamily';
@@ -87,6 +89,7 @@ import { ShortMessage } from 'reactjs-tiptap-editor/shortmessage';
 import { SlashCommand, SlashCommandList } from 'reactjs-tiptap-editor/slashcommand';
 import { Strike, RichTextStrike } from 'reactjs-tiptap-editor/strike';
 import { Table, RichTextTable } from 'reactjs-tiptap-editor/table';
+import { TableOfContents, RichTextTableOfContents } from 'reactjs-tiptap-editor/tableofcontents';
 import { TaskList, RichTextTaskList } from 'reactjs-tiptap-editor/tasklist';
 import { TextAlign, RichTextAlign } from 'reactjs-tiptap-editor/textalign';
 import { TextDirection, RichTextTextDirection } from 'reactjs-tiptap-editor/textdirection';
@@ -256,6 +259,7 @@ const extensions = [
   ExportPdf,
   ImportWord,
   ExportWord,
+  ExportMarkdown,
   TextDirection,
   Attachment.configure({
     upload: (file: any) => {
@@ -355,6 +359,8 @@ const extensions = [
   }),
   CodeView,
   Callout,
+  Details,
+  TableOfContents,
   MarkdownPaste,
   //  Collaboration.configure({
   //   document: hocuspocusProvider.document,
@@ -367,8 +373,7 @@ const extensions = [
   // }),
 ];
 
-const DEFAULT = `<pre class="shj" dir="auto"><code class="language-js">const a = 2;\
-</code></pre><p dir="auto"></p>`;
+const DEFAULT = `<pre class="shj" dir="auto"><code class="language-js">const a = 2;</code></pre><div class="table-of-contents" dir="auto" data-type="table-of-contents"></div><details class="details" dir="auto" open=""><summary class="details-summary" dir="auto">tét</summary><div class="details-content" dir="auto" data-type="detailsContent"><p dir="auto">ádsad</p><p dir="auto">ád</p><p dir="auto">ád</p><p dir="auto">ád</p><p dir="auto"></p></div></details><p dir="auto"></p><p dir="auto"></p>>`;
 
 function debounce(func: any, wait: number) {
   let timeout: NodeJS.Timeout;
@@ -611,6 +616,7 @@ const RichTextToolbar = () => {
       <RichTextExportPdf />
       <RichTextImportWord />
       <RichTextExportWord />
+      <RichTextExportMarkdown />
       <RichTextTextDirection />
       <RichTextAttachment />
       <RichTextKatex />
@@ -620,6 +626,8 @@ const RichTextToolbar = () => {
       <RichTextTwitter />
       <RichTextCodeView />
       <RichTextCallout />
+      <RichTextDetails />
+      <RichTextTableOfContents />
     </div>
   );
 };

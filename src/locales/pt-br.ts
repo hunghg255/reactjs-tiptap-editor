@@ -157,6 +157,7 @@ const locale = {
   'editor.katex.tooltip': 'Fórmula matemática',
   'editor.exportPdf.tooltip': 'Exportar PDF',
   'editor.exportWord.tooltip': 'Exportar Word',
+  'editor.exportMarkdown.tooltip': 'Exportar Markdown',
   'editor.importWord.tooltip': 'Importar Word',
   'editor.importWord.limitSize': 'O tamanho do arquivo não pode exceder',
   'editor.importWord.converting': 'Convertendo documento do Word, aguarde...',
@@ -197,6 +198,10 @@ const locale = {
   'editor.callout.type.important': 'Importante',
   'editor.callout.type.warning': 'Aviso',
   'editor.callout.type.caution': 'Cuidado',
+  'editor.details.tooltip': 'Bloco recolhível',
+  'editor.tableofcontents.tooltip': 'Sumário',
+  'editor.tableofcontents.title': 'Sumário',
+  'editor.tableofcontents.empty': 'Adicione títulos para montar o sumário',
 };
 
 export default locale;
