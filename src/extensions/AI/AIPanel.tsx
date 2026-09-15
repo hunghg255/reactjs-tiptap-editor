@@ -1,9 +1,14 @@
 import { ArrowUp, Check, RotateCcw, Sparkles, Square, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { generateAIText } from './client';
 
 import type { AIMessage, AIOptions } from './types';
+
+/** Splits text into paragraphs of word tokens; each token keeps its surrounding whitespace. */
+function tokenize(text: string) {
+  return text.split(/\n\s*\n/).map((paragraph) => paragraph.match(/\s*\S+\s*/g) ?? []);
+}
 
 export interface AIPanelProps {
   options: AIOptions;
@@ -17,9 +22,11 @@ export function AIPanel({ options, selectedText, initialPrompt, apply, close }: 
   const [prompt, setPrompt] = useState(initialPrompt || '');
   const [tone, setTone] = useState('');
   const [result, setResult] = useState('');
-  const [preview, setPreview] = useState('');
+  const paragraphs = useMemo(() => (result ? tokenize(result) : []), [result]);
+  const total = paragraphs.reduce((sum, tokens) => sum + tokens.length, 0);
+  const [revealed, setRevealed] = useState(0);
   const animation = useRef(0);
-  const revealing = result !== preview;
+  const revealing = revealed < total;
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const working = busy || revealing;
@@ -46,28 +53,22 @@ export function AIPanel({ options, selectedText, initialPrompt, apply, close }: 
   }, []);
 
   useEffect(() => {
-    if (!result) return;
+    if (!total) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setPreview(result);
+      setRevealed(total);
       return;
     }
-    const characters = Array.from(
-      new Intl.Segmenter(undefined, { granularity: 'grapheme' }).segment(result),
-      (part) => part.segment
-    );
-    const duration = Math.min(characters.length * 16, 5000);
+    // Words stream in at a steady cadence; each newly mounted word fades in via CSS.
+    const duration = Math.min(total * 60, 5000);
     const start = performance.now();
     function tick(now: number) {
-      const count = Math.min(
-        characters.length,
-        Math.max(1, Math.floor(((now - start) / duration) * characters.length))
-      );
-      setPreview(characters.slice(0, count).join(''));
-      if (count < characters.length) animation.current = requestAnimationFrame(tick);
+      const count = Math.min(total, Math.max(1, Math.floor(((now - start) / duration) * total)));
+      setRevealed(count);
+      if (count < total) animation.current = requestAnimationFrame(tick);
     }
     animation.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(animation.current);
-  }, [result]);
+  }, [paragraphs, total]);
 
   useEffect(() => {
     if (busy) stopButton.current?.focus();
@@ -106,7 +107,7 @@ export function AIPanel({ options, selectedText, initialPrompt, apply, close }: 
       if (active.signal.aborted) return;
       if (!text.trim()) throw new Error('AI returned no text. Try another prompt.');
       history.current = [...messages, { role: 'assistant', content: text }];
-      if (text !== result) setPreview('');
+      if (text !== result) setRevealed(0);
       setResult(text);
       setPrompt('');
     } catch (cause) {
@@ -125,12 +126,32 @@ export function AIPanel({ options, selectedText, initialPrompt, apply, close }: 
 
   function stop() {
     cancelAnimationFrame(animation.current);
-    setPreview(result);
+    setRevealed(total);
     controller.current?.abort();
     controller.current = null;
     setBusy(false);
     input.current?.focus();
   }
+
+  let offset = 0;
+  const preview = paragraphs.map((tokens, index) => {
+    const start = offset;
+    offset += tokens.length;
+    // Paragraphs the stream has not reached yet stay unmounted so they take no space.
+    if (index > 0 && revealed <= start) return null;
+    const shown = Math.min(tokens.length, Math.max(0, revealed - start));
+    return (
+      <p key={index}>
+        <span className='richtext-ai-insertion'>
+          {tokens.slice(0, shown).map((token, position) => (
+            <span key={position} className='richtext-ai-word'>
+              {token}
+            </span>
+          ))}
+        </span>
+      </p>
+    );
+  });
 
   return (
     <div
@@ -148,14 +169,7 @@ export function AIPanel({ options, selectedText, initialPrompt, apply, close }: 
     >
       {result ? (
         <div className='richtext-ai-preview' aria-label='AI preview' aria-busy={revealing}>
-          {preview.split(/\n\s*\n/).map((paragraph, index, paragraphs) => (
-            <p key={index}>
-              <span className='richtext-ai-insertion'>{paragraph}</span>
-              {revealing && index === paragraphs.length - 1 ? (
-                <span className='richtext-ai-caret' aria-hidden='true' />
-              ) : null}
-            </p>
-          ))}
+          {preview}
         </div>
       ) : null}
       {busy ? (
