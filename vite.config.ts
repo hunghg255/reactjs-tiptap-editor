@@ -4,13 +4,18 @@ import react from '@vitejs/plugin-react';
 import autoprefixer from 'autoprefixer';
 import { globbySync } from 'globby';
 import postcssReplace from 'postcss-replace';
+import { esmExternalRequirePlugin } from 'rolldown/plugins';
 import tailwind from 'tailwindcss';
 import dts from 'unplugin-dts/vite';
 import { defineConfig } from 'vite';
 
+const rootDir = import.meta.dirname;
+
+// React is externalized through esmExternalRequirePlugin (see rolldownOptions.plugins) so that
+// bundled CommonJS deps (e.g. use-sync-external-store) get `import` instead of a runtime `require`.
+const reactExternal = /^react(-dom)?(\/|$)/;
+
 const externalPackages = [
-  'react',
-  'react-dom',
   'katex',
   'docx',
   '@radix-ui/react-dropdown-menu',
@@ -40,38 +45,46 @@ const externalPackages = [
   'mammoth',
 ];
 
+const normalizePath = (id: string) => id.replaceAll('\\', '/');
+
+const editorUtilsModules = new Set(
+  ['src/hooks/useAttributes.tsx', 'src/utils/json.ts'].map((file) =>
+    normalizePath(path.resolve(rootDir, file))
+  )
+);
+
 export default defineConfig(({ mode }) => {
   const isDev = mode !== 'production';
 
   const entry = [
-    path.resolve(__dirname, 'src/index.ts'),
-    path.resolve(__dirname, 'src/locale-bundle.ts'),
-    path.resolve(__dirname, 'src/locale.ts'),
-    ...globbySync('src/locales/*.ts', { cwd: __dirname, ignore: ['**/index.ts'] })
+    path.resolve(rootDir, 'src/index.ts'),
+    path.resolve(rootDir, 'src/locale-bundle.ts'),
+    path.resolve(rootDir, 'src/locale.ts'),
+    ...globbySync('src/locales/*.ts', { cwd: rootDir, ignore: ['**/index.ts'] })
       .sort()
-      .map((file) => path.resolve(__dirname, file)),
-    path.resolve(__dirname, 'src/bubble.ts'),
-    path.resolve(__dirname, 'src/theme/theme.ts'),
+      .map((file) => path.resolve(rootDir, file)),
+    path.resolve(rootDir, 'src/bubble.ts'),
+    path.resolve(rootDir, 'src/theme/theme.ts'),
   ];
 
   const extensionEntries = globbySync('src/extensions/*/*.ts', {
-    cwd: __dirname,
+    cwd: rootDir,
     ignore: ['**/index.ts', '**/*.spec.ts', '**/*.test.ts'],
   })
     .filter((file) => path.basename(file, '.ts') === path.basename(path.dirname(file)))
     .sort();
 
-  entry.push(...extensionEntries.map((file) => path.resolve(__dirname, file)));
+  entry.push(...extensionEntries.map((file) => path.resolve(rootDir, file)));
   entry.push(
-    ...globbySync('src/components/Bubble/RichText*.tsx', { cwd: __dirname })
+    ...globbySync('src/components/Bubble/RichText*.tsx', { cwd: rootDir })
       .sort()
-      .map((file) => path.resolve(__dirname, file))
+      .map((file) => path.resolve(rootDir, file))
   );
 
   return {
     plugins: [react(), dts()],
     resolve: {
-      alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+      alias: [{ find: '@', replacement: path.resolve(rootDir, 'src') }],
     },
     css: {
       postcss: {
@@ -95,8 +108,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      cssMinify: isDev ? false : 'esbuild',
-      minify: isDev ? false : 'esbuild',
+      cssMinify: isDev ? false : 'lightningcss',
+      minify: isDev ? false : 'oxc',
       outDir: 'lib',
       sourcemap: isDev,
       lib: {
@@ -109,16 +122,17 @@ export default defineConfig(({ mode }) => {
           return `${entryName}.cjs`;
         },
       },
-      rollupOptions: {
+      rolldownOptions: {
+        plugins: [esmExternalRequirePlugin({ external: [reactExternal] })],
         output: {
-          interop: 'auto',
           // Keep generic helpers out of feature chunks with heavy external imports.
-          manualChunks(id) {
-            if (
-              id === path.resolve(__dirname, 'src/hooks/useAttributes.tsx') ||
-              id === path.resolve(__dirname, 'src/utils/json.ts')
-            )
-              return 'editor-utils';
+          codeSplitting: {
+            groups: [
+              {
+                name: 'editor-utils',
+                test: (id) => editorUtilsModules.has(normalizePath(id)),
+              },
+            ],
           },
         },
         // Keep Tiptap and React shared with the consuming application.

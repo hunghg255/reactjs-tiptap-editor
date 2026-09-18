@@ -20,16 +20,12 @@ export default defineConfig(({ mode }) => {
       devSourcemap: isDev,
     },
     build: {
-      commonjsOptions: {
-        include: [/node_modules/],
-      },
       sourcemap: isAnalyze,
     },
     resolve: {
-      alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
-    },
-    esbuild: {
-      sourcemap: isDev,
+      alias: [{ find: '@', replacement: path.resolve(import.meta.dirname, 'src') }],
+      // The linked workspace package resolves 'react' from the repo root; force a single copy.
+      dedupe: ['react', 'react-dom'],
     },
     server: {
       host: '0.0.0.0',
