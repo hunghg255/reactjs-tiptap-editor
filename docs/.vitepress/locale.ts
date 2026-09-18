@@ -63,6 +63,11 @@ export function getLocaleConfig(lang: string) {
       link: 'https://reactjs-tiptap-editor-playground.vercel.app/',
     },
     {
+      text: t('Skills'),
+      link: `${urlPrefix}/skills`,
+      activeMatch: '/skills',
+    },
+    {
       text: 'llmstxt',
       link: 'https://reactjs-tiptap-editor.vercel.app/llms-full.txt',
     },
@@ -73,6 +78,10 @@ export function getLocaleConfig(lang: string) {
   ];
 
   const sidebar: DefaultTheme.SidebarItem[] = [
+    {
+      text: t('Skills'),
+      link: `${urlPrefix}/skills`,
+    },
     {
       text: t('Guide'),
       items: [

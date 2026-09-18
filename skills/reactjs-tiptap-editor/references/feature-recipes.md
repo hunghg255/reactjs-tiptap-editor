@@ -1,6 +1,6 @@
 # Feature Recipes
 
-Load this for requested features beyond the base editor.
+Load the relevant section for features beyond the base editor. Snippets extend the quickstart's `baseExtensions`; compose selected extensions into one array rather than replacing it with each recipe. Render controls inside the provider after the null guard. App-specific data and callbacks are identified below.
 
 ## Toolbar Pattern
 
@@ -27,13 +27,11 @@ function Toolbar() {
 Bubble components must render inside `RichTextProvider`; most require their matching extension.
 
 ```tsx
-import {
-  RichTextBubbleCodeBlock,
-  RichTextBubbleImage,
-  RichTextBubbleLink,
-  RichTextBubbleMenuDragHandle,
-  RichTextBubbleText,
-} from 'reactjs-tiptap-editor/bubble';
+import { RichTextBubbleCodeBlock } from 'reactjs-tiptap-editor/bubble/codeblock';
+import { RichTextBubbleImage } from 'reactjs-tiptap-editor/bubble/media';
+import { RichTextBubbleLink } from 'reactjs-tiptap-editor/bubble/link';
+import { RichTextBubbleMenuDragHandle } from 'reactjs-tiptap-editor/bubble/drag-handle';
+import { RichTextBubbleText } from 'reactjs-tiptap-editor/bubble/text';
 
 function BubbleMenus() {
   return (
@@ -59,7 +57,7 @@ const extensions = [...baseExtensions, SlashCommand];
 <SlashCommandList />;
 ```
 
-Use placeholder text such as `Press '/' for commands` in `Placeholder.configure`.
+Optionally add `Placeholder` from `@tiptap/extensions` with `placeholder: "Press '/' for commands"`. Check that the commands offered by the list have their required extensions enabled.
 
 ## Image Upload
 
@@ -83,7 +81,11 @@ const extensions = [
         method: 'POST',
         body: formData,
       });
+      if (!response.ok) throw new Error(`Image upload failed: ${response.status}`);
       const data = (await response.json()) as { url: string };
+      if (typeof data.url !== 'string' || !data.url.trim()) {
+        throw new Error('Image upload returned no URL');
+      }
       return data.url;
     },
     resourceImage: 'both',
@@ -94,21 +96,34 @@ const extensions = [
 
 Relevant options: `upload`, `HTMLAttributes`, `multiple`, `acceptMimes`, `maxSize`, `resourceImage`, `defaultInline`, `enableAlt`, `onError`.
 
+`/api/uploads/images` is an example contract, not an endpoint provided by the package. Adapt it to the app's authenticated upload service, which must return a persistent URL. Render `<RichTextImage />` inside the provider.
+
 ## Video, Attachment, Mermaid, Drawer Uploads
 
 These features also accept upload callbacks in repo examples. Return a `Promise<string>` URL.
 
 ```tsx
+import { Video } from 'reactjs-tiptap-editor/video';
+import { Attachment } from 'reactjs-tiptap-editor/attachment';
+import { Mermaid } from 'reactjs-tiptap-editor/mermaid';
+import { Drawer } from 'reactjs-tiptap-editor/drawer';
+
 Video.configure({ upload: async (file: File) => uploadFile(file) });
 Attachment.configure({ upload: async (file: File) => uploadFile(file) });
 Mermaid.configure({ upload: async (file: File) => uploadFile(file) });
 Drawer.configure({ upload: async (file: File) => uploadFile(file) });
 ```
 
+`uploadFile` is supplied by the app and must reject failed uploads. Add the configured extension to the editor's array; calling `.configure()` alone does not register it.
+
 ## Mention
 
 ```tsx
 import { Mention } from 'reactjs-tiptap-editor/mention';
+
+// Replace these demo records with the app's data source.
+const users = [{ id: 'user-1', label: 'Alex' }];
+const tags = [{ id: 'tag-1', label: 'Planning' }];
 
 const extensions = [
   ...baseExtensions,
@@ -129,10 +144,16 @@ const extensions = [
 ];
 ```
 
-````tsx
-import { CodeBlock, RichTextCodeBlock } from 'reactjs-tiptap-editor/codeblock';
-import { RichTextBubbleCodeBlock } from 'reactjs-tiptap-editor/bubble';
+## Code Block
 
+```tsx
+import { CodeBlock, RichTextCodeBlock } from 'reactjs-tiptap-editor/codeblock';
+import { RichTextBubbleCodeBlock } from 'reactjs-tiptap-editor/bubble/codeblock';
+
+const extensions = [...baseExtensions, CodeBlock];
+```
+
+Render `<RichTextCodeBlock />` in the toolbar and, if requested, `<RichTextBubbleCodeBlock />` inside the provider.
 
 ## Export PDF
 
@@ -151,7 +172,7 @@ const extensions = [
     },
   }),
 ];
-````
+```
 
 ## Export Word
 
@@ -164,8 +185,10 @@ const extensions = [...baseExtensions, ExportWord];
 ## Internationalization
 
 ```tsx
-import { en, localeActions, useLocale } from 'reactjs-tiptap-editor/locale-bundle';
+import { en, localeActions, useLocale } from 'reactjs-tiptap-editor/locale';
+import vi from 'reactjs-tiptap-editor/locales/vi';
 
+localeActions.setMessage('vi', vi);
 localeActions.setLang('vi');
 
 localeActions.setMessage('en', {
@@ -179,7 +202,9 @@ function LocaleDebug() {
 }
 ```
 
-Supported language keys from docs: `en`, `vi`, `zh_CN`, `pt_BR`, `hu_HU`, `fi`, `ja`.
+Run registration in app initialization, not repeatedly during component render. `/locale` includes English; register other dictionaries before selecting them. For compatibility, `/locale-bundle` registers all bundled languages as an import side effect.
+
+Language keys differ from some file names: `zh_CN` uses `/locales/zh-cn`, `pt_BR` uses `/locales/pt-br`, and `hu_HU` uses `/locales/hu`. Other keys/files are `en`, `vi`, `fi`, and `ja`.
 
 ## Theme
 
@@ -196,4 +221,4 @@ function ThemeState() {
 }
 ```
 
-Pass `dark={theme === 'dark'}` to `RichTextProvider` when the app tracks dark mode.
+The current provider accepts but ignores `dark`; synchronize the app's theme through `themeActions.setTheme(...)` in initialization, an event handler, or an effect. Theme and locale actions update shared stores, not per-editor state.

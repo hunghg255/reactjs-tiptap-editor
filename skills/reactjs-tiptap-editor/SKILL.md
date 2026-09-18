@@ -1,128 +1,52 @@
 ---
 name: reactjs-tiptap-editor
-description: "Build, integrate, configure, debug, migrate, and review React rich-text editors using reactjs-tiptap-editor. Use for React Tiptap WYSIWYG editor setup, RichTextProvider, EditorContent, toolbar buttons, bubble menus, slash command, image upload, video upload, mentions, i18n, theme, export PDF/Word, extension imports, and package usage. Triggers: 'use reactjs-tiptap-editor', 'add rich text editor', 'setup Tiptap editor', 'add toolbar', 'add image upload', 'configure slash command', 'customize editor theme', 'debug editor extension'."
+description: Integrate, configure, debug, migrate, and review React editors using the reactjs-tiptap-editor package. Use for its provider, extension imports, toolbars, bubble menus, uploads, localization, theme, and document import/export. Applies when this package is requested or already used, not to generic Tiptap integrations using other UI libraries.
 ---
 
-IRON LAW: NEVER INVENT IMPORT PATHS, EXTENSION NAMES, OR OPTIONS. VERIFY THEM AGAINST THIS SKILL'S REFERENCES OR THE REPO BEFORE CODING.
+# Reactjs Tiptap Editor
 
-## Workflow
+Implement the requested behavior with the smallest compatible extension set. Preserve the host app's framework, package manager, data format, and editor ownership.
 
-Copy this checklist and check off items as you complete them:
+## Establish the API version
 
-```
-Reactjs Tiptap Editor Progress:
+Inspect the target app's manifest, lockfile, and editor setup. Infer framework and features from the project; ask only about missing product decisions such as the upload endpoint or persistence contract.
 
-- [ ] Step 1: Understand the integration target ⚠️ REQUIRED
-  - [ ] 1.1 Identify framework, package manager, and existing Tiptap setup
-  - [ ] 1.2 Identify requested features: base editor, toolbar, bubble menu, uploads, slash command, i18n, theme, export, custom extension
-  - [ ] 1.3 Identify whether the task is code generation, code edit, review, migration, or debugging
-- [ ] Step 2: Load exact references ⛔ BLOCKING
-  - [ ] 2.1 Load references/quickstart.md for any setup or editor shell
-  - [ ] 2.2 Load references/extension-map.md before using any extension import/component
-  - [ ] 2.3 Load references/feature-recipes.md for uploads, slash command, i18n, theme, export, mentions, CodeBlock, bubble menu
-  - [ ] 2.4 Load references/review-checklist.md before reviewing or delivering code
-- [ ] Step 3: Plan the minimal implementation
-  - [ ] 3.1 Decide the smallest extension set needed
-  - [ ] 3.2 Pair every toolbar/bubble component with its required extension
-  - [ ] 3.3 List extra peer packages/CSS imports required by selected features
-- [ ] Step 4: Implement or answer
-  - [ ] 4.1 Preserve the host app's React, CSS, and state-management patterns
-  - [ ] 4.2 Use real upload/API callbacks supplied by the app; use object URLs only for demos
-  - [ ] 4.3 Keep generated examples TypeScript-friendly
-- [ ] Step 5: Verify ⚠️ REQUIRED
-  - [ ] 5.1 Check imports against references/extension-map.md or source
-  - [ ] 5.2 Check provider/editor nesting and CSS imports
-  - [ ] 5.3 Run available typecheck/tests/build when editing a repo
-```
+These references describe this repository's **1.0.46 / Tiptap 3** API. For another installed version, its exports and declarations take precedence. Do not silently upgrade dependencies or mix legacy default-editor/BaseKit examples with the provider API.
 
-## Usage Examples
+Verify unfamiliar imports and options using:
 
-- "Add reactjs-tiptap-editor to my React app with bold, italic, headings, lists, image upload, and slash command."
-- "Review this editor setup and find why the toolbar button is disabled."
-- "Show me how to configure i18n, dark theme, and export PDF/Word for reactjs-tiptap-editor."
+- `package.json` exports for public entry points.
+- `src/index.ts`, `src/components/RichTextProvider.tsx`, and `src/extensions/<Feature>/index.ts` and implementation files in this repository.
+- Installed package declarations in a consumer app. Use version-matched official documentation when local evidence is insufficient.
 
-## Step 1: Understand the Integration Target
+Do not copy private `@/` source aliases into consumer code or infer an import path from a component name.
 
-Ask:
+## Load the relevant reference
 
-- Is the app using Vite, Next.js, Remix, or another React setup?
-- Is there already a `useEditor` instance, `EditorContent`, or Tiptap extension array?
-- Does the user need a runnable component, a patch in an existing file, or an explanation?
-- Which output should be saved: HTML via `editor.getHTML()`, JSON via `editor.getJSON()`, or external state?
-- Are selected features browser-only and therefore incompatible with server rendering without a client boundary?
+| Task | Reference |
+| --- | --- |
+| Setup, SSR, dependencies, persistence | [quickstart.md](references/quickstart.md) |
+| Exports, supporting nodes, toolbar and bubble imports | [extension-map.md](references/extension-map.md) |
+| Uploads, slash commands, mentions, code blocks, export, locale, theme | [feature-recipes.md](references/feature-recipes.md) |
+| Debugging or reviewing an integration | [review-checklist.md](references/review-checklist.md) |
 
-For Next.js/App Router examples, mark the editor component as client-side with `'use client'` because Tiptap editor rendering is browser-oriented.
+Read only relevant sections. Feature recipes extend the quickstart; they are not standalone components.
 
-## Step 2: Load Exact References
+## Implement
 
-Load only the references needed for the request:
+- Share one `useEditor` instance between `RichTextProvider` and `EditorContent`. Guard the initial null editor before rendering the provider. Put context-dependent controls inside it.
+- Import `reactjs-tiptap-editor/style.css` at the appropriate style boundary, plus selected feature CSS.
+- Register commands and nodes required by visible controls. Check supporting schema nodes and extensions bundled by a feature before adding duplicates. If using StarterKit, disable overlaps or deliberately reuse existing equivalents.
+- Keep static extensions outside the component and follow the app's lifecycle for dynamic callbacks. Avoid recreating the editor on each keystroke.
+- Distinguish initial content from external document replacement. Save through `onUpdate`; changing the `content` option does not make the editor controlled.
+- For SSR, use a client component and `immediatelyRender: false`; a client directive alone does not prevent server prerendering.
+- Use the app's real upload contract. Return a persistent URL and reject failed responses. Object URLs are temporary previews, not saved media URLs.
+- Prefer feature-specific bubble entry points and individual locale dictionaries when available in the installed version.
 
-- `references/quickstart.md`: base install, imports, provider structure, editor lifecycle.
-- `references/extension-map.md`: extension import paths, toolbar components, bubble components, extra CSS/package notes.
-- `references/feature-recipes.md`: upload callbacks, slash command, mention, i18n, theme, export, bubble menu.
-- `references/review-checklist.md`: verification checklist for generated or reviewed code.
+## Verify and deliver
 
-If a requested feature is not in the references, inspect the local repo docs/source before answering.
+Check imports, schema dependencies, provider nesting, and the requested interaction. Run relevant typechecks/builds or tests for executable changes; validate examples and links for documentation changes.
 
-## Step 3: Plan the Minimal Implementation
+For debugging, reproduce the symptom and trace the owning extension, command, or state update before changing architecture. Use the review reference for likely failure points.
 
-Ask:
-
-- Which extension nodes/marks are required for the user's visible UI?
-- Is each `RichText*` toolbar component backed by the matching extension in `extensions`?
-- Does any selected feature require extra package installs or CSS imports?
-- Are upload callbacks returning a `Promise<string>` URL as expected?
-- Is the generated example small enough to copy into an app without unrelated demo code?
-
-Do not ask the user for confirmation when they clearly requested implementation. Do ask before overwriting existing editor architecture, changing package managers, or replacing app-wide styling.
-
-## Step 4: Implement or Answer
-
-Default structure for code:
-
-1. Import `RichTextProvider` from `reactjs-tiptap-editor`.
-2. Import `EditorContent` and `useEditor` from `@tiptap/react`.
-3. Import required base Tiptap extensions.
-4. Import selected `reactjs-tiptap-editor/<extension>` modules.
-5. Import `reactjs-tiptap-editor/style.css` once in the editor entry or global style entry.
-6. Build a stable `extensions` array.
-7. Create `editor = useEditor({ extensions, content, textDirection: 'auto', onUpdate })`.
-8. Render `<RichTextProvider editor={editor}>` around toolbar, bubble menu, slash command list, and `<EditorContent editor={editor} />`.
-
-When editing an existing repo, follow existing file boundaries and naming. Avoid introducing a full demo app when the task only needs one feature added.
-
-## Anti-Patterns
-
-- Do not use `StarterKit` blindly when the requested setup already imports individual base extensions.
-- Do not render `RichTextBold`, `RichTextImage`, `SlashCommandList`, or any `RichTextBubble*` component without adding the matching extension.
-- Do not forget `reactjs-tiptap-editor/style.css`.
-- Do not use fake upload handlers in production code unless the user asked for a demo.
-- Do not import every extension "just in case"; it increases bundle size and may require unused peer packages.
-- Do not invent undocumented options. Inspect source docs when the reference is incomplete.
-- Do not put editor code in a server component without a client boundary.
-
-## Output Style
-
-For implementation answers:
-
-- Show package installs only when dependencies are missing or feature-specific.
-- Provide complete imports for code snippets.
-- Mention any required extra CSS import.
-- State which extensions and toolbar/bubble components were paired.
-
-For reviews:
-
-- Lead with bugs/risks and file references.
-- Separate "must fix" from optional cleanup.
-
-## Pre-Delivery Checklist
-
-- [ ] No placeholder text remains in generated files or snippets.
-- [ ] Every import path matches `references/extension-map.md` or repo source.
-- [ ] Every toolbar/bubble UI component has its extension in the `extensions` array.
-- [ ] `RichTextProvider` wraps all editor UI that uses editor context.
-- [ ] `EditorContent` receives the same editor instance passed to `RichTextProvider`.
-- [ ] `reactjs-tiptap-editor/style.css` is imported exactly once in the relevant app boundary.
-- [ ] Feature-specific CSS/packages are called out.
-- [ ] Upload callbacks return `Promise<string>` URLs.
-- [ ] Verification commands were run or explicitly reported as not run.
+Deliver the patch or focused example with complete imports, necessary dependencies/CSS, and app-specific callback contracts. State what was verified and what remains untested. For reviews, lead with actionable findings and file locations.

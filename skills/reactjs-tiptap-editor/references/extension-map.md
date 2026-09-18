@@ -2,6 +2,8 @@
 
 Load this before adding imports, toolbar buttons, bubble menus, or extension arrays.
 
+Snapshot: repository 1.0.46 / Tiptap 3. Public paths come from `package.json` exports; names come from source entry points. Installed-version declarations override this map.
+
 ## Base Extensions
 
 | Purpose                                          | Import                                                                                   |
@@ -66,6 +68,21 @@ Load this before adding imports, toolbar buttons, bubble menus, or extension arr
 | Underline        | `reactjs-tiptap-editor/textunderline`    | `TextUnderline`, `RichTextUnderline`                           |
 | Twitter          | `reactjs-tiptap-editor/twitter`          | `Twitter`, `RichTextTwitter`                                   |
 | Video            | `reactjs-tiptap-editor/video`            | `Video`, `RichTextVideo`                                       |
+| AI               | `reactjs-tiptap-editor/ai`               | `AI` (bubble UI: `RichTextAIImprove` from `/bubble/ai`)         |
+| Details          | `reactjs-tiptap-editor/details`          | `Details`, `DetailsSummary`, `DetailsContent`, `RichTextDetails` |
+| Table of contents | `reactjs-tiptap-editor/tableofcontents` | `TableOfContents`, `TableOfContentsNode`, `RichTextTableOfContents`, `useTableOfContents` |
+| Export Markdown  | `reactjs-tiptap-editor/exportmarkdown`   | `ExportMarkdown`, `RichTextExportMarkdown`, `getMarkdown`     |
+
+For AI endpoint/protocol options, inspect `src/extensions/AI/types.ts` or installed declarations before configuring a backend. For Details/TableOfContents options, inspect their implementation and bundled child extensions rather than registering every exported node.
+
+## Supporting Extensions
+
+- BulletList and OrderedList require ListItem.
+- Color, FontFamily, and FontSize use TextStyle.
+- Register all three column extensions: Column, ColumnNode, MultipleColumnNode.
+- Table registers TableRow, TableHeader, TableCell, and TableCellBackground internally.
+- TaskList registers TaskItem internally; Details registers its summary/content nodes; TableOfContents registers its node internally.
+- Check for overlaps with StarterKit and existing extensions before adding another registration.
 
 ## Non-Extension Imports
 
@@ -73,13 +90,13 @@ Load this before adding imports, toolbar buttons, bubble menus, or extension arr
 | ----------------- | --------------------------------------------------------------------------------- |
 | Provider          | `import { RichTextProvider } from 'reactjs-tiptap-editor';`                       |
 | Styles            | `import 'reactjs-tiptap-editor/style.css';`                                       |
-| Bubble components | `import { RichTextBubbleText } from 'reactjs-tiptap-editor/bubble';`              |
-| Locale            | `import { localeActions, useLocale } from 'reactjs-tiptap-editor/locale-bundle';` |
+| Bubble components | `import { RichTextBubbleText } from 'reactjs-tiptap-editor/bubble/text';`         |
+| Locale            | `import { localeActions, useLocale } from 'reactjs-tiptap-editor/locale';`        |
 | Theme             | `import { themeActions, useTheme } from 'reactjs-tiptap-editor/theme';`           |
 
 ## Bubble Components
 
-Import from `reactjs-tiptap-editor/bubble`:
+The compatibility barrel `reactjs-tiptap-editor/bubble` exports the following. Prefer the specific entry point when available to avoid pulling unrelated feature modules into the import graph:
 
 - `RichTextBubbleText`
 - `RichTextBubbleLink`
@@ -97,6 +114,25 @@ Import from `reactjs-tiptap-editor/bubble`:
 - `RichTextBubbleKatex`
 - `RichTextBubbleCodeBlock`
 - `RichTextBubbleMenuDragHandle`
+- `RichTextAIImprove`
+
+| Subpath (after `reactjs-tiptap-editor/`) | Named exports |
+| --- | --- |
+| `bubble/text` | `RichTextBubbleText` |
+| `bubble/link` | `RichTextBubbleLink` |
+| `bubble/media` | `RichTextBubbleImage`, `RichTextBubbleVideo`, `RichTextBubbleImageGif` |
+| `bubble/table` | `RichTextBubbleTable` |
+| `bubble/iframe` | `RichTextBubbleIframe` |
+| `bubble/columns` | `RichTextBubbleColumns` |
+| `bubble/drawer` | `RichTextBubbleDrawer` |
+| `bubble/excalidraw` | `RichTextBubbleExcalidraw` |
+| `bubble/mermaid` | `RichTextBubbleMermaid` |
+| `bubble/twitter` | `RichTextBubbleTwitter` |
+| `bubble/callout` | `RichTextBubbleCallout` |
+| `bubble/katex` | `RichTextBubbleKatex` |
+| `bubble/codeblock` | `RichTextBubbleCodeBlock` |
+| `bubble/drag-handle` | `RichTextBubbleMenuDragHandle` |
+| `bubble/ai` | `RichTextAIImprove` |
 
 ## Feature-Specific Package/CSS Notes
 

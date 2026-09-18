@@ -1,44 +1,41 @@
-# Review Checklist
+# Review and debugging
 
-Use this before delivering generated code or reviewing a user's integration.
+Use checks relevant to the reported symptom. Verify against the installed version first.
 
-## Blocking Issues
+| Symptom | Check first |
+| --- | --- |
+| Import fails | Public exports, named symbol, installed version; avoid private source aliases |
+| Missing styling | Main editor CSS, selected feature CSS, framework style entry |
+| Control disabled or command missing | Provider context, editability, matching extension, current selection/schema |
+| Schema error or duplicate plugin | Supporting nodes, duplicate extensions, StarterKit overlap, incompatible/duplicate Tiptap packages |
+| Hydration error | Client boundary, immediatelyRender: false, initial null guard, browser APIs during prerender |
+| Saved content never changes | onUpdate persistence callback and chosen HTML/JSON contract |
+| External content stays stale | content is initialization; explicit document replacement or identity-based remount |
+| Cursor jumps or update loop | Repeated setContent, recreated editor, parent echoing each local edit |
+| Uploaded media disappears on reload | Temporary object URL, invalid response, missing persistent URL |
+| Dark prop has no effect | This version ignores provider dark; use theme actions |
+| Translations stay English | Register dictionary before setLang, or use compatibility locale bundle |
 
-- Missing `reactjs-tiptap-editor/style.css`.
-- `EditorContent` uses a different editor instance from `RichTextProvider`.
-- Toolbar or bubble components rendered outside `RichTextProvider`.
-- A `RichText*` component is rendered but its extension is missing from `extensions`.
-- Fake `URL.createObjectURL(file)` upload is used in production code without a note.
-- Browser-only editor code placed in a Next.js server component.
-- Import path or exported symbol does not exist in `references/extension-map.md` or source.
+## Feature dependencies
 
-## Feature Pairing
+- Provider and EditorContent must share an editor. Controls need their corresponding commands and extensions.
+- BulletList and OrderedList need ListItem. Text-style features need TextStyle.
+- Column needs Column, ColumnNode, and MultipleColumnNode.
+- Table includes row/header/cell extensions; TaskList includes TaskItem. Avoid registering them twice.
+- SlashCommandList needs SlashCommand; check dependencies of offered commands.
+- Undo/redo need History or a compatible history mechanism. Check collaboration history before adding another one.
+- Bubble text has no single matching extension: inspect its buttons. Feature bubbles need the corresponding node/mark.
 
-Ask:
+## Feature checks
 
-- Does `RichTextImage` pair with `Image`?
-- Does `RichTextBubbleImage` pair with `Image`?
-- Does `SlashCommandList` pair with `SlashCommand`?
-- Do `RichTextUndo` and `RichTextRedo` pair with `History`?
-- Does `RichTextBubbleCodeBlock` pair with `CodeBlock`?
-- Does `RichTextTable` or `RichTextBubbleTable` pair with `Table`?
+- Image crop CSS is available; directly imported CSS packages are declared by the app.
+- Uploads return Promise<string>, reject unsuccessful responses, and provide persistent URLs. Confirm the endpoint contract rather than copying a fictional route.
+- Mention data matches the list UI: id, label, optional avatar.
+- Locale and theme stores are shared; check behavior if multiple editors need different settings.
+- Read-only mode disables editing, not just toolbar rendering.
 
-## Dependency/CSS Checks
+## Verification
 
-- Image UI: `react-image-crop` installed and `react-image-crop/dist/ReactCrop.css` imported.
-- Giphy GIF search: `ImageGif.configure({ provider: 'giphy', API_KEY })` gets an API key from app config.
-- Main editor CSS: `reactjs-tiptap-editor/style.css` imported once.
+Use the host project's scripts. In this library, relevant commands include `pnpm type-check`, `pnpm test:types`, and `pnpm build:lib`; select those appropriate to the change. For a UI bug, reproduce the interaction and inspect the console. For persistence, save and reopen representative content.
 
-## TypeScript Checks
-
-- Upload handlers return `Promise<string>`.
-- `useEditor` can receive `content` and `onUpdate` for controlled-ish save flows.
-- `RichTextProvider` may need `dark={...}` depending on local type definitions.
-- Mention items expose the fields expected by the app's mention UI, usually `id`, `label`, and optional `avatar`.
-
-## Output Checks
-
-- Include complete imports in snippets.
-- Keep examples minimal and feature-focused.
-- Mention extra packages and CSS imports near the feature that needs them.
-- Report verification commands run, or say they were not run.
+Report actual checks and results, including limits. Documentation-only changes need example/import/link validation; do not claim browser testing without exercising the UI.

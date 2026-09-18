@@ -12,6 +12,8 @@ next:
 
 This guide describes the **1.x composable API** used in this repository. If your app uses `RichTextEditor` or `BaseKit`, start with the [migration guide](/guide/how-to-migrate).
 
+Working with an AI coding agent? [Install the editor skill](/skills) for package-specific setup, feature recipes, and debugging guidance.
+
 ## 1. Install the packages
 
 Start with an existing React application. The example below uses Tiptap 3; keep all `@tiptap/*` packages on a compatible version. This repository currently uses `^3.29.2`.
