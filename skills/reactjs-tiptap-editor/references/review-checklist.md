@@ -36,6 +36,8 @@ Use checks relevant to the reported symptom. Verify against the installed versio
 
 ## Verification
 
+When replacing an upload adapter, check successful URLs and rejected failures against the existing contract. When refactoring persistence, check external replacement does not echo-save and pending saves cannot overwrite a different document. When extending a node, reopen saved HTML/JSON and check attributes, commands, and undo behavior.
+
 Use the host project's scripts. In this library, relevant commands include `pnpm type-check`, `pnpm test:types`, and `pnpm build:lib`; select those appropriate to the change. For a UI bug, reproduce the interaction and inspect the console. For persistence, save and reopen representative content.
 
 Report actual checks and results, including limits. Documentation-only changes need example/import/link validation; do not claim browser testing without exercising the UI.

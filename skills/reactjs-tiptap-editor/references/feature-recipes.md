@@ -61,42 +61,86 @@ Optionally add `Placeholder` from `@tiptap/extensions` with `placeholder: "Press
 
 ## Image Upload
 
+Keep the upload contract, transport adapter, and feature composition separate. The following blocks are app-owned code, not additional exports from the package.
+
 Install and import crop CSS when using the image UI:
 
 ```bash
 pnpm add react-image-crop
 ```
 
-```tsx
-import { Image, RichTextImage } from 'reactjs-tiptap-editor/image';
-import 'react-image-crop/dist/ReactCrop.css';
+Define the consumer's narrow contract in `upload-image.ts`:
 
-const extensions = [
-  ...baseExtensions,
-  Image.configure({
-    upload: async (file: File) => {
-      const formData = new FormData();
-      formData.append('file', file);
-      const response = await fetch('/api/uploads/images', {
-        method: 'POST',
-        body: formData,
-      });
-      if (!response.ok) throw new Error(`Image upload failed: ${response.status}`);
-      const data = (await response.json()) as { url: string };
-      if (typeof data.url !== 'string' || !data.url.trim()) {
-        throw new Error('Image upload returned no URL');
-      }
-      return data.url;
-    },
+```ts
+// Resolves a persistent media URL; rejects on failure.
+export type UploadImage = (file: File) => Promise<string>;
+```
+
+Implement the app's transport in `http-image-upload.ts`:
+
+```ts
+import type { UploadImage } from './upload-image';
+
+export function createHttpImageUpload(endpoint: string): UploadImage {
+  return async (file) => {
+    const body = new FormData();
+    body.append('file', file);
+    const response = await fetch(endpoint, { method: 'POST', body });
+    if (!response.ok) throw new Error(`Image upload failed: ${response.status}`);
+
+    const data: unknown = await response.json();
+    if (
+      typeof data !== 'object' || data === null || !('url' in data) ||
+      typeof data.url !== 'string' || !data.url.trim()
+    ) {
+      throw new Error('Image upload returned no URL');
+    }
+    const url = data.url.trim();
+    // This example contract accepts absolute HTTP(S) media URLs only.
+    const parsed = new URL(url);
+    if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') {
+      throw new Error('Image upload returned an unsupported URL');
+    }
+    return url;
+  };
+}
+```
+
+Consume the callback in `image-feature.ts`:
+
+```ts
+import { Image } from 'reactjs-tiptap-editor/image';
+import type { UploadImage } from './upload-image';
+
+export function createImageExtension(upload: UploadImage) {
+  return Image.configure({
+    upload,
     resourceImage: 'both',
     enableAlt: true,
-  }),
-];
+  });
+}
+```
+
+Wire the adapter in app composition, alongside the quickstart's `baseExtensions`:
+
+```tsx
+import { RichTextImage } from 'reactjs-tiptap-editor/image';
+import { createHttpImageUpload } from './http-image-upload';
+import { createImageExtension } from './image-feature';
+import 'react-image-crop/dist/ReactCrop.css';
+
+const uploadImage = createHttpImageUpload('/api/uploads/images');
+const extensions = [...baseExtensions, createImageExtension(uploadImage)];
+
+// Render inside RichTextProvider:
+<RichTextImage />;
 ```
 
 Relevant options: `upload`, `HTMLAttributes`, `multiple`, `acceptMimes`, `maxSize`, `resourceImage`, `defaultInline`, `enableAlt`, `onError`.
 
-`/api/uploads/images` is an example contract, not an endpoint provided by the package. Adapt it to the app's authenticated upload service, which must return a persistent URL. Render `<RichTextImage />` inside the provider.
+`/api/uploads/images` is an example contract, not an endpoint provided by the package. Adapt authentication and response mapping in the adapter to the app's real service. URL validation cannot establish durability: the service must guarantee that stored content can reopen the URL; temporary signed URLs need the app's durable media strategy. Preserve an existing contract that allows relative URLs instead of silently imposing this example's stricter format.
+
+Module-level composition fits static configuration. If credentials or callbacks change during an editor's lifetime, use the app's current-callback mechanism or a supported option update path. Verify the editor sees updated values without recreating it per render; a new memoized extension array alone does not establish this. These helpers can share a small module when cohesive.
 
 ## Video, Attachment, Mermaid, Drawer Uploads
 

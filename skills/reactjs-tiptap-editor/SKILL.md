@@ -1,11 +1,13 @@
 ---
 name: reactjs-tiptap-editor
-description: Integrate, configure, debug, migrate, and review React editors using the reactjs-tiptap-editor package. Use for its provider, extension imports, toolbars, bubble menus, uploads, localization, theme, and document import/export. Applies when this package is requested or already used, not to generic Tiptap integrations using other UI libraries.
+description: Integrate, configure, debug, migrate, refactor, and review React editors using reactjs-tiptap-editor. Use for its provider, extensions, toolbars, bubble menus, uploads, persistence, localization, theme, and document import/export. Applies when this package is requested or already used, not to generic Tiptap integrations using other UI libraries.
 ---
 
 # Reactjs Tiptap Editor
 
 Implement the requested behavior with the smallest compatible extension set. Preserve the host app's framework, package manager, data format, and editor ownership.
+
+Preserve observable behavior unless the user requests a behavior change. Introduce abstractions only for actual independent responsibilities or variations.
 
 ## Establish the API version
 
@@ -34,6 +36,10 @@ Read only relevant sections. Feature recipes extend the quickstart; they are not
 
 ## Implement
 
+- Keep upload transport and save scheduling outside editor rendering and lifecycle code; wire app services through narrow callbacks.
+- Add features through extension configuration and component composition, without feature-specific branches in the shared editor lifecycle.
+- Preserve accepted inputs, result/error semantics, commands, and saved document compatibility when replacing callbacks or extending extensions.
+- Give controls only the capabilities they use; do not require unrelated services or no-op callbacks for unavailable features.
 - Share one `useEditor` instance between `RichTextProvider` and `EditorContent`. Guard the initial null editor before rendering the provider. Put context-dependent controls inside it.
 - Import `reactjs-tiptap-editor/style.css` at the appropriate style boundary, plus selected feature CSS.
 - Register commands and nodes required by visible controls. Check supporting schema nodes and extensions bundled by a feature before adding duplicates. If using StarterKit, disable overlaps or deliberately reuse existing equivalents.

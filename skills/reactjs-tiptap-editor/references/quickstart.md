@@ -18,6 +18,8 @@ The app also needs compatible `react` and `react-dom` (this version supports 18 
 
 This component receives **initial** HTML and emits edits. It does not promise controlled `value` semantics.
 
+Its caller owns persistence through `onChange`; keep network/storage code outside this component.
+
 ```tsx
 'use client';
 
