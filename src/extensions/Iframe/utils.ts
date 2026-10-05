@@ -27,8 +27,14 @@ export const EmbedServiceLink: Record<
     src: 'https://www.youtube.com/embed/I4sMhHbHYXM',
     srcPrefix: 'https://www.youtube.com/embed',
     linkRule: [
-      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\s/]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[&?]v=)|youtu\.be\/)([\w-]{11})/,
+      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\s/]+\/\S+\/|(?:v|e(?:mbed)?|shorts|live)\/|\S*?[&?]v=)|youtu\.be\/)([\w-]{11})/,
     ],
+  },
+  vimeo: {
+    example: 'https://vimeo.com/76979871',
+    src: 'https://player.vimeo.com/video/76979871',
+    srcPrefix: 'https://player.vimeo.com/video',
+    linkRule: [/(?:https?:\/\/)?(?:player\.)?vimeo\.com\/(?:video\/)?(\d+)/],
   },
   youku: {
     example:
@@ -133,6 +139,14 @@ function getYoutubeSrc(result: EmbedResult) {
     result.src = `${link.srcPrefix}/${id}`;
     result.validId = true;
   }
+
+  return result;
+}
+
+function getVimeoSrc(result: EmbedResult) {
+  const link = EmbedServiceLink.vimeo;
+  result.src = `${link.srcPrefix}/${result.matchedUrl}`;
+  result.validId = true;
 
   return result;
 }
@@ -292,7 +306,7 @@ function getMatchedUrl(
     const match = originalLink.match(regex);
     if (match && match.length > 0) {
       result.validLink = true;
-      result.matchedUrl = service === 'youtube' ? match[1] : match[0];
+      result.matchedUrl = service === 'youtube' || service === 'vimeo' ? match[1] : match[0];
 
       return result;
     }
@@ -315,6 +329,10 @@ function formatUrl(url: string) {
 
   if (url.includes?.('youtube') || url.includes?.('youtu.be')) {
     service = 'youtube';
+  }
+
+  if (url.includes('vimeo.com')) {
+    service = 'vimeo';
   }
 
   if (url.includes('youku')) {
@@ -376,7 +394,33 @@ function formatUrl(url: string) {
   return service;
 }
 
-export function getServiceSrc(originalLink: string) {
+const HTML_ENTITIES: Record<string, string> = {
+  '&amp;': '&',
+  '&lt;': '<',
+  '&gt;': '>',
+  '&quot;': '"',
+  '&#39;': "'",
+  '&#x27;': "'",
+};
+
+const IFRAME_SRC_RE = /<iframe\b[^>]*\bsrc\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i;
+
+/**
+ * Users often paste the whole embed code (e.g. Google Maps "Copy HTML") or an
+ * HTML-escaped url instead of a plain link. Reduce it to the url itself.
+ */
+function normalizeEmbedInput(input: string) {
+  const value = (input ?? '').trim().replace(/&(?:amp|lt|gt|quot|#39|#x27);/gi, (entity) => {
+    return HTML_ENTITIES[entity.toLowerCase()] ?? entity;
+  });
+  const match = value.match(IFRAME_SRC_RE);
+
+  return (match ? (match[1] ?? match[2] ?? match[3]) : value).trim();
+}
+
+export function getServiceSrc(link: string) {
+  const originalLink = normalizeEmbedInput(link);
+
   let result = {
     validLink: false,
     validId: false,
@@ -398,6 +442,9 @@ export function getServiceSrc(originalLink: string) {
   switch (service) {
     case 'youtube': {
       return getYoutubeSrc(result);
+    }
+    case 'vimeo': {
+      return getVimeoSrc(result);
     }
     case 'youku': {
       return getYoukuSrc(result);

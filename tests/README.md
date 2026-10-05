@@ -59,3 +59,12 @@ Open `http://127.0.0.1:5199/tests/ai-editor.html` for browser checks covering
 selection replacement, safe text insertion, Apply/Undo, Discard, read-only state,
 and invalidation after document edits. It also provides a mock slash-command demo
 without sending requests to a provider.
+
+# Iframe url checks
+
+```sh
+pnpm exec esno --test tests/iframe-utils.test.ts
+```
+
+Covers pasted `<iframe>` embed code, HTML-escaped input, YouTube shorts/live links
+and Vimeo links resolving to an embeddable src.
