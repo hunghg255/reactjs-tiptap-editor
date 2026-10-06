@@ -49,4 +49,4 @@ export default function IframeExample() {
 
 ## How to use
 
-Open the toolbar dialog and provide an embeddable URL. Mount `RichTextBubbleIframe` for contextual controls. Some sites block iframe embedding; use the service’s embed URL and ensure your application’s content-security policy permits that origin.
+Open the toolbar dialog and provide an embeddable URL. You can also paste the full embed code (for example Google Maps “Copy HTML”); the `src` is extracted from it. YouTube (`watch`, `youtu.be`, `shorts`, `live`) and Vimeo page links are converted to their embed URLs. Mount `RichTextBubbleIframe` for contextual controls. Some sites block iframe embedding; use the service’s embed URL and ensure your application’s content-security policy permits that origin.
