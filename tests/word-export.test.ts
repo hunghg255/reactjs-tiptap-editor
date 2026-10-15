@@ -32,3 +32,35 @@ test('deferred Word serializer produces a DOCX that can be imported again', asyn
   assert.match(value, /<br\s*\/>Second line/);
   assert.match(value, /<p>Second paragraph<\/p>/);
 });
+
+test('nodes without a Word serializer do not abort the export', async () => {
+  const schema = new Schema({
+    nodes: {
+      doc: { content: 'block+' },
+      paragraph: { group: 'block', content: 'inline*' },
+      text: { group: 'inline' },
+      tableOfContents: { group: 'block', atom: true },
+      details: { group: 'block', content: 'detailsSummary detailsContent' },
+      detailsSummary: { content: 'text*' },
+      detailsContent: { content: 'block+' },
+      mention: { group: 'inline', inline: true, atom: true, attrs: { label: { default: null } } },
+    },
+    marks: { strike: {} },
+  });
+  const doc = schema.node('doc', null, [
+    schema.node('tableOfContents'),
+    schema.node('details', null, [
+      schema.node('detailsSummary', null, [schema.text('Summary')]),
+      schema.node('detailsContent', null, [schema.node('paragraph', null, [schema.text('Body')])]),
+    ]),
+    schema.node('paragraph', null, [
+      schema.text('Hello ', [schema.mark('strike')]),
+      schema.node('mention', { label: '@hung' }),
+    ]),
+  ]);
+  const blob = await createWordBlob(doc);
+  const { value } = await mammoth.convertToHtml({ buffer: Buffer.from(await blob.arrayBuffer()) });
+  assert.match(value, /<p>Summary<\/p>/);
+  assert.match(value, /<p>Body<\/p>/);
+  assert.match(value, /<s>Hello <\/s>@hung/);
+});
