@@ -76,6 +76,13 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
       action?.(e);
     };
 
+    // Prevent the button from taking focus on mousedown so the editor keeps
+    // its selection and caret (desktop browsers move focus to the clicked button).
+    const onMouseDownHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      (rest as React.ButtonHTMLAttributes<HTMLButtonElement>).onMouseDown?.(e);
+      e.preventDefault();
+    };
+
     return (
       <Tooltip>
         <TooltipTrigger asChild>
@@ -87,6 +94,7 @@ const ActionButton = React.forwardRef<HTMLButtonElement, Partial<ActionButtonPro
             ref={ref}
             size='sm'
             {...(rest as Omit<typeof rest, 'loading'>)}
+            onMouseDown={onMouseDownHandler}
           >
             {Icon && <Icon className='richtext-size-4' />}
             {children}
