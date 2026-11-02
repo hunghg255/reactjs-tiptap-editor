@@ -6,6 +6,9 @@
     @apply richtext-z-0 richtext-py-16 richtext-pl-20 richtext-pr-8 richtext-caret-black richtext-outline-0 dark:richtext-caret-white lg:richtext-pl-8 lg:richtext-pr-8;
     min-height: 180px;
     padding: 32px 80px;
+    // `outline-0` only sets outline-width; browsers still draw the default
+    // `outline-style: auto` focus ring (visible on mobile, lingers after blur).
+    outline: none;
 
     .img-placeholder {
       width: fit-content;
