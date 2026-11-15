@@ -4,10 +4,12 @@ import react from '@vitejs/plugin-react';
 import autoprefixer from 'autoprefixer';
 import { globbySync } from 'globby';
 import postcssReplace from 'postcss-replace';
-import { esmExternalRequirePlugin } from 'rolldown/plugins';
 import tailwind from 'tailwindcss';
 import dts from 'unplugin-dts/vite';
-import { defineConfig } from 'vite';
+// Import from 'vite' (not 'rolldown/plugins') so the plugin always comes from the same rolldown
+// copy Vite builds with; a plugin from another rolldown version is silently ignored and React
+// ends up bundled into lib/ (duplicate React -> "Invalid hook call", #394).
+import { defineConfig, esmExternalRequirePlugin } from 'vite';
 
 const rootDir = import.meta.dirname;
 
