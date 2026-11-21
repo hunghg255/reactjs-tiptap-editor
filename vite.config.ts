@@ -16,6 +16,10 @@ const rootDir = import.meta.dirname;
 const reactExternal = /^react(-dom)?(\/|$)/;
 
 const externalPackages = [
+  // React is a peer dependency: esmExternalRequirePlugin only rewrites the require()
+  // calls of bundled CommonJS deps, the imports themselves must stay external too.
+  'react',
+  'react-dom',
   'katex',
   'docx',
   '@radix-ui/react-dropdown-menu',
